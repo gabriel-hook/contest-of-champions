@@ -1,0 +1,56 @@
+ul{
+  list-style-type: none;
+  padding:0;
+}
+ul.list{
+  float:left;
+  width:40%;
+  margin:0 2% 0 0;
+  height:300px;
+  overflow:auto;
+  border:solid 1px #000;
+}
+
+span{
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:1.2em;
+}
+
+span.cosmic{
+  color:#0af;
+  text-shadow: 1px 1px 2px #0af;
+}
+span.tech{
+  color:#00f;
+  text-shadow: 1px 1px #00f;
+}
+span.mutant{
+  color:#fa0;
+  text-shadow: 1px 1px #fa0;
+}
+span.skill{
+  color:#a00;
+  text-shadow: 1px 1px #a00;
+}
+span.science{
+  color:#0a0;
+  text-shadow: 1px 1px #0a0;
+}
+span.mystic{
+  color:#a0f;
+  text-shadow: 1px 1px #a0f;
+}
+span.stars{
+  color:#000;
+}
+span.name{
+  text-shadow: 1px 1px #000;
+}
+
+li.synergy{
+  padding-left:20px;
+}
+span.synergy{
+  font-size:1.0em;
+  text-shadow: 1px 1px #aaa;
+}

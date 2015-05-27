@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Contest of Champions</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="coc.css" />
+    
+    
+  </head>
+  <body>
+  
+  
+    <div class="panel" id="panel-add">
+      <div class="header">
+        Add
+      </div>
+      <ul id="add"></ul>
+    </div>
+    <div class="panel" id="panel-roster">
+      <div class="header">
+        Roster
+      </div>
+      <ul id="roster"></ul>
+    </div>    
+    <div class="panel" id="panel-teams">
+      <div class="header">
+        Team 
+        <button id="calculate3">3</button>
+        <button id="calculate5">5</button>
+      </div>
+      <ul id="teams"></ul>
+    </div>
+   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="scripts/base.js"></script>
+    <script src="scripts/logic.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/interface.js"></script>
+    <script>
+
+      CoC.settings.setWeight("attack", 30);
+      CoC.settings.setWeight("critrate", 20);
+      CoC.settings.setWeight("critdmg", 10);
+      
+      CoC.settings.setWeight("pgain", 1);
+      CoC.settings.setWeight("pblock", 0.5);
+      CoC.settings.setWeight("block", 0.5);
+      CoC.settings.setWeight("armor", 0.5);
+      CoC.settings.setWeight("health", 1);
+
+      CoC.settings.setDuplicateWeight(2,0.6);
+      CoC.settings.setDuplicateWeight(3,0.4);
+      CoC.settings.setDuplicateWeight(4,0.2);
+      CoC.settings.setDuplicateWeight(5,0.1);
+
+      CoC.roster.load();
+      
+      CoC.ui.add.update();
+      CoC.ui.roster.update();
+      
+      $("#calculate3").click(function(){ CoC.ui.teams.update(3) });
+      $("#calculate5").click(function(){ CoC.ui.teams.update(5) });
+      
+    </script>
+  </body>
+</html>
