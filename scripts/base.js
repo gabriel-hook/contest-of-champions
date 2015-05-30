@@ -63,33 +63,43 @@ var CoC=new function(){
     CoC.settings.saveObjectToLocalStorage("weights", CoC.settings.weights);
   }
   
-  var starsKeys = {
-    2:"stars-2",
-    3:"stars-3",
-    4:"stars-4"
-  }
+  var starsKey=new function(){
+    this.map = {};
+    this.get=function(stars){
+      var value = this.map[stars]
+      if(value === undefined){
+        value = this.map[stars] = "stars-"+stars;
+      }
+      return value;
+    }
+  };
   this.settings.setStarWeight=function(stars,weight){
     if(parseInt(stars) === NaN || stars < 2 || stars > 4)
       return;
-    CoC.settings.setWeight(starsKeys[stars], weight);
+    CoC.settings.setWeight(starsKey.get(stars), weight);
   }
   this.settings.getStarWeight=function(stars){
-    return CoC.settings.getWeight(starsKeys[stars]);
+    return CoC.settings.getWeight(starsKey.get(stars));
   }
   
-  var duplicateKeys = {
-    2:"duplicates-2",
-    3:"duplicates-3",
-    4:"duplicates-4",
-    5:"duplicates-5"
-  }
+  //duplcates-X
+  var duplicateKey=new function(){
+    this.map = {};
+    this.get=function(number){
+      var value = this.map[number]
+      if(value === undefined){
+        value = this.map[number] = "duplicates-"+number;
+      }
+      return value;
+    }
+  };
   this.settings.setDuplicateWeight=function(number,weight){
     if(parseInt(number) === NaN || number < 2 || number > 5)
       return;
-    CoC.settings.setWeight(duplicateKeys[number], weight);
+    CoC.settings.setWeight(duplicateKey.get(number), weight);
   }
   this.settings.getDuplicateWeight=function(number){
-    return CoC.settings.getWeight(duplicateKeys[number]);
+    return CoC.settings.getWeight(duplicateKey.get(number));
   }
   
   /*********

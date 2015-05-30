@@ -64,7 +64,64 @@
       
     </div>
     
-    <div class="page" id="page-teams" data-role="page">
+    <div class="page ui-responsive-panel" id="page-teams" data-role="page">
+    
+      <div class="panel" id="panel-team-settings" 
+        data-role="panel"
+        data-position="right" 
+        data-display="push"
+        data-theme="b">
+        
+        <a href="#page-settings-advanced" class="ui-btn-right"
+          data-role="button" 
+          data-rel="panel" 
+          data-icon="gear"
+          data-transition="slide">Advanced</a>
+
+        <div role="main" class="ui-content">
+          <h3>Team Size</h3>
+          
+          <div class="team-settings-size" class="ui-field-contain">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+              <input type="radio" name="team-settings-size" id="team-settings-size-3" value="3">
+              <label for="team-settings-size-3">3</label>
+              <input type="radio" name="team-settings-size" id="team-settings-size-4" value="4">
+              <label for="team-settings-size-4">4</label>
+              <input type="radio" name="team-settings-size" id="team-settings-size-5" value="5">
+              <label for="team-settings-size-5">5</label>
+            </fieldset>
+          </div>
+          
+          <h3>Include Champions</h3>
+          
+          <div class="team-settings-include" data-role="fieldcontain">
+            <label for="team-settings-include-4">★★★★</label>
+            <select name="team-settings-include-4" id="team-settings-include-4" data-role="slider"">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <div class="team-settings-include" data-role="fieldcontain">
+            <label for="team-settings-include-3">★★★</label>
+            <select name="team-settings-include-3" id="team-settings-include-3" data-role="slider">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <div class="team-settings-include" data-role="fieldcontain">
+            <label for="team-settings-include-2">★★</label>
+            <select name="team-settings-include-2" id="team-settings-include-2" data-role="slider">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <button id="button-team-settings-apply">Build</button>
+        </div>
+      </div>
+    
     
       <div class="header" data-role="header">
         <a href="#page-roster" class="ui-btn-left"
@@ -81,52 +138,138 @@
         <div id="teams"></div>
       </div>
       
-      <div id="panel-team-settings" 
-        data-role="panel"
-        data-position="right" 
-        data-display="overlay"
-        data-theme="none">
+    </div>
+    
+    
+    <div class="page" id="page-settings-advanced" data-role="page" data-theme="b">
+        
+      <div class="header" data-role="header">
+        <a href="#page-team-settings" class="ui-btn-left"
+          data-rel="back" 
+          data-icon="back">back</a>
+        <h1>Advanced Settings</h1>
+      </div>
+      <div role="main" class="ui-content">
       
-        <h3 for="team-settings-size">Team Size</h3>
-        
-        <div class="team-settings-size" class="ui-field-contain">
-          <fieldset data-role="controlgroup" data-type="horizontal" data-theme="b">
-            <input type="radio" name="team-settings-size" id="team-settings-size-3" value="3">
-            <label for="team-settings-size-3">3</label>
-            <input type="radio" name="team-settings-size" id="team-settings-size-4" value="4">
-            <label for="team-settings-size-4">4</label>
-            <input type="radio" name="team-settings-size" id="team-settings-size-5" value="5">
-            <label for="team-settings-size-5">5</label>
-          </fieldset>
+      
+        <h3>Hero Weight %</h3>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-star4">★★★★</label>
+          <input type="range" name="settings-advanced-star4" id="settings-advanced-star4" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
         </div>
         
-        <h3 for="team-settings-size">Include Champions</h3>
-        
-        <div class="team-settings-include" data-role="fieldcontain">
-          <label for="team-settings-include-4">★★★★</label>
-          <select name="team-settings-include-4" id="team-settings-include-4" data-role="slider" data-theme="b">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-star3">★★★</label>
+          <input type="range" name="settings-advanced-star3" id="settings-advanced-star3" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
         </div>
         
-        <div class="team-settings-include" data-role="fieldcontain">
-          <label for="team-settings-include-3">★★★</label>
-          <select name="team-settings-include-3" id="team-settings-include-3" data-role="slider" data-theme="b">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-star2">★★</label>
+          <input type="range" name="settings-advanced-star2" id="settings-advanced-star2" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
         </div>
         
-        <div class="team-settings-include" data-role="fieldcontain">
-          <label for="team-settings-include-2">★★</label>
-          <select name="team-settings-include-2" id="team-settings-include-2" data-role="slider" data-theme="b">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-awakened">Awakened</label>
+          <input type="range" name="settings-advanced-awakened" id="settings-advanced-awakened" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
         </div>
         
-        <button id="button-team-settings-apply" data-theme="b">Apply</button>
+        <h3>Duplicate Class Weight %</h3>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class2">Double (2X)</label>
+          <input type="range" name="settings-advanced-class2" id="settings-advanced-class2" 
+            value="100" min="0" max="100" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class3">Triple (3x)</label>
+          <input type="range" name="settings-advanced-class3" id="settings-advanced-class3" 
+            value="100" min="0" max="100" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class4">Quadruple (4x)</label>
+          <input type="range" name="settings-advanced-class4" id="settings-advanced-class4" 
+            value="100" min="0" max="100" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class5">Quintuple (5x)</label>
+          <input type="range" name="settings-advanced-class5" id="settings-advanced-class5" 
+            value="100" min="0" max="100" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+        
+        <h3>Syngergy Weight %</h3>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-attack">Attack</label>
+          <input type="range" name="settings-advanced-attack" id="settings-advanced-attack" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-critrate">Crit Rate</label>
+          <input type="range" name="settings-advanced-critrate" id="settings-advanced-critrate"
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-critdmg">Crit Damage</label>
+          <input type="range" name="settings-advanced-critdmg" id="settings-advanced-critdmg" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-perfectblock">Prefect Block</label>
+          <input type="range" name="settings-advanced-perfectblock" id="settings-advanced-perfectblock" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-block">Block Proficiency</label>
+          <input type="range" name="settings-advanced-block" id="settings-advanced-block" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-powergain">Power Gain</label>
+          <input type="range" name="settings-advanced-powergain" id="settings-advanced-powergain" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-armor">Armor</label>
+          <input type="range" name="settings-advanced-armor" id="settings-advanced-armor" 
+            value="100" min="0" max="1000" 
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-health">Health</label>
+          <input type="range" name="settings-advanced-health" id="settings-advanced-health" 
+            value="100" min="0" max="1000"  
+            data-theme="a" data-track-theme="b" />
+        </div>
+      
       </div>
     </div>
     
@@ -135,34 +278,38 @@
     <script src="scripts/data.js"></script>
     <script src="scripts/interface.js"></script>
     <script>
-    /*
-      CoC.settings.setValue("include-4", true);
-      CoC.settings.setValue("include-3", true);
-      CoC.settings.setValue("include-2", true);
-      CoC.settings.setValue("size", 3)
-    */
-      CoC.settings.setWeight("stars-2", 1);
-      CoC.settings.setWeight("stars-3", 2);
-      CoC.settings.setWeight("stars-4", 4);
+      function setDefaults(){
+        CoC.settings.setValue("include-4", true);
+        CoC.settings.setValue("include-3", true);
+        CoC.settings.setValue("include-2", true);
+        CoC.settings.setValue("size", 3)
 
-      CoC.settings.setWeight("awakened", 1.5);
-    
-      CoC.settings.setWeight("attack", 30);
-      CoC.settings.setWeight("critrate", 20);
-      CoC.settings.setWeight("critdmg", 10);
+        CoC.settings.setWeight("stars-2", 1);
+        CoC.settings.setWeight("stars-3", 2);
+        CoC.settings.setWeight("stars-4", 4);
 
-      CoC.settings.setWeight("pgain", 1);
-      CoC.settings.setWeight("pblock", 1);
-      CoC.settings.setWeight("block", 1);
-      CoC.settings.setWeight("armor", 1);
-      CoC.settings.setWeight("health", 1);
-
+        CoC.settings.setWeight("awakened", 1.5);
       
-      CoC.settings.setDuplicateWeight(2,0.75);
-      CoC.settings.setDuplicateWeight(3,0.5);
-      CoC.settings.setDuplicateWeight(4,0.25);
-      CoC.settings.setDuplicateWeight(5,0.125);
+        CoC.settings.setWeight("attack", 10);
+        CoC.settings.setWeight("critrate", 5);
+        CoC.settings.setWeight("critdmg", 2);
 
+        CoC.settings.setWeight("powergain", 1);
+        CoC.settings.setWeight("perfectblock", 1);
+        CoC.settings.setWeight("block", 1);
+        CoC.settings.setWeight("armor", 1);
+        CoC.settings.setWeight("health", 1);
+
+        CoC.settings.setDuplicateWeight(2,0.75);
+        CoC.settings.setDuplicateWeight(3,0.5);
+        CoC.settings.setDuplicateWeight(4,0.25);
+        CoC.settings.setDuplicateWeight(5,0.125);
+        
+        CoC.settings.setValue("hasDefaults", true);
+      }
+      
+      if(CoC.settings.getValue("hasDefaults") !== true)
+        setDefaults();
     </script>
   </body>
 </html>

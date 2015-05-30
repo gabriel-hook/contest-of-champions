@@ -26,14 +26,14 @@ CoC.ui.hero_listener=function(container,options){
     if(size>maximum)
       size=maximum;
       
-    if(size === null)
-      console.log(element)
+    if(size < 50)
+      size = 50;
     
     element.css({ width:size, height:size });
   }
-  container.on('resize', setSize);
-  if(options.onpageshow)
-    options.onpageshow.on("pageshow",setSize);
+  container.on('resize', function(){
+    setSize();
+  });
   setSize();
 }
 
@@ -122,8 +122,8 @@ CoC.ui.roster=new function(){
   this.update=function(){
     CoC.ui.teams.clear();
     var heroes = CoC.roster.all();
-    var element = $(CoC.ui.roster.selector);
-    element.text("")
+    var element = $("<div>");;
+    $(CoC.ui.roster.selector).text("").append(element);
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero(hero, function(event){
@@ -161,6 +161,9 @@ CoC.ui.roster=new function(){
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
+    CoC.ui.hero_listener(element,{
+      'min-width':{ 150:1, 250:2, 350:3 }
+    })
   }
 }
 
@@ -182,8 +185,8 @@ CoC.ui.add=new function(){
       3:stars === 3,
       4:stars === 4
     }));
-    var element = $(CoC.ui.add.selector);
-    element.text("")
+    var element = $('<div>');
+    $(CoC.ui.add.selector).text("").append(element);
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
@@ -197,6 +200,17 @@ CoC.ui.add=new function(){
     });
   }
 }
+
+$("#page-roster").on("pagebeforeshow",function(){
+  console.log("refreshing roster")
+  CoC.ui.roster.update();
+});
+
+
+$("#page-add").on("pagebeforeshow",function(){
+  console.log("refreshing add")
+  CoC.ui.add.update();
+});
 
 $("#page-teams").on( "pagebeforeshow", function() {
 
@@ -271,23 +285,65 @@ $("#page-teams").on( "pagebeforeshow", function() {
     }, 500);
 });
 
-$("#page-add").on("pagebeforeshow",function(){
-  console.log("refreshing add")
-  CoC.ui.add.update();
-});
+$("#page-settings-advanced").on( "pagebeforeshow", function() {
 
-$("#page-roster").on("pagebeforeshow",function(){
-  console.log("refreshing roster")
-  CoC.ui.roster.update();
+  function enableSlider(id, value, callback){
+    $(id).val(value * 100).slider("refresh").change(function(){
+      callback( parseInt(this.value) / 100.0 );
+    })
+  }
+
+  enableSlider("#settings-advanced-star4",CoC.settings.getWeight("stars-4"),function(v){
+    CoC.settings.setWeight("stars-4", v);
+  });
+  enableSlider("#settings-advanced-star3",CoC.settings.getWeight("stars-3"),function(v){
+    CoC.settings.setWeight("stars-3", v);
+  });
+  enableSlider("#settings-advanced-star2",CoC.settings.getWeight("stars-2"),function(v){
+    CoC.settings.setWeight("stars-2", v);
+  });
+  enableSlider("#settings-advanced-awakened",CoC.settings.getWeight("awakened"),function(v){
+      CoC.settings.setWeight("awakened", v);
+  });
+  enableSlider("#settings-advanced-class2",CoC.settings.getDuplicateWeight(2),function(v){
+    CoC.settings.setDuplicateWeight(2,v);
+  });
+  enableSlider("#settings-advanced-class3",CoC.settings.getDuplicateWeight(3),function(v){
+    CoC.settings.setDuplicateWeight(3,v);
+  });
+  enableSlider("#settings-advanced-class4",CoC.settings.getDuplicateWeight(4),function(v){
+    CoC.settings.setDuplicateWeight(4,v);
+  });
+  enableSlider("#settings-advanced-class5",CoC.settings.getDuplicateWeight(5),function(v){
+    CoC.settings.setDuplicateWeight(5,v);
+  });
+  enableSlider("#settings-advanced-attack",CoC.settings.getWeight("attack"),function(v){
+    CoC.settings.setWeight("attack",v);
+  });
+  enableSlider("#settings-advanced-critrate",CoC.settings.getWeight("critrate"),function(v){
+    CoC.settings.setWeight("critrate",v);
+  });
+  enableSlider("#settings-advanced-critdmg",CoC.settings.getWeight("critdmg"),function(v){
+    CoC.settings.setWeight("critdmg",v);
+  });
+  enableSlider("#settings-advanced-perfectblock",CoC.settings.getWeight("perfectblock"),function(v){
+    CoC.settings.setWeight("perfectblock",v);
+  });
+  enableSlider("#settings-advanced-block",CoC.settings.getWeight("block"),function(v){
+    CoC.settings.setWeight("block",v);
+  });
+  enableSlider("#settings-advanced-powergain",CoC.settings.getWeight("powergain"),function(v){
+    CoC.settings.setWeight("powergain",v);
+  });
+  enableSlider("#settings-advanced-armor",CoC.settings.getWeight("armor"),function(v){
+    CoC.settings.setWeight("armor",v);
+  });
+  enableSlider("#settings-advanced-health",CoC.settings.getWeight("health"),function(v){
+    CoC.settings.setWeight("health",v);
+  });
+  
 });
 
 CoC.roster.load();
-CoC.ui.hero_listener($(CoC.ui.roster.selector),{
-  'min-width':{ 150:1, 250:2, 350:3 },
-  onpageshow:$("#page-roster")
-})
-
-//make buttons live
 CoC.ui.add.setStars(2);
-CoC.ui.add.update();
 

@@ -155,16 +155,6 @@
      SETTINGS
 ******************/
 
-#panel-team-settings{
-  background:#666;
-  background: rgba(0,0,0,.75);
-}
-#panel-team-settings h3,
-#panel-team-settings label,
-#panel-team-settings legend{
-  color:#fff;
-  text-shadow: 1px 1px 1px #000;
-}
 @media (min-width: 28em){
   #panel-team-settings .team-settings-include label{
     width:30%;
