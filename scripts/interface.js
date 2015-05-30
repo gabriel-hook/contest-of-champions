@@ -118,8 +118,6 @@ CoC.ui.teams=new function(){
 CoC.ui.roster=new function(){
 
   this.selector="#roster"
-  
-  this.onRosterAction=function(){};
 
   this.update=function(){
     CoC.ui.teams.clear();
@@ -149,9 +147,11 @@ CoC.ui.roster=new function(){
           });
           $('#roster-configure-delete').click(function(){
             CoC.roster.remove(hero.id, hero.stars);
-            CoC.ui.add.update();
-            CoC.ui.roster.update();
-            CoC.ui.roster.onRosterAction();
+            CoC.ui.add.update();           
+            
+            var el = $(element.find(".hero")[i])
+            el.addClass("hidden");
+            
             $('#popup-roster-configure').popup("close");
           });
           
@@ -198,7 +198,7 @@ CoC.ui.add=new function(){
           CoC.roster.add($(this).attr('id'), stars);
           CoC.ui.roster.update();
           var el = $(element.find(".hero")[i])
-          el.addClass("added")
+          el.addClass("hidden")
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
@@ -281,9 +281,12 @@ $("#page-teams").on( "pagebeforeshow", function() {
     }, 500);
 });
 
-
-$("#popup-add").on("popupbeforeposition",function(){
+$("#page-add").on("pagebeforeshow",function(){
   CoC.ui.add.update();
+});
+
+$("#page-roster").on("pagebeforeshow",function(){
+  CoC.ui.roster.update();
 });
 
 CoC.roster.load();
@@ -291,7 +294,6 @@ CoC.ui.hero_listener($(CoC.ui.roster.selector),{
   'min-width':{ 150:1, 250:2, 350:3 },
   onpageshow:$("#page-roster")
 })
-CoC.ui.roster.update();
 
 //make buttons live
 CoC.ui.add.setStars(2);

@@ -17,10 +17,10 @@
     <div class="page" id="page-roster" data-role="page">
     
       <div id="roster-header" class="header" data-role="header">
-        <a href="#popup-add" class="ui-btn-left"
+        <a href="#page-add" class="ui-btn-left"
           data-icon="plus" 
-          data-rel="popup" 
-          data-transition="fade">Add</a>
+          data-rel="page"  
+          data-transition="slideup">Add</a>
         <a href="#page-teams" class="ui-btn-right"
           data-icon="grid" 
           data-rel="page" 
@@ -31,26 +31,6 @@
       <div role="main" class="ui-content">
         <div id="roster"></div>
       </div>
-      
-      <div id="popup-add" data-role="popup" data-overlay-theme="b">
-        <div class="header" data-role="header" style="overflow:hidden">
-          <h3>Add</h3>
-          <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-          <div data-role="navbar">
-            <ul>
-              <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" class="ui-btn-active">★★</a></li>
-              <li><a id="add-stars-3" href="#" onclick="CoC.ui.add.setStars(3)">★★★</a></li>
-              <li><a id="add-stars-4" href="#" onclick="CoC.ui.add.setStars(4)">★★★★</a></li>
-            </ul>
-          </div>
-        </div>
-        <div role="main" class="ui-content">
-          <div id="add-heroes"></div>
-        </div>
-        <div data-role="footer">
-        </div>
-      </div>
-      
       
       <div id="popup-roster-configure" data-role="popup" data-overlay-theme="b" data-arrow="true">
         <div role="main" class="ui-content">
@@ -63,6 +43,26 @@
       
     </div> 
     
+      
+    <div class="page" id="page-add" data-role="page" data-overlay-theme="b">
+    
+      <div class="header" data-role="header" style="overflow:hidden">
+        <h3>Add</h3>
+        <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <div data-role="navbar">
+          <ul>
+            <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" class="ui-btn-active">★★</a></li>
+            <li><a id="add-stars-3" href="#" onclick="CoC.ui.add.setStars(3)">★★★</a></li>
+            <li><a id="add-stars-4" href="#" onclick="CoC.ui.add.setStars(4)">★★★★</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div role="main" class="ui-content">
+        <div id="add-heroes"></div>
+      </div>
+      
+    </div>
     
     <div class="page" id="page-teams" data-role="page">
     
