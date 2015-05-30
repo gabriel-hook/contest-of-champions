@@ -42,12 +42,15 @@ CoC.ui.hero=function(raw, onclick){
   var element = $('<div>', { 
     id:hero.id, 
     stars:raw.stars, 
-    class:"hero "+hero.class.toLowerCase()
+    class:"hero"
   }).css({
     'background-image':'url(images/portraits/portrait_'+hero.id+'.png)'
   });
+  element.addClass(hero.class.toLowerCase());
+  if(raw.awakened)
+    element.addClass('awakened');
   element.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
-  element.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'+((raw.awakened)?" awakened":"")}).text((function(){
+  element.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'}).text((function(){
     var string = "";
     for(var i=0;i<raw.stars;i++)
       string+="★";
@@ -62,6 +65,11 @@ CoC.ui.teams=new function(){
 
   this.selector="#teams"
 
+  this.clear=function(){
+    var element = $(CoC.ui.teams.selector);
+    element.text("")
+  }
+  
   this.update=function(teams, size){
     var element = $(CoC.ui.teams.selector);
     element.text("")
@@ -114,8 +122,8 @@ CoC.ui.roster=new function(){
   this.onRosterAction=function(){};
 
   this.update=function(){
+    CoC.ui.teams.clear();
     var heroes = CoC.roster.all();
-    
     var element = $(CoC.ui.roster.selector);
     element.text("")
     for(var i in heroes)
@@ -132,13 +140,12 @@ CoC.ui.roster=new function(){
               hero.awakened=true;
             else
               delete hero.awakened;
-             
             CoC.roster.save();
-            CoC.ui.roster.update();
-            CoC.ui.roster.onRosterAction();
-            
-            //add class back to me
-            $(element.find(".hero")[i]).addClass("selected");
+            var el = $(element.find(".hero")[i])
+            if(hero.awakened)
+              el.addClass("awakened");
+            else
+              el.removeClass("awakened");
           });
           $('#roster-configure-delete').click(function(){
             CoC.roster.remove(hero.id, hero.stars);
@@ -167,8 +174,6 @@ CoC.ui.add=new function(){
 
   this.selector="#add-heroes"
 
-  this.onAddAction=function(){};
-  
   this.setStars=function(stars){
     this.stars = stars;
     CoC.ui.add.update();
@@ -183,16 +188,19 @@ CoC.ui.add=new function(){
       4:stars === 4
     }));
     
+    console.log("addding")
+    
     var element = $(CoC.ui.add.selector);
     element.text("")
-    for(var i in heroes){
-      element.append(CoC.ui.hero({ id:heroes[i].id, stars:stars }, function(){
-        CoC.roster.add($(this).attr('id'), stars);
-        CoC.ui.add.update();
-        CoC.ui.roster.update();
-        CoC.ui.add.onAddAction();
-      }));
-    }
+    for(var i in heroes)
+      (function(hero,i){
+        element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
+          CoC.roster.add($(this).attr('id'), stars);
+          CoC.ui.roster.update();
+          var el = $(element.find(".hero")[i])
+          el.addClass("added")
+        }));
+      })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
     CoC.ui.hero_listener(element, { 
       'min-width':{ 150:1, 250:2, 350:3, 500:4 }
@@ -273,17 +281,19 @@ $("#page-teams").on( "pagebeforeshow", function() {
     }, 500);
 });
 
+
+$("#popup-add").on("popupbeforeposition",function(){
+  CoC.ui.add.update();
+});
+
 CoC.roster.load();
 CoC.ui.hero_listener($(CoC.ui.roster.selector),{
   'min-width':{ 150:1, 250:2, 350:3 },
   onpageshow:$("#page-roster")
 })
+CoC.ui.roster.update();
 
 //make buttons live
 CoC.ui.add.setStars(2);
 CoC.ui.add.update();
-CoC.ui.add.onAddAction=function(){
-  location.href="#page-roster";
-};
 
-CoC.ui.roster.update();

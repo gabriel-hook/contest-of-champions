@@ -36,12 +36,6 @@
   }
 }
 
-#roster-header{
-
-  background:url(../images/banners/Gacha_FTE.jpg);
-  background-size:cover;
-}
-
 #teams .team .hero{
   margin:10px 0 0 0;
 }
@@ -60,6 +54,16 @@
   height:150px;
   background-size:cover;
   margin:10px;
+}
+
+.hero.added{
+  margin:0;
+  width:0 !important;
+  opacity:0;
+  transform: scale(5.0,5.0);
+  transition:all .5s ease, margin .5s ease .5s, width .5s ease .5s;
+  z-index:10000;
+  pointer-events:none;
 }
 
 .hero.selected{
@@ -98,7 +102,7 @@
   color:#ffcc66;
   text-shadow: 1px -1px 2px #666,-1px -1px 2px #666,-1px 1px 2px #666,1px 1px 2px #666;
 }
-.hero .stars.awakened{
+.hero.awakened .stars{
   color:#fff6f0;
 }
 
