@@ -1,0 +1,183 @@
+@media (max-width:355px) {
+  .ui-panel {
+    width:80% !important;
+  }
+}
+@media (max-width:400px) {
+  .hero .name {
+    display: none !important;
+  }
+  .synergy span{
+    font-size:0.75em;
+  }
+  .synergy img{
+    top:1px;
+    width:16px;
+  }
+}
+@media (max-width:800px) and (min-width:400px) {
+  .hero .name,
+  .synergy span{
+    font-size:0.9em;
+  }
+  .synergy img{
+    top:2px;
+    width:18px;
+  }
+}
+@media (min-width:800px) {
+  .hero .name,
+  .synergy span{
+    font-size:1.15em;
+  }
+  .synergy img{
+    top: 4px;
+    width:22px;
+  }
+}
+
+#roster-header{
+
+  background:url(../images/banners/Gacha_FTE.jpg);
+  background-size:cover;
+}
+
+#teams .team .hero{
+  margin:10px 0 0 0;
+}
+
+#roster .hero{
+  cursor:pointer;
+}
+#add-heroes .hero{
+  cursor:pointer;
+}
+
+.hero{
+  position:relative;
+  float:left;
+  width:150px;
+  height:150px;
+  background-size:cover;
+  margin:10px;
+}
+
+.hero.selected{
+  z-index:1100;
+}
+
+.hero .title{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  overflow:hidden;
+  min-height:14px;
+  background:rgba(0,0,0,0.666);
+  background:linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.8) );
+  border-bottom:solid 4px;
+}
+
+.hero .name{
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:4px;
+}
+
+.hero .stars{
+  position:absolute;
+  bottom:-14px;
+  right:0;
+  display:block;
+  width:100%;
+  text-align:center;
+
+}
+.hero .stars{
+  color:#ffcc66;
+  text-shadow: 1px -1px 2px #666,-1px -1px 2px #666,-1px 1px 2px #666,1px 1px 2px #666;
+}
+.hero .stars.awakened{
+  color:#fff6f0;
+}
+
+.hero span{
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:1.2em;
+}
+
+.hero.cosmic{
+  color:#0af;
+}
+.hero.tech{
+  color:#66f;
+}
+.hero.mutant{
+  color:#fa0;
+}
+.hero.skill{
+  color:#f00;
+}
+.hero.science{
+  color:#0a0;
+}
+.hero.mystic{
+  color:#f0a;
+}
+
+.hero .name{
+  text-shadow: 1px 1px #000;
+}
+
+.synergies{
+  background:rgba(0,0,0,0.666);
+  padding-top:20px;
+}
+.synergies .synergy{
+  padding:10px;
+  padding-top:0;
+}
+.synergies .synergy span{
+  color:#eee;
+  text-shadow: 2px 2px 1px #346;
+}
+.synergies .synergy img{
+  position:relative;
+  padding-right:3px;
+}
+
+/******************
+     SETTINGS
+******************/
+
+#panel-team-settings{
+  background:#666;
+  background: rgba(0,0,0,.75);
+}
+#panel-team-settings h3,
+#panel-team-settings label,
+#panel-team-settings legend{
+  color:#fff;
+  text-shadow: 1px 1px 1px #000;
+}
+@media (min-width: 28em){
+  #panel-team-settings .team-settings-include label{
+    width:30%;
+    text-align:right;
+  }
+  #panel-team-settings .team-settings-size  .ui-controlgroup-controls {
+    display:block;
+  }
+  #panel-team-settings .team-settings-size  .ui-radio{
+    width:33.33%;
+  }
+}
+@media (max-width: 28em){
+  #panel-team-settings .ui-field-contain{
+    padding:0 0 0.5em 0;
+  }
+}
+
+
+

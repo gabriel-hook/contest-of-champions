@@ -1,12 +1,54 @@
 CoC.data.synergies={
-  "pblock":"Perfect Block Chance",
-  "block":"Block Proficiency",
-  "armor":"Armor",
-  "critdmg":"Crit Damage",
-  "critrate":"Crit Rate",
-  "pgain":"Power Gain",
-  "attack":"Attack",
-  "health":"Health"
+  "pblock":{
+    name:"Perfect Block Chance",
+    image:"block",
+    base:3
+  },
+  "block":{
+    name:"Block Proficiency",
+    image:"block",
+    base:10
+  },
+  "armor":{
+    name:"Armor",
+    image:"armor_up",
+    base:4
+  },
+  "critdmg":{
+    name:"Crit Damage",
+    image:"crit",
+    base:15
+  },
+  "critrate":{
+    name:"Crit Rate",
+    image:"crit",
+    base:5
+  },
+  "pgain":{
+    name:"Power Gain",
+    image:"mana",
+    base:3
+  },
+  "attack":{
+    name:"Attack",
+    image:"attack",
+    base:5
+  },
+  "health":{
+    name:"Health",
+    image:"health",
+    base:5
+  },
+  "healthsteal":{
+    name:"Health Steal",
+    image:"health_steal",
+    base:5
+  },
+  "manasteal":{
+    name:"Mana Steal",
+    image:"mana_steal",
+    base:5
+  },
 };
 
 CoC.data.classes=[
@@ -26,6 +68,18 @@ CoC.data.heroes = {
     synergies:{
       2:[
         { id:"cyclops", type:"block", amount:10 }
+      ],
+      3:[
+        { id:"spiderman", type:"armor", amount:5 },
+        { id:"ronan", type:"attack", amount:4 },
+        { id:"cyclops", type:"block", amount:15 },
+        { id:"hulk", type:"critdmg", amount:20 }
+      ],
+      4:[
+        { id:"spiderman", type:"armor", amount:6 },
+        { id:"ronan", type:"attack", amount:5 },
+        { id:"cyclops", type:"block", amount:20 },
+        { id:"hulk", type:"critdmg", amount:25 }
       ]
     }
   },
@@ -107,6 +161,9 @@ CoC.data.heroes = {
     class:"Tech",
     synergies:{
       2:[
+        { id:"hulk", type:"critdmg", amount:15 }
+      ],
+      3:[
         { id:"hulk", type:"critdmg", amount:30 },
         { id:"ironman", type:"pblock", amount:3 },
         { id:"superiorironman", type:"pblock", amount:3 }
@@ -307,7 +364,7 @@ CoC.data.heroes = {
   },
   "spiderman":{
     id:"spiderman",
-    name:"Spiderman",
+    name:"Spider-man",
     class:"Science",
     synergies:{
       2:[

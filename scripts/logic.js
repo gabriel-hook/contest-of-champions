@@ -1,7 +1,20 @@
-CoC.logic.heroes=new function(){
+﻿CoC.logic.heroes=new function(){
   
   this.get=function(id){
     return CoC.data.heroes[id];
+  }
+  
+  this.value=function(heroes){
+    var value = 1, v;
+    if(heroes.length === undefined)
+      heroes = [heroes];
+    for(var h in heroes){
+      v = CoC.settings.getStarWeight(heroes[h].stars);
+      if(heroes[h].awakened)
+        v *= CoC.settings.getWeight("awakened");
+      value += v;
+    }    
+    return value;
   }
 
   this.all=function(){
@@ -78,10 +91,12 @@ CoC.logic.synergy=new function(){
       hasSynergies[j]=true;
     });
     
-    for(i=list.length-1;i>=0;i--){
-      if(!hasSynergies[i])
-        list.splice(i,1);
-    }
+    var culled=[];
+    for(var i in list)
+      if(hasSynergies[i])
+        culled.push(list[i])
+
+    return culled;
   }
   
   
@@ -134,7 +149,9 @@ CoC.logic.team=new function(){
         for(var o in team)
           oTeam.push(list[team[o]]);
         if (CoC.logic.synergy.has(oTeam)){
-          CoC.logic.synergy.cull(oTeam);
+        
+          oTeam = CoC.logic.synergy.cull(oTeam);
+          
           teams[i]=oTeam;
           teams.length=i++;
           for(var o in oTeam)
@@ -155,68 +172,84 @@ CoC.logic.team=new function(){
       var i = teams.length;
       team = teams[i];
       for(var t in team){
-        console.log(team[t])
         list.push(team[t]);
         needed--;
       }
       delete teams[i];
     }
     
+    function getIds(list){
+      var ids=[];
+      for(var i in list)
+        ids.push(list[i].id);
+      return JSON.stringify(ids);
+    }
+    
+    function appendToTeam(list, object){
+      var l = list.slice();
+      l.push(object)
+      return l;
+    }
+    
     //add into existing teams, using the comparison to find best partner
     for(i in teams){
       while(teams[i].length < size){
-        var current=teams[i].slice().push(list[0]), best = 0;
+        var current_object = list[0];
+        var current_value = getTeamValue(appendToTeam(teams[i],current_object));
+        var current_index = 0;
+        
         for(var j=1;j<list.length;j++){
-          var next=teams[i].slice().push(list[j])
-          if(compareTeams(undefined,next,current)){
-            current = next;
-            best = j;
+          var next_object = list[j];
+          var next_value = getTeamValue(appendToTeam(teams[i],next_object));
+          var next_index = j;
+          
+          if(next_value > current_value){
+            current_object = next_object;
+            current_value = next_value;
+            current_index = next_index;
           }
         }
-        teams[i].push(list[best])
-        list.splice(best,1);
+          
+        teams[i].push(list[current_index])
+        list.splice(current_index,1);
       }
     }
-
+    
+    delete teams.length
     teams['extras'] = list;
     
     return teams;
   }
   
   function getClassesWeight(team){
-    var classes = {}, highest = 0;
+    var classes = {};
     for(var i in CoC.data.classes)
       classes[CoC.data.classes[i]]=0;
     for(var i in team)
       classes[CoC.data.heroes[team[i].id].class]++;
+      
+    var multiplier = 1;
     for(var i in classes)
-      if(classes[i] > highest)
-        highest = classes[i];
-    if(highest >= 2 && highest <= 5)
-      return CoC.settings.getWeight("class"+highest+"x")
-    else
-      return 1;
+      if(classes[i] > 1)
+        multiplier *= CoC.settings.getDuplicateWeight(classes[i])
+    return multiplier;
   }
     
-  function compareTeams(list,a,b){
-    if(b==null)
+  function getTeamValue(team, list){
+    if(list !== undefined){
+      var l = [];
+      for(var i in team)
+        l.push(list[team[i]]);
+      team = l;
+    }
+    return (CoC.logic.synergy.value(team) + CoC.logic.heroes.value(team)) * getClassesWeight(team);
+  }
+  
+  function compareTeams(list, a, b){
+    if(b == null)
       return 1;
-      
-    var teamA = [], teamB = [];
-    if(list === undefined){
-      teamA = a;
-      teamB = b;
-    }
-    else{
-      for(var i in a)
-        teamA.push(list[a[i]]);
-      for(var i in b)
-        teamB.push(list[b[i]]);
-    }
-      
-    var valueA = CoC.logic.synergy.value(teamA) * getClassesWeight(teamA), 
-      valueB = CoC.logic.synergy.value(teamB) * getClassesWeight(teamB);
-    return valueA-valueB >= 0;
+    
+    return getTeamValue(a, list) - getTeamValue(b, list);
   }
 
   function getNextPartner(list,arr,i,depth){
@@ -233,7 +266,7 @@ CoC.logic.team=new function(){
     if(current == null)
       return null;
     var next = getNextPartner(list,arr,i+1,depth);
-    return (compareTeams(list,current,next))? current: next;
+    return (compareTeams(list,current,next) >= 0)? current: next;
   }
 
   function getTopPartner(list,i,depth){
@@ -241,7 +274,7 @@ CoC.logic.team=new function(){
     if(current == null)
       return null;
     var next = getTopPartner(list,i+1,depth);
-    return (compareTeams(list,current,next))? current: next;
+    return (compareTeams(list,current,next) >= 0)? current: next;
   }
   
 };
