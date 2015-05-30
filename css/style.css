@@ -56,11 +56,11 @@
   margin:10px;
 }
 
-.hero.added{
+.hero.hidden{
   margin:0;
   width:0 !important;
   opacity:0;
-  transform: scale(5.0,5.0);
+  transform:scale(2, 2);
   transition:all .5s ease, margin .5s ease .5s, width .5s ease .5s;
   z-index:10000;
   pointer-events:none;

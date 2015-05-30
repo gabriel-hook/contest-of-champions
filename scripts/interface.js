@@ -147,11 +147,7 @@ CoC.ui.roster=new function(){
           });
           $('#roster-configure-delete').click(function(){
             CoC.roster.remove(hero.id, hero.stars);
-            CoC.ui.add.update();           
-            
-            var el = $(element.find(".hero")[i])
-            el.addClass("hidden");
-            
+            $(element.find(".hero")[i]).addClass("hidden");
             $('#popup-roster-configure').popup("close");
           });
           
@@ -181,24 +177,18 @@ CoC.ui.add=new function(){
   
   this.update=function(){
     var stars = this.stars;
-    
     var heroes = CoC.logic.heroes.excluding(CoC.roster.all({
       2:stars === 2,
       3:stars === 3,
       4:stars === 4
     }));
-    
-    console.log("addding")
-    
     var element = $(CoC.ui.add.selector);
     element.text("")
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
           CoC.roster.add($(this).attr('id'), stars);
-          CoC.ui.roster.update();
-          var el = $(element.find(".hero")[i])
-          el.addClass("hidden")
+          $(element.find(".hero")[i]).addClass("hidden");
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
@@ -282,10 +272,12 @@ $("#page-teams").on( "pagebeforeshow", function() {
 });
 
 $("#page-add").on("pagebeforeshow",function(){
+  console.log("refreshing add")
   CoC.ui.add.update();
 });
 
 $("#page-roster").on("pagebeforeshow",function(){
+  console.log("refreshing roster")
   CoC.ui.roster.update();
 });
 
