@@ -11,6 +11,8 @@ onmessage = function (event) {
   var size = event.data.size;
   var settings = event.data.settings;
   var weights = event.data.weights;
+  var single = event.data.single;
+  var extras = event.data.extras;
   
   CoC.settings.getWeight=function(key){
     return weights[key];
@@ -31,6 +33,6 @@ onmessage = function (event) {
     }[number]);
   }
   
-  var teams = CoC.logic.team.build(roster,size);
+  var teams = CoC.logic.team.build(roster,{ size:size, extras:extras, single:single });
   postMessage(teams);
 };

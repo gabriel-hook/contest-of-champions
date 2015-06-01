@@ -139,11 +139,11 @@ CoC.logic.synergy=new function(){
 
 CoC.logic.team=new function(){
 
-  this.build=function(_list,size){
-    var teams = {}, i=1, team;
-    var list = _list.slice();
+  this.build=function(_list,options){
+    var teams = {}, i=1, team,
+      list = _list.slice();
     do {
-      team = getTopPartner(list,0,size);
+      team = getTopPartner(list,0,options.size);
       if(team){
         var oTeam = [];
         for(var o in team)
@@ -159,13 +159,15 @@ CoC.logic.team=new function(){
         }
         else break;
       }
+      if(options.single)
+        break;
     } while(team != null)
     
     //check if we have enough
     var needed = 0;
     for(i in teams)
       if(i !== 'length')
-        needed += size - teams[i].length;
+        needed += options.size - teams[i].length;
       
     //break up teams if we dont have enough
     while(list.length < needed){
@@ -193,7 +195,7 @@ CoC.logic.team=new function(){
     
     //add into existing teams, using the comparison to find best partner
     for(i in teams){
-      while(teams[i].length < size){
+      while(teams[i].length < options.size){
         var current_object = list[0];
         var current_value = getTeamValue(appendToTeam(teams[i],current_object));
         var current_index = 0;
@@ -216,7 +218,9 @@ CoC.logic.team=new function(){
     }
     
     delete teams.length
-    teams['extras'] = list;
+    
+    if(options.extras)
+      teams['extras'] = list;
     
     return teams;
   }

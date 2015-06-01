@@ -1,35 +1,37 @@
 ﻿
-CoC.ui.hero_listener=function(container,options){
-  if(options === undefined)
-    options = {};
-
+CoC.ui.hero=function(raw, onclick){
+  var hero = CoC.logic.heroes.get(raw.id);
+  var element = $('<div>', { 
+    id:hero.id, 
+    stars:raw.stars, 
+    class:"hero"
+  });
+  element.addClass(hero.class.toLowerCase());
+  if(raw.awakened)
+    element.addClass('awakened');
+  var container = $('<div>',{
+    class:'container'
+  });
+  var portrait = $('<div>',{
+    class:'portrait'
+  }).css({
+    'background-image':'url(images/portraits/portrait_'+hero.id+'.png)'
+  });
+  portrait.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
+  portrait.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'}).text((function(){
+    var string = "";
+    for(var i=0;i<raw.stars;i++)
+      string+="★";
+    return string;
+  })()));
+  if(onclick !== undefined)
+    portrait.click(onclick);
+  return element.append(container.append(portrait));
+};
+CoC.ui.hero_listener=function(container){
   function setSize(){
     var element = container.find("div.hero");
-    if(element.length === 0)
-      return;
-    element.css({ width:"", height:"" });
-    
-    var width = container.width(), size = element.width(), margin, perline;
-    margin = parseInt(element.css("margin-left"));
-    perline = (options.perline)? options.perline: Math.ceil(width/(size+margin*2));
-      
-    if(options['min-width']){
-      var breakpoint = null;
-      for(var i in options['min-width'])
-        if(width < i){
-          perline = options['min-width'][i];
-          break;
-        }
-    }
-    
-    var maximum = width/perline - margin*2;
-    if(size>maximum)
-      size=maximum;
-      
-    if(size < 50)
-      size = 50;
-    
-    element.css({ width:size, height:size });
+    element.css({ height:element.width() });
   }
   container.on('resize', function(){
     setSize();
@@ -37,39 +39,14 @@ CoC.ui.hero_listener=function(container,options){
   setSize();
 }
 
-CoC.ui.hero=function(raw, onclick){
-  var hero = CoC.logic.heroes.get(raw.id);
-  var element = $('<div>', { 
-    id:hero.id, 
-    stars:raw.stars, 
-    class:"hero"
-  }).css({
-    'background-image':'url(images/portraits/portrait_'+hero.id+'.png)'
-  });
-  element.addClass(hero.class.toLowerCase());
-  if(raw.awakened)
-    element.addClass('awakened');
-  element.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
-  element.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'}).text((function(){
-    var string = "";
-    for(var i=0;i<raw.stars;i++)
-      string+="★";
-    return string;
-  })()));
-  if(onclick !== undefined)
-    element.click(onclick);
-  return element;
-};
-
 CoC.ui.teams=new function(){
 
   this.selector="#teams"
 
   this.clear=function(){
-    var element = $(CoC.ui.teams.selector);
-    element.text("")
+    $(CoC.ui.teams.selector).text("");
   }
-  
+ 
   this.update=function(teams, size){
     var element = $(CoC.ui.teams.selector);
     element.text("")
@@ -81,7 +58,13 @@ CoC.ui.teams=new function(){
       if(i === 'extras')
         element.append($('<h3>', { style:'clear:both'}).text("Extras"));
 
-      var subelement = $('<div>', { class:(i === 'extras')?'extras':'team' })
+      var subelement = $('<div>')
+      if(i === 'extras')
+        subelement.addClass('extras');
+      else{
+        subelement.addClass('team');
+        subelement.addClass((size==3)? 'three': (size==4)? 'four': (size==5)? 'five': 'unknown');
+      }
     
       for(var h in teams[i]){
         subelement.append(CoC.ui.hero(teams[i][h]));
@@ -105,12 +88,6 @@ CoC.ui.teams=new function(){
       
       subelement.append($('<div>', { style:'clear:both'}));
       element.append(subelement);
-      
-      CoC.ui.hero_listener(subelement, (i === 'extras')? { 
-        'min-width':{ 150:1, 250:2, 350:3 }
-      }:{ 
-        perline:size
-      });
     }
   }
 }
@@ -120,7 +97,6 @@ CoC.ui.roster=new function(){
   this.selector="#roster"
 
   this.update=function(){
-    CoC.ui.teams.clear();
     var heroes = CoC.roster.all();
     var element = $("<div>");;
     $(CoC.ui.roster.selector).text("").append(element);
@@ -146,6 +122,7 @@ CoC.ui.roster=new function(){
               el.removeClass("awakened");
           });
           $('#roster-configure-delete').click(function(){
+            CoC.ui.teams.clear();
             CoC.roster.remove(hero.id, hero.stars);
             $(element.find(".hero")[i]).addClass("hidden");
             $('#popup-roster-configure').popup("close");
@@ -161,9 +138,6 @@ CoC.ui.roster=new function(){
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
-    CoC.ui.hero_listener(element,{
-      'min-width':{ 150:1, 250:2, 350:3 }
-    })
   }
 }
 
@@ -190,14 +164,12 @@ CoC.ui.add=new function(){
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
-          CoC.roster.add($(this).attr('id'), stars);
+          CoC.ui.teams.clear();
+          CoC.roster.add(hero.id, stars);
           $(element.find(".hero")[i]).addClass("hidden");
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
-    CoC.ui.hero_listener(element, { 
-      'min-width':{ 150:1, 250:2, 350:3, 500:4 }
-    });
   }
 }
 
@@ -227,8 +199,18 @@ $("#page-teams").on( "pagebeforeshow", function() {
         CoC.settings.setValue("include-"+stars,this.value=="yes") 
       }).val(CoC.settings.getValue("include-"+stars)? "yes": "no").slider('refresh');
     })(i)
+    
+  $('#team-settings-quest').change(function(){
+    CoC.settings.setValue("quest-group",this.value=="yes");
+  }).val(CoC.settings.getValue("quest-group")? "yes": "no").slider('refresh');
+    
+  $('#team-settings-extras').change(function(){
+    CoC.settings.setValue("include-extras",this.value=="yes") 
+  }).val(CoC.settings.getValue("include-extras")? "yes": "no").slider('refresh');
   
-  function delayedTeamUpdate(){
+  $("#button-team-settings-apply").click(function(){
+    $("#panel-team-settings").panel( "close" );
+    
     var size = CoC.settings.getValue("size");
     if(size === undefined)
       size = 3;
@@ -237,16 +219,18 @@ $("#page-teams").on( "pagebeforeshow", function() {
       3:CoC.settings.getValue("include-3")===true,
       4:CoC.settings.getValue("include-4")===true
     });
+    var single = CoC.settings.getValue("quest-group")===true;
+    var extras = CoC.settings.getValue("include-extras")===true;
     
     $.mobile.loading('show',{
       text: 'calculating...',
       textVisible: true,
-      theme: 'b',
+      theme: 'a',
       html: ""
     });
     
     var workerWorking = false;
-    if (window.Worker){
+    if (window.Worker && false){
   
       try{
         var worker = new Worker('scripts/worker-team.js');
@@ -255,8 +239,9 @@ $("#page-teams").on( "pagebeforeshow", function() {
           CoC.ui.teams.update(teams, size);
           $.mobile.loading('hide');
         };
-        worker.postMessage({ roster:roster, size:size, weights:CoC.settings.weights });
+        worker.postMessage({ roster:roster, size:size, weights:CoC.settings.weights, single:single, extras:extras });
         workerWorking = true;
+        console.log("building team with worker");
       }
       catch(e){
         console.error(e)
@@ -264,25 +249,17 @@ $("#page-teams").on( "pagebeforeshow", function() {
     }
 
     if(!workerWorking){
+      console.log("building team inline");
       setTimeout(function(){
-        var teams = CoC.logic.team.build(roster,size);
+        var teams = CoC.logic.team.build(roster,{ size:size, extras:extras, single:single });
         setTimeout(function(){
           CoC.ui.teams.update(teams, size);
           $.mobile.loading('hide');
         },0);
       },0);
     }
-  }
-  
-  $("#button-team-settings-apply").click(function(){
-    $("#panel-team-settings").panel( "close" )
-    delayedTeamUpdate();
+    
   });
-  
-  if($("#teams").text() === "")
-    setTimeout(function(){
-      $("#panel-team-settings").panel( "open" )
-    }, 500);
 });
 
 $("#page-settings-advanced").on( "pagebeforeshow", function() {
@@ -346,4 +323,5 @@ $("#page-settings-advanced").on( "pagebeforeshow", function() {
 
 CoC.roster.load();
 CoC.ui.add.setStars(2);
+CoC.ui.teams.clear();
 
