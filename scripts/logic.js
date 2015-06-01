@@ -123,7 +123,7 @@ CoC.logic.synergy=new function(){
   this.value=function(list){
     var value = 0;
     iterateSynergies(list,function(synergy){
-      value += synergy.amount * CoC.settings.getWeight(synergy.type);
+      value += (synergy.amount / CoC.data.synergies[synergy.type].base) * CoC.settings.getWeight(synergy.type);
     });
     return value;
   }
@@ -149,18 +149,19 @@ CoC.logic.team=new function(){
         for(var o in team)
           oTeam.push(list[team[o]]);
         if (CoC.logic.synergy.has(oTeam)){
-        
-          oTeam = CoC.logic.synergy.cull(oTeam);
+          if(!options.single)
+            oTeam = CoC.logic.synergy.cull(oTeam);
           
           teams[i]=oTeam;
           teams.length=i++;
           for(var o in oTeam)
             list.splice(list.indexOf(oTeam[o]),1);
+            
+          if(options.single)
+            break;
         }
         else break;
       }
-      if(options.single)
-        break;
     } while(team != null)
     
     //check if we have enough
@@ -246,7 +247,7 @@ CoC.logic.team=new function(){
         l.push(list[team[i]]);
       team = l;
     }
-    return (CoC.logic.synergy.value(team) + CoC.logic.heroes.value(team)) * getClassesWeight(team);
+    return CoC.logic.synergy.value(team) * (CoC.logic.heroes.value(team) * getClassesWeight(team));
   }
   
   function compareTeams(list, a, b){
