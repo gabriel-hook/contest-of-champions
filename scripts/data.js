@@ -694,6 +694,12 @@ CoC.data.heroes = {
         { id:"magik", type:"health", amount:5 },
         { id:"cyclops", type:"perfectblock", amount:4 },
         { id:"juggernaut", type:"critdmg", amount:20 },
+      ],
+      4:[
+        { id:"wolverine", type:"armor", amount:6 },
+        { id:"magik", type:"health", amount:6 },
+        { id:"cyclops", type:"perfectblock", amount:5 },
+        { id:"juggernaut", type:"critdmg", amount:25 },
       ]
     }
   }
