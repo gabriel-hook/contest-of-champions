@@ -1,73 +1,119 @@
-@media (max-width:355px) {
-  .ui-panel {
-    width:80% !important;
-  }
+#teams .team.three{
+  max-width:450px;
 }
-@media (max-width:400px) {
-  .hero .name {
-    display: none !important;
-  }
-  .synergy span{
-    font-size:0.75em;
-  }
-  .synergy img{
-    top:1px;
-    width:16px;
-  }
+#teams .team.three .hero{
+  width:33.3333333%;
+  padding-bottom:33.3333333%;
 }
-@media (max-width:800px) and (min-width:400px) {
-  .hero .name,
-  .synergy span{
-    font-size:0.9em;
-  }
-  .synergy img{
-    top:2px;
-    width:18px;
-  }
+#teams .team.four{
+  max-width:600px;
 }
-@media (min-width:800px) {
-  .hero .name,
-  .synergy span{
-    font-size:1.15em;
-  }
-  .synergy img{
-    top: 4px;
-    width:22px;
-  }
+#teams .team.four .hero{
+  width:25%;
+  padding-bottom:25%;
+}
+#teams .team.five{
+  max-width:900px;
+}
+#teams .team.five .hero{
+  width:20%;
+  padding-bottom:20%;
+}
+#teams .team .hero .container{
+  padding:10px 0 0 0 !important;
 }
 
-#teams .team .hero{
-  margin:10px 0 0 0;
-}
-
-#roster .hero{
-  cursor:pointer;
-}
-#add-heroes .hero{
+#roster .hero .portrait,
+#add-heroes .hero .portrait{
   cursor:pointer;
 }
 
 .hero{
   position:relative;
   float:left;
-  width:150px;
-  height:150px;
-  background-size:cover;
-  margin:10px;
+  height:0%;
+  width:16.66666%;
+  padding-bottom:16.66666%;
 }
-
+@media (max-width:500px) {
+  .hero{
+    width:33.3333333%;
+    padding-bottom:33.3333333%;
+  }
+}
+@media (min-width:500px) and (max-width:700px) {
+  .hero{
+    width:25%;
+    padding-bottom:25%;
+  }
+}
+@media (min-width:700px) and (max-width:900px) {
+  .hero{
+    width:20%;
+    padding-bottom:20%;
+  }
+}
+@media (min-width:900px) and (max-width:1100px) {
+  .hero{
+    width:16.6666666%;
+    padding-bottom:16.6666666%;
+  }
+}
+@media (min-width:1100px) and (max-width:1300px) {
+  .hero{
+    width:14.285714285714286%;
+    padding-bottom:14.285714285714286%;
+  }
+}
+@media (min-width:1300px) and (max-width:1500px) {
+  .hero{
+    width:12.5%;
+    padding-bottom:12.5%;
+  }
+}
+@media (min-width:1500px) {
+  .hero{
+    width:11.11111111111111%;
+    padding-bottom:11.11111111111111%;
+  }
+}
 .hero.hidden{
   margin:0;
   width:0 !important;
   opacity:0;
   transform:scale(2, 2);
-  transition:all .5s ease, margin .5s ease .5s, width .5s ease .5s;
+  transition:all .5s ease, width 0s ease .5s;
   z-index:10000;
   pointer-events:none;
 }
 
 .hero.selected{
   z-index:1100;
+}
+
+.hero .container{
+  position:absolute;
+  width:100%;
+  height:100%;
+  box-sizing:border-box;
+  padding:10px;
+}
+.hero .portrait{
+  position:relative;
+  width:100%;
+  height:100%;
+  background-size:cover;
+}
+
+#roster .hero .container,
+#add-heroes .hero .container{
+  transition:padding .1s ease;
+}
+#roster .hero .container:active,
+#roster .hero .container:hover,
+#add-heroes .hero .container:active,
+#add-heroes .hero .container:hover{
+  padding:5px;
 }
 
 .hero .title{
@@ -84,8 +130,8 @@
 
 .hero .name{
   display:block;
-  width:100%;
   box-sizing:border-box;
+  width:100%;
   padding:4px;
 }
 
@@ -155,8 +201,20 @@
      SETTINGS
 ******************/
 
+body, html{
+  overflow-y: visible !important;
+}
+
+.page.ui-page{
+  overflow-y: scroll !important;
+}
+
 @media (min-width: 28em){
   #panel-team-settings .team-settings-include label{
+    width:50%;
+    text-align:left;
+  }
+  #panel-team-settings .team-settings-include label.stars{
     width:30%;
     text-align:right;
   }
@@ -173,5 +231,40 @@
   }
 }
 
+/******************
+    RESPONSIVE
+******************/
 
+@media (max-width:355px) {
+  .hero .name{
+    display:none;
+  }
+  .synergy span{
+    font-size:0.8em;
+  }
+  .synergy img{
+    top:1px;
+    width:16px;
+  }
+}
+@media (max-width:800px) and (min-width:355px) {
+  .hero .name,
+  .synergy span{
+    font-size:1em;
+  }
+  .synergy img{
+    top:2px;
+    width:18px;
+  }
+}
+@media (min-width:800px) {
+  .hero .name,
+  .synergy span{
+    font-size:1.2em;
+  }
+  .synergy img{
+    top: 4px;
+    width:22px;
+  }
+}
 

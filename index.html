@@ -3,10 +3,12 @@
 
   <head>
     <title>Contest of Champions</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="css/theme-classic.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="scripts/jquery.ba-resize.min.js"></script>
@@ -14,17 +16,17 @@
   </head>
   <body>
   
-    <div class="page" id="page-roster" data-role="page">
+    <div class="page" id="page-roster" 
+      data-theme="c"
+      data-role="page">
     
-      <div id="roster-header" class="header" data-role="header">
+      <div data-role="header" data-position="fixed">
         <a href="#page-add" class="ui-btn-left"
           data-icon="plus" 
-          data-rel="page"  
-          data-transition="slideup">Add</a>
-        <a href="#page-teams" class="ui-btn-right"
-          data-icon="grid" 
-          data-rel="page" 
-          data-transition="slide">Teams</a>
+          data-rel="page"
+          data-iconpos="notext"
+          data-direction="reverse"
+          data-transition="slide">Add</a>
         <h1>Roster</h1>
       </div>
       
@@ -32,7 +34,7 @@
         <div id="roster"></div>
       </div>
       
-      <div id="popup-roster-configure" data-role="popup" data-overlay-theme="b" data-arrow="true">
+      <div id="popup-roster-configure" data-role="popup" data-overlay-theme="c" data-arrow="true">
         <div role="main" class="ui-content">
           <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
           <label for="roster-configure-awakened">Awakened</label>
@@ -41,14 +43,29 @@
         </div>
       </div>
       
+      <div data-id="myfooter" data-role="footer" data-position="fixed" data-theme="b">
+        <div data-role="navbar" data-iconpos="bottom">
+          <ul>
+            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
+            <li><a href="#page-teams" data-icon="search" data-transition="slide">Teams</a></li>
+          </ul>
+        </div>
+      </div>
+      
     </div> 
     
       
-    <div class="page" id="page-add" data-role="page" data-overlay-theme="b">
+    <div class="page" id="page-add" 
+      data-theme="c"
+      data-role="page">
     
-      <div class="header" data-role="header" style="overflow:hidden">
+      <div class="header" data-role="header">
         <h3>Add</h3>
-        <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <a href="#page-roster" class="ui-btn-right"
+          data-transition="slide" 
+          data-role="button" 
+          data-icon="delete" 
+          data-iconpos="notext" >Close</a>
         <div data-role="navbar">
           <ul>
             <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" class="ui-btn-active">★★</a></li>
@@ -62,19 +79,31 @@
         <div id="add-heroes"></div>
       </div>
       
+      <div data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c">
+        <div data-role="navbar" data-iconpos="bottom">
+          <ul>
+            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slide">Roster</a></li>
+            <li><a href="#page-teams" data-icon="search" data-transition="slide">Teams</a></li>
+          </ul>
+        </div>
+      </div>
+      
     </div>
     
-    <div class="page ui-responsive-panel" id="page-teams" data-role="page">
+    <div class="page ui-responsive-panel" id="page-teams"
+      data-theme="c"
+      data-role="page">
     
       <div class="panel" id="panel-team-settings" 
         data-role="panel"
         data-position="right" 
-        data-display="push"
-        data-theme="b">
+        data-display="overlay"
+        data-theme="a">
         
         <a href="#page-settings-advanced" class="ui-btn-right"
           data-role="button" 
           data-rel="panel" 
+          data-iconpos="notext"
           data-icon="gear"
           data-transition="slide">Advanced</a>
 
@@ -95,7 +124,7 @@
           <h3>Include Champions</h3>
           
           <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-4">★★★★</label>
+            <label for="team-settings-include-4" class="stars">★★★★</label>
             <select name="team-settings-include-4" id="team-settings-include-4" data-role="slider"">
               <option value="no">No</option>
               <option value="yes">Yes</option>
@@ -103,7 +132,7 @@
           </div>
           
           <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-3">★★★</label>
+            <label for="team-settings-include-3" class="stars">★★★</label>
             <select name="team-settings-include-3" id="team-settings-include-3" data-role="slider">
               <option value="no">No</option>
               <option value="yes">Yes</option>
@@ -111,8 +140,28 @@
           </div>
           
           <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-2">★★</label>
+            <label for="team-settings-include-2" class="stars">★★</label>
             <select name="team-settings-include-2" id="team-settings-include-2" data-role="slider">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <h3>Results</h3>
+          
+          <div class="team-settings-quest" data-role="fieldcontain">
+            <label for="team-settings-quest">
+              Quest Group
+            </label>
+            <select name="team-settings-quest" id="team-settings-quest" data-role="slider">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <div class="team-settings-extras" data-role="fieldcontain">
+            <label for="team-settings-extras">Show Extras</label>
+            <select name="team-settings-extras" id="team-settings-extras" data-role="slider">
               <option value="no">No</option>
               <option value="yes">Yes</option>
             </select>
@@ -124,13 +173,10 @@
     
     
       <div class="header" data-role="header">
-        <a href="#page-roster" class="ui-btn-left"
-          data-rel="back" 
-          data-icon="back">Roster</a>
         <a href="#panel-team-settings" class="ui-btn-right"
           data-role="button" 
           data-rel="panel" 
-          data-icon="gear">Settings</a>
+          data-icon="star">Build</a>
         <h1>Teams</h1>
       </div>
       
@@ -138,10 +184,23 @@
         <div id="teams"></div>
       </div>
       
+      <div data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+          <ul>
+            <li><a href="#page-roster" data-icon="grid" data-transition="slide" data-direction="reverse">Roster</a></li>
+            <li><a href="#page-teams" data-icon="search" class="ui-btn-active ui-state-persist">Teams</a></li>
+              
+          </ul>
+        </div>
+      </div>
+      
     </div>
     
     
-    <div class="page" id="page-settings-advanced" data-role="page" data-theme="b">
+    <div class="page" id="page-settings-advanced"
+      data-theme="a"
+      data-role="page"
+      data-transition="slide">
         
       <div class="header" data-role="header">
         <a href="#page-team-settings" class="ui-btn-left"
@@ -270,6 +329,15 @@
             data-theme="a" data-track-theme="b" />
         </div>
       
+      </div>
+      
+      <div data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+          <ul>
+            <li><a href="#page-roster" data-transition="slide" data-direction="reverse" data-icon="grid" data-iconpos="bottom">Roster</a></li>
+            <li><a href="#page-teams" class="ui-btn-active ui-state-persist" data-rel="back" data-icon="search" data-iconpos="bottom">Teams</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     
