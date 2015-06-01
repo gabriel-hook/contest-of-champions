@@ -123,7 +123,7 @@ CoC.logic.synergy=new function(){
   this.value=function(list){
     var value = 0;
     iterateSynergies(list,function(synergy){
-      value += CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base);
+      value += CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base;
     });
     return value;
   }
