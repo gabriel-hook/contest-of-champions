@@ -230,7 +230,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     });
     
     var workerWorking = false;
-    if (window.Worker && false){
+    if (window.Worker){
   
       try{
         var worker = new Worker('scripts/worker-team.js');
