@@ -260,6 +260,10 @@ $("#page-teams").on( "pagebeforeshow", function() {
     }
     
   });
+  
+  setTimeout(function(){
+    $("#panel-team-settings").panel('open');
+  },500);
 });
 
 $("#page-settings-advanced").on( "pagebeforeshow", function() {
