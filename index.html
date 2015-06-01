@@ -346,8 +346,8 @@
     <script src="scripts/data.js"></script>
     <script src="scripts/interface.js"></script>
     <script>
-    
-      function setDefaults(){
+      if(CoC.settings.getValue("hasDefaults") !== true){
+      
         CoC.settings.setValue("include-4", true);
         CoC.settings.setValue("include-3", true);
         CoC.settings.setValue("include-2", true);
@@ -378,9 +378,6 @@
         
         CoC.settings.setValue("hasDefaults", true);
       }
-      
-      if(CoC.settings.getValue("hasDefaults") !== true)
-        setDefaults();
     </script>
   </body>
 </html>
