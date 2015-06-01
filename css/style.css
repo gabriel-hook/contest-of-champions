@@ -201,14 +201,6 @@
      SETTINGS
 ******************/
 
-body, html{
-  overflow-y: visible !important;
-}
-
-.page.ui-page{
-  overflow-y: scroll !important;
-}
-
 @media (min-width: 28em){
   #panel-team-settings .team-settings-include label{
     width:50%;
