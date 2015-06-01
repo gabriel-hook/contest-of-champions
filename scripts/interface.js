@@ -98,38 +98,76 @@ CoC.ui.roster=new function(){
 
   this.update=function(){
     var heroes = CoC.roster.all();
-    var element = $("<div>");;
+    var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero(hero, function(event){
         
-          $("#roster-configure-awakened").unbind( "change" );
-          $("#roster-configure-delete").unbind( "click" );
+          var h = CoC.logic.heroes.get(hero.id);
+          $("#roster-configure-name").prop("class", h.class).text(h.name);
+          $("#roster-configure-class").prop("class", h.class.toLowerCase()).text(h.class);
           
-          $('#roster-configure-awakened').prop("checked",hero.awakened===true).checkboxradio("refresh");
+          console.log( $("#roster-configure-name") )
         
-          $('#roster-configure-awakened').change(function(e){
+          function setupRankLevel(){
+            $("#roster-configure-rank").unbind( "change" ).empty();
+            for(var i = 1; i<=CoC.data.levels[hero.stars].length; i++)
+              $("#roster-configure-rank").append($("<option>").val(i).text(i));
+            $("#roster-configure-rank")
+              .val(hero.rank).selectmenu('refresh')
+              .change(function(e){
+              
+              hero.rank = e.target.value;
+              CoC.roster.save();
+              CoC.ui.roster.dirty();
+              setupRankLevel();
+            });
+           
+            $("#roster-configure-level").unbind( "change" ).empty();
+            for(var i = 1; i<=CoC.data.levels[hero.stars][hero.rank-1]; i++)
+              $("#roster-configure-level").append($("<option>").val(i).text(i));
+            $("#roster-configure-level")
+              .val(hero.level).selectmenu('refresh')
+              .change(function(e){
+              
+              hero.level = e.target.value;
+              CoC.roster.save();
+              CoC.ui.roster.dirty();
+              setupRankLevel();
+            });
+            
+          }
+          setupRankLevel();
+          
+          $("#roster-configure-awakened").unbind( "change" )
+            .prop("checked",hero.awakened != 0).checkboxradio("refresh")
+            .change(function(e){
+            
             if(e.target.checked)
-              hero.awakened=true;
+              hero.awakened = 1;
             else
-              delete hero.awakened;
+              hero.awakened = 0;
             CoC.roster.save();
+            CoC.ui.roster.dirty();
             var el = $(element.find(".hero")[i])
             if(hero.awakened)
               el.addClass("awakened");
             else
               el.removeClass("awakened");
           });
-          $('#roster-configure-delete').click(function(){
+          
+          $("#roster-configure-delete").unbind( "click" )
+            .click(function(){
+            
             CoC.ui.teams.clear();
             CoC.roster.remove(hero.id, hero.stars);
+            CoC.ui.roster.dirty();
             $(element.find(".hero")[i]).addClass("hidden");
             $('#popup-roster-configure').popup("close");
           });
           
-          
-          element.find(".hero").removeClass("selected");
+          element.find(".portrait").removeClass("selected");
           $(event.target).addClass("selected");
           
           $('#popup-roster-configure').popup("open",{
@@ -138,6 +176,18 @@ CoC.ui.roster=new function(){
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
+  }
+  
+  this.dirty=function(){
+  
+    var exporter = $('#roster-export');
+    var csvRoster = CoC.roster.csv();
+    exporter.attr('download', 'roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+    exporter.click(function(){
+      console.log("exporting to csv...");
+      $('#popup-roster-modify').popup("close");
+    });
+
   }
 }
 
@@ -165,7 +215,13 @@ CoC.ui.add=new function(){
       (function(hero,i){
         element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
           CoC.ui.teams.clear();
-          CoC.roster.add(hero.id, stars);
+          CoC.roster.add({ 
+            id:hero.id, 
+            stars:stars,
+            rank:1,
+            level:1,
+            awakened:0
+          });
           $(element.find(".hero")[i]).addClass("hidden");
         }));
       })(heroes[i],i);
@@ -174,13 +230,40 @@ CoC.ui.add=new function(){
 }
 
 $("#page-roster").on("pagebeforeshow",function(){
-  console.log("refreshing roster")
+  console.log("refreshing roster...")
+
+  $('#roster-import a').click(function(){
+    console.log("importing");
+    
+    $('#roster-import input').change(function(e){
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var result = e.target.result;
+          CoC.roster.csv(result);
+          CoC.ui.roster.update();
+          CoC.ui.roster.dirty();
+        }
+        reader.readAsText(this.files[0]);
+      }
+    }).click();
+    $('#popup-roster-modify').popup("close");
+  });
+  
+  $('#roster-clear-all').click(function(){
+    CoC.roster.clear();
+    CoC.ui.roster.update();
+    CoC.ui.roster.dirty();
+    $('#popup-roster-modify').popup("close");
+  });
+  
   CoC.ui.roster.update();
+  CoC.ui.roster.dirty();
 });
 
 
 $("#page-add").on("pagebeforeshow",function(){
-  console.log("refreshing add")
+  console.log("refreshing add...")
   CoC.ui.add.update();
 });
 

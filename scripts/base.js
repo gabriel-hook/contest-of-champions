@@ -106,11 +106,12 @@ var CoC=new function(){
     ROSTER
   *********/
   this.roster = new function() {};
-  this.roster.add=function(id,stars){
-    CoC.roster.stars[stars][id]={
-      id:id,
-      stars:stars
+  this.roster.add=function(hero){
+    if(hero === undefined || hero.id === undefined || hero.stars === undefined){
+      console.error(hero);
+      throw "Cannot add bad object to roster";
     }
+    CoC.roster.stars[hero.stars][hero.id]=hero;
     CoC.roster.save();
   }
   this.roster.remove=function(id,stars){
@@ -123,10 +124,48 @@ var CoC=new function(){
       stars = { 2:true, 3:true, 4:true };
     for(var s=4;s>=2;s--)
       if(stars[s])
-        for(var o in CoC.roster.stars[s])
-          array.push(CoC.roster.stars[s][o]);
+        for(var o in CoC.data.heroes)
+          if(CoC.roster.stars[s][CoC.data.heroes[o].id])
+            array.push(CoC.roster.stars[s][CoC.data.heroes[o].id]);
     return array;
   }
+  this.roster.clear=function(){
+    for(var i=1;i<=4; i++)
+      CoC.roster.stars[i]={}
+    CoC.roster.save();
+  }
+  
+  this.roster.csv=function(string){
+    if(string === undefined){
+      var roster = CoC.roster.all()
+      var csv = roster.map(function(value){
+        return [
+          JSON.stringify(value.id),
+          value.stars,
+          value.rank,
+          value.level,
+          value.awakened
+        ].join(',');
+      }).join('\n').replace(/(^\[)|(\]$)/mg, '');
+      return csv;
+    }
+    else{
+      var lines = string.split("\n");
+      for(var i=0;i<lines.length;i++){
+        var values = lines[i].split(",");
+        if(values.length != 5)
+          throw "Invalid roster CSV";
+        CoC.roster.add({
+          id:JSON.parse(values[0]),
+          stars:JSON.parse(values[1]),
+          rank:JSON.parse(values[2]),
+          level:JSON.parse(values[3]),
+          awakened:JSON.parse(values[4])
+        });
+      }
+    }
+  }
+  
   this.roster.load=function(){
     CoC.roster.stars=[]
     CoC.roster.stars[1]=CoC.settings.loadObjectFromLocalStorage("oneStarHeroes");

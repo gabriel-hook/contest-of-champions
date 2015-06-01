@@ -71,23 +71,28 @@
     padding-bottom:12.5%;
   }
 }
-@media (min-width:1500px) {
+@media (min-width:1500px) and (max-width:1700px) {
   .hero{
     width:11.11111111111111%;
     padding-bottom:11.11111111111111%;
   }
 }
+@media (min-width:1700px) {
+  .hero{
+    width:10%;
+    padding-bottom:10%;
+  }
+}
 .hero.hidden{
-  margin:0;
-  width:0 !important;
+  pointer-events:none;
+  width:0;
   opacity:0;
   transform:scale(2, 2);
-  transition:all .5s ease, width 0s ease .5s;
+  transition:all .5s ease, width .1s linear .5s;
   z-index:10000;
-  pointer-events:none;
 }
 
-.hero.selected{
+.hero .portrait.selected{
   z-index:1100;
 }
 
@@ -157,22 +162,22 @@
   font-size:1.2em;
 }
 
-.hero.cosmic{
+.cosmic{
   color:#0af;
 }
-.hero.tech{
+.tech{
   color:#66f;
 }
-.hero.mutant{
+.mutant{
   color:#fa0;
 }
-.hero.skill{
+.skill{
   color:#f00;
 }
-.hero.science{
+.science{
   color:#0a0;
 }
-.hero.mystic{
+.mystic{
   color:#f0a;
 }
 
@@ -200,6 +205,23 @@
 /******************
      SETTINGS
 ******************/
+#roster-import div, #roster-import input{
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:-10000px;
+  left:-10000px;
+}
+
+#popup-roster-configure{
+  min-width:200px;
+}
+.ui-controlgroup-controls{
+  width:100%;
+}
+#popup-roster-configure .ui-select{
+    width: 50% !important;
+}
 
 @media (min-width: 28em){
   #panel-team-settings .team-settings-include label{

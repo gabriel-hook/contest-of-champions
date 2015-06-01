@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
     <link rel="stylesheet" href="css/theme-classic.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
     <script src="scripts/jquery.ba-resize.min.js"></script>
     
   </head>
@@ -21,12 +21,10 @@
       data-role="page">
     
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a href="#page-add" class="ui-btn-left"
-          data-icon="plus" 
-          data-rel="page"
-          data-iconpos="notext"
-          data-direction="reverse"
-          data-transition="slide">Add</a>
+        <a href="#popup-roster-modify" class="ui-btn-left"
+          data-icon="gear" 
+          data-rel="popup"
+          data-iconpos="notext">Add</a>
         <h1>Roster</h1>
       </div>
       
@@ -34,12 +32,48 @@
         <div id="roster"></div>
       </div>
       
-      <div id="popup-roster-configure" data-role="popup" data-overlay-theme="c" data-arrow="true">
+      <div id="popup-roster-configure" data-role="popup" data-theme="a" data-overlay-theme="a" data-arrow="true">
         <div role="main" class="ui-content">
-          <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
+        
+          <h3 id="roster-configure-name">Name</h3>
+          <label id="roster-configure-class">Class</label>
+        
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>Rank / Level</legend>
+            <label for="roster-configure-rank">Rank</label>
+            <select name="roster-configure-rank" id="roster-configure-rank"></select>
+            <label for="roster-configure-level">Level</label>
+            <select name="roster-configure-level" id="roster-configure-level"></select>
+          </fieldset>
+        
           <label for="roster-configure-awakened">Awakened</label>
+          <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
+          
           <button name="roster-configure-delete" id="roster-configure-delete"
             data-icon="delete" data-theme="b">Delete</button>
+        </div>
+      </div>
+      
+      <div id="popup-roster-modify" data-role="popup" data-theme="b" data-overlay-theme="b" data-arrow="true">
+        <div role="main" class="ui-content">
+        
+          <a href="#page-add"
+            data-role="button" 
+            data-icon="plus" 
+            data-rel="page"
+            data-transition="slideup">add</a> 
+    
+          <div id="roster-import">
+            <a data-role="button" data-icon="action">Import .csv</a>    
+            <input type="file" accept=".csv">
+          </div>
+          
+          <a id="roster-export" href="#"
+            data-role="button" 
+            data-icon="action">Export .csv</a> 
+          <a id="roster-clear-all" href="#"
+            data-role="button" 
+            data-icon="delete">Clear All</a> 
         </div>
       </div>
       
@@ -62,7 +96,8 @@
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <h3>Add</h3>
         <a href="#page-roster" class="ui-btn-right"
-          data-transition="slide" 
+          data-transition="slideup" 
+          data-direction="reverse"
           data-role="button" 
           data-icon="delete" 
           data-iconpos="notext" >Close</a>
@@ -82,7 +117,7 @@
       <div data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
-            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slide">Roster</a></li>
+            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slideup" data-direction="reverse">Roster</a></li>
             <li><a href="#page-teams" data-icon="search" data-transition="slide">Teams</a></li>
           </ul>
         </div>
@@ -104,10 +139,9 @@
           data-role="button" 
           data-rel="panel" 
           data-iconpos="notext"
-          data-icon="gear"
+          data-icon="carat-r"
           data-transition="slide">Advanced</a>
 
-        <div role="main" class="ui-content">
           <h3>Team Size</h3>
           
           <div class="team-settings-size" class="ui-field-contain">
@@ -168,7 +202,7 @@
           </div>
           
           <button id="button-team-settings-apply">Build</button>
-        </div>
+    
       </div>
     
     
@@ -176,7 +210,8 @@
         <a href="#panel-team-settings" class="ui-btn-right"
           data-role="button" 
           data-rel="panel" 
-          data-icon="star">Build</a>
+          data-iconpos="notext"
+          data-icon="gear">Build</a>
         <h1>Teams</h1>
       </div>
       
@@ -199,12 +234,12 @@
     
     <div class="page" id="page-settings-advanced"
       data-theme="a"
-      data-role="page"
-      data-transition="slide">
+      data-role="page">
         
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <a href="#page-team-settings" class="ui-btn-left"
           data-rel="back" 
+          data-iconpos="notext"
           data-icon="back">back</a>
         <h1>Advanced Settings</h1>
       </div>
@@ -217,28 +252,28 @@
           <label for="settings-advanced-star4">★★★★</label>
           <input type="range" name="settings-advanced-star4" id="settings-advanced-star4" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-star3">★★★</label>
           <input type="range" name="settings-advanced-star3" id="settings-advanced-star3" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-star2">★★</label>
           <input type="range" name="settings-advanced-star2" id="settings-advanced-star2" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-awakened">Awakened</label>
           <input type="range" name="settings-advanced-awakened" id="settings-advanced-awakened" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <h3>Duplicate Class Weight %</h3>
@@ -247,28 +282,28 @@
           <label for="settings-advanced-class2">Double (2X)</label>
           <input type="range" name="settings-advanced-class2" id="settings-advanced-class2" 
             value="100" min="0" max="100" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-class3">Triple (3x)</label>
           <input type="range" name="settings-advanced-class3" id="settings-advanced-class3" 
             value="100" min="0" max="100" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-class4">Quadruple (4x)</label>
           <input type="range" name="settings-advanced-class4" id="settings-advanced-class4" 
             value="100" min="0" max="100" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <div data-role="fieldcontain">
           <label for="settings-advanced-class5">Quintuple (5x)</label>
           <input type="range" name="settings-advanced-class5" id="settings-advanced-class5" 
             value="100" min="0" max="100" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
         
         <h3>Syngergy Weight %</h3>
@@ -277,56 +312,56 @@
           <label for="settings-advanced-attack">Attack</label>
           <input type="range" name="settings-advanced-attack" id="settings-advanced-attack" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-critrate">Crit Rate</label>
           <input type="range" name="settings-advanced-critrate" id="settings-advanced-critrate"
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-critdmg">Crit Damage</label>
           <input type="range" name="settings-advanced-critdmg" id="settings-advanced-critdmg" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-perfectblock">Prefect Block</label>
           <input type="range" name="settings-advanced-perfectblock" id="settings-advanced-perfectblock" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-block">Block Proficiency</label>
           <input type="range" name="settings-advanced-block" id="settings-advanced-block" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-powergain">Power Gain</label>
           <input type="range" name="settings-advanced-powergain" id="settings-advanced-powergain" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-armor">Armor</label>
           <input type="range" name="settings-advanced-armor" id="settings-advanced-armor" 
             value="100" min="0" max="1000" 
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-health">Health</label>
           <input type="range" name="settings-advanced-health" id="settings-advanced-health" 
             value="100" min="0" max="1000"  
-            data-theme="a" data-track-theme="b" />
+            data-highlight="true"/>
         </div>
       
       </div>

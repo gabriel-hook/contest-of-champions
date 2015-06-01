@@ -226,36 +226,13 @@ CoC.logic.team=new function(){
     
     return teams;
   }
-  
-  function getClassesWeight(team){
-    var classes = {};
-    for(var i in CoC.data.classes)
-      classes[CoC.data.classes[i]]=0;
-    for(var i in team)
-      classes[CoC.data.heroes[team[i].id].class]++;
-      
-    var multiplier = 1;
-    for(var i in classes)
-      if(classes[i] > 1)
-        multiplier *= CoC.settings.getDuplicateWeight(classes[i])
-    return multiplier;
-  }
-    
-  function getTeamValue(team, list){
-    if(list !== undefined){
-      var l = [];
-      for(var i in team)
-        l.push(list[team[i]]);
-      team = l;
-    }
-    return CoC.logic.synergy.value(team) * (CoC.logic.heroes.value(team) * getClassesWeight(team));
-  }
-  
-  function compareTeams(list, a, b){
-    if(b == null)
-      return 1;
-    
-    return getTeamValue(a, list) - getTeamValue(b, list);
+
+  function getTopPartner(list,i,depth){
+    var current = getNextPartner(list,[i],i+1,depth);
+    if(current == null)
+      return null;
+    var next = getTopPartner(list,i+1,depth);
+    return (compareTeams(list,current,next) >= 0)? current: next;
   }
 
   function getNextPartner(list,arr,i,depth){
@@ -274,13 +251,36 @@ CoC.logic.team=new function(){
     var next = getNextPartner(list,arr,i+1,depth);
     return (compareTeams(list,current,next) >= 0)? current: next;
   }
-
-  function getTopPartner(list,i,depth){
-    var current = getNextPartner(list,[i],i+1,depth);
-    if(current == null)
-      return null;
-    var next = getTopPartner(list,i+1,depth);
-    return (compareTeams(list,current,next) >= 0)? current: next;
+  
+  function compareTeams(list, a, b){
+    if(b == null)
+      return 1;
+    
+    return getTeamValue(a, list) - getTeamValue(b, list);
+  }
+    
+  function getTeamValue(team, list){
+    if(list !== undefined){
+      var l = [];
+      for(var i in team)
+        l.push(list[team[i]]);
+      team = l;
+    }
+    return CoC.logic.synergy.value(team) * (CoC.logic.heroes.value(team) * getClassesWeight(team));
+  }
+  
+  function getClassesWeight(team){
+    var classes = {};
+    for(var i in CoC.data.classes)
+      classes[CoC.data.classes[i]]=0;
+    for(var i in team)
+      classes[CoC.data.heroes[team[i].id].class]++;
+      
+    var multiplier = 1;
+    for(var i in classes)
+      if(classes[i] > 1)
+        multiplier *= CoC.settings.getDuplicateWeight(classes[i])
+    return multiplier;
   }
   
 };

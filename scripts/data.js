@@ -60,6 +60,13 @@ CoC.data.classes=[
   "Mystic"
 ];
 
+CoC.data.levels={
+  1:[ 10, 20 ],
+  2:[ 10, 20, 30 ],
+  3:[ 10, 20, 30, 40 ],
+  4:[ 10, 20, 30, 40, 50 ]
+}
+
 CoC.data.heroes = {
   "blackbolt":{
     id:"blackbolt",
