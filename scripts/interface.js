@@ -21,10 +21,10 @@ CoC.ui.hero=function(raw, onclick){
   });
   portrait.append($('<div>',{class:'quest'}));
   portrait.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
-  portrait.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'}).text((function(){
+  portrait.append($('<div>', { class:'stars'}).html((function(){
     var string = "";
     for(var i=0;i<raw.stars;i++)
-      string+="★";
+      string+="<span class='star'></span>";
     return string;
   })()));
   if(onclick !== undefined)
