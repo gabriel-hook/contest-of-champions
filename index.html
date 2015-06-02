@@ -24,8 +24,7 @@
         <a href="#popup-roster-modify" class="ui-btn-left"
           data-icon="gear" 
           data-rel="popup"
-          data-iconpos="notext"
-          data-transition="turn">Modify</a>
+          data-transition="turn">Edit</a>
         <h1>Roster</h1>
       </div>
       
@@ -49,13 +48,16 @@
         
           <label for="roster-configure-awakened">Awakened</label>
           <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
+        
+          <label for="roster-configure-quest">Quest</label>
+          <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">
           
           <button name="roster-configure-delete" id="roster-configure-delete"
             data-icon="delete" data-theme="b">Delete</button>
         </div>
       </div>
       
-      <div id="popup-roster-modify" data-role="popup" data-theme="b" data-overlay-theme="b" data-arrow="true">
+      <div id="popup-roster-modify" data-role="popup" data-theme="b">
         <div role="main" class="ui-content">
         
           <a href="#page-add"
@@ -95,13 +97,12 @@
       data-role="page">
     
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
-        <h3>Add</h3>
+        <h3>Roster - Add</h3>
         <a href="#page-roster" class="ui-btn-right"
           data-transition="slideup" 
           data-direction="reverse"
           data-role="button" 
-          data-icon="delete" 
-          data-iconpos="notext" >Close</a>
+          data-icon="delete">Close</a>
         <div data-role="navbar">
           <ul>
             <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" class="ui-btn-active">★★</a></li>
@@ -139,8 +140,8 @@
         <a href="#page-settings-advanced" class="ui-btn-right"
           data-role="button" 
           data-rel="panel" 
-          data-iconpos="notext"
           data-icon="carat-r"
+          data-iconpos="right"
           data-transition="slide">Advanced</a>
 
           <h3>Team Size</h3>
@@ -210,10 +211,13 @@
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <a href="#panel-team-settings" class="ui-btn-right"
           data-role="button" 
-          data-rel="panel" 
-          data-iconpos="notext"
+          data-rel="panel"
           data-icon="gear">Build</a>
         <h1>Teams</h1>
+        
+        <div id="team-build-progress">
+          <input id="team-build-progress" type="range" data-highlight="true" min="0" max="100" value="0">
+        </div>
       </div>
       
       <div role="main" class="ui-content">
@@ -239,8 +243,7 @@
         
       <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <a href="#page-team-settings" class="ui-btn-left"
-          data-rel="back" 
-          data-iconpos="notext"
+          data-rel="back"
           data-icon="back">back</a>
         <h1>Advanced Settings</h1>
       </div>
@@ -381,7 +384,6 @@
     <script src="scripts/logic.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/interface.js"></script>
-    <script src="scripts/parallax.js"></script>
     <script>
       if(CoC.settings.getValue("hasDefaults") !== true){
       

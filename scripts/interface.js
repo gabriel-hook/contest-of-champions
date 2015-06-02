@@ -9,6 +9,8 @@ CoC.ui.hero=function(raw, onclick){
   element.addClass(hero.class.toLowerCase());
   if(raw.awakened)
     element.addClass('awakened');
+  if(raw.quest)
+    element.addClass('quest');
   var container = $('<div>',{
     class:'container'
   });
@@ -17,6 +19,7 @@ CoC.ui.hero=function(raw, onclick){
   }).css({
     'background-image':'url(images/portraits/portrait_'+hero.id+'.png)'
   });
+  portrait.append($('<div>',{class:'quest'}));
   portrait.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
   portrait.append($('<span>', { id:hero.id, stars:raw.stars, class:'stars'}).text((function(){
     var string = "";
@@ -157,6 +160,23 @@ CoC.ui.roster=new function(){
               el.removeClass("awakened");
           });
           
+          $("#roster-configure-quest").unbind( "change" )
+            .prop("checked",hero.quest === true).checkboxradio("refresh")
+            .change(function(e){
+            
+            if(e.target.checked)
+              hero.quest = true;
+            else
+              hero.quest = false;
+            CoC.roster.save();
+            CoC.ui.roster.dirty();
+            var el = $(element.find(".hero")[i])
+            if(hero.quest)
+              el.addClass("quest");
+            else
+              el.removeClass("quest");
+          });
+          
           $("#roster-configure-delete").unbind( "click" )
             .click(function(){
             
@@ -256,6 +276,12 @@ $("#page-roster").on("pagebeforeshow",function(){
     CoC.ui.roster.update();
     CoC.ui.roster.dirty();
     $('#popup-roster-modify').popup("close");
+  });
+  
+  
+  $('#popup-roster-configure').on("popupafterclose",function(){
+    console.log("hiding all");
+    $(CoC.ui.roster.selector).find(".portrait").removeClass("selected");
   });
   
   CoC.ui.roster.update();
