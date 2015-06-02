@@ -74,7 +74,7 @@ var CoC=new function(){
     }
   };
   this.settings.setStarWeight=function(stars,weight){
-    if(parseInt(stars) === NaN || stars < 2 || stars > 4)
+    if(parseInt(stars) === NaN || stars < 1 || stars > 4)
       return;
     CoC.settings.setWeight(starsKey.get(stars), weight);
   }
@@ -121,7 +121,7 @@ var CoC=new function(){
   this.roster.all=function(stars){
     var array=[];
     if(stars === undefined)
-      stars = { 2:true, 3:true, 4:true };
+      stars = { 1:true, 2:true, 3:true, 4:true };
     for(var s=4;s>=2;s--)
       if(stars[s])
         for(var o in CoC.data.heroes)

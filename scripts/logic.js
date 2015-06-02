@@ -38,7 +38,7 @@
         array.push(CoC.data.heroes[i]);
     return array;
   }
-  this.excluding=function(map){
+  this.excluding=function(map, stars){
     var array = [];
     
     if(map instanceof Array){
@@ -50,7 +50,8 @@
     
     for(var i in CoC.data.heroes)
       if(map[CoC.data.heroes[i].id] === undefined)
-        array.push(CoC.data.heroes[i]);
+        if(stars === undefined || CoC.data.heroes[i].synergies[stars] !== undefined)
+          array.push(CoC.data.heroes[i]);
     return array;
   }
 }

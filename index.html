@@ -105,6 +105,7 @@
           data-icon="delete">Close</a>
         <div data-role="navbar">
           <ul>
+            <li><a id="add-stars-1" href="#" onclick="CoC.ui.add.setStars(1)">★</a></li>
             <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" class="ui-btn-active">★★</a></li>
             <li><a id="add-stars-3" href="#" onclick="CoC.ui.add.setStars(3)">★★★</a></li>
             <li><a id="add-stars-4" href="#" onclick="CoC.ui.add.setStars(4)">★★★★</a></li>
@@ -178,6 +179,14 @@
           <div class="team-settings-include" data-role="fieldcontain">
             <label for="team-settings-include-2" class="stars">★★</label>
             <select name="team-settings-include-2" id="team-settings-include-2" data-role="slider">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          
+          <div class="team-settings-include" data-role="fieldcontain">
+            <label for="team-settings-include-1" class="stars">★</label>
+            <select name="team-settings-include-1" id="team-settings-include-1" data-role="slider">
               <option value="no">No</option>
               <option value="yes">Yes</option>
             </select>
@@ -269,6 +278,13 @@
         <div data-role="fieldcontain">
           <label for="settings-advanced-star2">★★</label>
           <input type="range" name="settings-advanced-star2" id="settings-advanced-star2" 
+            value="100" min="0" max="1000" 
+            data-highlight="true"/>
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-star1">★</label>
+          <input type="range" name="settings-advanced-star1" id="settings-advanced-star1" 
             value="100" min="0" max="1000" 
             data-highlight="true"/>
         </div>
@@ -390,10 +406,11 @@
         CoC.settings.setValue("include-4", true);
         CoC.settings.setValue("include-3", true);
         CoC.settings.setValue("include-2", true);
-        CoC.settings.setValue("include-4", true);
+        CoC.settings.setValue("include-1", true);
         CoC.settings.setValue("include-extras", true);
         CoC.settings.setValue("quest-group", false)
 
+        CoC.settings.setWeight("stars-1", 0.5);
         CoC.settings.setWeight("stars-2", 1);
         CoC.settings.setWeight("stars-3", 2);
         CoC.settings.setWeight("stars-4", 4);

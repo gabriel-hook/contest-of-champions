@@ -226,10 +226,11 @@ CoC.ui.add=new function(){
   this.update=function(){
     var stars = this.stars;
     var heroes = CoC.logic.heroes.excluding(CoC.roster.all({
+      1:stars === 1,
       2:stars === 2,
       3:stars === 3,
       4:stars === 4
-    }));
+    }), stars);
     var element = $('<div>');
     $(CoC.ui.add.selector).text("").append(element);
     for(var i in heroes)
@@ -310,7 +311,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
   teamSettingsSize.filter('[value='+CoC.settings.getValue("size")+']').prop("checked", true).checkboxradio("refresh");
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
 
-  for(var i=2; i<=4;i++)
+  for(var i=1; i<=4;i++)
     (function(stars){
       $('#team-settings-include-'+stars).change(function(){
         CoC.settings.setValue("include-"+stars,this.value=="yes") 
@@ -366,9 +367,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
         workerWorking = true;
         console.log("building team with worker");
       }
-      catch(e){
-        console.error(e)
-      }
+      catch(e){}
     }
 
     if(!workerWorking){
@@ -413,6 +412,9 @@ $("#page-settings-advanced").on( "pagebeforeshow", function() {
   });
   enableSlider("#settings-advanced-star2",CoC.settings.getWeight("stars-2"),function(v){
     CoC.settings.setWeight("stars-2", v);
+  });
+  enableSlider("#settings-advanced-star1",CoC.settings.getWeight("stars-1"),function(v){
+    CoC.settings.setWeight("stars-1", v);
   });
   enableSlider("#settings-advanced-awakened",CoC.settings.getWeight("awakened"),function(v){
       CoC.settings.setWeight("awakened", v);
