@@ -1,11 +1,9 @@
-body.ui-overlay-c{
-  background:url(../images/background.png);
-  background-size:500px 500px;
-  background-attachment: fixed;
-}
-.ui-page-theme-c{
-  background:url(../images/background-overlay.png);
-  background-size:800px 800px;
+.ui-page-theme-c{  
+  background: #f0f0f0;
+  background: -webkit-radial-gradient(#fff, #eee, #aaa);
+  background: -o-radial-gradient(#fff, #eee, #aaa); 
+  background: -moz-radial-gradient(#fff, #eee, #aaa); 
+  background: radial-gradient(#fff, #eee, #aaa); 
   background-attachment: fixed;
 }
 
