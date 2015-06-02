@@ -334,6 +334,13 @@
             value="100" min="0" max="1000" 
             data-highlight="true"/>
         </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-stun">Stun Chance</label>
+          <input type="range" name="settings-advanced-stun" id="settings-advanced-stun"
+            value="100" min="0" max="1000" 
+            data-highlight="true"/>
+        </div>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-critrate">Crit Rate</label>
@@ -350,7 +357,14 @@
         </div>
       
         <div data-role="fieldcontain">
-          <label for="settings-advanced-perfectblock">Prefect Block</label>
+          <label for="settings-advanced-powergain">Power Gain</label>
+          <input type="range" name="settings-advanced-powergain" id="settings-advanced-powergain" 
+            value="100" min="0" max="1000" 
+            data-highlight="true"/>
+        </div>
+      
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-perfectblock">Perfect Block</label>
           <input type="range" name="settings-advanced-perfectblock" id="settings-advanced-perfectblock" 
             value="100" min="0" max="1000" 
             data-highlight="true"/>
@@ -359,13 +373,6 @@
         <div data-role="fieldcontain">
           <label for="settings-advanced-block">Block Proficiency</label>
           <input type="range" name="settings-advanced-block" id="settings-advanced-block" 
-            value="100" min="0" max="1000" 
-            data-highlight="true"/>
-        </div>
-      
-        <div data-role="fieldcontain">
-          <label for="settings-advanced-powergain">Power Gain</label>
-          <input type="range" name="settings-advanced-powergain" id="settings-advanced-powergain" 
             value="100" min="0" max="1000" 
             data-highlight="true"/>
         </div>
@@ -417,10 +424,10 @@
 
         CoC.settings.setWeight("awakened", 1.5);
       
-        CoC.settings.setWeight("attack", 10);
-        CoC.settings.setWeight("critrate", 5);
+        CoC.settings.setWeight("attack", 5);
+        CoC.settings.setWeight("stun", 4);
+        CoC.settings.setWeight("critrate", 3);
         CoC.settings.setWeight("critdmg", 2);
-
         CoC.settings.setWeight("powergain", 1);
         CoC.settings.setWeight("perfectblock", 1);
         CoC.settings.setWeight("block", 1);

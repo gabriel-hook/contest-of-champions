@@ -434,6 +434,9 @@ $("#page-settings-advanced").on( "pagebeforeshow", function() {
   enableSlider("#settings-advanced-attack",CoC.settings.getWeight("attack"),function(v){
     CoC.settings.setWeight("attack",v);
   });
+  enableSlider("#settings-advanced-stun",CoC.settings.getWeight("stun"),function(v){
+    CoC.settings.setWeight("stun",v);
+  });
   enableSlider("#settings-advanced-critrate",CoC.settings.getWeight("critrate"),function(v){
     CoC.settings.setWeight("critrate",v);
   });
