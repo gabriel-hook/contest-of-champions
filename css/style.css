@@ -235,6 +235,20 @@ html, body, p, span, div {
 }
 
 /******************
+     PROGRESS
+******************/
+
+#team-build-progress{
+  height:46px;
+  transition:height .5s;
+  overflow:hidden;
+}
+
+#team-build-progress.hidden{
+  height:0;
+}
+
+/******************
      SETTINGS
 ******************/
 #roster-import div, #roster-import input{

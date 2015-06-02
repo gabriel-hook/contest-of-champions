@@ -299,6 +299,8 @@ $("#page-teams").on( "pagebeforeshow", function() {
   //get settings
   console.log("setting stuff up...")
       
+      
+  $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
@@ -343,6 +345,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
       theme: 'a',
       html: ""
     });
+    $("#team-build-progress").attr("class","");
     
     var workerWorking = false;
     if (window.Worker){
@@ -361,6 +364,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
           if(event.data.type === "complete"){
             $("#team-build-progress input").val(100).slider("refresh");
             $.mobile.loading('hide');
+            $("#team-build-progress").attr("class","hidden");
             CoC.ui.teams.update(event.data.teams, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
@@ -389,6 +393,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
         $("#team-build-progress input").val(100).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(teams, size);
+          $("#team-build-progress").attr("class","hidden");
           $.mobile.loading('hide');
         },0);
       },0);
