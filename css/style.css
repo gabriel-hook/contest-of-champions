@@ -16,6 +16,9 @@ html, body, p, span, div {
   background-attachment: fixed;
 }
 
+#teams .team{
+  margin:auto;
+}
 #teams .team.three{
   max-width:450px;
 }
