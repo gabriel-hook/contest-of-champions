@@ -154,17 +154,6 @@ CoC.logic.team=new function(){
 
   this.build=function(options){
     var teams = {}, i=1, team, list = options.heroes.slice(), preselect = [], progress = null;
-    if(options.progress)
-      progress={
-        current:0,
-        max:function(r){
-          var value = 0;
-          for(var n = list.length; n > r; n-=r)
-            value += CoC.logic.team.factorial(n) / (CoC.logic.team.factorial(r) * CoC.logic.team.factorial(n - r));
-          return value;
-        }(options.size),
-        callback:options.progress
-      }
     
     if(options.single)
       for(var i=list.length-1;i>=0;i--)
@@ -172,6 +161,21 @@ CoC.logic.team=new function(){
           preselect.push(list[i]);
           list.splice(i,1);
         }
+        
+    if(options.progress)
+      progress={
+        current:0,
+        max:function(r){
+          var value = 0;
+          for(var n = list.length; n > r; n-=r){
+            value += CoC.logic.team.factorial(n) / (CoC.logic.team.factorial(r) * CoC.logic.team.factorial(n - r));
+            if(options.single)
+              break;
+          }
+          return value;
+        }(preselect.length? options.size - preselect.length: options.size),
+        callback:options.progress
+      }
 
     if(preselect.length > 0){
       team = getNextPartner(list,preselect,0,options.size, progress);
