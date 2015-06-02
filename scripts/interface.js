@@ -171,7 +171,8 @@ CoC.ui.roster=new function(){
           $(event.target).addClass("selected");
           
           $('#popup-roster-configure').popup("open",{
-            positionTo:$(this)
+            positionTo:$(this),
+            transition:"pop"
           });
         }));
       })(heroes[i],i);
