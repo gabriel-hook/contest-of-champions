@@ -206,7 +206,7 @@ CoC.ui.roster=new function(){
     exporter.attr('download', 'roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     exporter.click(function(){
       console.log("exporting to csv...");
-      $('#popup-roster-modify').popup("close");
+      $('#popup-roster-options').popup("close");
     });
 
   }
@@ -255,7 +255,7 @@ $("#page-roster").on("pagebeforeshow",function(){
   console.log("refreshing roster...")
 
   $('#roster-import a').click(function(){
-    console.log("importing");
+    console.log("importing csv...");
     
     $('#roster-import input').change(function(e){
       if (this.files && this.files[0]) {
@@ -269,14 +269,14 @@ $("#page-roster").on("pagebeforeshow",function(){
         reader.readAsText(this.files[0]);
       }
     }).click();
-    $('#popup-roster-modify').popup("close");
+    $('#popup-roster-options').popup("close");
   });
   
   $('#roster-clear-all').click(function(){
     CoC.roster.clear();
     CoC.ui.roster.update();
     CoC.ui.roster.dirty();
-    $('#popup-roster-modify').popup("close");
+    $('#popup-roster-options').popup("close");
   });
   
   
