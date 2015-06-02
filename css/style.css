@@ -1,3 +1,14 @@
+body.ui-overlay-c{
+  background:url(../images/background.png);
+  background-size:500px 500px;
+  background-attachment: fixed;
+}
+.ui-page-theme-c{
+  background:url(../images/background-overlay.png);
+  background-size:800px 800px;
+  background-attachment: fixed;
+}
+
 #teams .team.three{
   max-width:450px;
 }

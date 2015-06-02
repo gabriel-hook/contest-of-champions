@@ -411,4 +411,3 @@ $("#page-settings-advanced").on( "pagebeforeshow", function() {
 CoC.roster.load();
 CoC.ui.add.setStars(2);
 CoC.ui.teams.clear();
-
