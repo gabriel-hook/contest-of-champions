@@ -338,13 +338,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
     });
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
-    
-    $.mobile.loading('show',{
-      text: 'calculating...',
-      textVisible: true,
-      theme: 'a',
-      html: ""
-    });
     $("#team-build-progress").attr("class","");
     
     var workerWorking = false;
@@ -363,7 +356,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
           }
           if(event.data.type === "complete"){
             $("#team-build-progress input").val(100).slider("refresh");
-            $.mobile.loading('hide');
             $("#team-build-progress").attr("class","hidden");
             CoC.ui.teams.update(event.data.teams, size);
             CoC.ui.teams.worker.terminate();
@@ -394,7 +386,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
         setTimeout(function(){
           CoC.ui.teams.update(teams, size);
           $("#team-build-progress").attr("class","hidden");
-          $.mobile.loading('hide');
         },0);
       },0);
     }
