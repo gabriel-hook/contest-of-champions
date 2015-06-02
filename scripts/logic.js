@@ -140,132 +140,167 @@ CoC.logic.synergy=new function(){
 
 CoC.logic.team=new function(){
 
-  this.build=function(_list,options){
-    var teams = {}, i=1, team,
-      list = _list.slice();
-    do {
-      team = getTopPartner(list,0,options.size);
-      if(team){
-        var oTeam = [];
-        for(var o in team)
-          oTeam.push(list[team[o]]);
-        if (CoC.logic.synergy.has(oTeam)){
-          if(!options.single)
-            oTeam = CoC.logic.synergy.cull(oTeam);
-          
-          teams[i]=oTeam;
-          teams.length=i++;
-          for(var o in oTeam)
-            list.splice(list.indexOf(oTeam[o]),1);
-            
-          if(options.single)
-            break;
-        }
-        else break;
+  this.factorials=[1,1];
+  this.factorial=function(n){
+    if (n < 2)
+      return 1;
+    else{
+      if(CoC.logic.team.factorials[n]===undefined)
+        CoC.logic.team.factorials[n] = n * CoC.logic.team.factorial(n - 1);
+      return CoC.logic.team.factorials[n];
+    }
+  }
+
+  this.build=function(options){
+    var teams = {}, i=1, team, list = options.heroes.slice(), preselect = [], progress = null;
+    if(options.progress)
+      progress={
+        current:0,
+        max:function(r){
+          var value = 0;
+          for(var n = list.length; n > r; n-=r)
+            value += CoC.logic.team.factorial(n) / (CoC.logic.team.factorial(r) * CoC.logic.team.factorial(n - r));
+          return value;
+        }(options.size),
+        callback:options.progress
       }
-    } while(team != null)
     
-    //check if we have enough
-    var needed = 0;
-    for(i in teams)
-      if(i !== 'length')
-        needed += options.size - teams[i].length;
+    if(options.single)
+      for(var i=list.length-1;i>=0;i--)
+        if(list[i].quest){
+          preselect.push(list[i]);
+          list.splice(i,1);
+        }
+
+    if(preselect.length > 0){
+      team = getNextPartner(list,preselect,0,options.size, progress);
+      if(team && CoC.logic.synergy.has(team))
+        teams[0]=team;
+    }
+    else{
       
-    //break up teams if we dont have enough
-    while(list.length < needed){
-      var i = teams.length;
-      team = teams[i];
-      for(var t in team){
-        list.push(team[t]);
-        needed--;
-      }
-      delete teams[i];
-    }
-    
-    function getIds(list){
-      var ids=[];
-      for(var i in list)
-        ids.push(list[i].id);
-      return JSON.stringify(ids);
-    }
-    
-    function appendToTeam(list, object){
-      var l = list.slice();
-      l.push(object)
-      return l;
-    }
-    
-    //add into existing teams, using the comparison to find best partner
-    for(i in teams){
-      while(teams[i].length < options.size){
-        var current_object = list[0];
-        var current_value = getTeamValue(appendToTeam(teams[i],current_object));
-        var current_index = 0;
-        
-        for(var j=1;j<list.length;j++){
-          var next_object = list[j];
-          var next_value = getTeamValue(appendToTeam(teams[i],next_object));
-          var next_index = j;
-          
-          if(next_value > current_value){
-            current_object = next_object;
-            current_value = next_value;
-            current_index = next_index;
+      do {
+        team = getTopPartner(list,0,options.size, progress);
+        if(team){          
+          if (CoC.logic.synergy.has(team)){
+            if(!options.single)
+              team = CoC.logic.synergy.cull(team);
+            
+            teams[i]=team;
+            teams.length=i++;
+            for(var o in team)
+              list.splice(list.indexOf(team[o]),1);
+              
+            if(options.single)
+              break;
           }
+          else break;
         }
-          
-        teams[i].push(list[current_index])
-        list.splice(current_index,1);
+      } while(team != null)
+    
+      //check if we have enough
+      var needed = 0;
+      for(i in teams)
+        if(i !== 'length')
+          needed += options.size - teams[i].length;
+        
+      //break up teams if we dont have enough
+      while(list.length < needed){
+        var i = teams.length;
+        team = teams[i];
+        for(var t in team){
+          list.push(team[t]);
+          needed--;
+        }
+        delete teams[i];
       }
+      
+      function getIds(list){
+        var ids=[];
+        for(var i in list)
+          ids.push(list[i].id);
+        return JSON.stringify(ids);
+      }
+      
+      function appendToTeam(list, object){
+        var l = list.slice();
+        l.push(object)
+        return l;
+      }
+      
+      //add into existing teams, using the comparison to find best partner
+      for(i in teams){
+        while(teams[i].length < options.size){
+          var current_object = list[0];
+          var current_value = getTeamValue(appendToTeam(teams[i],current_object));
+          var current_index = 0;
+          
+          for(var j=1;j<list.length;j++){
+            var next_object = list[j];
+            var next_value = getTeamValue(appendToTeam(teams[i],next_object));
+            var next_index = j;
+            
+            if(next_value > current_value){
+              current_object = next_object;
+              current_value = next_value;
+              current_index = next_index;
+            }
+          }
+            
+          teams[i].push(list[current_index])
+          list.splice(current_index,1);
+        }
+      }
+      
+      delete teams.length
     }
-    
-    delete teams.length
-    
-    if(options.extras)
+    if(options.extras && options.single !== true)
       teams['extras'] = list;
     
     return teams;
   }
 
-  function getTopPartner(list,i,depth){
-    var current = getNextPartner(list,[i],i+1,depth);
+  function getTopPartner(list,i,depth, progress){
+    var current = getNextPartner(list,[ list[i] ],i+1,depth, progress);
     if(current == null)
       return null;
-    var next = getTopPartner(list,i+1,depth);
-    return (compareTeams(list,current,next) >= 0)? current: next;
+    var next = getTopPartner(list,i+1,depth, progress);
+    return (compareTeams(current,next) >= 0)? current: next;
   }
 
-  function getNextPartner(list,arr,i,depth){
+  function getNextPartner(list,arr,i,depth, progress){
     if(i > list.length)
       return null;
     var current = arr;
     if(arr.length < depth){
       var array = arr.slice();
-      array.push(i);
-      current = getNextPartner(list,array,i+1,depth);
+      array.push(list[i]);
+      current = getNextPartner(list,array,i+1,depth, progress);
     }
-    else
+    else{
+      if(progress)
+        progress.callback(++progress.current, progress.max)
       return arr;
+    }
     if(current == null)
       return null;
-    var next = getNextPartner(list,arr,i+1,depth);
-    return (compareTeams(list,current,next) >= 0)? current: next;
+    var next = getNextPartner(list,arr,i+1,depth, progress);
+    return (compareTeams(current,next) >= 0)? current: next;
   }
   
-  function compareTeams(list, a, b){
+  function compareTeams(a, b){
     if(b == null)
       return 1;
     
-    return getTeamValue(a, list) - getTeamValue(b, list);
+    if(a == null || a === undefined)
+      console.log(a)
+    if(b == null || b === undefined)
+      console.log(b)
+    
+    return getTeamValue(a) - getTeamValue(b);
   }
     
   function getTeamValue(team, list){
-    if(list !== undefined){
-      var l = [];
-      for(var i in team)
-        l.push(list[team[i]]);
-      team = l;
-    }
     return CoC.logic.synergy.value(team) * (CoC.logic.heroes.value(team) * getClassesWeight(team));
   }
   

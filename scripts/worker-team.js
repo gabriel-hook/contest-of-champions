@@ -13,6 +13,7 @@ onmessage = function (event) {
   var weights = event.data.weights;
   var single = event.data.single;
   var extras = event.data.extras;
+  var update = event.data.update;
   
   CoC.settings.getWeight=function(key){
     return weights[key];
@@ -33,6 +34,19 @@ onmessage = function (event) {
     }[number]);
   }
   
-  var teams = CoC.logic.team.build(roster,{ size:size, extras:extras, single:single });
-  postMessage(teams);
+  var lastTime = (new Date()).getTime();
+  var teams = CoC.logic.team.build({ 
+    heroes:roster, 
+    size:size, 
+    extras:extras, 
+    single:single, 
+    progress:function(current, max){
+      var time = (new Date()).getTime();
+      if(time-lastTime < update)
+        return;
+      lastTime = time;
+      postMessage({ type:"progress", current:current, max:max });
+    }  
+  });
+  postMessage({ type:"complete", teams:teams });
 };

@@ -46,6 +46,8 @@ CoC.ui.teams=new function(){
 
   this.selector="#teams"
 
+  this.worker = null;
+  
   this.clear=function(){
     $(CoC.ui.teams.selector).text("");
   }
@@ -110,8 +112,6 @@ CoC.ui.roster=new function(){
           var h = CoC.logic.heroes.get(hero.id);
           $("#roster-configure-name").prop("class", h.class).text(h.name);
           $("#roster-configure-class").prop("class", h.class.toLowerCase()).text(h.class);
-          
-          console.log( $("#roster-configure-name") )
         
           function setupRankLevel(){
             $("#roster-configure-rank").unbind( "change" ).empty();
@@ -299,6 +299,11 @@ $("#page-teams").on( "pagebeforeshow", function() {
   //get settings
   console.log("setting stuff up...")
       
+  $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
+  $("#team-build-progress .ui-slider-handle").remove();
+  $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
+  
+      
   var teamSettingsSize = $('input:radio[name=team-settings-size]');
   teamSettingsSize.filter('[value='+CoC.settings.getValue("size")+']').prop("checked", true).checkboxradio("refresh");
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
@@ -343,13 +348,25 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if (window.Worker){
   
       try{
-        var worker = new Worker('scripts/worker-team.js');
-        worker.onmessage = function (event) {
-          var teams = event.data;
-          CoC.ui.teams.update(teams, size);
-          $.mobile.loading('hide');
+        if(CoC.ui.teams.worker !== null)
+          CoC.ui.teams.worker.terminate();
+        CoC.ui.teams.worker = new Worker('scripts/worker-team.js');
+        CoC.ui.teams.worker.onmessage=function(event){
+          if(event.data.type === "progress"){
+            var current = event.data.current;
+            var max = event.data.max;
+        
+            $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
+          }
+          if(event.data.type === "complete"){
+            $("#team-build-progress input").val(100).slider("refresh");
+            $.mobile.loading('hide');
+            CoC.ui.teams.update(event.data.teams, size);
+            CoC.ui.teams.worker.terminate();
+            CoC.ui.teams.worker = null;
+          }
         };
-        worker.postMessage({ roster:roster, size:size, weights:CoC.settings.weights, single:single, extras:extras });
+        CoC.ui.teams.worker.postMessage({ roster:roster, size:size, single:single, extras:extras, weights:CoC.settings.weights, update:100 });
         workerWorking = true;
         console.log("building team with worker");
       }
@@ -361,7 +378,15 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(!workerWorking){
       console.log("building team inline");
       setTimeout(function(){
-        var teams = CoC.logic.team.build(roster,{ size:size, extras:extras, single:single });
+        var lastTime = (new Date()).getTime();
+        var teams = CoC.logic.team.build({ heroes:roster, size:size, single:single, extras:extras, progress:function(current, max){
+          var time = (new Date()).getTime();
+          if(time-lastTime < 100)
+            return;
+          lastTime = time;
+          $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
+        } });
+        $("#team-build-progress input").val(100).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(teams, size);
           $.mobile.loading('hide');
