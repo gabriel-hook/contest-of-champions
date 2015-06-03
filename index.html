@@ -410,12 +410,13 @@
     <script>
       if(CoC.settings.getValue("hasDefaults") !== true){
       
+        CoC.settings.setValue("size", 3);
         CoC.settings.setValue("include-4", true);
         CoC.settings.setValue("include-3", true);
         CoC.settings.setValue("include-2", true);
         CoC.settings.setValue("include-1", true);
+        CoC.settings.setValue("quest-group", false);
         CoC.settings.setValue("include-extras", true);
-        CoC.settings.setValue("quest-group", false)
 
         CoC.settings.setWeight("stars-1", 0.5);
         CoC.settings.setWeight("stars-2", 1);
