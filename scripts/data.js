@@ -775,7 +775,7 @@ CoC.data.heroes = {
     synergies:{
       2:[
         { id:"magik", type:"health", amount:5 },
-        { id:"juggernaut", type:"critdmg", amount:20 },
+        { id:"juggernaut", type:"critdmg", amount:15 },
       ],
       3:[
         { id:"wolverine", type:"armor", amount:5 },
