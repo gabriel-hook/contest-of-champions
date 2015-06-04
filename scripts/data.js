@@ -345,6 +345,21 @@ CoC.data.heroes = {
       ]
     }
   },
+  "ultron":{
+    id:"ultron",
+    name:"Ultron",
+    class:"Tech",
+    synergies:{
+      3:[
+        { id:"ironman", type:"health", amount:5 },
+        { id:"scarletwitch", type:"armor", amount:5 }
+      ],
+      4:[
+        { id:"ironman", type:"health", amount:6 },
+        { id:"scarletwitch", type:"armor", amount:6 }
+      ],
+    }
+  },
   "colossus":{
     id:"colossus",
     name:"Colossus",
