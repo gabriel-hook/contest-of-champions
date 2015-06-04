@@ -320,17 +320,18 @@ CoC.logic.team=new function(){
     return result;
   }
 
-  function getTopPartner(list, i, depth, classWeights, progress){
-    var current = getNextPartner(list, addPartnerHero([], list[i]), [], addPartnerClass(getClasses(), list[i]), i+1, depth, classWeights, progress);
+  function getTopPartner(list, index, depth, classWeights, progress){
+    if(index >= list.length)
+      return null;
+    var current = getNextPartner(list, addPartnerHero([], list[index]), [], getClasses([ list[index] ]), index+1, depth, classWeights, progress);
     if(current == null)
       return null;
-    var next = getTopPartner(list,i+1,depth, classWeights, progress);
+    var next = getTopPartner(list,index+1,depth, classWeights, progress);
     return (compareTeams(current,next) >= 0)? current: next;
   }
   
-  function getNextPartner(list, heroes, synergies, classes, i, depth, classWeights, progress){
-    if(i == list.length)
-      return null;
+  function getNextPartner(list, heroes, synergies, classes, index, depth, classWeights, progress){
+  
     if(heroes.length == depth){
       if(progress)
         progress.callback(++progress.current, progress.max);
@@ -340,13 +341,18 @@ CoC.logic.team=new function(){
         value:getTeamValue(heroes, synergies, classes, classWeights)
       };
     }
+    if(index == list.length)
+      return null;
+      
+      
     var current = getNextPartner(list, 
-      addPartnerHero(heroes, list[i]), 
-      addPartnerSynergies(synergies, heroes, list[i]), 
-      addPartnerClass(classes, list[i]), 
-      i+1, depth, classWeights, progress);
+      addPartnerHero(heroes, list[index]), 
+      addPartnerSynergies(synergies, heroes, list[index]), 
+      addPartnerClass(classes, list[index]), 
+      index+1, depth, classWeights, progress
+    );
+    var next = getNextPartner(list, heroes, synergies, classes, index+1, depth, classWeights, progress);
 
-    var next = getNextPartner(list, heroes, synergies, classes, i+1, depth, classWeights, progress);
     return (compareTeams(current,next) >= 0)? current: next;
   }
 
