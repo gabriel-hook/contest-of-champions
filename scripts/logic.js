@@ -237,13 +237,23 @@ CoC.logic.team=new function(){
       
       
       //add into existing teams, using the comparison to find best partner
-      for(var i=0; i<teams.length; i++){
-        var team = teams[i];
+      for(var i=teams.length-1, index; i>=0; i--){
+        var team;
         if(teams[i].heroes.length < options.size){
-          teams[i] = getNextPartner(list, team.heroes, team.synergies, getClasses(team.heroes), 0, options.size, classWeights, progress);
-          for(var o in teams[i].heroes)
-            if(list.indexOf(teams[i].heroes[o]) != -1)
-              list.splice(list.indexOf(teams[i].heroes[o]),1);
+          var team = getNextPartner(list, teams[i].heroes, teams[i].synergies, getClasses(teams[i].heroes), 0, options.size, classWeights, progress);
+          if(team){
+            for(var o in team.heroes){
+              index = list.indexOf(team.heroes[o]);
+              if(index != -1)
+                list.splice(index,1);
+            }
+            teams[i] = team;
+          }
+          else{
+            for(var o in teams[i].heroes)
+              list.push(teams[i].heroes[o]);
+            delete teams[i];
+          }
         }
       }
       
@@ -297,7 +307,7 @@ CoC.logic.team=new function(){
   function postProcess(teams, extras){
     var result = {};
     for(var i in teams){
-      result[i] = [];
+      result[i] = [];      
       for(var o in teams[i].heroes)
         result[i].push(teams[i].heroes[o].data);
     }
@@ -311,7 +321,7 @@ CoC.logic.team=new function(){
   }
 
   function getTopPartner(list, i, depth, classWeights, progress){
-    var current = getNextPartner(list, [ list[i] ], [], addPartnerClass(getClasses(), list[i]), i+1, depth, classWeights, progress);
+    var current = getNextPartner(list, addPartnerHero([], list[i]), [], addPartnerClass(getClasses(), list[i]), i+1, depth, classWeights, progress);
     if(current == null)
       return null;
     var next = getTopPartner(list,i+1,depth, classWeights, progress);
@@ -319,30 +329,23 @@ CoC.logic.team=new function(){
   }
   
   function getNextPartner(list, heroes, synergies, classes, i, depth, classWeights, progress){
-    var current = heroes;
-    if(i == list.length){
-      current = null;
-    }
-    else if(heroes.length < depth){
-      var nextSynergies = addPartnerSynergies(synergies, heroes, list[i]) 
-      var nextClasses = addPartnerClass(classes, list[i]);
-      var nextHeroes = heroes.slice();
-      nextHeroes.push(list[i]);
-      current = getNextPartner(list, nextHeroes, nextSynergies, nextClasses, i+1, depth, classWeights, progress);
-    }
-    else{
+    if(i == list.length)
+      return null;
+    if(heroes.length == depth){
       if(progress)
-        progress.callback(++progress.current, progress.max)
-        
-      //return with synergies and heroes  
+        progress.callback(++progress.current, progress.max);
       return {
         heroes:heroes,
         synergies:synergies,
         value:getTeamValue(heroes, synergies, classes, classWeights)
-      }
+      };
     }
-    if(current == null)
-      return null;
+    var current = getNextPartner(list, 
+      addPartnerHero(heroes, list[i]), 
+      addPartnerSynergies(synergies, heroes, list[i]), 
+      addPartnerClass(classes, list[i]), 
+      i+1, depth, classWeights, progress);
+
     var next = getNextPartner(list, heroes, synergies, classes, i+1, depth, classWeights, progress);
     return (compareTeams(current,next) >= 0)? current: next;
   }
@@ -353,6 +356,12 @@ CoC.logic.team=new function(){
       for(var i in heroes)
         classes[heroes[i].class]++;
     return classes;
+  }
+  
+  function addPartnerHero(list, hero){
+    var heroes = list.slice();
+    heroes.push(hero);
+    return heroes;
   }
   
   function addPartnerClass(list, hero){
