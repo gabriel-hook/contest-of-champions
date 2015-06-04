@@ -84,7 +84,7 @@ CoC.ui.teams=new function(){
         
           var synergy = $('<div>', { class : "synergy" });
           synergy.append($('<img>', { src:CoC.getSynergyImage(o,synergies[o]) }));
-          synergy.append($('<span>').text("+ " + CoC.getSynergyName(o) + " " + synergies[o] + "%"));
+          synergy.append($('<span>').text(CoC.getSynergyName(o) + " +" + synergies[o] + "%"));
           
           synergieselement.append(synergy)
         }
