@@ -131,6 +131,7 @@ CoC.data.heroes = {
     name:"Gamora",
     class:"Cosmic",
     synergies:{
+      1:[],
       2:[
         { id:"starlord", type:"armor", amount:4 }
       ],
@@ -365,6 +366,7 @@ CoC.data.heroes = {
     name:"Colossus",
     class:"Mutant",
     synergies:{
+      1:[],
       2:[
         { id:"juggernaut", type:"critrate", amount:5 },
       ],
