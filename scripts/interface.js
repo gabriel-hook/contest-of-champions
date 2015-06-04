@@ -54,45 +54,50 @@ CoC.ui.teams=new function(){
  
   this.update=function(teams, size){
     var element = $(CoC.ui.teams.selector);
-    element.text("")
-    for(var i in teams){
+    element.text("");
+    if(teams && (teams[0] || teams["extra"])){
+      for(var i in teams){
+        
+        if(teams[i] === null || teams[i].length ===0)
+          continue;
       
-      if(teams[i] === null || teams[i].length ===0)
-        continue;
-    
-      if(i === 'extras')
-        element.append($('<h3>', { style:'clear:both'}).text("Extras"));
+        if(i === 'extras')
+          element.append($('<h3>', { style:'clear:both'}).text("Extras"));
 
-      var subelement = $('<div>')
-      if(i === 'extras')
-        subelement.addClass('extras');
-      else{
-        subelement.addClass('team');
-        subelement.addClass((size==3)? 'three': (size==4)? 'four': (size==5)? 'five': 'unknown');
-      }
-    
-      for(var h in teams[i]){
-        subelement.append(CoC.ui.hero(teams[i][h]));
-      }
-      subelement.append($('<br>',{style:'clear:both'}));
-      
-      if(i !== 'extras'){
-        var synergies = CoC.logic.synergy.map(teams[i])
-        
-        var synergieselement = $('<div>', { class : "synergies" })
-        for(var o in synergies){
-        
-          var synergy = $('<div>', { class : "synergy" });
-          synergy.append($('<img>', { src:CoC.getSynergyImage(o,synergies[o]) }));
-          synergy.append($('<span>').text(CoC.getSynergyName(o) + " +" + synergies[o] + "%"));
-          
-          synergieselement.append(synergy)
+        var subelement = $('<div>')
+        if(i === 'extras')
+          subelement.addClass('extras');
+        else{
+          subelement.addClass('team');
+          subelement.addClass((size==3)? 'three': (size==4)? 'four': (size==5)? 'five': 'unknown');
         }
-        subelement.append(synergieselement);
-      }
       
-      subelement.append($('<div>', { style:'clear:both'}));
-      element.append(subelement);
+        for(var h in teams[i]){
+          subelement.append(CoC.ui.hero(teams[i][h]));
+        }
+        subelement.append($('<br>',{style:'clear:both'}));
+        
+        if(i !== 'extras'){
+          var synergies = CoC.logic.synergy.map(teams[i])
+          
+          var synergieselement = $('<div>', { class : "synergies" })
+          for(var o in synergies){
+          
+            var synergy = $('<div>', { class : "synergy" });
+            synergy.append($('<img>', { src:CoC.getSynergyImage(o,synergies[o]) }));
+            synergy.append($('<span>').text(CoC.getSynergyName(o) + " +" + synergies[o] + "%"));
+            
+            synergieselement.append(synergy)
+          }
+          subelement.append(synergieselement);
+        }
+        
+        subelement.append($('<div>', { style:'clear:both'}));
+        element.append(subelement);
+      }
+    }
+    else{
+      element.append($('<div>', { class:"noteam" }).text("No Synergies Found."));
     }
   }
 }
@@ -357,6 +362,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
     $("#team-build-progress").attr("class","");
+    $(CoC.ui.teams.selector).text("")
     
     var workerWorking = false;
     if (window.Worker){
