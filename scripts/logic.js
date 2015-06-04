@@ -183,10 +183,14 @@ CoC.logic.team=new function(){
       }
 
     if(preselect.length > 0){
-      var synergies = [];
-      var classes = getClasses(preselect);
-      team = getNextPartner(list,preselect,synergies,classes,0,options.size,classWeights,progress);
-      if(team && CoC.logic.synergy.has(team))
+      if(preselect.length > options.size){
+        team = getTopPartner(preselect,0,options.size, classWeights, progress);
+      }
+      else{
+        var synergies = [], classes = getClasses(preselect);
+        team = getNextPartner(list,preselect,synergies,classes,0,options.size,classWeights,progress);
+      }
+      if(team && team.value > 0)
         teams[0]=team;
     }
     else{
@@ -331,7 +335,6 @@ CoC.logic.team=new function(){
   }
   
   function getNextPartner(list, heroes, synergies, classes, index, depth, classWeights, progress){
-  
     if(heroes.length == depth){
       if(progress)
         progress.callback(++progress.current, progress.max);
@@ -343,8 +346,6 @@ CoC.logic.team=new function(){
     }
     if(index == list.length)
       return null;
-      
-      
     var current = getNextPartner(list, 
       addPartnerHero(heroes, list[index]), 
       addPartnerSynergies(synergies, heroes, list[index]), 
@@ -354,14 +355,6 @@ CoC.logic.team=new function(){
     var next = getNextPartner(list, heroes, synergies, classes, index+1, depth, classWeights, progress);
 
     return (compareTeams(current,next) >= 0)? current: next;
-  }
-
-  function getClasses(heroes){
-    var classes=[0,0,0,0,0,0];
-    if(heroes !== undefined)
-      for(var i in heroes)
-        classes[heroes[i].class]++;
-    return classes;
   }
   
   function addPartnerHero(list, hero){
@@ -375,6 +368,14 @@ CoC.logic.team=new function(){
     classes[hero.class]++;
     return classes;
   }
+
+  function getClasses(heroes){
+    var classes=[0,0,0,0,0,0];
+    if(heroes !== undefined)
+      for(var i in heroes)
+        classes[heroes[i].class]++;
+    return classes;
+  }
   
   function addPartnerSynergies(oldSynergies, list, next){
     var synergies = oldSynergies.slice();    
@@ -383,6 +384,20 @@ CoC.logic.team=new function(){
         synergies.push(list[i].synergies[next.id]);
       if(next.synergies[list[i].id] !== undefined)
         synergies.push(next.synergies[list[i].id]);
+    }
+    return synergies;
+  }
+  
+  function getSynergies(list){
+    if(list.length < 2)
+      return [];
+  
+    var heroes = [], synergies = [], remaining = heroes.slice();
+    while(remaining.length > 0){
+      var hero = remaining[0];
+      remaining.splice(0,1);
+      synergies = addPartnerSynergies(synergies, heroes, hero);
+      heroes.push(hero);
     }
     return synergies;
   }
