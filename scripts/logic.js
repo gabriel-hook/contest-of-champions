@@ -220,13 +220,13 @@ CoC.logic.team=new function(){
         
       //break up teams if we dont have enough
       while(list.length < needed){
-        var i = teams.length;
-        team = teams[i];
-        for(var t in team.heroes){
-          list.push(team.heroes[t]);
+        var i = teams.length - 1;
+        for(var t in teams[i].heroes){
+          list.push(teams[i].heroes[t]);
           needed--;
         }
         delete teams[i];
+        teams.length--;
       }
       
       function appendToTeam(list, object){
