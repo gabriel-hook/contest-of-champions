@@ -122,7 +122,7 @@ var CoC=new function(){
     var array=[];
     if(stars === undefined)
       stars = { 1:true, 2:true, 3:true, 4:true };
-    for(var s=4;s>=2;s--)
+    for(var s=4;s>=1;s--)
       if(stars[s])
         for(var o in CoC.data.heroes)
           if(CoC.roster.stars[s][CoC.data.heroes[o].id])
