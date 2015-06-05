@@ -10,17 +10,15 @@ var CoC=new function(){
     location.reload();
   }
   
-  this.getSynergyName=function(key){
+  this.ui.getSynergyName=function(key){
     var value = CoC.data.synergies[key];
     return (value === undefined)? key: value.name;
   }
-  this.getSynergyImage=function(key,amount){
-    var value = CoC.data.synergies[key];
-    return (value === undefined)? "": "images/synergybonuses/synergy_bonus_"+value.image+".jpg";
-  }
-  this.getSynergyImageDisabled=function(key,amount){
-    var value = CoC.data.synergies[key];
-    return (value === undefined)? "": "images/synergybonuses/synergy_bonus_"+value.image+"2.jpg";
+  this.ui.getSynergyImage=function(key, value){
+    var synergy = CoC.data.synergies[key];
+    return (!synergy)? "":
+      (!value)? "images/synergybonuses/synergy_bonus_"+synergy.image+"2.jpg": 
+      "images/synergybonuses/synergy_bonus_"+synergy.image+".jpg";
   }
   
   /************
