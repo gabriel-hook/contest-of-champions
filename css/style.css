@@ -248,6 +248,40 @@ position:absolute;
 }
 
 /******************
+  HEADER BUTTONS
+******************/
+
+#header .ui-btn-left,
+#header .ui-btn-right{
+  position:absolute;
+  top:0;
+  height:46px;
+  min-width:50px;
+  background:none;
+  border:none;
+  box-shadow:none;
+}
+#header .ui-btn-left::after,
+#header .ui-btn-left::before,
+#header .ui-btn-right::after,
+#header .ui-btn-right::before{
+  border:none;
+  box-shadow:none;
+  height:32px;
+  width:32px;
+  background-size:24px;
+  margin-left:-16px;
+  margin-top:-17px;
+}
+#header .ui-btn-right::after,
+#header .ui-btn-right::before{
+}
+#header .ui-btn-left{
+  left:0;
+}
+#header .ui-btn-right{
+  right:0;
+}
 
 /******************
     ONBOARDING
