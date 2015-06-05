@@ -31,6 +31,10 @@
         <h1>Roster</h1>
       </div>
       
+      <div id="onboarding-roster" class="onboarding left">
+        <h3>Use the options menu to add new champions</h3>
+      </div>
+      
       <div role="main" class="ui-content">
         <div id="roster"></div>
       </div>
@@ -234,6 +238,10 @@
         </div>
       </div>
       
+      <div id="onboarding-teams" class="onboarding right">
+        <h3>Use the Build menu create your teams!</h3>
+      </div>
+      
       <div role="main" class="ui-content">
         <div id="teams"></div>
       </div>
@@ -417,6 +425,7 @@
     <script src="scripts/logic.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/interface.js"></script>
+    <script src="scripts/onboarding.js"></script>
     <script>
       //Set defaults
       if(CoC.settings.getValue("hasDefaults") !== true){
