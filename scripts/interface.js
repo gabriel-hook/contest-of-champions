@@ -415,68 +415,61 @@ $("#page-teams").on( "pagebeforeshow", function() {
   });
 });
 
-$("#page-settings-advanced").on( "pagebeforeshow", function() {
+$("#page-settings-advanced").on( "pagecreate", function() {
 
-  function enableSlider(id, value, callback){
-    $(id).val(value * 100).slider("refresh").change(function(){
-      callback( parseInt(this.value) / 100.0 );
-    })
+  var sliders = {};
+
+  var groups = {}, presets = CoC.settings.preset.ids();
+  for(var i in presets){
+    var preset = CoC.settings.preset.info(presets[i]);
+    var container = $("#settings-advanced-preset");
+    if(preset.category){
+      if(groups[preset.category] === undefined){
+        groups[preset.category] = $('<optgroup>', { label:preset.category });
+        container.append(groups[preset.category]);
+      }
+      container = groups[preset.category];
+    }
+  
+    container.append($('<option>', { value:preset.id }).text( preset.name ));
+    container.select("refresh")
   }
-
-  enableSlider("#settings-advanced-star4",CoC.settings.getWeight("stars-4"),function(v){
-    CoC.settings.setWeight("stars-4", v);
+  $("#settings-advanced-preset").change(function(){
+    CoC.settings.preset.apply(this.value, function(key, value){
+      var slider = $(sliders[key]);
+      if(slider.length){
+        slider.val(value * 100).slider("refresh")
+        return true;
+      }
+      return false;
+    });
   });
-  enableSlider("#settings-advanced-star3",CoC.settings.getWeight("stars-3"),function(v){
-    CoC.settings.setWeight("stars-3", v);
-  });
-  enableSlider("#settings-advanced-star2",CoC.settings.getWeight("stars-2"),function(v){
-    CoC.settings.setWeight("stars-2", v);
-  });
-  enableSlider("#settings-advanced-star1",CoC.settings.getWeight("stars-1"),function(v){
-    CoC.settings.setWeight("stars-1", v);
-  });
-  enableSlider("#settings-advanced-awakened",CoC.settings.getWeight("awakened"),function(v){
-      CoC.settings.setWeight("awakened", v);
-  });
-  enableSlider("#settings-advanced-class2",CoC.settings.getDuplicateWeight(2),function(v){
-    CoC.settings.setDuplicateWeight(2,v);
-  });
-  enableSlider("#settings-advanced-class3",CoC.settings.getDuplicateWeight(3),function(v){
-    CoC.settings.setDuplicateWeight(3,v);
-  });
-  enableSlider("#settings-advanced-class4",CoC.settings.getDuplicateWeight(4),function(v){
-    CoC.settings.setDuplicateWeight(4,v);
-  });
-  enableSlider("#settings-advanced-class5",CoC.settings.getDuplicateWeight(5),function(v){
-    CoC.settings.setDuplicateWeight(5,v);
-  });
-  enableSlider("#settings-advanced-attack",CoC.settings.getWeight("attack"),function(v){
-    CoC.settings.setWeight("attack",v);
-  });
-  enableSlider("#settings-advanced-stun",CoC.settings.getWeight("stun"),function(v){
-    CoC.settings.setWeight("stun",v);
-  });
-  enableSlider("#settings-advanced-critrate",CoC.settings.getWeight("critrate"),function(v){
-    CoC.settings.setWeight("critrate",v);
-  });
-  enableSlider("#settings-advanced-critdmg",CoC.settings.getWeight("critdmg"),function(v){
-    CoC.settings.setWeight("critdmg",v);
-  });
-  enableSlider("#settings-advanced-perfectblock",CoC.settings.getWeight("perfectblock"),function(v){
-    CoC.settings.setWeight("perfectblock",v);
-  });
-  enableSlider("#settings-advanced-block",CoC.settings.getWeight("block"),function(v){
-    CoC.settings.setWeight("block",v);
-  });
-  enableSlider("#settings-advanced-powergain",CoC.settings.getWeight("powergain"),function(v){
-    CoC.settings.setWeight("powergain",v);
-  });
-  enableSlider("#settings-advanced-armor",CoC.settings.getWeight("armor"),function(v){
-    CoC.settings.setWeight("armor",v);
-  });
-  enableSlider("#settings-advanced-health",CoC.settings.getWeight("health"),function(v){
-    CoC.settings.setWeight("health",v);
-  });
+  
+  function enableSlider(id, type){
+    var value = CoC.settings.getWeight(type);
+    $(id).val(value * 100).slider("refresh").change(function(){
+      CoC.settings.setWeight(type, parseInt(this.value) / 100.0);
+    })
+    sliders[type]=id;
+  }
+  enableSlider("#settings-advanced-star4","stars-4");
+  enableSlider("#settings-advanced-star3","stars-3");
+  enableSlider("#settings-advanced-star2","stars-2");
+  enableSlider("#settings-advanced-star1","stars-1");
+  enableSlider("#settings-advanced-awakened","awakened");
+  enableSlider("#settings-advanced-class2","duplicates-2");
+  enableSlider("#settings-advanced-class3","duplicates-3");
+  enableSlider("#settings-advanced-class4","duplicates-4");
+  enableSlider("#settings-advanced-class5","duplicates-5");
+  enableSlider("#settings-advanced-attack","attack");
+  enableSlider("#settings-advanced-stun","stun");
+  enableSlider("#settings-advanced-critrate","critrate");
+  enableSlider("#settings-advanced-critdmg","critdmg");
+  enableSlider("#settings-advanced-perfectblock","perfectblock");
+  enableSlider("#settings-advanced-block","block");
+  enableSlider("#settings-advanced-powergain","powergain");
+  enableSlider("#settings-advanced-armor","armor");
+  enableSlider("#settings-advanced-health","health");
   
 });
 
