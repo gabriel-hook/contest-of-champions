@@ -288,7 +288,7 @@ CoC.data.heroes = {
   },
   "starlord":{
     id:"starlord",
-    name:"Star Lord",
+    name:"Star-Lord",
     class:"Tech",
     synergies:{
       2:[
@@ -338,11 +338,13 @@ CoC.data.heroes = {
       ],
       3:[
         { id:"ironman", type:"health", amount:5 },
-        { id:"scarletwitch", type:"perfectblock", amount:4 }
+        { id:"scarletwitch", type:"perfectblock", amount:4 },
+        { id:"ultron", type:"attack", amount:4 }
       ],
       4:[
         { id:"ironman", type:"health", amount:6 },
-        { id:"scarletwitch", type:"perfectblock", amount:5 }
+        { id:"scarletwitch", type:"perfectblock", amount:5 },
+        { id:"ultron", type:"attack", amount:5 }
       ]
     }
   },
@@ -672,7 +674,7 @@ CoC.data.heroes = {
   },
   "spiderman":{
     id:"spiderman",
-    name:"Spider-man",
+    name:"Spider-Man",
     class:"Science",
     synergies:{
       1:[
