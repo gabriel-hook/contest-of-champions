@@ -54,6 +54,7 @@ var CoC=new function(){
   }
   
   this.settings.weights = this.settings.loadObjectFromLocalStorage("weights");
+  
   this.settings.getWeight=function(key){
     var weight = CoC.settings.weights[key];
     return (weight === undefined)? 1: weight;
@@ -101,6 +102,62 @@ var CoC=new function(){
   this.settings.getDuplicateWeight=function(number){
     return CoC.settings.getWeight(duplicateKey.get(number));
   }
+  
+  this.settings.preset=new function(){
+  
+    this.list=[];
+    function getPreset(id){
+      for(var i in CoC.settings.preset.list)
+        if(CoC.settings.preset.list[i].id === id)
+          return CoC.settings.preset.list[i];
+      return null;
+    }
+    
+    this.ids=function(){
+      var keys = [];
+      for(var i in CoC.settings.preset.list)
+        keys.push(CoC.settings.preset.list[i].id);
+      return keys;
+    }
+    
+    this.info=function(id){
+      var preset = getPreset(id);
+      if(preset)
+        return {
+          id:preset.id,
+          name:preset.name,
+          category:preset.category
+        };
+      return null;
+    }
+    
+    this.apply=function(id, funcWeights, funcSettings){
+      var preset = getPreset(id);
+      if(preset){
+        if(funcWeights !== undefined)
+          for(var key in preset.weights)
+            if(funcWeights(key, preset.weights[key]))
+              CoC.settings.setWeight(key, preset.weights[key]);
+        if(funcSettings !== undefined)
+          for(var key in preset.settings)
+            if(funcSettings(key, preset.settings[key]))
+              CoC.settings.setValue(key, preset.settings[key]);
+      }  
+    }
+    
+    this.add=function(category, name, weights, settings){
+      var id = (category)? [category,name].join("-").toLowerCase(): name.toLowerCase();
+      CoC.settings.preset.list.push({
+        id:id,
+        name:name,
+        category:category,
+        weights:weights,
+        settings:settings
+      });
+    }
+    
+    this.always=function(){ return true; }
+  } 
   
   /*********
     ROSTER

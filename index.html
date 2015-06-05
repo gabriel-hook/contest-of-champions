@@ -264,8 +264,11 @@
       </div>
       <div role="main" class="ui-content">
       
-      
-        <h3>Hero Weight %</h3>
+        <select name="settings-advanced-preset" id="settings-advanced-preset">
+          <option value="">Choose a preset...</option>
+        </select>
+        
+        <h3>Syngergy Weights</h3>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-star4">★★★★</label>
@@ -410,42 +413,14 @@
     </div>
     
     <script src="scripts/base.js"></script>
+    <script src="scripts/presets.js"></script>
     <script src="scripts/logic.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/interface.js"></script>
     <script>
+      //Set defaults
       if(CoC.settings.getValue("hasDefaults") !== true){
-      
-        CoC.settings.setValue("size", 3);
-        CoC.settings.setValue("include-4", true);
-        CoC.settings.setValue("include-3", true);
-        CoC.settings.setValue("include-2", true);
-        CoC.settings.setValue("include-1", true);
-        CoC.settings.setValue("quest-group", false);
-        CoC.settings.setValue("include-extras", true);
-
-        CoC.settings.setWeight("stars-1", 0.5);
-        CoC.settings.setWeight("stars-2", 1);
-        CoC.settings.setWeight("stars-3", 2);
-        CoC.settings.setWeight("stars-4", 4);
-
-        CoC.settings.setWeight("awakened", 1.5);
-      
-        CoC.settings.setWeight("attack", 5);
-        CoC.settings.setWeight("stun", 4);
-        CoC.settings.setWeight("critrate", 3);
-        CoC.settings.setWeight("critdmg", 2);
-        CoC.settings.setWeight("powergain", 1);
-        CoC.settings.setWeight("perfectblock", 1);
-        CoC.settings.setWeight("block", 1);
-        CoC.settings.setWeight("armor", 1);
-        CoC.settings.setWeight("health", 1);
-
-        CoC.settings.setDuplicateWeight(2,0.75);
-        CoC.settings.setDuplicateWeight(3,0.5);
-        CoC.settings.setDuplicateWeight(4,0.25);
-        CoC.settings.setDuplicateWeight(5,0.125);
-        
+        CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
         CoC.settings.setValue("hasDefaults", true);
       }
     </script>
