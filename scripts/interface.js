@@ -214,7 +214,7 @@ CoC.ui.roster=new function(){
     exporter.attr('download', 'roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     exporter.click(function(){
       console.log("exporting to csv...");
-      $('#popup-roster-options').popup("close");
+      $('#panel-roster-options').panel("close");
     });
 
   }
@@ -305,14 +305,14 @@ $("#page-roster").on("pagebeforeshow",function(){
         reader.readAsText(this.files[0]);
       }
     }).click();
-    $('#popup-roster-options').popup("close");
+    $('#panel-roster-options').panel("close");
   });
   
   $('#roster-clear-all').click(function(){
     CoC.roster.clear();
     CoC.ui.roster.update();
     CoC.ui.roster.dirty();
-    $('#popup-roster-options').popup("close");
+    $('#panel-roster-options').panel("close");
   });
   
   
