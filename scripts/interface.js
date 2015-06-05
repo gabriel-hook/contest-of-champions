@@ -270,6 +270,10 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   });
   $( document ).on( "swiperight", "#page-teams", function( e ) {
     $("#page-teams").find("a[href=#page-roster]").click()
+//Make swipes move to the next screen
+$( document ).on( "pagecreate", "#page-settings-advanced", function() {
+  $( document ).on( "swiperight", "#page-settings-advanced", function( e ) {
+    $("#page-settings-advanced").find("#footer a[href=#page-teams]").click()
   });
 });
 
