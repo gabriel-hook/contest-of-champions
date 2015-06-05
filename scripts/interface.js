@@ -366,7 +366,8 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
     $("#team-build-progress").attr("class","");
-    $(CoC.ui.teams.selector).text("")
+    
+    CoC.ui.teams.empty = false;
     
     var workerWorking = false;
     if (window.Worker){
