@@ -1,6 +1,6 @@
 CoC.data.synergies={
   "perfectblock":{
-    name:"Perfect Block Chance",
+    name:"Perfect Block",
     image:"block",
     base:3
   },
@@ -758,15 +758,17 @@ CoC.data.heroes = {
     name:"Magik",
     class:"Mystic",
     synergies:{
-      2:[],
+      2:[
+        { id:"colossus", type:"health", amount:4 },
+      ],
       3:[
         { id:"storm", type:"armor", amount:5 },
-        { id:"colossus", type:"health", amount:4 },
+        { id:"colossus", type:"health", amount:5 },
         { id:"cyclops", type:"perfectblock", amount:4 },
       ],
       3:[
         { id:"storm", type:"armor", amount:6 },
-        { id:"colossus", type:"health", amount:5 },
+        { id:"colossus", type:"health", amount:6 },
         { id:"cyclops", type:"perfectblock", amount:5 },
         { id:"juggernaut", type:"critrate", amount:7 },
       ]
@@ -793,7 +795,7 @@ CoC.data.heroes = {
     class:"Mystic",
     synergies:{
       2:[
-        { id:"magik", type:"health", amount:5 },
+        { id:"magik", type:"health", amount:4 },
         { id:"juggernaut", type:"critdmg", amount:15 },
       ],
       3:[
