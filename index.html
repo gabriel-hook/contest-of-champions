@@ -23,11 +23,13 @@
       data-theme="c"
       data-role="page">
     
-      <div data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a href="#popup-roster-options" class="ui-btn-left"
-          data-icon="gear" 
-          data-rel="popup"
-          data-transition="turn">Options</a>
+      <div id="header" data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a id="button-roster-options" href="#panel-roster-options" class="ui-btn-left"
+          data-role="button" 
+          data-icon="bars" 
+          data-iconpos="notext"
+          data-rel="panel"
+          data-transition="slide">Options</a>
         <h1>Roster</h1>
       </div>
       
@@ -64,14 +66,20 @@
         </div>
       </div>
       
-      <div id="popup-roster-options" data-role="popup" data-theme="b">
+      <div class="panel" id="panel-roster-options" 
+        data-role="panel"
+        data-position="left" 
+        data-display="reveal"
+        data-theme="b">
+      
         <div role="main" class="ui-content">
         
           <a href="#page-add"
             data-role="button" 
             data-icon="plus" 
             data-rel="page"
-            data-transition="slideup">Add</a> 
+            data-direction="reverse"
+            data-transition="slide">Add</a> 
     
           <div id="roster-import">
             <a data-role="button" data-icon="action">Import .csv</a>    
@@ -87,7 +95,7 @@
         </div>
       </div>
       
-      <div data-id="myfooter" data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+      <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
             <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
@@ -104,12 +112,12 @@
       data-theme="c"
       data-role="page">
     
-      <div data-role="header" data-position="fixed" data-tap-toggle="false">
+      <div id="header" data-role="header" data-position="fixed" data-tap-toggle="false">
         <h3>Roster - Add</h3>
         <a href="#page-roster" class="ui-btn-right"
-          data-transition="slideup" 
-          data-direction="reverse"
+          data-transition="slide" 
           data-role="button" 
+          data-iconpos="notext"
           data-icon="delete">Close</a>
         <div data-role="navbar">
           <ul>
@@ -125,10 +133,10 @@
         <div id="add-heroes"></div>
       </div>
       
-      <div data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
+      <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
-            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slideup" data-direction="reverse">Roster</a></li>
+            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slide">Roster</a></li>
             <li><a href="#page-teams" data-icon="search" data-transition="slide">Teams</a></li>
           </ul>
         </div>
@@ -221,15 +229,16 @@
             </select>
           </div>
           
-          <button id="button-team-settings-apply">Build</button>
+          <button id="button-team-settings-apply" data-theme="b">Build</button>
     
       </div>
     
     
-      <div data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a href="#panel-team-settings" class="ui-btn-right"
+      <div id="header" data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a id="button-team-build" href="#panel-team-settings" class="ui-btn-right"
           data-role="button" 
           data-rel="panel"
+          data-iconpos="notext"
           data-icon="gear">Build</a>
         <h1>Teams</h1>
         
@@ -246,7 +255,8 @@
         <div id="teams"></div>
       </div>
       
-      <div data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
+      
+      <div id="footer" data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
             <li><a href="#page-roster" data-icon="grid" data-transition="slide" data-direction="reverse">Roster</a></li>
@@ -264,10 +274,14 @@
       data-theme="a"
       data-role="page">
         
-      <div data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a href="#page-team-settings" class="ui-btn-left"
-          data-rel="back"
-          data-icon="back">back</a>
+      <div id="header" data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a href="#page-teams" class="ui-btn-left"
+          data-role="button" 
+          data-transition="slide"
+          data-direction="reverse"
+          data-iconpos="notext"
+          data-icon="back">Back</a>
+          
         <h1>Advanced Settings</h1>
       </div>
       <div role="main" class="ui-content">
@@ -410,11 +424,11 @@
       
       </div>
       
-      <div data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
+      <div id="footer" data-role="footer" data-theme="b" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
             <li><a href="#page-roster" data-transition="slide" data-direction="reverse" data-icon="grid" data-iconpos="bottom">Roster</a></li>
-            <li><a href="#page-teams" class="ui-btn-active ui-state-persist" data-rel="back" data-icon="search" data-iconpos="bottom">Teams</a></li>
+            <li><a href="#page-teams" class="ui-btn-active ui-state-persist" data-icon="search" data-iconpos="bottom" data-transition="slide" data-direction="reverse">Teams</a></li>
           </ul>
         </div>
       </div>
