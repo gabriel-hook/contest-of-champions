@@ -41,17 +41,19 @@
         <div id="roster"></div>
       </div>
       
-      <div id="popup-roster-configure" data-role="popup" data-theme="a" data-overlay-theme="a" data-arrow="true">
+      <div id="popup-roster-configure" data-role="popup" data-theme="c" data-overlay-theme="a" data-arrow="true">
         <div role="main" class="ui-content">
+          
+          <div class="extras">
+            <img id="roster-configure-image" />
+            <div id="roster-configure-synergies" class="synergies"></div>
+          </div>
         
           <h3 id="roster-configure-name">Name</h3>
           <label id="roster-configure-class">Class</label>
         
           <fieldset data-role="controlgroup" data-type="horizontal">
-            <legend>Rank / Level</legend>
-            <label for="roster-configure-rank">Rank</label>
             <select name="roster-configure-rank" id="roster-configure-rank"></select>
-            <label for="roster-configure-level">Level</label>
             <select name="roster-configure-level" id="roster-configure-level"></select>
           </fieldset>
         

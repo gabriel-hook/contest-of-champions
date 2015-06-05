@@ -1,10 +1,11 @@
 ﻿
 CoC.ui.hero=function(raw, onclick){
-  var hero = CoC.logic.heroes.get(raw.id);
-  var element = $('<div>', { 
+  var hero = CoC.data.heroes[raw.id];
+  var element = $('<a>', { 
     id:hero.id, 
     stars:raw.stars, 
-    class:"hero"
+    class:"hero",
+    href:"#"
   });
   element.addClass(hero.class.toLowerCase());
   if(raw.awakened)
@@ -17,7 +18,7 @@ CoC.ui.hero=function(raw, onclick){
   var portrait = $('<div>',{
     class:'portrait'
   }).css({
-    'background-image':'url(images/portraits/portrait_'+hero.id+'.png)'
+    'background-image':'url(images/champions/portrait_'+hero.id+'.png)'
   });
   portrait.append($('<div>',{class:'quest'}));
   portrait.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
@@ -78,15 +79,13 @@ CoC.ui.teams=new function(){
         subelement.append($('<br>',{style:'clear:both'}));
         
         if(i !== 'extras'){
-          var synergies = CoC.logic.synergy.map(teams[i])
+          var synergies = CoC.logic.synergy.get(teams[i])
           
           var synergieselement = $('<div>', { class : "synergies" })
           for(var o in synergies){
-          
             var synergy = $('<div>', { class : "synergy" });
-            synergy.append($('<img>', { src:CoC.getSynergyImage(o,synergies[o]) }));
-            synergy.append($('<span>').text(CoC.getSynergyName(o) + " +" + synergies[o] + "%"));
-            
+            synergy.append($('<img>', { src:CoC.ui.getSynergyImage(o, synergies[o]) }));
+            synergy.append($('<span>').text(CoC.ui.getSynergyName(o) + " +" + synergies[o] + "%"));
             synergieselement.append(synergy)
           }
           subelement.append(synergieselement);
@@ -117,8 +116,20 @@ CoC.ui.roster=new function(){
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero(hero, function(event){
-        
-          var h = CoC.logic.heroes.get(hero.id);
+          var h = CoC.data.heroes[hero.id];
+          
+          $("#roster-configure-synergies").text("");
+          var synergies = h.synergies[hero.stars];
+          for(var s=0; s<synergies.length; s++){
+            var synergy = $('<div>', { class : "synergy", title: CoC.data.heroes[synergies[s].id].name });
+            synergy.append($('<img>', { src:'images/champions/portrait_'+synergies[s].id+'.png' }));
+            synergy.append($('<img>', { src:CoC.ui.getSynergyImage(synergies[s].type, synergies[s].amount) }));
+            synergy.append($('<span>').text(CoC.ui.getSynergyName(synergies[s].type) + " +" + synergies[s].amount + "%"));
+            $("#roster-configure-synergies").append(synergy);
+          }
+          if(!synergies.length)
+            $("#roster-configure-synergies").append($('<div>',{ class : "synergy none" }).text("None"));
+          $("#roster-configure-image").prop("src", 'images/champions/fullsize_'+hero.id+'.png');
           $("#roster-configure-name").prop("class", h.class).text(h.name);
           $("#roster-configure-class").prop("class", h.class.toLowerCase()).text(h.class);
         
@@ -222,10 +233,9 @@ CoC.ui.roster=new function(){
 
 CoC.ui.add=new function(){
 
-  this.stars;
-
   this.selector="#add-heroes"
 
+  this.stars = 2;
   this.setStars=function(stars){
     this.stars = stars;
     CoC.ui.add.update();
@@ -489,5 +499,4 @@ $("#page-settings-advanced").on( "pagecreate", function() {
 });
 
 CoC.roster.load();
-CoC.ui.add.setStars(2);
 CoC.ui.teams.clear();

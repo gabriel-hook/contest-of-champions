@@ -10,9 +10,6 @@ html, body, p, span, div {
 .ui-page-theme-c,
 .ui-page-theme-c .ui-panel-wrapper{  
   background: #f0f0f0;
-  background: -webkit-radial-gradient(#fff, #eee, #aaa);
-  background: -o-radial-gradient(#fff, #eee, #aaa); 
-  background: -moz-radial-gradient(#fff, #eee, #aaa); 
   background: radial-gradient(#fff, #eee, #aaa); 
   background-attachment: fixed;
 }
@@ -65,6 +62,7 @@ html, body, p, span, div {
 }
 
 .hero{
+  display:block;
   position:relative;
   float:left;
   height:0%;
@@ -147,6 +145,8 @@ position:absolute;
   background-size:cover;
 }
 
+#roster .hero:focus .container,
+#add-heroes .hero:focus .container,
 #roster .hero .container:active,
 #roster .hero .container:hover,
 #add-heroes .hero .container:active,
@@ -185,6 +185,7 @@ position:absolute;
   box-sizing:border-box;
   width:100%;
   padding:4px;
+  font-weight:normal;
 }
 
 .hero .stars{
@@ -363,10 +364,6 @@ position:absolute;
   top:-10000px;
   left:-10000px;
 }
-
-#popup-roster-configure{
-  min-width:200px;
-}
 .ui-controlgroup-controls{
   width:100%;
 }
@@ -394,6 +391,69 @@ position:absolute;
   #panel-team-settings .ui-field-contain{
     padding:0 0 0.5em 0;
   }
+}
+
+/******************
+   ROSTER CONFIG 
+******************/
+
+#popup-roster-configure{
+  min-width:200px;
+}
+#popup-roster-configure .extras{
+  display:none;
+  position:absolute;
+  bottom:24px;
+  right:16px;
+  width:226px;
+  z-index:9999;
+}
+#roster-configure-image{
+  position:absolute;
+  bottom:44px;
+  width:
+}
+#roster-configure-synergies{
+  position:relative;
+  min-height:44px;
+  padding:10px 5px;
+  border-radius:5px;
+  border:solid 1px #b6b6b6;
+  background: linear-gradient(rgba(256,256,256,0.5), #f6f6f6, #efefef, #e6e6e6);
+}
+#roster-configure-synergies:hover,
+#roster-configure-synergies:active{
+  background: linear-gradient(rgba(239,239,239,0.5), #e6e6e6, #dfdfdf, #d6d6d6);
+}
+#roster-configure-synergies .synergy{
+  font-size: 0.7em;
+  padding: 2px;
+}
+#roster-configure-synergies .synergy img{
+  padding-right:0;
+}
+#roster-configure-synergies .synergy span{
+  padding-left:4px;  
+  color: #222;
+  text-shadow: 0 1px 0 #fff;
+  font-weight:bold;
+}
+#roster-configure-synergies .synergy.none{
+  font-style:italic;
+  padding-top:16px;
+  text-align:center;
+}
+@media (min-width:500px) {
+  
+  #popup-roster-configure .extras{
+    display:block;
+  }
+  #popup-roster-configure{
+    padding-right: 236px;
+  }
+}
+#roster-configure-class{
+  font-weight:bold;
 }
 
 /******************
