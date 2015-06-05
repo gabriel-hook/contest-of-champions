@@ -31,15 +31,14 @@ CoC.ui.hero=function(raw, onclick){
     portrait.click(onclick);
   return element.append(container.append(portrait));
 };
-CoC.ui.hero_listener=function(container){
-  function setSize(){
-    var element = container.find("div.hero");
-    element.css({ height:element.width() });
-  }
-  container.on('resize', function(){
-    setSize();
+CoC.ui.hero.hide=function(container, i){
+  var element = $(container.find(".hero")[i]), rect;
+  rect = element[0].getBoundingClientRect();
+  element.css({
+    left:rect.left,
+    top:rect.top
   });
-  setSize();
+  element.addClass("hidden");
 }
 
 CoC.ui.teams=new function(){
@@ -47,6 +46,7 @@ CoC.ui.teams=new function(){
   this.selector="#teams"
 
   this.worker = null;
+  this.empty = true;
   
   this.clear=function(){
     $(CoC.ui.teams.selector).text("");
@@ -105,9 +105,13 @@ CoC.ui.teams=new function(){
 CoC.ui.roster=new function(){
 
   this.selector="#roster"
-
+  
+  this.empty = true;
+  
   this.update=function(){
     var heroes = CoC.roster.all();
+    CoC.ui.roster.empty = heroes.length == 0;
+    
     var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
     for(var i in heroes)
@@ -184,13 +188,12 @@ CoC.ui.roster=new function(){
           
           $("#roster-configure-delete").unbind( "click" )
             .click(function(){
-            
-            CoC.ui.teams.clear();
-            CoC.roster.remove(hero.id, hero.stars);
-            CoC.ui.roster.dirty();
-            $(element.find(".hero")[i]).addClass("hidden");
-            $('#popup-roster-configure').popup("close");
-          });
+              CoC.ui.teams.clear();
+              CoC.roster.remove(hero.id, hero.stars);
+              CoC.ui.roster.dirty();
+              CoC.ui.hero.hide(element, i);
+              $('#popup-roster-configure').popup("close");
+            });
           
           element.find(".portrait").removeClass("selected");
           $(event.target).addClass("selected");
@@ -249,7 +252,7 @@ CoC.ui.add=new function(){
             level:1,
             awakened:0
           });
-          $(element.find(".hero")[i]).addClass("hidden");
+          CoC.ui.hero.hide(element, i);
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));

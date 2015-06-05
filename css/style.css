@@ -108,11 +108,12 @@ html, body, p, span, div {
   }
 }
 .hero.hidden{
+position:absolute;
   pointer-events:none;
   width:0;
   opacity:0;
-  transform:scale(2, 2);
-  transition:all .5s ease, width .1s linear .5s;
+  transform:scale(4, 4);
+  transition:all 2s ease, width 0s ease .5s;
   z-index:10000;
 }
 
@@ -134,10 +135,6 @@ html, body, p, span, div {
   background-size:cover;
 }
 
-#roster .hero .container,
-#add-heroes .hero .container{
-  transition:padding .1s ease;
-}
 #roster .hero .container:active,
 #roster .hero .container:hover,
 #add-heroes .hero .container:active,
