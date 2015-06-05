@@ -187,10 +187,14 @@ CoC.ui.roster=new function(){
             CoC.roster.save();
             CoC.ui.roster.dirty();
             var el = $(element.find(".hero")[i])
-            if(hero.awakened)
+            if(hero.awakened){
               el.addClass("awakened");
-            else
+              $("#roster-configure-stars").addClass("awakened")
+            }
+            else{
               el.removeClass("awakened");
+              $("#roster-configure-stars").removeClass("awakened")
+            }
           });
           
           $("#roster-configure-quest").unbind( "change" )
