@@ -1,57 +1,19 @@
 ﻿CoC.logic.heroes=new function(){
   
-  this.get=function(id){
-    return CoC.data.heroes[id];
-  }
-  
-  this.value=function(heroes){
-    var value = 1, v;
-    if(heroes.length === undefined)
-      heroes = [heroes];
-    for(var h in heroes){
-      v = CoC.settings.getStarWeight(heroes[h].stars);
-      if(heroes[h].awakened)
-        v *= CoC.settings.getWeight("awakened");
-      value += v;
-    }    
-    return value;
-  }
-
-  this.all=function(){
-    var array = [];
-    for(var i in CoC.data.heroes)
-      array.push(CoC.data.heroes[i]);
-    return array;
-  }
-  this.including=function(map){
-    var array = [];
-    
-    if(map instanceof Array){
-      var swap = {};
-      for(var i in map)
-        swap[map[i].id]=true;
-      map = swap;
-    }
-    
-    for(var i in CoC.data.heroes)
-      if(map[CoC.data.heroes[i].id])
-        array.push(CoC.data.heroes[i]);
-    return array;
-  }
   this.excluding=function(map, stars){
-    var array = [];
-    
+    var array = [], i;
     if(map instanceof Array){
-      var swap = {};
-      for(var i in map)
-        swap[map[i].id]=true;
-      map = swap;
+      for(array=map, map={}, i=0; i<array.length; i++)
+        map[array[i].id]=true;
+      array = [];
     }
     
-    for(var i in CoC.data.heroes)
-      if(map[CoC.data.heroes[i].id] === undefined)
-        if(stars === undefined || CoC.data.heroes[i].synergies[stars] !== undefined)
+    for(i in CoC.data.heroes)
+      if(!map[CoC.data.heroes[i].id] && CoC.data.heroes[i].synergies[stars])
           array.push(CoC.data.heroes[i]);
+          
+    console.log(array)
+          
     return array;
   }
 }
@@ -61,11 +23,11 @@ CoC.logic.synergy=new function(){
   var characterSynergies = {1:{},2:{},3:{},4:{}};
   
   function getSynergy(a,b){
-    var map = characterSynergies[a.stars][a.id];
+    var map = characterSynergies[a.stars][a.id], s;
     if(map === undefined){
       map = {};
       var synergies = CoC.data.heroes[a.id].synergies[a.stars];
-      for(var s in synergies){
+      for(s=0;s<synergies.length;s++){
         map[synergies[s].id]=synergies[s];
       }
       characterSynergies[a.stars][a.id]=map;
@@ -74,86 +36,43 @@ CoC.logic.synergy=new function(){
   }
 
   function iterateSynergies(list,callback){
-    for(var i=0;i<list.length;i++)
-      for(var j=0;j<list.length;j++)
+    var i,j;
+    for(i=0;i<list.length;i++)
+      for(j=0;j<list.length;j++)
         if(j != i){
           var s = getSynergy(list[i],list[j]);
           if(s)
-            if(callback(s,i,j) === true)
+            if(callback(s) === true)
               return;
         }
   }
-
-  //remove non-contributors
-  this.cull=function(list){
-    var hasSynergies={}
-    iterateSynergies(list,function(s,i,j){
-      hasSynergies[i]=true;
-      hasSynergies[j]=true;
-    });
-    
-    var culled=[];
-    for(var i in list)
-      if(hasSynergies[i])
-        culled.push(list[i])
-
-    return culled;
-  }
   
-  
-  this.map=function(list){
-    var map = {};
-    iterateSynergies(list,function(synergy){
-      var value = synergy.amount;
-      if(map[synergy.type])
-        map[synergy.type]+=synergy.amount;
-      else
-        map[synergy.type]=synergy.amount;
-    });
+  this.get=function(list){
+    var map = {}, i, j, synergies, s;
+    for(i=0;i<list.length;i++)
+      for(j=0;j<list.length;j++)
+        if(j != i){
+          synergies = CoC.data.heroes[list[i].id].synergies[list[i].stars];
+          for(s=0; s<synergies.length; s++)
+            if(synergies[s].id === list[j].id){
+              if(map[synergies[s].type] === undefined)
+                map[synergies[s].type] = 0;
+              map[synergies[s].type] += synergies[s].amount;
+            }
+        }
     return map;
-  }
-  
-  this.list=function(list){
-    var s = [];
-    iterateSynergies(list,function(synergy){
-      s.push(synergy);
-    });
-    return s;
-  }
-  
-  this.value=function(list){
-    var value = 0;
-    iterateSynergies(list,function(synergy){
-      value += CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base;
-    });
-    return value;
-  }
-  
-  this.has=function(list){
-    var value = false;       
-    iterateSynergies(list,function(synergy){
-      if(CoC.settings.getWeight(synergy.type) != 0)
-        return value = true;
-    });
-    return value;
   }
 }
 
 CoC.logic.team=new function(){
 
-  this.classes={};
-  for(var i in CoC.data.classes)
-    this.classes[CoC.data.classes[i]]=i;
-
-  this.factorials=[1,1];
-  this.factorial=function(n){
-    if (n < 2)
-      return 1;
-    else{
-      if(CoC.logic.team.factorials[n]===undefined)
-        CoC.logic.team.factorials[n] = n * CoC.logic.team.factorial(n - 1);
-      return CoC.logic.team.factorials[n];
+  function factorial(n){
+    if(!factorial.cache)
+      factorial.cache = { '0':1, '1':1 };
+    if(!factorial.cache.hasOwnProperty(n)){
+      factorial.cache[n] = n * factorial(n-1);
     }
+    return factorial.cache[n];
   }
 
   this.build=function(options){
@@ -173,7 +92,7 @@ CoC.logic.team=new function(){
         max:function(r){
           var value = 0;
           for(var n = list.length; n > r; n-=r){
-            value += CoC.logic.team.factorial(n) / (CoC.logic.team.factorial(r) * CoC.logic.team.factorial(n - r));
+            value += factorial(n) / (factorial(r) * factorial(n - r));
             if(options.single)
               break;
           }
@@ -268,12 +187,12 @@ CoC.logic.team=new function(){
   }
   
   function preProcess(heroes, list, classWeights){
-    var data, heroes, synergies, synergy;
+    var data, heroes, synergies, synergy, i;
   
-    for(var i=2; i<=5; i++)
+    for(i=2; i<=5; i++)
       classWeights[i] = CoC.settings.getDuplicateWeight(i);
       
-    for(var i in heroes){
+    for(var i=0; i<heroes.length; i++){
       data = heroes[i];
       hero = CoC.data.heroes[data.id];
       
@@ -370,16 +289,16 @@ CoC.logic.team=new function(){
   }
 
   function getClasses(heroes){
-    var classes=[0,0,0,0,0,0];
+    var classes=[0,0,0,0,0,0], i;
     if(heroes !== undefined)
-      for(var i in heroes)
+      for(var i=0;i<heroes.length;i++)
         classes[heroes[i].class]++;
     return classes;
   }
   
   function addPartnerSynergies(oldSynergies, list, next){
-    var synergies = oldSynergies.slice();    
-    for(var i in list){
+    var synergies = oldSynergies.slice(), i;    
+    for(var i=0;i<list.length;i++){
       if(list[i].synergies[next.id] !== undefined)
         synergies.push(list[i].synergies[next.id]);
       if(next.synergies[list[i].id] !== undefined)
@@ -425,10 +344,10 @@ CoC.logic.team=new function(){
       heroes:[],
       synergies:team.synergies,
       value:0
-    };
-    for(var i in team.heroes){
-      var cull = true;
-      synergies: for(var s in team.synergies){
+    }, i, s, cull;
+    for(i=0;i<team.heroes.length;i++ ){
+      cull = true;
+      synergies: for(s=0;s<team.synergies.length;s++){
         if(team.synergies[s].to === team.heroes[i].id || team.synergies[s].from === team.heroes[i].id){
           addPartnerClass(classes, team.heroes[i]);
           culled.heroes.push(team.heroes[i]);
