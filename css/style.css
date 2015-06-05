@@ -7,7 +7,8 @@ html, body, p, span, div {
     user-select: none;
 }
 
-.ui-page-theme-c{  
+.ui-page-theme-c,
+.ui-page-theme-c .ui-panel-wrapper{  
   background: #f0f0f0;
   background: -webkit-radial-gradient(#fff, #eee, #aaa);
   background: -o-radial-gradient(#fff, #eee, #aaa); 
