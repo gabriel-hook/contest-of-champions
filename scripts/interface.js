@@ -259,17 +259,24 @@ CoC.ui.add=new function(){
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swipeleft", "#page-roster", function( e ) {
-    $("#page-roster").find("a[href=#page-teams]").click()
+    $("#page-roster").find("#footer a[href=#page-teams]").click()
   });
 });
 
 //Make swipes move to the last screen or open the panel
 $( document ).on( "pagecreate", "#page-teams", function() {
   $( document ).on( "swipeleft", "#page-teams", function( e ) {
-    $("#page-teams").find("a[href=#panel-team-settings]").click()
+  
+    if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
+      $("#page-teams").find("a[href=#page-settings-advanced]").click()
+    else
+      $("#page-teams").find("a[href=#panel-team-settings]").click()
   });
   $( document ).on( "swiperight", "#page-teams", function( e ) {
-    $("#page-teams").find("a[href=#page-roster]").click()
+    $("#page-teams").find("#footer a[href=#page-roster]").click()
+  });
+});
+
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-settings-advanced", function() {
   $( document ).on( "swiperight", "#page-settings-advanced", function( e ) {
