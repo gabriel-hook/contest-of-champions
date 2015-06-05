@@ -196,10 +196,7 @@ position:absolute;
   height:100%;
   text-align:center;
   vertical-align:text-bottom;
-  pointer-event:none;
-}
-.hero.awakened .stars{
-  color:#fff6f0;
+  pointer-events:none;
 }
 .hero .star{
   display:inline-block;
@@ -400,6 +397,30 @@ position:absolute;
 #popup-roster-configure{
   min-width:200px;
 }
+
+#roster-configure-stars{
+  position:absolute;
+  left:16px;
+  top:-12px;
+  display:block;
+  text-align:center;
+  vertical-align:text-bottom;
+  pointer-events:none;
+}
+#roster-configure-stars .star{
+  display:inline-block;
+  position:relative;
+  top:93%;
+  height:24px;
+  width:24px;
+  margin-right:2px;
+  background:center url(../images/star.png) no-repeat;
+  background-size:contain;
+}
+#roster-configure-stars.awakened .star{
+  background-image:url(../images/star-awakened.png);
+}
+
 #popup-roster-configure .extras{
   display:none;
   position:absolute;

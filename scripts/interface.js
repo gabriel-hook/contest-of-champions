@@ -118,6 +118,19 @@ CoC.ui.roster=new function(){
         element.append(CoC.ui.hero(hero, function(event){
           var h = CoC.data.heroes[hero.id];
           
+          
+          $("#roster-configure-stars").text("");
+          $("#roster-configure-stars").append((function(){
+            var string = "";
+            for(var i=0;i<hero.stars;i++)
+              string+="<span class='star'></span>";
+            return string;
+          })());
+          if(hero.awakened)
+            $("#roster-configure-stars").addClass("awakened")
+          else
+            $("#roster-configure-stars").removeClass("awakened")
+          
           $("#roster-configure-synergies").text("");
           var synergies = h.synergies[hero.stars];
           for(var s=0; s<synergies.length; s++){
