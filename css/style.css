@@ -118,13 +118,7 @@ html, body, p, span, div {
   }
 }
 .hero.hidden{
-position:absolute;
-  pointer-events:none;
-  width:0;
-  opacity:0;
-  transform:scale(4, 4);
-  transition:all 2s ease, width 0s ease .5s;
-  z-index:10000;
+  display:none;
 }
 
 .hero .portrait.selected{
