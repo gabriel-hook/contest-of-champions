@@ -1,10 +1,11 @@
 ﻿
-CoC.ui.hero=function(raw, onclick){
+CoC.ui.hero=function(raw, index, onclick){
   var hero = CoC.data.heroes[raw.id];
   var element = $('<div>', { 
     id:hero.id, 
     stars:raw.stars, 
-    class:"hero"
+    class:"hero",
+    "tabindex":index
   });
   element.addClass(hero.class.toLowerCase());
   if(raw.awakened)
@@ -27,8 +28,14 @@ CoC.ui.hero=function(raw, onclick){
       string+="<span class='star'></span>";
     return string;
   })()));
-  if(onclick !== undefined)
-    portrait.click(onclick);
+  if(onclick !== undefined){
+    element.on("click", onclick);
+    element.on("keyup", function(event){
+      if(event.keyCode != 13)
+        return;
+      onclick.call(this, event);
+    });
+  }
   return element.append(container.append(portrait));
 };
 CoC.ui.hero.hide=function(container, i){
@@ -114,7 +121,7 @@ CoC.ui.roster=new function(){
     $(CoC.ui.roster.selector).text("").append(element);
     for(var i in heroes)
       (function(hero,i){
-        element.append(CoC.ui.hero(hero, function(event){
+        element.append(CoC.ui.hero(hero, i, function(event){
           var h = CoC.data.heroes[hero.id];
           
           $("#roster-configure-stars").text("");
@@ -261,7 +268,7 @@ CoC.ui.add=new function(){
     $(CoC.ui.add.selector).text("").append(element);
     for(var i in heroes)
       (function(hero,i){
-        element.append(CoC.ui.hero({ id:hero.id, stars:stars }, function(){
+        element.append(CoC.ui.hero({ id:hero.id, stars:stars }, i, function(){
           CoC.ui.teams.clear();
           CoC.roster.add({ 
             id:hero.id, 
