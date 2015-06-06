@@ -268,6 +268,7 @@ html, body, p, span, div {
 #header .ui-btn-right::before{
   border:none;
   box-shadow:none;
+  background-color:inherit;
   height:32px;
   width:32px;
   background-size:24px;
