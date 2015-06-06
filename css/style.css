@@ -121,10 +121,6 @@ html, body, p, span, div {
   display:none;
 }
 
-.hero .portrait.selected{
-  z-index:1100;
-}
-
 .hero .container{
   position:absolute;
   width:100%;
@@ -139,6 +135,7 @@ html, body, p, span, div {
   background-size:cover;
 }
 
+#roster .container.selected,
 #roster .hero:focus .container,
 #add-heroes .hero:focus .container,
 #roster .hero .container:active,
