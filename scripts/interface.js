@@ -172,13 +172,6 @@ CoC.ui.roster=new function(){
             $("#roster-configure-rank").selectmenu('refresh');
           }).val(hero.rank).selectmenu('refresh');
           
-          //dirty hack for stupid problem
-          $("#roster-configure-rank").on("focus",function(event){
-            if(event.relatedTarget){
-              $(event.target).blur();
-            }
-          })
-           
           setupRankLevel();
           
           $("#roster-configure-awakened").prop("checked",hero.awakened != 0).checkboxradio("refresh").unbind( "change" ).change(function(e){
@@ -527,6 +520,3 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-health","health");
   
 });
-
-CoC.roster.load();
-CoC.ui.teams.clear();

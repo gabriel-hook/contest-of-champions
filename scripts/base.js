@@ -221,20 +221,18 @@ var CoC=new function(){
     }
   }
   
-  this.roster.load=function(){
-    CoC.roster.stars=[]
-    CoC.roster.stars[1]=CoC.settings.loadObjectFromLocalStorage("oneStarHeroes");
-    CoC.roster.stars[2]=CoC.settings.loadObjectFromLocalStorage("twoStarHeroes");
-    CoC.roster.stars[3]=CoC.settings.loadObjectFromLocalStorage("threeStarHeroes");
-    CoC.roster.stars[4]=CoC.settings.loadObjectFromLocalStorage("fourStarHeroes");
-    
-  }
   this.roster.save=function(){
     CoC.settings.saveObjectToLocalStorage("oneStarHeroes", CoC.roster.stars[1]);
     CoC.settings.saveObjectToLocalStorage("twoStarHeroes", CoC.roster.stars[2]);
     CoC.settings.saveObjectToLocalStorage("threeStarHeroes", CoC.roster.stars[3]);
     CoC.settings.saveObjectToLocalStorage("fourStarHeroes", CoC.roster.stars[4]);
   }
+    
+  this.roster.stars=[]
+  this.roster.stars[1]=this.settings.loadObjectFromLocalStorage("oneStarHeroes");
+  this.roster.stars[2]=this.settings.loadObjectFromLocalStorage("twoStarHeroes");
+  this.roster.stars[3]=this.settings.loadObjectFromLocalStorage("threeStarHeroes");
+  this.roster.stars[4]=this.settings.loadObjectFromLocalStorage("fourStarHeroes");
 };
 
 

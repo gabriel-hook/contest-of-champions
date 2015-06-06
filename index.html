@@ -41,37 +41,6 @@
         <div id="roster"></div>
       </div>
       
-      <div id="popup-roster-configure" 
-        data-role="popup" 
-        data-tolerance="32"
-        data-theme="c" 
-        data-overlay-theme="a" 
-        data-arrow="true">
-        <div role="main" class="ui-content">
-          <div id="roster-configure-stars" class="stars"></div>
-          <div class="extras">
-            <img id="roster-configure-image" />
-            <div id="roster-configure-synergies" class="synergies"></div>
-          </div>
-          <h3 id="roster-configure-name">Name</h3>
-          <label id="roster-configure-class">Class</label>
-          <form>
-            <fieldset data-role="controlgroup" data-type="horizontal">
-              <label for="roster-configure-rank">Rank</label>
-              <select name="roster-configure-rank" id="roster-configure-rank"></select>
-              <label for="roster-configure-level">Level</label>
-              <select name="roster-configure-level" id="roster-configure-level"></select>
-            </fieldset>
-            <label for="roster-configure-awakened">Awakened</label>
-            <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
-            <label for="roster-configure-quest">Quest</label>
-            <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">
-            <button name="roster-configure-delete" id="roster-configure-delete"
-              data-icon="delete" data-theme="b">Delete</button>
-          </form>
-        </div>
-      </div>
-      
       <div class="panel" id="panel-roster-options" 
         data-role="panel"
         data-position="left" 
@@ -107,6 +76,40 @@
             <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
             <li><a href="#page-teams" data-icon="search" data-transition="slide">Teams</a></li>
           </ul>
+        </div>
+      </div>
+
+      <div id="popup-roster-configure" 
+        data-role="popup" 
+        data-tolerance="32"
+        data-theme="c" 
+        data-overlay-theme="a" 
+        data-arrow="true">
+        <div role="main" class="ui-content">
+          <!-- this is some stupid shit -->
+          <div tabindex="1"></div>
+          <!-- but focus was being stolen otherwise -->
+          <div id="roster-configure-stars" class="stars"></div>
+          <div class="extras">
+            <img id="roster-configure-image" />
+            <div id="roster-configure-synergies" class="synergies"></div>
+          </div>
+          <h3 id="roster-configure-name">Name</h3>
+          <label id="roster-configure-class">Class</label>
+          <form>
+            <fieldset data-role="controlgroup" data-type="horizontal">
+              <label for="roster-configure-rank">Rank</label>
+              <select name="roster-configure-rank" id="roster-configure-rank"></select>
+              <label for="roster-configure-level">Level</label>
+              <select name="roster-configure-level" id="roster-configure-level"></select>
+            </fieldset>
+            <label for="roster-configure-awakened">Awakened</label>
+            <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
+            <label for="roster-configure-quest">Quest</label>
+            <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">
+            <button name="roster-configure-delete" id="roster-configure-delete"
+              data-icon="delete" data-theme="b">Delete</button>
+          </form>
         </div>
       </div>
       
