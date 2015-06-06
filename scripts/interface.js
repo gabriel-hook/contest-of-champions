@@ -57,6 +57,7 @@ CoC.ui.teams=new function(){
   
   this.clear=function(){
     $(CoC.ui.teams.selector).text("");
+    CoC.ui.teams.empty = true;
   }
  
   this.update=function(teams, size){
@@ -120,8 +121,8 @@ CoC.ui.roster=new function(){
     var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
     for(var i in heroes)
-      (function(hero,i){
-        element.append(CoC.ui.hero(hero, i, function(event){
+      (function(hero,index){
+        element.append(CoC.ui.hero(hero, index, function(event){
           var h = CoC.data.heroes[hero.id];
           
           $("#roster-configure-stars").text("");
@@ -188,7 +189,7 @@ CoC.ui.roster=new function(){
               hero.awakened = 0;
             CoC.roster.save();
             CoC.ui.roster.dirty();
-            var el = $(element.find(".hero")[i])
+            var el = $(element.find(".hero")[index])
             if(hero.awakened){
               el.addClass("awakened");
               $("#roster-configure-stars").addClass("awakened")
@@ -206,7 +207,7 @@ CoC.ui.roster=new function(){
               hero.quest = false;
             CoC.roster.save();
             CoC.ui.roster.dirty();
-            var el = $(element.find(".hero")[i])
+            var el = $(element.find(".hero")[index])
             if(hero.quest)
               el.addClass("quest");
             else
@@ -217,7 +218,7 @@ CoC.ui.roster=new function(){
             CoC.ui.teams.clear();
             CoC.roster.remove(hero.id, hero.stars);
             CoC.ui.roster.dirty();
-            CoC.ui.hero.hide(element, i);
+            CoC.ui.hero.hide(element, index);
             $('#popup-roster-configure').popup("close");
           });
           
@@ -269,7 +270,6 @@ CoC.ui.add=new function(){
     for(var i in heroes)
       (function(hero,i){
         element.append(CoC.ui.hero({ id:hero.id, stars:stars }, i, function(){
-          CoC.ui.teams.clear();
           CoC.roster.add({ 
             id:hero.id, 
             stars:stars,
@@ -357,7 +357,6 @@ $("#page-roster").on("pagebeforeshow",function(){
   });
   
   $('#popup-roster-configure').on("popupafterclose",function(){
-    console.log("hiding all");
     $(CoC.ui.roster.selector).find(".container").removeClass("selected");
   });
   
@@ -376,13 +375,11 @@ $("#page-teams").on( "pagebeforeshow", function() {
   //get settings
   console.log("setting stuff up...")
       
-      
   $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
   
-      
   var teamSettingsSize = $('input:radio[name=team-settings-size]');
   teamSettingsSize.filter('[value='+CoC.settings.getValue("size")+']').prop("checked", true).checkboxradio("refresh");
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
