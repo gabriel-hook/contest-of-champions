@@ -294,10 +294,13 @@ $( document ).on( "pagecreate", "#page-add", function() {
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swipeleft", "#page-roster", function( e ) {
+    if($("#page-roster").find(".ui-popup-active").length)
+      return;
     $("#page-roster").find("#footer a[href=#page-teams]").click()
   });
   $( document ).on( "swiperight", "#page-roster", function( e ) {
-
+    if($("#page-roster").find(".ui-popup-active").length)
+      return;
     if($("#page-roster").find(".panel").hasClass("ui-panel-open"))
       $("#page-roster").find(".panel a[href=#page-add]").click()
     else
