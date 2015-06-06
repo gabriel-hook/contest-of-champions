@@ -1,11 +1,10 @@
 ﻿
 CoC.ui.hero=function(raw, onclick){
   var hero = CoC.data.heroes[raw.id];
-  var element = $('<a>', { 
+  var element = $('<div>', { 
     id:hero.id, 
     stars:raw.stars, 
-    class:"hero",
-    href:"#"
+    class:"hero"
   });
   element.addClass(hero.class.toLowerCase());
   if(raw.awakened)
@@ -118,7 +117,6 @@ CoC.ui.roster=new function(){
         element.append(CoC.ui.hero(hero, function(event){
           var h = CoC.data.heroes[hero.id];
           
-          
           $("#roster-configure-stars").text("");
           $("#roster-configure-stars").append((function(){
             var string = "";
@@ -165,14 +163,11 @@ CoC.ui.roster=new function(){
               $("#roster-configure-level").append($("<option>").val(i).text(i));
             $("#roster-configure-level")
               .val(hero.level).selectmenu('refresh')
-              .change(function(e){
-              
-              hero.level = e.target.value;
-              CoC.roster.save();
-              CoC.ui.roster.dirty();
-              setupRankLevel();
-            });
-            
+              .change(function(e){              
+                hero.level = e.target.value;
+                CoC.roster.save();
+                CoC.ui.roster.dirty();
+              });
           }
           setupRankLevel();
           
@@ -287,20 +282,33 @@ CoC.ui.add=new function(){
 }
 
 //Make swipes move to the next screen
+$( document ).on( "pagecreate", "#page-add", function() {
+  $( document ).on( "swipeleft", "#page-add", function( e ) {
+    $("#page-add").find("#header a[href=#page-roster]").click()
+  });
+});
+
+//Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swipeleft", "#page-roster", function( e ) {
     $("#page-roster").find("#footer a[href=#page-teams]").click()
+  });
+  $( document ).on( "swiperight", "#page-roster", function( e ) {
+
+    if($("#page-roster").find(".panel").hasClass("ui-panel-open"))
+      $("#page-roster").find(".panel a[href=#page-add]").click()
+    else
+      $("#page-roster").find("#header a[href=#panel-roster-options]").click()
   });
 });
 
 //Make swipes move to the last screen or open the panel
 $( document ).on( "pagecreate", "#page-teams", function() {
   $( document ).on( "swipeleft", "#page-teams", function( e ) {
-  
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
-      $("#page-teams").find("a[href=#page-settings-advanced]").click()
+      $("#page-teams").find(".panel a[href=#page-settings-advanced]").click()
     else
-      $("#page-teams").find("a[href=#panel-team-settings]").click()
+      $("#page-teams").find("#header a[href=#panel-team-settings]").click()
   });
   $( document ).on( "swiperight", "#page-teams", function( e ) {
     $("#page-teams").find("#footer a[href=#page-roster]").click()
