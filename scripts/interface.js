@@ -145,36 +145,43 @@ CoC.ui.roster=new function(){
           $("#roster-configure-class").prop("class", h.class.toLowerCase()).text(h.class);
         
           function setupRankLevel(){
-            $("#roster-configure-rank").unbind( "change" ).empty();
-            for(var i = 1; i<=CoC.data.levels[hero.stars].length; i++)
-              $("#roster-configure-rank").append($("<option>").val(i).text(i));
-            $("#roster-configure-rank")
-              .val(hero.rank).selectmenu('refresh')
-              .change(function(e){
-              
-              hero.rank = e.target.value;
+            if(hero.level > CoC.data.levels[hero.stars][hero.rank-1]){
+              hero.level = CoC.data.levels[hero.stars][hero.rank-1];
               CoC.roster.save();
-              CoC.ui.roster.dirty();
-              setupRankLevel();
-            });
-           
-            $("#roster-configure-level").unbind( "change" ).empty();
+            }
+          
+            $("#roster-configure-level").empty();
             for(var i = 1; i<=CoC.data.levels[hero.stars][hero.rank-1]; i++)
               $("#roster-configure-level").append($("<option>").val(i).text(i));
-            $("#roster-configure-level")
-              .val(hero.level).selectmenu('refresh')
-              .change(function(e){              
+            $("#roster-configure-level").unbind( "change" ).change(function(e){              
                 hero.level = e.target.value;
                 CoC.roster.save();
                 CoC.ui.roster.dirty();
-              });
+                $("#roster-configure-level").selectmenu('refresh');
+              }).val(hero.level).selectmenu('refresh');
           }
+          
+          $("#roster-configure-rank").text("");
+          for(var i = 1; i<=CoC.data.levels[hero.stars].length; i++)
+            $("#roster-configure-rank").append($("<option>").val(i).text(i));
+          $("#roster-configure-rank").unbind( "change" ).change(function(e){
+            hero.rank = e.target.value;
+            CoC.roster.save();
+            CoC.ui.roster.dirty();
+            setupRankLevel();
+            $("#roster-configure-rank").selectmenu('refresh');
+          }).val(hero.rank).selectmenu('refresh');
+          
+          //dirty hack for stupid problem
+          $("#roster-configure-rank").on("focus",function(event){
+            if(event.relatedTarget){
+              $(event.target).blur();
+            }
+          })
+           
           setupRankLevel();
           
-          $("#roster-configure-awakened").unbind( "change" )
-            .prop("checked",hero.awakened != 0).checkboxradio("refresh")
-            .change(function(e){
-            
+          $("#roster-configure-awakened").prop("checked",hero.awakened != 0).checkboxradio("refresh").unbind( "change" ).change(function(e){
             if(e.target.checked)
               hero.awakened = 1;
             else
@@ -192,10 +199,7 @@ CoC.ui.roster=new function(){
             }
           });
           
-          $("#roster-configure-quest").unbind( "change" )
-            .prop("checked",hero.quest === true).checkboxradio("refresh")
-            .change(function(e){
-            
+          $("#roster-configure-quest").prop("checked",hero.quest === true).checkboxradio("refresh").unbind( "change" ).change(function(e){
             if(e.target.checked)
               hero.quest = true;
             else
@@ -209,22 +213,21 @@ CoC.ui.roster=new function(){
               el.removeClass("quest");
           });
           
-          $("#roster-configure-delete").unbind( "click" )
-            .click(function(){
-              CoC.ui.teams.clear();
-              CoC.roster.remove(hero.id, hero.stars);
-              CoC.ui.roster.dirty();
-              CoC.ui.hero.hide(element, i);
-              $('#popup-roster-configure').popup("close");
-            });
+          $("#roster-configure-delete").unbind( "click" ).click(function(){
+            CoC.ui.teams.clear();
+            CoC.roster.remove(hero.id, hero.stars);
+            CoC.ui.roster.dirty();
+            CoC.ui.hero.hide(element, i);
+            $('#popup-roster-configure').popup("close");
+          });
           
-          element.find(".portrait").removeClass("selected");
-          $(event.target).addClass("selected");
+          element.find(".container").removeClass("selected");
+          $(event.target).parent().addClass("selected");
           
           $('#popup-roster-configure').popup("open",{
             positionTo:$(this),
             transition:"pop"
-          });
+          })
         }));
       })(heroes[i],i);
     element.append($('<div>').css({ 'clear':'both'}));
@@ -350,10 +353,9 @@ $("#page-roster").on("pagebeforeshow",function(){
     $('#panel-roster-options').panel("close");
   });
   
-  
   $('#popup-roster-configure').on("popupafterclose",function(){
     console.log("hiding all");
-    $(CoC.ui.roster.selector).find(".portrait").removeClass("selected");
+    $(CoC.ui.roster.selector).find(".container").removeClass("selected");
   });
   
   CoC.ui.roster.update();
