@@ -464,7 +464,7 @@ position:absolute;
   padding-top:16px;
   text-align:center;
 }
-@media (min-width:500px) {
+@media (min-width:500px) and (min-height:400px) {
   
   #popup-roster-configure .extras{
     display:block;
