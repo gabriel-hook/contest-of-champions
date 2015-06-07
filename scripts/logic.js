@@ -22,31 +22,6 @@ CoC.logic.synergy=new function(){
 
   var characterSynergies = {1:{},2:{},3:{},4:{}};
   
-  function getSynergy(a,b){
-    var map = characterSynergies[a.stars][a.id], s;
-    if(map === undefined){
-      map = {};
-      var synergies = CoC.data.heroes[a.id].synergies[a.stars];
-      for(s=0;s<synergies.length;s++){
-        map[synergies[s].id]=synergies[s];
-      }
-      characterSynergies[a.stars][a.id]=map;
-    }
-    return map[b.id];
-  }
-
-  function iterateSynergies(list,callback){
-    var i,j;
-    for(i=0;i<list.length;i++)
-      for(j=0;j<list.length;j++)
-        if(j != i){
-          var s = getSynergy(list[i],list[j]);
-          if(s)
-            if(callback(s) === true)
-              return;
-        }
-  }
-  
   this.get=function(list){
     var map = {}, i, j, synergies, s;
     for(i=0;i<list.length;i++)
@@ -61,6 +36,19 @@ CoC.logic.synergy=new function(){
             }
         }
     return map;
+  }
+  
+  this.count=function(list){
+    var count = 0, i, j, synergies, s;
+    for(i=0;i<list.length;i++)
+      for(j=0;j<list.length;j++)
+        if(j != i){
+          synergies = CoC.data.heroes[list[i].id].synergies[list[i].stars];
+          for(s=0; s<synergies.length; s++)
+            if(synergies[s].id === list[j].id)
+              count++;
+        }
+    return count;
   }
 }
 
@@ -228,17 +216,20 @@ CoC.logic.team=new function(){
   }
   
   function postProcess(teams, extras){
-    var result = {};
+    var result = {
+      teams:[],
+      extras:[]
+    };
     for(var i in teams){
-      result[i] = [];      
+      var team = [];    
       for(var o in teams[i].heroes)
-        result[i].push(teams[i].heroes[o].data);
+        team.push(teams[i].heroes[o].data);
+      result.teams.push(team);
     }
     if(extras !== undefined){
       result["extras"]=[];
       for(var o in extras)
-        result["extras"].push(extras[o].data);
-      
+        result.extras.push(extras[o].data);
     }
     return result;
   }

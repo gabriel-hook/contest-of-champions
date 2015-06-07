@@ -35,7 +35,7 @@ onmessage = function (event) {
   }
   
   var lastTime = (new Date()).getTime();
-  var teams = CoC.logic.team.build({ 
+  var result = CoC.logic.team.build({ 
     heroes:roster, 
     size:size, 
     extras:extras, 
@@ -48,5 +48,5 @@ onmessage = function (event) {
       postMessage({ type:"progress", current:current, max:max });
     }  
   });
-  postMessage({ type:"complete", teams:teams });
+  postMessage({ type:"complete", result:result });
 };
