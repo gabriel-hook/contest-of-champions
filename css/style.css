@@ -23,7 +23,7 @@ html, body, p, span, div {
   max-width:400px;
   text-align:center;
   box-sizing:border-box;
-  padding:32px;
+  padding:16px;
   border-radius:10px;
 }
 #teams .team{
