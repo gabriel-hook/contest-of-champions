@@ -32,36 +32,36 @@ CoC.settings.preset.add(null, "Defaults",{
   "include-extras":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{
-  "attack":5,
-  "stun":4,
-  "critrate":3,
-  "critdmg":2,
-  "powergain":1,
+  "attack":7,
+  "stun":5,
+  "critrate":4,
+  "critdmg":4,
+  "powergain":2,
   "perfectblock":1,
   "block":1,
   "armor":1,
   "health":1
 })
 CoC.settings.preset.add("Synergies", "Balanced",{
-  "attack":2,
-  "stun":2,
-  "critrate":2,
-  "critdmg":2,
-  "powergain":2,
-  "perfectblock":2,
-  "block":2,
-  "armor":2,
-  "health":2
+  "attack":1,
+  "stun":1,
+  "critrate":1,
+  "critdmg":1,
+  "powergain":1,
+  "perfectblock":1,
+  "block":1,
+  "armor":1,
+  "health":1
 })
 CoC.settings.preset.add("Synergies", "Defensive",{
   "attack":1,
-  "stun":2,
+  "stun":3,
   "critrate":1,
   "critdmg":1,
   "powergain":2,
   "perfectblock":5,
-  "block":4,
-  "armor":3,
+  "block":5,
+  "armor":4,
   "health":3
 })
 CoC.settings.preset.add("Duplicates", "All",{
