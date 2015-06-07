@@ -399,20 +399,25 @@ html, body, p, span, div {
   vertical-align:text-bottom;
   pointer-events:none;
 }
+#roster-delete-confirm-stars .star,
 #roster-configure-stars .star{
   display:inline-block;
   position:relative;
-  top:93%;
   height:24px;
   width:24px;
   margin-right:2px;
   background:center url(../images/star.png) no-repeat;
   background-size:contain;
 }
+#roster-delete-confirm-stars .star{
+  height:18px;
+  width:18px;
+  margin-right:1px;
+}
+#roster-delete-confirm-stars.awakened .star,
 #roster-configure-stars.awakened .star{
   background-image:url(../images/star-awakened.png);
 }
-
 #popup-roster-configure .extras{
   display:none;
   position:absolute;
@@ -467,6 +472,9 @@ html, body, p, span, div {
 }
 #roster-configure-class{
   font-weight:bold;
+}
+#roster-delete-confirm-stars{
+
 }
 
 /******************

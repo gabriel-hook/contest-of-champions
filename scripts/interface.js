@@ -192,11 +192,13 @@ CoC.ui.roster=new function(){
             var el = $(element.find(".hero")[index])
             if(hero.awakened){
               el.addClass("awakened");
-              $("#roster-configure-stars").addClass("awakened")
+              $("#roster-configure-stars").addClass("awakened");
+              $("#roster-delete-confirm-stars").addClass("awakened");
             }
             else{
               el.removeClass("awakened");
               $("#roster-configure-stars").removeClass("awakened")
+              $("#roster-delete-confirm-stars").removeClass("awakened");
             }
           });
           
@@ -215,19 +217,31 @@ CoC.ui.roster=new function(){
           });
           
           $("#roster-configure-delete").unbind( "click" ).click(function(){
+            $('#popup-roster-configure').popup("option","transition","none").popup("close");
+            setTimeout(function(){
+              $("#popup-roster-delete-confirm").popup("open",{
+                positionTo:"window"
+              })
+            },50);
+          });
+          
+          $("#roster-delete-confirm-name").attr("class", h.class.toLowerCase()).text(h.name);
+          $("#roster-delete-confirm-stars").text("").attr("class", (hero.awakened)? "awakened": "");
+          for(var i=0; i<hero.stars;i++)
+            $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
+          $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
+            $("#popup-roster-delete-confirm").popup("close");
             CoC.ui.teams.clear();
             CoC.roster.remove(hero.id, hero.stars);
             CoC.ui.roster.dirty();
             CoC.ui.hero.hide(element, index);
-            $('#popup-roster-configure').popup("close");
-          });
+          })
           
           element.find(".container").removeClass("selected");
           $(event.target).parent().addClass("selected");
           
           $('#popup-roster-configure').popup("open",{
-            positionTo:$(this),
-            transition:"pop"
+            positionTo:$(this)
           })
         }));
       })(heroes[i],i);
@@ -329,8 +343,6 @@ $( document ).on( "pagecreate", "#page-settings-advanced", function() {
 });
 
 $("#page-roster").on("pagebeforeshow",function(){
-  console.log("refreshing roster...")
-
   $('#roster-import a').click(function(){
     console.log("importing csv...");
     
@@ -350,31 +362,41 @@ $("#page-roster").on("pagebeforeshow",function(){
   });
   
   $('#roster-clear-all').click(function(){
-    CoC.roster.clear();
-    CoC.ui.roster.update();
-    CoC.ui.roster.dirty();
-    $('#panel-roster-options').panel("close");
+    $("#popup-roster-clear-confirm").popup("open",{
+      positionTo:"window"
+    });
   });
   
   $('#popup-roster-configure').on("popupafterclose",function(){
     $(CoC.ui.roster.selector).find(".container").removeClass("selected");
   });
   
+  $("#roster-delete-confirm-no").click(function(){
+    $("#popup-roster-delete-confirm").popup("close");
+  });
+  
+  $("#roster-clear-confirm-no").click(function(){
+    $("#popup-roster-clear-confirm").popup("close");
+  });
+  
+  $("#roster-clear-confirm-yes").click(function(){
+    CoC.roster.clear();
+    CoC.ui.roster.update();
+    CoC.ui.roster.dirty();
+    $("#popup-roster-clear-confirm").popup("close");
+  });
+  
   CoC.ui.roster.update();
   CoC.ui.roster.dirty();
 });
 
-
 $("#page-add").on("pagebeforeshow",function(){
-  console.log("refreshing add...")
+  $("#page-add #add-stars a").removeClass("ui-btn-active");
+  $("#page-add a#add-stars-"+CoC.ui.add.stars).addClass("ui-btn-active");
   CoC.ui.add.update();
 });
 
 $("#page-teams").on( "pagebeforeshow", function() {
-
-  //get settings
-  console.log("setting stuff up...")
-      
   $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
@@ -412,6 +434,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     });
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
+    $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
     
     CoC.ui.teams.empty = false;
@@ -427,7 +450,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
           if(event.data.type === "progress"){
             var current = event.data.current;
             var max = event.data.max;
-        
             $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
           }
           if(event.data.type === "complete"){
@@ -440,22 +462,14 @@ $("#page-teams").on( "pagebeforeshow", function() {
         };
         CoC.ui.teams.worker.postMessage({ roster:roster, size:size, single:single, extras:extras, weights:CoC.settings.weights, update:100 });
         workerWorking = true;
-        console.log("building team with worker");
       }
       catch(e){}
     }
 
     if(!workerWorking){
-      console.log("building team inline");
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var teams = CoC.logic.team.build({ heroes:roster, size:size, single:single, extras:extras, progress:function(current, max){
-          var time = (new Date()).getTime();
-          if(time-lastTime < 100)
-            return;
-          lastTime = time;
-          $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
-        } });
+        var teams = CoC.logic.team.build({ heroes:roster, size:size, single:single, extras:extras });
         $("#team-build-progress input").val(100).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(teams, size);

@@ -107,11 +107,46 @@
             <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
             <label for="roster-configure-quest">Quest</label>
             <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">
-            <button name="roster-configure-delete" id="roster-configure-delete"
-              data-icon="delete" data-theme="b">Delete</button>
+            <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>
           </form>
         </div>
       </div>
+      
+      <div id="popup-roster-delete-confirm" 
+        data-role="popup" 
+        data-tolerance="32"
+        data-position-to="window"
+        data-overlay-theme="a" 
+        data-theme="a">
+        <div role="main" class="ui-content">
+          <h3>
+            Are you sure you want to delete
+            <div style="display:inline-block">
+              <span id="roster-delete-confirm-stars"></span>
+              <span id="roster-delete-confirm-name"></span>
+            </div>?
+          </h3>
+          <p>This action cannot be undone.</p>
+          <a href="#" id="roster-delete-confirm-yes" data-role="button" data-theme="b">Delete</a>
+          <a href="#" id="roster-delete-confirm-no" data-role="button">Cancel</a>
+        </div>
+      </div>
+      
+      <div id="popup-roster-clear-confirm" 
+        data-role="popup" 
+        data-tolerance="32"
+        data-overlay-theme="a" 
+        data-theme="a">
+        <div role="main" class="ui-content">
+          <h3>
+            Are you sure you want to delete all of your champions?
+          </h3>
+          <p>This action cannot be undone.</p>
+          <a href="#" id="roster-clear-confirm-yes" data-role="button" data-theme="b">Delete</a>
+          <a href="#" id="roster-clear-confirm-no" data-role="button">Cancel</a>
+        </div>
+      </div>
+      
       
     </div> 
     
@@ -128,7 +163,7 @@
           data-role="button" 
           data-iconpos="notext"
           data-icon="back">Back</a>
-        <div data-role="navbar">
+        <div id="add-stars" data-role="navbar">
           <ul>
             <li><a id="add-stars-1" href="#" onclick="CoC.ui.add.setStars(1)" data-theme="c">★</a></li>
             <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" data-theme="c" class="ui-btn-active">★★</a></li>
