@@ -443,11 +443,10 @@ $("#page-teams").on( "pagebeforeshow", function() {
     
     CoC.ui.teams.empty = false;
     
-    var workerWorking = false;
+    var startTime = new Date(), workerWorking = false;
     if (window.Worker){
   
       try{
-        var startTime = new Date();
         if(CoC.ui.teams.worker !== null)
           CoC.ui.teams.worker.terminate();
         CoC.ui.teams.worker = new Worker('scripts/worker-team.js');
@@ -463,7 +462,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
             CoC.ui.teams.update(event.data.result, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
-            console.log("Search completed in "+((new Date() - startTime) / 1000)+"ms");
+            console.log("Search completed in "+((new Date() - startTime) / 1000)+" seconds");
           }
         };
         CoC.ui.teams.worker.postMessage({ roster:roster, size:size, single:single, extras:extras, weights:CoC.settings.weights, update:100 });
@@ -480,6 +479,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
         setTimeout(function(){
           CoC.ui.teams.update(result, size);
           $("#team-build-progress").attr("class","hidden");
+          console.log("Search completed in "+((new Date() - startTime) / 1000)+" seconds");
         },0);
       },0);
     }
