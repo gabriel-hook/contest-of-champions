@@ -63,9 +63,6 @@ CoC.ui.teams=new function(){
   this.update=function(result, size){
     var element = $(CoC.ui.teams.selector);
     element.text("");
-    
-    console.log(result)
-    
     if(result.teams.length){
     
       var synergyCount = 0;
@@ -450,6 +447,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if (window.Worker){
   
       try{
+        var startTime = new Date();
         if(CoC.ui.teams.worker !== null)
           CoC.ui.teams.worker.terminate();
         CoC.ui.teams.worker = new Worker('scripts/worker-team.js');
@@ -465,6 +463,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
             CoC.ui.teams.update(event.data.result, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
+            console.log("Search completed in "+((new Date() - startTime) / 1000)+"ms");
           }
         };
         CoC.ui.teams.worker.postMessage({ roster:roster, size:size, single:single, extras:extras, weights:CoC.settings.weights, update:100 });
