@@ -17,7 +17,7 @@ html, body, p, span, div {
 #teams .message{
   color:#eee;
   text-shadow: 1px 1px 1px #000;
-  margin:32px auto;
+  margin:0 auto 24px auto;
   background:rgba(0,0,0,0.5);
   width:100%;
   max-width:400px;
@@ -332,9 +332,9 @@ html, body, p, span, div {
 ******************/
 
 #team-build-progress{
+  overflow:hidden;
   height:46px;
   transition:height .5s;
-  overflow:hidden;
 }
 
 #team-build-progress.hidden{
