@@ -77,7 +77,7 @@ CoC.logic.team=new function(){
     if(options.progress)
       progress={
         current:0,
-        max:function(r){
+        max:(function(r){
           var value = 0;
           for(var n = list.length; n > r; n-=r){
             value += factorial(n) / (factorial(r) * factorial(n - r));
@@ -85,7 +85,7 @@ CoC.logic.team=new function(){
               break;
           }
           return value;
-        }(preselect.length? options.size - preselect.length: options.size),
+        })(preselect.length? options.size - preselect.length: options.size),
         callback:options.progress
       }
 
@@ -227,7 +227,6 @@ CoC.logic.team=new function(){
       result.teams.push(team);
     }
     if(extras !== undefined){
-      result["extras"]=[];
       for(var o in extras)
         result.extras.push(extras[o].data);
     }
