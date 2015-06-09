@@ -225,12 +225,6 @@
   }
 }
 
-//test build
-setTimeout(function(){
-  $("#button-team-settings-apply").click();
-},500);
-
-
 CoC.algorithm["greedy"]=new function(){
   
   this.name = "Greedy";
