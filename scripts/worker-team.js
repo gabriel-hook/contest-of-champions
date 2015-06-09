@@ -8,15 +8,14 @@ importScripts('logic.js');
 importScripts('algorithm.js');
 importScripts('data.js');
 
-onmessage = function (event) {
+onmessage = function (event){
+  var algorithm = event.data.algorithm;
   var roster = event.data.roster;
   var size = event.data.size;
-  var settings = event.data.settings;
   var weights = event.data.weights;
   var single = event.data.single;
   var extras = event.data.extras;
   var update = event.data.update;
-  var algorithm = event.data.algorithm;
   
   CoC.settings.getWeight=function(key){
     return weights[key];
@@ -55,6 +54,6 @@ onmessage = function (event) {
       lastTime = time;
       postMessage({ type:"progress", current:current, max:max });
     }  
-  });
+  });  
   postMessage({ type:"complete", result:result });
 };

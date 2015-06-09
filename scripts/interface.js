@@ -475,12 +475,12 @@ $("#page-teams").on( "pagebeforeshow", function() {
           }
         };
         CoC.ui.teams.worker.postMessage({ 
+          algorithm:algorithm,
           roster:roster, 
           size:size, 
           single:single, 
           extras:extras,
           weights:CoC.settings.weights, 
-          algorithm:algorithm,
           update:10
         });
         workerWorking = true;

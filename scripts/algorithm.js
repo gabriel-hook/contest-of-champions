@@ -282,7 +282,6 @@ CoC.algorithm["greedy"]=new function(){
       var team_index = 0;
       do {
         team = getTopPartner(list,0,options.size, classWeights, progress);
-        
         if(team){          
           if (team.value){
             if(!options.single)

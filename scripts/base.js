@@ -1,6 +1,8 @@
 
 var CoC=new function(){
 
+  this.version = "0.01a"
+
   this.data = new function() {};
   this.logic = new function() {};
   this.ui = new function() {};

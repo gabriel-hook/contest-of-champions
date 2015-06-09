@@ -487,9 +487,10 @@
     <script src="scripts/onboarding.js"></script>
     <script>
       //Set defaults
-      if(CoC.settings.getValue("hasDefaults") !== true){
+      if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
         CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
         CoC.settings.setValue("hasDefaults", true);
+        CoC.settings.setValue("version", CoC.version);
       }
       
       //preload images
