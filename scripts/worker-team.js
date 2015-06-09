@@ -18,7 +18,10 @@ onmessage = function (event){
   var update = event.data.update;
   
   CoC.settings.getWeight=function(key){
-    return weights[key];
+    var value = weights[key];
+    if(value === undefined || value === null)
+      return 1;
+    return value;
   }
   CoC.settings.getStarWeight=function(stars){
     return CoC.settings.getWeight({

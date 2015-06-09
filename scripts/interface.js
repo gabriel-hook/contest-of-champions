@@ -553,7 +553,7 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-attack","attack");
   enableSlider("#settings-advanced-stun","stun");
   enableSlider("#settings-advanced-critrate","critrate");
-  enableSlider("#settings-advanced-critdmg","critdamage");
+  enableSlider("#settings-advanced-critdamage","critdamage");
   enableSlider("#settings-advanced-perfectblock","perfectblock");
   enableSlider("#settings-advanced-block","block");
   enableSlider("#settings-advanced-powergain","powergain");

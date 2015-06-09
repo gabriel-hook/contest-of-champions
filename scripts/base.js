@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "0.01a"
+  this.version = "1.000 alpha"
 
   this.data = new function() {};
   this.logic = new function() {};
