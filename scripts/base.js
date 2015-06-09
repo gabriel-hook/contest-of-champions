@@ -4,6 +4,7 @@ var CoC=new function(){
   this.data = new function() {};
   this.logic = new function() {};
   this.ui = new function() {};
+  this.algorithm = new function() {};
   
   this.reset=function(){
     localStorage.clear();

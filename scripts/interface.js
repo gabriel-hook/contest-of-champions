@@ -436,6 +436,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
       3:CoC.settings.getValue("include-3")===true,
       4:CoC.settings.getValue("include-4")===true
     });
+    var algorithm = CoC.settings.getValue("algorithm") || "greedy";
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
     $("#team-build-progress input").val(0).slider("refresh");
@@ -456,6 +457,14 @@ $("#page-teams").on( "pagebeforeshow", function() {
             var max = event.data.max;
             $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
           }
+          if(event.data.type === "failed"){
+            $("#team-build-progress input").val(100).slider("refresh");
+            $("#team-build-progress").attr("class","hidden");
+            CoC.ui.teams.update(event.data.result, size);
+            CoC.ui.teams.worker.terminate();
+            CoC.ui.teams.worker = null;
+            console.log(event.data.message);
+          }
           if(event.data.type === "complete"){
             $("#team-build-progress input").val(100).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
@@ -465,7 +474,15 @@ $("#page-teams").on( "pagebeforeshow", function() {
             console.log("Search completed in "+((new Date() - startTime) / 1000)+" seconds");
           }
         };
-        CoC.ui.teams.worker.postMessage({ roster:roster, size:size, single:single, extras:extras, weights:CoC.settings.weights, update:100 });
+        CoC.ui.teams.worker.postMessage({ 
+          roster:roster, 
+          size:size, 
+          single:single, 
+          extras:extras,
+          weights:CoC.settings.weights, 
+          algorithm:algorithm,
+          update:10
+        });
         workerWorking = true;
       }
       catch(e){}
@@ -474,7 +491,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = CoC.logic.team.build({ heroes:roster, size:size, single:single, extras:extras });
+        var result = CoC.algorithm[algorithm].build({ heroes:roster, size:size, single:single, extras:extras });
         $("#team-build-progress input").val(100).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(result, size);
@@ -536,7 +553,7 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-attack","attack");
   enableSlider("#settings-advanced-stun","stun");
   enableSlider("#settings-advanced-critrate","critrate");
-  enableSlider("#settings-advanced-critdmg","critdmg");
+  enableSlider("#settings-advanced-critdmg","critdamage");
   enableSlider("#settings-advanced-perfectblock","perfectblock");
   enableSlider("#settings-advanced-block","block");
   enableSlider("#settings-advanced-powergain","powergain");

@@ -14,7 +14,7 @@ CoC.data.synergies={
     image:"armor_up",
     base:4
   },
-  "critdmg":{
+  "critdamage":{
     name:"Crit Damage",
     image:"crit",
     base:15
@@ -85,7 +85,7 @@ CoC.data.heroes = {
         { id:"spiderman", type:"armor", amount:5 },
         { id:"ronan", type:"attack", amount:4 },
         { id:"cyclops", type:"block", amount:15 },
-        { id:"hulk", type:"critdmg", amount:20 }
+        { id:"hulk", type:"critdamage", amount:20 }
       ],
     }
   },
@@ -114,15 +114,15 @@ CoC.data.heroes = {
     synergies:{
       2:[
         { id:"starlord", type:"perfectblock", amount:3 },
-        { id:"gamora", type:"critdmg", amount:15 }
+        { id:"gamora", type:"critdamage", amount:15 }
       ],
       3:[
         { id:"starlord", type:"perfectblock", amount:4 },
-        { id:"gamora", type:"critdmg", amount:20 }
+        { id:"gamora", type:"critdamage", amount:20 }
       ],
       4:[
         { id:"starlord", type:"perfectblock", amount:5 },
-        { id:"gamora", type:"critdmg", amount:25 }
+        { id:"gamora", type:"critdamage", amount:25 }
       ]
     }
   },
@@ -137,11 +137,11 @@ CoC.data.heroes = {
       ],
       3:[
         { id:"starlord", type:"armor", amount:5 },
-        { id:"drax", type:"critdmg", amount:20 }
+        { id:"drax", type:"critdamage", amount:20 }
       ],
       4:[
         { id:"starlord", type:"armor", amount:6 },
-        { id:"drax", type:"critdmg", amount:25 }
+        { id:"drax", type:"critdamage", amount:25 }
       ]
     }
   },
@@ -170,17 +170,17 @@ CoC.data.heroes = {
     class:"Cosmic",
     synergies:{
       2:[
-        { id:"blackbolt", type:"critdmg", amount:15 }
+        { id:"blackbolt", type:"critdamage", amount:15 }
       ],
       3:[
-        { id:"blackbolt", type:"critdmg", amount:20 },
+        { id:"blackbolt", type:"critdamage", amount:20 },
         { id:"ironman", type:"critrate", amount:6 },
-        { id:"gamora", type:"critdmg", amount:20 }
+        { id:"gamora", type:"critdamage", amount:20 }
       ],
       4:[
-        { id:"blackbolt", type:"critdmg", amount:25 },
+        { id:"blackbolt", type:"critdamage", amount:25 },
         { id:"ironman", type:"critrate", amount:7 },
-        { id:"gamora", type:"critdmg", amount:25 }
+        { id:"gamora", type:"critdamage", amount:25 }
       ]
     }
   },
@@ -191,17 +191,17 @@ CoC.data.heroes = {
     synergies:{
       2:[
         { id:"captainamerica", type:"critrate", amount:5 },
-        { id:"daredevil", type:"critdmg", amount:15 },
+        { id:"daredevil", type:"critdamage", amount:15 },
         { id:"thor", type:"perfectblock", amount:3 }
       ],
       3:[
         { id:"captainamerica", type:"critrate", amount:6 },
-        { id:"daredevil", type:"critdmg", amount:20 },
+        { id:"daredevil", type:"critdamage", amount:20 },
         { id:"thor", type:"perfectblock", amount:4 }
       ],
       4:[
         { id:"captainamerica", type:"critrate", amount:7 },
-        { id:"daredevil", type:"critdmg", amount:25 },
+        { id:"daredevil", type:"critdamage", amount:25 },
         { id:"thor", type:"perfectblock", amount:4 }
       ]
     }
@@ -253,15 +253,15 @@ CoC.data.heroes = {
     class:"Tech",
     synergies:{
       2:[
-        { id:"hulk", type:"critdmg", amount:15 }
+        { id:"hulk", type:"critdamage", amount:15 }
       ],
       3:[
-        { id:"hulk", type:"critdmg", amount:20 },
+        { id:"hulk", type:"critdamage", amount:20 },
         { id:"ironman", type:"perfectblock", amount:5 },
         { id:"superiorironman", type:"perfectblock", amount:5 }
       ],
       4:[
-        { id:"hulk", type:"critdmg", amount:25 },
+        { id:"hulk", type:"critdamage", amount:25 },
         { id:"ironman", type:"perfectblock", amount:6 },
         { id:"superiorironman", type:"perfectblock", amount:6 }
       ]
@@ -390,13 +390,13 @@ CoC.data.heroes = {
     class:"Mutant",
     synergies:{
       2:[
-        { id:"wolverine", type:"critdmg", amount:15 },
+        { id:"wolverine", type:"critdamage", amount:15 },
       ],
       3:[
-        { id:"wolverine", type:"critdmg", amount:20 },
+        { id:"wolverine", type:"critdamage", amount:20 },
       ],
       4:[
-        { id:"wolverine", type:"critdmg", amount:25 },
+        { id:"wolverine", type:"critdamage", amount:25 },
       ]
     }
   },
@@ -449,14 +449,14 @@ CoC.data.heroes = {
     synergies:{
       1:[],
       2:[
-        { id:"cyclops", type:"critdmg", amount:15 }
+        { id:"cyclops", type:"critdamage", amount:15 }
       ],
       3:[
-        { id:"cyclops", type:"critdmg", amount:20 },
+        { id:"cyclops", type:"critdamage", amount:20 },
         { id:"captainamerica", type:"armor", amount:5 }
       ],
       4:[
-        { id:"cyclops", type:"critdmg", amount:25 },
+        { id:"cyclops", type:"critdamage", amount:25 },
         { id:"captainamerica", type:"armor", amount:6 }
       ]
     }
@@ -468,15 +468,15 @@ CoC.data.heroes = {
     synergies:{
       1:[],
       2:[
-        { id:"ironfist", type:"critdmg", amount:15 }
+        { id:"ironfist", type:"critdamage", amount:15 }
       ],
       3:[
-        { id:"ironfist", type:"critdmg", amount:20 },
+        { id:"ironfist", type:"critdamage", amount:20 },
         { id:"storm", type:"powergain", amount:4 },
         { id:"deadpool", type:"critrate", amount:6 },
       ],
       4:[
-        { id:"ironfist", type:"critdmg", amount:25 },
+        { id:"ironfist", type:"critdamage", amount:25 },
         { id:"storm", type:"powergain", amount:5 },
         { id:"deadpool", type:"critrate", amount:7 },
       ]
@@ -523,14 +523,14 @@ CoC.data.heroes = {
     class:"Skill",
     synergies:{
       2:[
-        { id:"spiderman", type:"critdmg", amount:15 },
+        { id:"spiderman", type:"critdamage", amount:15 },
       ],
       3:[
-        { id:"spiderman", type:"critdmg", amount:20 },
+        { id:"spiderman", type:"critdamage", amount:20 },
         { id:"rhino", type:"perfectblock", amount:4 }
       ],
       4:[
-        { id:"spiderman", type:"critdmg", amount:25 },
+        { id:"spiderman", type:"critdamage", amount:25 },
         { id:"rhino", type:"perfectblock", amount:5 }
       ]
     }
@@ -637,17 +637,17 @@ CoC.data.heroes = {
     synergies:{
       1:[],
       2:[
-        { id:"thor", type:"critdmg", amount:15 },
+        { id:"thor", type:"critdamage", amount:15 },
       ],
       3:[
         { id:"thor", type:"armor", amount:5 },
         { id:"abomination", type:"critrate", amount:6 },
-        { id:"hawkeye", type:"critdmg", amount:20 },
+        { id:"hawkeye", type:"critdamage", amount:20 },
       ],
       4:[
         { id:"thor", type:"armor", amount:6 },
         { id:"abomination", type:"critrate", amount:7 },
-        { id:"hawkeye", type:"critdmg", amount:25 },
+        { id:"hawkeye", type:"critdamage", amount:25 },
       ]
     }
   },
@@ -796,19 +796,19 @@ CoC.data.heroes = {
     synergies:{
       2:[
         { id:"magik", type:"health", amount:4 },
-        { id:"juggernaut", type:"critdmg", amount:15 },
+        { id:"juggernaut", type:"critdamage", amount:15 },
       ],
       3:[
         { id:"wolverine", type:"armor", amount:5 },
         { id:"magik", type:"health", amount:5 },
         { id:"cyclops", type:"perfectblock", amount:4 },
-        { id:"juggernaut", type:"critdmg", amount:20 },
+        { id:"juggernaut", type:"critdamage", amount:20 },
       ],
       4:[
         { id:"wolverine", type:"armor", amount:6 },
         { id:"magik", type:"health", amount:6 },
         { id:"cyclops", type:"perfectblock", amount:5 },
-        { id:"juggernaut", type:"critdmg", amount:25 },
+        { id:"juggernaut", type:"critdamage", amount:25 },
       ]
     }
   }

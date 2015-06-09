@@ -2,8 +2,10 @@
   this.logic={}
   this.data={}
   this.settings={}
+  this.algorithm={}
 };
 importScripts('logic.js');
+importScripts('algorithm.js');
 importScripts('data.js');
 
 onmessage = function (event) {
@@ -14,6 +16,7 @@ onmessage = function (event) {
   var single = event.data.single;
   var extras = event.data.extras;
   var update = event.data.update;
+  var algorithm = event.data.algorithm;
   
   CoC.settings.getWeight=function(key){
     return weights[key];
@@ -35,7 +38,12 @@ onmessage = function (event) {
   }
   
   var lastTime = (new Date()).getTime();
-  var result = CoC.logic.team.build({ 
+  if(!CoC.algorithm[algorithm]){
+    postMessage({ type:"failed", message:"Algorithm not found" });
+    return;
+  }
+  
+  var result = CoC.algorithm[algorithm].build({ 
     heroes:roster, 
     size:size, 
     extras:extras, 
