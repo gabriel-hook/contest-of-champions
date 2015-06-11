@@ -1,7 +1,7 @@
 ﻿CoC.algorithm["greedy"]=new function(){
   
   this.name = "Greedy";
-  this.description = "Slowest, but finds the strongest possible teams.";
+  this.description = "Slow, but finds the strongest possible teams first.";
   this.canQuest = true;
 
   function factorial(n){
@@ -301,7 +301,7 @@
 
 CoC.algorithm["balanced"]=new function(){
   this.name = "Balanced";
-  this.description = "Fast, will find most teams, but quality might be bad.";
+  this.description = "Fast, will find the most teams, but uses no weighting logic.";
   this.canQuest = false;
   
   this.build=function(options){

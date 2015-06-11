@@ -446,13 +446,14 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(!isQuesting)
       canExtras = true;
   
+    $('#team-settings-algorithm-description').text( CoC.algorithm[algorithm].description );
     $('#team-settings-quest').slider(canQuest? "enable": "disable").slider("refresh");
     $('#team-settings-extras').slider(canExtras? "enable": "disable").slider("refresh");
   }
     
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
-    $("#team-settings-algorithm").append($('<option>', { value:i, selected:(algorithm === i)? "selected": null }).text( CoC.algorithm[i].name ));
+    $("#team-settings-algorithm").append($('<option>', { value:i, selected:(algorithm === i)? "selected": null }).text( "Algorithm - " + CoC.algorithm[i].name ));
   $("#team-settings-algorithm").change(function(){
     CoC.settings.setValue("algorithm",this.value);
     enableResultOptions();
