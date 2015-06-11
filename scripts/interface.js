@@ -415,6 +415,13 @@ $("#page-add").on("pagebeforeshow",function(){
   CoC.ui.add.update();
 });
 
+$("#page-teams").on( "pagecreate", function() {
+
+  var algorithm = CoC.settings.getValue("algorithm") || "greedy";
+  for(var i in CoC.algorithm)
+    $("#team-settings-algorithm").append($('<option>', { value:i }).text( "Algorithm - " + CoC.algorithm[i].name ));
+
+});
 $("#page-teams").on( "pagebeforeshow", function() {
   $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
@@ -451,13 +458,10 @@ $("#page-teams").on( "pagebeforeshow", function() {
     $('#team-settings-extras').slider(canExtras? "enable": "disable").slider("refresh");
   }
     
-  var algorithm = CoC.settings.getValue("algorithm") || "greedy";
-  for(var i in CoC.algorithm)
-    $("#team-settings-algorithm").append($('<option>', { value:i, selected:(algorithm === i)? "selected": null }).text( "Algorithm - " + CoC.algorithm[i].name ));
   $("#team-settings-algorithm").change(function(){
     CoC.settings.setValue("algorithm",this.value);
     enableResultOptions();
-  }).selectmenu("refresh");  
+  }).val(CoC.settings.getValue("algorithm") || "greedy").selectmenu("refresh");  
     
   $('#team-settings-quest').change(function(){
     CoC.settings.setValue("quest-group",this.value=="yes");
@@ -569,7 +573,6 @@ $("#page-settings-advanced").on( "pagecreate", function() {
     }
   
     container.append($('<option>', { value:preset.id }).text( preset.name ));
-    container.selectmenu("refresh")
   }
   $("#settings-advanced-preset").change(function(){
     CoC.settings.preset.apply(this.value, function(key, value){
