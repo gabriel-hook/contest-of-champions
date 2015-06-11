@@ -432,13 +432,45 @@ $("#page-teams").on( "pagebeforeshow", function() {
       }).val(CoC.settings.getValue("include-"+stars)? "yes": "no").slider('refresh');
     })(i)
     
+  function enableResultOptions(){
+    var algorithm = CoC.settings.getValue("algorithm") || "greedy";
+    var isQuesting = CoC.settings.getValue("quest-group");
+    
+    var canQuest = true;
+    if(!CoC.algorithm[algorithm].canQuest){
+      isQuesting = false;
+      canQuest = false;
+    }
+
+    var canExtras = false;
+    if(!isQuesting)
+      canExtras = true;
+  
+    $('#team-settings-quest').slider(canQuest? "enable": "disable").slider("refresh");
+    $('#team-settings-extras').slider(canExtras? "enable": "disable").slider("refresh");
+  }
+    
+  var algorithm = CoC.settings.getValue("algorithm") || "greedy";
+  for(var i in CoC.algorithm)
+    $("#team-settings-algorithm").append($('<option>', { value:i, selected:(algorithm === i)? "selected": null }).text( CoC.algorithm[i].name ));
+  $("#team-settings-algorithm").change(function(){
+    CoC.settings.setValue("algorithm",this.value);
+    enableResultOptions();
+  }).selectmenu("refresh");  
+    
   $('#team-settings-quest').change(function(){
     CoC.settings.setValue("quest-group",this.value=="yes");
+    enableResultOptions();
   }).val(CoC.settings.getValue("quest-group")? "yes": "no").slider('refresh');
     
   $('#team-settings-extras').change(function(){
     CoC.settings.setValue("include-extras",this.value=="yes") 
-  }).val(CoC.settings.getValue("include-extras")? "yes": "no").slider('refresh');
+  })
+    .val(CoC.settings.getValue("include-extras")? "yes": "no")
+    .slider('refresh');
+    
+    
+  enableResultOptions();
   
   $("#button-team-settings-apply").click(function(){
     $("#panel-team-settings").panel( "close" );
@@ -536,7 +568,7 @@ $("#page-settings-advanced").on( "pagecreate", function() {
     }
   
     container.append($('<option>', { value:preset.id }).text( preset.name ));
-    container.select("refresh")
+    container.selectmenu("refresh")
   }
   $("#settings-advanced-preset").change(function(){
     CoC.settings.preset.apply(this.value, function(key, value){
