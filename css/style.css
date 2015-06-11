@@ -419,34 +419,42 @@ html, body, p, span, div {
 #popup-roster-configure .extras{
   display:none;
   position:absolute;
-  bottom:24px;
-  right:16px;
+  bottom:0;
+  right:0;
   width:226px;
+  padding:1em;
   z-index:9999;
 }
 #roster-configure-image{
   position:absolute;
-  bottom:44px;
-  width:
+  bottom: 1em;
+  margin-bottom: 8px;
+  width:256px;
+  z-index:-1;
 }
 #roster-configure-synergies{
-  position:relative;
-  min-height:44px;
-  padding:10px 5px;
-  border-radius:5px;
-  border:solid 1px #b6b6b6;
-  background: linear-gradient(rgba(256,256,256,0.5), #f6f6f6, #efefef, #e6e6e6);
+  padding:0;
+  line-height:auto;
+  background:none;
 }
-#roster-configure-synergies:hover,
-#roster-configure-synergies:active{
-  background: linear-gradient(rgba(239,239,239,0.5), #e6e6e6, #dfdfdf, #d6d6d6);
+
+#roster-configure-synergies .ui-collapsible-content{
+  background:rgba(256,256,256,0.75);
+  max-height:164px;
+  overflow-y:auto;
 }
+
 #roster-configure-synergies .synergy{
   font-size: 0.7em;
-  padding: 2px;
+  margin:3px;
+  padding:0;
+  line-height:auto;
 }
 #roster-configure-synergies .synergy img{
   padding-right:0;
+}
+#roster-configure-synergies .synergy img.portrait{
+  border-bottom:solid 2px;
 }
 #roster-configure-synergies .synergy span{
   padding-left:4px;  
@@ -456,7 +464,6 @@ html, body, p, span, div {
 }
 #roster-configure-synergies .synergy.none{
   font-style:italic;
-  padding-top:16px;
   text-align:center;
 }
 @media (min-width:500px) and (min-height:400px) {
