@@ -23,6 +23,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "duplicates-5":0.1
 },{
 //settings 
+  "algorithm":"greedy",
   "size":3,
   "include-4":true,
   "include-3":true,
