@@ -790,11 +790,7 @@ CoC.algorithm["bruteforce"]=new function(){
     })
     
     return postprocess(best.teams, heroMap, size);
-  }  
-  
-  setTimeout(function(){
-    $("#button-team-settings-apply").click()
-  },250);
+  }
   
   function preprocess(list, classWeights){
   
