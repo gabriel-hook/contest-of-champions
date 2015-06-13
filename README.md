@@ -35,7 +35,7 @@
     
 ### Team Page (Team Tab)
 
-
+    This is where your teams will be displayed (with extras if the option is selected) once they are built.
 
 ##### Build Panel
   
