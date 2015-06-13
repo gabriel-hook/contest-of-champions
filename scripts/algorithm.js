@@ -495,8 +495,14 @@ CoC.algorithm["balanced"]=new function(){
     var best = { };
     for(var i in a)
       for(var j in b){
-        var team = a[i].concat(b[j]);
-        if(team.length <= size && (!best.count || team.length > best.count)){
+        var join = (a[i].length > b[j].length)? [a,b]: [b,a];
+        var team = join[0].concat(join[1]);
+        
+        //cull down to size if needed
+        while(team.length > size)
+          team = team.pop();
+        
+        if(best.count === undefined || (team.length <= size && team.length > best.count)){
           best.team = team;
           best.count = team.length;
         }
