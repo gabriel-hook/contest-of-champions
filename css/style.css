@@ -306,6 +306,8 @@ html, body, p, span, div {
 	background-repeat: no-repeat;
   box-sizing:border-box;
   z-index:1000;
+  padding-left:20px;
+  padding-right:20px;
 }
 .onboarding.left{
   padding-left:96px;
@@ -325,6 +327,9 @@ html, body, p, span, div {
 }
 .onboarding.show{
   top:44px;
+}
+#onboarding-progress.onboarding.show{
+  top:90px;
 }
 
 /******************

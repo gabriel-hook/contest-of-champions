@@ -50,12 +50,17 @@ onmessage = function (event){
     size:size, 
     extras:extras, 
     single:single, 
-    progress:function(current, max){
+    progress:function(current, max, description){
       var time = (new Date()).getTime();
-      if(time-lastTime < update)
+      if(!description && time-lastTime < update)
         return;
       lastTime = time;
-      postMessage({ type:"progress", current:current, max:max });
+      postMessage({ 
+        type:"progress", 
+        current:current, 
+        max:max,
+        description:description        
+      });
     }  
   });  
   postMessage({ type:"complete", result:result });

@@ -70,9 +70,10 @@ CoC.ui.teams=new function(){
         synergyCount += CoC.logic.synergy.count(result.teams[i])
       element.append($('<div>', { class:"message" }).text(synergyCount+" Synergies Found."));
     
+    
       for(var i=0; i<result.teams.length; i++){
 
-      var container = $('<div>').addClass('team').addClass(
+        var container = $('<div>').addClass('team').addClass(
           (size==3)? 'three': 
           (size==4)? 'four': 
           (size==5)? 'five': 
@@ -507,23 +508,30 @@ $("#page-teams").on( "pagebeforeshow", function() {
           if(event.data.type === "progress"){
             var current = event.data.current;
             var max = event.data.max;
-            $("#team-build-progress input").val(Math.min(100 * current / max, 100)).slider("refresh");
+            var description = event.data.description;
+            if(description){
+              $("#onboarding-progress .text").text(description);
+              $("#onboarding-progress").addClass("show");
+            }
+            $("#team-build-progress input").val(Math.min(1000 * (current / max), 1000)).slider("refresh");
           }
           if(event.data.type === "failed"){
-            $("#team-build-progress input").val(100).slider("refresh");
+            $("#team-build-progress input").val(10000).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
+            $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.update(event.data.result, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
-            $("#team-build-progress input").val(100).slider("refresh");
+            $("#team-build-progress input").val(10000).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
+            $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.update(event.data.result, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
-            console.log("Search completed in "+((new Date() - startTime) / 1000)+" seconds");
+            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
           }
         };
         CoC.ui.teams.worker.postMessage({ 
@@ -533,7 +541,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
           single:single, 
           extras:extras,
           weights:CoC.settings.weights, 
-          update:10
+          update:250
         });
         workerWorking = true;
       }
@@ -544,11 +552,12 @@ $("#page-teams").on( "pagebeforeshow", function() {
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
         var result = CoC.algorithm[algorithm].build({ heroes:roster, size:size, single:single, extras:extras });
-        $("#team-build-progress input").val(100).slider("refresh");
+        $("#team-build-progressprogress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(result, size);
           $("#team-build-progress").attr("class","hidden");
-          console.log("Search completed in "+((new Date() - startTime) / 1000)+" seconds");
+          $("#onboarding-progress").removeClass("show");
+          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
         },0);
       },0);
     }
