@@ -1,9 +1,9 @@
 Kabam/Marvel's Contest of Champions
 # Roster Manager & Team Builder
 
-  Source https://github.com/gabriel-hook/contest-of-champions
+  Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
   
-  Web [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
+  Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
 
 ## Mobile Structure
 
