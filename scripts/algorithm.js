@@ -548,7 +548,7 @@ CoC.algorithm["balanced"]=new function(){
     }
     var lowest = {};
     for(var i in groupHeroes){
-      count = heroFromMap[getHeroStarId(groupHeroes[i])].count + heroToMap[groupHeroes[i].id].count;
+      var count = heroFromMap[getHeroStarId(groupHeroes[i])].count + heroToMap[groupHeroes[i].id].count;
       if(lowest.value === undefined || lowest.value > count)
         lowest={
           id:groupHeroes[i].id,
@@ -558,35 +558,58 @@ CoC.algorithm["balanced"]=new function(){
     }
     
     //get all the heroes connected to the least popular hero
-    var synergies = [];
+    var synergies = [], synergiesTo = {};
     for(var s = 0; s <group.synergies.length; s++){
       var synergy = group.synergies[s];
       if(synergy.toId === lowest.id || synergy.from.id === lowest.id)
         synergies.push(synergy);
+      if(synergy.from.id === lowest.id)
+        synergiesTo[synergy.toId] = true;
     }
 
     //get the least popular partners for the least popular hero
-    var heroes = getHeroesFromSynergies(synergies, heroesMap, teams); 
-    while(heroes.length > size){
-      var highest = { hero:null, count:0 };
-      for(var i in heroes){
-        if(lowest.hero === heroes[i])
-        continue;
-      
-        count = heroFromMap[getHeroStarId(heroes[i])].count + heroToMap[heroes[i].id].count;
-        if(id && count > highest.count){
+    var heroes = getHeroesFromSynergies(synergies, heroesMap, teams), team = [lowest.hero];
+    heroes.splice(heroes.indexOf(lowest.hero), 1);
+    
+    //find at least one connection (so we don't just get 3-4 of the same character
+    var highest = { hero:null, count:-1 };
+    for(var i=0; i<heroes.length; i++){
+      var hero = heroes[i];
+      if(synergiesTo[hero.id]){
+        var count = heroFromMap[getHeroStarId(hero)].count + heroToMap[hero.id].count;
+        if(count > highest.count){
           highest.count = count;
           highest.hero = heroes[i];
         }
       }
-      if(highest)
+    }
+    if(highest.hero){
+      heroes.splice(heroes.indexOf(highest.hero), 1);
+      team.push(highest.hero);
+    }
+    
+    //fill in the rest
+    while(heroes.length > 0 && team.length < size){
+      highest = { hero:null, count:0 };
+      for(var i=0; i<heroes.length; i++){
+        var count = heroFromMap[getHeroStarId(heroes[i])].count + heroToMap[heroes[i].id].count;
+        if(count > highest.count){
+          highest.count = count;
+          highest.hero = heroes[i];
+        }
+      }
+      if(highest.hero){
         heroes.splice(heroes.indexOf(highest.hero), 1);
+        team.push(highest.hero);
+      }
       else
         break;
     }
     
-    if(heroes.length == 1)
-      heroes = [];
+    team;
+    
+    if(team.length == 1)
+      team = [];
     
     for(var i in heroes)
       groupHeroes.splice(groupHeroes.indexOf(heroes[i]),1);
