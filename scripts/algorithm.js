@@ -308,7 +308,8 @@ CoC.algorithm["balanced"]=new function(){
     var synergies, distinct, missing, full;
     var heroesMap = getHeroesMap(options.heroes);
     var synergiesMap = getSynergiesMap(options.heroes);
-    var teams = { map:{}, list:[], heroIds:{}, heroCount: 0 }, extras = [];
+    var teams = { map:{}, list:[], heroIds:{}, heroCount: 0 };
+    var extras = getRemainingHeroes(teams, heroesMap);
      
     if(options.progress)
       options.progress(10, options.heroes.length);
@@ -466,8 +467,8 @@ CoC.algorithm["balanced"]=new function(){
         if(teams.list[i].heroes.length != options.size)
           missing = true;
       full = (teams.list.length == wanted);
-        
-    } while(missing || !full)
+      
+    } while(missing || (!full && getSynergies(extras, synergiesMap).length))
     
     if(options.progress)
         options.progress(options.heroes.length, options.heroes.length);
@@ -572,49 +573,47 @@ CoC.algorithm["balanced"]=new function(){
     heroes.splice(heroes.indexOf(lowest.hero), 1);
     
     //find at least one connection (so we don't just get 3-4 of the same character
-    var highest = { hero:null, count:-1 };
+    var find = { };
     for(var i=0; i<heroes.length; i++){
       var hero = heroes[i];
       if(synergiesTo[hero.id]){
         var count = heroFromMap[getHeroStarId(hero)].count + heroToMap[hero.id].count;
-        if(count > highest.count){
-          highest.count = count;
-          highest.hero = heroes[i];
+        if(find.count == undefined || count < find.count){
+          find.count = count;
+          find.hero = heroes[i];
         }
       }
     }
-    if(highest.hero){
-      heroes.splice(heroes.indexOf(highest.hero), 1);
-      team.push(highest.hero);
+    if(find.hero){
+      heroes.splice(heroes.indexOf(find.hero), 1);
+      team.push(find.hero);
     }
     
     //fill in the rest
     while(heroes.length > 0 && team.length < size){
-      highest = { hero:null, count:0 };
+      find = { };
       for(var i=0; i<heroes.length; i++){
         var count = heroFromMap[getHeroStarId(heroes[i])].count + heroToMap[heroes[i].id].count;
-        if(count > highest.count){
-          highest.count = count;
-          highest.hero = heroes[i];
+        if(find.count === undefined || count < find.count){
+          find.count = count;
+          find.hero = heroes[i];
         }
       }
-      if(highest.hero){
-        heroes.splice(heroes.indexOf(highest.hero), 1);
-        team.push(highest.hero);
+      if(find.hero){
+        heroes.splice(heroes.indexOf(find.hero), 1);
+        team.push(find.hero);
       }
       else
         break;
     }
     
-    team;
-    
     if(team.length == 1)
       team = [];
     
-    for(var i in heroes)
-      groupHeroes.splice(groupHeroes.indexOf(heroes[i]),1);
+    for(var i=0; i<team.length; i++)
+      groupHeroes.splice(groupHeroes.indexOf(team[i]),1);
       
-    return { heroes:heroes, extras:groupHeroes };
+    return { heroes:team, extras:groupHeroes };
   }
   
   function getRemainingHeroes(teams, heroesMap){

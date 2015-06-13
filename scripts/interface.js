@@ -485,6 +485,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(size === undefined)
       size = 3;
     var roster = CoC.roster.all({
+      1:CoC.settings.getValue("include-1")===true,
       2:CoC.settings.getValue("include-2")===true,
       3:CoC.settings.getValue("include-3")===true,
       4:CoC.settings.getValue("include-4")===true
