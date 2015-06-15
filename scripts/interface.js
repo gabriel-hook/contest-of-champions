@@ -120,15 +120,24 @@ CoC.ui.roster=new function(){
   
   this.update=function(){
     var heroes = CoC.roster.all({
-      1:CoC.settings.getValue("roster-filter-"+1),
-      2:CoC.settings.getValue("roster-filter-"+2),
-      3:CoC.settings.getValue("roster-filter-"+3),
-      4:CoC.settings.getValue("roster-filter-"+4),
+      1:CoC.settings.getValue("roster-filter-stars-"+1),
+      2:CoC.settings.getValue("roster-filter-stars-"+2),
+      3:CoC.settings.getValue("roster-filter-stars-"+3),
+      4:CoC.settings.getValue("roster-filter-stars-"+4),
     });
     CoC.ui.roster.empty = heroes.length == 0;
     
-    var sortBy = CoC.settings.getValue("roster-sort");
+    //filter classes
+    for(var i=0; i<CoC.data.classes.length;i++){
+      var className = CoC.data.classes[i];
+      if(CoC.settings.getValue("roster-filter-"+className.toLowerCase()) !== true)
+        heroes=heroes.filter(function(element, index){
+          return CoC.data.heroes[element.id].class !== className;
+        });
+    }
     
+    
+    var sortBy = CoC.settings.getValue("roster-sort");
     //stars > class > name
     if(sortBy === "stars")
       heroes.sort(function(a,b){
@@ -167,8 +176,6 @@ CoC.ui.roster=new function(){
          
         return b.stars - a.stars;       
       })
-      
-    
     
     var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
@@ -467,14 +474,36 @@ $("#page-roster").on("pagebeforeshow",function(){
     CoC.ui.roster.update();
   }).prop("checked", (CoC.settings.getValue("roster-sort") == "name")? true: false).checkboxradio('refresh');
 
-
-  for(var i=1; i<=4;i++)
-    (function(stars){
-      $('#roster-filter-stars-'+stars).change(function(){
-        CoC.settings.setValue("roster-filter-"+stars, this.checked);
+  
+  var filters = [
+    'roster-filter-stars-1',
+    'roster-filter-stars-2',
+    'roster-filter-stars-3',
+    'roster-filter-stars-4',
+    "roster-filter-cosmic",
+    "roster-filter-tech",
+    "roster-filter-mutant",
+    "roster-filter-skill",
+    "roster-filter-science",
+    "roster-filter-mystic",  
+  ];
+  $('#roster-filter-all').click(function(){
+    for(var i=0; i<filters.length; i++){
+      $('#'+filters[i]).prop("checked", true).checkboxradio('refresh')
+      CoC.settings.setValue(filters[i], true);
+    }
+    CoC.ui.roster.update();
+  });
+  for(var i=0; i<filters.length; i++)
+    (function(filter){
+      $('#'+filter).change(function(){
+        CoC.settings.setValue(filter, this.checked);
         CoC.ui.roster.update();
-      }).prop("checked", CoC.settings.getValue("roster-filter-"+stars)? true: false).checkboxradio('refresh');
-    })(i)
+      })
+      .prop("checked", CoC.settings.getValue(filter)? true: false)
+      .checkboxradio('refresh');
+    })(filters[i])
+    
   
   CoC.ui.roster.update();
   CoC.ui.roster.dirty();

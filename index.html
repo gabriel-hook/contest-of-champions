@@ -48,6 +48,7 @@
         data-theme="b">
       
         <h3>Modify Roster</h3>
+        
         <fieldset data-role="controlgroup">
           <a href="#page-add"
             data-role="button" 
@@ -64,10 +65,11 @@
             data-icon="action">Export .csv</a> 
           <a id="roster-clear-all" href="#"
             data-role="button" 
-            data-icon="delete">Clear All</a> 
+            data-icon="delete">Delete All</a> 
         </fieldset>
         
         <h3>Sort By</h3>
+        
         <fieldset data-role="controlgroup">
           <input type="radio" name="roster-sort" id="roster-sort-stars">
           <label for="roster-sort-stars" checked="true">Stars</label>
@@ -78,7 +80,13 @@
         </fieldset>
         
         <h3>Filter</h3>
+        
+        <a href="#" id="roster-filter-all"
+          data-role="button" 
+          data-icon="check">Show All</a> 
+        
         <fieldset data-role="controlgroup">
+          <legend>Stars</legend>
           <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
           <label for="roster-filter-stars-4">★ ★ ★ ★</label>
           <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
@@ -87,6 +95,22 @@
           <label for="roster-filter-stars-2">★ ★</label>
           <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
           <label for="roster-filter-stars-1">★</label>
+        </fieldset> 
+        
+        <fieldset data-role="controlgroup">
+          <legend>Class</legend>
+          <input type="checkbox" name="roster-filter-cosmic" id="roster-filter-cosmic">
+          <label for="roster-filter-cosmic">Cosmic</label>
+          <input type="checkbox" name="roster-filter-tech" id="roster-filter-tech">
+          <label for="roster-filter-tech">Tech</label>
+          <input type="checkbox" name="roster-filter-mutant" id="roster-filter-mutant">
+          <label for="roster-filter-mutant">Mutant</label>
+          <input type="checkbox" name="roster-filter-skill" id="roster-filter-skill">
+          <label for="roster-filter-skill">Skill</label>
+          <input type="checkbox" name="roster-filter-science" id="roster-filter-science">
+          <label for="roster-filter-science">Science</label>
+          <input type="checkbox" name="roster-filter-mystic" id="roster-filter-mystic">
+          <label for="roster-filter-mystic">Mystic</label>
         </fieldset> 
           
       </div>

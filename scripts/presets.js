@@ -24,10 +24,16 @@ CoC.settings.preset.add(null, "Defaults",{
 },{
 //roster settings 
   "roster-sort":"stars",
-  "roster-filter-4":true,
-  "roster-filter-3":true,
-  "roster-filter-2":true,
-  "roster-filter-1":true,
+  "roster-filter-stars-4":true,
+  "roster-filter-stars-3":true,
+  "roster-filter-stars-2":true,
+  "roster-filter-stars-1":true,
+  "roster-filter-cosmic":true,
+  "roster-filter-tech":true,
+  "roster-filter-mutant":true,
+  "roster-filter-skill":true,
+  "roster-filter-science":true,
+  "roster-filter-mystic":true,  
 //build settings 
   "algorithm":"greedy",
   "size":3,
