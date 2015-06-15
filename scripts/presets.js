@@ -22,7 +22,13 @@ CoC.settings.preset.add(null, "Defaults",{
   "duplicates-4":0.2,
   "duplicates-5":0.1
 },{
-//settings 
+//roster settings 
+  "roster-sort":"stars",
+  "roster-filter-4":true,
+  "roster-filter-3":true,
+  "roster-filter-2":true,
+  "roster-filter-1":true,
+//build settings 
   "algorithm":"greedy",
   "size":3,
   "include-4":true,

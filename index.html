@@ -47,27 +47,48 @@
         data-display="overlay"
         data-theme="b">
       
-        <div role="main" class="ui-content">
-        
+        <h3>Modify Roster</h3>
+        <fieldset data-role="controlgroup">
           <a href="#page-add"
             data-role="button" 
             data-icon="plus" 
             data-rel="page"
             data-direction="reverse"
             data-transition="slide">Add</a> 
-    
           <div id="roster-import">
             <a data-role="button" data-icon="action">Import .csv</a>    
             <input type="file" accept=".csv">
           </div>
-          
           <a id="roster-export" href="#"
             data-role="button" 
             data-icon="action">Export .csv</a> 
           <a id="roster-clear-all" href="#"
             data-role="button" 
             data-icon="delete">Clear All</a> 
-        </div>
+        </fieldset>
+        
+        <h3>Sort By</h3>
+        <fieldset data-role="controlgroup">
+          <input type="radio" name="roster-sort" id="roster-sort-stars">
+          <label for="roster-sort-stars" checked="true">Stars</label>
+          <input type="radio" name="roster-sort" id="roster-sort-class">
+          <label for="roster-sort-class">Class</label>
+          <input type="radio" name="roster-sort" id="roster-sort-name">
+          <label for="roster-sort-name">Name</label>
+        </fieldset>
+        
+        <h3>Filter</h3>
+        <fieldset data-role="controlgroup">
+          <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
+          <label for="roster-filter-stars-4">★ ★ ★ ★</label>
+          <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
+          <label for="roster-filter-stars-3">★ ★ ★</label>
+          <input type="checkbox" name="roster-filter-stars-2" id="roster-filter-stars-2">
+          <label for="roster-filter-stars-2">★ ★</label>
+          <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
+          <label for="roster-filter-stars-1">★</label>
+        </fieldset> 
+          
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
@@ -228,39 +249,20 @@
             </fieldset>
           </div>
           
-          <h3>Include Champions</h3>
           
-          <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-4" class="stars">★★★★</label>
-            <select name="team-settings-include-4" id="team-settings-include-4" data-role="slider"">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
           
-          <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-3" class="stars">★★★</label>
-            <select name="team-settings-include-3" id="team-settings-include-3" data-role="slider">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
           
-          <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-2" class="stars">★★</label>
-            <select name="team-settings-include-2" id="team-settings-include-2" data-role="slider">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
-          
-          <div class="team-settings-include" data-role="fieldcontain">
-            <label for="team-settings-include-1" class="stars">★</label>
-            <select name="team-settings-include-1" id="team-settings-include-1" data-role="slider">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
+          <fieldset data-role="controlgroup">
+            <h3><legend>Include Champions</legend></h3>
+            <input type="checkbox" name="team-settings-include-4" id="team-settings-include-4">
+            <label for="team-settings-include-4">★ ★ ★ ★</label>
+            <input type="checkbox" name="team-settings-include-3" id="team-settings-include-3">
+            <label for="team-settings-include-3">★ ★ ★</label>
+            <input type="checkbox" name="team-settings-include-2" id="team-settings-include-2">
+            <label for="team-settings-include-2">★ ★</label>
+            <input type="checkbox" name="team-settings-include-1" id="team-settings-include-1">
+            <label for="team-settings-include-1">★</label>
+          </fieldset>
           
           <h3>Results</h3>
           

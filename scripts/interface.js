@@ -119,8 +119,56 @@ CoC.ui.roster=new function(){
   this.empty = true;
   
   this.update=function(){
-    var heroes = CoC.roster.all();
+    var heroes = CoC.roster.all({
+      1:CoC.settings.getValue("roster-filter-"+1),
+      2:CoC.settings.getValue("roster-filter-"+2),
+      3:CoC.settings.getValue("roster-filter-"+3),
+      4:CoC.settings.getValue("roster-filter-"+4),
+    });
     CoC.ui.roster.empty = heroes.length == 0;
+    
+    var sortBy = CoC.settings.getValue("roster-sort");
+    
+    //stars > class > name
+    if(sortBy === "stars")
+      heroes.sort(function(a,b){
+        var value = b.stars - a.stars;
+        if(value !== 0)
+          return value;
+          
+        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
+        value = heroA.class.localeCompare(heroB.class);
+        if(value !== 0)
+          return value;
+         
+        return heroA.name.localeCompare(heroB.name);
+      })
+    //class > stars > name
+    if(sortBy === "class")
+      heroes.sort(function(a,b){
+        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
+        var value = heroA.class.localeCompare(heroB.class);
+        if(value !== 0)
+          return value;
+         
+        value = b.stars - a.stars;
+        if(value !== 0)
+          return value;
+          
+        return heroA.name.localeCompare(heroB.name);        
+      })
+    //name > stars
+    if(sortBy === "name")
+      heroes.sort(function(a,b){
+        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
+        var value = heroA.name.localeCompare(heroB.name);
+        if(value !== 0)
+          return value;
+         
+        return b.stars - a.stars;       
+      })
+      
+    
     
     var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
@@ -405,6 +453,28 @@ $("#page-roster").on("pagebeforeshow",function(){
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
   });
+
+  $('#roster-sort-stars').change(function(){
+    CoC.settings.setValue("roster-sort", "stars");
+    CoC.ui.roster.update();
+  }).prop("checked", (CoC.settings.getValue("roster-sort") == "stars")? true: false).checkboxradio('refresh');
+  $('#roster-sort-class').change(function(){
+    CoC.settings.setValue("roster-sort", "class");
+    CoC.ui.roster.update();
+  }).prop("checked", (CoC.settings.getValue("roster-sort") == "class")? true: false).checkboxradio('refresh');
+  $('#roster-sort-name').change(function(){
+    CoC.settings.setValue("roster-sort", "name");
+    CoC.ui.roster.update();
+  }).prop("checked", (CoC.settings.getValue("roster-sort") == "name")? true: false).checkboxradio('refresh');
+
+
+  for(var i=1; i<=4;i++)
+    (function(stars){
+      $('#roster-filter-stars-'+stars).change(function(){
+        CoC.settings.setValue("roster-filter-"+stars, this.checked);
+        CoC.ui.roster.update();
+      }).prop("checked", CoC.settings.getValue("roster-filter-"+stars)? true: false).checkboxradio('refresh');
+    })(i)
   
   CoC.ui.roster.update();
   CoC.ui.roster.dirty();
@@ -436,8 +506,8 @@ $("#page-teams").on( "pagebeforeshow", function() {
   for(var i=1; i<=4;i++)
     (function(stars){
       $('#team-settings-include-'+stars).change(function(){
-        CoC.settings.setValue("include-"+stars,this.value=="yes") 
-      }).val(CoC.settings.getValue("include-"+stars)? "yes": "no").slider('refresh');
+        CoC.settings.setValue("include-"+stars, this.checked) 
+      }).prop("checked", CoC.settings.getValue("include-"+stars)? true: false).checkboxradio('refresh');
     })(i)
     
   function enableResultOptions(){
