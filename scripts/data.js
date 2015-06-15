@@ -766,7 +766,7 @@ CoC.data.heroes = {
         { id:"colossus", type:"health", amount:5 },
         { id:"cyclops", type:"perfectblock", amount:4 },
       ],
-      3:[
+      4:[
         { id:"storm", type:"armor", amount:6 },
         { id:"colossus", type:"health", amount:6 },
         { id:"cyclops", type:"perfectblock", amount:5 },
