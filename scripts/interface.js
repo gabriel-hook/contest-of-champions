@@ -336,12 +336,10 @@ CoC.ui.add=new function(){
   
   this.update=function(){
     var stars = this.stars;
-    var heroes = CoC.logic.heroes.excluding(CoC.roster.get({
-      1:stars === 1,
-      2:stars === 2,
-      3:stars === 3,
-      4:stars === 4
-    }), stars);
+    var roster = CoC.roster.get({ stars:{
+      1:stars === 1, 2:stars === 2, 3:stars === 3, 4:stars === 4 }
+    });
+    var heroes = CoC.logic.heroes.excluding(roster, stars);
     var element = $('<div>');
     $(CoC.ui.add.selector).text("").append(element);
     for(var i in heroes)
