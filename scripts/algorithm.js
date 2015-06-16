@@ -331,7 +331,8 @@ CoC.algorithm["balanced"]=new function(){
         for(var i=distinct.length-1; i>=0; i--){
           var synergies = distinct[i].synergies;
           var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
-          if(heroes.length <= options.size){
+          if(heroes.length <= options.size && getTeamValue(heroes, synergiesMap, weights) > 0){
+            var value = getTeamValue(heroes, synergiesMap, weights)
             addTeam(teams, heroes);
             distinct.splice(i, 1);
           }
@@ -339,7 +340,7 @@ CoC.algorithm["balanced"]=new function(){
         var didSplit = false, splitDistinct = [], splitIndex = -1, splitBiggest = 0;
         
         //find the best one to split
-        for(var i in distinct){
+        for(var i=0; i<distinct.length; i++){
           var synergies = distinct[i].synergies;
           if(!synergies)
             continue;
@@ -357,7 +358,11 @@ CoC.algorithm["balanced"]=new function(){
           
           //pull out a group from
           var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, options.size);
-          addTeam(teams, result.heroes);
+          
+          if(getTeamValue(result.heroes, synergiesMap, weights) > 0)
+            addTeam(teams, result.heroes);
+          
+          
           if(result.extras){
             var synergies = getDistinctSynergies( getSynergies(result.extras, synergiesMap) );
             for(var i in synergies)
@@ -401,10 +406,13 @@ CoC.algorithm["balanced"]=new function(){
             for(var s in smallTeams)
               for(var l in largeTeams)
                 if(smallTeams[s] !== largeTeams[l]){
-                  removeTeam(teams, smallTeams[s].team);
-                  removeTeam(teams, largeTeams[l].team);
-                  addTeam(teams, smallTeams[s].team.heroes.concat(largeTeams[l].team.heroes));
-                  continue tooManyTeams;
+                  var team = smallTeams[s].team.heroes.concat(largeTeams[l].team.heroes);
+                  if(getTeamValue(team, synergiesMap, weights) > 0){
+                    removeTeam(teams, smallTeams[s].team);
+                    removeTeam(teams, largeTeams[l].team);
+                    addTeam(teams, team);
+                    continue tooManyTeams;
+                  }
                 }
           }
           
@@ -418,14 +426,14 @@ CoC.algorithm["balanced"]=new function(){
           for(var s in smallTeams)
             for(var l in largeTeams)
               if(smallTeams[s] !== largeTeams[l]){
-                removeTeam(teams, smallTeams[s].team);
-                removeTeam(teams, largeTeams[l].team);
-                addTeam(teams, combineTeams(
-                  smallTeams[s].team.heroes, 
-                  largeTeams[l].team.heroes, 
-                  heroesMap, synergiesMap, weights,
-                  teams, options.size));
-                continue tooManyTeams;
+                var team = combineTeams(smallTeams[s].team.heroes, largeTeams[l].team.heroes, 
+                  heroesMap, synergiesMap, weights, teams, options.size)
+                if(getTeamValue(team, synergiesMap, weights) > 0){
+                  removeTeam(teams, smallTeams[s].team);
+                  removeTeam(teams, largeTeams[l].team);
+                  addTeam(teams, team);
+                  continue tooManyTeams;
+                }
               }
         }
       
@@ -476,7 +484,13 @@ CoC.algorithm["balanced"]=new function(){
         if(teams.list[i].heroes.length != options.size)
           missing = true;
       full = (teams.list.length == wanted);
-      var extraSynergies = getSynergies(extras, synergiesMap).length;
+      var extraSynergies = (function(){
+        var synergies = getSynergies(extras, synergiesMap);
+        for(var i=0; i<synergies.length; i++)
+          if(synergies[i].value > 0)
+            return true;
+        return false;
+      })();
       
     } while(missing || (!full && extraSynergies))
     
@@ -660,6 +674,8 @@ CoC.algorithm["balanced"]=new function(){
     var distinct = [], ids = {}, synergy, group, groupTo, groupFrom;
     for(var i=0; i<synergies.length; i++){
       synergy = synergies[i];
+      if(synergy.value === 0)
+        continue;
       group = groupTo = ids[synergy.toId];
       groupFrom = ids[synergy.from.id];
       if(!groupTo)
