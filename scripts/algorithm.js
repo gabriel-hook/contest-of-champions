@@ -449,6 +449,7 @@ CoC.algorithm["balanced"]=new function(){
           almost.splice(i, 1);
         }
         
+        extras = getRemainingHeroes(teams, heroesMap);
       }
       
       //fill the groups with remainders
@@ -472,7 +473,7 @@ CoC.algorithm["balanced"]=new function(){
     
     if(options.progress)
         options.progress(options.heroes.length, options.heroes.length);
-    
+   
     return {
       teams: getTeamsArray(teams),
       extras: (options.extras)? extras: undefined
@@ -488,19 +489,19 @@ CoC.algorithm["balanced"]=new function(){
     var largerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(larger, synergiesMap))[0], heroesMap, teams, largerSize).heroes;
     var smallerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(smaller, synergiesMap))[0], heroesMap, teams, smallerSize).heroes;
     
-    var a = [larger, largerSub]
-    var b = [smaller, smallerSub]
+    var a = [larger, largerSub];
+    var b = [smaller, smallerSub];
    
     //find the biggest team of or smaller than size
     var best = { };
     for(var i in a)
       for(var j in b){
-        var join = (a[i].length > b[j].length)? [a,b]: [b,a];
+        var join = (a[i].length > b[j].length)? [a[i],b[j]]: [b[j],a[i]];
         var team = join[0].concat(join[1]);
         
         //cull down to size if needed
         while(team.length > size)
-          team = team.pop();
+          team = team.splice(-1, 1);
         
         if(best.count === undefined || (team.length <= size && team.length > best.count)){
           best.team = team;
@@ -517,11 +518,11 @@ CoC.algorithm["balanced"]=new function(){
         leftovers.push(smaller[i]);
       for(var i = 0; i<larger.length; i++)
         leftovers.push(larger[i]);
-        
       while(team.length < size && leftovers.length)
         team.push(leftovers.shift())
       
     }
+    
     return team;
   }
   
@@ -762,7 +763,6 @@ CoC.algorithm["balanced"]=new function(){
     var id = getHeroStarId(hero);
     if(teams.heroIds[id])
       return;
-    
     teams.heroCount++;
     teams.heroIds[id] = true;
     team.heroIds[id] = true;
@@ -779,7 +779,6 @@ CoC.algorithm["balanced"]=new function(){
     }
     if(teams.map[team.tid])
       return;
-      
     for(var i=0; i<heroes.length; i++){
       var id = getHeroStarId(heroes[i]);
       teams.heroCount++;
