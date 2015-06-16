@@ -459,7 +459,7 @@ CoC.algorithm["balanced"]=new function(){
           
           for(var j=0; j<extras.length; j++){
             var value = getTeamValue([extras[j]].concat(team.heroes), synergiesMap, weights);
-            if(value > 0 && (best === undefined || value > best.value))
+            if(best === undefined || value > best.value)
               best={ index: j, hero: extras[j], value: value };
           }
           
