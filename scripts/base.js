@@ -114,10 +114,11 @@ var CoC=new function(){
       return null;
     }
     
-    this.ids=function(){
+    this.ids=function(category){
       var keys = [];
       for(var i in CoC.settings.preset.list)
-        keys.push(CoC.settings.preset.list[i].id);
+        if(category === undefined || category === CoC.settings.preset.list[i].category)
+          keys.push(CoC.settings.preset.list[i].id);
       return keys;
     }
     
@@ -164,6 +165,7 @@ var CoC=new function(){
     ROSTER
   *********/
   this.roster = new function() {};
+  
   this.roster.add=function(hero){
     if(hero === undefined || hero.id === undefined || hero.stars === undefined){
       console.error(hero);
@@ -172,21 +174,56 @@ var CoC=new function(){
     CoC.roster.stars[hero.stars][hero.id]=hero;
     CoC.roster.save();
   }
+  
   this.roster.remove=function(id,stars){
     delete CoC.roster.stars[stars][id];
     CoC.roster.save();
   }
-  this.roster.all=function(stars){
-    var array=[];
-    if(stars === undefined)
-      stars = { 1:true, 2:true, 3:true, 4:true };
+  
+  this.roster.get=function(options){
+  
+    if(typeof options === "string"){
+      var id = options.split('_');
+      return (id.length == 2)? CoC.roster.stars[id[1]][id[0]]: null;
+    }
+  
+    var array=[], stars = {}, classes = {};
+    if(options && options.filter === false){
+      for(var s=4;s>=1;s--)
+        stars[s] = true;
+      for(var i=0; i<CoC.data.classes.length;i++)
+        classes[CoC.data.classes[i]] = true;
+    }
+    else{
+      for(var s=4;s>=1;s--)
+        stars[s] = (CoC.settings.getValue("roster-filter-stars-"+s) === true)
+      for(var i=0; i<CoC.data.classes.length;i++)
+        classes[CoC.data.classes[i]] = (CoC.settings.getValue("roster-filter-"+CoC.data.classes[i].toLowerCase()) === true);
+      if(options && options.stars)
+        stars = options.stars;
+      if(options && options.classes)
+        classes = options.classes; 
+    }
+    
     for(var s=4;s>=1;s--)
       if(stars[s])
-        for(var o in CoC.data.heroes)
-          if(CoC.roster.stars[s][CoC.data.heroes[o].id])
-            array.push(CoC.roster.stars[s][CoC.data.heroes[o].id]);
+        for(var o in CoC.data.heroes){
+          var hero = CoC.data.heroes[o];
+          if(CoC.roster.stars[s][hero.id] && classes[hero.class])
+            array.push(CoC.roster.stars[s][hero.id]);       
+        }
     return array;
   }
+  
+  this.roster.size=function(){
+    var count = 0;
+    for(var s=4;s>=1;s--)
+      if(CoC.roster.stars[s])
+        for(var i in CoC.roster.stars[s])
+          count++;
+    return count;
+  }
+  
   this.roster.clear=function(){
     for(var i=1;i<=4; i++)
       CoC.roster.stars[i]={}
@@ -195,7 +232,9 @@ var CoC=new function(){
   
   this.roster.csv=function(string){
     if(string === undefined){
-      var roster = CoC.roster.all()
+      var roster = CoC.roster.get({
+        filter:false
+      })
       var csv = roster.map(function(value){
         return [
           JSON.stringify(value.id),

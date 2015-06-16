@@ -119,23 +119,9 @@ CoC.ui.roster=new function(){
   this.empty = true;
   
   this.update=function(){
-    var heroes = CoC.roster.all({
-      1:CoC.settings.getValue("roster-filter-stars-"+1),
-      2:CoC.settings.getValue("roster-filter-stars-"+2),
-      3:CoC.settings.getValue("roster-filter-stars-"+3),
-      4:CoC.settings.getValue("roster-filter-stars-"+4),
-    });
+    var heroes = CoC.roster.get();
+    var heroCount = CoC.roster.size();
     CoC.ui.roster.empty = heroes.length == 0;
-    
-    //filter classes
-    for(var i=0; i<CoC.data.classes.length;i++){
-      var className = CoC.data.classes[i];
-      if(CoC.settings.getValue("roster-filter-"+className.toLowerCase()) !== true)
-        heroes=heroes.filter(function(element, index){
-          return CoC.data.heroes[element.id].class !== className;
-        });
-    }
-    
     
     var sortBy = CoC.settings.getValue("roster-sort");
     //stars > class > name
@@ -179,6 +165,9 @@ CoC.ui.roster=new function(){
     
     var element = $("<div>");
     $(CoC.ui.roster.selector).text("").append(element);
+    
+    element.append($('<div>', { class:"message" }).text(heroes.length+" of "+heroCount+" Champions."));
+    
     for(var i in heroes)
       (function(hero,index){
         element.append(CoC.ui.hero(hero, index, function(event){
@@ -347,7 +336,7 @@ CoC.ui.add=new function(){
   
   this.update=function(){
     var stars = this.stars;
-    var heroes = CoC.logic.heroes.excluding(CoC.roster.all({
+    var heroes = CoC.logic.heroes.excluding(CoC.roster.get({
       1:stars === 1,
       2:stars === 2,
       3:stars === 3,
@@ -531,13 +520,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
   var teamSettingsSize = $('input:radio[name=team-settings-size]');
   teamSettingsSize.filter('[value='+CoC.settings.getValue("size")+']').prop("checked", true).checkboxradio("refresh");
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
-
-  for(var i=1; i<=4;i++)
-    (function(stars){
-      $('#team-settings-include-'+stars).change(function(){
-        CoC.settings.setValue("include-"+stars, this.checked) 
-      }).prop("checked", CoC.settings.getValue("include-"+stars)? true: false).checkboxradio('refresh');
-    })(i)
     
   function enableResultOptions(){
     var algorithm = CoC.settings.getValue("algorithm") || "greedy";
@@ -583,12 +565,8 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var size = CoC.settings.getValue("size");
     if(size === undefined)
       size = 3;
-    var roster = CoC.roster.all({
-      1:CoC.settings.getValue("include-1")===true,
-      2:CoC.settings.getValue("include-2")===true,
-      3:CoC.settings.getValue("include-3")===true,
-      4:CoC.settings.getValue("include-4")===true
-    });
+    var roster = CoC.roster.get();
+    
     var algorithm = CoC.settings.getValue("algorithm") || "greedy";
     var single = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
@@ -669,21 +647,29 @@ $("#page-settings-advanced").on( "pagecreate", function() {
 
   var sliders = {};
 
-  var groups = {}, presets = CoC.settings.preset.ids();
-  for(var i in presets){
-    var preset = CoC.settings.preset.info(presets[i]);
-    var container = $("#settings-advanced-preset");
-    if(preset.category){
-      if(groups[preset.category] === undefined){
-        groups[preset.category] = $('<optgroup>', { label:preset.category });
-        container.append(groups[preset.category]);
-      }
-      container = groups[preset.category];
+  function addPresets(category){
+    var container = $("#settings-advanced-preset-"+category.toLowerCase()),
+      presets = CoC.settings.preset.ids(category);      
+    for(var i in presets){
+      var preset = CoC.settings.preset.info(presets[i]);
+      container.append($('<option>', { value:preset.id }).text( preset.name ));
     }
-  
-    container.append($('<option>', { value:preset.id }).text( preset.name ));
   }
-  $("#settings-advanced-preset").change(function(){
+  addPresets("Synergies");
+  addPresets("Duplicates");
+  
+  $("#settings-advanced-preset-defaults").click(function(){
+    CoC.settings.preset.apply("defaults", function(key, value){
+      var slider = $(sliders[key]);
+      if(slider.length){
+        slider.val(value * 100).slider("refresh")
+        return true;
+      }
+      return false;
+    });
+  });
+  
+  $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").change(function(){
     CoC.settings.preset.apply(this.value, function(key, value){
       var slider = $(sliders[key]);
       if(slider.length){

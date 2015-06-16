@@ -81,9 +81,7 @@
         
         <h3>Filter</h3>
         
-        <a href="#" id="roster-filter-all"
-          data-role="button" 
-          data-icon="check">Show All</a> 
+        <a href="#" id="roster-filter-all" data-role="button">Show All</a> 
         
         <fieldset data-role="controlgroup">
           <legend>Stars</legend>
@@ -273,21 +271,6 @@
             </fieldset>
           </div>
           
-          
-          
-          
-          <fieldset data-role="controlgroup">
-            <h3><legend>Include Champions</legend></h3>
-            <input type="checkbox" name="team-settings-include-4" id="team-settings-include-4">
-            <label for="team-settings-include-4">★ ★ ★ ★</label>
-            <input type="checkbox" name="team-settings-include-3" id="team-settings-include-3">
-            <label for="team-settings-include-3">★ ★ ★</label>
-            <input type="checkbox" name="team-settings-include-2" id="team-settings-include-2">
-            <label for="team-settings-include-2">★ ★</label>
-            <input type="checkbox" name="team-settings-include-1" id="team-settings-include-1">
-            <label for="team-settings-include-1">★</label>
-          </fieldset>
-          
           <h3>Results</h3>
           
           <div class="team-settings-algorithm" data-role="fieldcontain">
@@ -372,12 +355,14 @@
         <h1>Team - Settings</h1>
       </div>
       <div role="main" class="ui-content">
-      
-        <select name="settings-advanced-preset" id="settings-advanced-preset">
-          <option value="">Choose a preset...</option>
-        </select>
+        
+        <a href="#" id="settings-advanced-preset-defaults" data-role="button">Reset to Defaults</a> 
         
         <h3>Syngergy Weights</h3>
+        
+        <select name="settings-advanced-preset-synergies" id="settings-advanced-preset-synergies">
+          <option value="">Choose a preset...</option>
+        </select>
       
         <div data-role="fieldcontain">
           <label for="settings-advanced-attack">Attack</label>
@@ -442,6 +427,40 @@
             data-highlight="true"/>
         </div>
         
+        <h3>Duplicate Class Weights</h3>
+        
+        <select name="settings-advanced-preset-duplicates" id="settings-advanced-preset-duplicates">
+          <option value="">Choose a preset...</option>
+        </select>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class2">Double (2X)</label>
+          <input type="range" name="settings-advanced-class2" id="settings-advanced-class2" 
+            value="100" min="0" max="100" 
+            data-highlight="true"/>
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class3">Triple (3x)</label>
+          <input type="range" name="settings-advanced-class3" id="settings-advanced-class3" 
+            value="100" min="0" max="100" 
+            data-highlight="true"/>
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class4">Quadruple (4x)</label>
+          <input type="range" name="settings-advanced-class4" id="settings-advanced-class4" 
+            value="100" min="0" max="100" 
+            data-highlight="true"/>
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="settings-advanced-class5">Quintuple (5x)</label>
+          <input type="range" name="settings-advanced-class5" id="settings-advanced-class5" 
+            value="100" min="0" max="100" 
+            data-highlight="true"/>
+        </div>
+        
         <h3>Champion Weights</h3>
       
         <div data-role="fieldcontain">
@@ -476,36 +495,6 @@
           <label for="settings-advanced-awakened">Awakened</label>
           <input type="range" name="settings-advanced-awakened" id="settings-advanced-awakened" 
             value="100" min="0" max="1000" 
-            data-highlight="true"/>
-        </div>
-        
-        <h3>Duplicate Class Weights</h3>
-        
-        <div data-role="fieldcontain">
-          <label for="settings-advanced-class2">Double (2X)</label>
-          <input type="range" name="settings-advanced-class2" id="settings-advanced-class2" 
-            value="100" min="0" max="100" 
-            data-highlight="true"/>
-        </div>
-        
-        <div data-role="fieldcontain">
-          <label for="settings-advanced-class3">Triple (3x)</label>
-          <input type="range" name="settings-advanced-class3" id="settings-advanced-class3" 
-            value="100" min="0" max="100" 
-            data-highlight="true"/>
-        </div>
-        
-        <div data-role="fieldcontain">
-          <label for="settings-advanced-class4">Quadruple (4x)</label>
-          <input type="range" name="settings-advanced-class4" id="settings-advanced-class4" 
-            value="100" min="0" max="100" 
-            data-highlight="true"/>
-        </div>
-        
-        <div data-role="fieldcontain">
-          <label for="settings-advanced-class5">Quintuple (5x)</label>
-          <input type="range" name="settings-advanced-class5" id="settings-advanced-class5" 
-            value="100" min="0" max="100" 
             data-highlight="true"/>
         </div>
       
