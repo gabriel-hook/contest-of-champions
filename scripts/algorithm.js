@@ -389,21 +389,7 @@ CoC.algorithm["balanced"]=new function(){
       }
       
       //if we have too many teams, try to condense them
-      while(teams.list.length > wanted){
-      
-        extras = getRemainingHeroes(teams, heroesMap);
-        var teamsBySize = getTeamsBySize();
-      
-        //if we are full, get rid of extras
-        var fullTeams = 0
-        for(var i=0; i<teams.list.length; i++)
-          if(teams.list[i].heroes.length == options.size)
-            fullTeams++;
-        if(fullTeams == wanted){
-          for(var i=teams.list.length-1; i>=0; i--)
-            if(teams.list[i].heroes.length < options.size)
-              removeTeam(teams, teams.list[i]);
-        }
+      tooManyTeams: while(teams.list.length > wanted){
         
         extras = getRemainingHeroes(teams, heroesMap);
         teamsBySize = getTeamsBySize();
@@ -419,7 +405,7 @@ CoC.algorithm["balanced"]=new function(){
                   removeTeam(teams, smallTeams[s].team);
                   removeTeam(teams, largeTeams[l].team);
                   addTeam(teams, smallTeams[s].team.heroes.concat(largeTeams[l].team.heroes));
-                  break findfit;
+                  continue tooManyTeams;
                 }
           }
           
@@ -440,9 +426,25 @@ CoC.algorithm["balanced"]=new function(){
                   largeTeams[l].team.heroes, 
                   heroesMap, synergiesMap, weights,
                   teams, options.size));
-                break findcombine;
+                continue tooManyTeams;
               }
         }
+      
+        extras = getRemainingHeroes(teams, heroesMap);
+      
+        //Take the worst team out and add to extras
+        var worst = undefined;
+        for(var i=0; i<teams.list.length; i++)
+          if(teams.list[i].heroes.length < options.size){
+            var value = getTeamValue(teams.list[i].heroes, synergiesMap, weights);
+            if(worst === undefined || value < worst.value)
+              worst={
+                value: value,
+                team: teams.list[i]
+              }
+          }
+        if(worst)
+          removeTeam(teams, worst.team);
       }
         
       extras = getRemainingHeroes(teams, heroesMap);
