@@ -124,6 +124,9 @@ CoC.ui.roster=new function(){
     CoC.ui.roster.empty = heroes.length == 0;
     
     var sortBy = CoC.settings.getValue("roster-sort");
+    var classSortIndex = {};
+    for(var i=0; i<CoC.data.classes.length; i++)
+      classSortIndex[CoC.data.classes[i]] = i;
     //stars > class > name
     if(sortBy === "stars")
       heroes.sort(function(a,b){
@@ -132,7 +135,7 @@ CoC.ui.roster=new function(){
           return value;
           
         var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
-        value = heroA.class.localeCompare(heroB.class);
+        value = classSortIndex[heroA.class] - classSortIndex[heroB.class];
         if(value !== 0)
           return value;
          
@@ -142,7 +145,7 @@ CoC.ui.roster=new function(){
     if(sortBy === "class")
       heroes.sort(function(a,b){
         var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
-        var value = heroA.class.localeCompare(heroB.class);
+        var value = classSortIndex[heroA.class] - classSortIndex[heroB.class];
         if(value !== 0)
           return value;
          
