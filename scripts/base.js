@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "1.003.a"
+  this.version = "1.005.a"
 
   this.data = new function() {};
   this.logic = new function() {};
