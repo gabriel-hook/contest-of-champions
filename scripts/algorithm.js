@@ -821,7 +821,7 @@ CoC.algorithm["balanced"]=new function(){
 CoC.algorithm["bruteforce"]=new function(){
   this.name = "Brute Force";
   this.description = "Extremely slow, will find the best mix of teams possible.";
-  this.canQuest = false;
+  this.canQuest = true;
   
   this.build=function(options){
     var size = options.size;
@@ -895,6 +895,18 @@ CoC.algorithm["bruteforce"]=new function(){
     })
     var maxTeams = Math.floor( options.heroes.length / options.size );
     
+    if(options.single){
+      var best = undefined;
+      for(var i=0; i<teamList.length; i++){
+        if(best === undefined || teamList[i].value > best.value)
+          best = teamList[i];
+      }
+      var array = [];
+      if(best)
+        array.push(best);
+      return postprocess(array, heroMap, false);
+    }
+    
     progressCounter = 0;
     progressMax = partitions(options.heroes.length, size, maxTeams);
     if(options.progress)
@@ -937,7 +949,7 @@ CoC.algorithm["bruteforce"]=new function(){
       return true;
     })
     
-    return postprocess(best.teams, heroMap, size);
+    return postprocess(best.teams, heroMap, options.extras);
   }
   
   function preprocess(list, classWeights){
@@ -974,7 +986,7 @@ CoC.algorithm["bruteforce"]=new function(){
     return heroes;
   }
   
-  function postprocess(teams, heroes, size){
+  function postprocess(teams, heroes, extras){
     var result = {
       teams:[],
       extras:[]
@@ -989,8 +1001,9 @@ CoC.algorithm["bruteforce"]=new function(){
       }
       result.teams.push(team);
     }
-    for(var i in heroes)
-      result.extras.push(heroes[i].data);
+    if(extras)
+      for(var i in heroes)
+        result.extras.push(heroes[i].data);
     return result;
   }
   
