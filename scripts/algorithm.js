@@ -344,7 +344,6 @@ CoC.algorithm["balanced"]=new function(){
           if(!synergies)
             continue;
           var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
-        
           if(heroes.length > options.size && heroes.length > splitBiggest){
             splitIndex = i;
             splitBiggest = heroes.length;
