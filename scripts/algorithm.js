@@ -358,7 +358,7 @@ CoC.algorithm["balanced"]=new function(){
           
           //pull out a group from
           var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, 
-            options.size);
+            Math.ceil(options.size / 2));
           addTeam(teams, result.heroes);
           if(result.extras){
             var synergies = getDistinctSynergies( getSynergies(result.extras, synergiesMap) );
