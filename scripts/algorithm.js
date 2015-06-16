@@ -357,8 +357,7 @@ CoC.algorithm["balanced"]=new function(){
           distinct.splice(splitIndex, 1);
           
           //pull out a group from
-          var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, 
-            Math.ceil(options.size / 2));
+          var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, options.size);
           addTeam(teams, result.heroes);
           if(result.extras){
             var synergies = getDistinctSynergies( getSynergies(result.extras, synergiesMap) );
@@ -581,36 +580,43 @@ CoC.algorithm["balanced"]=new function(){
       heroToMap[synergy.toId].synergies.push(synergy);
       heroToMap[synergy.toId].count++;
     }
-    var lowest = {};
-    for(var i in groupHeroes){
-      var count = heroFromMap[getHeroStarId(groupHeroes[i])].count + heroToMap[groupHeroes[i].id].count;
-      if(lowest.value === undefined || lowest.value > count)
-        lowest={
+    
+    var pivot = {};
+    for(var i=0; i<groupHeroes.length; i++){
+      var value = heroFromMap[getHeroStarId(groupHeroes[i])].count + heroToMap[groupHeroes[i].id].count;
+      if(pivot.value === undefined || value > pivot.value)
+        pivot={
           id:groupHeroes[i].id,
           hero:groupHeroes[i],
-          count:count
+          value:value
         }
     }
     
-    //get all the heroes connected to the least popular hero
-    var synergies = [], synergiesTo = {}, synergiesFrom = {};
+    /*
+    var pivot = (function(){
+      var index = Math.floor( Math.random() * groupHeroes.length );
+      return {
+        id:groupHeroes[index].id,
+        hero:groupHeroes[index]
+      }
+    })();
+    */
+    
+    //get all the heroes connected to our pivot hero
+    var synergies = [];
     for(var s = 0; s <group.synergies.length; s++){
       var synergy = group.synergies[s];
-      if(synergy.toId === lowest.id || synergy.from.id === lowest.id)
+      if(synergy.toId === pivot.id || synergy.from.id === pivot.id)
         synergies.push(synergy);
-      if(synergy.from.id === lowest.id)
-        synergiesTo[synergy.toId] = true;
-      if(synergy.toId === lowest.id)
-        synergiesFrom[synergy.toId] = true;
     }
 
-    //get the least popular partners for the least popular hero
+    //get the least popular partners for the pivot hero
     var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
     
-    //get the best team from our hero!
+    //get the best team from our pivot hero!
     if(heroes.length > size){
-      heroes.splice(heroes.indexOf(lowest.hero), 1)
-      var team = [ lowest.hero ];
+      heroes.splice(heroes.indexOf(pivot.hero), 1)
+      var team = [ pivot.hero ];
       
       while(team.length < size){
         var best = null;
