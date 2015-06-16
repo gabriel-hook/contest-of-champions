@@ -301,11 +301,12 @@
 
 CoC.algorithm["balanced"]=new function(){
   this.name = "Balanced";
-  this.description = "Fast, will find the most teams, but uses no weighting logic.";
+  this.description = "Fast, will find the most teams, but not always a team as good as Greedy finds.";
   this.canQuest = false;
   
   this.build=function(options){
     var synergies, distinct, missing, full;
+    var weights = getWeights();
     var heroesMap = getHeroesMap(options.heroes);
     var synergiesMap = getSynergiesMap(options.heroes);
     var teams = { map:{}, list:[], heroIds:{}, heroCount: 0 };
@@ -356,7 +357,8 @@ CoC.algorithm["balanced"]=new function(){
           distinct.splice(splitIndex, 1);
           
           //pull out a group from
-          var result = splitDistinctGroup(group, heroesMap, teams, options.size);
+          var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, 
+            options.size);
           addTeam(teams, result.heroes);
           if(result.extras){
             var synergies = getDistinctSynergies( getSynergies(result.extras, synergiesMap) );
@@ -386,11 +388,12 @@ CoC.algorithm["balanced"]=new function(){
         }
         return map;
       }
-      extras = getRemainingHeroes(teams, heroesMap);
-      var teamsBySize = getTeamsBySize();
       
       //if we have too many teams, try to condense them
       while(teams.list.length > wanted){
+      
+        extras = getRemainingHeroes(teams, heroesMap);
+        var teamsBySize = getTeamsBySize();
       
         //if we are full, get rid of extras
         var fullTeams = 0
@@ -420,6 +423,7 @@ CoC.algorithm["balanced"]=new function(){
                   break findfit;
                 }
           }
+          
         extras = getRemainingHeroes(teams, heroesMap);
         teamsBySize = getTeamsBySize();
 
@@ -435,30 +439,34 @@ CoC.algorithm["balanced"]=new function(){
                 addTeam(teams, combineTeams(
                   smallTeams[s].team.heroes, 
                   largeTeams[l].team.heroes, 
-                  heroesMap, synergiesMap, teams, options.size));
+                  heroesMap, synergiesMap, weights,
+                  teams, options.size));
                 break findcombine;
               }
         }
-        extras = getRemainingHeroes(teams, heroesMap);
-        teamsBySize = getTeamsBySize();
-      
-        //no perfect fits found
-        var almost = teamsBySize[options.size - 1];
-        for(var i = almost.length - 1; i >= 0 && extras.length; i--){
-          addToTeam(teams, almost[i].team, extras.shift());
-          almost.splice(i, 1);
-        }
-        
-        extras = getRemainingHeroes(teams, heroesMap);
       }
+        
+      extras = getRemainingHeroes(teams, heroesMap);
       
-      //fill the groups with remainders
+      // fill the groups with remainders,
+      // lets see what the best match is for each open spot
       teams.list.sort(function(a,b){
-        return a.heroes.length - b.heroes.length;
-      });
+        return b.heroes.length - a.heroes.length;
+      })
       for(var i=0; i<teams.list.length; i++)
-        while(teams.list[i].heroes.length < options.size && extras.length){
-          addToTeam(teams, teams.list[i], extras.shift());
+        while(teams.list[i].heroes.length < options.size && extras.length > 0){
+          var team = teams.list[i], best = undefined;
+          
+          for(var j=0; j<extras.length; j++){
+            var value = getTeamValue([extras[j]].concat(team.heroes), synergiesMap, weights);
+            if(value > 0 && (best === undefined || value > best.value))
+              best={ index: j, hero: extras[j], value: value };
+          }
+          
+          if(best){
+            addToTeam(teams, team, best.hero);
+            extras = getRemainingHeroes(teams, heroesMap);
+          }
         }
       
       //check if we're done
@@ -468,8 +476,9 @@ CoC.algorithm["balanced"]=new function(){
         if(teams.list[i].heroes.length != options.size)
           missing = true;
       full = (teams.list.length == wanted);
+      var extraSynergies = getSynergies(extras, synergiesMap).length;
       
-    } while(missing || (!full && getSynergies(extras, synergiesMap).length))
+    } while(missing || (!full && extraSynergies))
     
     if(options.progress)
         options.progress(options.heroes.length, options.heroes.length);
@@ -481,13 +490,15 @@ CoC.algorithm["balanced"]=new function(){
   }
   
   //combineTeams
-  function combineTeams(smaller, larger, heroesMap, synergiesMap, teams, size){
+  function combineTeams(smaller, larger, heroesMap, synergiesMap, weights, teams, size){
     var largerSize = size - smaller.length, smallerSize = size - larger.length;
     if(largerSize == smallerSize)
       largerSize = smallerSize = larger.length - 1;
     
-    var largerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(larger, synergiesMap))[0], heroesMap, teams, largerSize).heroes;
-    var smallerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(smaller, synergiesMap))[0], heroesMap, teams, smallerSize).heroes;
+    var largerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(larger, synergiesMap))[0], 
+      heroesMap, synergiesMap, weights, teams, largerSize).heroes;
+    var smallerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(smaller, synergiesMap))[0], 
+      heroesMap, synergiesMap, weights, teams, smallerSize).heroes;
     
     var a = [larger, largerSub];
     var b = [smaller, smallerSub];
@@ -499,9 +510,23 @@ CoC.algorithm["balanced"]=new function(){
         var join = (a[i].length > b[j].length)? [a[i],b[j]]: [b[j],a[i]];
         var team = join[0].concat(join[1]);
         
-        //cull down to size if needed
-        while(team.length > size)
-          team = team.splice(-1, 1);
+        //cull down to size if needed, removing the worst members one at a time
+        var value = getTeamValue(team, synergiesMap, weights);
+        while(team.length > size){
+          var worst = undefined;
+          for(var o=0; o<team.length; o++){
+            var sub = team.slice();
+            sub.splice(o, 1);
+            var v = getTeamValue(sub, synergiesMap, weights);
+            if(worst === undefined || v < worst.value)
+              worst = {
+                index:o,
+                value:v
+              }
+          }
+          if(worst)
+            team.splice(worst.index, 1);
+        }
         
         if(best.count === undefined || (team.length <= size && team.length > best.count)){
           best.team = team;
@@ -518,6 +543,8 @@ CoC.algorithm["balanced"]=new function(){
         leftovers.push(smaller[i]);
       for(var i = 0; i<larger.length; i++)
         leftovers.push(larger[i]);
+        
+        
       while(team.length < size && leftovers.length)
         team.push(leftovers.shift())
       
@@ -527,7 +554,7 @@ CoC.algorithm["balanced"]=new function(){
   }
   
   //splitDistinctGroup
-  function splitDistinctGroup(group, heroesMap, teams, size){
+  function splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, size){
     var heroFromMap = {}, heroToMap = {}, groupHeroes = getHeroesFromSynergies(group.synergies, heroesMap, teams);
     
     //zero out map values
@@ -566,61 +593,51 @@ CoC.algorithm["balanced"]=new function(){
     }
     
     //get all the heroes connected to the least popular hero
-    var synergies = [], synergiesTo = {};
+    var synergies = [], synergiesTo = {}, synergiesFrom = {};
     for(var s = 0; s <group.synergies.length; s++){
       var synergy = group.synergies[s];
       if(synergy.toId === lowest.id || synergy.from.id === lowest.id)
         synergies.push(synergy);
       if(synergy.from.id === lowest.id)
         synergiesTo[synergy.toId] = true;
+      if(synergy.toId === lowest.id)
+        synergiesFrom[synergy.toId] = true;
     }
 
     //get the least popular partners for the least popular hero
-    var heroes = getHeroesFromSynergies(synergies, heroesMap, teams), team = [lowest.hero];
-    heroes.splice(heroes.indexOf(lowest.hero), 1);
+    var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
     
-    //find at least one connection (so we don't just get 3-4 of the same character
-    var find = { };
-    for(var i=0; i<heroes.length; i++){
-      var hero = heroes[i];
-      if(synergiesTo[hero.id]){
-        var count = heroFromMap[getHeroStarId(hero)].count + heroToMap[hero.id].count;
-        if(find.count == undefined || count < find.count){
-          find.count = count;
-          find.hero = heroes[i];
-        }
-      }
-    }
-    if(find.hero){
-      heroes.splice(heroes.indexOf(find.hero), 1);
-      team.push(find.hero);
-    }
-    
-    //fill in the rest
-    while(heroes.length > 0 && team.length < size){
-      find = { };
-      for(var i=0; i<heroes.length; i++){
-        var count = heroFromMap[getHeroStarId(heroes[i])].count + heroToMap[heroes[i].id].count;
-        if(find.count === undefined || count < find.count){
-          find.count = count;
-          find.hero = heroes[i];
-        }
-      }
-      if(find.hero){
-        heroes.splice(heroes.indexOf(find.hero), 1);
-        team.push(find.hero);
-      }
-      else
-        break;
-    }
-    
-    if(team.length == 1)
-      team = [];
-    
-    for(var i=0; i<team.length; i++)
-      groupHeroes.splice(groupHeroes.indexOf(team[i]),1);
+    //get the best team from our hero!
+    if(heroes.length > size){
+      heroes.splice(heroes.indexOf(lowest.hero), 1)
+      var team = [ lowest.hero ];
       
-    return { heroes:team, extras:groupHeroes };
+      while(team.length < size){
+        var best = null;
+        for(var i=0; i<heroes.length; i++){
+          var value = getTeamValue(team.concat([ heroes[i] ]), synergiesMap, weights);
+          if(!best || value > best.value)
+            best = {
+              index: i,
+              value: value,
+              hero: heroes[i]
+            };
+        }
+        if(best){
+          heroes.splice(best.index, 1);
+          team.push(best.hero);
+        }
+      }
+      heroes = team;
+    }
+    
+    if(heroes.length === 1 || getTeamValue(heroes, synergiesMap, weights) === 0)
+      heroes = [];
+    
+    for(var i=0; i<heroes.length; i++)
+      groupHeroes.splice(groupHeroes.indexOf(heroes[i]),1);
+      
+    return { heroes:heroes, extras:groupHeroes };
   }
   
   function getRemainingHeroes(teams, heroesMap){
@@ -681,6 +698,40 @@ CoC.algorithm["balanced"]=new function(){
           synergies.push(synergiesMap.from[fid][toId]);
     }
     return synergies;
+  }
+  
+  function getTeamValue(heroes, synergiesMap, weights){
+    
+    var hvalue = 0;
+    for(var i=0; i<heroes.length; i++){
+      //get my value
+      var heroValue = weights.stars[heroes[i].stars];
+      if(heroes[i].awakened)
+        heroValue = weights.awakened;
+      hvalue += heroValue;
+    }
+      
+    if(hvalue === 0)
+      return 0;
+    
+    var svalue = 0;
+    var synergies = getSynergies(heroes, synergiesMap);
+    for(var i=0 ;i<synergies.length; i++)
+      svalue += synergies[i].value;
+      
+    if(svalue === 0)
+      return 0;
+      
+    var cvalue = 1, classes = {};
+    for(var i=0; i<heroes.length; i++){
+      var c = CoC.data.heroes[heroes[i].id].class
+      classes[c] = (classes[c] || 0) + 1;
+    }
+    for(i in classes)
+      if(classes[i] > 1)
+        cvalue *= weights.classes[classes[i]] || 1;
+
+    return hvalue * svalue * cvalue;
   }
   
   //getHeroStarId
@@ -813,9 +864,20 @@ CoC.algorithm["balanced"]=new function(){
       array.push(teams.list[i].heroes);
     return array;
   }
+  
+  function getWeights(){
+    var i, weights = {
+      stars:{},
+      classes:{}
+    };
+    for(i=2; i<=5; i++)
+      weights.classes[i] = CoC.settings.getDuplicateWeight(i);
+    for(i=0; i<=4; i++)
+      weights.stars[i] = CoC.settings.getStarWeight(i)
+    weights.awakened = CoC.settings.getWeight("awakened");
+    return weights;
+  }
 }
-
-
 
 CoC.algorithm["bruteforce"]=new function(){
   this.name = "Brute Force";
