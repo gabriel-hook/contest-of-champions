@@ -390,13 +390,15 @@ CoC.data.heroes = {
     class:"Mutant",
     synergies:{
       2:[
-        { id:"wolverine", type:"critdamage", amount:15 },
+        { id:"wolverine", type:"critdamage", amount:15 }
       ],
       3:[
         { id:"wolverine", type:"critdamage", amount:20 },
+        { id:"magneto", type:"attack", amount:4 }
       ],
       4:[
         { id:"wolverine", type:"critdamage", amount:25 },
+        { id:"magneto", type:"attack", amount:5 }
       ]
     }
   },
@@ -422,6 +424,17 @@ CoC.data.heroes = {
       ]
     }
   },
+  "magneto":{
+    id:"magneto",
+    name:"Magneto",
+    class:"Mutant",
+    synergies:{
+      3:[
+      ],
+      4:[
+      ]
+    }
+  },
   "storm":{
     id:"storm",
     name:"Storm",
@@ -433,12 +446,14 @@ CoC.data.heroes = {
       3:[
         { id:"magik", type:"armor", amount:6 },
         { id:"cyclops", type:"perfectblock", amount:4 },
-        { id:"blackpanther", type:"powergain", amount:4 }
+        { id:"blackpanther", type:"powergain", amount:4 },
+        { id:"magneto", type:"critrate", amount:6 }
       ],
       4:[
         { id:"magik", type:"armor", amount:7 },
         { id:"cyclops", type:"perfectblock", amount:5 },
-        { id:"blackpanther", type:"powergain", amount:5 }
+        { id:"blackpanther", type:"powergain", amount:5 },
+        { id:"magneto", type:"critrate", amount:7 }
       ]
     }
   },
@@ -453,11 +468,13 @@ CoC.data.heroes = {
       ],
       3:[
         { id:"cyclops", type:"critdamage", amount:20 },
-        { id:"captainamerica", type:"armor", amount:5 }
+        { id:"captainamerica", type:"armor", amount:5 },
+        { id:"magneto", type:"critrate", amount:6 }
       ],
       4:[
         { id:"cyclops", type:"critdamage", amount:25 },
-        { id:"captainamerica", type:"armor", amount:6 }
+        { id:"captainamerica", type:"armor", amount:6 },
+        { id:"magneto", type:"critrate", amount:7 }
       ]
     }
   },
