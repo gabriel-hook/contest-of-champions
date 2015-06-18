@@ -372,17 +372,14 @@ $( document ).on( "pagecreate", "#page-add", function() {
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swipeleft", "#page-roster", function( e ) {
-    if($("#page-roster").find(".ui-popup-active").length)
+    if($("#page-roster").find(".panel").hasClass("ui-panel-open"))
       return;
     $("#page-roster").find("#footer a[href=#page-teams]").click()
   });
   $( document ).on( "swiperight", "#page-roster", function( e ) {
-    if($("#page-roster").find(".ui-popup-active").length)
-      return;
     if($("#page-roster").find(".panel").hasClass("ui-panel-open"))
-      $("#page-roster").find(".panel a[href=#page-add]").click()
-    else
-      $("#page-roster").find("#header a[href=#panel-roster-options]").click()
+      return;
+    $("#page-roster").find("#header a[href=#panel-roster-options]").click()
   });
 });
 
@@ -390,11 +387,12 @@ $( document ).on( "pagecreate", "#page-roster", function() {
 $( document ).on( "pagecreate", "#page-teams", function() {
   $( document ).on( "swipeleft", "#page-teams", function( e ) {
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
-      $("#page-teams").find(".panel a[href=#page-settings-advanced]").click()
-    else
-      $("#page-teams").find("#header a[href=#panel-team-settings]").click()
+      return;
+    $("#page-teams").find("#header a[href=#panel-team-settings]").click()
   });
   $( document ).on( "swiperight", "#page-teams", function( e ) {
+    if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
+      return;
     $("#page-teams").find("#footer a[href=#page-roster]").click()
   });
 });
