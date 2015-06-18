@@ -569,36 +569,35 @@ CoC.algorithm["balanced"]=new function(){
   
   //splitDistinctGroup
   function splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, size){
-    var heroFromMap = {}, heroToMap = {}, groupHeroes = getHeroesFromSynergies(group.synergies, heroesMap, teams);
-    
-    //zero out map values
-    for(var i in groupHeroes){
-      var id = getHeroStarId(groupHeroes[i]);
-      if(!heroFromMap[id])
-        heroFromMap[id]={
+    var heroSynergiesMap = {}, groupHeroes = getHeroesFromSynergies(group.synergies, heroesMap, teams);
+
+    for(var i=0; i<group.synergies.length; i++){
+      var synergy = group.synergies[i];
+      if(heroSynergiesMap[synergy.fromId] === undefined)
+        heroSynergiesMap[synergy.fromId]={
           hero:groupHeroes[i],
           synergies:[],
           count:0
         }
-      if(!heroToMap[groupHeroes[i].id])
-        heroToMap[groupHeroes[i].id] = {
+      heroSynergiesMap[synergy.fromId].synergies.push(synergy);
+      heroSynergiesMap[synergy.fromId].count++;
+      if(heroSynergiesMap[synergy.toId] === undefined)
+        heroSynergiesMap[synergy.toId] = {
           hero:groupHeroes[i],
           synergies:[],
           count:0
         };
-    }
-  
-    for(var s in group.synergies){
-      var synergy = group.synergies[s];
-      heroFromMap[synergy.fromId].synergies.push(synergy);
-      heroFromMap[synergy.fromId].count++;
-      heroToMap[synergy.toId].synergies.push(synergy);
-      heroToMap[synergy.toId].count++;
+      heroSynergiesMap[synergy.toId].synergies.push(synergy);
+      heroSynergiesMap[synergy.toId].count++;
     }
     
     var pivot = {};
     for(var i=0; i<groupHeroes.length; i++){
-      var value = heroFromMap[getHeroStarId(groupHeroes[i])].count + heroToMap[groupHeroes[i].id].count;
+      var value = 0, id = groupHeroes[i].id, fid = getHeroStarId(groupHeroes[i]);
+      if(heroSynergiesMap[fid])
+        value += heroSynergiesMap[fid].count;
+      if(heroSynergiesMap[id])
+        value += heroSynergiesMap[id].count;
       if(pivot.value === undefined || value > pivot.value)
         pivot={
           id:groupHeroes[i].id,
