@@ -13,7 +13,7 @@ onmessage = function (event){
   var roster = event.data.roster;
   var size = event.data.size;
   var weights = event.data.weights;
-  var single = event.data.single;
+  var quest = event.data.quest;
   var extras = event.data.extras;
   var update = event.data.update;
   
@@ -49,7 +49,7 @@ onmessage = function (event){
     heroes:roster, 
     size:size, 
     extras:extras, 
-    single:single, 
+    quest:quest, 
     progress:function(current, max, description){
       var time = (new Date()).getTime();
       if(!description && time-lastTime < update)

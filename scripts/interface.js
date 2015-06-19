@@ -521,11 +521,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
     
   function enableResultOptions(){
-    var algorithm = CoC.settings.getValue("algorithm");
-    if(CoC.algorithm[algorithm] === undefined){
-      algorithm = "balanced";
-    }
-    
+    var algorithm = CoC.settings.getValue("algorithm");    
     var isQuesting = CoC.settings.getValue("quest-group");
     
     var canQuest = true;
@@ -571,7 +567,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var roster = CoC.roster.get();
     
     var algorithm = CoC.settings.getValue("algorithm") || "greedy";
-    var single = CoC.settings.getValue("quest-group")===true;
+    var quest = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
@@ -619,7 +615,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
           algorithm:algorithm,
           roster:roster, 
           size:size, 
-          single:single, 
+          quest:quest, 
           extras:extras,
           weights:CoC.settings.weights, 
           update:250
@@ -632,7 +628,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = CoC.algorithm[algorithm].build({ heroes:roster, size:size, single:single, extras:extras });
+        var result = CoC.algorithm[algorithm].build({ heroes:roster, size:size, quest:quest, extras:extras });
         $("#team-build-progressprogress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(result, size);

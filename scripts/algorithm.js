@@ -17,7 +17,7 @@
     var teams = {}, team, list = [], preselect = [], classWeights = [], progress = null;
     preProcess(options.heroes, list, classWeights);
     
-    if(options.single)
+    if(options.quest)
       for(var i=list.length-1;i>=0;i--)
         if(list[i].data.quest){
           preselect.push(list[i]);
@@ -31,7 +31,7 @@
           var value = 0;
           for(var n = list.length; n > r; n-=r){
             value += factorial(n) / (factorial(r) * factorial(n - r));
-            if(options.single)
+            if(options.quest)
               break;
           }
           return value;
@@ -57,7 +57,7 @@
         team = getTopPartner(list,0,options.size, classWeights, progress);
         if(team){          
           if (team.value){
-            if(!options.single)
+            if(!options.quest)
               team = getSynergyCulledTeam(team, classWeights);
             
             teams[team_index]=team;
@@ -65,7 +65,7 @@
             for(var o in team.heroes)
               list.splice(list.indexOf(team.heroes[o]),1);
               
-            if(options.single)
+            if(options.quest)
               break;
           }
           else break;
@@ -120,7 +120,7 @@
       delete teams.length
     }
       
-    return postProcess(teams, (options.extras && options.single !== true)? list: undefined);
+    return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
   }
   
   function preProcess(heroes, list, classWeights){
@@ -1068,340 +1068,5 @@ CoC.algorithm["shuffle"]=new function(){
       ids.push(team[i].fid)
     ids.sort();
     return ids.join('-');
-  }
-}
-
-CoC.algorithm["bruteforce"]=new function(){
-  this.name = "Brute Force";
-  this.description = "Extremely slow, will find the best mix of teams possible.";
-  this.canQuest = true;
-  
-  this.build=function(options){
-    var size = options.size;
-    var progressCounter, progressMax;
-
-    var teamValues = {}, classWeights = [], heroes = preprocess(options.heroes, classWeights);
-    function getTeamValue(team){
-    
-      var id = getTeamId(team);
-      var result = teamValues[id];
-      if(result === undefined){
-        var heroes = 0, synergies = 0, classes = {};
-        for(var i in team){
-          //get my value
-          heroes += team[i].value;
-          //get my synergies
-          for(var j in team)
-            if(i != j){
-              if(team[i].synergies[team[j].id]){
-                synergies += team[i].synergies[team[j].id].value;
-              }
-            }
-          //get my class dupes
-          classes[team[i].class] = (classes[team[i].class] || 0) + 1;
-        }
-        var classesValue = 1;
-        for(i in classes)
-          if(classes[i] > 1)
-            classesValue *= classWeights[classes[i]] || 1;
-        //result
-        teamValues[id] = result = classesValue * heroes * synergies;
-      }
-      return result;
-    }
-    
-    var heroIds = [], heroMap = {};
-    for(var i in heroes){
-      heroIds.push(heroes[i].fid);
-      heroMap[heroes[i].fid] = heroes[i];
-    }
-    
-    progressCounter = 0;
-    progressMax = combinations(heroIds.length, options.size);
-    if(options.progress)
-      options.progress(progressCounter, progressMax, "Finding all possible teams.");
-    
-    //create all possible hero combinations
-    var teamList = [], teamMap = {};
-    iterateSubsets(heroIds, options.size, function(ids){  
-      progressCounter ++;
-      if(options.progress)
-        options.progress(progressCounter, progressMax);
-        
-      var idMap = {};
-      for(var i in ids)
-        idMap[ids[i]] = true;
-        
-      var team = [], value;
-      for(var i in ids)
-        team.push(heroMap[ids[i]]);
-      value = getTeamValue(team);
-        
-      var result={
-        id: ids.join('-'),
-        ids: idMap,
-        value: value,
-        toString: function(){ return this.id }
-      };
-      teamList.push(result)
-      teamMap[result.id]=result;
-    })
-    var maxTeams = Math.floor( options.heroes.length / options.size );
-    
-    if(options.single){
-      var best = undefined;
-      for(var i=0; i<teamList.length; i++){
-        if(best === undefined || teamList[i].value > best.value)
-          best = teamList[i];
-      }
-      var array = [];
-      if(best)
-        array.push(best);
-      return postprocess(array, heroMap, false);
-    }
-    
-    progressCounter = 0;
-    progressMax = partitions(options.heroes.length, size, maxTeams);
-    if(options.progress)
-      options.progress(progressCounter, progressMax, "Comparing all possible team combinations.");
-
-    var best;
-    //look at all possible team arrangements
-    iterateSubsets(teamList, maxTeams, function(teams){
-      progressCounter++;
-      if(options.progress)
-        options.progress(progressCounter, progressMax);
-    
-      var total = 0, count = 0;
-    
-      for(var i in teams){
-        var team = teams[i];
-        if(team.value > 0)
-          count++;
-        total += team.value;
-      }
-      
-      if(!total)
-        return;
-      
-      if(!best || (best.count <= count && best.total < total)){
-        best = {
-          teams:teams,
-          count:count,
-          total:total
-        } 
-      }
-    },
-    function(current, team){
-      var i, id;
-      for(i in current)
-        if(i !== 'length')
-          for(id in team.ids)
-            if(current[i].ids[id])
-              return false;
-      return true;
-    })
-    
-    return postprocess(best.teams, heroMap, options.extras);
-  }
-  
-  function preprocess(list, classWeights){
-  
-    for(i=2; i<=5; i++)
-      classWeights[i] = CoC.settings.getDuplicateWeight(i);
-  
-    var heroes = [];
-    for(var i in list){
-      var data = list[i];
-      var synergies = {};
-      var hero = CoC.data.heroes[data.id];
-      for(var s in hero.synergies[data.stars]){
-        var synergy = hero.synergies[data.stars][s];
-        synergies[synergy.id]={
-          synergy:synergy,
-          value:CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base
-        }
-      }
-      heroes.push({
-        id:data.id,
-        fid:data.id+"_"+data.stars,
-        synergies:synergies,
-        class:hero.class.toLowerCase(),
-        data:data,
-        value:(function(stars, awakened){
-          var value = CoC.settings.getStarWeight(stars);
-          if(awakened)
-            value *= CoC.settings.getWeight("awakened");
-          return value;
-        })(data.stars, data.awakened)
-      })
-    }
-    return heroes;
-  }
-  
-  function postprocess(teams, heroes, extras){
-    var result = {
-      teams:[],
-      extras:[]
-    };
-    for(var i in teams){
-      var team = [];
-      if(teams[i].value === 0)
-        continue;
-      for(var id in teams[i].ids){
-        team.push(heroes[id].data);
-        delete heroes[id];
-      }
-      result.teams.push(team);
-    }
-    if(extras)
-      for(var i in heroes)
-        result.extras.push(heroes[i].data);
-    return result;
-  }
-  
-  function getTeamId(team){
-    var ids = [];
-    for(var i in team)
-      ids.push(team[i].fid)
-    ids.sort();
-    return ids.join('-');
-  }
-  
-  //factorial(n) / ( factorial(r) ^ k * factorial(k) )
-  // Use math tricks to calc much less
-  function partitions(n, r, k){
-    var value = n / Math.pow(factorial(r), k - 1);
-    for(var i = n - 1; i > r; i--)
-      value = value * i;
-    return value / factorial(k);
-  }
-  
-  //factorial(n) / factorial(n - r)
-  // Use math tricks to calc much less
-  function permutations(n, r){
-    var value = n;
-    for(var i = n - 1; i > n - r; i--)
-      value *= i;
-    return value;
-  }
-  
-  //factorial(n) / (factorial(r) * factorial(n - r))
-  // Use math tricks to calc much less
-  function combinations(n, r){
-    var value = n / factorial(r);
-    for(var i = n - 1; i > n - r; i--)
-      value *= i;
-    return value;
-  }
-  
-  function factorial(n){
-    if(factorial.cache === undefined)
-      factorial.cache = [ 1, 1 ];
-    if(n >= factorial.cache.length)
-      for(var i=factorial.cache.length; i <= n; i++)
-        factorial.cache.push( i * factorial.cache[i - 1] );
-    return factorial.cache[n];
-  }
-  
-  function iterateSubsets(array, size, callback, filter) {
-    var stack = [{
-      stage:0,
-      index:0,
-      current:{ length: 0 }
-    }];
-    while(stack.length > 0){
-      var snapshot = stack.pop();
-      switch(snapshot.stage){
-      case 0:
-      
-        if (snapshot.current.length == size) {
-          var keys = [];
-          for(var i in snapshot.current)
-            if(i !== "length")
-              keys.push(snapshot.current[i]);
-          callback(keys);
-        }
-        else{
-          snapshot.stage = 1;
-          stack.push(snapshot);
-        }
-        
-        continue;
-        break;
-      case 1:
-      
-        if (snapshot.index < array.length){
-          snapshot.stage = 2;
-          stack.push(snapshot);
-        }
-        
-        continue;
-        break;
-      case 2: 
-      
-        var value = array[snapshot.index], key = value.toString();
-        if(!filter || filter(snapshot.current, value)){
-          var current = {};
-          for(var i in snapshot.current)
-            current[i] = snapshot.current[i];
-          current[key] = value;
-          current.length++;
-          stack.push({
-            stage:0,
-            index:snapshot.index + 1,
-            current:current
-          });
-        }
-        snapshot.stage = 3;
-        stack.push(snapshot);
-        
-        continue;
-        break;
-      case 3:
-      
-        stack.push({
-          stage:0,
-          index:snapshot.index + 1,
-          current:snapshot.current
-        });
-        
-        continue;
-        break;
-      }
-    }
-    
-  /*
-
-    function subset(index, current) {
-      //successful stop clause  
-      if (current.length == size) {
-        var keys = [];
-        for(var i in current)
-          if(i !== "length")
-            keys.push(current[i]);
-        callback(keys);
-        return;
-      }
-
-      //unsuccessful stop clause
-      if (index == array.length) 
-        return;
-        
-      var value = array[index], key = value.toString();
-      if(!filter || filter(current, value)){
-        current[key] = value;
-        current.length++;
-        //"guess" value is in the subset
-        subset(index+1, current);
-        
-        delete current[key];
-        current.length--;
-      }
-      //"guess" value is not in the subset
-      subset(index+1, current);
-    }
-    subset(0, { length: 0 });
-*/
   }
 }
