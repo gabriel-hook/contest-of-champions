@@ -65,12 +65,19 @@ CoC.ui.teams=new function(){
     element.text("");
     if(result.teams.length){
     
+      //show results message
       var synergyCount = 0;
       for(var i=0; i<result.teams.length; i++)
-        synergyCount += CoC.logic.synergy.count(result.teams[i])
-      element.append($('<div>', { class:"message" }).text(synergyCount+" Synergies Found."));
-    
-    
+        synergyCount += CoC.logic.synergy.count(result.teams[i]) 
+      function countWithPluralize(count, single, plural){
+        return count+" "+((count == 0 || count > 1)? plural: single);
+      }
+      element.append($('<div>', { class:"message" }).text(
+        countWithPluralize(result.teams.length, "Team", "Teams")+
+        " found with "+
+        countWithPluralize(synergyCount, "Synergy", "Synergies")
+      ));
+   
       for(var i=0; i<result.teams.length; i++){
 
         var container = $('<div>').addClass('team').addClass(
@@ -79,11 +86,11 @@ CoC.ui.teams=new function(){
           (size==5)? 'five': 
           'unknown');
       
+        var synergies = CoC.logic.synergy.get(result.teams[i])
+        
         for(var j=0; j<result.teams[i].length; j++)
           container.append(CoC.ui.hero(result.teams[i][j]));
         container.append($('<br>',{style:'clear:both'}));
-        
-        var synergies = CoC.logic.synergy.get(result.teams[i])
         
         var synergieselement = $('<div>', { class : "synergies" })
         for(var o in synergies){
