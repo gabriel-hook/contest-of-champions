@@ -1,7 +1,7 @@
 ﻿CoC.algorithm["greedy"]=new function(){
   
   this.name = "Greedy";
-  this.description = "Slow, but finds the strongest possible teams first.";
+  this.description = "Slow & Consistent. Finds the best possible team and then does the same with remainders.";
   this.canQuest = true;
   
   function factorial(n){
@@ -299,9 +299,179 @@
   }
 };
 
+CoC.algorithm["shuffle"]=new function(){
+  this.name = "Shuffle";
+  this.description = "Fast & Varied. Does iterated scans and swaps, balancing teams as best as possible.";
+  this.canQuest = false;
+  
+  this.build=function(options){
+    var size = parseInt(options.size), maxTeams = Math.floor(options.heroes.length/size), forceExtras = maxTeams * size;
+    var heroMap = {}, synergyMap = {}, classWeights = {}, teamValues = {};
+    preprocess(options.heroes, heroMap, synergyMap, classWeights);
+  
+    var array = [];
+    for(var i in heroMap)
+      array.push(heroMap[i]);
+      
+    var swaps;
+      
+    function checkValueAndSwap(a, b){
+      //get team values and counts with swaps
+      var v1a = getTeamValue(a), v1b = getTeamValue(b),
+        v2a = getTeamValue(a, b), v2b = getTeamValue(b, a), 
+        count1 = (v1a > 0? 1: 0) + (v1b > 0? 1: 0),
+        count2 = (v2a > 0? 1: 0) + (v2b > 0? 1: 0);
+      
+      //dont accept less teams
+      if(count1 > count2)
+        return;
+        
+      //more teams, or more value
+      if(count2 > count1 || (v2a + v2b > v1a + v1b)){
+        var tmp = array[a];
+        array[a] = array[b];
+        array[b] = tmp;
+        swaps++;
+      }
+    }
+  
+    function getTeamValue(index, swap){
+      if(index >= forceExtras)
+        return 0;
+    
+      var start = Math.floor(index/size) * size, team = array.slice(start, start + size);
+      if(swap !== undefined)
+        team[index % size] = array[swap];
+        
+      var tid = getTeamId(team), value = teamValues[tid];
+      if(value === undefined){
+        var hvalue = 0, svalue = 0, classes = {};
+        for(var i=0; i<team.length; i++){
+          var hero = team[i];
+          //get my value
+          hvalue += hero.value;
+          //get my synergies
+          var synergies = synergyMap[hero.fid];
+          for(var j=0; j<team.length; j++){
+            var synergy = synergies[team[j].id];
+            if(synergy)
+              svalue += synergy.value;
+          }
+          //get my class dupes
+          classes[hero.class] = (classes[hero.class] || 0) + 1;
+        }
+        var cvalue = 1;
+        for(i in classes)
+          if(classes[i] > 1)
+            cvalue *= classWeights[classes[i]] || 1;
+        //combine them
+        teamValues[tid] = value = hvalue * svalue * cvalue;
+      }
+      return value;
+    }
+    
+    array.sort(function(){ return Math.random() > 0.5; });
+    
+    var progressMax = 128;
+    for(var progressCounter=0; progressCounter<progressMax; progressCounter++){
+      if(options.progress)
+        options.progress(progressCounter, progressMax);
+        
+      swaps = 0;
+      
+      for(var i=0; i<forceExtras; i++)
+        for(var j=(Math.floor(i/size)+1)*size; j<array.length; j++)
+          checkValueAndSwap(i, j);
+          
+      if(swaps===0){
+        console.log("Finished early at "+progressCounter+" of "+progressMax);
+        break;
+      }
+    }
+    if(options.progress)
+      options.progress(progressMax, progressMax);
+  
+    return postprocess(array, size, options.extras, function(i){ 
+      return getTeamValue(i);
+    });
+  }
+  
+  function preprocess(heroes, heroMap, synergyMap, classWeights){
+    for(i=2; i<=5; i++)
+      classWeights[i] = CoC.settings.getDuplicateWeight(i);
+  
+    for(var i=0, data, fid, hero; i<heroes.length; i++){
+      data = heroes[i];
+      fid = getHeroStarId(data);
+      hero = CoC.data.heroes[data.id];
+      
+      //add hero
+      heroMap[fid]={
+        id:data.id,
+        fid:fid,
+        class:hero.class.toLowerCase(),
+        value:(function(stars, awakened){
+          var value = CoC.settings.getStarWeight(stars);
+          if(awakened)
+            value *= CoC.settings.getWeight("awakened");
+          return value;
+        })(data.stars, data.awakened),
+        data:data
+      }
+      
+      //add all synergies
+      synergyMap[fid] = {};
+      for(var s=0;s < hero.synergies[data.stars].length; s++){
+        var synergy = hero.synergies[data.stars][s];
+        synergyMap[fid][synergy.id]={
+          synergy:synergy,
+          value:CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base
+        }
+      }
+    }
+  }
+  
+  function postprocess(array, size, extras, getValue){
+    var result = { teams:[], extras:[] }, teams = [];
+    for(var i=0; i<array.length; i+=size){
+      var value = getValue(i);
+      if(value > 0){
+        var team = [];
+        for(var j=0; j<size; j++)
+          team.push(array[i+j].data);
+        teams.push({ team:team, value:value });
+      }
+      else if(extras)
+        for(var j=0; j<size && i+j<array.length; j++)
+          result.extras.push(array[i+j].data);
+    }
+    
+    //best teams will be first
+    teams.sort(function(a,b){ return b.value-a.value; });
+    for(var i=0; i<teams.length; i++)
+      result.teams.push(teams[i].team);
+    
+    return result;
+  }
+
+  //getHeroStarId
+  function getHeroStarId(data){
+    return [data.id, data.stars].join('-');
+  }
+  
+  //getTeamId
+  function getTeamId(team){
+    var ids = [];
+    for(var i in team)
+      ids.push(team[i].fid)
+    ids.sort();
+    return ids.join('-');
+  }
+}
+
 CoC.algorithm["balanced"]=new function(){
   this.name = "Balanced";
-  this.description = "Fast, will find the most teams, but not always a team as good as Greedy finds.";
+  this.description = "Fast & Consistent. Gets available synergy connections and then splits distinct groups into teams.";
   this.canQuest = false;
   
   this.build=function(options){
@@ -898,175 +1068,5 @@ CoC.algorithm["balanced"]=new function(){
       weights.stars[i] = CoC.settings.getStarWeight(i)
     weights.awakened = CoC.settings.getWeight("awakened");
     return weights;
-  }
-}
-
-CoC.algorithm["shuffle"]=new function(){
-  this.name = "Shuffle";
-  this.description = "This will spread out teams for the maximum amount of good teams. Results will vary per build.";
-  this.canQuest = false;
-  
-  this.build=function(options){
-    var size = parseInt(options.size), maxTeams = Math.floor(options.heroes.length/size), forceExtras = maxTeams * size;
-    var heroMap = {}, synergyMap = {}, classWeights = {}, teamValues = {};
-    preprocess(options.heroes, heroMap, synergyMap, classWeights);
-  
-    var array = [];
-    for(var i in heroMap)
-      array.push(heroMap[i]);
-      
-    var swaps;
-      
-    function checkValueAndSwap(a, b){
-      //get team values and counts with swaps
-      var v1a = getTeamValue(a), v1b = getTeamValue(b),
-        v2a = getTeamValue(a, b), v2b = getTeamValue(b, a), 
-        count1 = (v1a > 0? 1: 0) + (v1b > 0? 1: 0),
-        count2 = (v2a > 0? 1: 0) + (v2b > 0? 1: 0);
-      
-      //dont accept less teams
-      if(count1 > count2)
-        return;
-        
-      //more teams, or more value
-      if(count2 > count1 || (v2a + v2b > v1a + v1b)){
-        var tmp = array[a];
-        array[a] = array[b];
-        array[b] = tmp;
-        swaps++;
-      }
-    }
-  
-    function getTeamValue(index, swap){
-      if(index >= forceExtras)
-        return 0;
-    
-      var start = Math.floor(index/size) * size, team = array.slice(start, start + size);
-      if(swap !== undefined)
-        team[index % size] = array[swap];
-        
-      var tid = getTeamId(team), value = teamValues[tid];
-      if(value === undefined){
-        var hvalue = 0, svalue = 0, classes = {};
-        for(var i=0; i<team.length; i++){
-          var hero = team[i];
-          //get my value
-          hvalue += hero.value;
-          //get my synergies
-          var synergies = synergyMap[hero.fid];
-          for(var j=0; j<team.length; j++){
-            var synergy = synergies[team[j].id];
-            if(synergy)
-              svalue += synergy.value;
-          }
-          //get my class dupes
-          classes[hero.class] = (classes[hero.class] || 0) + 1;
-        }
-        var cvalue = 1;
-        for(i in classes)
-          if(classes[i] > 1)
-            cvalue *= classWeights[classes[i]] || 1;
-        //combine them
-        teamValues[tid] = value = hvalue * svalue * cvalue;
-      }
-      return value;
-    }
-    
-    array.sort(function(){ return Math.random() > 0.5; });
-    
-    var progressMax = 128;
-    for(var progressCounter=0; progressCounter<progressMax; progressCounter++){
-      if(options.progress)
-        options.progress(progressCounter, progressMax);
-        
-      swaps = 0;
-      
-      for(var i=0; i<forceExtras; i++)
-        for(var j=(Math.floor(i/size)+1)*size; j<array.length; j++)
-          checkValueAndSwap(i, j);
-          
-      if(swaps===0){
-        console.log("Finished early at "+progressCounter+" of "+progressMax);
-        break;
-      }
-    }
-    if(options.progress)
-      options.progress(progressMax, progressMax);
-  
-    return postprocess(array, size, options.extras, function(i){ 
-      return getTeamValue(i);
-    });
-  }
-  
-  function preprocess(heroes, heroMap, synergyMap, classWeights){
-    for(i=2; i<=5; i++)
-      classWeights[i] = CoC.settings.getDuplicateWeight(i);
-  
-    for(var i=0, data, fid, hero; i<heroes.length; i++){
-      data = heroes[i];
-      fid = getHeroStarId(data);
-      hero = CoC.data.heroes[data.id];
-      
-      //add hero
-      heroMap[fid]={
-        id:data.id,
-        fid:fid,
-        class:hero.class.toLowerCase(),
-        value:(function(stars, awakened){
-          var value = CoC.settings.getStarWeight(stars);
-          if(awakened)
-            value *= CoC.settings.getWeight("awakened");
-          return value;
-        })(data.stars, data.awakened),
-        data:data
-      }
-      
-      //add all synergies
-      synergyMap[fid] = {};
-      for(var s=0;s < hero.synergies[data.stars].length; s++){
-        var synergy = hero.synergies[data.stars][s];
-        synergyMap[fid][synergy.id]={
-          synergy:synergy,
-          value:CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base
-        }
-      }
-    }
-  }
-  
-  function postprocess(array, size, extras, getValue){
-    var result = { teams:[], extras:[] }, teams = [];
-    for(var i=0; i<array.length; i+=size){
-      var value = getValue(i);
-      if(value > 0){
-        var team = [];
-        for(var j=0; j<size; j++)
-          team.push(array[i+j].data);
-        teams.push({ team:team, value:value });
-      }
-      else if(extras)
-        for(var j=0; j<size && i+j<array.length; j++)
-          result.extras.push(array[i+j].data);
-    }
-    
-    //best teams will be first
-    teams.sort(function(a,b){ return b.value-a.value; });
-    for(var i=0; i<teams.length; i++)
-      result.teams.push(teams[i].team);
-    
-    return result;
-  }
-
-  //getHeroStarId
-  function getHeroStarId(data){
-    return [data.id, data.stars].join('-');
-  }
-  
-  //getTeamId
-  function getTeamId(team){
-    var ids = [];
-    for(var i in team)
-      ids.push(team[i].fid)
-    ids.sort();
-    return ids.join('-');
   }
 }
