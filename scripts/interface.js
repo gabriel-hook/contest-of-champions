@@ -521,7 +521,11 @@ $("#page-teams").on( "pagebeforeshow", function() {
   teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
     
   function enableResultOptions(){
-    var algorithm = CoC.settings.getValue("algorithm") || "greedy";
+    var algorithm = CoC.settings.getValue("algorithm");
+    if(CoC.algorithm[algorithm] === undefined){
+      algorithm = "balanced";
+    }
+    
     var isQuesting = CoC.settings.getValue("quest-group");
     
     var canQuest = true;
