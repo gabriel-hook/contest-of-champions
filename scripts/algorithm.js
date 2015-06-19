@@ -503,8 +503,8 @@ CoC.algorithm["shuffle"]=new function(){
   }
 }
 
-CoC.algorithm["balanced"]=new function(){
-  this.name = "Balanced";
+CoC.algorithm["distinct"]=new function(){
+  this.name = "Distinct";
   this.description = "Fast & Consistent. Gets available synergy connections and then splits distinct groups into teams.";
   this.canQuest = false;
   
