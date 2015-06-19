@@ -430,8 +430,14 @@ CoC.data.heroes = {
     class:"Mutant",
     synergies:{
       3:[
+        { id:"wolverine", type:"critrate", amount:6 },
+        { id:"cyclops", type:"block", amount:15 },
+        { id:"storm", type:"critdamage", amount:20 }
       ],
       4:[
+        { id:"wolverine", type:"critrate", amount:7 },
+        { id:"cyclops", type:"block", amount:20 },
+        { id:"storm", type:"critdamage", amount:25 }
       ]
     }
   },
@@ -446,8 +452,7 @@ CoC.data.heroes = {
       3:[
         { id:"magik", type:"armor", amount:6 },
         { id:"cyclops", type:"perfectblock", amount:4 },
-        { id:"blackpanther", type:"powergain", amount:4 },
-        { id:"magneto", type:"critrate", amount:6 }
+        { id:"blackpanther", type:"powergain", amount:4 }
       ],
       4:[
         { id:"magik", type:"armor", amount:7 },
