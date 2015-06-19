@@ -53,8 +53,6 @@
 
 CoC.logic.synergy=new function(){
 
-  var characterSynergies = {1:{},2:{},3:{},4:{}};
-  
   this.get=function(list){
     var map = {}, i, j, synergies, s;
     for(i=0;i<list.length;i++)
