@@ -35,7 +35,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "roster-filter-science":true,
   "roster-filter-mystic":true,  
 //build settings 
-  "algorithm":"greedy",
+  "algorithm":"shuffle",
   "size":3,
   "include-4":true,
   "include-3":true,
