@@ -470,7 +470,7 @@ CoC.algorithm["shuffle"]=new function(){
           
         //sort so same teams don't shuffle around
         team.sort(function(a,b){
-          return a.id.localeCompare(b.id);
+          return getHeroStarId(a).localeCompare(getHeroStarId(b));
         });
           
         teams.push({ team:team, value:value });
