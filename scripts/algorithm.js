@@ -324,7 +324,7 @@ CoC.algorithm["shuffle"]=new function(){
       
       //dont accept less teams
       if(count1 > count2)
-        return;
+        return v1a;
         
       //more teams, or more value
       if(count2 > count1 || (v2a + v2b > v1a + v1b)){
@@ -333,6 +333,8 @@ CoC.algorithm["shuffle"]=new function(){
         array[b] = tmp;
         swaps++;
       }
+      
+      return v1a;
     }
   
     function getTeamValue(index, swap){
@@ -372,19 +374,45 @@ CoC.algorithm["shuffle"]=new function(){
     
     array.sort(function(){ return Math.random() > 0.5; });
     
-    var progressMax = 128;
+    var progressMax = 32, didExtrasShuffle = false;
     for(var progressCounter=0; progressCounter<progressMax; progressCounter++){
       if(options.progress)
         options.progress(progressCounter, progressMax);
         
       swaps = 0;
       
-      for(var i=0; i<forceExtras; i++)
-        for(var j=(Math.floor(i/size)+1)*size; j<array.length; j++)
-          checkValueAndSwap(i, j);
-          
-      if(swaps===0){
-        console.log("Finished early at "+progressCounter+" of "+progressMax);
+      var allFull = true;
+      for(var i=0; i<forceExtras; i++){
+        var has = false;
+        for(var j=(Math.floor(i/size)+1)*size; j<array.length; j++){
+          if(checkValueAndSwap(i, j) > 0)
+            has = true;
+        }
+        if(!has)
+          allFull = false;
+      }
+  
+      //exit if we have nothing left to mess with
+      if(swaps === 0){
+      
+        //stuff at the end can be ignored, lets move to empty team
+        if(!didExtrasShuffle && !allFull){
+          var empty = -1;
+          for(var i=0; i<forceExtras; i+=size)
+            if(checkValueAndSwap(i) === 0){
+              empty = i;
+              break;
+            } 
+          if(empty !== -1){
+            for(var i=0, tmp; i<size && forceExtras+i<array.length; i++){
+              tmp = array[empty+i];
+              array[empty+i] = array[forceExtras+i];
+              array[forceExtras+i] = tmp;
+            }
+            didExtrasShuffle = true;
+            continue;
+          }
+        }
         break;
       }
     }
@@ -439,6 +467,12 @@ CoC.algorithm["shuffle"]=new function(){
         var team = [];
         for(var j=0; j<size; j++)
           team.push(array[i+j].data);
+          
+        //sort so same teams don't shuffle around
+        team.sort(function(a,b){
+          return a.id.localeCompare(b.id);
+        });
+          
         teams.push({ team:team, value:value });
       }
       else if(extras)
