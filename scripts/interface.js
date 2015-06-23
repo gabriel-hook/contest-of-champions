@@ -587,7 +587,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
       try{
         if(CoC.ui.teams.worker !== null)
           CoC.ui.teams.worker.terminate();
-        CoC.ui.teams.worker = new Worker('scripts/worker-team.js');
+        CoC.ui.teams.worker = new Worker('scripts/worker.js');
         CoC.ui.teams.worker.onmessage=function(event){
           if(event.data.type === "progress"){
             var current = event.data.current;
