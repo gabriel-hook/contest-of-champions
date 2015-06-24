@@ -56,7 +56,7 @@ html, body, p, span, div {
 }
 
 #roster .hero .portrait,
-#add-heroes .hero .portrait{
+#add-champions .hero .portrait{
   cursor:pointer;
 }
 
@@ -136,11 +136,11 @@ html, body, p, span, div {
 
 #roster .container.selected,
 #roster .hero:focus .container,
-#add-heroes .hero:focus .container,
+#add-champions .hero:focus .container,
 #roster .hero .container:active,
 #roster .hero .container:hover,
-#add-heroes .hero .container:active,
-#add-heroes .hero .container:hover{
+#add-champions .hero .container:active,
+#add-champions .hero .container:hover{
   padding:5px;
 }
 
