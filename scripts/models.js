@@ -13,10 +13,6 @@ CoC.model.Champion = Backbone.Model.extend({
     quest: false
   },
   
-  initialize: function(){
-  //  this.bind("change", this.save);
-  },
-  
   portrait:function(){
     return 'images/champions/portrait_'+this.get('uid')+'.png'
   },

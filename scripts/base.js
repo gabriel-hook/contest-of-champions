@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "1.007.a"
+  this.version = "1.008.a";
 
   this.data = new function() {};
   this.logic = new function() {};
@@ -232,38 +232,5 @@ var CoC=new function(){
     }
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+console.log("Contest of Champions - Roster Manager v"+CoC.version);

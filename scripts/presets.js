@@ -16,7 +16,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "block":1,
   "armor":1,
   "health":1,
-
+  
   "duplicates-2":0.8,
   "duplicates-3":0.4,
   "duplicates-4":0.2,
