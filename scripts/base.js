@@ -7,6 +7,8 @@ var CoC=new function(){
   this.logic = new function() {};
   this.ui = new function() {};
   this.algorithm = new function() {};
+  this.model = new function() {};
+  this.view = new function() {};
   
   this.reset=function(){
     localStorage.clear();
@@ -161,89 +163,42 @@ var CoC=new function(){
     this.always=function(){ return true; }
   } 
   
+  
   /*********
     ROSTER
   *********/
   this.roster = new function() {};
   
-  this.roster.add=function(hero){
-    if(hero === undefined || hero.id === undefined || hero.stars === undefined){
-      console.error(hero);
-      throw "Cannot add bad object to roster";
-    }
-    CoC.roster.stars[hero.stars][hero.id]=hero;
-    CoC.roster.save();
+  this.roster.load = function(){
+  
+    var Roster = Backbone.Collection.extend({
+      model: CoC.model.Champion,
+      localStorage: new Backbone.LocalStorage("coc-roster")
+    });
+    CoC.data.roster = new Roster();
+    CoC.data.roster.fetch();
   }
   
-  this.roster.remove=function(id,stars){
-    delete CoC.roster.stars[stars][id];
-    CoC.roster.save();
-  }
+  this.roster.clear = function(){
   
-  this.roster.get=function(options){
+    while(CoC.data.roster.length > 0)
+      CoC.data.roster.first().destroy();
   
-    if(typeof options === "string"){
-      var id = options.split('_');
-      return (id.length == 2)? CoC.roster.stars[id[1]][id[0]]: null;
-    }
-  
-    var array=[], stars = {}, classes = {};
-    if(options && options.filter === false){
-      for(var s=4;s>=1;s--)
-        stars[s] = true;
-      for(var i=0; i<CoC.data.classes.length;i++)
-        classes[CoC.data.classes[i]] = true;
-    }
-    else{
-      for(var s=4;s>=1;s--)
-        stars[s] = (CoC.settings.getValue("roster-filter-stars-"+s) === true)
-      for(var i=0; i<CoC.data.classes.length;i++)
-        classes[CoC.data.classes[i]] = (CoC.settings.getValue("roster-filter-"+CoC.data.classes[i].toLowerCase()) === true);
-      if(options && options.stars)
-        stars = options.stars;
-      if(options && options.classes)
-        classes = options.classes; 
-    }
-    
-    for(var s=4;s>=1;s--)
-      if(stars[s])
-        for(var o in CoC.data.heroes){
-          var hero = CoC.data.heroes[o];
-          if(CoC.roster.stars[s][hero.id] && classes[hero.class])
-            array.push(CoC.roster.stars[s][hero.id]);       
-        }
-    return array;
-  }
-  
-  this.roster.size=function(){
-    var count = 0;
-    for(var s=4;s>=1;s--)
-      if(CoC.roster.stars[s])
-        for(var i in CoC.roster.stars[s])
-          count++;
-    return count;
-  }
-  
-  this.roster.clear=function(){
-    for(var i=1;i<=4; i++)
-      CoC.roster.stars[i]={}
-    CoC.roster.save();
   }
   
   this.roster.csv=function(string){
     if(string === undefined){
-      var roster = CoC.roster.get({
-        filter:false
-      })
-      var csv = roster.map(function(value){
-        return [
-          JSON.stringify(value.id),
-          value.stars,
-          value.rank,
-          value.level,
-          value.awakened
-        ].join(',');
-      }).join('\n').replace(/(^\[)|(\]$)/mg, '');
+      var array = []
+      CoC.data.roster.each(function(champion){
+        array.push([
+          JSON.stringify(champion.get("uid")),
+          champion.get("stars"),
+          champion.get("rank"),
+          champion.get("level"),
+          champion.get("awakened")
+        ].join(','));
+      });
+      var csv = array.join('\n').replace(/(^\[)|(\]$)/mg, '');
       return csv;
     }
     else{
@@ -252,29 +207,30 @@ var CoC=new function(){
         var values = lines[i].split(",");
         if(values.length != 5)
           throw "Invalid roster CSV";
-        CoC.roster.add({
-          id:JSON.parse(values[0]),
-          stars:JSON.parse(values[1]),
-          rank:JSON.parse(values[2]),
-          level:JSON.parse(values[3]),
-          awakened:JSON.parse(values[4])
-        });
+          
+        var uid = JSON.parse(values[0]);
+        var stars = JSON.parse(values[1]);
+        var rank = JSON.parse(values[2]);
+        var level = JSON.parse(values[3]);
+        var awakened = JSON.parse(values[4]);
+          
+        var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+        if(champion === undefined){
+          champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+          CoC.data.roster.add(champion);
+        }
+        if(champion === undefined){
+          console.error("Champion not found \""+ uid + "\"");
+          continue;
+        }
+          
+        champion.set("rank", rank);
+        champion.set("level", level);
+        champion.set("awakened", awakened);
+        champion.save();
       }
     }
   }
-  
-  this.roster.save=function(){
-    CoC.settings.saveObjectToLocalStorage("oneStarHeroes", CoC.roster.stars[1]);
-    CoC.settings.saveObjectToLocalStorage("twoStarHeroes", CoC.roster.stars[2]);
-    CoC.settings.saveObjectToLocalStorage("threeStarHeroes", CoC.roster.stars[3]);
-    CoC.settings.saveObjectToLocalStorage("fourStarHeroes", CoC.roster.stars[4]);
-  }
-    
-  this.roster.stars=[]
-  this.roster.stars[1]=this.settings.loadObjectFromLocalStorage("oneStarHeroes");
-  this.roster.stars[2]=this.settings.loadObjectFromLocalStorage("twoStarHeroes");
-  this.roster.stars[3]=this.settings.loadObjectFromLocalStorage("threeStarHeroes");
-  this.roster.stars[4]=this.settings.loadObjectFromLocalStorage("fourStarHeroes");
 };
 
 
