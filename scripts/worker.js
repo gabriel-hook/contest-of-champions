@@ -1,16 +1,19 @@
 ﻿var CoC=new function(){
-  this.logic={}
   this.data={}
+  this.model={}
   this.settings={}
   this.algorithm={}
 };
-importScripts('logic.js');
-importScripts('algorithm.js');
-importScripts('data.js');
+
+//load backbone and underscore
+importScripts('underscore-min.js', 'backbone-min.js');
+
+//load models, data and algorithms
+importScripts('models.js', 'data.js', 'algorithm.js');
 
 onmessage = function (event){
   var algorithm = event.data.algorithm;
-  var roster = event.data.roster;
+  var rosterJSON = event.data.roster;
   var size = event.data.size;
   var weights = event.data.weights;
   var quest = event.data.quest;
@@ -45,8 +48,12 @@ onmessage = function (event){
     return;
   }
   
+  var roster = [];
+  for(var i=0; i<rosterJSON.length; i++)
+    roster.push(new CoC.model.Champion( rosterJSON[i] ));
+  
   var result = CoC.algorithm[algorithm].build({ 
-    heroes:roster, 
+    champions:roster, 
     size:size, 
     extras:extras, 
     quest:quest, 
@@ -62,6 +69,7 @@ onmessage = function (event){
         description:description        
       });
     }  
-  });  
+  });
+
   postMessage({ type:"complete", result:result });
 };
