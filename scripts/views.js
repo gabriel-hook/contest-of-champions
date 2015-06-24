@@ -165,6 +165,8 @@ CoC.view.TeamView = Backbone.View.extend({
   
   teams:function(teams){
   
+    var synergyCount = 0;
+  
     this._teams = [];
     for(var i=0; i<teams.length; i++){
       var champions = teams[i], synergies = {}, effects = [];
@@ -173,6 +175,7 @@ CoC.view.TeamView = Backbone.View.extend({
           if(a !== b){
             var synergy = CoC.data.synergies.findWhere({ fromId:champions[a].get("uid"), fromStars:champions[a].get("stars"), toId:champions[b].get("uid") })
             if(synergy !== undefined){
+              synergyCount++;
               var effect = synergies[synergy.get("effectId")];
               if(effect === undefined){
                 synergies[synergy.get("effectId")]={
@@ -193,6 +196,12 @@ CoC.view.TeamView = Backbone.View.extend({
       this._teams.push({ champions:champions, effects:effects });
     }
     
+    this._message = "Found "+this._teams.length+" "+(this._teams.length === 1?"team":"teams");
+    if(synergyCount > 0)
+      this._message += " with "+synergyCount+" synergies.";
+    else
+      this._message += ".";
+    
   },
   
   extras:function(extras){
@@ -201,6 +210,7 @@ CoC.view.TeamView = Backbone.View.extend({
   
   render: function(){
     this.$el.html(this.template({
+      message:this._message,
       size:this._size,
       teams:this._teams,
       extras:this._extras,

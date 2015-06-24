@@ -518,7 +518,7 @@
             <div class="quest"></div>
           <% } %>
           <div class="title">
-            <span class="name"><%= name %></span>
+            <span class="name"><%- name %></span>
           </div>
           <div class="stars">
             <% for( var i=0; i<stars; i++){ %>
@@ -531,6 +531,8 @@
     </script>
 
     <script id="teamsTemplate" type="text/template">
+    
+      <div class="message"><%- message %></div>
       
       <% _(teams).each(function(team){ %>
         <div class="team <%= (size==3)? "three": (size==4)? "four": (size==5)? "five": "unknown" %>">
@@ -542,7 +544,7 @@
             <% _(team.effects).each(function(effect){ %>
               <div class="synergy">
                 <img src="<%= effect.get("image") %>">
-                <span><%= effect.get("name") %> +<%= effect.get("amount") %> %</span>
+                <span><%- effect.get("name") %> +<%- effect.get("amount") %> %</span>
               </div>
             <% }) %>
           </div>
