@@ -164,6 +164,12 @@ CoC.view.TeamView = Backbone.View.extend({
   },
   
   teams:function(teams){
+    
+    if(teams === undefined || teams.length === 0){
+      this._teams = undefined;
+      this._message = "Found 0 teams.";
+      return;
+    }
   
     var synergyCount = 0;
   
@@ -205,7 +211,7 @@ CoC.view.TeamView = Backbone.View.extend({
   },
   
   extras:function(extras){
-    this._extras = extras;
+    this._extras = (extras === undefined || extras.length === 0)? undefined: extras;
   },
   
   render: function(){
