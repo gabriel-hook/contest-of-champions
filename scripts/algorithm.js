@@ -17,7 +17,7 @@
 
     this.build=function(options){
       var teams = {}, team, list = [], preselect = [], classWeights = [], progress = null;
-      preProcess(options.heroes, list, classWeights);
+      preProcess(options.champions, list, classWeights);
       
       if(options.quest)
         for(var i=list.length-1;i>=0;i--)
@@ -64,8 +64,8 @@
               
               teams[team_index]=team;
               teams.length=++team_index;
-              for(var o in team.heroes)
-                list.splice(list.indexOf(team.heroes[o]),1);
+              for(var o in team.champions)
+                list.splice(list.indexOf(team.champions[o]),1);
                 
               if(options.quest)
                 break;
@@ -78,13 +78,13 @@
         var needed = 0;
         for(var i in teams)
           if(i !== 'length')
-            needed += options.size - teams[i].heroes.length;
+            needed += options.size - teams[i].champions.length;
           
         //break up teams if we dont have enough
         while(list.length < needed){
           var i = teams.length - 1;
-          for(var t in teams[i].heroes){
-            list.push(teams[i].heroes[t]);
+          for(var t in teams[i].champions){
+            list.push(teams[i].champions[t]);
             needed--;
           }
           delete teams[i];
@@ -101,19 +101,19 @@
         //add into existing teams, using the comparison to find best partner
         for(var i=teams.length-1, index; i>=0; i--){
           var team;
-          if(teams[i].heroes.length < options.size){
-            var team = getNextPartner(list, teams[i].heroes, teams[i].synergies, getClasses(teams[i].heroes), 0, options.size, classWeights, progress);
+          if(teams[i].champions.length < options.size){
+            var team = getNextPartner(list, teams[i].champions, teams[i].synergies, getClasses(teams[i].champions), 0, options.size, classWeights, progress);
             if(team){
-              for(var o in team.heroes){
-                index = list.indexOf(team.heroes[o]);
+              for(var o in team.champions){
+                index = list.indexOf(team.champions[o]);
                 if(index != -1)
                   list.splice(index,1);
               }
               teams[i] = team;
             }
             else{
-              for(var o in teams[i].heroes)
-                list.push(teams[i].heroes[o]);
+              for(var o in teams[i].champions)
+                list.push(teams[i].champions[o]);
               delete teams[i];
             }
           }
@@ -125,43 +125,36 @@
       return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
     }
     
-    function preProcess(heroes, list, classWeights){
-      var data, heroes, synergies, synergy, i;
-    
-      for(i=2; i<=5; i++)
+    function preProcess(champions, list, classWeights){
+      for(var i=2; i<=5; i++)
         classWeights[i] = CoC.settings.getDuplicateWeight(i);
         
-      for(var i=0; i<heroes.length; i++){
-        data = heroes[i];
-        hero = CoC.data.heroes[data.id];
-        
-        if(hero === undefined || hero.synergies[data.stars] === undefined)
-          continue;
+      for(var i=0, champion, synergies; i<champions.length; i++){
+        champion = champions[i];
         
         synergies = {};
-        for(var s in hero.synergies[data.stars]){
-          var synergy = hero.synergies[data.stars][s];
-          if(CoC.data.synergies[synergy.type] === undefined)
-            continue;
-        
-          synergies[synergy.id]={
-            data:synergy,
-            to:synergy.id,
-            from:hero.id,
-            value:CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base
+        _(CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })).each(function(synergy){
+          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          synergies[synergy.get("toId")]={
+            id:synergy.get("toId"),
+            fromId:synergy.get("fromId"),
+            fromStars:synergy.get("fromStars"),
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
           }
-        }
+        })
+        
         list.push({
-          id:data.id,
-          data:data,
-          class:CoC.data.classes.indexOf(hero.class),
+          id:champion.get("uid"),
+          stars:champion.get("stars"),
+          data:champion,
+          type:CoC.data.championTypes.indexOf(champion.get("type")),
           synergies:synergies,
           value:(function(stars, awakened){
             var value = CoC.settings.getStarWeight(stars);
-            if(awakened)
+            if(awakened > 0)
               value *= CoC.settings.getWeight("awakened");
             return value;
-          })(data.stars, data.awakened)
+          })(champion.get("stars"), champion.get("awakened"))
         })
       }  
     }
@@ -173,8 +166,8 @@
       };
       for(var i in teams){
         var team = [];    
-        for(var o in teams[i].heroes)
-          team.push(teams[i].heroes[o].data);
+        for(var o in teams[i].champions)
+          team.push(teams[i].champions[o].data);
         result.teams.push(team);
       }
       if(extras !== undefined){
@@ -194,46 +187,46 @@
       return (compareTeams(current,next) >= 0)? current: next;
     }
     
-    function getNextPartner(list, heroes, synergies, classes, index, depth, classWeights, progress){
-      if(heroes.length == depth){
+    function getNextPartner(list, champions, synergies, classes, index, depth, classWeights, progress){
+      if(champions.length == depth){
         if(progress)
           progress.callback(++progress.current, progress.max);
         return {
-          heroes:heroes,
+          champions:champions,
           synergies:synergies,
-          value:getTeamValue(heroes, synergies, classes, classWeights)
+          value:getTeamValue(champions, synergies, classes, classWeights)
         };
       }
       if(index == list.length)
         return null;
       var current = getNextPartner(list, 
-        addPartnerHero(heroes, list[index]), 
-        addPartnerSynergies(synergies, heroes, list[index]), 
+        addPartnerHero(champions, list[index]), 
+        addPartnerSynergies(synergies, champions, list[index]), 
         addPartnerClass(classes, list[index]), 
         index+1, depth, classWeights, progress
       );
-      var next = getNextPartner(list, heroes, synergies, classes, index+1, depth, classWeights, progress);
+      var next = getNextPartner(list, champions, synergies, classes, index+1, depth, classWeights, progress);
 
       return (compareTeams(current,next) >= 0)? current: next;
     }
     
     function addPartnerHero(list, hero){
-      var heroes = list.slice();
-      heroes.push(hero);
-      return heroes;
+      var champions = list.slice();
+      champions.push(hero);
+      return champions;
     }
     
     function addPartnerClass(list, hero){
       var classes = list.slice();
-      classes[hero.class]++;
+      classes[hero.type]++;
       return classes;
     }
 
-    function getClasses(heroes){
+    function getClasses(champions){
       var classes=[0,0,0,0,0,0], i;
-      if(heroes !== undefined)
-        for(var i=0;i<heroes.length;i++)
-          classes[heroes[i].class]++;
+      if(champions !== undefined)
+        for(var i=0;i<champions.length;i++)
+          classes[champions[i].type]++;
       return classes;
     }
     
@@ -252,26 +245,26 @@
       if(list.length < 2)
         return [];
     
-      var heroes = [], synergies = [], remaining = heroes.slice();
+      var champions = [], synergies = [], remaining = champions.slice();
       while(remaining.length > 0){
         var hero = remaining[0];
         remaining.splice(0,1);
-        synergies = addPartnerSynergies(synergies, heroes, hero);
-        heroes.push(hero);
+        synergies = addPartnerSynergies(synergies, champions, hero);
+        champions.push(hero);
       }
       return synergies;
     }
       
-    function getTeamValue(heroes, synergies, classes, classWeights){
-      var vsynergies = 0, vheroes = 0, vclasses = 1, i;
+    function getTeamValue(champions, synergies, classes, classWeights){
+      var vsynergies = 0, vchampions = 0, vclasses = 1, i;
       for(i in synergies)
         vsynergies += synergies[i].value;
-      for(i in heroes)
-        vheroes += heroes[i].value;
+      for(i in champions)
+        vchampions += champions[i].value;
       for(i in classes)
         if(classes[i] > 1)
           vclasses *= classWeights[classes[i]];
-      return vsynergies * vheroes * vclasses;
+      return vsynergies * vchampions * vclasses;
     }
     
     function compareTeams(a, b){
@@ -282,21 +275,24 @@
     
     function getSynergyCulledTeam(team, classWeights){
       var classes = [0,0,0,0,0,0], culled = {
-        heroes:[],
+        champions:[],
         synergies:team.synergies,
         value:0
       }, i, s, cull;
-      for(i=0;i<team.heroes.length;i++ ){
+      for(i=0;i<team.champions.length;i++ ){
         cull = true;
         synergies: for(s=0;s<team.synergies.length;s++){
-          if(team.synergies[s].to === team.heroes[i].id || team.synergies[s].from === team.heroes[i].id){
-            addPartnerClass(classes, team.heroes[i]);
-            culled.heroes.push(team.heroes[i]);
+        
+          var from = team.synergies[s].fromId === team.champions[i].id && team.synergies[s].fromStars === team.champions[i].stars;
+          var to = team.synergies[s].id === team.champions[i].id;
+          if(to || from){
+            addPartnerClass(classes, team.champions[i]);
+            culled.champions.push(team.champions[i]);
             break synergies;
           }
         }
       }
-      culled.value = getTeamValue(culled.heroes, culled.synergies, classes, classWeights)
+      culled.value = getTeamValue(culled.champions, culled.synergies, classes, classWeights)
       return culled;
     }
   };
@@ -307,9 +303,9 @@
     this.canQuest = false;
     
     this.build=function(options){
-      var size = parseInt(options.size), maxTeams = Math.floor(options.heroes.length/size), forceExtras = maxTeams * size;
+      var size = parseInt(options.size), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
       var heroMap = {}, synergyMap = {}, classWeights = {}, teamValues = {};
-      preprocess(options.heroes, heroMap, synergyMap, classWeights);
+      preprocess(options.champions, heroMap, synergyMap, classWeights);
     
       var swaps;
       
@@ -368,7 +364,7 @@
         return value;
       }
       
-      var progressMax = 64, didExtrasShuffle, array, arrays = [];
+      var progressMax = 32, didExtrasShuffle, array, arrays = [];
       
       function addArray(){
         array = [];
@@ -443,36 +439,34 @@
       });
     }
     
-    function preprocess(heroes, heroMap, synergyMap, classWeights){
+    function preprocess(champions, heroMap, synergyMap, classWeights){
       for(i=2; i<=5; i++)
         classWeights[i] = CoC.settings.getDuplicateWeight(i);
     
-      for(var i=0, data, fid, hero; i<heroes.length; i++){
-        data = heroes[i];
-        fid = getHeroStarId(data);
-        hero = CoC.data.heroes[data.id];
+      for(var i=0, fid, champion, synergies; i<champions.length; i++){
+        champion = champions[i];
+        fid = getHeroStarId(champion);
         
         //add hero
         heroMap[fid]={
-          id:data.id,
+          id:champion.get("uid"),
           fid:fid,
-          class:hero.class.toLowerCase(),
+          type:champion.get("type"),
           value:(function(stars, awakened){
             var value = CoC.settings.getStarWeight(stars);
             if(awakened)
               value *= CoC.settings.getWeight("awakened");
             return value;
-          })(data.stars, data.awakened),
-          data:data
+          })(champion.get("stars"), champion.get("awakened")),
+          data:champion
         }
-        
-        //add all synergies
         synergyMap[fid] = {};
-        for(var s=0;s < hero.synergies[data.stars].length; s++){
-          var synergy = hero.synergies[data.stars][s];
-          synergyMap[fid][synergy.id]={
-            synergy:synergy,
-            value:CoC.settings.getWeight(synergy.type) * synergy.amount / CoC.data.synergies[synergy.type].base
+        synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
+        for(var s=0;s < synergies.length; s++){
+          var synergy = synergies[s];
+          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          synergyMap[fid][synergy.get("toId")]={
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
           }
         }
       }
@@ -508,8 +502,8 @@
     }
 
     //getHeroStarId
-    function getHeroStarId(data){
-      return [data.id, data.stars].join('-');
+    function getHeroStarId(champion){
+      return [champion.get("uid"), champion.get("stars")].join('-');
     }
     
     //getTeamId
@@ -530,33 +524,33 @@
     this.build=function(options){
       var synergies, distinct, missing, full;
       var weights = getWeights();
-      var heroesMap = getHeroesMap(options.heroes);
-      var synergiesMap = getSynergiesMap(options.heroes);
+      var championsMap = getHeroesMap(options.champions);
+      var synergiesMap = getSynergiesMap(options.champions);
       var teams = { map:{}, list:[], heroIds:{}, heroCount: 0 };
-      var extras = getRemainingHeroes(teams, heroesMap);
+      var extras = getRemainingHeroes(teams, championsMap);
        
       if(options.progress)
-        options.progress(10, options.heroes.length);
+        options.progress(10, options.champions.length);
         
       //all synergies 
-      var wanted = Math.floor(options.heroes.length / options.size);
+      var wanted = Math.floor(options.champions.length / options.size);
       fillTeams: do{
       
-        synergies = getSynergies(getRemainingHeroes(teams, heroesMap), synergiesMap);
+        synergies = getSynergies(getRemainingHeroes(teams, championsMap), synergiesMap);
         distinct = getDistinctSynergies(synergies);
       
         do{
         
           if(options.progress)
-              options.progress(teams.heroCount, options.heroes.length);
+              options.progress(teams.heroCount, options.champions.length);
         
           //first get rid of ones that are small enough
           for(var i=distinct.length-1; i>=0; i--){
             var synergies = distinct[i].synergies;
-            var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
-            if(heroes.length <= options.size && getTeamValue(heroes, synergiesMap, weights) > 0){
-              var value = getTeamValue(heroes, synergiesMap, weights)
-              addTeam(teams, heroes);
+            var champions = getHeroesFromSynergies(synergies, championsMap, teams);
+            if(champions.length <= options.size && getTeamValue(champions, synergiesMap, weights) > 0){
+              var value = getTeamValue(champions, synergiesMap, weights)
+              addTeam(teams, champions);
               distinct.splice(i, 1);
             }
           }
@@ -567,10 +561,10 @@
             var synergies = distinct[i].synergies;
             if(!synergies)
               continue;
-            var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
-            if(heroes.length > options.size && heroes.length > splitBiggest){
+            var champions = getHeroesFromSynergies(synergies, championsMap, teams);
+            if(champions.length > options.size && champions.length > splitBiggest){
               splitIndex = i;
-              splitBiggest = heroes.length;
+              splitBiggest = champions.length;
             }
           }
           
@@ -580,10 +574,10 @@
             distinct.splice(splitIndex, 1);
             
             //pull out a group from
-            var result = splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, options.size);
+            var result = splitDistinctGroup(group, championsMap, synergiesMap, weights, teams, options.size);
             
-            if(getTeamValue(result.heroes, synergiesMap, weights) > 0)
-              addTeam(teams, result.heroes);
+            if(getTeamValue(result.champions, synergiesMap, weights) > 0)
+              addTeam(teams, result.champions);
             
             
             if(result.extras){
@@ -596,14 +590,14 @@
           //check again for teams
         } while(didSplit)
       
-        extras = getRemainingHeroes(teams, heroesMap);
+        extras = getRemainingHeroes(teams, championsMap);
       
         function getTeamsBySize(){
           var map = {}, needed = 0;
           for(var i=1;i<options.size;i++)
             map[i]=[];
           for(var i=0; i<teams.list.length; i++){
-            var size = teams.list[i].heroes.length;
+            var size = teams.list[i].champions.length;
             if( options.size - size > 0){
               needed += options.size - size;
               map[size].push({
@@ -618,7 +612,7 @@
         //if we have too many teams, try to condense them
         tooManyTeams: while(teams.list.length > wanted){
           
-          extras = getRemainingHeroes(teams, heroesMap);
+          extras = getRemainingHeroes(teams, championsMap);
           teamsBySize = getTeamsBySize();
         
           //look for prefect then undersized fits, if we find one start again
@@ -629,7 +623,7 @@
               for(var s in smallTeams)
                 for(var l in largeTeams)
                   if(smallTeams[s] !== largeTeams[l]){
-                    var team = smallTeams[s].team.heroes.concat(largeTeams[l].team.heroes);
+                    var team = smallTeams[s].team.champions.concat(largeTeams[l].team.champions);
                     if(getTeamValue(team, synergiesMap, weights) > 0){
                       removeTeam(teams, smallTeams[s].team);
                       removeTeam(teams, largeTeams[l].team);
@@ -639,7 +633,7 @@
                   }
             }
             
-          extras = getRemainingHeroes(teams, heroesMap);
+          extras = getRemainingHeroes(teams, championsMap);
           teamsBySize = getTeamsBySize();
 
           //look for near perfect fits, if we find one, combine, throw away extra, then start again
@@ -649,8 +643,8 @@
             for(var s in smallTeams)
               for(var l in largeTeams)
                 if(smallTeams[s] !== largeTeams[l]){
-                  var team = combineTeams(smallTeams[s].team.heroes, largeTeams[l].team.heroes, 
-                    heroesMap, synergiesMap, weights, teams, options.size)
+                  var team = combineTeams(smallTeams[s].team.champions, largeTeams[l].team.champions, 
+                    championsMap, synergiesMap, weights, teams, options.size)
                   if(getTeamValue(team, synergiesMap, weights) > 0){
                     removeTeam(teams, smallTeams[s].team);
                     removeTeam(teams, largeTeams[l].team);
@@ -660,13 +654,13 @@
                 }
           }
         
-          extras = getRemainingHeroes(teams, heroesMap);
+          extras = getRemainingHeroes(teams, championsMap);
         
           //Take the worst team out and add to extras
           var worst = undefined;
           for(var i=0; i<teams.list.length; i++)
-            if(teams.list[i].heroes.length < options.size){
-              var value = getTeamValue(teams.list[i].heroes, synergiesMap, weights);
+            if(teams.list[i].champions.length < options.size){
+              var value = getTeamValue(teams.list[i].champions, synergiesMap, weights);
               if(worst === undefined || value < worst.value)
                 worst={
                   value: value,
@@ -677,34 +671,34 @@
             removeTeam(teams, worst.team);
         }
           
-        extras = getRemainingHeroes(teams, heroesMap);
+        extras = getRemainingHeroes(teams, championsMap);
         
         // fill the groups with remainders,
         // lets see what the best match is for each open spot
         teams.list.sort(function(a,b){
-          return b.heroes.length - a.heroes.length;
+          return b.champions.length - a.champions.length;
         })
         for(var i=0; i<teams.list.length; i++)
-          while(teams.list[i].heroes.length < options.size && extras.length > 0){
+          while(teams.list[i].champions.length < options.size && extras.length > 0){
             var team = teams.list[i], best = undefined;
             
             for(var j=0; j<extras.length; j++){
-              var value = getTeamValue([extras[j]].concat(team.heroes), synergiesMap, weights);
+              var value = getTeamValue([extras[j]].concat(team.champions), synergiesMap, weights);
               if(best === undefined || value > best.value)
                 best={ index: j, hero: extras[j], value: value };
             }
             
             if(best){
               addToTeam(teams, team, best.hero);
-              extras = getRemainingHeroes(teams, heroesMap);
+              extras = getRemainingHeroes(teams, championsMap);
             }
           }
         
         //check if we're done
-        extras = getRemainingHeroes(teams, heroesMap);
+        extras = getRemainingHeroes(teams, championsMap);
         missing = false;
         for(var i=0; i<teams.list.length; i++)
-          if(teams.list[i].heroes.length != options.size)
+          if(teams.list[i].champions.length != options.size)
             missing = true;
         full = (teams.list.length == wanted);
         var extraSynergies = (function(){
@@ -718,24 +712,24 @@
       } while(missing || (!full && extraSynergies))
       
       if(options.progress)
-          options.progress(options.heroes.length, options.heroes.length);
+          options.progress(options.champions.length, options.champions.length);
      
       return {
         teams: getTeamsArray(teams),
-        extras: (options.extras)? extras: undefined
+        extras: (options.extras)? getExtras(extras): undefined
       }
     }
     
     //combineTeams
-    function combineTeams(smaller, larger, heroesMap, synergiesMap, weights, teams, size){
+    function combineTeams(smaller, larger, championsMap, synergiesMap, weights, teams, size){
       var largerSize = size - smaller.length, smallerSize = size - larger.length;
       if(largerSize == smallerSize)
         largerSize = smallerSize = larger.length - 1;
       
       var largerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(larger, synergiesMap))[0], 
-        heroesMap, synergiesMap, weights, teams, largerSize).heroes;
+        championsMap, synergiesMap, weights, teams, largerSize).champions;
       var smallerSub = splitDistinctGroup(getDistinctSynergies(getSynergies(smaller, synergiesMap))[0], 
-        heroesMap, synergiesMap, weights, teams, smallerSize).heroes;
+        championsMap, synergiesMap, weights, teams, smallerSize).champions;
       
       var a = [larger, largerSub];
       var b = [smaller, smallerSub];
@@ -791,8 +785,8 @@
     }
     
     //splitDistinctGroup
-    function splitDistinctGroup(group, heroesMap, synergiesMap, weights, teams, size){
-      var heroSynergiesMap = {}, groupHeroes = getHeroesFromSynergies(group.synergies, heroesMap, teams);
+    function splitDistinctGroup(group, championsMap, synergiesMap, weights, teams, size){
+      var heroSynergiesMap = {}, groupHeroes = getHeroesFromSynergies(group.synergies, championsMap, teams);
 
       for(var i=0; i<group.synergies.length; i++){
         var synergy = group.synergies[i];
@@ -824,6 +818,7 @@
         if(pivot.value === undefined || value > pivot.value)
           pivot={
             id:groupHeroes[i].id,
+            fid:groupHeroes[i].fid,
             hero:groupHeroes[i],
             value:value
           }
@@ -839,56 +834,56 @@
       })();
       */
       
-      //get all the heroes connected to our pivot hero
+      //get all the champions connected to our pivot hero
       var synergies = [];
       for(var s = 0; s <group.synergies.length; s++){
         var synergy = group.synergies[s];
-        if(synergy.toId === pivot.id || synergy.from.id === pivot.id)
+        if(synergy.toId === pivot.id || synergy.fromId === pivot.fid)
           synergies.push(synergy);
       }
 
       //get the least popular partners for the pivot hero
-      var heroes = getHeroesFromSynergies(synergies, heroesMap, teams);
+      var champions = getHeroesFromSynergies(synergies, championsMap, teams);
       
       //get the best team from our pivot hero!
-      if(heroes.length > size){
-        heroes.splice(heroes.indexOf(pivot.hero), 1)
+      if(champions.length > size){
+        champions.splice(champions.indexOf(pivot.hero), 1)
         var team = [ pivot.hero ];
         
         while(team.length < size){
           var best = null;
-          for(var i=0; i<heroes.length; i++){
-            var value = getTeamValue(team.concat([ heroes[i] ]), synergiesMap, weights);
+          for(var i=0; i<champions.length; i++){
+            var value = getTeamValue(team.concat([ champions[i] ]), synergiesMap, weights);
             if(!best || value > best.value)
               best = {
                 index: i,
                 value: value,
-                hero: heroes[i]
+                hero: champions[i]
               };
           }
           if(best){
-            heroes.splice(best.index, 1);
+            champions.splice(best.index, 1);
             team.push(best.hero);
           }
         }
-        heroes = team;
+        champions = team;
       }
       
-      if(heroes.length === 1 || getTeamValue(heroes, synergiesMap, weights) === 0)
-        heroes = [];
+      if(champions.length === 1 || getTeamValue(champions, synergiesMap, weights) === 0)
+        champions = [];
       
-      for(var i=0; i<heroes.length; i++)
-        groupHeroes.splice(groupHeroes.indexOf(heroes[i]),1);
+      for(var i=0; i<champions.length; i++)
+        groupHeroes.splice(groupHeroes.indexOf(champions[i]),1);
         
-      return { heroes:heroes, extras:groupHeroes };
+      return { champions:champions, extras:groupHeroes };
     }
     
-    function getRemainingHeroes(teams, heroesMap){
-      var heroes = [];
-      for(var fid in heroesMap.fids)
+    function getRemainingHeroes(teams, championsMap){
+      var champions = [];
+      for(var fid in championsMap.fids)
         if(!teams.heroIds[fid])
-          heroes.push(heroesMap.fids[fid]);
-      return heroes;
+          champions.push(championsMap.fids[fid]);
+      return champions;
     }
     
     //getDistinctSynergies
@@ -899,14 +894,14 @@
         if(synergy.value === 0)
           continue;
         group = groupTo = ids[synergy.toId];
-        groupFrom = ids[synergy.from.id];
+        groupFrom = ids[synergy.fromId];
         if(!groupTo)
           group = groupFrom;
         else if(groupFrom && groupTo != groupFrom){
           groupTo.synergies = groupTo.synergies.concat(groupFrom.synergies);
           for(var s in groupFrom.synergies){
             ids[groupFrom.synergies[s].toId] = groupTo;
-            ids[groupFrom.synergies[s].from.id] = groupTo;
+            ids[groupFrom.synergies[s].fromId] = groupTo;
           }
           distinct.splice( distinct.indexOf(groupFrom), 1);
           group = groupTo;
@@ -916,7 +911,7 @@
           distinct.push(group);
         }
         ids[synergy.toId] = group;
-        ids[synergy.from.id] = group;
+        ids[synergy.fromId] = group;
         group.synergies.push(synergy);
       }
       
@@ -928,13 +923,13 @@
     }
     
     //getSynergies
-    function getSynergies(heroes, synergiesMap){
+    function getSynergies(champions, synergiesMap){
       var synergies = [], ids = {}, fids = {};
       
-      for(var i=0; i<heroes.length; i++){
-        var fid = getHeroStarId(heroes[i]);
-        fids[fid] = heroes[i];
-        ids[heroes[i].id] = true;
+      for(var i=0; i<champions.length; i++){
+        var fid = getHeroStarId(champions[i]);
+        fids[fid] = champions[i];
+        ids[champions[i].id] = true;
       }
     
       for(var fid in fids){
@@ -945,13 +940,13 @@
       return synergies;
     }
     
-    function getTeamValue(heroes, synergiesMap, weights){
+    function getTeamValue(champions, synergiesMap, weights){
       
       var hvalue = 0;
-      for(var i=0; i<heroes.length; i++){
+      for(var i=0; i<champions.length; i++){
         //get my value
-        var heroValue = weights.stars[heroes[i].stars];
-        if(heroes[i].awakened)
+        var heroValue = weights.stars[champions[i].stars];
+        if(champions[i].awakened)
           heroValue = weights.awakened;
         hvalue += heroValue;
       }
@@ -960,7 +955,7 @@
         return 0;
       
       var svalue = 0;
-      var synergies = getSynergies(heroes, synergiesMap);
+      var synergies = getSynergies(champions, synergiesMap);
       for(var i=0 ;i<synergies.length; i++)
         svalue += synergies[i].value;
         
@@ -968,9 +963,8 @@
         return 0;
         
       var cvalue = 1, classes = {};
-      for(var i=0; i<heroes.length; i++){
-        var c = CoC.data.heroes[heroes[i].id].class
-        classes[c] = (classes[c] || 0) + 1;
+      for(var i=0; i<champions.length; i++){
+        classes[champions[i].type] = (classes[champions[i].type] || 0) + 1;
       }
       for(i in classes)
         if(classes[i] > 1)
@@ -985,15 +979,15 @@
     }
     
     //getTeamId
-    function getTeamId(heroes){
+    function getTeamId(champions){
       var ids = [];
-      for(var i=0; i<heroes.length; i++)
-        ids.push(getHeroStarId(heroes[i]));
+      for(var i=0; i<champions.length; i++)
+        ids.push(getHeroStarId(champions[i]));
       return ids.join('#');
     }
     
     //getSynergiesMap
-    function getSynergiesMap(heroes){
+    function getSynergiesMap(champions){
       var synergiesMap = { to:{}, from:{} };
       function addSynergy(which, id1, id2, synergy){
         var hash = synergiesMap[which][id1];
@@ -1002,56 +996,67 @@
         }
         hash[id2] = synergy;
       }
-      for(var i = 0; i<heroes.length; i++){
-        var data = heroes[i], id = data.id, fid = getHeroStarId(data), hero = CoC.data.heroes[data.id];
-        
-        for(var s=0; s<hero.synergies[data.stars].length; s++){
-          var sdata = hero.synergies[data.stars][s];
-          var synergy = {
-            fromId: fid,
-            from: data,
-            toId: sdata.id,
-            value: CoC.settings.getWeight(sdata.type) * sdata.amount / CoC.data.synergies[sdata.type].base
+      for(var i = 0; i<champions.length; i++){
+        var champion = champions[i];
+        var synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
+        for(var s=0;s < synergies.length; s++){
+          var synergy = synergies[s];
+          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          
+          data = {
+            fromId: getHeroStarId({ id:champion.get("uid"), stars:champion.get("stars") }),
+            toId: synergy.get("toId"),
+            value: CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
           }
-          addSynergy('from', synergy.fromId, synergy.toId, synergy);
-          addSynergy('to', synergy.toId, id, synergy);
+          
+          addSynergy('from', data.fromId, data.toId, data);
+          addSynergy('to', data.toId, champion.get("uid"), data);
         }
       }
       return synergiesMap;
     }
     
     //getHeroesMap
-    function getHeroesMap(heroes){
-      var heroesMap = { fids:{}, ids:{} };
-      for(var i = 0; i<heroes.length; i++){
-        var id = heroes[i].id, fid = getHeroStarId(heroes[i]);
-        heroesMap.fids[fid] = heroes[i];
-        var array = heroesMap.ids[id];
+    function getHeroesMap(champions){
+      var championsMap = { fids:{}, ids:{} };
+      for(var i = 0; i<champions.length; i++){
+        var champion = champions[i];
+        var data = {
+          id: champion.get("uid"),
+          stars: champion.get("stars"),
+          awakened: champion.get("awakened"),
+          type: champion.get("type"),
+          champion:champion
+        }
+        data.fid = getHeroStarId(data)
+      
+        championsMap.fids[data.fid] = data;
+        var array = championsMap.ids[data.id];
         if(!array)
-          heroesMap.ids[id] = array = [];
-        array.push(heroes[i]);
+          championsMap.ids[data.id] = array = [];
+        array.push(champions[i]);
       }
-      return heroesMap;
+      return championsMap;
     }
     
     //getHeroesFromSynergies
-    function getHeroesFromSynergies(synergies, heroesMap, teams){
-      var heroes = [], idsTo = {}, idsFrom = {};
+    function getHeroesFromSynergies(synergies, championsMap, teams){
+      var champions = [], idsTo = {}, idsFrom = {};
       for(var i=0; i<synergies.length; i++){
         idsTo[synergies[i].toId] = true;
         idsFrom[synergies[i].fromId] = true;
       }
-      for(var fid in heroesMap.fids){
-        var hero = heroesMap.fids[fid];
+      for(var fid in championsMap.fids){
+        var hero = championsMap.fids[fid];
         var id = hero.id;
         if(teams.heroIds[fid])
           continue;
         else if(idsTo[id])
-          heroes.push(hero);
+          champions.push(hero);
         else if(idsFrom[fid])
-          heroes.push(hero);
+          champions.push(hero);
       }
-      return heroes;
+      return champions;
     }
     
     //addToTeam
@@ -1062,25 +1067,25 @@
       teams.heroCount++;
       teams.heroIds[id] = true;
       team.heroIds[id] = true;
-      team.heroes.push(hero);
-      team.tid = getTeamId(team.heroes);
+      team.champions.push(hero);
+      team.tid = getTeamId(team.champions);
     }
     
     //addTeam
-    function addTeam(teams, heroes){
+    function addTeam(teams, champions){
       var team = {
-        heroes:[],
+        champions:[],
         heroIds:{},
-        tid:getTeamId(heroes),
+        tid:getTeamId(champions),
       }
       if(teams.map[team.tid])
         return;
-      for(var i=0; i<heroes.length; i++){
-        var id = getHeroStarId(heroes[i]);
+      for(var i=0; i<champions.length; i++){
+        var id = getHeroStarId(champions[i]);
         teams.heroCount++;
         teams.heroIds[id] = true;
         team.heroIds[id] = true;
-        team.heroes.push(heroes[i]);
+        team.champions.push(champions[i]);
       }
       teams.map[team.tid] = team;
       teams.list.push(team);
@@ -1103,11 +1108,22 @@
     }
     
     //getTeamsArray
-    function getTeamsArray(teams){
+    function getTeamsArray(teams){    
       var array = [];
-      for(var i=0; i<teams.list.length; i++)
-        array.push(teams.list[i].heroes);
+      for(var i=0; i<teams.list.length; i++){
+        var team = [];
+        for(j=0; j<teams.list[i].champions.length; j++)
+          team.push(teams.list[i].champions[j].champion)
+        array.push(team);
+      }
       return array;
+    }
+    
+    function getExtras(array){
+      var extras = [];
+      for(var i=0; i<array.length; i++)
+        extras.push(array[i].champion);
+      return extras;
     }
     
     function getWeights(){
