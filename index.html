@@ -13,7 +13,9 @@
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
-    
+    <script src="scripts/underscore-min.js"></script>
+    <script src="scripts/backbone-min.js"></script>
+    <script src="scripts/backbone.localStorage-min.js"></script>
   </head>
   <body>
   
@@ -129,9 +131,11 @@
         data-arrow="true">
         <div id="roster-configure-stars" class="stars"></div>
         <div role="main" class="ui-content">
+        
           <!-- this is some stupid shit -->
           <div tabindex="1"></div>
           <!-- but focus was being stolen otherwise -->
+          
           <h3 id="roster-configure-name">Name</h3>
           <label id="roster-configure-class">Class</label>
           <form>
@@ -198,10 +202,8 @@
         </div>
       </div>
       
-      
     </div> 
     
-      
     <div class="page" id="page-add" 
       data-title="Contest of Champions - Roster - Add"
       data-theme="c"
@@ -225,7 +227,7 @@
       </div>
       
       <div role="main" class="ui-content">
-        <div id="add-heroes"></div>
+        <div id="add-champions"></div>
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
@@ -329,8 +331,7 @@
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
             <li><a href="#page-roster" data-icon="grid" data-transition="slide" data-direction="reverse">Roster</a></li>
-            <li><a href="#page-teams" data-icon="search" class="ui-btn-active ui-state-persist">Team</a></li>
-              
+            <li><a href="#page-teams" data-icon="search" class="ui-btn-active ui-state-persist">Team</a></li>           
           </ul>
         </div>
       </div>
@@ -508,27 +509,68 @@
         </div>
       </div>
     </div>
+
+    <script id="championTemplate" type="text/template">
     
+      <div class="container">
+        <div class="portrait" style="background-image:url(<%= portrait %>)">
+          <% if( quest ){ %>
+            <div class="quest"></div>
+          <% } %>
+          <div class="title">
+            <span class="name"><%= name %></span>
+          </div>
+          <div class="stars">
+            <% for( var i=0; i<stars; i++){ %>
+              <span class='star'></span>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    
+    </script>
+
+    <script id="teamsTemplate" type="text/template">
+      
+      <% _(teams).each(function(team){ %>
+        <div class="team <%= (size==3)? "three": (size==4)? "four": (size==5)? "five": "unknown" %>">
+          <% _(team.champions).each(function(champion){ %>
+            <%= renderChampion(champion) %>
+          <% }) %>
+          <br style="clear:both">
+          <div class="synergies">
+            <% _(team.effects).each(function(effect){ %>
+              <div class="synergy">
+                <img src="<%= effect.get("image") %>">
+                <span><%= effect.get("name") %> +<%= effect.get("amount") %> %</span>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% }); %>
+      <% if(extras){ %>
+      
+        <h3 style="clear:both">Extras</h3>
+        <div id="extras">
+          <% _(extras).each(function(champion){ %>
+            <%= renderChampion(champion) %>
+          <% }) %>
+        </div>
+      
+      <% } %>
+    
+    </script>
+
     <script src="scripts/base.js"></script>
-    <script src="scripts/presets.js"></script>
-    <script src="scripts/logic.js"></script>
-    <script src="scripts/algorithm.js"></script>
+    <script src="scripts/models.js"></script>
     <script src="scripts/data.js"></script>
+    <script src="scripts/presets.js"></script>
+    <script src="scripts/algorithm.js"></script>
+    <script src="scripts/views.js"></script>
     <script src="scripts/interface.js"></script>
     <script src="scripts/onboarding.js"></script>
     <script>
-      //Set defaults
-      if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
-        CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
-        CoC.settings.setValue("hasDefaults", true);
-        CoC.settings.setValue("version", CoC.version);
-      }
-      
-      //preload images
-      for(var id in CoC.data.heroes){
-        (new Image()).src = 'images/champions/portrait_'+id+'.png';
-        (new Image()).src = 'images/champions/fullsize_'+id+'.png';
-      }
+      CoC.roster.load();
     </script>
   </body>
 </html>

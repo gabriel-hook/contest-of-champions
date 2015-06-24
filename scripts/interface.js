@@ -1,57 +1,9 @@
 ﻿
-CoC.ui.hero=function(raw, index, onclick){
-  var hero = CoC.data.heroes[raw.id];
-  var element = $('<div>', { 
-    id:hero.id, 
-    stars:raw.stars, 
-    class:"hero",
-    "tabindex":index
-  });
-  element.addClass(hero.class.toLowerCase());
-  if(raw.awakened)
-    element.addClass('awakened');
-  if(raw.quest)
-    element.addClass('quest');
-  var container = $('<div>',{
-    class:'container'
-  });
-  var portrait = $('<div>',{
-    class:'portrait'
-  }).css({
-    'background-image':'url(images/champions/portrait_'+hero.id+'.png)'
-  });
-  portrait.append($('<div>',{class:'quest'}));
-  portrait.append($('<div>',{class:'title'}).append($('<span>', { class:'name' }).text(hero.name)));
-  portrait.append($('<div>', { class:'stars'}).html((function(){
-    var string = "";
-    for(var i=0;i<raw.stars;i++)
-      string+="<span class='star'></span>";
-    return string;
-  })()));
-  if(onclick !== undefined){
-    element.on("click", onclick);
-    element.on("keyup", function(event){
-      if(event.keyCode != 13)
-        return;
-      onclick.call(this, event);
-    });
-  }
-  return element.append(container.append(portrait));
-};
-CoC.ui.hero.hide=function(container, i){
-  var element = $(container.find(".hero")[i]), rect;
-  rect = element[0].getBoundingClientRect();
-  element.css({
-    left:rect.left,
-    top:rect.top
-  });
-  element.addClass("hidden");
-}
-
 CoC.ui.teams=new function(){
 
   this.selector="#teams"
 
+  this.view = undefined;
   this.worker = null;
   this.empty = true;
   
@@ -61,311 +13,178 @@ CoC.ui.teams=new function(){
   }
  
   this.update=function(result, size){
-    var element = $(CoC.ui.teams.selector);
-    element.text("");
-    if(result.teams.length){
-    
-      //show results message
-      var synergyCount = 0;
-      for(var i=0; i<result.teams.length; i++)
-        synergyCount += CoC.logic.synergy.count(result.teams[i]) 
-      function countWithPluralize(count, single, plural){
-        return count+" "+((count == 0 || count > 1)? plural: single);
-      }
-      element.append($('<div>', { class:"message" }).text(
-        countWithPluralize(result.teams.length, "Team", "Teams")+
-        " found with "+
-        countWithPluralize(synergyCount, "Synergy", "Synergies")
-      ));
-   
-      for(var i=0; i<result.teams.length; i++){
-
-        var container = $('<div>').addClass('team').addClass(
-          (size==3)? 'three': 
-          (size==4)? 'four': 
-          (size==5)? 'five': 
-          'unknown');
-      
-        var synergies = CoC.logic.synergy.get(result.teams[i])
-        
-        for(var j=0; j<result.teams[i].length; j++)
-          container.append(CoC.ui.hero(result.teams[i][j]));
-        container.append($('<br>',{style:'clear:both'}));
-        
-        var synergieselement = $('<div>', { class : "synergies" })
-        for(var o in synergies){
-          var synergy = $('<div>', { class : "synergy" });
-          synergy.append($('<img>', { src:CoC.ui.getSynergyImage(o, synergies[o]) }));
-          synergy.append($('<span>').text(CoC.ui.getSynergyName(o) + " +" + synergies[o] + "%"));
-          synergieselement.append(synergy)
-        }
-        container.append(synergieselement);
-        
-        container.append($('<div>', { style:'clear:both'}));
-        element.append(container);
-      }
+    if(this.view === undefined){
+      this.view = new CoC.view.TeamView({
+        el: $("#teams")[0]
+      });
     }
-    else{
-      element.append($('<div>', { class:"message" }).text("No Synergies Found."));
-    }
-    
-    if(result.extras.length){
-      element.append($('<h3>', { style:'clear:both'}).text("Extras"));
-      var container = $('<div>').addClass('extras');
-      for(var i=0; i<result.extras.length; i++)
-        container.append(CoC.ui.hero(result.extras[i]));
-      element.append(container);
-    }
+    this.view.size(size);
+    this.view.teams(result.teams);
+    this.view.extras(result.extras);
+    this.view.render();
   }
 }
 
 CoC.ui.roster=new function(){
 
-  this.selector="#roster"
-  
   this.empty = true;
+  this.view = undefined;
   
-  this.update=function(){
-    var heroes = CoC.roster.get();
-    var heroCount = CoC.roster.size();
-    CoC.ui.roster.empty = heroes.length == 0;
+  this.popup=function(element, champion){
     
-    var sortBy = CoC.settings.getValue("roster-sort");
-    var classSortIndex = {};
-    for(var i=0; i<CoC.data.classes.length; i++)
-      classSortIndex[CoC.data.classes[i]] = i;
-    //stars > class > name
-    if(sortBy === "stars")
-      heroes.sort(function(a,b){
-        var value = b.stars - a.stars;
-        if(value !== 0)
-          return value;
-          
-        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
-        value = classSortIndex[heroA.class] - classSortIndex[heroB.class];
-        if(value !== 0)
-          return value;
-         
-        return heroA.name.localeCompare(heroB.name);
-      })
-    //class > stars > name
-    if(sortBy === "class")
-      heroes.sort(function(a,b){
-        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
-        var value = classSortIndex[heroA.class] - classSortIndex[heroB.class];
-        if(value !== 0)
-          return value;
-         
-        value = b.stars - a.stars;
-        if(value !== 0)
-          return value;
-          
-        return heroA.name.localeCompare(heroB.name);        
-      })
-    //name > stars
-    if(sortBy === "name")
-      heroes.sort(function(a,b){
-        var heroA = CoC.data.heroes[a.id], heroB = CoC.data.heroes[b.id]
-        var value = heroA.name.localeCompare(heroB.name);
-        if(value !== 0)
-          return value;
-         
-        return b.stars - a.stars;       
-      })
+    $("#roster-configure-stars").text("");
+    $("#roster-configure-stars").append((function(){
+      var string = "";
+      for(var i=0;i<champion.get("stars");i++)
+        string+="<span class='star'></span>";
+      return string;
+    })());
+    if(champion.get("awakened") > 0)
+      $("#roster-configure-stars").addClass("awakened")
+    else
+      $("#roster-configure-stars").removeClass("awakened")
+
+    var synergies;
     
-    var element = $("<div>");
-    $(CoC.ui.roster.selector).text("").append(element);
+    $("#roster-configure-synergies-to").text("");
+    synergies = CoC.data.synergies.where({ toId:champion.get("uid") });
+    for(var s=0; s<synergies.length; s++){
+      var synergy = synergies[s];
+      var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+      var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("fromId"), stars:synergy.get("fromStars") });
+      var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("stars") + "★ " + toChampion.get("name") });
+      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("type").toLowerCase(), src:toChampion.portrait() }));
+      syneryEl.append($('<img>', { src:effect.get("image") }));
+      syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
+      $("#roster-configure-synergies-to").append(syneryEl);
+    }
+    if(synergies.length == 0)
+      $("#roster-configure-synergies-to").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
+      
+    $("#roster-configure-synergies-from").text("");
+    synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") });
+    for(var s=0; s<synergies.length; s++){
+      var synergy = synergies[s];
+      var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+      var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("toId") });
+      var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("name") });
+      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("type").toLowerCase(), src:toChampion.portrait() }));
+      syneryEl.append($('<img>', { src:effect.get("image") }));
+      syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
+      $("#roster-configure-synergies-from").append(syneryEl);
+    }
+    if(synergies.length == 0)
+      $("#roster-configure-synergies-from").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
+    $("#roster-configure-synergies").children(2).collapsible( "expand" );
+
+    $("#roster-configure-image").prop("src", champion.image());
+    $("#roster-configure-name").prop("class", champion.get("type")).text(champion.get("name"));
+    $("#roster-configure-class").prop("class", champion.get("type").toLowerCase()).text(champion.get("type"));
+
+    function setupRankLevel(){
+      var levels = CoC.data.championLevels[champion.get("stars")];
     
-    element.append($('<div>', { class:"message" }).text(heroes.length+" of "+heroCount+" Champions."));
-    
-    for(var i in heroes)
-      (function(hero,index){
-        element.append(CoC.ui.hero(hero, index, function(event){
-          var h = CoC.data.heroes[hero.id], synergies;
-          
-          $("#roster-configure-stars").text("");
-          $("#roster-configure-stars").append((function(){
-            var string = "";
-            for(var i=0;i<hero.stars;i++)
-              string+="<span class='star'></span>";
-            return string;
-          })());
-          if(hero.awakened)
-            $("#roster-configure-stars").addClass("awakened")
-          else
-            $("#roster-configure-stars").removeClass("awakened")
-          
-          $("#roster-configure-synergies-to").text("");
-          synergies = CoC.logic.heroes.synergies.to(hero.id);
-          for(var s=0; s<synergies.length; s++){
-            var shero = CoC.data.heroes[synergies[s].id];
-            var synergy = $('<div>', { class : "synergy", title: shero.name });
-            synergy.append($('<img>', { class : "portrait "+shero.class.toLowerCase(), src:'images/champions/portrait_'+shero.id+'.png' }));
-            synergy.append($('<img>', { src:CoC.ui.getSynergyImage(synergies[s].type, synergies[s].amount) }));
-            synergy.append($('<span>').text(CoC.ui.getSynergyName(synergies[s].type) + " +" + synergies[s].amount + "%"));
-            $("#roster-configure-synergies-to").append(synergy);
-          }
-          if(synergies.length == 0)
-            $("#roster-configure-synergies-to").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
-          $("#roster-configure-synergies-from").text("");
-          synergies = CoC.logic.heroes.synergies.from(hero.id, hero.stars);
-          for(var s=0; s<synergies.length; s++){
-            var shero = CoC.data.heroes[synergies[s].id];
-            var synergy = $('<div>', { class : "synergy", title:shero.name });
-            synergy.append($('<img>', { class : "portrait "+shero.class.toLowerCase(), src:'images/champions/portrait_'+shero.id+'.png' }));
-            synergy.append($('<img>', { src:CoC.ui.getSynergyImage(synergies[s].type, synergies[s].amount) }));
-            synergy.append($('<span>').text(CoC.ui.getSynergyName(synergies[s].type) + " +" + synergies[s].amount + "%"));
-            $("#roster-configure-synergies-from").append(synergy);
-          }
-          if(synergies.length == 0)
-            $("#roster-configure-synergies-from").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
-          $("#roster-configure-synergies").children(2).collapsible( "expand" );
-            
-          $("#roster-configure-image").prop("src", 'images/champions/fullsize_'+hero.id+'.png');
-          $("#roster-configure-name").prop("class", h.class).text(h.name);
-          $("#roster-configure-class").prop("class", h.class.toLowerCase()).text(h.class);
+      $("#roster-configure-level").empty();
+      for(var i = 1; i<=levels[champion.get("rank")-1]; i++)
+        $("#roster-configure-level").append($("<option>").val(i).text(i));
         
-          function setupRankLevel(){
-            if(hero.level > CoC.data.levels[hero.stars][hero.rank-1]){
-              hero.level = CoC.data.levels[hero.stars][hero.rank-1];
-              CoC.roster.save();
-            }
-          
-            $("#roster-configure-level").empty();
-            for(var i = 1; i<=CoC.data.levels[hero.stars][hero.rank-1]; i++)
-              $("#roster-configure-level").append($("<option>").val(i).text(i));
-            $("#roster-configure-level").unbind( "change" ).change(function(e){              
-                hero.level = e.target.value;
-                CoC.roster.save();
-                CoC.ui.roster.dirty();
-                $("#roster-configure-level").selectmenu('refresh');
-              }).val(hero.level).selectmenu('refresh');
-          }
-          
-          $("#roster-configure-rank").text("");
-          for(var i = 1; i<=CoC.data.levels[hero.stars].length; i++)
-            $("#roster-configure-rank").append($("<option>").val(i).text(i));
-          $("#roster-configure-rank").unbind( "change" ).change(function(e){
-            hero.rank = e.target.value;
-            CoC.roster.save();
-            CoC.ui.roster.dirty();
-            setupRankLevel();
-            $("#roster-configure-rank").selectmenu('refresh');
-          }).val(hero.rank).selectmenu('refresh');
-          
-          setupRankLevel();
-          
-          $("#roster-configure-awakened").prop("checked",hero.awakened != 0).checkboxradio("refresh").unbind( "change" ).change(function(e){
-            if(e.target.checked)
-              hero.awakened = 1;
-            else
-              hero.awakened = 0;
-            CoC.roster.save();
-            CoC.ui.roster.dirty();
-            var el = $(element.find(".hero")[index])
-            if(hero.awakened){
-              el.addClass("awakened");
-              $("#roster-configure-stars").addClass("awakened");
-              $("#roster-delete-confirm-stars").addClass("awakened");
-            }
-            else{
-              el.removeClass("awakened");
-              $("#roster-configure-stars").removeClass("awakened")
-              $("#roster-delete-confirm-stars").removeClass("awakened");
-            }
-          });
-          
-          $("#roster-configure-quest").prop("checked",hero.quest === true).checkboxradio("refresh").unbind( "change" ).change(function(e){
-            if(e.target.checked)
-              hero.quest = true;
-            else
-              hero.quest = false;
-            CoC.roster.save();
-            CoC.ui.roster.dirty();
-            var el = $(element.find(".hero")[index])
-            if(hero.quest)
-              el.addClass("quest");
-            else
-              el.removeClass("quest");
-          });
-          
-          $("#roster-configure-delete").unbind( "click" ).click(function(){
-            $('#popup-roster-configure').popup("option","transition","none").popup("close");
-            setTimeout(function(){
-              $("#popup-roster-delete-confirm").popup("open",{
-                positionTo:"window"
-              })
-            },50);
-          });
-          
-          $("#roster-delete-confirm-name").attr("class", h.class.toLowerCase()).text(h.name);
-          $("#roster-delete-confirm-stars").text("").attr("class", (hero.awakened)? "awakened": "");
-          for(var i=0; i<hero.stars;i++)
-            $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
-          $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
-            $("#popup-roster-delete-confirm").popup("close");
-            CoC.ui.teams.clear();
-            CoC.roster.remove(hero.id, hero.stars);
-            CoC.ui.roster.dirty();
-            CoC.ui.hero.hide(element, index);
-          })
-          
-          element.find(".container").removeClass("selected");
-          $(event.target).parent().addClass("selected");
-          
-          $('#popup-roster-configure').popup("open",{
-            positionTo:$(this)
-          })
-        }));
-      })(heroes[i],i);
-    element.append($('<div>').css({ 'clear':'both'}));
+      $("#roster-configure-level").unbind( "change" ).change(function(e){              
+        champion.set("level", e.target.value);
+        champion.save();
+        CoC.ui.roster.update();
+        $("#roster-configure-level").selectmenu('refresh');
+      }).val(champion.get("level")).selectmenu('refresh');
+    }
+    
+    $("#roster-configure-rank").text("");
+    for(var i = 1; i<=CoC.data.championLevels[champion.get("stars")].length; i++)
+      $("#roster-configure-rank").append($("<option>").val(i).text(i));
+    $("#roster-configure-rank").unbind( "change" ).change(function(e){        
+      champion.set("rank", e.target.value);
+      champion.save();
+      CoC.ui.roster.update();
+      setupRankLevel();
+      $("#roster-configure-rank").selectmenu('refresh');
+    }).val(champion.get("rank")).selectmenu('refresh');
+    
+    setupRankLevel();
+    
+    $("#roster-configure-awakened").prop("checked", champion.get("awakened") != 0).checkboxradio("refresh").unbind( "change" ).change(function(e){
+
+      champion.set("awakened", (e.target.checked)? 1: 0)
+      champion.save();
+      
+      if(champion.get("awakened") > 0){
+        $("#roster-configure-stars").addClass("awakened");
+        $("#roster-delete-confirm-stars").addClass("awakened");
+      }
+      else{
+        $("#roster-configure-stars").removeClass("awakened")
+        $("#roster-delete-confirm-stars").removeClass("awakened");
+      }
+      CoC.ui.roster.update();
+    });
+    
+    $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind( "change" ).change(function(e){
+      champion.set("quest", (e.target.checked)? true: false);
+      champion.save();
+      CoC.ui.roster.update();
+    });
+    
+    $("#roster-configure-delete").unbind( "click" ).click(function(){
+      $('#popup-roster-configure').popup("option","transition","none").popup("close");
+      setTimeout(function(){
+        $("#popup-roster-delete-confirm").popup("open",{
+          positionTo:"window"
+        })
+      },50);
+    });
+    
+    $("#roster-delete-confirm-name").attr("class", champion.get("type").toLowerCase()).text(champion.get("name"));
+    $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
+    for(var i=0; i<champion.get("stars");i++)
+      $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
+    $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
+      $("#popup-roster-delete-confirm").popup("close");
+      champion.destroy();
+      CoC.ui.roster.update();
+    })
+    
+    $('#popup-roster-configure').popup("open",{
+      positionTo:$(element)
+    })
+  
   }
   
-  this.dirty=function(){
+  this.update=function(){
   
-    var exporter = $('#roster-export');
-    var csvRoster = CoC.roster.csv();
-    exporter.attr('download', 'roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
-    exporter.click(function(){
-      console.log("exporting to csv...");
-      $('#panel-roster-options').panel("close");
-    });
-
+    if(this.view === undefined){
+      this.view = new CoC.view.RosterView({
+        el: $("#roster")[0]
+      });
+    }
+    this.view.render();
   }
 }
 
 CoC.ui.add=new function(){
 
-  this.selector="#add-heroes"
-
   this.stars = 2;
+  this.view = undefined;
+  
   this.setStars=function(stars){
     this.stars = stars;
     CoC.ui.add.update();
   }
   
   this.update=function(){
-    var stars = this.stars;
-    var roster = CoC.roster.get({ stars:{
-      1:stars === 1, 2:stars === 2, 3:stars === 3, 4:stars === 4 }
-    });
-    var heroes = CoC.logic.heroes.excluding(roster, stars);
-    var element = $('<div>');
-    $(CoC.ui.add.selector).text("").append(element);
-    for(var i in heroes)
-      (function(hero,i){
-        element.append(CoC.ui.hero({ id:hero.id, stars:stars }, i, function(){
-          CoC.roster.add({ 
-            id:hero.id, 
-            stars:stars,
-            rank:1,
-            level:1,
-            awakened:0
-          });
-          CoC.ui.hero.hide(element, i);
-        }));
-      })(heroes[i],i);
-    element.append($('<div>').css({ 'clear':'both'}));
+    if(this.view === undefined){
+      this.view = new CoC.view.AddChampionsView({
+        el: $("#add-champions")[0]
+      });
+    }
+    this.view.stars(this.stars)
+    this.view.render();
   }
 }
 
@@ -412,6 +231,7 @@ $( document ).on( "pagecreate", "#page-settings-advanced", function() {
 });
 
 $("#page-roster").on("pagebeforeshow",function(){
+
   $('#roster-import a').click(function(){
     console.log("importing csv...");
     
@@ -422,13 +242,22 @@ $("#page-roster").on("pagebeforeshow",function(){
           var result = e.target.result;
           CoC.roster.csv(result);
           CoC.ui.roster.update();
-          CoC.ui.roster.dirty();
         }
         reader.readAsText(this.files[0]);
       }
     }).click();
     $('#panel-roster-options').panel("close");
   });
+  
+  $('#roster-export').click(function(){
+    console.log("exporting to csv...");
+    
+    var csvRoster = CoC.roster.csv();
+    $('#roster-export').attr('download', 'coc-roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+    
+    $('#panel-roster-options').panel("close");
+  });
+  
   
   $('#roster-clear-all').click(function(){
     $("#popup-roster-clear-confirm").popup("open",{
@@ -451,7 +280,6 @@ $("#page-roster").on("pagebeforeshow",function(){
   $("#roster-clear-confirm-yes").click(function(){
     CoC.roster.clear();
     CoC.ui.roster.update();
-    CoC.ui.roster.dirty();
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
   });
@@ -501,7 +329,6 @@ $("#page-roster").on("pagebeforeshow",function(){
     
   
   CoC.ui.roster.update();
-  CoC.ui.roster.dirty();
 });
 
 $("#page-add").on("pagebeforeshow",function(){
@@ -571,7 +398,26 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var size = CoC.settings.getValue("size");
     if(size === undefined)
       size = 3;
-    var roster = CoC.roster.get();
+      
+    var filterStars = {
+      1: CoC.settings.getValue("roster-filter-stars-1"),
+      2: CoC.settings.getValue("roster-filter-stars-2"),
+      3: CoC.settings.getValue("roster-filter-stars-3"),
+      4: CoC.settings.getValue("roster-filter-stars-4")
+    };
+    var filterTypes = {
+      Cosmic: CoC.settings.getValue("roster-filter-cosmic"),
+      Tech: CoC.settings.getValue("roster-filter-tech"),
+      Mutant: CoC.settings.getValue("roster-filter-mutant"),
+      Skill: CoC.settings.getValue("roster-filter-skill"),
+      Science: CoC.settings.getValue("roster-filter-science"),
+      Mystic: CoC.settings.getValue("roster-filter-mystic")
+    }
+    var roster = CoC.data.roster.filter(function(champion){
+      if(filterStars[champion.get("stars")] === false)
+        return false;
+      return filterTypes[champion.get("type")];
+    });
     
     var algorithm = CoC.settings.getValue("algorithm") || "greedy";
     var quest = CoC.settings.getValue("quest-group")===true;
@@ -587,7 +433,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
       try{
         if(CoC.ui.teams.worker !== null)
           CoC.ui.teams.worker.terminate();
-        CoC.ui.teams.worker = new Worker('scripts/worker.js');
+        CoC.ui.teams.worker = new Worker('scripts/worker.js?');
         CoC.ui.teams.worker.onmessage=function(event){
           if(event.data.type === "progress"){
             var current = event.data.current;
@@ -612,15 +458,37 @@ $("#page-teams").on( "pagebeforeshow", function() {
             $("#team-build-progress input").val(10000).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
-            CoC.ui.teams.update(event.data.result, size);
+            
+            var result = {};
+            if(event.data.result.teams !== undefined){
+              result.teams=[];
+              for(var i=0; i<event.data.result.teams.length; i++){
+                var team = [];
+                for(var j=0; j<event.data.result.teams[i].length; j++)
+                  team.push(new CoC.model.Champion( event.data.result.teams[i][j].attributes ))
+                result.teams.push(team);
+              }
+            }
+            if(event.data.result.extras !== undefined){
+              result.extras=[];
+              for(var i=0; i<event.data.result.extras.length; i++)
+                result.extras.push(new CoC.model.Champion( event.data.result.extras[i].attributes ))
+            }
+            
+            CoC.ui.teams.update(result, size);
             CoC.ui.teams.worker.terminate();
             CoC.ui.teams.worker = null;
             console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
           }
         };
-        CoC.ui.teams.worker.postMessage({ 
+        
+        var rosterJSON = [];
+        for(var i=0; i<roster.length; i++)
+          rosterJSON.push(roster[i].toJSON());
+        
+        CoC.ui.teams.worker.postMessage({
           algorithm:algorithm,
-          roster:roster, 
+          roster:rosterJSON, 
           size:size, 
           quest:quest, 
           extras:extras,
@@ -629,7 +497,9 @@ $("#page-teams").on( "pagebeforeshow", function() {
         });
         workerWorking = true;
       }
-      catch(e){}
+      catch(e){
+        console.error(e)
+      }
     }
 
     if(!workerWorking){
@@ -641,7 +511,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
           CoC.ui.teams.update(result, size);
           $("#team-build-progress").attr("class","hidden");
           $("#onboarding-progress").removeClass("show");
-          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
+          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds (worker failed)");
         },0);
       },0);
     }
@@ -713,3 +583,9 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-health","health");
   
 });
+
+//preload images
+for(var id in CoC.data.heroes){
+  (new Image()).src = 'images/champions/portrait_'+id+'.png';
+  (new Image()).src = 'images/champions/fullsize_'+id+'.png';
+}
