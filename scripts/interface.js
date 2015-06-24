@@ -583,9 +583,3 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-health","health");
   
 });
-
-//preload images
-for(var id in CoC.data.heroes){
-  (new Image()).src = 'images/champions/portrait_'+id+'.png';
-  (new Image()).src = 'images/champions/fullsize_'+id+'.png';
-}

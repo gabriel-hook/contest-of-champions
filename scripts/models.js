@@ -42,9 +42,6 @@ CoC.model.Effect = Backbone.Model.extend({
     name: "Effect Name",
     uid: "effect",
 		base: 10,
-    amount:0,
-    image:function(){
-      return 'images/effects/'+this.get('uid')+'.jpg'
-    }
+    amount:0
   }
 });

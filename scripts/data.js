@@ -2,17 +2,17 @@
 CoC.data.effects = new Backbone.Collection([], {
   model: CoC.model.Effect
 });
-CoC.data.effects.add({ uid: "attack", name:"Attack", image:"/images/effects/attack.jpg", base:5 });
-CoC.data.effects.add({ uid: "critrate", name:"Critical Rate", image:"/images/effects/critical.jpg", base:5 });
-CoC.data.effects.add({ uid: "critdamage", name:"Critical Damage", image:"/images/effects/critical.jpg", base:15 });
-CoC.data.effects.add({ uid: "stun", name:"Stun", image:"/images/effects/stun.jpg", base:15 });
-CoC.data.effects.add({ uid: "powergain", name:"Power Gain", image:"/images/effects/mana.jpg", base:3 });
-CoC.data.effects.add({ uid: "powersteal", name:"Power Steal", image:"/images/effects/mana_steal.jpg", base:3 });
-CoC.data.effects.add({ uid: "perfectblock", name:"Perfect Block", image:"/images/effects/block.jpg", base:3 });
-CoC.data.effects.add({ uid: "block", name:"Block Proficiency", image:"/images/effects/block.jpg", base:10 });
-CoC.data.effects.add({ uid: "armor", name:"Armor", image:"/images/effects/armor.jpg", base:4 });
-CoC.data.effects.add({ uid: "health", name:"Health", image:"/images/effects/health.jpg", base:4 });
-CoC.data.effects.add({ uid: "healthsteal", name:"Health Steal", image:"/images/effects/health_steal.jpg", base:4 });
+CoC.data.effects.add({ uid: "attack", name:"Attack", image:"images/effects/attack.jpg", base:5 });
+CoC.data.effects.add({ uid: "critrate", name:"Critical Rate", image:"images/effects/critical.jpg", base:5 });
+CoC.data.effects.add({ uid: "critdamage", name:"Critical Damage", image:"images/effects/critical.jpg", base:15 });
+CoC.data.effects.add({ uid: "stun", name:"Stun", image:"images/effects/stun.jpg", base:15 });
+CoC.data.effects.add({ uid: "powergain", name:"Power Gain", image:"images/effects/mana.jpg", base:3 });
+CoC.data.effects.add({ uid: "powersteal", name:"Power Steal", image:"images/effects/mana_steal.jpg", base:3 });
+CoC.data.effects.add({ uid: "perfectblock", name:"Perfect Block", image:"images/effects/block.jpg", base:3 });
+CoC.data.effects.add({ uid: "block", name:"Block Proficiency", image:"images/effects/block.jpg", base:10 });
+CoC.data.effects.add({ uid: "armor", name:"Armor", image:"images/effects/armor.jpg", base:4 });
+CoC.data.effects.add({ uid: "health", name:"Health", image:"images/effects/health.jpg", base:4 });
+CoC.data.effects.add({ uid: "healthsteal", name:"Health Steal", image:"images/effects/health_steal.jpg", base:4 });
 
 //Classes
 CoC.data.championTypes=[
