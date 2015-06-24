@@ -1,5 +1,5 @@
 ﻿$("#page-roster").on( "pageshow", function() {
-  if(CoC.ui.roster.empty){
+  if(CoC.data.roster.length === 0){
     $("#onboarding-roster").addClass("show")
     $("#page-roster").one("click",function(){
       $("#onboarding-roster").removeClass("show")
