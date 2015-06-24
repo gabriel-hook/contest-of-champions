@@ -95,3 +95,11 @@ CoC.settings.preset.add("Duplicates", "None",{
   "duplicates-4":0,
   "duplicates-5":0
 })
+
+
+//Set defaults
+if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
+  CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
+  CoC.settings.setValue("hasDefaults", true);
+  CoC.settings.setValue("version", CoC.version);
+}
