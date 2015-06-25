@@ -537,9 +537,11 @@
       
       <% _(teams).each(function(team){ %>
         <div class="team <%= (size==3)? "three": (size==4)? "four": (size==5)? "five": "unknown" %>">
-          <% _(team.champions).each(function(champion){ %>
-            <%= renderChampion(champion) %>
-          <% }) %>
+          <div class="heroes">
+            <% _(team.champions).each(function(champion){ %>
+              <%= renderChampion(champion) %>
+            <% }) %>
+          </div>
           <br style="clear:both">
           <div class="synergies">
             <% _(team.effects).each(function(effect){ %>
