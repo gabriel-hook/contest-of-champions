@@ -41,6 +41,7 @@
       
       <div role="main" class="ui-content">
         <div id="roster"></div>
+        <br>
       </div>
       
       <div class="panel" id="panel-roster-options" 
@@ -229,6 +230,7 @@
       
       <div role="main" class="ui-content">
         <div id="add-champions"></div>
+        <br>
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
@@ -326,6 +328,7 @@
       
       <div role="main" class="ui-content">
         <div id="teams"></div>
+        <br>
       </div>
       
       <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
@@ -523,7 +526,7 @@
           </div>
           <div class="stars">
             <% for( var i=0; i<stars; i++){ %>
-              <img class='star' src="<%= (awakened > 0)? "images/star.png" : "images/star-awakened.png" %>">
+              <img class='star' src="<%= (awakened === 0)? "images/star.png" : "images/star-awakened.png" %>">
             <% } %>
           </div>
         </div>
