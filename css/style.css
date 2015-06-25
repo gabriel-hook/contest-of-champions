@@ -57,13 +57,17 @@ html, body, p, span, div {
 
 #teams .team .heroes .hero:first-child .title{
   border-top-right-radius:0;
+  border-right:none;
 }
 #teams .team .heroes .hero:last-child .title{
   border-top-left-radius:0;
+  border-left:none;
 }
 #teams .team .heroes .hero:not(:first-child):not(:last-child) .title{
   border-top-left-radius:0;
   border-top-right-radius:0;
+  border-left:none;
+  border-right:none;
 }
 
 #roster .hero .portrait,
@@ -152,7 +156,7 @@ html, body, p, span, div {
 #roster .hero .container:hover,
 #add-champions .hero .container:active,
 #add-champions .hero .container:hover{
-  padding:5px;
+  transform:scale(1.1);
 }
 
 .hero .portrait .quest{
@@ -177,6 +181,7 @@ html, body, p, span, div {
   overflow:hidden;
   min-height:14px;
   background:rgba(0,0,0,0.5);
+  box-sizing:border-box;
   border-bottom:solid 10px;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
@@ -185,6 +190,7 @@ html, body, p, span, div {
 .hero .name{
   display:block;
   box-sizing:border-box;
+  text-align:center;
   width:100%;
   padding:4px;
   font-weight:normal;
@@ -213,36 +219,42 @@ html, body, p, span, div {
 .hero span{
   font-family:Hanzel, Verdana, Geneva, sans-serif;
   font-size:1em;
+  font-weight:bold;
   text-transform: uppercase;
 }
 
+.hero .name{
+  color:#fff;
+}
+
 .cosmic{
-  color:#0af;
+  color:#3af;
+  text-shadow: 0px 0px 8px #3af, 0px 0px 8px #3af;
 }
 .tech{
-  color:#66f;
+  color:#23f;
+  text-shadow: 0px 0px 8px #23f, 0px 0px 8px #23f;
 }
 .mutant{
   color:#fa0;
+  text-shadow: 0px 0px 8px #fa0, 0px 0px 8px #fa0;
 }
 .skill{
-  color:#f00;
+  color:#f30;
+  text-shadow: 0px 0px 8px #f30, 0px 0px 8px #f30;
 }
 .science{
   color:#0a0;
+  text-shadow: 0px 0px 8px #0a0, 0px 0px 8px #0a0;
 }
 .mystic{
-  color:#f0a;
-}
-
-.hero .name{
-  text-shadow: 1px 1px #000;
+  color:#90f;
+  text-shadow: 0px 0px 8px #90f, 0px 0px 8px #90f;
 }
 
 .synergies{
   background:rgba(0,0,0,0.666);
   padding-top:20px;
-  
   border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
 }
@@ -406,6 +418,18 @@ html, body, p, span, div {
   min-width:200px;
 }
 
+#roster-configure-name{
+  font-family:Hanzel, Verdana, Geneva, sans-serif;
+  font-weight:bold;
+  text-shadow:1px 1px #fff;
+  text-transform: uppercase;
+  color:#000;
+}
+#roster-configure-class{
+  text-shadow:1px 1px #fff;
+}
+
+
 #roster-configure-stars{
   position:absolute;
   left:16px;
@@ -458,7 +482,7 @@ html, body, p, span, div {
 
 #roster-configure-synergies .ui-collapsible-content{
   background:rgba(256,256,256,0.75);
-  max-height:164px;
+  max-height:140px;
   overflow-y:auto;
 }
 
@@ -495,9 +519,6 @@ html, body, p, span, div {
 }
 #roster-configure-class{
   font-weight:bold;
-}
-#roster-delete-confirm-stars{
-
 }
 
 /******************
