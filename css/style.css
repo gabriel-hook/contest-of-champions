@@ -55,6 +55,17 @@ html, body, p, span, div {
   padding:10px 0 0 0 !important;
 }
 
+#teams .team .heroes .hero:first-child .title{
+  border-top-right-radius:0;
+}
+#teams .team .heroes .hero:last-child .title{
+  border-top-left-radius:0;
+}
+#teams .team .heroes .hero:not(:first-child):not(:last-child) .title{
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+
 #roster .hero .portrait,
 #add-champions .hero .portrait{
   cursor:pointer;
@@ -165,9 +176,10 @@ html, body, p, span, div {
   width:100%;
   overflow:hidden;
   min-height:14px;
-  background:rgba(0,0,0,0.666);
-  background:linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.8) );
-  border-bottom:solid 4px;
+  background:rgba(0,0,0,0.5);
+  border-bottom:solid 10px;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
 }
 
 .hero .name{
@@ -176,6 +188,9 @@ html, body, p, span, div {
   width:100%;
   padding:4px;
   font-weight:normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero .stars{
@@ -497,6 +512,15 @@ html, body, p, span, div {
 ******************/
 
 @media (max-width:355px) {
+  .hero .title{
+    border-bottom-width: 2px;
+    background:linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.5) );
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+  }
+  .hero .star{
+    top:90%;
+  }
   .hero .name{
     display:none;
   }
@@ -509,6 +533,9 @@ html, body, p, span, div {
   }
 }
 @media (max-width:800px) and (min-width:355px) {
+  .hero .title{
+    border-bottom-width: 5px;
+  }
   .hero .name,
   .synergy span{
     font-size:1em;
