@@ -203,8 +203,9 @@ html, body, p, span, div {
 }
 
 .hero span{
-  font-family:Verdana, Geneva, sans-serif;
-  font-size:1.2em;
+  font-family:Hanzel, Verdana, Geneva, sans-serif;
+  font-size:1em;
+  text-transform: uppercase;
 }
 
 .cosmic{
@@ -520,7 +521,7 @@ html, body, p, span, div {
 @media (min-width:800px) {
   .hero .name,
   .synergy span{
-    font-size:1.2em;
+    font-size:1.1em;
   }
   .synergy img{
     top: 4px;
