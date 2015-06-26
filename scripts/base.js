@@ -295,6 +295,21 @@ var CoC=new function(){
       }
     }
   }
-};
   
-console.log("Contest of Champions - Roster Manager v"+CoC.version);
+  //image preloader for known images
+  this.preloadImages = function(){
+    CoC.data.effects.each(function(effect){
+      $('<img/>')[0].src = effect.get("image");
+    });
+    CoC.data.champions.each(function(champion){
+      $('<img/>')[0].src = champion.portrait();
+      $('<img/>')[0].src = champion.image();
+    });
+  }
+  
+  this.initialize = function(){
+    console.log("Contest of Champions - Roster Manager v"+this.version);
+    this.preloadImages();
+    this.roster.load();
+  }
+};
