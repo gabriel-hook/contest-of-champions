@@ -16,8 +16,8 @@ html, body, p, span, div {
 
 #roster .message,
 #teams .message{
-  color:#eee;
-  text-shadow: 1px 1px 1px #000;
+  color:#f6f6f6;
+  text-shadow:1px 1px #111;
   margin:0 auto 24px auto;
   background:rgba(0,0,0,0.5);
   width:100%;
@@ -156,7 +156,9 @@ html, body, p, span, div {
 #roster .hero .container:hover,
 #add-champions .hero .container:active,
 #add-champions .hero .container:hover{
-  transform:scale(1.1);
+  -ms-transform:scale(1.1, 1.1);
+  -webkit-transform:scale(1.1, 1.1);
+  transform:scale(1.1, 1.1);
 }
 
 .hero .portrait .quest{
@@ -224,8 +226,8 @@ html, body, p, span, div {
 }
 
 .hero .name{
-  color:#fff;
-  text-shadow: 1px 1px #333;
+  color:#f6f6f6;
+  text-shadow: 1px 1px #111;
 }
 
 .cosmic{
@@ -258,8 +260,8 @@ html, body, p, span, div {
   padding-top:0;
 }
 .synergies .synergy span{
-  color:#eee;
-  text-shadow: 2px 2px 1px #346;
+  color:#f6f6f6;
+  text-shadow:1px 1px #111;
 }
 .synergies .synergy img{
   position:relative;
@@ -319,8 +321,8 @@ html, body, p, span, div {
   left:0;
   width:100%;
   transition:top 1s;
-  color:#eee;
-  text-shadow: 1px 1px 1px #000;
+  color:#f6f6f6;
+  text-shadow:1px 1px #111;
   background:rgba(0,0,0,0.5);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -530,6 +532,7 @@ html, body, p, span, div {
   .hero .name,
   .synergy span{
     font-size:0.6em;
+    line-height:0.6em;
   }
   .synergy img{
     top:1px;
@@ -546,6 +549,7 @@ html, body, p, span, div {
   .hero .name,
   .synergy span{
     font-size:0.8em;
+    line-height:0.8em;
   }
   .synergy img{
     top:2px;
@@ -556,6 +560,7 @@ html, body, p, span, div {
   .hero .name,
   .synergy span{
     font-size:1em;
+    line-height:1em;
   }
   .hero .stars{
     bottom:-15%;
