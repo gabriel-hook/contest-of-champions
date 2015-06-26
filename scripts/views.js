@@ -120,10 +120,12 @@ CoC.view.RosterView = Backbone.View.extend({
 CoC.view.TeamView = Backbone.View.extend({
   template: _.template( $('#teamsTemplate').html() ),
 
+  //set team size
   size:function(size){
     this._size = size;
   },
   
+  //build champion/effect team pairs
   teams:function(teams){
     
     if(teams === undefined || teams.length === 0){
@@ -171,6 +173,7 @@ CoC.view.TeamView = Backbone.View.extend({
     
   },
   
+  //add extras
   extras:function(extras){
     this._extras = (extras === undefined || extras.length === 0)? undefined: extras;
   },
@@ -193,7 +196,7 @@ CoC.view.TeamView = Backbone.View.extend({
 //Message View
 CoC.view.MessageView = Backbone.View.extend({
   tagName: 'div',
-  template: _.template( '<div class="message"><%= message %></div>'),
+  template: _.template('<div class="message"><%= message %></div>'),
   render:function(){  
     this.$el.html( this.template( this.model ) );
     return this;
@@ -222,6 +225,7 @@ CoC.view.ChampionView = Backbone.View.extend({
     if(model.get("awakened") > 0)
       el.addClass("awakened");
       
+    //set my data
     el.attr("uid", model.get("uid"))
     el.attr("stars", model.get("stars"))
       
