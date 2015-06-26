@@ -24,6 +24,8 @@ Kabam/Marvel's Contest of Champions
       Swiping 'right' on the page or clicking the button in the top left corner will open the Options Panel.
 
       From here you can Add new champions, import/export rosters, or clear your existing roster.
+      
+      There are also filtering options that will change your Roster view and Team building output.
 
 #### Roster - Add Page
 
@@ -41,7 +43,7 @@ Kabam/Marvel's Contest of Champions
   
       Swiping 'left' on the page or clicking the button in the top right corner will open the Build Panel.
 
-      From here you can start building your teams using the options available.
+      From here you can start building your teams (filtered by the Roster Options) using the options available.
       
       Different algorithms will be better/worse/faster/slower depending on the algorithm chosen and searching options.
 
