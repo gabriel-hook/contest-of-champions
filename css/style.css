@@ -34,8 +34,8 @@ html, body, p, span, div {
   max-width:450px;
 }
 #teams .team.three .hero{
-  width:33.3333333%;
-  padding-bottom:33.3333333%;
+  width:33.33333333333333333%;
+  padding-bottom:33.33333333333333%;
 }
 #teams .team.four{
   max-width:600px;
@@ -85,8 +85,8 @@ html, body, p, span, div {
 }
 @media (max-width:500px) {
   .hero{
-    width:33.3333333%;
-    padding-bottom:33.3333333%;
+    width:33.333333333333333%;
+    padding-bottom:33.33333333333333333%;
   }
 }
 @media (min-width:500px) and (max-width:700px) {
