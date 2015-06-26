@@ -398,27 +398,8 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var size = CoC.settings.getValue("size");
     if(size === undefined)
       size = 3;
-      
-    var filterStars = {
-      1: CoC.settings.getValue("roster-filter-stars-1"),
-      2: CoC.settings.getValue("roster-filter-stars-2"),
-      3: CoC.settings.getValue("roster-filter-stars-3"),
-      4: CoC.settings.getValue("roster-filter-stars-4")
-    };
-    var filterTypes = {
-      Cosmic: CoC.settings.getValue("roster-filter-cosmic"),
-      Tech: CoC.settings.getValue("roster-filter-tech"),
-      Mutant: CoC.settings.getValue("roster-filter-mutant"),
-      Skill: CoC.settings.getValue("roster-filter-skill"),
-      Science: CoC.settings.getValue("roster-filter-science"),
-      Mystic: CoC.settings.getValue("roster-filter-mystic")
-    }
-    var roster = CoC.data.roster.filter(function(champion){
-      if(filterStars[champion.get("stars")] === false)
-        return false;
-      return filterTypes[champion.get("type")];
-    });
     
+    var roster = CoC.roster.filtered();
     var algorithm = CoC.settings.getValue("algorithm") || "greedy";
     var quest = CoC.settings.getValue("quest-group")===true;
     var extras = CoC.settings.getValue("include-extras")===true;
