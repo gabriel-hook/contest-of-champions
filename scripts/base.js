@@ -170,7 +170,6 @@ var CoC=new function(){
   this.roster = new function() {};
   
   this.roster.load = function(){
-  
     var Roster = Backbone.Collection.extend({
       model: CoC.model.Champion,
       localStorage: new Backbone.LocalStorage("coc-roster")
@@ -180,10 +179,75 @@ var CoC=new function(){
   }
   
   this.roster.clear = function(){
-  
     while(CoC.data.roster.length > 0)
       CoC.data.roster.first().destroy();
+  }
   
+  this.roster.filtered = function(sorted){
+  
+    var filterStars = {
+      1: CoC.settings.getValue("roster-filter-stars-1"),
+      2: CoC.settings.getValue("roster-filter-stars-2"),
+      3: CoC.settings.getValue("roster-filter-stars-3"),
+      4: CoC.settings.getValue("roster-filter-stars-4")
+    };
+    var filterTypes = {
+      Cosmic: CoC.settings.getValue("roster-filter-cosmic"),
+      Tech: CoC.settings.getValue("roster-filter-tech"),
+      Mutant: CoC.settings.getValue("roster-filter-mutant"),
+      Skill: CoC.settings.getValue("roster-filter-skill"),
+      Science: CoC.settings.getValue("roster-filter-science"),
+      Mystic: CoC.settings.getValue("roster-filter-mystic")
+    }
+    var champions = CoC.data.roster.filter(function(champion){
+      if(filterStars[champion.get("stars")] === false)
+        return false;
+      return filterTypes[champion.get("type")];
+    });
+    
+    if(sorted){
+    
+      var sortBy = CoC.settings.getValue("roster-sort");
+      var classSortIndex = {};
+      for(var i=0; i<CoC.data.championTypes.length; i++)
+        classSortIndex[CoC.data.championTypes[i]] = i;
+      //stars > class > name
+      if(sortBy === "stars")
+        champions.sort(function(a,b){
+          var value = b.get("stars") - a.get("stars");
+          if(value !== 0)
+            return value;
+            
+          value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
+          if(value !== 0)
+            return value;
+           
+          return a.get("name").localeCompare(b.get("name"));
+        })
+      //class > stars > name
+      if(sortBy === "class")
+        champions.sort(function(a,b){
+          var value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
+          if(value !== 0)
+            return value;
+           
+          value = b.get("stars") - a.get("stars");
+          if(value !== 0)
+            return value;
+            
+          return a.get("name").localeCompare(b.get("name"));        
+        })
+      //name > stars
+      if(sortBy === "name")
+        champions.sort(function(a,b){
+          var value = a.get("name").localeCompare(b.get("name"));
+          if(value !== 0)
+            return value;
+          return b.get("stars") - a.get("stars");       
+        })
+    }
+      
+    return champions;
   }
   
   this.roster.csv=function(string){
