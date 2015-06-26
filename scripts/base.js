@@ -3,6 +3,18 @@ var CoC=new function(){
 
   this.version = "1.008.a";
 
+  this.initialize = function(){
+    console.log("Contest of Champions - Roster Manager v"+this.version);
+    this.preloadImages();
+    this.roster.load();
+  }
+  
+  this.reset=function(){
+    localStorage.clear();
+    location.reload();
+  }
+
+  //modules
   this.data = new function() {};
   this.logic = new function() {};
   this.ui = new function() {};
@@ -10,20 +22,15 @@ var CoC=new function(){
   this.model = new function() {};
   this.view = new function() {};
   
-  this.reset=function(){
-    localStorage.clear();
-    location.reload();
-  }
-  
-  this.ui.getSynergyName=function(key){
-    var value = CoC.data.synergies[key];
-    return (value === undefined)? key: value.name;
-  }
-  this.ui.getSynergyImage=function(key, value){
-    var synergy = CoC.data.synergies[key];
-    return (!synergy)? "":
-      (!value)? "images/synergybonuses/synergy_bonus_"+synergy.image+"2.jpg": 
-      "images/synergybonuses/synergy_bonus_"+synergy.image+".jpg";
+  //image preloader for known images
+  this.preloadImages = function(){
+    CoC.data.effects.each(function(effect){
+      $('<img/>')[0].src = effect.get("image");
+    });
+    CoC.data.champions.each(function(champion){
+      $('<img/>')[0].src = champion.portrait();
+      $('<img/>')[0].src = champion.image();
+    });
   }
   
   /************
@@ -294,22 +301,5 @@ var CoC=new function(){
         champion.save();
       }
     }
-  }
-  
-  //image preloader for known images
-  this.preloadImages = function(){
-    CoC.data.effects.each(function(effect){
-      $('<img/>')[0].src = effect.get("image");
-    });
-    CoC.data.champions.each(function(champion){
-      $('<img/>')[0].src = champion.portrait();
-      $('<img/>')[0].src = champion.image();
-    });
-  }
-  
-  this.initialize = function(){
-    console.log("Contest of Champions - Roster Manager v"+this.version);
-    this.preloadImages();
-    this.roster.load();
   }
 };
