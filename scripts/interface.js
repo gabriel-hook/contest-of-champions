@@ -3,7 +3,10 @@ CoC.ui.teams=new function(){
 
   this.selector="#teams"
 
-  this.view = undefined;
+  this.view = new CoC.view.TeamView({
+    el: $("#teams")[0]
+  });
+      
   this.worker = null;
   this.empty = true;
   
@@ -13,11 +16,6 @@ CoC.ui.teams=new function(){
   }
  
   this.update=function(result, size){
-    if(this.view === undefined){
-      this.view = new CoC.view.TeamView({
-        el: $("#teams")[0]
-      });
-    }
     this.view.size(size);
     this.view.teams(result.teams);
     this.view.extras(result.extras);
@@ -28,7 +26,9 @@ CoC.ui.teams=new function(){
 CoC.ui.roster=new function(){
 
   this.empty = true;
-  this.view = undefined;
+  this.view = new CoC.view.RosterView({
+    el: $("#roster")[0]
+  });
   
   this.popup=function(element, champion){
     
@@ -157,12 +157,6 @@ CoC.ui.roster=new function(){
   }
   
   this.update=function(){
-  
-    if(this.view === undefined){
-      this.view = new CoC.view.RosterView({
-        el: $("#roster")[0]
-      });
-    }
     this.view.render();
   }
 }
@@ -170,7 +164,10 @@ CoC.ui.roster=new function(){
 CoC.ui.add=new function(){
 
   this.stars = 2;
-  this.view = undefined;
+  
+  this.view = new CoC.view.AddChampionsView({
+    el: $("#add-champions")[0]
+  });
   
   this.setStars=function(stars){
     this.stars = stars;
@@ -178,11 +175,6 @@ CoC.ui.add=new function(){
   }
   
   this.update=function(){
-    if(this.view === undefined){
-      this.view = new CoC.view.AddChampionsView({
-        el: $("#add-champions")[0]
-      });
-    }
     this.view.stars(this.stars)
     this.view.render();
   }
