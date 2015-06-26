@@ -1,21 +1,15 @@
 ﻿
 CoC.ui.teams=new function(){
 
-  this.selector="#teams"
-
   this.view = new CoC.view.TeamView({
     el: $("#teams")[0]
   });
       
   this.worker = null;
   this.empty = true;
-  
-  this.clear=function(){
-    $(CoC.ui.teams.selector).text("");
-    CoC.ui.teams.empty = true;
-  }
  
   this.update=function(result, size){
+    this.empty = false;
     this.view.size(size);
     this.view.teams(result.teams);
     this.view.extras(result.extras);
@@ -25,7 +19,6 @@ CoC.ui.teams=new function(){
 
 CoC.ui.roster=new function(){
 
-  this.empty = true;
   this.view = new CoC.view.RosterView({
     el: $("#roster")[0]
   });
@@ -162,20 +155,21 @@ CoC.ui.roster=new function(){
 }
 
 CoC.ui.add=new function(){
-
-  this.stars = 2;
   
   this.view = new CoC.view.AddChampionsView({
     el: $("#add-champions")[0]
   });
   
+  this.stars = 2;
+  this.view.stars(this.stars)
+
   this.setStars=function(stars){
     this.stars = stars;
-    CoC.ui.add.update();
+    this.view.stars(this.stars)
+    this.update();
   }
   
   this.update=function(){
-    this.view.stars(this.stars)
     this.view.render();
   }
 }
@@ -397,8 +391,6 @@ $("#page-teams").on( "pagebeforeshow", function() {
     var extras = CoC.settings.getValue("include-extras")===true;
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
-    
-    CoC.ui.teams.empty = false;
     
     var startTime = new Date(), workerWorking = false;
     if (window.Worker){
