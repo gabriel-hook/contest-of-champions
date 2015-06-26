@@ -2,20 +2,14 @@
 CoC.view.AddChampionsView = Backbone.View.extend({
   initialize: function(){
     var that = this;
-    this._championViews=function(){
-      var views = [];
-      var champions = new Backbone.Collection(CoC.data.champions.where({ stars:that._stars }));
-      _(CoC.data.roster.where({ stars:that._stars })).each(function(champion){
-        var found = champions.findWhere({ uid:champion.get("uid"), stars:champion.get("stars") });
-        champions.remove(found);
+    that._championViews = {};
+    CoC.data.champions.each(function(champion){
+      var view = new CoC.view.ChampionView({
+        model:champion
       });
-      champions.each(function(champion){
-        views.push(new CoC.view.ChampionView({
-          model:champion
-        }));
-      });
-      return _(views);
-    }
+      view.render();
+      that._championViews[champion.fid()] = view;
+    });
   },
   
   events:{
@@ -40,10 +34,20 @@ CoC.view.AddChampionsView = Backbone.View.extend({
   
   render: function(){
     var that = this;
-    $(this.el).empty();
-    this._championViews().each(function(view){
-      $(that.el).append(view.el);
+    
+    that.$el.empty();
+    var champions = new Backbone.Collection(CoC.data.champions.where({ stars:that._stars }));
+    _(CoC.data.roster.where({ stars:that._stars })).each(function(champion){
+      var found = champions.findWhere({ uid:champion.get("uid"), stars:champion.get("stars") });
+      champions.remove(found);
     });
+    var container = document.createDocumentFragment();
+    champions.each(function(champion){
+      var view = that._championViews[champion.fid()];
+      container.appendChild(view.el);
+    });
+    that.$el.append(container);
+    
     return this;
   },
   
@@ -60,6 +64,10 @@ CoC.view.AddChampionsView = Backbone.View.extend({
 //Roster View
 CoC.view.RosterView = Backbone.View.extend({
  
+  initialize: function(){
+    this._championViews = {}
+  },
+  
   events:{
     "click .hero":"clicked"
   },
@@ -74,83 +82,36 @@ CoC.view.RosterView = Backbone.View.extend({
   },
   
   render: function(){
-  
-    var filterStars = {
-      1: CoC.settings.getValue("roster-filter-stars-1"),
-      2: CoC.settings.getValue("roster-filter-stars-2"),
-      3: CoC.settings.getValue("roster-filter-stars-3"),
-      4: CoC.settings.getValue("roster-filter-stars-4")
-    };
-    var filterTypes = {
-      Cosmic: CoC.settings.getValue("roster-filter-cosmic"),
-      Tech: CoC.settings.getValue("roster-filter-tech"),
-      Mutant: CoC.settings.getValue("roster-filter-mutant"),
-      Skill: CoC.settings.getValue("roster-filter-skill"),
-      Science: CoC.settings.getValue("roster-filter-science"),
-      Mystic: CoC.settings.getValue("roster-filter-mystic")
-    }
-    var champions = CoC.data.roster.filter(function(champion){
-      if(filterStars[champion.get("stars")] === false)
-        return false;
-      return filterTypes[champion.get("type")];
-    });
+    var that = this, roster = new Backbone.Collection(CoC.roster.filtered(true)), els = [];
     
-    var sortBy = CoC.settings.getValue("roster-sort");
-    var classSortIndex = {};
-    for(var i=0; i<CoC.data.championTypes.length; i++)
-      classSortIndex[CoC.data.championTypes[i]] = i;
-    //stars > class > name
-    if(sortBy === "stars")
-      champions.sort(function(a,b){
-        var value = b.get("stars") - a.get("stars");
-        if(value !== 0)
-          return value;
-          
-        value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
-        if(value !== 0)
-          return value;
-         
-        return a.get("name").localeCompare(b.get("name"));
-      })
-    //class > stars > name
-    if(sortBy === "class")
-      champions.sort(function(a,b){
-        var value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
-        if(value !== 0)
-          return value;
-         
-        value = b.get("stars") - a.get("stars");
-        if(value !== 0)
-          return value;
-          
-        return a.get("name").localeCompare(b.get("name"));        
-      })
-    //name > stars
-    if(sortBy === "name")
-      champions.sort(function(a,b){
-        var value = a.get("name").localeCompare(b.get("name"));
-        if(value !== 0)
-          return value;
-        return b.get("stars") - a.get("stars");       
-      })
-    champions = new Backbone.Collection(champions)
-      
-    var views = [];
-    //now add the actual views
-    views.push(new CoC.view.MessageView({
-      model:{ message: champions.length+" of "+CoC.data.roster.length+" Champions." }
-    }));
-    champions.each(function(champion){
-      views.push(new CoC.view.ChampionView({
-        model:champion
-      }));
+    //add the message view
+    els.push(new CoC.view.MessageView({
+      model:{ message: roster.length+" of "+CoC.data.roster.length+" Champions." }
+    }).render().el);
+    
+    //add champion views, updating if they've changed
+    roster.each(function(champion){
+      var view = that._championViews[champion.fid()];
+      if(view === undefined){
+        view = new CoC.view.ChampionView({
+          model:champion
+        })
+        view.render();
+        champion.bind("change", function(){
+          view.render();
+        });
+        that._championViews[champion.fid()] = view;
+      }
+      els.push(view.el);
     });  
-  
-    var that = this;
-    $(this.el).empty();
-    _(views).each(function(view){
-      $(that.el).append(view.render().el);
+    
+    this.$el.empty();
+    var container = document.createDocumentFragment();
+    _(els).each(function(el){
+      container.appendChild(el);
     });
+    this.$el.append(container);
+    
     return this;
   }
 });
@@ -222,8 +183,7 @@ CoC.view.TeamView = Backbone.View.extend({
       extras:this._extras,
       renderChampion:function(champion){
         var view = new CoC.view.ChampionView({ model:champion });
-        view.render();
-        return view.el.outerHTML;
+        return view.render().el.outerHTML;
       }
     }));
     return this;
@@ -234,9 +194,6 @@ CoC.view.TeamView = Backbone.View.extend({
 CoC.view.MessageView = Backbone.View.extend({
   tagName: 'div',
   template: _.template( '<div class="message"><%= message %></div>'),
-  initialize: function (){
-    this.render();
-  },
   render:function(){  
     this.$el.html( this.template( this.model ) );
     return this;
@@ -247,9 +204,6 @@ CoC.view.MessageView = Backbone.View.extend({
 CoC.view.ChampionView = Backbone.View.extend({
   tagName: 'div',
   template: _.template( $('#championTemplate').html() ),
-  initialize: function (){
-    this.render();
-  },
   render:function(){
     var model = this.model;
     var json = model.toJSON();
