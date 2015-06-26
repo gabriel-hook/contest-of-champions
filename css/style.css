@@ -225,31 +225,26 @@ html, body, p, span, div {
 
 .hero .name{
   color:#fff;
+  text-shadow: 1px 1px #333;
 }
 
 .cosmic{
   color:#3af;
-  text-shadow: 0px 0px 8px #3af, 0px 0px 8px #3af;
 }
 .tech{
   color:#23f;
-  text-shadow: 0px 0px 8px #23f, 0px 0px 8px #23f;
 }
 .mutant{
   color:#fa0;
-  text-shadow: 0px 0px 8px #fa0, 0px 0px 8px #fa0;
 }
 .skill{
   color:#f30;
-  text-shadow: 0px 0px 8px #f30, 0px 0px 8px #f30;
 }
 .science{
   color:#0a0;
-  text-shadow: 0px 0px 8px #0a0, 0px 0px 8px #0a0;
 }
 .mystic{
   color:#90f;
-  text-shadow: 0px 0px 8px #90f, 0px 0px 8px #90f;
 }
 
 .synergies{
