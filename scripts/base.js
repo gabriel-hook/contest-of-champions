@@ -215,9 +215,12 @@ var CoC=new function(){
     if(sorted){
     
       var sortBy = CoC.settings.getValue("roster-sort");
-      var classSortIndex = {};
-      for(var i=0; i<CoC.data.championTypes.length; i++)
-        classSortIndex[CoC.data.championTypes[i]] = i;
+      
+      var typeSortIndex = {};
+      CoC.data.types.each(function(type){
+        typeSortIndex[type.get("uid")] = CoC.data.types.indexOf(type);
+      });
+      
       //stars > class > name
       if(sortBy === "stars")
         champions.sort(function(a,b){
@@ -225,7 +228,7 @@ var CoC=new function(){
           if(value !== 0)
             return value;
             
-          value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
+          value = typeSortIndex[a.get("type")] - typeSortIndex[b.get("type")];
           if(value !== 0)
             return value;
            
@@ -234,7 +237,7 @@ var CoC=new function(){
       //class > stars > name
       if(sortBy === "class")
         champions.sort(function(a,b){
-          var value = classSortIndex[a.get("type")] - classSortIndex[b.get("type")];
+          var value = typeSortIndex[a.get("type")] - typeSortIndex[b.get("type")];
           if(value !== 0)
             return value;
            

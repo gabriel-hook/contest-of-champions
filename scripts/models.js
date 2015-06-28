@@ -49,3 +49,11 @@ CoC.model.Effect = Backbone.Model.extend({
     amount:0
   }
 });
+
+//Types
+CoC.model.Type = Backbone.Model.extend({
+	defaults: {
+    name: "Type Name",
+    uid: "type",
+  }
+});

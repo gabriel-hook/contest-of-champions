@@ -148,7 +148,7 @@
           stars:champion.get("stars"),
           quest:champion.get("quest"),
           data:champion,
-          type:CoC.data.championTypes.indexOf(champion.get("type")),
+          type:CoC.data.types.indexOf(CoC.data.types.findWhere({ uid:champion.get("type") })),
           synergies:synergies,
           value:(function(stars, awakened){
             var value = CoC.settings.getStarWeight(stars);

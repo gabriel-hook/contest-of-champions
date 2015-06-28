@@ -72,7 +72,8 @@ CoC.ui.roster=new function(){
 
     $("#roster-configure-image").prop("src", champion.image());
     $("#roster-configure-name").prop("class", champion.get("type")).text(champion.get("name"));
-    $("#roster-configure-class").prop("class", champion.get("type").toLowerCase()).text(champion.get("type"));
+    
+    $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("type").toLowerCase() }).get("image"));
 
     function setupRankLevel(){
       var levels = CoC.data.championLevels[champion.get("stars")];
