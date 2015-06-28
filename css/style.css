@@ -194,7 +194,7 @@ html, body, p, span, div {
   box-sizing:border-box;
   text-align:center;
   width:100%;
-  padding:4px;
+  padding:0 3px;
   font-weight:normal;
   white-space: nowrap;
   overflow: hidden;
@@ -531,7 +531,10 @@ html, body, p, span, div {
   .hero .stars{
     bottom:-18%;
   }
-  .hero .name,
+  .hero .name{
+    font-size:0.6em;
+    line-height:1.5em;
+  }
   .synergy span{
     font-size:0.6em;
     line-height:0.6em;
@@ -548,7 +551,10 @@ html, body, p, span, div {
   .hero .stars{
     bottom:-16%;
   }
-  .hero .name,
+  .hero .name{
+    font-size:0.8em;
+    line-height:1.5em;
+  }
   .synergy span{
     font-size:0.8em;
     line-height:0.8em;
@@ -559,7 +565,10 @@ html, body, p, span, div {
   }
 }
 @media (min-width:800px) {
-  .hero .name,
+  .hero .name{
+    font-size:1em;
+    line-height:1.5em;
+  }
   .synergy span{
     font-size:1em;
     line-height:1em;
