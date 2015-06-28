@@ -7,11 +7,11 @@ CoC.settings.preset.add(null, "Defaults",{
 
   "awakened":1.5,
 
-  "attack":5,
-  "stun":4,
-  "critrate":3,
-  "critdamage":2,
-  "powergain":1,
+  "attack":8,
+  "stun":5,
+  "critrate":5,
+  "critdamage":5,
+  "powergain":3,
   "perfectblock":1,
   "block":1,
   "armor":1,
@@ -45,11 +45,11 @@ CoC.settings.preset.add(null, "Defaults",{
   "include-extras":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{
-  "attack":7,
-  "stun":5,
+  "attack":8,
+  "stun":4,
   "critrate":4,
   "critdamage":4,
-  "powergain":2,
+  "powergain":3,
   "perfectblock":1,
   "block":1,
   "armor":1,
