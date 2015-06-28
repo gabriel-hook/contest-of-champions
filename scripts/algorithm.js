@@ -353,7 +353,7 @@
                 svalue += synergy.value;
             }
             //get my class dupes
-            classes[hero.class] = (classes[hero.class] || 0) + 1;
+            classes[hero.type] = (classes[hero.type] || 0) + 1;
           }
           var cvalue = 1;
           for(i in classes)
@@ -963,13 +963,13 @@
       if(svalue === 0)
         return 0;
         
-      var cvalue = 1, classes = {};
+      var cvalue = 1, types = {};
       for(var i=0; i<champions.length; i++){
-        classes[champions[i].type] = (classes[champions[i].type] || 0) + 1;
+        types[champions[i].type] = (types[champions[i].type] || 0) + 1;
       }
-      for(i in classes)
-        if(classes[i] > 1)
-          cvalue *= weights.classes[classes[i]] || 1;
+      for(i in types)
+        if(types[i] > 1)
+          cvalue *= weights.types[types[i]] || 1;
 
       return hvalue * svalue * cvalue;
     }
@@ -1130,10 +1130,10 @@
     function getWeights(){
       var i, weights = {
         stars:{},
-        classes:{}
+        types:{}
       };
       for(i=2; i<=5; i++)
-        weights.classes[i] = CoC.settings.getDuplicateWeight(i);
+        weights.types[i] = CoC.settings.getDuplicateWeight(i);
       for(i=0; i<=4; i++)
         weights.stars[i] = CoC.settings.getStarWeight(i)
       weights.awakened = CoC.settings.getWeight("awakened");
