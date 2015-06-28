@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "1.008.a";
+  this.version = "1.10.a";
 
   this.initialize = function(){
     console.log("Contest of Champions - Roster Manager v"+this.version);
