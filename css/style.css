@@ -167,7 +167,7 @@ html, body, p, span, div {
   right:-10%;
   width:40%;
   height:40%;
-  background:url(../images/quest.png);
+  background:url(../images/icons/quest.png);
   background-size:contain;
   opacity:0;
 }
@@ -421,11 +421,13 @@ html, body, p, span, div {
   text-shadow:1px 1px #fff;
   text-transform: uppercase;
   color:#000;
+  
 }
-#roster-configure-class{
-  text-shadow:1px 1px #fff;
+#roster-configure-type{
+  height: 1.5em;
+  position: relative;
+  top: 0.3em;
 }
-
 
 #roster-configure-stars{
   position:absolute;
@@ -443,7 +445,7 @@ html, body, p, span, div {
   height:24px;
   width:24px;
   margin-right:2px;
-  background:center url(../images/star.png) no-repeat;
+  background:center url(../images/icons/star.png) no-repeat;
   background-size:contain;
 }
 #roster-delete-confirm-stars .star{
@@ -453,7 +455,7 @@ html, body, p, span, div {
 }
 #roster-delete-confirm-stars.awakened .star,
 #roster-configure-stars.awakened .star{
-  background-image:url(../images/star-awakened.png);
+  background-image:url(../images/icons/star-awakened.png);
 }
 #popup-roster-configure .extras{
   display:none;
