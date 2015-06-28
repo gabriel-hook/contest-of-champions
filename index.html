@@ -50,70 +50,79 @@
         data-display="overlay"
         data-theme="b">
       
-        <h3>Modify</h3>
-        
-        <fieldset data-role="controlgroup">
-          <a href="#page-add"
-            data-role="button" 
-            data-icon="plus" 
-            data-rel="page"
-            data-direction="reverse"
-            data-transition="slide">Add</a> 
-          <div id="roster-import">
-            <a data-role="button" data-icon="action">Import .csv</a>    
-            <input type="file" accept=".csv">
+        <div data-role="collapsibleset" data-content-theme="c">
+          <div data-role="collapsible" data-collapsed="false">
+            <h3>Modify</h3>
+            
+            <fieldset data-role="controlgroup">
+              <a href="#page-add"
+                data-role="button" 
+                data-icon="search" 
+                data-rel="page"
+                data-direction="reverse"
+                data-transition="slide">Add</a> 
+              <div id="roster-import">
+                <a data-role="button" data-icon="action">Import .csv</a>    
+                <input type="file" accept=".csv">
+              </div>
+              <a id="roster-export" href="#"
+                data-role="button" 
+                data-icon="action">Export .csv</a> 
+              <a id="roster-clear-all" href="#"
+                data-role="button" 
+                data-icon="delete">Delete All</a> 
+            </fieldset>
+            
           </div>
-          <a id="roster-export" href="#"
-            data-role="button" 
-            data-icon="action">Export .csv</a> 
-          <a id="roster-clear-all" href="#"
-            data-role="button" 
-            data-icon="delete">Delete All</a> 
-        </fieldset>
-        
-        <h3>Sort By</h3>
-        
-        <fieldset data-role="controlgroup">
-          <input type="radio" name="roster-sort" id="roster-sort-stars">
-          <label for="roster-sort-stars" checked="true">Stars</label>
-          <input type="radio" name="roster-sort" id="roster-sort-class">
-          <label for="roster-sort-class">Class</label>
-          <input type="radio" name="roster-sort" id="roster-sort-name">
-          <label for="roster-sort-name">Name</label>
-        </fieldset>
-        
-        <h3>Filter</h3>
-        
-        <a href="#" id="roster-filter-all" data-role="button">Show All</a> 
-        
-        <fieldset data-role="controlgroup">
-          <legend>Stars</legend>
-          <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
-          <label for="roster-filter-stars-4">★ ★ ★ ★</label>
-          <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
-          <label for="roster-filter-stars-3">★ ★ ★</label>
-          <input type="checkbox" name="roster-filter-stars-2" id="roster-filter-stars-2">
-          <label for="roster-filter-stars-2">★ ★</label>
-          <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
-          <label for="roster-filter-stars-1">★</label>
-        </fieldset> 
-        
-        <fieldset data-role="controlgroup">
-          <legend>Class</legend>
-          <input type="checkbox" name="roster-filter-cosmic" id="roster-filter-cosmic">
-          <label for="roster-filter-cosmic">Cosmic</label>
-          <input type="checkbox" name="roster-filter-tech" id="roster-filter-tech">
-          <label for="roster-filter-tech">Tech</label>
-          <input type="checkbox" name="roster-filter-mutant" id="roster-filter-mutant">
-          <label for="roster-filter-mutant">Mutant</label>
-          <input type="checkbox" name="roster-filter-skill" id="roster-filter-skill">
-          <label for="roster-filter-skill">Skill</label>
-          <input type="checkbox" name="roster-filter-science" id="roster-filter-science">
-          <label for="roster-filter-science">Science</label>
-          <input type="checkbox" name="roster-filter-mystic" id="roster-filter-mystic">
-          <label for="roster-filter-mystic">Mystic</label>
-        </fieldset> 
+          <div data-role="collapsible">
+            <h3>Sort By</h3>
+            
+            <fieldset data-role="controlgroup">
+              <input type="radio" name="roster-sort" id="roster-sort-stars">
+              <label for="roster-sort-stars" checked="true">Stars</label>
+              <input type="radio" name="roster-sort" id="roster-sort-class">
+              <label for="roster-sort-class">Class</label>
+              <input type="radio" name="roster-sort" id="roster-sort-name">
+              <label for="roster-sort-name">Name</label>
+            </fieldset>
           
+          </div>
+          <div data-role="collapsible">
+            <h3>Filter</h3>
+            
+            <a href="#" id="roster-filter-all" data-role="button">Show All</a> 
+            
+            <fieldset data-role="controlgroup">
+              <legend>Stars</legend>
+              <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
+              <label for="roster-filter-stars-4">★ ★ ★ ★</label>
+              <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
+              <label for="roster-filter-stars-3">★ ★ ★</label>
+              <input type="checkbox" name="roster-filter-stars-2" id="roster-filter-stars-2">
+              <label for="roster-filter-stars-2">★ ★</label>
+              <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
+              <label for="roster-filter-stars-1">★</label>
+            </fieldset> 
+            
+            <fieldset data-role="controlgroup">
+              <legend>Class</legend>
+              <input type="checkbox" name="roster-filter-cosmic" id="roster-filter-cosmic">
+              <label for="roster-filter-cosmic">Cosmic</label>
+              <input type="checkbox" name="roster-filter-tech" id="roster-filter-tech">
+              <label for="roster-filter-tech">Tech</label>
+              <input type="checkbox" name="roster-filter-mutant" id="roster-filter-mutant">
+              <label for="roster-filter-mutant">Mutant</label>
+              <input type="checkbox" name="roster-filter-skill" id="roster-filter-skill">
+              <label for="roster-filter-skill">Skill</label>
+              <input type="checkbox" name="roster-filter-science" id="roster-filter-science">
+              <label for="roster-filter-science">Science</label>
+              <input type="checkbox" name="roster-filter-mystic" id="roster-filter-mystic">
+              <label for="roster-filter-mystic">Mystic</label>
+            </fieldset> 
+              
+          </div>
+        </div>
+            
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
