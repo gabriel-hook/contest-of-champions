@@ -148,22 +148,23 @@
           <!-- but focus was being stolen otherwise -->
           
           <h3>
-            <img id="roster-configure-type" />
-            <span id="roster-configure-name">Name</span>
+            <img id="roster-configure-type" /><span id="roster-configure-name">Name</span>
           </h3>
           
-          <form>
+          <form>          
             <fieldset data-role="controlgroup" data-type="horizontal">
               <label for="roster-configure-rank">Rank</label>
               <select name="roster-configure-rank" id="roster-configure-rank"></select>
               <label for="roster-configure-level">Level</label>
               <select name="roster-configure-level" id="roster-configure-level"></select>
             </fieldset>
-            <label for="roster-configure-awakened">Awakened</label>
-            <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">
-            <label for="roster-configure-quest">Quest</label>
-            <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">
-            <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>
+            <fieldset data-role="controlgroup">
+              <label for="roster-configure-awakened">Awakened</label>
+              <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">              
+              <label for="roster-configure-quest">Quest</label>
+              <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
+              <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>
+            </fieldset>
           </form>
         </div>
         <div class="extras">
