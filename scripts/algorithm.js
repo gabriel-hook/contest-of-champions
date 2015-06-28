@@ -21,7 +21,7 @@
       
       if(options.quest)
         for(var i=list.length-1;i>=0;i--)
-          if(list[i].data.quest){
+          if(list[i].quest){
             preselect.push(list[i]);
             list.splice(i,1);
           }
@@ -41,7 +41,7 @@
           callback:options.progress
         }
 
-      if(preselect.length > 0){
+      if(preselect.length > 0){      
         if(preselect.length > options.size){
           team = getTopPartner(preselect,0,options.size, classWeights, progress);
         }
@@ -146,6 +146,7 @@
         list.push({
           id:champion.get("uid"),
           stars:champion.get("stars"),
+          quest:champion.get("quest"),
           data:champion,
           type:CoC.data.championTypes.indexOf(champion.get("type")),
           synergies:synergies,
