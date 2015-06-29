@@ -3,9 +3,9 @@ CoC.model.Champion = Backbone.Model.extend({
 
 	defaults: {
     uid: "champion",
-		name: 'Champion',
-		type: "Mutant",
     stars:2,
+		name: 'Champion',
+		typeId: "mutant",
     awakened: 0,
     rank: 1,
     level: 1,
@@ -23,6 +23,22 @@ CoC.model.Champion = Backbone.Model.extend({
   
   image:function(){
     return 'images/champions/fullsize_'+this.get('uid')+'.png'
+  },
+  
+  type:function(){
+    return CoC.data.types.findWhere({ uid:this.get("typeId") });
+  },
+  
+  //dirty way to migrate to new data model using uid/stars as given
+  update:function(other){
+    var other = CoC.data.champions.findWhere({ uid:this.get("uid"), stars:this.get("stars") });
+    if(!other)
+      return false;
+  
+    this.set("name", other.get("name"));
+    this.set("typeId", other.get("typeId"));
+    
+    return true;
   }
 });
 
@@ -53,7 +69,7 @@ CoC.model.Effect = Backbone.Model.extend({
 //Types
 CoC.model.Type = Backbone.Model.extend({
 	defaults: {
-    name: "Type Name",
+    name: "Type",
     uid: "type",
   }
 });
