@@ -371,7 +371,7 @@ html, body, p, span, div {
 /******************
      SETTINGS
 ******************/
-#roster-import div, #roster-import input{
+#roster-import-input-container{
   opacity:0;
   pointer-events:none;
   position:absolute;
@@ -384,27 +384,11 @@ html, body, p, span, div {
 #popup-roster-configure .ui-select{
     width: 50% !important;
 }
-
-@media (min-width: 28em){
-  #panel-team-settings .team-settings-include label{
-    width:50%;
-    text-align:left;
-  }
-  #panel-team-settings .team-settings-include label.stars{
-    width:30%;
-    text-align:right;
-  }
-  #panel-team-settings .team-settings-size  .ui-controlgroup-controls {
-    display:block;
-  }
-  #panel-team-settings .team-settings-size  .ui-radio{
-    width:33.33%;
-  }
+#panel-team-settings #build-settings-size .ui-radio{
+  width:33.333%;
 }
-@media (max-width: 28em){
-  #panel-team-settings .ui-field-contain{
-    padding:0 0 0.5em 0;
-  }
+#panel-team-settings #build-filter-stars .ui-checkbox{
+  width:25%;
 }
 
 /******************
@@ -581,5 +565,3 @@ html, body, p, span, div {
     width:22px;
   }
 }
-
-.ui-hide-label .ui-btn.ui-submit { display: block !important; }
