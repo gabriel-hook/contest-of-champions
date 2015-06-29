@@ -177,6 +177,12 @@ var CoC=new function(){
   this.roster = new function() {};
   
   this.roster.load = function(){
+  
+    var typeIds = {};
+    CoC.data.types.each(function(type, i){
+      typeIds[ type.get("uid") ] = i;
+    });
+  
     var Roster = Backbone.Collection.extend({
       model: CoC.model.Champion,
       localStorage: new Backbone.LocalStorage("coc-roster"),
@@ -184,16 +190,25 @@ var CoC=new function(){
         this._order = (order === "name")? [
           { field: "name", order: "asc" }, { field: "stars", order: "desc" }
         ]: (order === "type")? [ 
-          { field: "typeId", order: "asc" }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
+          { field: "typeId", order: "asc", map:typeIds }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
         ]: (order === "stars")? [ 
-          { field: "stars", order: "desc" }, { field: "typeId", order: "asc" }, { field: "name", order: "asc" }
+          { field: "stars", order: "desc" }, { field: "typeId", order: "asc", map:typeIds }, { field: "name", order: "asc" }
         ]: undefined;
         this.sort();
       },
       comparator: function(one, another) {
         if (this._order) {
           for (var i = 0; i < this._order.length; i++) {
-            if (one.get(this._order[i].field) > another.get(this._order[i].field)) {
+            var greater;
+          
+            if(this._order[i].map){
+              greater = this._order[i].map[ one.get(this._order[i].field) ] > this._order[i].map[ another.get(this._order[i].field) ];
+            }
+            else{
+              greater = one.get(this._order[i].field) > another.get(this._order[i].field)
+            }
+            
+            if (greater) {
               return ("desc" !== this._order[i].order) ? 1 : -1;
             } else if (one.get(this._order[i].field) === another.get(this._order[i].field)) {
               // do nothing but let the loop move further for next layer comparison
