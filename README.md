@@ -4,6 +4,8 @@ Kabam/Marvel's Contest of Champions
   Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
   
   Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
+  
+  Tiny: [tiny.cc/champions](http://tiny.cc/champions)
 
 ## Mobile Structure
 
