@@ -466,7 +466,6 @@
         }
         synergyMap[fid] = {};
         synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
-          console.log(synergies)
         for(var s=0;s < synergies.length; s++){
           var synergy = synergies[s];          
           var effect = synergy.effect();
