@@ -50,6 +50,10 @@
         data-display="overlay"
         data-theme="b">
         
+        <div id="roster-import-input-container">
+          <input id="roster-import-input" type="file" accept=".csv">
+        </div>
+        
         <fieldset data-role="controlgroup" data-mini="true">
           <h2>Modify</h2>
           <a href="#page-add"
@@ -58,10 +62,9 @@
             data-rel="page"
             data-direction="reverse"
             data-transition="flip">Add</a> 
-          <div id="roster-import">
-            <a data-role="button" data-icon="action">Import .csv</a>    
-            <input type="file" accept=".csv">
-          </div>
+          <a id="roster-import" href="#"
+            data-role="button" 
+            data-icon="action">Import .csv</a>    
           <a id="roster-export" href="#"
             data-role="button" 
             data-icon="action">Export .csv</a> 
