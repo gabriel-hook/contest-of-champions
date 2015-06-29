@@ -179,10 +179,42 @@ var CoC=new function(){
   this.roster.load = function(){
     var Roster = Backbone.Collection.extend({
       model: CoC.model.Champion,
-      localStorage: new Backbone.LocalStorage("coc-roster")
+      localStorage: new Backbone.LocalStorage("coc-roster"),
+      sortBy: function(order){
+        this._order = (order === "name")? [
+          { field: "name", order: "asc" }, { field: "stars", order: "desc" }
+        ]: (order === "type")? [ 
+          { field: "typeId", order: "asc" }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
+        ]: (order === "stars")? [ 
+          { field: "stars", order: "desc" }, { field: "typeId", order: "asc" }, { field: "name", order: "asc" }
+        ]: undefined;
+        this.sort();
+      },
+      comparator: function(one, another) {
+        if (this._order) {
+          for (var i = 0; i < this._order.length; i++) {
+            if (one.get(this._order[i].field) > another.get(this._order[i].field)) {
+              return ("desc" !== this._order[i].order) ? 1 : -1;
+            } else if (one.get(this._order[i].field) === another.get(this._order[i].field)) {
+              // do nothing but let the loop move further for next layer comparison
+            } else {
+              return ("desc" !== this._order[i].order) ? -1 : 1;
+            }
+          }
+        }
+        return 0;
+      }
     });
     CoC.data.roster = new Roster();
+    CoC.data.roster.sortBy("stars");
     CoC.data.roster.fetch();
+    CoC.data.roster.each(function(champion){
+      var updated = champion.update();
+      if(updated)
+        champion.save();
+      else
+        champion.destroy();
+    });
   }
   
   this.roster.clear = function(){
