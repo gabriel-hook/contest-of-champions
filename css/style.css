@@ -483,8 +483,11 @@ html, body, p, span, div {
   background:none;
 }
 
+#roster-configure-synergies .ui-collapsible-heading-toggle{
+  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+}
 #roster-configure-synergies .ui-collapsible-content{
-  background:rgba(256,256,256,0.75);
+  background:rgba(255,255,255,0.75);
   max-height:110px;
   overflow-y:auto;
 }
