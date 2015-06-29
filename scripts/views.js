@@ -82,15 +82,18 @@ CoC.view.RosterView = Backbone.View.extend({
   },
   
   render: function(){
-    var that = this, roster = new Backbone.Collection(CoC.roster.filtered(true)), els = [];
+    var that = this, els = [];
     
     //add the message view
     els.push(new CoC.view.MessageView({
-      model:{ message: roster.length+" of "+CoC.data.roster.length+" Champions." }
+      model:{ message: CoC.data.roster.length+" Champions." }
     }).render().el);
     
     //add champion views, updating if they've changed
-    roster.each(function(champion){
+    CoC.data.roster.sortBy( CoC.settings.getValue("roster-sort") );
+    
+    
+    CoC.data.roster.each(function(champion){
       var view = that._championViews[champion.fid()];
       if(view === undefined){
         view = new CoC.view.ChampionView({
