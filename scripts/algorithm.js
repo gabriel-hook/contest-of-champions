@@ -319,7 +319,7 @@
         
         //dont accept less teams
         if(count1 > count2)
-          return;
+          return false;
           
         //more teams, or more value
         if(count2 > count1 || (v2a + v2b > v1a + v1b)){
@@ -327,7 +327,9 @@
           array[a] = array[b];
           array[b] = tmp;
           swaps++;
+          return true;
         }
+        return false;
       }
     
       function getTeamValue(array, index, swap){
@@ -387,7 +389,8 @@
         //do the swaps
         for(var i=0; i<forceExtras; i++)
           for(var j=(Math.floor(i/size)+1)*size; j<array.length; j++)
-            checkValueAndSwap(array, i, j);
+            if(checkValueAndSwap(array, i, j))
+              break;
     
         //check if we are missing teams
         var allFull = true;
