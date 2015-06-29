@@ -43,10 +43,10 @@ CoC.ui.roster=new function(){
     synergies = CoC.data.synergies.where({ toId:champion.get("uid") });
     for(var s=0; s<synergies.length; s++){
       var synergy = synergies[s];
-      var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+      var effect = synergy.effect();
       var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("fromId"), stars:synergy.get("fromStars") });
       var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("stars") + "★ " + toChampion.get("name") });
-      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("type").toLowerCase(), src:toChampion.portrait() }));
+      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("typeId"), src:toChampion.portrait() }));
       syneryEl.append($('<img>', { src:effect.get("image") }));
       syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
       $("#roster-configure-synergies-to").append(syneryEl);
@@ -58,10 +58,10 @@ CoC.ui.roster=new function(){
     synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") });
     for(var s=0; s<synergies.length; s++){
       var synergy = synergies[s];
-      var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+      var effect = synergy.effect();
       var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("toId") });
       var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("name") });
-      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("type").toLowerCase(), src:toChampion.portrait() }));
+      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("typeId"), src:toChampion.portrait() }));
       syneryEl.append($('<img>', { src:effect.get("image") }));
       syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
       $("#roster-configure-synergies-from").append(syneryEl);
@@ -71,9 +71,9 @@ CoC.ui.roster=new function(){
     $("#roster-configure-synergies").children(2).collapsible( "expand" );
 
     $("#roster-configure-image").prop("src", champion.image());
-    $("#roster-configure-name").prop("class", champion.get("type")).text(champion.get("name"));
+    $("#roster-configure-name").prop("class", champion.get("typeId")).text(champion.get("name"));
     
-    $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("type").toLowerCase() }).get("image"));
+    $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("typeId") }).get("image"));
 
     function setupRankLevel(){
       var levels = CoC.data.championLevels[champion.get("stars")];
@@ -134,7 +134,7 @@ CoC.ui.roster=new function(){
       },50);
     });
     
-    $("#roster-delete-confirm-name").attr("class", champion.get("type").toLowerCase()).text(champion.get("name"));
+    $("#roster-delete-confirm-name").attr("class", champion.get("typeId")).text(champion.get("name"));
     $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
     for(var i=0; i<champion.get("stars");i++)
       $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
@@ -275,10 +275,10 @@ $("#page-roster").on("pagebeforeshow",function(){
     CoC.settings.setValue("roster-sort", "stars");
     CoC.ui.roster.update();
   }).prop("checked", (CoC.settings.getValue("roster-sort") == "stars")? true: false).checkboxradio('refresh');
-  $('#roster-sort-class').change(function(){
-    CoC.settings.setValue("roster-sort", "class");
+  $('#roster-sort-type').change(function(){
+    CoC.settings.setValue("roster-sort", "type");
     CoC.ui.roster.update();
-  }).prop("checked", (CoC.settings.getValue("roster-sort") == "class")? true: false).checkboxradio('refresh');
+  }).prop("checked", (CoC.settings.getValue("roster-sort") == "type")? true: false).checkboxradio('refresh');
   $('#roster-sort-name').change(function(){
     CoC.settings.setValue("roster-sort", "name");
     CoC.ui.roster.update();
