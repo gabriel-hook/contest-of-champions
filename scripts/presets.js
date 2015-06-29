@@ -28,21 +28,15 @@ CoC.settings.preset.add(null, "Defaults",{
   "roster-filter-stars-3":true,
   "roster-filter-stars-2":true,
   "roster-filter-stars-1":true,
-  "roster-filter-cosmic":true,
-  "roster-filter-tech":true,
-  "roster-filter-mutant":true,
-  "roster-filter-skill":true,
-  "roster-filter-science":true,
-  "roster-filter-mystic":true,  
 //build settings 
-  "algorithm":"shuffle",
-  "size":3,
-  "include-4":true,
-  "include-3":true,
-  "include-2":true,
-  "include-1":true,
-  "quest-group":false,
-  "include-extras":true
+  "build-algorithm":"shuffle",
+  "build-size":3,
+  "build-filter-stars-4":true,
+  "build-filter-stars-3":true,
+  "build-filter-stars-2":true,
+  "build-filter-stars-1":true,
+  "build-quest-group":false,
+  "build-include-extras":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{
   "attack":8,
