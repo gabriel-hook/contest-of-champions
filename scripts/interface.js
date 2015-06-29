@@ -217,7 +217,7 @@ $("#page-roster").on("pagebeforeshow",function(){
     console.log("exporting to csv...");
     
     var csvRoster = CoC.roster.csv();
-    $('#roster-export').attr('download', 'coc-roster.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+    $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     
     $('#panel-roster-options').panel("close");
   });  
