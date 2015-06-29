@@ -50,79 +50,38 @@
         data-display="overlay"
         data-theme="b">
       
-        <div data-role="collapsibleset" data-content-theme="c">
-          <div data-role="collapsible" data-collapsed="false">
-            <h3>Modify</h3>
-            
-            <fieldset data-role="controlgroup">
-              <a href="#page-add"
-                data-role="button" 
-                data-icon="search" 
-                data-rel="page"
-                data-direction="reverse"
-                data-transition="slide">Add</a> 
-              <div id="roster-import">
-                <a data-role="button" data-icon="action">Import .csv</a>    
-                <input type="file" accept=".csv">
-              </div>
-              <a id="roster-export" href="#"
-                data-role="button" 
-                data-icon="action">Export .csv</a> 
-              <a id="roster-clear-all" href="#"
-                data-role="button" 
-                data-icon="delete">Delete All</a> 
-            </fieldset>
-            
+        <h3>Modify</h3>
+        
+        <fieldset data-role="controlgroup">
+          <a href="#page-add"
+            data-role="button" 
+            data-icon="search" 
+            data-rel="page"
+            data-direction="reverse"
+            data-transition="slide">Add</a> 
+          <div id="roster-import">
+            <a data-role="button" data-icon="action">Import .csv</a>    
+            <input type="file" accept=".csv">
           </div>
-          <div data-role="collapsible">
-            <h3>Sort By</h3>
-            
-            <fieldset data-role="controlgroup">
-              <input type="radio" name="roster-sort" id="roster-sort-stars">
-              <label for="roster-sort-stars" checked="true">Stars</label>
-              <input type="radio" name="roster-sort" id="roster-sort-class">
-              <label for="roster-sort-class">Class</label>
-              <input type="radio" name="roster-sort" id="roster-sort-name">
-              <label for="roster-sort-name">Name</label>
-            </fieldset>
-          
-          </div>
-          <div data-role="collapsible">
-            <h3>Filter</h3>
-            
-            <a href="#" id="roster-filter-all" data-role="button">Show All</a> 
-            
-            <fieldset data-role="controlgroup">
-              <legend>Stars</legend>
-              <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
-              <label for="roster-filter-stars-4">★ ★ ★ ★</label>
-              <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
-              <label for="roster-filter-stars-3">★ ★ ★</label>
-              <input type="checkbox" name="roster-filter-stars-2" id="roster-filter-stars-2">
-              <label for="roster-filter-stars-2">★ ★</label>
-              <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
-              <label for="roster-filter-stars-1">★</label>
-            </fieldset> 
-            
-            <fieldset data-role="controlgroup">
-              <legend>Class</legend>
-              <input type="checkbox" name="roster-filter-cosmic" id="roster-filter-cosmic">
-              <label for="roster-filter-cosmic">Cosmic</label>
-              <input type="checkbox" name="roster-filter-tech" id="roster-filter-tech">
-              <label for="roster-filter-tech">Tech</label>
-              <input type="checkbox" name="roster-filter-mutant" id="roster-filter-mutant">
-              <label for="roster-filter-mutant">Mutant</label>
-              <input type="checkbox" name="roster-filter-skill" id="roster-filter-skill">
-              <label for="roster-filter-skill">Skill</label>
-              <input type="checkbox" name="roster-filter-science" id="roster-filter-science">
-              <label for="roster-filter-science">Science</label>
-              <input type="checkbox" name="roster-filter-mystic" id="roster-filter-mystic">
-              <label for="roster-filter-mystic">Mystic</label>
-            </fieldset> 
-              
-          </div>
-        </div>
-            
+          <a id="roster-export" href="#"
+            data-role="button" 
+            data-icon="action">Export .csv</a> 
+          <a id="roster-clear-all" href="#"
+            data-role="button" 
+            data-icon="delete">Delete All</a> 
+        </fieldset>
+        
+        <h3>Sort By</h3>
+        
+        <fieldset data-role="controlgroup">
+          <input type="radio" name="roster-sort" id="roster-sort-stars">
+          <label for="roster-sort-stars" checked="true">Stars</label>
+          <input type="radio" name="roster-sort" id="roster-sort-type">
+          <label for="roster-sort-type">Type</label>
+          <input type="radio" name="roster-sort" id="roster-sort-name">
+          <label for="roster-sort-name">Name</label>
+        </fieldset>
+       
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
@@ -268,53 +227,93 @@
         data-display="overlay"
         data-theme="a">
         
-        <a href="#page-settings-advanced" class="ui-btn-right"
-          data-role="button" 
-          data-rel="panel" 
-          data-icon="carat-r"
-          data-iconpos="right"
-          data-transition="slide">Advanced</a>
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          
+          <a href="#" id="button-team-settings-apply"
+            data-theme="b" 
+            data-role="button"
+            data-icon="gear"
+            data-iconpos="left">Build</a>
+          <a href="#page-settings-advanced"
+            data-role="button" 
+            data-rel="panel" 
+            data-icon="carat-r"
+            data-iconpos="right"
+            data-transition="slide">More...</a>
+        </fieldset>
+          
+        <label>Team Size</label>
+        
+        <div class="team-settings-size" class="ui-field-contain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+            <input type="radio" name="team-settings-size" id="team-settings-size-3" value="3">
+            <label for="team-settings-size-3">3</label>
+            <input type="radio" name="team-settings-size" id="team-settings-size-4" value="4">
+            <label for="team-settings-size-4">4</label>
+            <input type="radio" name="team-settings-size" id="team-settings-size-5" value="5">
+            <label for="team-settings-size-5">5</label>
+          </fieldset>
+        </div>
+        
+        <div class="team-settings-algorithm" data-role="fieldcontain">
+          <select name="team-settings-algorithm" id="team-settings-algorithm"></select>
+          <p id="team-settings-algorithm-description"></p>
+        </div>
+        
+        <div class="team-settings-quest" data-role="fieldcontain">
+          <label for="team-settings-quest">
+            Quest Group
+          </label>
+          <select name="team-settings-quest" id="team-settings-quest" data-role="slider">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        
+        <div class="team-settings-extras" data-role="fieldcontain">
+          <label for="team-settings-extras">Show Extras</label>
+          <select name="team-settings-extras" id="team-settings-extras" data-role="slider">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
 
-          <h3>Team Size</h3>
+        <div data-role="collapsible" >
+        
+          <h4>Filter</h4>
           
-          <div class="team-settings-size" class="ui-field-contain">
-            <fieldset data-role="controlgroup" data-type="horizontal">
-              <input type="radio" name="team-settings-size" id="team-settings-size-3" value="3">
-              <label for="team-settings-size-3">3</label>
-              <input type="radio" name="team-settings-size" id="team-settings-size-4" value="4">
-              <label for="team-settings-size-4">4</label>
-              <input type="radio" name="team-settings-size" id="team-settings-size-5" value="5">
-              <label for="team-settings-size-5">5</label>
-            </fieldset>
-          </div>
+          <a href="#" id="roster-filter-all" data-role="button">Show All</a> 
           
-          <h3>Results</h3>
+          <fieldset data-role="controlgroup">
+            <legend>Stars</legend>
+            <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
+            <label for="roster-filter-stars-4">★ ★ ★ ★</label>
+            <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
+            <label for="roster-filter-stars-3">★ ★ ★</label>
+            <input type="checkbox" name="roster-filter-stars-2" id="roster-filter-stars-2">
+            <label for="roster-filter-stars-2">★ ★</label>
+            <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
+            <label for="roster-filter-stars-1">★</label>
+          </fieldset> 
           
-          <div class="team-settings-algorithm" data-role="fieldcontain">
-            <select name="team-settings-algorithm" id="team-settings-algorithm"></select>
-            <p id="team-settings-algorithm-description"></p>
-          </div>
-          
-          <div class="team-settings-quest" data-role="fieldcontain">
-            <label for="team-settings-quest">
-              Quest Group
-            </label>
-            <select name="team-settings-quest" id="team-settings-quest" data-role="slider">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
-          
-          <div class="team-settings-extras" data-role="fieldcontain">
-            <label for="team-settings-extras">Show Extras</label>
-            <select name="team-settings-extras" id="team-settings-extras" data-role="slider">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </div>
-          
-          <button id="button-team-settings-apply" data-theme="b">Build</button>
-    
+          <fieldset data-role="controlgroup">
+            <legend>Class</legend>
+            <input type="checkbox" name="roster-filter-cosmic" id="roster-filter-cosmic">
+            <label for="roster-filter-cosmic">Cosmic</label>
+            <input type="checkbox" name="roster-filter-tech" id="roster-filter-tech">
+            <label for="roster-filter-tech">Tech</label>
+            <input type="checkbox" name="roster-filter-mutant" id="roster-filter-mutant">
+            <label for="roster-filter-mutant">Mutant</label>
+            <input type="checkbox" name="roster-filter-skill" id="roster-filter-skill">
+            <label for="roster-filter-skill">Skill</label>
+            <input type="checkbox" name="roster-filter-science" id="roster-filter-science">
+            <label for="roster-filter-science">Science</label>
+            <input type="checkbox" name="roster-filter-mystic" id="roster-filter-mystic">
+            <label for="roster-filter-mystic">Mystic</label>
+          </fieldset> 
+      
+        </div>
+        
       </div>
     
     
