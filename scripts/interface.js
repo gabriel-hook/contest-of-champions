@@ -283,37 +283,6 @@ $("#page-roster").on("pagebeforeshow",function(){
     CoC.settings.setValue("roster-sort", "name");
     CoC.ui.roster.update();
   }).prop("checked", (CoC.settings.getValue("roster-sort") == "name")? true: false).checkboxradio('refresh');
-
-  
-  var filters = [
-    'roster-filter-stars-1',
-    'roster-filter-stars-2',
-    'roster-filter-stars-3',
-    'roster-filter-stars-4',
-    "roster-filter-cosmic",
-    "roster-filter-tech",
-    "roster-filter-mutant",
-    "roster-filter-skill",
-    "roster-filter-science",
-    "roster-filter-mystic",  
-  ];
-  $('#roster-filter-all').click(function(){
-    for(var i=0; i<filters.length; i++){
-      $('#'+filters[i]).prop("checked", true).checkboxradio('refresh')
-      CoC.settings.setValue(filters[i], true);
-    }
-    CoC.ui.roster.update();
-  });
-  for(var i=0; i<filters.length; i++)
-    (function(filter){
-      $('#'+filter).change(function(){
-        CoC.settings.setValue(filter, this.checked);
-        CoC.ui.roster.update();
-      })
-      .prop("checked", CoC.settings.getValue(filter)? true: false)
-      .checkboxradio('refresh');
-    })(filters[i])
-    
   
   CoC.ui.roster.update();
 });
