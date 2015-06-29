@@ -227,24 +227,18 @@
         data-display="overlay"
         data-theme="a">
         
-        <fieldset data-role="controlgroup" data-type="horizontal">
+        <a href="#page-settings-advanced"
+          data-role="button" 
+          data-rel="panel" 
+          data-icon="carat-r"
+          data-iconpos="right"
+          data-transition="slide">Advanced...</a>
           
-          <a href="#" id="button-team-settings-apply"
-            data-theme="b" 
-            data-role="button"
-            data-icon="gear"
-            data-iconpos="left">Build</a>
-          <a href="#page-settings-advanced"
-            data-role="button" 
-            data-rel="panel" 
-            data-icon="carat-r"
-            data-iconpos="right"
-            data-transition="slide">More...</a>
-        </fieldset>
-          
-        <label>Team Size</label>
         
         <div class="team-settings-size" class="ui-field-contain">
+          <label for="team-settings-size">
+            Team Size
+          </label>
           <fieldset data-role="controlgroup" data-type="horizontal">
             <input type="radio" name="team-settings-size" id="team-settings-size-3" value="3">
             <label for="team-settings-size-3">3</label>
@@ -255,8 +249,14 @@
           </fieldset>
         </div>
         
+        
         <div class="team-settings-algorithm" data-role="fieldcontain">
+          <label for="team-settings-algorithm">
+            Algorithm
+          </label>
+          <br style="clear:both;">
           <select name="team-settings-algorithm" id="team-settings-algorithm"></select>
+          <br style="clear:both;">
           <p id="team-settings-algorithm-description"></p>
         </div>
         
@@ -313,6 +313,12 @@
           </fieldset> 
       
         </div>
+        
+        <a href="#" id="button-team-settings-apply"
+          data-theme="b" 
+          data-role="button"
+          data-icon="gear"
+          data-iconpos="left">Build</a>
         
       </div>
     

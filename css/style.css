@@ -582,3 +582,4 @@ html, body, p, span, div {
   }
 }
 
+.ui-hide-label .ui-btn.ui-submit { display: block !important; }
