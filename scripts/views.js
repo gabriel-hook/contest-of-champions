@@ -85,7 +85,7 @@ CoC.view.RosterView = Backbone.View.extend({
     var that = this, els = [], rosterCount = 0;
     
     //add champion views, updating if they've changed
-    CoC.data.roster.sortBy( CoC.settings.getValue("roster-sort") );
+    CoC.data.roster.sortBy( CoC.settings.getValue("roster-sort"), CoC.settings.getValue("roster-sort-direction") === "descending" );
     
     var filterStars = {
       1: CoC.settings.getValue("roster-filter-stars-1"),

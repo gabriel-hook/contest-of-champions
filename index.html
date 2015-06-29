@@ -64,7 +64,7 @@
             data-transition="flip">Add</a> 
           <a id="roster-import" href="#"
             data-role="button" 
-            data-icon="action">Import .csv</a>  
+            data-icon="tag">Import .csv</a>  
           <a id="roster-export" href="#"
             data-role="button" 
             data-icon="action">Export .csv</a>
@@ -124,29 +124,31 @@
           </h3>
           
           <form>          
-            <fieldset data-role="controlgroup" data-type="horizontal">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
               <label for="roster-configure-rank">Rank</label>
               <select name="roster-configure-rank" id="roster-configure-rank"></select>
               <label for="roster-configure-level">Level</label>
               <select name="roster-configure-level" id="roster-configure-level"></select>
             </fieldset>
-            <fieldset data-role="controlgroup">
+            <fieldset data-role="controlgroup" data-mini="true">
               <label for="roster-configure-awakened">Awakened</label>
               <input type="checkbox" name="roster-configure-awakened" id="roster-configure-awakened">              
               <label for="roster-configure-quest">Quest</label>
               <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
-              <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>
+            </fieldset>
+            <fieldset data-role="controlgroup" data-mini="true">
+              <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>          
             </fieldset>
           </form>
         </div>
         <div class="extras">
           <img id="roster-configure-image" />
           <div id="roster-configure-synergies" class="synergies" data-role="collapsibleset" data-mini="true">
-            <div data-role="collapsible" class="synergies-to">
+            <div data-role="collapsible" class="synergies-to" data-mini="true">
               <h4>Synergies To</h4>
               <div id="roster-configure-synergies-to"></div>
             </div>
-            <div data-role="collapsible" class="synergies-from">
+            <div data-role="collapsible" class="synergies-from" data-mini="true">
               <h4>Synergies From</h4>
               <div id="roster-configure-synergies-from" class="synergies-from"></div>
             </div>

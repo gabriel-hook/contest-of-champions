@@ -247,18 +247,25 @@ $("#page-roster").on("pagebeforeshow",function(){
     $('#panel-roster-options').panel("close");
   });
 
-  $('#roster-sort-stars').change(function(){
-    CoC.settings.setValue("roster-sort", "stars");
-    CoC.ui.roster.update();
-  }).prop("checked", (CoC.settings.getValue("roster-sort") == "stars")? true: false).checkboxradio('refresh');
-  $('#roster-sort-type').change(function(){
-    CoC.settings.setValue("roster-sort", "type");
-    CoC.ui.roster.update();
-  }).prop("checked", (CoC.settings.getValue("roster-sort") == "type")? true: false).checkboxradio('refresh');
-  $('#roster-sort-name').change(function(){
-    CoC.settings.setValue("roster-sort", "name");
-    CoC.ui.roster.update();
-  }).prop("checked", (CoC.settings.getValue("roster-sort") == "name")? true: false).checkboxradio('refresh');
+  var sorts = [ "stars", "type", "name" ];
+  _(sorts).each(function(sort){
+    function setAscendingDescending(){
+      if(CoC.settings.getValue("roster-sort-direction") === "ascending")
+        $("label[for=roster-sort-"+sort+"]").removeClass("ui-descending").addClass("ui-ascending");
+      else
+        $("label[for=roster-sort-"+sort+"]").removeClass("ui-ascending").addClass("ui-descending");
+    }
+    var element = $('#roster-sort-' + sort);
+    element.change(function(){
+      CoC.settings.setValue("roster-sort-direction", 
+        CoC.settings.getValue("roster-sort") !== sort ||  CoC.settings.getValue("roster-sort-direction") === "ascending"? "descending": "ascending");
+      CoC.settings.setValue("roster-sort", sort);
+      setAscendingDescending();
+      CoC.ui.roster.update();
+    })
+    element.prop("checked", (CoC.settings.getValue("roster-sort") === sort)? true: false).checkboxradio('refresh');
+    setAscendingDescending();
+  });
   
   var filters = [
     'roster-filter-stars-1',

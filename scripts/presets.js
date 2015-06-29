@@ -24,6 +24,8 @@ CoC.settings.preset.add(null, "Defaults",{
 },{
 //roster settings 
   "roster-sort":"stars",
+  "roster-sort-direction":"descending",
+  
   "roster-filter-stars-4":true,
   "roster-filter-stars-3":true,
   "roster-filter-stars-2":true,

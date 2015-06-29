@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "1.11.a";
+  this.version = "1.15.a";
 
   this.initialize = function(){
     console.log("Contest of Champions - Roster Manager v"+this.version);
@@ -186,13 +186,13 @@ var CoC=new function(){
     var Roster = Backbone.Collection.extend({
       model: CoC.model.Champion,
       localStorage: new Backbone.LocalStorage("coc-roster"),
-      sortBy: function(order){
-        this._order = (order === "name")? [
-          { field: "name", order: "asc" }, { field: "stars", order: "desc" }
-        ]: (order === "type")? [ 
-          { field: "typeId", order: "asc", map:typeIds }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
-        ]: (order === "stars")? [ 
-          { field: "stars", order: "desc" }, { field: "typeId", order: "asc", map:typeIds }, { field: "name", order: "asc" }
+      sortBy: function(key, direction){
+        this._order = (key === "name")? [
+          { field: "name", order: (direction? "asc": "desc") }, { field: "stars", order: "desc" }
+        ]: (key === "type")? [ 
+          { field: "typeId", order: (direction? "asc": "desc"), map:typeIds }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
+        ]: (key === "stars")? [ 
+          { field: "stars", order: (direction? "desc": "asc") }, { field: "typeId", order: "asc", map:typeIds }, { field: "name", order: "asc" }
         ]: undefined;
         this.sort();
       },
