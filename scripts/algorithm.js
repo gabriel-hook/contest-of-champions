@@ -134,7 +134,7 @@
         
         synergies = {};
         _(CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })).each(function(synergy){
-          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          var effect = synergy.effect();
           synergies[synergy.get("toId")]={
             id:synergy.get("toId"),
             fromId:synergy.get("fromId"),
@@ -148,7 +148,7 @@
           stars:champion.get("stars"),
           quest:champion.get("quest"),
           data:champion,
-          type:CoC.data.types.indexOf(CoC.data.types.findWhere({ uid:champion.get("type") })),
+          type:CoC.data.types.indexOf(champion.type()),
           synergies:synergies,
           value:(function(stars, awakened){
             var value = CoC.settings.getStarWeight(stars);
@@ -452,7 +452,7 @@
         heroMap[fid]={
           id:champion.get("uid"),
           fid:fid,
-          type:champion.get("type"),
+          type:champion.get("typeId"),
           value:(function(stars, awakened){
             var value = CoC.settings.getStarWeight(stars);
             if(awakened)
@@ -463,9 +463,10 @@
         }
         synergyMap[fid] = {};
         synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
+          console.log(synergies)
         for(var s=0;s < synergies.length; s++){
-          var synergy = synergies[s];
-          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          var synergy = synergies[s];          
+          var effect = synergy.effect();
           synergyMap[fid][synergy.get("toId")]={
             value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
           }
@@ -1002,7 +1003,7 @@
         var synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
         for(var s=0;s < synergies.length; s++){
           var synergy = synergies[s];
-          var effect = CoC.data.effects.findWhere({ uid:synergy.get("effectId") });
+          var effect = synergy.effect();
           
           data = {
             fromId: getHeroStarId({ id:champion.get("uid"), stars:champion.get("stars") }),
@@ -1026,7 +1027,7 @@
           id: champion.get("uid"),
           stars: champion.get("stars"),
           awakened: champion.get("awakened"),
-          type: champion.get("type"),
+          type: champion.get("typeId"),
           champion:champion
         }
         data.fid = getHeroStarId(data)
