@@ -195,20 +195,21 @@ $( document ).on( "pagecreate", "#page-teams", function() {
 
 $("#page-roster").on("pagebeforeshow",function(){
 
-  $('#roster-import a').click(function(){
-    console.log("importing csv...");
-    
-    $('#roster-import input').change(function(e){
-      if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          var result = e.target.result;
-          CoC.roster.csv(result);
-          CoC.ui.roster.update();
-        }
-        reader.readAsText(this.files[0]);
+  $('#roster-import-input').change(function(e){
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var result = e.target.result;
+        CoC.roster.csv(result);
+        CoC.ui.roster.update();
       }
-    }).click();
+      reader.readAsText(this.files[0]);
+    }
+  });
+
+  $('#roster-import').click(function(){
+    console.log("importing csv...");
+    $('#roster-import-input').click();
     $('#panel-roster-options').panel("close");
   });
   
@@ -289,7 +290,7 @@ $("#page-teams").on( "pagecreate", function() {
 
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
-    $("#team-settings-algorithm").append($('<option>', { value:i }).text( "Algorithm - " + CoC.algorithm[i].name ));
+    $("#build-settings-algorithm").append($('<option>', { value:i }).text( "Algorithm - " + CoC.algorithm[i].name ));
 
 });
 $("#page-teams").on( "pagebeforeshow", function() {
@@ -298,7 +299,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
   $("#team-build-progress .ui-slider-handle").remove();
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
   
-  var teamSettingsSize = $('input:radio[name=team-settings-size]');
+  var teamSettingsSize = $('input:radio[name=build-settings-size]');
   teamSettingsSize.filter('[value='+CoC.settings.getValue("build-size")+']').prop("checked", true).checkboxradio("refresh");
   teamSettingsSize.change(function(){ CoC.settings.setValue("build-size",this.value) });
     
@@ -316,22 +317,22 @@ $("#page-teams").on( "pagebeforeshow", function() {
     if(!isQuesting)
       canExtras = true;
   
-    $('#team-settings-algorithm-description').text( CoC.algorithm[algorithm].description );
-    $('#team-settings-quest').checkboxradio(canQuest? "enable": "disable").checkboxradio("refresh");
-    $('#team-settings-extras').checkboxradio(canExtras? "enable": "disable").checkboxradio("refresh");
+    $('#build-settings-algorithm-description').text( CoC.algorithm[algorithm].description );
+    $('#build-settings-quest').checkboxradio(canQuest? "enable": "disable").checkboxradio("refresh");
+    $('#build-settings-extras').checkboxradio(canExtras? "enable": "disable").checkboxradio("refresh");
   }
     
-  $("#team-settings-algorithm").change(function(){
+  $("#build-settings-algorithm").change(function(){
     CoC.settings.setValue("build-algorithm", this.value);
     enableResultOptions();
   }).val(CoC.settings.getValue("build-algorithm") || "greedy").selectmenu("refresh");  
     
-  $('#team-settings-quest').change(function(){
+  $('#build-settings-quest').change(function(){
     CoC.settings.setValue("build-quest-group", this.checked);
     enableResultOptions();
   }).prop("checked", CoC.settings.getValue("build-quest-group") === true).checkboxradio('refresh');
     
-  $('#team-settings-extras').change(function(){
+  $('#build-settings-extras').change(function(){
     CoC.settings.setValue("build-include-extras", this.checked) 
   }).prop("checked", CoC.settings.getValue("build-include-extras") === true).checkboxradio('refresh');
     
@@ -352,7 +353,7 @@ $("#page-teams").on( "pagebeforeshow", function() {
     
   enableResultOptions();
   
-  $("#button-team-settings-apply").click(function(){
+  $("#button-build-settings-apply").click(function(){
     $("#panel-team-settings").panel( "close" );
     
     var size = CoC.settings.getValue("build-size");
