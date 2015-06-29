@@ -82,18 +82,22 @@ CoC.view.RosterView = Backbone.View.extend({
   },
   
   render: function(){
-    var that = this, els = [];
-    
-    //add the message view
-    els.push(new CoC.view.MessageView({
-      model:{ message: CoC.data.roster.length+" Champions." }
-    }).render().el);
+    var that = this, els = [], rosterCount = 0;
     
     //add champion views, updating if they've changed
     CoC.data.roster.sortBy( CoC.settings.getValue("roster-sort") );
     
+    var filterStars = {
+      1: CoC.settings.getValue("roster-filter-stars-1"),
+      2: CoC.settings.getValue("roster-filter-stars-2"),
+      3: CoC.settings.getValue("roster-filter-stars-3"),
+      4: CoC.settings.getValue("roster-filter-stars-4")
+    };
     
     CoC.data.roster.each(function(champion){
+      if(filterStars[champion.get("stars")] !== true)
+        return;
+    
       var view = that._championViews[champion.fid()];
       if(view === undefined){
         view = new CoC.view.ChampionView({
@@ -105,8 +109,15 @@ CoC.view.RosterView = Backbone.View.extend({
         });
         that._championViews[champion.fid()] = view;
       }
+      
       els.push(view.el);
+      rosterCount++;
     });  
+    
+    //add the message view
+    els.unshift(new CoC.view.MessageView({
+      model:{ message: rosterCount+" of "+CoC.data.roster.length+" Champions" }
+    }).render().el);
     
     this.$el.empty();
     var container = document.createDocumentFragment();
@@ -133,7 +144,7 @@ CoC.view.TeamView = Backbone.View.extend({
     
     if(teams === undefined || teams.length === 0){
       this._teams = undefined;
-      this._message = "Found 0 teams.";
+      this._message = "Found 0 Teams";
       return;
     }
   
@@ -168,9 +179,9 @@ CoC.view.TeamView = Backbone.View.extend({
       this._teams.push({ champions:champions, effects:effects });
     }
     
-    this._message = "Found "+this._teams.length+" "+(this._teams.length === 1?"team":"teams");
+    this._message = "Found "+this._teams.length+" "+(this._teams.length === 1?"Team":"Teams");
     if(synergyCount > 0)
-      this._message += " with "+synergyCount+" synergies.";
+      this._message += " with "+synergyCount+" Synergies";
     else
       this._message += ".";
     
