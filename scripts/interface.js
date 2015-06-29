@@ -284,6 +284,22 @@ $("#page-roster").on("pagebeforeshow",function(){
     CoC.ui.roster.update();
   }).prop("checked", (CoC.settings.getValue("roster-sort") == "name")? true: false).checkboxradio('refresh');
   
+  var filters = [
+    'roster-filter-stars-1',
+    'roster-filter-stars-2',
+    'roster-filter-stars-3',
+    'roster-filter-stars-4'
+  ];
+  for(var i=0; i<filters.length; i++)
+    (function(filter){
+      $('#'+filter).change(function(){
+        CoC.settings.setValue(filter, this.checked);
+        CoC.ui.roster.update();
+      })
+      .prop("checked", CoC.settings.getValue(filter)? true: false)
+      .checkboxradio('refresh');
+    })(filters[i]);
+  
   CoC.ui.roster.update();
 });
 
@@ -297,7 +313,7 @@ $("#page-teams").on( "pagecreate", function() {
 
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
-    $("#team-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
+    $("#team-settings-algorithm").append($('<option>', { value:i }).text( "Algorithm - " + CoC.algorithm[i].name ));
 
 });
 $("#page-teams").on( "pagebeforeshow", function() {
@@ -307,12 +323,12 @@ $("#page-teams").on( "pagebeforeshow", function() {
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
   
   var teamSettingsSize = $('input:radio[name=team-settings-size]');
-  teamSettingsSize.filter('[value='+CoC.settings.getValue("size")+']').prop("checked", true).checkboxradio("refresh");
-  teamSettingsSize.change(function(){ CoC.settings.setValue("size",this.value) });
+  teamSettingsSize.filter('[value='+CoC.settings.getValue("build-size")+']').prop("checked", true).checkboxradio("refresh");
+  teamSettingsSize.change(function(){ CoC.settings.setValue("build-size",this.value) });
     
   function enableResultOptions(){
-    var algorithm = CoC.settings.getValue("algorithm");    
-    var isQuesting = CoC.settings.getValue("quest-group");
+    var algorithm = CoC.settings.getValue("build-algorithm");    
+    var isQuesting = CoC.settings.getValue("build-quest-group");
     
     var canQuest = true;
     if(!CoC.algorithm[algorithm].canQuest){
@@ -325,44 +341,30 @@ $("#page-teams").on( "pagebeforeshow", function() {
       canExtras = true;
   
     $('#team-settings-algorithm-description').text( CoC.algorithm[algorithm].description );
-    $('#team-settings-quest').slider(canQuest? "enable": "disable").slider("refresh");
-    $('#team-settings-extras').slider(canExtras? "enable": "disable").slider("refresh");
+    $('#team-settings-quest').checkboxradio(canQuest? "enable": "disable").checkboxradio("refresh");
+    $('#team-settings-extras').checkboxradio(canExtras? "enable": "disable").checkboxradio("refresh");
   }
     
   $("#team-settings-algorithm").change(function(){
-    CoC.settings.setValue("algorithm",this.value);
+    CoC.settings.setValue("build-algorithm", this.value);
     enableResultOptions();
-  }).val(CoC.settings.getValue("algorithm") || "greedy").selectmenu("refresh");  
+  }).val(CoC.settings.getValue("build-algorithm") || "greedy").selectmenu("refresh");  
     
   $('#team-settings-quest').change(function(){
-    CoC.settings.setValue("quest-group",this.value=="yes");
+    CoC.settings.setValue("build-quest-group", this.checked);
     enableResultOptions();
-  }).val(CoC.settings.getValue("quest-group")? "yes": "no").slider('refresh');
+  }).prop("checked", CoC.settings.getValue("build-quest-group") === true).checkboxradio('refresh');
     
   $('#team-settings-extras').change(function(){
-    CoC.settings.setValue("include-extras",this.value=="yes") 
-  })
-    .val(CoC.settings.getValue("include-extras")? "yes": "no")
-    .slider('refresh');
+    CoC.settings.setValue("build-include-extras", this.checked) 
+  }).prop("checked", CoC.settings.getValue("build-include-extras") === true).checkboxradio('refresh');
     
   var filters = [
-    'roster-filter-stars-1',
-    'roster-filter-stars-2',
-    'roster-filter-stars-3',
-    'roster-filter-stars-4',
-    "roster-filter-cosmic",
-    "roster-filter-tech",
-    "roster-filter-mutant",
-    "roster-filter-skill",
-    "roster-filter-science",
-    "roster-filter-mystic",  
+    'build-filter-stars-1',
+    'build-filter-stars-2',
+    'build-filter-stars-3',
+    'build-filter-stars-4'
   ];
-  $('#roster-filter-all').click(function(){
-    for(var i=0; i<filters.length; i++){
-      $('#'+filters[i]).prop("checked", true).checkboxradio('refresh')
-      CoC.settings.setValue(filters[i], true);
-    }
-  });
   for(var i=0; i<filters.length; i++)
     (function(filter){
       $('#'+filter).change(function(){
@@ -377,14 +379,15 @@ $("#page-teams").on( "pagebeforeshow", function() {
   $("#button-team-settings-apply").click(function(){
     $("#panel-team-settings").panel( "close" );
     
-    var size = CoC.settings.getValue("size");
+    var size = CoC.settings.getValue("build-size");
     if(size === undefined)
       size = 3;
     
     var roster = CoC.roster.filtered();
-    var algorithm = CoC.settings.getValue("algorithm") || "greedy";
-    var quest = CoC.settings.getValue("quest-group")===true;
-    var extras = CoC.settings.getValue("include-extras")===true;
+    var algorithm = CoC.settings.getValue("build-algorithm") || "greedy";
+    var quest = CoC.settings.getValue("build-quest-group")===true;
+    var extras = CoC.settings.getValue("build-include-extras")===true;
+    
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
     

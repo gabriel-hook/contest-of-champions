@@ -1,7 +1,7 @@
 
 var CoC=new function(){
 
-  this.version = "1.10.a";
+  this.version = "1.11.a";
 
   this.initialize = function(){
     console.log("Contest of Champions - Roster Manager v"+this.version);
@@ -223,28 +223,15 @@ var CoC=new function(){
   }
   
   this.roster.filtered = function(){
-  
     var filterStars = {
-      1: CoC.settings.getValue("roster-filter-stars-1"),
-      2: CoC.settings.getValue("roster-filter-stars-2"),
-      3: CoC.settings.getValue("roster-filter-stars-3"),
-      4: CoC.settings.getValue("roster-filter-stars-4")
+      1: CoC.settings.getValue("build-filter-stars-1"),
+      2: CoC.settings.getValue("build-filter-stars-2"),
+      3: CoC.settings.getValue("build-filter-stars-3"),
+      4: CoC.settings.getValue("build-filter-stars-4")
     };
-    var filterTypes = {
-      cosmic: CoC.settings.getValue("roster-filter-cosmic"),
-      tech: CoC.settings.getValue("roster-filter-tech"),
-      mutant: CoC.settings.getValue("roster-filter-mutant"),
-      skill: CoC.settings.getValue("roster-filter-skill"),
-      science: CoC.settings.getValue("roster-filter-science"),
-      mystic: CoC.settings.getValue("roster-filter-mystic")
-    }
-    var champions = CoC.data.roster.filter(function(champion){
-      if(filterStars[champion.get("stars")] === false)
-        return false;
-      return filterTypes[champion.get("typeId")];
+    return CoC.data.roster.filter(function(champion){
+      return filterStars[champion.get("stars")];
     });
-      
-    return champions;
   }
   
   this.roster.csv=function(string){
