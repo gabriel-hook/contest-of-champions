@@ -49,10 +49,15 @@ CoC.model.Synergy = Backbone.Model.extend({
     fromStars: 1,
 		toId: 'champion',
 		effectId: "effect",
-    effectAmount: 20,
-    image:function(){
-      return 'images/effects/'+this.get('effectId')+'.jpg'
-    }
+    effectAmount: 20
+  },
+  
+  effect: function(){
+    var effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    if(!effect)
+      return null;
+      
+    return effect;
   }
 });
 
@@ -62,7 +67,8 @@ CoC.model.Effect = Backbone.Model.extend({
     name: "Effect Name",
     uid: "effect",
 		base: 10,
-    amount:0
+    amount:0,
+    image:""
   }
 });
 
