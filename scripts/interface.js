@@ -176,19 +176,7 @@ CoC.ui.add=new function(){
 }
 
 //Make swipes move to the next screen
-$( document ).on( "pagecreate", "#page-add", function() {
-  $( document ).on( "swipeleft", "#page-add", function( e ) {
-    $("#page-add").find("#header a[href=#page-roster]").click()
-  });
-});
-
-//Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
-  $( document ).on( "swipeleft", "#page-roster", function( e ) {
-    if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
-      return;
-    $("#page-roster").find("#footer a[href=#page-teams]").click()
-  });
   $( document ).on( "swiperight", "#page-roster", function( e ) {
     if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
       return;
@@ -202,18 +190,6 @@ $( document ).on( "pagecreate", "#page-teams", function() {
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
       return;
     $("#page-teams").find("#header a[href=#panel-team-settings]").click()
-  });
-  $( document ).on( "swiperight", "#page-teams", function( e ) {
-    if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
-      return;
-    $("#page-teams").find("#footer a[href=#page-roster]").click()
-  });
-});
-
-//Make swipes move to the next screen
-$( document ).on( "pagecreate", "#page-settings-advanced", function() {
-  $( document ).on( "swiperight", "#page-settings-advanced", function( e ) {
-    $("#page-settings-advanced").find("#footer a[href=#page-teams]").click()
   });
 });
 
