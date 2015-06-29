@@ -296,7 +296,7 @@ $("#page-teams").on( "pagecreate", function() {
 
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
-    $("#build-settings-algorithm").append($('<option>', { value:i }).text( "Algorithm - " + CoC.algorithm[i].name ));
+    $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
 
 });
 $("#page-teams").on( "pagebeforeshow", function() {
