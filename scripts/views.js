@@ -219,7 +219,7 @@ CoC.view.ChampionView = Backbone.View.extend({
   
     //set my classes
     el.addClass("hero");
-    el.addClass(model.get("type").toLowerCase());
+    el.addClass(model.get("typeId"));
     if(model.get("quest") === true)
       el.addClass("quest");
     if(model.get("awakened") > 0)
