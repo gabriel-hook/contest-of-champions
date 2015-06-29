@@ -21,7 +21,7 @@
   <body>
   
     <div class="page" id="page-roster" 
-      data-title="Contest of Champions - Roster"
+      data-title="Champions"
       data-theme="c"
       data-role="page">
     
@@ -57,7 +57,7 @@
             data-icon="search" 
             data-rel="page"
             data-direction="reverse"
-            data-transition="slide">Add</a> 
+            data-transition="flip">Add</a> 
           <div id="roster-import">
             <a data-role="button" data-icon="action">Import .csv</a>    
             <input type="file" accept=".csv">
@@ -98,7 +98,7 @@
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
             <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
-            <li><a href="#page-teams" data-icon="search" data-transition="slide">Team</a></li>
+            <li><a href="#page-teams" data-icon="search" data-transition="fade">Team</a></li>
           </ul>
         </div>
       </div>
@@ -189,14 +189,14 @@
     </div> 
     
     <div class="page" id="page-add" 
-      data-title="Contest of Champions - Roster - Add"
+      data-title="Champions"
       data-theme="c"
       data-role="page">
     
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
-        <h3>Roster - Add</h3>
+        <h3>Add a Champion</h3>
         <a href="#page-roster" class="ui-btn-right"
-          data-transition="slide" 
+          data-transition="flip" 
           data-role="button" 
           data-iconpos="notext"
           data-icon="back">Back</a>
@@ -215,19 +215,10 @@
         <br>
       </div>
       
-      <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
-        <div data-role="navbar" data-iconpos="bottom">
-          <ul>
-            <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="slide">Roster</a></li>
-            <li><a href="#page-teams" data-icon="search" data-transition="slide">Team</a></li>
-          </ul>
-        </div>
-      </div>
-      
     </div>
     
     <div class="page ui-responsive-panel" id="page-teams"
-      data-title="Contest of Champions - Team"
+      data-title="Champions"
       data-theme="c"
       data-role="page">
     
@@ -242,7 +233,7 @@
           data-rel="panel" 
           data-icon="carat-r"
           data-iconpos="right"
-          data-transition="slide">Advanced...</a>
+          data-transition="flip">Advanced...</a>
           
         <label>Size</label>
       
@@ -323,7 +314,7 @@
       <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
-            <li><a href="#page-roster" data-icon="grid" data-transition="slide" data-direction="reverse">Roster</a></li>
+            <li><a href="#page-roster" data-icon="grid" data-transition="fade">Roster</a></li>
             <li><a href="#page-teams" data-icon="search" class="ui-btn-active ui-state-persist">Team</a></li>           
           </ul>
         </div>
@@ -333,19 +324,19 @@
     
     
     <div class="page" id="page-settings-advanced"
-      data-title="Contest of Champions - Team - Settings"
+      data-title="Champions"
       data-theme="a"
       data-role="page">
         
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a href="#page-teams" class="ui-btn-left"
           data-role="button" 
-          data-transition="slide"
+          data-transition="flip"
           data-direction="reverse"
           data-iconpos="notext"
           data-icon="back">Back</a>
           
-        <h1>Team - Settings</h1>
+        <h1>Advanced Settings</h1>
       </div>
       <div role="main" class="ui-content">
         
@@ -493,14 +484,6 @@
       
       </div>
       
-      <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
-        <div data-role="navbar" data-iconpos="bottom">
-          <ul>
-            <li><a href="#page-roster" data-transition="slide" data-direction="reverse" data-icon="grid" data-iconpos="bottom">Roster</a></li>
-            <li><a href="#page-teams" class="ui-btn-active ui-state-persist" data-icon="search" data-iconpos="bottom" data-transition="slide" data-direction="reverse">Team</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
 
     <script id="sliderTemplate" type="text/template">
