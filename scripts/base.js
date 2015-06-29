@@ -222,7 +222,7 @@ var CoC=new function(){
       CoC.data.roster.first().destroy();
   }
   
-  this.roster.filtered = function(sorted){
+  this.roster.filtered = function(){
   
     var filterStars = {
       1: CoC.settings.getValue("roster-filter-stars-1"),
@@ -231,63 +231,18 @@ var CoC=new function(){
       4: CoC.settings.getValue("roster-filter-stars-4")
     };
     var filterTypes = {
-      Cosmic: CoC.settings.getValue("roster-filter-cosmic"),
-      Tech: CoC.settings.getValue("roster-filter-tech"),
-      Mutant: CoC.settings.getValue("roster-filter-mutant"),
-      Skill: CoC.settings.getValue("roster-filter-skill"),
-      Science: CoC.settings.getValue("roster-filter-science"),
-      Mystic: CoC.settings.getValue("roster-filter-mystic")
+      cosmic: CoC.settings.getValue("roster-filter-cosmic"),
+      tech: CoC.settings.getValue("roster-filter-tech"),
+      mutant: CoC.settings.getValue("roster-filter-mutant"),
+      skill: CoC.settings.getValue("roster-filter-skill"),
+      science: CoC.settings.getValue("roster-filter-science"),
+      mystic: CoC.settings.getValue("roster-filter-mystic")
     }
     var champions = CoC.data.roster.filter(function(champion){
       if(filterStars[champion.get("stars")] === false)
         return false;
-      return filterTypes[champion.get("type")];
+      return filterTypes[champion.get("typeId")];
     });
-    
-    if(sorted){
-    
-      var sortBy = CoC.settings.getValue("roster-sort");
-      
-      var typeSortIndex = {};
-      CoC.data.types.each(function(type){
-        typeSortIndex[type.get("uid")] = CoC.data.types.indexOf(type);
-      });
-      
-      //stars > class > name
-      if(sortBy === "stars")
-        champions.sort(function(a,b){
-          var value = b.get("stars") - a.get("stars");
-          if(value !== 0)
-            return value;
-            
-          value = typeSortIndex[a.get("type")] - typeSortIndex[b.get("type")];
-          if(value !== 0)
-            return value;
-           
-          return a.get("name").localeCompare(b.get("name"));
-        })
-      //class > stars > name
-      if(sortBy === "class")
-        champions.sort(function(a,b){
-          var value = typeSortIndex[a.get("type")] - typeSortIndex[b.get("type")];
-          if(value !== 0)
-            return value;
-           
-          value = b.get("stars") - a.get("stars");
-          if(value !== 0)
-            return value;
-            
-          return a.get("name").localeCompare(b.get("name"));        
-        })
-      //name > stars
-      if(sortBy === "name")
-        champions.sort(function(a,b){
-          var value = a.get("name").localeCompare(b.get("name"));
-          if(value !== 0)
-            return value;
-          return b.get("stars") - a.get("stars");       
-        })
-    }
       
     return champions;
   }
