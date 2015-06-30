@@ -98,7 +98,7 @@ CoC.view.RosterView = Backbone.View.extend({
       if(filterStars[champion.get("stars")] !== true)
         return;
     
-      var view = that._championViews[champion.fid()];
+      var fid = champion.fid(), view = that._championViews[fid];
       if(view === undefined){
         view = new CoC.view.ChampionView({
           model:champion
@@ -107,7 +107,11 @@ CoC.view.RosterView = Backbone.View.extend({
         champion.bind("change", function(){
           view.render();
         });
-        that._championViews[champion.fid()] = view;
+        champion.bind("destroy", function(){
+          console.log("boom")
+          delete that._championViews[fid]
+        });
+        that._championViews[fid] = view;
       }
       
       els.push(view.el);
