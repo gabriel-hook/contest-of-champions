@@ -223,6 +223,196 @@ CoC.view.TeamView = Backbone.View.extend({
   }
 });
 
+//Guide Champions View
+CoC.view.GuideChampionsView = Backbone.View.extend({
+  initialize: function(){
+    var that = this;
+    that._guideViews = {};
+    that._championViews = {};
+    that._champions = {};
+    _(CoC.data.guides).each(function(guide){
+      var champion = guide.champion;
+      var view = new CoC.view.ChampionView({
+        model:champion
+      });
+      view.render();
+      
+      var li = $("<li>").append( view.el );
+      
+      that._championViews[guide.uid] = li[0];
+    });
+    
+    that.sly = new Sly( "#guide-champions-frame", {
+
+      horizontal: 1,
+      itemNav: 'forceCentered',
+      activateMiddle: 1,
+      smart: 1,
+      activateOn: 'click',
+      
+      scrollBy:1,    
+
+      mouseDragging:1,
+      touchDragging:1,
+      releaseSwing:1,
+      
+      speed:200,
+      moveBy:600,
+    },{
+      active:function(event,index){
+        that.active.call(that, event, index);
+      }
+    }).init();
+    that.sly.activate(0)
+    $(window).bind("resize", that.sly.reload)
+  },
+  
+  events:{
+    "click .hero":"clicked"
+  },
+  
+  active:function(event, index){
+    var item = this.sly.items[index];
+    var uid = $(item.el).find(".hero").attr("uid");
+    var view = this._guideViews[uid];
+    var guide = CoC.data.guides[uid];
+    if(!view){
+      try{
+        if(guide.data !== undefined)
+          view = new CoC.view.GuideView({ model:guide });
+      }
+      catch(error){
+        console.log(error);
+      }
+      //either missing or just broken
+      if(!view)
+        view = new CoC.view.GuideMissingView({ model:guide });
+      view.render();
+      this._guideViews[uid] = view;
+    }    
+    
+    var el = $("#guide-content");
+    el.empty();
+    
+    el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
+    el.append( view.el ).enhanceWithin();
+  },
+  
+  render: function(){
+    var that = this;
+    
+    that.$el.empty();
+    
+    //TODO: sort this list
+    
+    var container = document.createDocumentFragment();
+    _(CoC.data.guides).each(function(guide){
+      var view = that._championViews[guide.uid];
+      container.appendChild( view );
+    });
+    that.$el.append(container);
+    
+    //do 3 timed reloads since it can be stupid
+    that.sly.reload();
+    setTimeout(function(){
+      that.sly.reload();
+    },100);
+    setTimeout(function(){
+      that.sly.reload();
+    },500);
+    
+    return this;
+  },
+  
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }
+});
+
+CoC.view.GuideViewHelpers={
+  
+  gradeSpan:function(grade){
+    if(grade === undefined)
+      return "";
+    var id = "grade-"+grade.toLowerCase().replace("-","").replace("+","").replace(" ","-");
+    return "<span class=\""+id+"\">"+grade+"</span>";
+  },
+
+
+  ratingSpan:function(rating){
+    if(rating === undefined)
+      return "";
+    return "<span class=\"rating\">" + "<span class=\"rating-"+rating+"\"> " + rating + " </span>/ 5</span>";
+  },
+  
+  damageTypeSpan:function(damage){
+    if(damage === undefined)
+      return "";
+    var id = "damage-"+damage.toLowerCase().replace(" ","-");
+    return "<span class=\""+id+"\">"+damage+"</span>";
+  },
+  
+  perkSpan:function(perk){
+    if(perk === undefined)
+      return "";
+    var id = "perk-"+perk.toLowerCase().replace(" ","-");
+    return "<span class=\""+id+"\">"+perk+"</span>";
+  },
+  
+  rangeSpan:function(range){
+    if(range === undefined)
+      return "";
+    var id = "range-"+range.toLowerCase().replace(" ","-");
+    return "<span class=\""+id+"\">"+range+"</span>";
+  },
+  
+  joinSpans:function(list, render){
+    if(list === undefined || !list.length)
+      return "";
+    var spans = [];
+    for(var i=0; i<list.length; i++)
+      spans.push(render.call(this, list[i]));
+    return spans.join(", ");
+  },
+  
+  definition:function(object, render){
+    if(object === undefined)
+      return "";
+    if(typeof object === "string")
+      return "<b>"+render.call(this, object)+"</b>";
+    for(var key in object)
+      return "<b>"+render.call(this, key) + ":</b> " + object[key];
+    return "";
+  }
+  
+};
+
+//Message View
+CoC.view.GuideView = Backbone.View.extend({
+  tagName: 'div',
+  template: _.template( $('#guideTemplate').html() ),
+  render:function(){  
+    var data = {};
+    _.extend(data, this.model);
+    _.extend(data, CoC.view.GuideViewHelpers);
+    
+    this.$el.html( this.template(data) );
+    this.$el.addClass("container")
+    return this;
+  }
+});
+//Message View
+CoC.view.GuideMissingView = Backbone.View.extend({
+  tagName: 'div',
+  template: _.template( $('#guideMissingTemplate').html() ),
+  render:function(){  
+    this.$el.html( this.template( this.model ) );
+    this.$el.addClass("container");
+    return this;
+  }
+});
+
 //Message View
 CoC.view.MessageView = Backbone.View.extend({
   tagName: 'div',
@@ -231,7 +421,7 @@ CoC.view.MessageView = Backbone.View.extend({
     this.$el.html( this.template( this.model ) );
     return this;
   }
-})
+});
 
 //Champion View
 CoC.view.ChampionView = Backbone.View.extend({

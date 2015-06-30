@@ -3,6 +3,7 @@ CoC.ui.initialize=function(){
   CoC.ui.roster.initialize();
   CoC.ui.add.initialize();
   CoC.ui.teams.initialize();
+  CoC.ui.guides.initialize();
 }
 
 CoC.ui.roster=new function(){
@@ -182,6 +183,19 @@ CoC.ui.teams=new function(){
   }
 }
 
+CoC.ui.guides=new function(){
+
+  this.initialize=function(){
+    this.view = new CoC.view.GuideChampionsView({
+      el: $("#guide-champions")[0]
+    });
+  }
+
+  this.update=function(){
+    this.view.render();
+  }
+}
+
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swiperight", "#page-roster", function( e ) {
@@ -291,6 +305,10 @@ $("#page-roster").on("pagebeforeshow",function(){
     })(filters[i]);
   
   CoC.ui.roster.update();
+});
+
+$("#page-guide").on("pagebeforeshow",function(){
+  CoC.ui.guides.update();
 });
 
 $("#page-add").on("pagebeforeshow",function(){

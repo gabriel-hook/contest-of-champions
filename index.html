@@ -14,6 +14,7 @@
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+    <script src="scripts/sly.min.js"></script>
     <script src="scripts/underscore-min.js"></script>
     <script src="scripts/backbone-min.js"></script>
     <script src="scripts/backbone.localStorage-min.js"></script>
@@ -100,8 +101,9 @@
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
+            <li><a href="#page-guide" data-icon="info" data-transition="fade">Guide</a></li>
             <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
-            <li><a href="#page-teams" data-icon="search" data-transition="fade">Team</a></li>
+            <li><a href="#page-teams" data-icon="gear" data-transition="fade">Team</a></li>
           </ul>
         </div>
       </div>
@@ -319,8 +321,9 @@
       <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="bottom">
           <ul>
+            <li><a href="#page-guide" data-icon="info" data-transition="fade">Guide</a></li>
             <li><a href="#page-roster" data-icon="grid" data-transition="fade">Roster</a></li>
-            <li><a href="#page-teams" data-icon="search" class="ui-btn-active ui-state-persist">Team</a></li>           
+            <li><a href="#page-teams" data-icon="gear" class="ui-btn-active ui-state-persist">Team</a></li>           
           </ul>
         </div>
       </div>
@@ -491,6 +494,35 @@
       
     </div>
 
+    <div class="page" id="page-guide"
+      data-title="Champions"
+      data-theme="c"
+      data-role="page">
+
+      <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
+        <h1>Guide</h1>
+        
+        <div id="guide-champions-frame" class="frame">
+          <ul id="guide-champions" class="slidee"></ul>
+        </div>
+        
+      </div>
+
+        
+      <div role="main" class="ui-content" id="guide-content"></div>
+      
+      <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" data-iconpos="bottom">
+          <ul>
+            <li><a href="#page-guide" data-icon="info" class="ui-btn-active ui-state-persist">Guide</a></li>
+            <li><a href="#page-roster" data-icon="grid" data-transition="fade">Roster</a></li>
+            <li><a href="#page-teams" data-icon="gear" data-transition="fade">Team</a></li>           
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    
     <script id="sliderTemplate" type="text/template">
     
       <div data-role="fieldcontain">
@@ -553,9 +585,106 @@
     
     </script>
 
+    <script id="guideTemplate" type="text/template">
+      
+      <% if(data.grades){ %>
+        <h3 class="grades">
+          Grade: <%= gradeSpan(data.grades.normal) %>
+          <br/>
+          Awakened: <%= gradeSpan(data.grades.awakened) %>
+        </h3>
+      <% } %>
+      
+      <div class="title">
+        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit"><img src="<%= champion.type().get("image") %>" class="type" /><%- data.fullname %></h1>
+        <b><%- data.style %></b>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <% if(data.gameplay){ %>
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>
+            Gameplay <%= ratingSpan(data.gameplay.rating) %>            
+          </h4>
+          <p><%= data.gameplay.description %></p>
+          <% if (data.gameplay.strategy){ %>
+            <p><b>Strategy:</b>
+              <%= data.gameplay.strategy %>
+            </p>
+          <% } %>
+        </div>
+      <% } %>
+      <% if(data.specials){ %>
+        <% for(var number in data.specials){ 
+          var special = data.specials[number]; %>
+        
+          <div data-role="collapsible" data-collapsed="false">
+            <h4>
+              Special <%- number %> <%= ratingSpan(special.rating) %>            
+            </h4>
+            
+            <p><%= special.description %></p>
+            <p>
+            <% if (special.perks){ %>
+              <b>Perks:</b>
+              <%= joinSpans(special.perks, perkSpan) %>
+              <br/>
+            <% } %>
+            <% if (special.damagetypes){ %>
+              <b>Damage Type:</b>
+              <%= joinSpans(special.damagetypes, damageTypeSpan) %>
+              <br/>
+            <% } %>
+            <% if (special.ranges){ %>
+              <b>Range:</b>
+              <%= joinSpans(special.ranges, rangeSpan) %>
+              <br/>
+            <% } %>
+            </p>
+            
+          </div>
+        
+        <% }%>
+      <% } %>
+      
+      <% if(data.awakened){ %>
+        <div data-role="collapsible" data-collapsed="false" data-mini="true">
+          <h4>
+            Awakened: <%- data.awakened.name %> <%= ratingSpan(data.awakened.rating) %>           
+          </h4>
+          <p><%- data.awakened.description %></p>
+        </div>
+      <% } %>
+      
+      <% if(data.perks){ %>
+        <div data-role="collapsible" data-collapsed="false">
+          <h4>
+            Perks          
+          </h4>
+          <% _(data.perks).each(function(perk){ %>
+            <div><%= definition(perk, perkSpan) %></div>
+          <% }) %>
+        </div>
+      <% } %>
+      
+    </script>
+
+    <script id="guideMissingTemplate" type="text/template">
+
+      <div class="title">
+        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit"><img src="<%= champion.type().get("image") %>" class="type" /><%- champion.get("name") %></h1>
+        <b>Coming Soon!</b>
+      </div>
+      
+      <div class="clear"></div>
+      
+    </script>
+
     <script src="scripts/base.js"></script>
     <script src="scripts/models.js"></script>
     <script src="scripts/data.js"></script>
+    <script src="scripts/guides.js"></script>
     <script src="scripts/presets.js"></script>
     <script src="scripts/algorithm.js"></script>
     <script src="scripts/views.js"></script>
@@ -563,6 +692,7 @@
     <script src="scripts/onboarding.js"></script>
     <script>
       CoC.initialize();
+      CoC.guides.initialize();
       CoC.ui.initialize();
     </script>
   </body>

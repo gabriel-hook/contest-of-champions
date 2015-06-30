@@ -69,23 +69,27 @@ html, body, p, span, div {
   width:20%;
   padding-bottom:20%;
 }
+
+#guide-champions .hero{
+  width:100%;
+  padding-bottom:100%;
+}
+
+#guide-champions .hero .container,
 #teams .team .hero .container{
   padding:10px 0 0 0 !important;
 }
 
 #teams .team .heroes .hero:first-child .title{
   border-top-right-radius:0;
-  border-right:none;
 }
 #teams .team .heroes .hero:last-child .title{
   border-top-left-radius:0;
-  border-left:none;
 }
+
 #teams .team .heroes .hero:not(:first-child):not(:last-child) .title{
   border-top-left-radius:0;
   border-top-right-radius:0;
-  border-left:none;
-  border-right:none;
 }
 
 #roster .hero .portrait,
@@ -546,6 +550,149 @@ html, body, p, span, div {
 }
 
 /******************
+      GUIDES
+******************/
+
+#guide-content h1, 
+#guide-content h1 a, 
+#guide-content h2, 
+#guide-content h2 a, 
+#guide-content h3, 
+#guide-content h3 a, 
+#guide-content h4, 
+#guide-content h4 a, 
+#guide-content label{
+  font-family:Hanzel, Verdana, Geneva, sans-serif;
+  text-transform:uppercase;
+}
+
+#guide-content,
+#guide-content .container{
+  height: inherit;
+}
+#guide-content .background{
+  position:fixed;
+  bottom:69px;
+  right:0;
+  z-index:0;
+  height:50%;
+  opacity:0.5;
+}
+#guide-content .container{
+  z-index:10;
+  position:relative;
+}
+
+#guide-content .title{
+  float:left;
+  overflow:hidden;
+}
+#guide-content .title h1{
+  font-size:32px;
+  line-height:32px;
+  margin:0;
+  border-top-left-radius:.3125em;
+  border-top-right-radius:.3125em;
+}
+#guide-content .title img{
+  position:relative;
+  top: 4px;
+  height:32px;
+}
+#guide-content .title b{
+  display:block;
+  text-align:center;
+  margin:0;
+  padding:10px;
+  background:rgba(255,255,255,0.75);
+  border:solid 1px #ccc;
+  border-bottom-left-radius:.3125em;
+  border-bottom-right-radius:.3125em;
+}
+
+#guide-content .grades{
+  float:right;
+  margin:0;
+  padding:10px;
+  background:rgba(255,255,255,0.75);
+  border-radius:.3125em;
+  border:solid 1px #ccc;
+}
+
+#guide-content .rating{
+  float:right;
+  padding-right:20px;
+}
+#guide-content .grade-a,
+#guide-content .rating-5{
+  color:#0c0;
+} 
+#guide-content .grade-b,
+#guide-content .rating-4{
+  color:#6c0;
+} 
+#guide-content .grade-c,
+#guide-content .rating-3{
+  color:#990;
+} 
+#guide-content .grade-d,
+#guide-content .rating-2{
+  color:#c60;
+} 
+#guide-content .grade-e,
+#guide-content .grade-f,
+#guide-content .rating-1{
+  color:#c00;
+} 
+
+#guide-content .range-short{
+  color:#c00;
+} 
+#guide-content .range-medium{
+  color:#990;
+} 
+#guide-content .range-long{
+  color:#0c0;
+} 
+
+#guide-content .damage-energy{
+  color:#06c;
+} 
+
+#guide-content .perk-bleed-immunity{
+  color:#600;
+} 
+#guide-content .perk-poison-immunity{
+  color:#060;
+} 
+#guide-content .perk-regeneration{
+  color:#00c;
+} 
+#guide-content .perk-armor-up{
+  color:#06c;
+} 
+#guide-content .perk-evade{
+  color:#0c0;
+} 
+
+#guide-content .ui-collapsible-heading-toggle{
+  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+}
+#guide-content .ui-collapsible-content{
+  background:rgba(255,255,255,0.75);
+}
+
+/******************
+  SLY SCROLLING
+******************/
+
+.frame { width: 100%; height: 120px; padding: 0; }
+.frame .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
+.frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 120px; height: 100%; }
+.frame .slidee li { opacity:0.5; }
+.frame .slidee li.active { opacity:1; }
+
+/******************
     RESPONSIVE
 ******************/
 
@@ -568,6 +715,18 @@ html, body, p, span, div {
     top:1px;
     width:16px;
   }
+  
+  
+  #guide-content .title,
+  #guide-content .grades{
+    float:none;
+    box-sizing:border-box;
+    width:100%;
+    margin-bottom:0.5em;
+  }
+  
+  .frame { height: 96px; }
+  .frame .slidee li { width: 96px; }
 }
 @media (max-width:800px) and (min-width:355px) {
   .hero .title{
@@ -588,6 +747,10 @@ html, body, p, span, div {
     top:2px;
     width:18px;
   }
+  
+  #guide-content .clear{ clear:both; }
+  .frame { height: 128px; }
+  .frame .slidee li { width: 128px; }
 }
 @media (min-width:800px) {
   .hero .name{
@@ -605,4 +768,8 @@ html, body, p, span, div {
     top: 4px;
     width:22px;
   }
+  
+  #guide-content .clear{ clear:both; }
+  .frame { height: 140px; }
+  .frame .slidee li { width: 140px; }
 }
