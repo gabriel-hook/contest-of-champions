@@ -1,27 +1,17 @@
-﻿
-CoC.ui.teams=new function(){
-
-  this.view = new CoC.view.TeamView({
-    el: $("#teams")[0]
-  });
-      
-  this.worker = null;
-  this.empty = true;
- 
-  this.update=function(result, size){
-    this.empty = false;
-    this.view.size(size);
-    this.view.teams(result.teams);
-    this.view.extras(result.extras);
-    this.view.render();
-  }
+﻿//initialize
+CoC.ui.initialize=function(){
+  CoC.ui.roster.initialize();
+  CoC.ui.add.initialize();
+  CoC.ui.teams.initialize();
 }
 
 CoC.ui.roster=new function(){
 
-  this.view = new CoC.view.RosterView({
-    el: $("#roster")[0]
-  });
+  this.initialize=function(){
+    this.view = new CoC.view.RosterView({
+      el: $("#roster")[0]
+    });
+  }
   
   this.popup=function(element, champion){
     
@@ -85,7 +75,6 @@ CoC.ui.roster=new function(){
       $("#roster-configure-level").unbind( "change" ).change(function(e){              
         champion.set("level", e.target.value);
         champion.save();
-        CoC.ui.roster.update();
         $("#roster-configure-level").selectmenu('refresh');
       }).val(champion.get("level")).selectmenu('refresh');
     }
@@ -96,7 +85,6 @@ CoC.ui.roster=new function(){
     $("#roster-configure-rank").unbind( "change" ).change(function(e){        
       champion.set("rank", e.target.value);
       champion.save();
-      CoC.ui.roster.update();
       setupRankLevel();
       $("#roster-configure-rank").selectmenu('refresh');
     }).val(champion.get("rank")).selectmenu('refresh');
@@ -116,13 +104,11 @@ CoC.ui.roster=new function(){
         $("#roster-configure-stars").removeClass("awakened")
         $("#roster-delete-confirm-stars").removeClass("awakened");
       }
-      CoC.ui.roster.update();
     });
     
     $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind( "change" ).change(function(e){
       champion.set("quest", (e.target.checked)? true: false);
       champion.save();
-      CoC.ui.roster.update();
     });
     
     $("#roster-configure-delete").unbind( "click" ).click(function(){
@@ -141,7 +127,6 @@ CoC.ui.roster=new function(){
     $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
-      CoC.ui.roster.update();
     })
     
     $('#popup-roster-configure').popup("open",{
@@ -157,12 +142,14 @@ CoC.ui.roster=new function(){
 
 CoC.ui.add=new function(){
   
-  this.view = new CoC.view.AddChampionsView({
-    el: $("#add-champions")[0]
-  });
+  this.initialize=function(){
+    this.view = new CoC.view.AddChampionsView({
+      el: $("#add-champions")[0]
+    });
+    this.view.stars(this.stars)
+  }
   
   this.stars = 2;
-  this.view.stars(this.stars)
 
   this.setStars=function(stars){
     this.stars = stars;
@@ -171,6 +158,26 @@ CoC.ui.add=new function(){
   }
   
   this.update=function(){
+    this.view.render();
+  }
+}
+
+CoC.ui.teams=new function(){
+
+  this.initialize=function(){
+    this.view = new CoC.view.TeamView({
+      el: $("#teams")[0]
+    });
+  }
+      
+  this.worker = null;
+  this.empty = true;
+ 
+  this.update=function(result, size){
+    this.empty = false;
+    this.view.size(size);
+    this.view.teams(result.teams);
+    this.view.extras(result.extras);
     this.view.render();
   }
 }

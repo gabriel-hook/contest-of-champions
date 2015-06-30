@@ -65,7 +65,13 @@ CoC.view.AddChampionsView = Backbone.View.extend({
 CoC.view.RosterView = Backbone.View.extend({
  
   initialize: function(){
-    this._championViews = {}
+    var that = this;
+    
+    that._championViews = {};
+    
+    CoC.data.roster.bind("remove", function(champion){
+      that.render();
+    });
   },
   
   events:{
@@ -79,6 +85,25 @@ CoC.view.RosterView = Backbone.View.extend({
     var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
     if(champion)
       CoC.ui.roster.popup(e.currentTarget, champion);
+  },
+  
+  championView:function(champion){
+    var that = this, fid = champion.fid(), view = this._championViews[fid];
+    if(view === undefined){
+      view = new CoC.view.ChampionView({
+        model:champion
+      })
+      view.render();
+      champion.bind("change", function(){
+        view.render();
+      });
+      champion.bind("destroy", function(){
+        delete that._championViews[fid]
+      });
+      this._championViews[fid] = view;
+    }
+    
+    return view;
   },
   
   render: function(){
@@ -97,25 +122,12 @@ CoC.view.RosterView = Backbone.View.extend({
     CoC.data.roster.each(function(champion){
       if(filterStars[champion.get("stars")] !== true)
         return;
-    
-      var fid = champion.fid(), view = that._championViews[fid];
-      if(view === undefined){
-        view = new CoC.view.ChampionView({
-          model:champion
-        })
-        view.render();
-        champion.bind("change", function(){
-          view.render();
-        });
-        champion.bind("destroy", function(){
-          console.log("boom")
-          delete that._championViews[fid]
-        });
-        that._championViews[fid] = view;
-      }
       
-      els.push(view.el);
-      rosterCount++;
+      var view = that.championView(champion);
+      if(view){      
+        els.push(view.el);
+        rosterCount++;
+      }
     });  
     
     //add the message view
