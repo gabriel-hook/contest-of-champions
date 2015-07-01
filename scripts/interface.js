@@ -29,7 +29,7 @@ CoC.ui.roster=new function(){
       $("#roster-configure-stars").removeClass("awakened")
 
       
-    $("#roster-configure-guide").unbind("click").bind("click",function(){
+    $(".roster-configure-guide").unbind("click").bind("click",function(){
       CoC.ui.guides.open( champion.get("uid") );
     });
 

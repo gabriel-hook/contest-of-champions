@@ -495,12 +495,21 @@ html, body, p, span, div {
   width:256px;
   z-index:-1;
 }
-#roster-configure-guide{
+
+#popup-roster-configure .extras .roster-configure-guide{
   background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+}
+
+.roster-configure-guide{
+
 }
 
 @media (min-width:500px) and (min-height:400px) {
   
+  #popup-roster-configure  .no-extras{
+    display:none;
+  }
+
   #popup-roster-configure .extras{
     display:block;
   }
