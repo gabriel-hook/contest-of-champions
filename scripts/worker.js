@@ -71,5 +71,14 @@ onmessage = function (event){
     }  
   });
 
+  if(result.teams)
+    for(var i=0; i<result.teams.length; i++)
+      for(var j=0; j<result.teams[i].length; j++)
+        result.teams[i][j] = result.teams[i][j].toJSON();
+  
+  if(result.extras)
+    for(var i=0; i<result.extras.length; i++)
+      result.extras[i] = result.extras[i].toJSON();
+  
   postMessage({ type:"complete", result:result });
 };

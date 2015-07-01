@@ -441,14 +441,14 @@ $("#page-teams").on( "pagecreate", function() {
               for(var i=0; i<event.data.result.teams.length; i++){
                 var team = [];
                 for(var j=0; j<event.data.result.teams[i].length; j++)
-                  team.push(new CoC.model.Champion( event.data.result.teams[i][j].attributes ))
+                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ))
                 result.teams.push(team);
               }
             }
             if(event.data.result.extras !== undefined){
               result.extras=[];
               for(var i=0; i<event.data.result.extras.length; i++)
-                result.extras.push(new CoC.model.Champion( event.data.result.extras[i].attributes ))
+                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ))
             }
             
             CoC.ui.teams.update(result, size);
