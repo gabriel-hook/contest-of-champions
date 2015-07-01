@@ -33,7 +33,7 @@
       "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful, but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
       "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
-      "ranges":["Short"],
+      "ranges":["Short"]
     },
     
     "3":{
