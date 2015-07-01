@@ -31,9 +31,9 @@
     "2":{
       "rating":5,
       "description":"Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
-      "perks":["Cauterize","Stun"],
+      "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
-      "ranges":["Long","Short"]
+      "ranges":["Short"]
     },
     
     "3":{
