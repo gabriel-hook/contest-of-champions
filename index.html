@@ -224,7 +224,7 @@
       
     </div>
     
-    <div class="page ui-responsive-panel" id="page-teams"
+    <div class="page" id="page-teams"
       data-title="Champions"
       data-theme="c"
       data-role="page">
@@ -586,20 +586,20 @@
     </script>
 
     <script id="guideTemplate" type="text/template">
-      
+
       <div class="title">
         <h2 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
           <img src="<%= champion.type().get("image") %>" class="type" />
           <%- (data.fullname)? data.fullname: champion.get("name") %>
         </h2>
-        <b>
+        <p>
           <% if(data.grades){ %>
             Grade: <%= gradeSpan(data.grades.normal) %>
             <br/>
             Awakened: <%= gradeSpan(data.grades.awakened) %>
             <br/>
           <% } %>
-        </b>
+        </p>
       </div>
       <% if(data.gameplay){ %>
         <div data-role="collapsible" data-collapsed="false">
@@ -687,10 +687,10 @@
           <img src="<%= champion.type().get("image") %>" class="type" />
           <%- champion.get("name") %>
         </h2>
-        <b>Coming Soon!</b>
+        <p>
+          <b>Coming Soon!</b>
+        </p>
       </div>
-      
-      <div class="clear"></div>
       
     </script>
 
