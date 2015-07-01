@@ -212,8 +212,7 @@ CoC.ui.guides=new function(){
     var guide = CoC.getUrlParam("page-guide", "guide");
     if(!this.seen && guide === undefined)
       guide = 0;
-    if(guide !== undefined)
-      this.view.select(guide);
+    this.view.select(guide);
     
     this.view.render();
     this.seen = true;
