@@ -230,7 +230,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._guideViews = {};
     that._championViews = [];
     
-    _(CoC.guides.data).each(function(guide){
+    
+    var uids = _.uniq( CoC.data.champions.pluck("uid") );
+    
+    _(uids).each(function(uid){
+      var guide = CoC.guides.data[uid];
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
         model:champion
