@@ -70,11 +70,6 @@ html, body, p, span, div {
   padding-bottom:20%;
 }
 
-#guide-champions .hero{
-  width:100%;
-  padding-bottom:100%;
-}
-
 #guide-champions .hero .container,
 #teams .team .hero .container{
   padding:10px 0 0 0 !important;
@@ -677,14 +672,40 @@ html, body, p, span, div {
 }
 
 /******************
-  SLY SCROLLING
+  GUIDE CHAMPIONS
 ******************/
 
-.frame { width: 100%; height: 120px; padding: 0; }
-.frame .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
-.frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 120px; height: 100%; }
-.frame .slidee li { opacity:0.5; }
-.frame .slidee li.active { opacity:1; }
+.frame { 
+  width: 100%; 
+  height: 120px; 
+  padding: 0; 
+}
+.frame .slidee { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%; 
+  list-style: none;
+}
+.frame .slidee li { 
+  cursor:pointer;
+  float: left; 
+  margin: 0 5px 0 0; 
+  padding: 0; 
+  width: 120px; 
+  height: 100%; 
+  opacity:0.33;
+  transition:opacity 200ms;
+}
+.frame .slidee li:hover { 
+  opacity:0.66; 
+}
+.frame .slidee li.active { 
+  opacity:1; 
+}
+.frame .slidee .hero{
+  width:100%;
+  padding-bottom:100%;
+}
 
 @media (max-width:355px) {
   .frame { height: 72px; }
