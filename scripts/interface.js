@@ -191,9 +191,6 @@ CoC.ui.guides=new function(){
   this.initialize=function(){
     var that = this;
     CoC.guides.complete(function(){
-    
-      console.log("init guides")
-    
       that.view = new CoC.view.GuideChampionsView({
         el: $("#guide-champions")[0]
       });
