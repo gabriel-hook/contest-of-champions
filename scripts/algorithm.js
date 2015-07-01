@@ -16,8 +16,8 @@
     this.canQuest = true;
 
     this.build=function(options){
-      var teams = {}, team, list = [], preselect = [], classWeights = [], progress = null;
-      preProcess(options.champions, list, classWeights);
+      var teams = {}, team, list = [], preselect = [], typeWeights = [], progress = null;
+      preProcess(options.champions, list, typeWeights);
       
       if(options.quest)
         for(var i=list.length-1;i>=0;i--)
@@ -43,11 +43,11 @@
 
       if(preselect.length > 0){      
         if(preselect.length > options.size){
-          team = getTopPartner(preselect,0,options.size, classWeights, progress);
+          team = getTopPartner(preselect,0,options.size, typeWeights, progress);
         }
         else{
-          var synergies = [], classes = getClasses(preselect);
-          team = getNextPartner(list,preselect,synergies,classes,0,options.size,classWeights,progress);
+          var synergies = [], types = getTypes(preselect);
+          team = getNextPartner(list, preselect, synergies, types, 0, options.size, typeWeights, progress);
         }
         if(team && team.value > 0)
           teams[0]=team;
@@ -56,11 +56,11 @@
         
         var team_index = 0;
         do {
-          team = getTopPartner(list,0,options.size, classWeights, progress);
+          team = getTopPartner(list,0,options.size, typeWeights, progress);
           if(team){          
             if (team.value){
               if(!options.quest)
-                team = getSynergyCulledTeam(team, classWeights);
+                team = getSynergyCulledTeam(team, typeWeights);
               
               teams[team_index]=team;
               teams.length=++team_index;
@@ -102,7 +102,7 @@
         for(var i=teams.length-1, index; i>=0; i--){
           var team;
           if(teams[i].champions.length < options.size){
-            var team = getNextPartner(list, teams[i].champions, teams[i].synergies, getClasses(teams[i].champions), 0, options.size, classWeights, progress);
+            var team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, options.size, typeWeights, progress);
             if(team){
               for(var o in team.champions){
                 index = list.indexOf(team.champions[o]);
@@ -125,9 +125,9 @@
       return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
     }
     
-    function preProcess(champions, list, classWeights){
+    function preProcess(champions, list, typeWeights){
       for(var i=2; i<=5; i++)
-        classWeights[i] = CoC.settings.getDuplicateWeight(i);
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
         
       for(var i=0, champion, synergies; i<champions.length; i++){
         champion = champions[i];
@@ -178,24 +178,24 @@
       return result;
     }
 
-    function getTopPartner(list, index, depth, classWeights, progress){
+    function getTopPartner(list, index, depth, typeWeights, progress){
       if(index >= list.length)
         return null;
-      var current = getNextPartner(list, addPartnerHero([], list[index]), [], getClasses([ list[index] ]), index+1, depth, classWeights, progress);
+      var current = getNextPartner(list, addPartnerHero([], list[index]), [], getTypes([ list[index] ]), index+1, depth, typeWeights, progress);
       if(current == null)
         return null;
-      var next = getTopPartner(list,index+1,depth, classWeights, progress);
+      var next = getTopPartner(list,index+1,depth, typeWeights, progress);
       return (compareTeams(current,next) >= 0)? current: next;
     }
     
-    function getNextPartner(list, champions, synergies, classes, index, depth, classWeights, progress){
+    function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progress){
       if(champions.length == depth){
         if(progress)
           progress.callback(++progress.current, progress.max);
         return {
           champions:champions,
           synergies:synergies,
-          value:getTeamValue(champions, synergies, classes, classWeights)
+          value:getTeamValue(champions, synergies, types, typeWeights)
         };
       }
       if(index == list.length)
@@ -203,10 +203,10 @@
       var current = getNextPartner(list, 
         addPartnerHero(champions, list[index]), 
         addPartnerSynergies(synergies, champions, list[index]), 
-        addPartnerClass(classes, list[index]), 
-        index+1, depth, classWeights, progress
+        addPartnerType(types, list[index]), 
+        index+1, depth, typeWeights, progress
       );
-      var next = getNextPartner(list, champions, synergies, classes, index+1, depth, classWeights, progress);
+      var next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progress);
 
       return (compareTeams(current,next) >= 0)? current: next;
     }
@@ -217,18 +217,18 @@
       return champions;
     }
     
-    function addPartnerClass(list, hero){
-      var classes = list.slice();
-      classes[hero.type]++;
-      return classes;
+    function addPartnerType(list, hero){
+      var types = list.slice();
+      types[hero.type]++;
+      return types;
     }
 
-    function getClasses(champions){
-      var classes=[0,0,0,0,0,0], i;
+    function getTypes(champions){
+      var types=[0,0,0,0,0,0], i;
       if(champions !== undefined)
         for(var i=0;i<champions.length;i++)
-          classes[champions[i].type]++;
-      return classes;
+          types[champions[i].type]++;
+      return types;
     }
     
     function addPartnerSynergies(oldSynergies, list, next){
@@ -256,16 +256,16 @@
       return synergies;
     }
       
-    function getTeamValue(champions, synergies, classes, classWeights){
-      var vsynergies = 0, vchampions = 0, vclasses = 1, i;
+    function getTeamValue(champions, synergies, types, typeWeights){
+      var vsynergies = 0, vchampions = 0, vtypes = 1, i;
       for(i in synergies)
         vsynergies += synergies[i].value;
       for(i in champions)
         vchampions += champions[i].value;
-      for(i in classes)
-        if(classes[i] > 1)
-          vclasses *= classWeights[classes[i]];
-      return vsynergies * vchampions * vclasses;
+      for(i in types)
+        if(types[i] > 1)
+          vtypes *= typeWeights[types[i]];
+      return vsynergies * vchampions * vtypes;
     }
     
     function compareTeams(a, b){
@@ -274,8 +274,8 @@
       return a.value - b.value;
     }
     
-    function getSynergyCulledTeam(team, classWeights){
-      var classes = [0,0,0,0,0,0], culled = {
+    function getSynergyCulledTeam(team, typeWeights){
+      var types = [0,0,0,0,0,0], culled = {
         champions:[],
         synergies:team.synergies,
         value:0
@@ -287,13 +287,13 @@
           var from = team.synergies[s].fromId === team.champions[i].id && team.synergies[s].fromStars === team.champions[i].stars;
           var to = team.synergies[s].id === team.champions[i].id;
           if(to || from){
-            addPartnerClass(classes, team.champions[i]);
+            addPartnerType(types, team.champions[i]);
             culled.champions.push(team.champions[i]);
             break synergies;
           }
         }
       }
-      culled.value = getTeamValue(culled.champions, culled.synergies, classes, classWeights)
+      culled.value = getTeamValue(culled.champions, culled.synergies, types, typeWeights)
       return culled;
     }
   };
@@ -305,8 +305,8 @@
     
     this.build=function(options){
       var size = parseInt(options.size), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
-      var heroMap = {}, synergyMap = {}, classWeights = {}, teamValues = {};
-      preprocess(options.champions, heroMap, synergyMap, classWeights);
+      var heroMap = {}, synergyMap = {}, typeWeights = {}, teamValues = {};
+      preprocess(options.champions, heroMap, synergyMap, typeWeights);
     
       var swaps;
       
@@ -342,7 +342,7 @@
           
         var tid = getTeamId(team), value = teamValues[tid];
         if(value === undefined){
-          var hvalue = 0, svalue = 0, classes = {};
+          var hvalue = 0, svalue = 0, types = {};
           for(var i=0; i<team.length; i++){
             var hero = team[i];
             //get my value
@@ -354,13 +354,13 @@
               if(synergy)
                 svalue += synergy.value;
             }
-            //get my class dupes
-            classes[hero.type] = (classes[hero.type] || 0) + 1;
+            //get my type dupes
+            types[hero.type] = (types[hero.type] || 0) + 1;
           }
           var cvalue = 1;
-          for(i in classes)
-            if(classes[i] > 1)
-              cvalue *= classWeights[classes[i]] || 1;
+          for(i in types)
+            if(types[i] > 1)
+              cvalue *= typeWeights[types[i]] || 1;
           //combine them
           teamValues[tid] = value = hvalue * svalue * cvalue;
         }
@@ -443,9 +443,9 @@
       });
     }
     
-    function preprocess(champions, heroMap, synergyMap, classWeights){
+    function preprocess(champions, heroMap, synergyMap, typeWeights){
       for(i=2; i<=5; i++)
-        classWeights[i] = CoC.settings.getDuplicateWeight(i);
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
     
       for(var i=0, fid, champion, synergies; i<champions.length; i++){
         champion = champions[i];
