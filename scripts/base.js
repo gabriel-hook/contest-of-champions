@@ -15,10 +15,14 @@ var CoC=new function(){
   }
 
   this.getUrlParam=function(fragment, param){
+    if(fragment === undefined || param === undefined)
+      return undefined;
     return $.url().fparam(fragment + "?" + param);
   }
   
   this.setUrlParam=function(fragment, param, value){
+    if(fragment === undefined || param === undefined || value === undefined)
+      return;
     window.location.hash = "#"+fragment+"?"+param + "=" + value;
   }
   
