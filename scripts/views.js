@@ -313,6 +313,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     el.empty();
     el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
     el.append( view.el ).enhanceWithin();
+    
+    //scroll to beginning when we replace
+    $.mobile.silentScroll(0);
   },
   
   render: function(){
