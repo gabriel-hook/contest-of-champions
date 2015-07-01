@@ -226,6 +226,20 @@ $( document ).on( "pagecreate", "#page-teams", function() {
     $("#page-teams").find("#header a[href=#panel-team-settings]").click()
   });
 });
+  
+$("#page-roster").on("pagebeforeshow",function(){
+  CoC.ui.roster.update();
+});
+
+$("#page-guide").on("pagebeforeshow",function(){
+  CoC.ui.guides.update();
+});
+
+$("#page-add").on("pagebeforeshow",function(){
+  $("#page-add #add-stars a").removeClass("ui-btn-active");
+  $("#page-add a#add-stars-"+CoC.ui.add.stars).addClass("ui-btn-active");
+  CoC.ui.add.update();
+});
 
 $("#page-roster").on("pagecreate",function(){
 
@@ -318,30 +332,14 @@ $("#page-roster").on("pagecreate",function(){
       .checkboxradio('refresh');
     })(filters[i]);
 });
-  
-$("#page-roster").on("pagebeforeshow",function(){
-
-  CoC.ui.roster.update();
-});
-
-$("#page-guide").on("pagebeforeshow",function(){
-  CoC.ui.guides.update();
-});
-
-$("#page-add").on("pagebeforeshow",function(){
-  $("#page-add #add-stars a").removeClass("ui-btn-active");
-  $("#page-add a#add-stars-"+CoC.ui.add.stars).addClass("ui-btn-active");
-  CoC.ui.add.update();
-});
 
 $("#page-teams").on( "pagecreate", function() {
-
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
     $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
-
 });
-$("#page-teams").on( "pagebeforeshow", function() {
+
+$("#page-teams").on( "pagecreate", function() {
   $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
