@@ -54,8 +54,6 @@
   "perks":[
     "Bleed Immunity",
     "Poison Immunity",
-    "Power Drain",
-    "Power Burn",
     { "Bleed": "14% chance, 20% damage, 5.5 seconds." },
     { "Critical Hits": "Every 5 hits." },
     { "Cauterize": "Specials deal 50% damage for each bleed on the target." },
