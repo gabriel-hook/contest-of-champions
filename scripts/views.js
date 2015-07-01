@@ -277,8 +277,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   active:function(event, index){
     var item = this.sly.items[index];
     var uid = $(item.el).find(".hero").attr("uid");
-    var view = this._guideViews[uid];
     var guide = CoC.guides.data[uid];
+    var view = this._guideViews[uid];
     if(!view){
       try{
         if(guide.data !== undefined)
@@ -294,11 +294,13 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       this._guideViews[uid] = view;
     }    
     
-    var el = $("#guide-content");
-    el.empty();
-    
-    el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
-    el.append( view.el ).enhanceWithin();
+    //delay this so we don't slow down the list rendering
+    setTimeout(function(){
+      var el = $("#guide-content");
+      el.empty();
+      el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
+      el.append( view.el ).enhanceWithin();
+    },0);
   },
   
   render: function(){
