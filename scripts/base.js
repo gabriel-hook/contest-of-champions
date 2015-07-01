@@ -14,6 +14,14 @@ var CoC=new function(){
     location.reload();
   }
 
+  this.getUrlParam=function(fragment, param){
+    return $.url().fparam(fragment + "?" + param);
+  }
+  
+  this.setUrlParam=function(fragment, param, value){
+    window.location.hash = "#"+fragment+"?"+param + "=" + value;
+  }
+  
   //modules
   this.data = new function() {};
   this.logic = new function() {};
