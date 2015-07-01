@@ -416,8 +416,43 @@ CoC.view.GuideViewHelpers={
     for(var key in object)
       return "<b>"+render.call(this, key) + ":</b> " + object[key];
     return "";
-  }
+  },
   
+  synergiesFrom:function(uid){
+    var synergies = this._synergiesFrom[uid], from;
+    if(synergies === undefined){
+      synergies = CoC.data.synergies.where({ fromId:uid });
+      
+      from = {};
+      for(var i=0; i<synergies.length; i++)
+        from[synergies[i].get("toId")]=synergies[i];
+      synergies = [];
+      for(var key in from)
+        synergies.push(from[key]);
+        
+      this._synergiesFrom[uid] = synergies;
+    }
+    return _(synergies);
+  },
+  _synergiesFrom:{},
+  
+  synergiesTo:function(uid){
+    var synergies = this._synergiesTo[uid], to;
+    if(synergies === undefined){
+      synergies = CoC.data.synergies.where({ toId:uid });
+      
+      to = {};
+      for(var i=0; i<synergies.length; i++)
+        to[synergies[i].get("fromId")]=synergies[i];
+      synergies = [];
+      for(var key in to)
+        synergies.push(to[key]);
+        
+      this._synergiesTo[uid] = synergies;
+    }
+    return _(synergies);
+  },
+  _synergiesTo:{}
 };
 
 //Message View
@@ -438,8 +473,12 @@ CoC.view.GuideView = Backbone.View.extend({
 CoC.view.GuideMissingView = Backbone.View.extend({
   tagName: 'div',
   template: _.template( $('#guideMissingTemplate').html() ),
-  render:function(){  
-    this.$el.html( this.template( this.model ) );
+  render:function(){ 
+    var data = {};
+    _.extend(data, this.model);
+    _.extend(data, CoC.view.GuideViewHelpers);
+    
+    this.$el.html( this.template( data ) );
     this.$el.addClass("container");
     return this;
   }

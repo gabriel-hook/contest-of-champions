@@ -13,19 +13,31 @@ CoC.model.Champion = Backbone.Model.extend({
   },
   
   fid:function(){
-    return this.get("uid")+"_"+this.get("stars");
+    if(this._fid === undefined){
+      this._fid = this.get("uid")+"_"+this.get("stars");
+    }
+    return this._fid;
   },
   
   portrait:function(){
-    return 'images/champions/portrait_'+this.get('uid')+'.png'
+    if(this._portrait === undefined){
+      this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png'
+    }
+    return this._portrait;
   },
   
   image:function(){
-    return 'images/champions/fullsize_'+this.get('uid')+'.png'
+    if(this._image === undefined){
+      this._image = 'images/champions/fullsize_'+this.get('uid')+'.png'
+    }
+    return this._image;
   },
   
   type:function(){
-    return CoC.data.types.findWhere({ uid:this.get("typeId") });
+    if(this._type === undefined){
+      this._type = CoC.data.types.findWhere({ uid:this.get("typeId") });
+    }
+    return this._type;
   },
   
   //dirty way to migrate to new data model using uid/stars as given
@@ -49,8 +61,25 @@ CoC.model.Synergy = Backbone.Model.extend({
     effectAmount: 20
   },
   
+  to:function(){
+    if(this._to === undefined){
+      this._to = CoC.data.champions.findWhere({ uid:this.get("toId") });
+    }
+    return this._to;
+  },
+  
+  from:function(){
+    if(this._from === undefined){
+      this._from = CoC.data.champions.findWhere({ uid:this.get("fromId"), stars:this.get("fromStars") });
+    }
+    return this._from;
+  },
+  
   effect: function(){
-    return CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    if(this._effect === undefined){
+      this._effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    }
+    return this._effect;
   }
 });
 

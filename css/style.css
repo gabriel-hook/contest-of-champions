@@ -494,43 +494,10 @@ html, body, p, span, div {
   width:256px;
   z-index:-1;
 }
-#roster-configure-synergies{
-  padding:0;
-  line-height:auto;
-  background:none;
-}
-
-#roster-configure-synergies .ui-collapsible-heading-toggle{
+#roster-configure-guide{
   background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
 }
-#roster-configure-synergies .ui-collapsible-content{
-  background:rgba(255,255,255,0.75);
-  max-height:110px;
-  overflow-y:auto;
-}
 
-#roster-configure-synergies .synergy{
-  font-size: 0.7em;
-  margin:3px;
-  padding:0;
-  line-height:auto;
-}
-#roster-configure-synergies .synergy img{
-  padding-right:0;
-}
-#roster-configure-synergies .synergy img.portrait{
-  border-bottom:solid 2px;
-}
-#roster-configure-synergies .synergy span{
-  padding-left:4px;  
-  color: #222;
-  text-shadow: 0 1px 0 #fff;
-  font-weight:bold;
-}
-#roster-configure-synergies .synergy.none{
-  font-style:italic;
-  text-align:center;
-}
 @media (min-width:500px) and (min-height:400px) {
   
   #popup-roster-configure .extras{
@@ -664,6 +631,27 @@ html, body, p, span, div {
 } 
 #guide-content .perk-evade{
   color:#0c0;
+} 
+
+#guide-content .synergy{
+  position:relative;
+  padding-left:64px;
+  min-height:32px;
+}
+
+#guide-content .synergy img{
+  position:absolute;
+  top: -4px;
+} 
+#guide-content .synergy img.champion{
+  left:0;
+  border-bottom:solid 3px;
+  width:28px;
+  height:25px;
+} 
+#guide-content .synergy img.effect{
+  left:30px;
+  width:28px;
 } 
 
 #guide-content .ui-collapsible-heading-toggle{

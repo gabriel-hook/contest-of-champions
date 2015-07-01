@@ -28,38 +28,11 @@ CoC.ui.roster=new function(){
     else
       $("#roster-configure-stars").removeClass("awakened")
 
-    var synergies;
-    
-    $("#roster-configure-synergies-to").text("");
-    synergies = CoC.data.synergies.where({ toId:champion.get("uid") });
-    for(var s=0; s<synergies.length; s++){
-      var synergy = synergies[s];
-      var effect = synergy.effect();
-      var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("fromId"), stars:synergy.get("fromStars") });
-      var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("stars") + "★ " + toChampion.get("name") });
-      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("typeId"), src:toChampion.portrait() }));
-      syneryEl.append($('<img>', { src:effect.get("image") }));
-      syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
-      $("#roster-configure-synergies-to").append(syneryEl);
-    }
-    if(synergies.length == 0)
-      $("#roster-configure-synergies-to").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
       
-    $("#roster-configure-synergies-from").text("");
-    synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") });
-    for(var s=0; s<synergies.length; s++){
-      var synergy = synergies[s];
-      var effect = synergy.effect();
-      var toChampion = CoC.data.champions.findWhere({ uid:synergy.get("toId") });
-      var syneryEl = $('<div>', { class : "synergy", title: toChampion.get("name") });
-      syneryEl.append($('<img>', { class : "portrait " + toChampion.get("typeId"), src:toChampion.portrait() }));
-      syneryEl.append($('<img>', { src:effect.get("image") }));
-      syneryEl.append($('<span>').text(effect.get("name") + " +" + synergy.get("effectAmount") + "%"));
-      $("#roster-configure-synergies-from").append(syneryEl);
-    }
-    if(synergies.length == 0)
-      $("#roster-configure-synergies-from").append($('<div>',{ class : "synergy none" }).append($('<span>').text("None")));
-    $("#roster-configure-synergies").children(2).collapsible( "expand" );
+    $("#roster-configure-guide").unbind("click").bind("click",function(){
+      CoC.ui.guides.view.select(champion.get("uid"));
+      $("#page-roster").find("#footer a[href=#panel-guide]").click()
+    });
 
     $("#roster-configure-image").prop("src", champion.image());
     $("#roster-configure-name").prop("class", champion.get("typeId")).text(champion.get("name"));
