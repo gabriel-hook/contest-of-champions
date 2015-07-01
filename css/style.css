@@ -585,17 +585,20 @@ html, body, p, span, div {
 }
 
 
-#guide-content .title h1{
-  font-size:32px;
-  line-height:32px;
+#guide-content .title h2{
+  font-size:24px;
+  line-height:24px;
+  text-align:left;
   margin:0;
   padding: .25em .5em;
+  padding-left:45px;
   border-top-left-radius:.3125em;
   border-top-right-radius:.3125em;
 }
 #guide-content .title img{
-  position:relative;
-  top: 4px;
+  position:absolute;
+  top: 3px;
+  left: 8px;
   height:32px;
 }
 #guide-content .title b{
