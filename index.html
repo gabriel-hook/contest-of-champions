@@ -605,8 +605,11 @@
       <% if(data.gameplay){ %>
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Gameplay: <%- data.style %>  <%= ratingSpan(data.gameplay.rating) %>           
+            Gameplay <%= ratingSpan(data.gameplay.rating) %>           
           </h4>
+          <% if (data.style){ %>
+            <p><b><%- data.style %></b></p>
+          <% } %>
           <p><%= data.gameplay.description %></p>
           <% if (data.gameplay.strategy){ %>
             <p><b>Strategy:</b>
@@ -651,8 +654,9 @@
       <% if(data.awakened){ %>
         <div data-role="collapsible" data-collapsed="false" data-mini="true">
           <h4>
-            Awakened: <%- data.awakened.name %> <%= ratingSpan(data.awakened.rating) %>           
+            Awakened <%= ratingSpan(data.awakened.rating) %>           
           </h4>
+          <p><b><%- data.awakened.name %></b></p>
           <p><%- data.awakened.description %></p>
         </div>
       <% } %>
