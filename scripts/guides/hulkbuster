@@ -1,0 +1,66 @@
+{
+  "fullname":"Hulkbuster",
+  "style":"Defensive",
+
+  "grades":{
+    "normal": "A",
+    "awakened":"A+"
+  },
+  
+  "gameplay":{
+    "rating":5,
+    "description":"HB IS A TANK, AND ALTHOUGH HE IS BIG AND BULKY - HE DOESN’T PLAY LIKE IT! HE MOVES QUICKLY AND IS AGILE ENOUGH THAT HE’S FUN TO PLAY WITH AND LOOKS PRETTY BADASS TOO. FOR A TANK CHARACTER, HE MOVES SURPRISINGLY FAST AND HIS COMBOS COME TOGETHER AND LINK UP NICELY. HOWEVER, SOME PLAYERS FIND HIS FIGHTING STYLE AND MOVEMENT AWKWARD AND CLUNKY. ",
+    "strategy":"Critical hits are guaranteed every 5 hits. Wait for a bleed and drop your L1 for critical + cauterize damage!"
+  },
+  
+  "heavy":{
+    "rating":5,
+    "description":"GREAT UPPERCUT, QUICK UNDERHAND AND POWERFUL LIKE THE REST OF THE TANKS DO. IT ALSO HAS SIGNIFICANT RANGE, WHICH ALLOWS YOU TO LOCK DOWN OPPONENTS FAIRLY EASILY."
+  },
+  
+  "specials":{
+  
+    "1":{
+      "rating":4,
+      "description":"SIMPLE AND STRAIGHTFORWARD SPECIAL WHERE HB RUSHES THE OPPONENT AND SMASHES THEM. IT’S EXTREMELY EASY TO ANTICIPATE AND BLOCK.",
+      "perks":["Cauterize","Stun"],
+      "damagetypes":["PHYSICAL"],
+      "ranges":["SHORT"]
+    },
+    
+    "2":{
+      "rating":3,
+      "description":"HB’S SECOND SPECIAL CAN DEAL SOME SOLID DAMAGE IF BOTH SEGMENTS OF THE ATTACK LAND PROPERLY. DUE TO THE SIMILARITY BETWEEN THE INITIATION OF L2 AND THE ENTIRETY OF L1, IT IS EASY TO MISTAKE HIS L2 AS HIS L1. THIS IN TURN HAS YOU LETTING DOWN YOUR BLOCK/GUARD/DODGING, AND JUMPING RIGHT INTO A BLAST OF LASER DAMAGE!",
+      "perks":["ARMOR BREAK"],
+      "damagetypes":["ENERGY","PHYSICAL"],
+      "ranges":["SHORT","MEDIUM"]
+    },
+    
+    "3":{
+      "rating":3,
+      "description":"ONE OF THE DOPEST LOOKING SPECIALS IN THE GAME, AND DOES SOME PRETTY SOLID DAMAGE!",
+      "perks":["Cauterize","Stun"],
+      "damagetypes":["Energy"]
+    }
+    
+  },
+
+  "awakened":{
+    "rating":4,
+    "name":"IRON RAGE",
+    "description":"HB’S ARMOR IS REINFORCED UPON RECEIVING ANY DAMAGE, INCREASING UP TO 51.5% BASED ON LOST HEALTH. "
+  },
+
+  "perks":[
+    "ARMOR BREAK",
+    "ARMOR UP",
+    { "Bleed": "14% chance, 20% damage, 5.5 seconds." },
+    { "Critical Hits": "Every 5 hits." },
+    { "Cauterize": "Specials deal 50% damage for each bleed on the target." },
+    { "Stun": "40% chance for 3 seconds on every special attack"},
+    { "Armor Up": "25% chance, 5% reduction, 3 seconds." },
+    { "Evade": "Every 7 seconds" },
+    { "Regeneration": "Recovers 25% at both 50% health and 25% health." }
+  ]
+
+}
