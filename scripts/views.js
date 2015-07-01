@@ -260,7 +260,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         that.active.call(that, event, index);
       }
     }).init();
-    that.sly.activate(0)
+    setTimeout(function(){
+      that.sly.activate(0)
+    }, 250);
     $(window).bind("resize", that.sly.reload)
   },
   

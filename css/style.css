@@ -693,6 +693,22 @@ html, body, p, span, div {
 .frame .slidee li { opacity:0.5; }
 .frame .slidee li.active { opacity:1; }
 
+@media (max-width:355px) {
+  .frame { height: 72px; }
+  .frame .slidee li { width: 72px; }
+}
+@media (max-width:450px) and (min-width:355px) {
+  .frame { height: 84px; }
+  .frame .slidee li { width: 84px; }
+}
+@media (max-width:550px) and (min-width:450px) {
+  .frame { height: 96px; }
+  .frame .slidee li { width: 96px; }
+}
+@media (min-width:550px) {
+  .frame { height: 128px; }
+  .frame .slidee li { width: 128px; }
+}
 /******************
     RESPONSIVE
 ******************/
@@ -716,8 +732,6 @@ html, body, p, span, div {
     top:1px;
     width:16px;
   }
-  
-  
   #guide-content .title,
   #guide-content .grades{
     float:none;
@@ -725,9 +739,6 @@ html, body, p, span, div {
     width:100%;
     margin-bottom:0.5em;
   }
-  
-  .frame { height: 96px; }
-  .frame .slidee li { width: 96px; }
 }
 @media (max-width:800px) and (min-width:355px) {
   .hero .title{
@@ -748,10 +759,9 @@ html, body, p, span, div {
     top:2px;
     width:18px;
   }
-  
-  #guide-content .clear{ clear:both; }
-  .frame { height: 128px; }
-  .frame .slidee li { width: 128px; }
+  #guide-content .clear{ 
+    clear:both; 
+  }
 }
 @media (min-width:800px) {
   .hero .name{
@@ -769,8 +779,7 @@ html, body, p, span, div {
     top: 4px;
     width:22px;
   }
-  
-  #guide-content .clear{ clear:both; }
-  .frame { height: 140px; }
-  .frame .slidee li { width: 140px; }
+  #guide-content .clear{ 
+    clear:both; 
+  }
 }
