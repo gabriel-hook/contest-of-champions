@@ -227,7 +227,7 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   });
 });
 
-$("#page-roster").on("pagebeforeshow",function(){
+$("#page-roster").on("pagecreate",function(){
 
   $('#roster-import-input').change(function(e){
     if (this.files && this.files[0]) {
@@ -317,7 +317,10 @@ $("#page-roster").on("pagebeforeshow",function(){
       .prop("checked", CoC.settings.getValue(filter)? true: false)
       .checkboxradio('refresh');
     })(filters[i]);
+});
   
+$("#page-roster").on("pagebeforeshow",function(){
+
   CoC.ui.roster.update();
 });
 
