@@ -587,28 +587,26 @@
 
     <script id="guideTemplate" type="text/template">
       
-      <% if(data.grades){ %>
-        <h3 class="grades">
-          Grade: <%= gradeSpan(data.grades.normal) %>
-          <br/>
-          Awakened: <%= gradeSpan(data.grades.awakened) %>
-        </h3>
-      <% } %>
       
       <div class="title">
         <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
           <img src="<%= champion.type().get("image") %>" class="type" />
           <%- data.fullname %>
         </h1>
-        <b><%- data.style %></b>
+        <b>
+          <% if(data.grades){ %>
+            Grade: <%= gradeSpan(data.grades.normal) %>
+            <br/>
+            Awakened: <%= gradeSpan(data.grades.awakened) %>
+            <br/>
+          <% } %>
+        </b>
       </div>
-      
-      <div class="clear"></div>
       
       <% if(data.gameplay){ %>
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Gameplay <%= ratingSpan(data.gameplay.rating) %>            
+            Gameplay: <%- data.style %>  <%= ratingSpan(data.gameplay.rating) %>           
           </h4>
           <p><%= data.gameplay.description %></p>
           <% if (data.gameplay.strategy){ %>

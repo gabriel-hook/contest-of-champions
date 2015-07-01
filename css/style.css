@@ -561,7 +561,8 @@ html, body, p, span, div {
 #guide-content h3 a, 
 #guide-content h4, 
 #guide-content h4 a, 
-#guide-content label{
+#guide-content label,
+#guide-content .title b{
   font-family:Hanzel, Verdana, Geneva, sans-serif;
   text-transform:uppercase;
 }
@@ -583,10 +584,7 @@ html, body, p, span, div {
   position:relative;
 }
 
-#guide-content .title{
-  float:left;
-  overflow:hidden;
-}
+
 #guide-content .title h1{
   font-size:32px;
   line-height:32px;
@@ -602,22 +600,14 @@ html, body, p, span, div {
 }
 #guide-content .title b{
   display:block;
-  text-align:center;
+  text-align:left;
+  font-size:1.1em;
   margin:0;
   padding:10px;
   background:rgba(255,255,255,0.75);
   border:solid 1px #ccc;
   border-bottom-left-radius:.3125em;
   border-bottom-right-radius:.3125em;
-}
-
-#guide-content .grades{
-  float:right;
-  margin:0;
-  padding:10px;
-  background:rgba(255,255,255,0.75);
-  border-radius:.3125em;
-  border:solid 1px #ccc;
 }
 
 #guide-content .rating{
@@ -732,13 +722,6 @@ html, body, p, span, div {
     top:1px;
     width:16px;
   }
-  #guide-content .title,
-  #guide-content .grades{
-    float:none;
-    box-sizing:border-box;
-    width:100%;
-    margin-bottom:0.5em;
-  }
 }
 @media (max-width:800px) and (min-width:355px) {
   .hero .title{
@@ -759,9 +742,6 @@ html, body, p, span, div {
     top:2px;
     width:18px;
   }
-  #guide-content .clear{ 
-    clear:both; 
-  }
 }
 @media (min-width:800px) {
   .hero .name{
@@ -778,8 +758,5 @@ html, body, p, span, div {
   .synergy img{
     top: 4px;
     width:22px;
-  }
-  #guide-content .clear{ 
-    clear:both; 
   }
 }
