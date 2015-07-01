@@ -228,18 +228,15 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   initialize: function(){
     var that = this;
     that._guideViews = {};
-    that._championViews = {};
-    that._champions = {};
-    _(CoC.data.guides).each(function(guide){
+    that._championViews = [];
+    
+    _(CoC.guides.data).each(function(guide){
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
         model:champion
       });
       view.render();
-      
-      var li = $("<li>").append( view.el );
-      
-      that._championViews[guide.uid] = li[0];
+      that._championViews.push( $("<li>").append( view.el )[0] );
     });
     
     that.sly = new Sly( "#guide-champions-frame", {
@@ -275,7 +272,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var item = this.sly.items[index];
     var uid = $(item.el).find(".hero").attr("uid");
     var view = this._guideViews[uid];
-    var guide = CoC.data.guides[uid];
+    var guide = CoC.guides.data[uid];
     if(!view){
       try{
         if(guide.data !== undefined)
@@ -304,10 +301,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that.$el.empty();
     
     //TODO: sort this list
-    
     var container = document.createDocumentFragment();
-    _(CoC.data.guides).each(function(guide){
-      var view = that._championViews[guide.uid];
+    _(that._championViews).each(function(view){
       container.appendChild( view );
     });
     that.$el.append(container);

@@ -185,13 +185,29 @@ CoC.ui.teams=new function(){
 
 CoC.ui.guides=new function(){
 
+  this.initialized = false;
+  this.updated = false;
+  
   this.initialize=function(){
-    this.view = new CoC.view.GuideChampionsView({
-      el: $("#guide-champions")[0]
+    var that = this;
+    CoC.guides.complete(function(){
+    
+      console.log("init guides")
+    
+      that.view = new CoC.view.GuideChampionsView({
+        el: $("#guide-champions")[0]
+      });
+      that.initialized = true;
+      if(that.updated)
+        that.update();
     });
   }
 
   this.update=function(){
+    if(!this.initialized){
+      this.updated = true;
+      return;
+    }
     this.view.render();
   }
 }
