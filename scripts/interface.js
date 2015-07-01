@@ -291,9 +291,9 @@ $("#page-roster").on("pagebeforeshow",function(){
     }
     var element = $('#roster-sort-' + sort);
     element.change(function(){
-      var lastSort = CoC.settings.getValue("roster-sort");
-      var lastDirection = CoC.settings.getValue("roster-sort-direction");
-      CoC.settings.setValue("roster-sort-direction", (lastSort !== sort || lastDirection !== "descending")? "descending": "ascending");
+      var newSort = CoC.settings.getValue("roster-sort") !== sort;
+      var wasAscending = CoC.settings.getValue("roster-sort-direction") === "ascending";
+      CoC.settings.setValue("roster-sort-direction", (newSort || wasAscending)? "descending": "ascending");
       CoC.settings.setValue("roster-sort", sort);
       setAscendingDescending();
       CoC.ui.roster.update();
