@@ -10,7 +10,7 @@
   "gameplay":{
     "rating":5,
     "description":"The Vision has few flaws, and you'll be extremely hard pressed to find a player that won't throw him atop the ranks and argue with the fact that he's one of the best champions in the game. He's a blazing fast fighter with quick reflexes and response time. This allows rapid attacks, blocks and smooth combos that seamlessly link up and swiftly make moves on your opponent.",
-    "strategy":"Get to love dropping that L1. You're going to want to ensure the opponent can't build up energy and furthermore - prevent them from using that energy against you. By locking them down and preventing your opponent from dropping an L3 on you, you have the ability to defeat stronger players with as much as twice the PI!"
+    "strategy":"Get to love dropping that L1. You're going to want to ensure the opponent can't build up energy and furthermore prevent them from using that energy against you. By locking them down and preventing your opponent from dropping an L3 on you, you have the ability to defeat stronger players with as much as twice the PI!"
   },
   
   "heavy":{
@@ -30,7 +30,7 @@
     
     "2":{
       "rating":5,
-      "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful - but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
+      "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful, but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
       "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
       "ranges":["Short"],
@@ -48,7 +48,7 @@
   "awakened":{
     "rating":3,
     "name":"Power Steal",
-    "description":"Special attacks steals 20% of your opponents power"
+    "description":"Special attacks steals 20% of your opponents power!"
   },
 
   "perks":[
@@ -56,6 +56,7 @@
     "Poison Immunity",
     "Power Drain",
     "Power Burn",
+   { "Steal": "Special Attack steals 20% of opponents power." },
   ]
 
 }
