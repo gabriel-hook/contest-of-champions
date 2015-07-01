@@ -234,7 +234,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var uids = _.uniq( CoC.data.champions.pluck("uid") );
     
     _(uids).each(function(uid){
-      var guide = CoC.guides.data[uid];
+      var guide = CoC.guides.get(uid);
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
         model:champion
@@ -277,7 +277,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   active:function(event, index){
     var item = this.sly.items[index];
     var uid = $(item.el).find(".hero").attr("uid");
-    var guide = CoC.guides.data[uid];
+    var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];
     if(!view){
       try{
@@ -306,7 +306,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     if(this._activeUID !== uid)
       return;
   
-    var guide = CoC.guides.data[uid];
+    var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];
     
     var el = $("#guide-content");

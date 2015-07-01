@@ -35,6 +35,10 @@ CoC.guides = new function(){
     },0);
   };
   
+  this.get=function(uid){
+    return CoC.guides.data[uid];
+  }
+  
   this.add=function(uid, data){
     var champion = CoC.data.champions.findWhere({ uid:uid }).clone();
     champion.set("stars", 0);
