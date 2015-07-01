@@ -278,8 +278,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   select:function(uid){
     var that = this;
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
-    if(index === undefined)
+    if(index === undefined){
+      CoC.setUrlParam("page-guide","guide",this._activeUID);
       return;
+    }
     setTimeout(function(){
       that.sly.activate(index);
     }, 250);
