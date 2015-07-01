@@ -265,6 +265,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       mouseDragging:1,
       touchDragging:1,
       releaseSwing:1,
+      keyboardNavBy:"items",
       speed:200,
       moveBy:600,
     },{
