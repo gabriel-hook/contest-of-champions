@@ -26,7 +26,7 @@
       "description":"This special is, well, special. It can be used to control the fight by preventing powerful opponents from using their specials. Although predictable and easy to block, it's a challenge to dodge due to its long range. Used properly within or at the end of a combo, you can execute and connect a majority of the time. Effectiveness dependent on opponents energy",
       "perks":["Power Drain"],
       "damagetypes":["Energy"],
-      "ranges":["Medium - Long"]
+      "ranges":["Long"]
     },
     
     "2":{
