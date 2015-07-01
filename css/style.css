@@ -575,12 +575,12 @@ html, body, p, span, div {
   opacity:0.5;
   filter: blur(4px);
   -webkit-filter: blur(4px);
+  pointer-events:none;
 }
 #guide-content .container{
   z-index:10;
   position:relative;
 }
-
 
 #guide-content .title h2{
   font-size:1.35em;
@@ -784,5 +784,14 @@ html, body, p, span, div {
   .synergy img{
     top: 4px;
     width:22px;
+  }
+  
+  #guide-content  .left,
+  #guide-content  .right{
+    float:left;
+    width:49.5%;
+  }
+  #guide-content  .left{
+    margin-right:1%;
   }
 }
