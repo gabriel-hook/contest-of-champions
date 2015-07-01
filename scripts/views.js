@@ -230,6 +230,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._guideViews = {};
     that._championViews = [];
     that._activeUID = null;
+    that._uids = [];
+    that._indices = {};
     
     var uids = _.uniq( CoC.data.champions.pluck("uid") );
     
@@ -241,22 +243,22 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       });
       view.render();
       that._championViews.push( $("<li>").append( view.el )[0] );
+      
+      //set uids map
+      that._indices[uid] = that._uids.length;
+      that._uids.push(uid);
     });
     
     that.sly = new Sly( "#guide-champions-frame", {
-
       horizontal: 1,
       itemNav: 'forceCentered',
       activateMiddle: 1,
       smart: 1,
-      activateOn: 'click',
-      
+      activateOn:'click',
       scrollBy:1,    
-
       mouseDragging:1,
       touchDragging:1,
       releaseSwing:1,
-      
       speed:200,
       moveBy:600,
     },{
@@ -264,14 +266,23 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         that.active.call(that, event, index);
       }
     }).init();
-    setTimeout(function(){
-      that.sly.activate(0)
-    }, 250);
+    
+    //reload on page resize
     $(window).bind("resize", that.sly.reload)
   },
   
   events:{
     "click .hero":"clicked"
+  },
+  
+  select:function(uid){
+    var that = this;
+    var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
+    if(index === undefined)
+      return;
+    setTimeout(function(){
+      that.sly.activate(index);
+    }, 250);
   },
   
   active:function(event, index){
@@ -298,7 +309,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._activeUID = uid;
     setTimeout(function(){
       that.guide.call(that, uid);
-    },300);
+    },500);
   },
   
   guide: function(uid){
@@ -314,8 +325,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
     el.append( view.el ).enhanceWithin();
     
-    //scroll to beginning when we replace
+    //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);
+    CoC.setUrlParam("page-guide","guide",uid);
   },
   
   render: function(){
