@@ -174,10 +174,18 @@ CoC.ui.guides=new function(){
   }
   
   this.open=function(uid){
-    jQuery.mobile.changePage("#page-guide",{
-      transition:"fade"
-    });
-    CoC.ui.guides.view.select(uid);
+    if(this.view){
+      jQuery.mobile.changePage("#page-guide",{
+        transition:"fade"
+      });
+      CoC.ui.guides.view.select(uid);
+    }
+  }
+  
+  this.close=function(){
+    if(this.view){
+      this.view.disable();
+    }
   }
 
   this.update=function(){
@@ -223,6 +231,11 @@ $("#page-roster").on("pagebeforeshow",function(){
 $("#page-guide").on("pagebeforeshow",function(){
   CoC.ui.guides.update();
 });
+$("#page-guide").on("pagebeforehide",function(){
+  CoC.ui.guides.close();
+});
+
+
 
 $("#page-add").on("pagebeforeshow",function(){
   $("#page-add #add-stars a").removeClass("ui-btn-active");

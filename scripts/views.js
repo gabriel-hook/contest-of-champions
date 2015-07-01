@@ -265,7 +265,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       mouseDragging:1,
       touchDragging:1,
       releaseSwing:1,
-      keyboardNavBy:"items",
       speed:200,
       moveBy:600,
     },{
@@ -283,6 +282,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   events:{
     "click .hero":"clicked"
+  },
+  
+  disable:function(){
+    this.sly.set('keyboardNavBy', null);
   },
   
   select:function(uid){
@@ -362,6 +365,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     setTimeout(function(){
       that.sly.reload();
     },500);
+    this.sly.set('keyboardNavBy', "items");
     
     return this;
   },
