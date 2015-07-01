@@ -187,6 +187,7 @@ CoC.ui.guides=new function(){
 
   this.initialized = false;
   this.updated = false;
+  this.seen = false;
   
   this.initialize=function(){
     var that = this;
@@ -205,7 +206,17 @@ CoC.ui.guides=new function(){
       this.updated = true;
       return;
     }
+    
+    //load guide position from url, default to 0 if we havent loaded,
+    //otherwise go back to the last viewed guide.
+    var guide = CoC.getUrlParam("page-guide", "guide");
+    if(!this.seen && guide === undefined)
+      guide = 0;
+    if(guide !== undefined)
+      this.view.select(guide);
+    
     this.view.render();
+    this.seen = true;
   }
 }
 
