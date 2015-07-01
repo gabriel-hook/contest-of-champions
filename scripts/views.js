@@ -274,7 +274,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     }).init();
     
     //reload on page resize
-    $(window).bind("resize", that.sly.reload)
+    $(window).bind("resize", function(){
+      that.sly.reload();
+      setTimeout(that.sly.reload, 500);
+    });
   },
   
   events:{

@@ -70,7 +70,6 @@ html, body, p, span, div {
   padding-bottom:20%;
 }
 
-#guide-champions .hero .container,
 #teams .team .hero .container{
   padding:10px 0 0 0 !important;
 }
@@ -689,12 +688,12 @@ html, body, p, span, div {
 .frame .slidee li { 
   cursor:pointer;
   float: left; 
-  margin: 0 5px 0 0; 
+  position:relative;
   padding: 0; 
   width: 120px; 
   height: 100%; 
   opacity:0.33;
-  transition:opacity 200ms;
+  transition:opacity 200ms, height 200ms, width 200ms, top 200ms;
 }
 .frame .slidee li:hover { 
   opacity:0.66; 
@@ -706,22 +705,39 @@ html, body, p, span, div {
   width:100%;
   padding-bottom:100%;
 }
+.frame .slidee .hero .container{
+  padding:0 !important;
+}
 
 @media (max-width:355px) {
   .frame { height: 72px; }
-  .frame .slidee li { width: 72px; }
+  .frame .slidee li { width: 57px; width:57px; top:15px; margin: 0 1px;  }
+  .frame .slidee li.active { height: 72px; width: 72px; top:0; }
 }
 @media (max-width:450px) and (min-width:355px) {
   .frame { height: 84px; }
-  .frame .slidee li { width: 84px; }
+  .frame .slidee li { width: 67px; width:67px; top:17px; margin: 0 1px; }
+  .frame .slidee li.active { height: 84px; width: 84px; top:0; }
 }
 @media (max-width:550px) and (min-width:450px) {
   .frame { height: 96px; }
-  .frame .slidee li { width: 96px; }
+  .frame .slidee li { width: 76px; width:76px; top:20px; margin: 0 2px; }
+  .frame .slidee li.active { height: 96px; width: 96px; top:0; }
 }
-@media (min-width:550px) {
-  .frame { height: 128px; }
-  .frame .slidee li { width: 128px; }
+@media (max-width:650px) and (min-width:550px) {
+  .frame { height: 108px; }
+  .frame .slidee li { width: 86px; width:86px; top:22px; margin: 0 2px; }
+  .frame .slidee li.active { height: 108px; width: 108px; top:0; }
+}
+@media (max-width:750px) and (min-width:650px) {
+  .frame { height: 120px; }
+  .frame .slidee li { width: 96px; width:96px; top:24px; margin: 0 3px; }
+  .frame .slidee li.active { height: 120px; width: 120px; top:0; }
+}
+@media (min-width:750px) {
+  .frame { height: 132px; }
+  .frame .slidee li { width: 105px; width:105px; top:27px; margin: 0 4px; }
+  .frame .slidee li.active { height: 132px; width: 132px; top:0; }
 }
 /******************
     RESPONSIVE
