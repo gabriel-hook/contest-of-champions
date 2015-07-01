@@ -30,8 +30,10 @@ CoC.ui.roster=new function(){
 
       
     $("#roster-configure-guide").unbind("click").bind("click",function(){
+      jQuery.mobile.changePage("#page-guide",{
+        transition:"fade"
+      });
       CoC.ui.guides.view.select(champion.get("uid"));
-      $("#page-roster").find("#footer a[href=#panel-guide]").click()
     });
 
     $("#roster-configure-image").prop("src", champion.image());
