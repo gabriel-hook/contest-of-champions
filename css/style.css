@@ -591,6 +591,7 @@ html, body, p, span, div {
   font-size:32px;
   line-height:32px;
   margin:0;
+  padding: .25em .5em;
   border-top-left-radius:.3125em;
   border-top-right-radius:.3125em;
 }

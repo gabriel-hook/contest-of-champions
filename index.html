@@ -596,7 +596,10 @@
       <% } %>
       
       <div class="title">
-        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit"><img src="<%= champion.type().get("image") %>" class="type" /><%- data.fullname %></h1>
+        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
+          <img src="<%= champion.type().get("image") %>" class="type" />
+          <%- data.fullname %>
+        </h1>
         <b><%- data.style %></b>
       </div>
       
@@ -673,7 +676,10 @@
     <script id="guideMissingTemplate" type="text/template">
 
       <div class="title">
-        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit"><img src="<%= champion.type().get("image") %>" class="type" /><%- champion.get("name") %></h1>
+        <h1 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
+          <img src="<%= champion.type().get("image") %>" class="type" />
+          <%- champion.get("name") %>
+        </h1>
         <b>Coming Soon!</b>
       </div>
       
