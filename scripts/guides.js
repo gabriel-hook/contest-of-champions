@@ -4,35 +4,35 @@ CoC.guides = new function(){
 
   this.initialize=function(){
     var that = this;
-  
-    var uids = _.uniq( CoC.data.champions.pluck("uid") );
-    var working = uids.length;
+    setTimeout(function(){
     
-    _(uids).each(function(uid){
-    
-      $.ajax({
-        url: "scripts/guides/"+uid+".json",
-        complete:function(response){
-          var data;
-          try{
-            if(response.status === 200)
-              data = JSON.parse( response.responseText );
+      var uids = _.uniq( CoC.data.champions.pluck("uid") );
+      var working = uids.length;
+      _(uids).each(function(uid){
+        $.ajax({
+          url: "scripts/guides/"+uid+".json",
+          complete:function(response){
+            var data;
+            try{
+              if(response.status === 200)
+                data = JSON.parse( response.responseText );
+            }
+            catch(error){
+              console.error(error);
+            }
+            CoC.guides.add(uid, data);
+            
+            //if done all of them, do callback
+            working--;
+            if(!working){
+              that._completed = true;
+              that._onComplete();
+            }
           }
-          catch(error){
-            console.error(error);
-          }
-          CoC.guides.add(uid, data);
-          
-          //if done all of them, do callback
-          working--;
-          if(!working){
-            that._completed = true;
-            that._onComplete();
-          }
-        }
+        });
       });
-    });
-  
+      
+    },0);
   };
   
   this.add=function(uid, data){
