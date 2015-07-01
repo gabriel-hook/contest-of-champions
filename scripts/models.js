@@ -1,6 +1,5 @@
 //Champions
 CoC.model.Champion = Backbone.Model.extend({
-
 	defaults: {
     uid: "champion",
     stars:2,
@@ -34,10 +33,8 @@ CoC.model.Champion = Backbone.Model.extend({
     var other = CoC.data.champions.findWhere({ uid:this.get("uid"), stars:this.get("stars") });
     if(!other)
       return false;
-  
     this.set("name", other.get("name"));
     this.set("typeId", other.get("typeId"));
-    
     return true;
   }
 });
@@ -53,11 +50,7 @@ CoC.model.Synergy = Backbone.Model.extend({
   },
   
   effect: function(){
-    var effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
-    if(!effect)
-      return null;
-      
-    return effect;
+    return CoC.data.effects.findWhere({ uid:this.get("effectId") });
   }
 });
 
