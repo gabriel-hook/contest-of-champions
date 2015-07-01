@@ -219,6 +219,12 @@ CoC.view.TeamView = Backbone.View.extend({
         return view.render().el.outerHTML;
       }
     }));
+    
+    this.$el.find(".hero").click(function(){
+      var uid = $(this).attr("uid");
+      CoC.ui.guides.open( uid );
+    });
+    
     return this;
   }
 });

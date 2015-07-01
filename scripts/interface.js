@@ -30,10 +30,7 @@ CoC.ui.roster=new function(){
 
       
     $("#roster-configure-guide").unbind("click").bind("click",function(){
-      jQuery.mobile.changePage("#page-guide",{
-        transition:"fade"
-      });
-      CoC.ui.guides.view.select(champion.get("uid"));
+      CoC.ui.guides.open( champion.get("uid") );
     });
 
     $("#roster-configure-image").prop("src", champion.image());
@@ -174,6 +171,13 @@ CoC.ui.guides=new function(){
       if(that.updated)
         that.update();
     });
+  }
+  
+  this.open=function(uid){
+    jQuery.mobile.changePage("#page-guide",{
+      transition:"fade"
+    });
+    CoC.ui.guides.view.select(uid);
   }
 
   this.update=function(){

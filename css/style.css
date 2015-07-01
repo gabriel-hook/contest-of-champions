@@ -87,6 +87,7 @@ html, body, p, span, div {
   border-top-right-radius:0;
 }
 
+#teams .hero .portrait,
 #roster .hero .portrait,
 #add-champions .hero .portrait{
   cursor:pointer;
@@ -728,11 +729,11 @@ html, body, p, span, div {
     font-size:0.6em;
     line-height:1.5em;
   }
-  .synergy span{
+  #teams .synergy span{
     font-size:0.6em;
     line-height:0.6em;
   }
-  .synergy img{
+  #teams .synergy img{
     top:1px;
     width:16px;
   }
@@ -748,11 +749,11 @@ html, body, p, span, div {
     font-size:0.8em;
     line-height:1.5em;
   }
-  .synergy span{
+  #teams .synergy span{
     font-size:0.8em;
     line-height:0.8em;
   }
-  .synergy img{
+  #teams .synergy img{
     top:2px;
     width:18px;
   }
@@ -762,14 +763,14 @@ html, body, p, span, div {
     font-size:1em;
     line-height:1.5em;
   }
-  .synergy span{
-    font-size:1em;
-    line-height:1em;
-  }
   .hero .stars{
     bottom:-15%;
   }
-  .synergy img{
+  #teams .synergy span{
+    font-size:1em;
+    line-height:1em;
+  }
+  #teams .synergy img{
     top: 4px;
     width:22px;
   }
