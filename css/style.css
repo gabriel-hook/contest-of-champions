@@ -573,6 +573,8 @@ html, body, p, span, div {
   z-index:0;
   height:50%;
   opacity:0.5;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 #guide-content .container{
   z-index:10;
