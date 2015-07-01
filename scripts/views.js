@@ -229,7 +229,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var that = this;
     that._guideViews = {};
     that._championViews = [];
-    
+    that._activeUID = null;
     
     var uids = _.uniq( CoC.data.champions.pluck("uid") );
     
@@ -291,16 +291,28 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       if(!view)
         view = new CoC.view.GuideMissingView({ model:guide });
       view.render();
-      this._guideViews[uid] = view;
-    }    
+      this._guideViews[uid] = view;   
+    } 
     
-    //delay this so we don't slow down the list rendering
+    var that = this;
+    that._activeUID = uid;
     setTimeout(function(){
-      var el = $("#guide-content");
-      el.empty();
-      el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
-      el.append( view.el ).enhanceWithin();
-    },0);
+      that.guide.call(that, uid);
+    },300);
+  },
+  
+  guide: function(uid){
+    //if another has been picked in this time
+    if(this._activeUID !== uid)
+      return;
+  
+    var guide = CoC.guides.data[uid];
+    var view = this._guideViews[uid];
+    
+    var el = $("#guide-content");
+    el.empty();
+    el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
+    el.append( view.el ).enhanceWithin();
   },
   
   render: function(){
