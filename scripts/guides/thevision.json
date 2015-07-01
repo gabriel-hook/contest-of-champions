@@ -15,8 +15,7 @@
   
   "heavy":{
     "rating":4,
-    "range":Short,
-    "description":"The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.
+    "description":"The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed. (Short Range)
   },
   
   "specials":{
@@ -24,7 +23,7 @@
     "1":{
       "rating":5,
       "description":"This special is, well, special. It can be used to control the fight by preventing powerful opponents from using their specials. Although predictable and easy to block, it's a challenge to dodge due to its long range. Used properly within or at the end of a combo, you can execute and connect a majority of the time. ",
-      "notes":["Effectiveness dependent on opponents energy],
+      "notes":["Effectiveness dependent on opponents energy"],
       "perks":["Power Drain"],
       "damagetypes":["Energy"],
       "ranges":["Medium - Long"]
@@ -33,7 +32,7 @@
     "2":{
       "rating":5,
       "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful - but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo.",
-      "notes":["Effectiveness dependent on opponents energy],
+      "notes":["Effectiveness dependent on opponents energy"],
       "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
       "ranges":["Short"]
