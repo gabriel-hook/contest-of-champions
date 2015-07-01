@@ -30,7 +30,7 @@
     
     "2":{
       "rating":5,
-      "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful - but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy",
+      "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful - but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
       "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
       "ranges":["Short"]
@@ -38,7 +38,7 @@
     
     "3":{
       "rating":3,
-      "description":"Although it looks pretty awesome, you're better off and more effective using your L2 followed by dropping an L1."
+      "description":"Although it looks pretty awesome, you're better off and more effective using your L2 followed by dropping an L1.",
     }
     
   },
