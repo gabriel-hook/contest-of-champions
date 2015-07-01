@@ -30,7 +30,7 @@
     
     "2":{
       "rating":5,
-      "description":"Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
+      "description":"Who doesn't love this special? Not only is it extremely quick and beastly powerful, but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
       "perks":["Power Burn"],
       "damagetypes":["Energy","Physical"],
       "ranges":["Short"]
