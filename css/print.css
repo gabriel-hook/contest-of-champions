@@ -1,0 +1,48 @@
+html,
+body,
+.page{  
+  border: none !important;
+  padding:0 !important;
+  background: #fff !important;
+  overflow:visible !important;
+}
+
+/* HIDE HEADERS FOOTERS ONBOARDING POPUPS PANELS AND GUIDE BACKGROUNDS */
+#header,
+#footer,
+.onboarding,
+#guide-content .background,
+.ui-popup-screen,
+.ui-popup-container,
+.panel{
+  display:none !important;
+}
+
+/* DONT CUT PORTRAITS OR TEAMS */
+#teams .team,
+#roster .hero{
+  page-break-inside: avoid !important;
+}
+
+/* CLEAN UP GUIDE CONTENT FOR PRINTING */
+#guide-content div,
+#guide-content h2,
+#guide-content h4,
+#guide-content a{
+  border:none !important;
+  background:#fff !important;
+  border-radius:0 !important;
+}
+#guide-content h2,
+#guide-content h4{
+  border-bottom:solid 1px #ccc !important;
+}
+
+#guide-content .ui-icon-minus,
+#guide-content .ui-icon-plus{
+  padding-left:0 !important;
+}
+#guide-content .ui-icon-minus:after,
+#guide-content .ui-icon-plus:after{
+  display:none !important;
+}
