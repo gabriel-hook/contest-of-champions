@@ -228,11 +228,11 @@
     border-right-width:0;
     border-radius:0;
   }
-  #guide-content .container div:first-child{
-    margin-top:0;
+  #guide-content .ui-collapsible-inset .ui-collapsible-heading .ui-btn{
+    border-top-width:0;
   }
-  #guide-content .container div:last-child{
-    margin-bottom:0;
+  #guide-content .ui-collapsible{
+    margin:0;
   }
 }
 
