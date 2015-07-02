@@ -238,6 +238,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._activeUID = null;
     that._uids = [];
     that._indices = {};
+    that._selector = $("#guide-champions-selector");
     
     var uids = _.uniq( CoC.data.champions.pluck("uid") );
     
@@ -249,10 +250,20 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       });
       view.render();
       that._championViews.push( $("<li>").append( view.el )[0] );
+      that._selector.append($('<option>', { value:uid }).text( champion.get("name") ));
       
       //set uids map
       that._indices[uid] = that._uids.length;
       that._uids.push(uid);
+    });
+    
+    that._selector.change(function(event){
+      var uid = this.value;
+      var index = that._indices[uid];
+      that.active.call(that, event, index, 0);
+      
+      that._skip = true;
+      that.sly.activate(index);
     });
     
     that.sly = new Sly( "#guide-champions-frame", {
@@ -265,18 +276,25 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       mouseDragging:1,
       touchDragging:1,
       releaseSwing:1,
-      speed:200,
-      moveBy:600,
+      speed:0
     },{
       active:function(event,index){
-        that.active.call(that, event, index);
+        
+        if(that._skip){
+          that._skip = false;
+          return;
+        }
+      
+        that.active.call(that, event, index, 250);
       }
     }).init();
     
     //reload on page resize
     $(window).bind("resize", function(){
-      that.sly.reload();
-      setTimeout(that.sly.reload, 250);
+      that.sly.reload(true, true);
+      setTimeout(function(){
+        that.sly.reload();
+      }, 250);
     });
   },
   
@@ -299,10 +317,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       CoC.setUrlParam("page-guide","guide",this._activeUID);
       return;
     }
-    that.sly.activate(index);
+    that.sly.activate(index, true);
   },
   
-  active:function(event, index){
+  active:function(event, index, delay){
     var item = this.sly.items[index];
     var uid = $(item.el).find(".hero").attr("uid");
     var guide = CoC.guides.get(uid);
@@ -326,13 +344,15 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._activeUID = uid;
     setTimeout(function(){
       that.guide.call(that, uid);
-    },500);
+    }, delay);
   },
   
   guide: function(uid){
     //if another has been picked in this time
     if(this._activeUID !== uid)
       return;
+      
+    this._selector.val(uid).selectmenu("refresh")
   
     var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];

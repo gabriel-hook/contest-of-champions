@@ -37,6 +37,28 @@
   padding:0 !important;
 }
 
+#page-guide #header .ui-select{
+  margin:0;
+}
+#guide-champions-selector-button{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-height:355px) {
+  .frame{
+    display:none;
+  }
+  #page-guide #header .ui-select{
+    display:block;
+  }
+}
+@media (min-height:355px) {
+  #page-guide #header .ui-select{
+    display:none;
+  }
+}
+
 @media (max-width:355px) {
   .frame { height: 72px; }
   .frame .slidee li { width: 57px; width:57px; top:15px; margin: 0 1px;  }

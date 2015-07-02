@@ -517,6 +517,8 @@
           <ul id="guide-champions" class="slidee"></ul>
         </div>
         
+        <select name="guide-champions-selector" id="guide-champions-selector"></select>
+        
       </div>
 
         
@@ -829,6 +831,11 @@
       CoC.initialize();
       CoC.guides.initialize();
       CoC.ui.initialize();
+    </script>
+    <script type="text/javascript">
+      $(document).bind("mobileinit", function(){
+        $.mobile.pushStateEnabled = false;
+      });
     </script>
     <script>
       $('[data-role=page]').on('pageshow', function(){
