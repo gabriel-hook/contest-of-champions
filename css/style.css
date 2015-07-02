@@ -693,7 +693,7 @@ html, body, p, span, div {
   width: 120px; 
   height: 100%; 
   opacity:0.33;
-  transition:opacity 200ms, height 200ms, width 200ms, top 200ms;
+  /* transition:opacity 200ms, height 200ms, width 200ms, top 200ms; */
 }
 .frame .slidee li:hover { 
   opacity:0.66; 
