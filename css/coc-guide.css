@@ -217,7 +217,7 @@
 }
 
 
-@media (max-width:350px) {
+@media (max-width:350px), (max-height:400px) {
   #guide-content{
     padding:0;
     font-size:0.8em;
