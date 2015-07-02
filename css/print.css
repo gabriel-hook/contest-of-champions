@@ -3,14 +3,14 @@ body,
 .page{  
   border: none !important;
   padding:0 !important;
-  background: #fff !important;
+  background:rgba(255,255,255,0) !important;
   overflow:visible !important;
   height:inherit !important;
   min-height:0 !important;
 }
 
 .message{
-  background:#fff !important;
+  background:rgba(255,255,255,0) !important;
   padding:none !important;
   color:#111 !important;
   font-size:0.9em !important;
@@ -20,7 +20,6 @@ body,
 #header,
 #footer,
 .onboarding,
-#guide-content .background,
 .ui-popup-screen,
 .ui-popup-container,
 .panel{
@@ -31,10 +30,12 @@ body,
 #teams .team,
 #roster .hero,
 #extras .hero{
+  display:block !important;
   page-break-inside: avoid !important;
 }
 
 #extras{
+  display:block !important;
   page-break-before: always !important;
 }
 
@@ -45,6 +46,7 @@ body,
 
 /* CLEAN UP GUIDE CONTENT FOR PRINTING */
 #guide-content div.ui-collapsible{
+  display:block !important;
   page-break-inside: avoid !important;
 }
 
@@ -57,7 +59,7 @@ body,
 #guide-content h4,
 #guide-content a{
   border:none !important;
-  background:#fff !important;
+  background:rgba(255,255,255,0) !important;
   border-radius:0 !important;
 }
 #guide-content h2,
@@ -76,5 +78,9 @@ body,
 }
 #guide-content .ui-icon-minus:after,
 #guide-content .ui-icon-plus:after{
+  display:none !important;
+}
+
+#guide-content .background{
   display:none !important;
 }
