@@ -216,6 +216,33 @@
   background:rgba(255,255,255,0.75);
 }
 
+
+@media (max-width:350px) {
+  #guide-content{
+    padding:0;
+    font-size:0.8em;
+  }
+  #guide-content .ui-collapsible-inset .ui-collapsible-heading .ui-btn,
+  #guide-content .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
+  
+    border-left-width:0;
+    border-right-width:0;
+    border-radius:0;
+  }
+  #guide-content .container div:first-child{
+    margin-top:0;
+  }
+  #guide-content .container div:last-child{
+    margin-bottom:0;
+  }
+}
+@media (max-width:800px) and (min-width:350px) {
+  #guide-content{
+    padding:0;
+    font-size:0.9em;
+  }
+}
+
 @media (min-width:800px) {
   .hero .name{
     font-size:1em;
