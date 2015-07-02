@@ -5,6 +5,15 @@ body,
   padding:0 !important;
   background: #fff !important;
   overflow:visible !important;
+  height:inherit !important;
+  min-height:0 !important;
+}
+
+.message{
+  background:#fff !important;
+  padding:none !important;
+  color:#111 !important;
+  font-size:0.9em !important;
 }
 
 /* HIDE HEADERS FOOTERS ONBOARDING POPUPS PANELS AND GUIDE BACKGROUNDS */
@@ -24,7 +33,15 @@ body,
   page-break-inside: avoid !important;
 }
 
+#roster .hero .container{
+  padding: 0px 10px 20px 10px !important;
+}
+
 /* CLEAN UP GUIDE CONTENT FOR PRINTING */
+#guide-content div.ui-collapsible{
+  page-break-inside: avoid !important;
+}
+
 #guide-content div,
 #guide-content h2,
 #guide-content h4,
@@ -35,7 +52,12 @@ body,
 }
 #guide-content h2,
 #guide-content h4{
-  border-bottom:solid 1px #ccc !important;
+  border-bottom:solid 2px #ccc !important;
+}
+#guide-content h2 a,
+#guide-content h4 a,
+#guide-content .bold{
+  font-weight: normal !important;
 }
 
 #guide-content .ui-icon-minus,
