@@ -181,7 +181,9 @@ CoC.ui.guides=new function(){
       jQuery.mobile.changePage("#page-guide",{
         transition:"fade"
       });
-      CoC.ui.guides.view.select(uid);
+      setTimeout(function(){
+        CoC.ui.guides.view.select(uid);
+      },0);
     }
   }
   
@@ -227,11 +229,11 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   });
 });
   
-$("#page-roster").on("pageshow",function(){
+$("#page-roster").on("pagebeforeshow",function(){
   CoC.ui.roster.update();
 });
 
-$("#page-guide").on("pageshow",function(){
+$("#page-guide").on("pagebeforeshow",function(){
   CoC.ui.guides.update();
 });
 $("#page-guide").on("pagehide",function(){
