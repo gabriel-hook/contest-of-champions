@@ -30,6 +30,7 @@ CoC.ui.roster=new function(){
 
       
     $(".roster-configure-guide").unbind("click").bind("click",function(){
+      $('#popup-roster-configure').popup("close");
       CoC.ui.guides.open( champion.get("uid") );
     });
 
@@ -85,7 +86,7 @@ CoC.ui.roster=new function(){
     });
     
     $("#roster-configure-delete").unbind( "click" ).click(function(){
-      $('#popup-roster-configure').popup("option","transition","none").popup("close");
+      $('#popup-roster-configure').popup("close");
       setTimeout(function(){
         $("#popup-roster-delete-confirm").popup("open",{
           positionTo:"window"
@@ -276,10 +277,6 @@ $("#page-roster").on("pagecreate",function(){
     $("#popup-roster-clear-confirm").popup("open",{
       positionTo:"window"
     });
-  });
-  
-  $('#popup-roster-configure').on("popupafterclose",function(){
-    $(CoC.ui.roster.selector).find(".container").removeClass("selected");
   });
   
   $("#roster-delete-confirm-no").click(function(){

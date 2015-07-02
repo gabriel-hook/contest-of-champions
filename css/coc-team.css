@@ -1,0 +1,107 @@
+
+#teams .team{
+  margin:auto;
+}
+#teams .team.three{
+  max-width:450px;
+}
+#teams .team.three .hero{
+  width:33.33333333333333333%;
+  padding-bottom:33.33333333333333%;
+}
+#teams .team.four{
+  max-width:600px;
+}
+#teams .team.four .hero{
+  width:25%;
+  padding-bottom:25%;
+}
+#teams .team.five{
+  max-width:900px;
+}
+#teams .team.five .hero{
+  width:20%;
+  padding-bottom:20%;
+}
+
+#teams .team .hero .container{
+  padding:10px 0 0 0 !important;
+}
+
+#teams .team .heroes .hero:first-child .title{
+  border-top-right-radius:0;
+}
+#teams .team .heroes .hero:last-child .title{
+  border-top-left-radius:0;
+}
+
+#teams .team .heroes .hero:not(:first-child):not(:last-child) .title{
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+
+/******************
+     PROGRESS
+******************/
+
+#team-build-progress{
+  overflow:hidden;
+  height:46px;
+  transition:height .5s;
+}
+
+#team-build-progress.hidden{
+  height:0;
+}
+
+/******************
+     SETTINGS
+******************/
+.ui-controlgroup-controls{
+  width:100%;
+}
+#popup-roster-configure .ui-select{
+    width: 50% !important;
+}
+#panel-team-settings #build-settings-size .ui-radio{
+  width:33.333%;
+}
+#panel-team-settings #build-filter-stars .ui-checkbox{
+  width:25%;
+}
+
+
+/******************
+    RESPONSIVE
+******************/
+
+@media (max-width:355px) {
+  #teams .synergy span{
+    font-size:0.6em;
+    line-height:0.6em;
+  }
+  #teams .synergy img{
+    top:1px;
+    width:16px;
+  }
+}
+@media (max-width:800px) and (min-width:355px) {
+  #teams .synergy span{
+    font-size:0.8em;
+    line-height:0.8em;
+  }
+  #teams .synergy img{
+    top:2px;
+    width:18px;
+  }
+}
+@media (min-width:800px) {
+  #teams .synergy span{
+    font-size:1em;
+    line-height:1em;
+  }
+  #teams .synergy img{
+    top: 4px;
+    width:22px;
+  }
+}
