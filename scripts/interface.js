@@ -183,9 +183,8 @@ CoC.ui.guides=new function(){
   }
   
   this.close=function(){
-    if(this.view){
+    if(this.view)
       this.view.disable();
-    }
   }
 
   this.update=function(){
@@ -199,9 +198,10 @@ CoC.ui.guides=new function(){
     var guide = CoC.getUrlParam("page-guide", "guide");
     if(!this.seen && guide === undefined)
       guide = 0;
+      
     this.view.select(guide);
-    
     this.view.render();
+    this.view.enable();
     this.seen = true;
   }
 }

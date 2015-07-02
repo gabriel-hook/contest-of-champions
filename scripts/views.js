@@ -276,7 +276,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     //reload on page resize
     $(window).bind("resize", function(){
       that.sly.reload();
-      setTimeout(that.sly.reload, 500);
+      setTimeout(that.sly.reload, 250);
     });
   },
   
@@ -288,6 +288,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     this.sly.set('keyboardNavBy', null);
   },
   
+  enable:function(){
+    this.sly.set('keyboardNavBy', 'items');
+  },
+  
   select:function(uid){
     var that = this;
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
@@ -295,9 +299,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       CoC.setUrlParam("page-guide","guide",this._activeUID);
       return;
     }
-    setTimeout(function(){
-      that.sly.activate(index);
-    }, 250);
+    that.sly.activate(index);
   },
   
   active:function(event, index){
@@ -346,27 +348,16 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   render: function(){
-    var that = this;
-    
-    that.$el.empty();
+    this.$el.empty();
     
     //TODO: sort this list
     var container = document.createDocumentFragment();
-    _(that._championViews).each(function(view){
+    _(this._championViews).each(function(view){
       container.appendChild( view );
     });
-    that.$el.append(container);
-    
-    //do 3 timed reloads since it can be stupid
-    that.sly.reload();
-    setTimeout(function(){
-      that.sly.reload();
-    },100);
-    setTimeout(function(){
-      that.sly.reload();
-    },500);
-    this.sly.set('keyboardNavBy', "items");
-    
+    this.$el.append(container);
+    this.sly.reload();
+    setTimeout(this.sly.reload, 500);
     return this;
   },
   
