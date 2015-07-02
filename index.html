@@ -588,8 +588,8 @@
       <% }); %>
       <% if(extras){ %>
       
-        <h3 style="clear:both">Extras</h3>
-        <div id="extras">
+        <div id="extras" style="clear:both">
+          <h3>Extras</h3>
           <% _(extras).each(function(champion){ %>
             <%= renderChampion(champion) %>
           <% }) %>

@@ -34,6 +34,10 @@ body,
   page-break-inside: avoid !important;
 }
 
+#extras{
+  page-break-before: always !important;
+}
+
 #roster .hero .container,
 #extras .hero .container{
   padding: 0px 10px 20px 10px !important;
