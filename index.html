@@ -26,19 +26,6 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-64735733-1', 'auto');
       ga('send', 'pageview');
-      $( document ).on( "mobileinit", function() {
-        $('[data-role=page]').on('pageshow', function(){
-          try {
-            _gaq.push(['_setAccount', 'UA-64735733-1']);
-            hash = location.hash;
-            if (hash)
-              _gaq.push(['_trackPageview', hash.substr(1)]);
-            else
-              _gaq.push(['_trackPageview']);
-          } 
-          catch(e){ }
-        });
-      });
     </script>
   </head>
   <body>
@@ -828,6 +815,21 @@
       
     </script>
 
+    <script>
+      $(document).on("mobileinit", function() {
+        $('[data-role=page]').on('pageshow', function(){
+          try {
+            _gaq.push(['_setAccount', 'UA-64735733-1']);
+            hash = location.hash;
+            if (hash)
+              _gaq.push(['_trackPageview', hash.substr(1)]);
+            else
+              _gaq.push(['_trackPageview']);
+          } 
+          catch(e){ }
+        });
+      });
+    </script>
     <script src="scripts/base.js"></script>
     <script src="scripts/models.js"></script>
     <script src="scripts/data.js"></script>
