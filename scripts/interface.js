@@ -199,9 +199,9 @@ CoC.ui.guides=new function(){
     if(!this.seen && guide === undefined)
       guide = 0;
       
-    this.view.select(guide);
     this.view.render();
     this.view.enable();
+    this.view.select(guide);
     this.seen = true;
   }
 }
@@ -224,14 +224,14 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   });
 });
   
-$("#page-roster").on("pagebeforeshow",function(){
+$("#page-roster").on("pageshow",function(){
   CoC.ui.roster.update();
 });
 
-$("#page-guide").on("pagebeforeshow",function(){
+$("#page-guide").on("pageshow",function(){
   CoC.ui.guides.update();
 });
-$("#page-guide").on("pagebeforehide",function(){
+$("#page-guide").on("pagehide",function(){
   CoC.ui.guides.close();
 });
 
