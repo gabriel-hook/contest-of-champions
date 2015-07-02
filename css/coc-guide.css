@@ -224,7 +224,6 @@
   }
   #guide-content .ui-collapsible-inset .ui-collapsible-heading .ui-btn,
   #guide-content .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
-  
     border-left-width:0;
     border-right-width:0;
     border-radius:0;
@@ -236,9 +235,9 @@
     margin-bottom:0;
   }
 }
+
 @media (max-width:800px) and (min-width:350px) {
   #guide-content{
-    padding:0;
     font-size:0.9em;
   }
 }
