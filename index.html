@@ -747,7 +747,7 @@
             Perks          
           </h4>
           <% _(data.perks).each(function(perk){ %>
-            <div><%= definition(perk, perkSpan) %></div>
+            <div class="selectable"><%= definition(perk, perkSpan) %></div>
           <% }) %>
         </div>
       <% } %>
@@ -775,7 +775,7 @@
           <% if(synergiesFrom(uid).size() > 0){ %>
             <p>
             <% synergiesFrom(uid).each(function(synergy){ %>
-              <div class="synergy" title="<%- synergy.to().get("name") %>">
+              <div class="synergy selectable" title="<%- synergy.to().get("name") %>">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
                 <span><%- synergy.effect().get("name") %></span>
