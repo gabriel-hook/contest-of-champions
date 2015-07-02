@@ -48,6 +48,10 @@ body,
   page-break-inside: avoid !important;
 }
 
+#guide-content .ui-collapsible-content-collapsed{
+  display:block !important;
+}
+
 #guide-content div,
 #guide-content h2,
 #guide-content h4,
