@@ -38,7 +38,7 @@ p, .selectable{
 
 #header h1{
   font-size:1.2em;
-  line-height:1em;
+  line-height:1.0em;
 }
 #footer a{
   font-size:1.0em;
@@ -217,3 +217,14 @@ p, .selectable{
     bottom:-15%;
   }
 }
+
+@media (max-height:400px) {
+  #header h1{
+    font-size:1.0em;
+  }
+  #footer a{
+    font-size:0.75em;
+    line-height:0.75em;
+  }
+}
+
