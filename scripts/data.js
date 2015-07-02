@@ -238,6 +238,13 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
   { fromId:"ironman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
   { fromId:"ironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"ironpatriot", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"ironpatriot", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:3, toId:"captainamerica", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ironpatriot", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ironpatriot", fromStars:4, toId:"captainamerica", effectId:"critdamage", effectAmount:25 },
 
   { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
   { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },
@@ -396,11 +403,13 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"captainamerica", fromStars:4, toId:"superiorironman", effectId:"critrate", effectAmount:7 },
   { fromId:"captainamerica", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
   
+  /*
   { fromId:"captainamericawwii", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
   { fromId:"captainamericawwii", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
   { fromId:"captainamericawwii", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
   { fromId:"captainamericawwii", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
-
+  */
+  
   { fromId:"electro", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:4 },
   { fromId:"electro", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
   { fromId:"electro", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:5 },
