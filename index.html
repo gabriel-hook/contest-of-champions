@@ -636,7 +636,7 @@
         <% if(data.awakened){ %>
           <div data-role="collapsible" data-collapsed="false" data-mini="true">
             <h4>
-              Awakened <%= ratingSpan(data.awakened.rating) %>           
+              Awakened Ability <%= ratingSpan(data.awakened.rating) %>           
             </h4>
             <p><b><%- data.awakened.name %></b></p>
             <p><%- data.awakened.description %></p>
@@ -695,7 +695,7 @@
       
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Synergies from   
+            Synergies
           </h4>
           <% if(synergiesFrom(uid).size() > 0){ %>
             <p>
@@ -719,7 +719,7 @@
 
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Synergies to
+            External Synergies
           </h4>
           <% if(synergiesTo(uid).size() > 0){ %>
             <p>
