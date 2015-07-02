@@ -29,9 +29,11 @@ CoC.ui.roster=new function(){
       $("#roster-configure-stars").removeClass("awakened")
 
       
-    $(".roster-configure-guide").unbind("click").bind("click",function(){
+    $(".roster-configure-guide").unbind("click").bind("click",function(event){
       $('#popup-roster-configure').popup("close");
-      CoC.ui.guides.open( champion.get("uid") );
+      setTimeout(function(){
+        CoC.ui.guides.open( champion.get("uid") );
+      }, 100);
     });
 
     $("#roster-configure-image").prop("src", champion.image());
