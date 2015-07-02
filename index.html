@@ -598,18 +598,16 @@
 
     <script id="guideTemplate" type="text/template">
 
-      <div class="title">
-        <h2 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
-          <img src="<%= champion.type().get("image") %>" class="type" />
+      <div data-role="collapsible" data-disabled="true" data-collapsed="false" data-expanded-icon="<%= champion.get("typeId") %>">
+        <h2 class="ui-collapsible-heading-toggle">
           <%- (data.fullname)? data.fullname: champion.get("name") %>
         </h2>
-        <p>
-          <% if(data.grades){ %>
-            Grade: <%= gradeSpan(data.grades.normal) %>
-            <br/>
-            Awakened: <%= gradeSpan(data.grades.awakened) %>
-            <br/>
-          <% } %>
+        <p class="bold">
+        <% if(data.grades){ %>
+          Grade: <%= gradeSpan(data.grades.normal) %>
+          <br/>
+          Awakened: <%= gradeSpan(data.grades.awakened) %>
+        <% } %>
         </p>
       </div>
       
@@ -702,7 +700,7 @@
               <div class="synergy">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
             </p>
@@ -726,7 +724,7 @@
               <div class="synergy">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
             </p>
@@ -756,13 +754,12 @@
 
     <script id="guideMissingTemplate" type="text/template">
 
-      <div class="title">
-        <h2 class="ui-btn ui-collapsible-heading-toggle ui-btn-inherit">
-          <img src="<%= champion.type().get("image") %>" class="type" />
+      <div data-role="collapsible" data-disabled="true" data-collapsed="false" data-expanded-icon="<%= champion.get("typeId") %>">
+        <h2 class="ui-collapsible-heading-toggle">
           <%- champion.get("name") %>
         </h2>
-        <p>
-          <b>Coming Soon!</b>
+        <p class="bold">
+          Coming Soon!
         </p>
       </div>
       
@@ -775,10 +772,10 @@
           <% if(synergiesFrom(uid).size() > 0){ %>
             <p>
             <% synergiesFrom(uid).each(function(synergy){ %>
-              <div class="synergy selectable" title="<%- synergy.to().get("name") %>">
+              <div class="synergy" title="<%- synergy.to().get("name") %>">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
             </p>
@@ -802,7 +799,7 @@
               <div class="synergy" title="<%- synergy.from().get("name") %>">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
             </p>

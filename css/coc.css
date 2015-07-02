@@ -23,6 +23,7 @@ p, .selectable{
 
 #header h1,
 #footer a,
+.bold,
 .panel h2,
 .panel label,
 .panel .ui-select span,
@@ -137,6 +138,41 @@ p, .selectable{
 }
 #onboarding-progress.onboarding.show{
   top:90px;
+}
+
+/******************
+    TYPE ICONS
+******************/
+
+.ui-icon-cosmic:after,
+.ui-icon-tech:after,
+.ui-icon-mutant:after,
+.ui-icon-skill:after,
+.ui-icon-science:after,
+.ui-icon-mystic:after{
+  background:none;
+  background-size:contain;
+  width:32px;
+  height:32px;
+  margin-top: -16px;
+}
+.ui-icon-cosmic:after{
+  background-image:url(../images/icons/cosmic.png);
+}
+.ui-icon-tech:after{
+  background-image:url(../images/icons/tech.png);
+}
+.ui-icon-mutant:after{
+  background-image:url(../images/icons/mutant.png);
+}
+.ui-icon-skill:after{
+  background-image:url(../images/icons/skill.png);
+}
+.ui-icon-science:after{
+  background-image:url(../images/icons/science.png);
+}
+.ui-icon-mystic:after{
+  background-image:url(../images/icons/mystic.png);
 }
 
 /******************
