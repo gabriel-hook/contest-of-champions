@@ -6,7 +6,7 @@
 };
 
 //load backbone and underscore
-importScripts('underscore-min.js', 'backbone-min.js');
+importScripts('lib/underscore-min.js', 'lib/backbone-min.js');
 
 //load models, data and algorithms
 importScripts('models.js', 'data.js', 'algorithm.js');
