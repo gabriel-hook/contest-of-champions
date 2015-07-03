@@ -49,11 +49,10 @@ body,
 
 .champion .title{
   border-radius:0 !important;
-  background:none !important;
 }
 .champion .name{
-  text-shadow:-1px 1px #000, -1px -1px #000, 1px -1px #000, 1px 1px #000 !important;
   color:#fff !important;
+  text-shadow:-1px 1px #000, -1px -1px #000, 1px -1px #000, 1px 1px #000 !important;
 }
 
 #teams .synergies{
