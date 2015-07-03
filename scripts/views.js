@@ -310,6 +310,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     this.sly.set('keyboardNavBy', 'items');
   },
   
+  reload:function(){
+    this.sly.reload();
+    setTimeout(this.sly.reload, 500);
+  },
+  
   select:function(uid){
     var that = this;
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
@@ -376,8 +381,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       container.appendChild( view );
     });
     this.$el.append(container);
-    this.sly.reload();
-    setTimeout(this.sly.reload, 500);
     return this;
   },
   

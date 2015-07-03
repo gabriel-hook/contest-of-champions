@@ -209,6 +209,12 @@ CoC.ui.guides=new function(){
     this.view.select(guide);
     this.seen = true;
   }
+  
+  this.reload=function(){
+    if(!this.view)
+      return;
+    this.view.reload();
+  }
 }
 
 //Make swipes move to the next screen
@@ -235,6 +241,9 @@ $("#page-roster").on("pagebeforeshow",function(){
 
 $("#page-guide").on("pagebeforeshow",function(){
   CoC.ui.guides.update();
+});
+$("#page-guide").on("pageshow",function(){
+  CoC.ui.guides.reload();
 });
 $("#page-guide").on("pagehide",function(){
   CoC.ui.guides.close();
