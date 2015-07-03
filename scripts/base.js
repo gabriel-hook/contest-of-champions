@@ -14,6 +14,14 @@ var CoC=new function(){
     location.reload();
   }
 
+  this.hasUrlParam=function(fragment, param){
+    if(fragment === undefined)
+      return false;
+    if(param !== undefined)
+      return $.url().fparam(fragment + "?" + param) !== undefined;
+    return $.url().attr("fragment").replace(/[?].*/, '') === fragment;
+  }
+  
   this.getUrlParam=function(fragment, param){
     if(fragment === undefined || param === undefined)
       return undefined;

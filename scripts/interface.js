@@ -161,7 +161,7 @@ CoC.ui.teams=new function(){
 CoC.ui.guides=new function(){
 
   this.initialized = false;
-  this.updated = false;
+  this.shown = false;
   this.seen = false;
   
   this.initialize=function(){
@@ -170,9 +170,9 @@ CoC.ui.guides=new function(){
       that.view = new CoC.view.GuideChampionsView({
         el: $("#guide-champions")[0]
       });
-      that.initialized = true;
-      if(that.updated)
-        that.update();
+      that.view.render();
+      if(that.shown)
+        that.show();
     });
   }
   
@@ -186,34 +186,32 @@ CoC.ui.guides=new function(){
       },0);
     }
   }
-  
-  this.close=function(){
-    if(this.view)
-      this.view.disable();
-  }
 
-  this.update=function(){
-    if(!this.initialized){
-      this.updated = true;
+  this.render=function(){
+    if(!this.view)
+      return;
+      
+    this.view.render();
+  }
+  
+  this.show=function(){
+    if(!this.view){
+      this.shown = true;
       return;
     }
     
-    //load guide position from url, default to 0 if we havent loaded,
-    //otherwise go back to the last viewed guide.
-    var guide = CoC.getUrlParam("page-guide", "guide");
-    if(!this.seen && guide === undefined)
-      guide = 0;
-      
-    this.view.render();
-    this.view.enable();
-    this.view.select(guide);
+    var uid = this.seen? undefined: (CoC.getUrlParam("page-guide", "guide") || 0);
     this.seen = true;
+    
+    this.view.enable();
+    this.view.reload();
+    this.view.select(uid);
   }
   
-  this.reload=function(){
+  this.hide=function(){
     if(!this.view)
       return;
-    this.view.reload();
+    this.view.disable();
   }
 }
 
@@ -240,13 +238,13 @@ $("#page-roster").on("pagebeforeshow",function(){
 });
 
 $("#page-guide").on("pagebeforeshow",function(){
-  CoC.ui.guides.update();
+  CoC.ui.guides.render();
 });
 $("#page-guide").on("pageshow",function(){
-  CoC.ui.guides.reload();
+  CoC.ui.guides.show();
 });
 $("#page-guide").on("pagehide",function(){
-  CoC.ui.guides.close();
+  CoC.ui.guides.hide();
 });
 
 
