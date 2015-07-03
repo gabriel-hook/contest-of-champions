@@ -606,13 +606,16 @@
         <h2 class="ui-collapsible-heading-toggle">
           <%- (data.fullname)? data.fullname: champion.get("name") %>
         </h2>
-        <p class="bold">
-        <% if(data.grades){ %>
-          Grade: <%= gradeSpan(data.grades.normal) %>
-          <br/>
-          Awakened: <%= gradeSpan(data.grades.awakened) %>
+        <% if (data.description){ %>
+          <p><%- data.description %></p>
         <% } %>
-        </p>
+        <% if(data.grades){ %>
+          <p class="bold">
+            Grade: <%= gradeSpan(data.grades.normal) %>
+            <br/>
+            Awakened: <%= gradeSpan(data.grades.awakened) %>
+          </p>
+        <% } %>
       </div>
       
       <div class="left">
@@ -631,6 +634,11 @@
                 <%= data.gameplay.strategy %>
               </p>
             <% } %>
+            <% if (data.gameplay.note){ %>
+              <p><b>Note:</b>
+                <%= data.gameplay.note %>
+              </p>
+            <% } %>
           </div>
         <% } %>
         
@@ -641,6 +649,11 @@
             </h4>
             <p><b><%- data.awakened.name %></b></p>
             <p><%- data.awakened.description %></p>
+            <% if (data.awakened.note){ %>
+              <p><b>Note:</b>
+                <%= data.awakened.note %>
+              </p>
+            <% } %>
           </div>
         <% } %>
         
@@ -650,6 +663,11 @@
               Heavy Attack <%= ratingSpan(data.heavy.rating) %>           
             </h4>
             <p><%= data.heavy.description %></p>
+            <% if (data.heavy.note){ %>
+              <p><b>Note:</b>
+                <%= data.heavy.note %>
+              </p>
+            <% } %>
           </div>
         <% } %>
         
@@ -682,7 +700,11 @@
                 <br/>
               <% } %>
               </p>
-              
+              <% if (data.awakened.note){ %>
+                <p><b>Note:</b>
+                  <%= data.awakened.note %>
+                </p>
+              <% } %>
             </div>
           
           <% }%>
