@@ -7,6 +7,7 @@ body,
   overflow:visible !important;
   height:inherit !important;
   min-height:0 !important;
+  text-shadow: none !important;
 }
 
 .message{
