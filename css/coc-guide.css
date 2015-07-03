@@ -200,10 +200,10 @@
 } 
 #guide-content .synergy img.champion{
   left:0;
-  border-bottom:solid 3px;
+  border-bottom:solid 4px;
   padding:0;
-  width:28px;
-  height:25px;
+  width:24px;
+  height:24px;
 } 
 #guide-content .synergy img.effect{
   left:30px;
