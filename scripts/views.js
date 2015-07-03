@@ -293,7 +293,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     $(window).bind("resize", function(){
       that.sly.reload(true, true);
       setTimeout(function(){
-        if(CoC.hasUrlParam("page-guides") === false)
+        if(CoC.hasUrlParam("page-guide") === false)
           return;
         that.sly.reload();
       }, 250);
