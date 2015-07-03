@@ -367,7 +367,7 @@
         return value;
       }
       
-      var progressMax = 16, didExtrasShuffle, array, arrays = [];
+      var progressMax = 8, didExtrasShuffle, array, arrays = [];
       
       function addArray(){
         array = [];
