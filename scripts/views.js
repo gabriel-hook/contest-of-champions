@@ -293,6 +293,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     $(window).bind("resize", function(){
       that.sly.reload(true, true);
       setTimeout(function(){
+        if(CoC.hasUrlParam("page-guides") === false)
+          return;
         that.sly.reload();
       }, 250);
     });
@@ -311,8 +313,15 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   reload:function(){
-    this.sly.reload();
-    setTimeout(this.sly.reload, 500);
+    var that = this;
+    if(CoC.hasUrlParam("page-guide") === false)
+      return;
+    that.sly.reload();
+    setTimeout(function(){
+      if(CoC.hasUrlParam("page-guide") === false)
+        return;
+      that.sly.reload();
+    }, 250);
   },
   
   select:function(uid){
@@ -353,6 +362,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   guide: function(uid){
+    //if we aren't even looking at guides anymore
+    if(CoC.hasUrlParam("page-guide") === false)
+      return;
+  
     //if another has been picked in this time
     if(this._activeUID !== uid)
       return;
