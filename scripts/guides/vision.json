@@ -1,4 +1,4 @@
-{
+﻿{
   "fullname":"Vision",
 
   "grades":{
@@ -54,6 +54,11 @@
   "perks":[
     "Bleed Immunity",
     "Poison Immunity"
+  ],
+  
+  "availability":[
+    { "Daily": "★" },
+    { "Premium": "★★" }
   ]
 
 }

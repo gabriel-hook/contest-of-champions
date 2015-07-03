@@ -440,6 +440,20 @@ CoC.view.GuideViewHelpers={
     return "<span class=\""+id+"\">"+range+"</span>";
   },
   
+  availabilityImage:function(availability){
+    for(var crystal in availability){
+      return "<img class=\"crystal\" src=\"images/crystals/crystal_"+crystal.toLowerCase().replace(" ","_")+".png\" />";  
+    }
+    return "";
+  },
+  
+  availabilitySpan:function(availability){
+    if(availability === undefined)
+      return "";
+    var id = "availability-"+availability.toLowerCase().replace(" ","-");
+    return "<span class=\""+id+"\">"+availability+" Crystal</span>";
+  },
+  
   joinSpans:function(list, render){
     if(list === undefined || !list.length)
       return "";

@@ -1,4 +1,4 @@
-{
+﻿{
   "fullname":"The Vision",
 
   "grades":{
@@ -54,6 +54,11 @@
   "perks":[
     "Bleed Immunity",
     "Poison Immunity"
+  ],
+  
+  "availability":[
+    { "Vision": "★★★ and ★★★★" },
+    { "Avengers": "★★★ and ★★★★" }
   ]
 
 }

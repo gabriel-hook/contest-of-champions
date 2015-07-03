@@ -217,6 +217,21 @@
 }
 
 
+
+#guide-content .availability{
+  position:relative;
+  padding-left:32px;
+  min-height:36px;
+}
+#guide-content .availability img{
+  position:absolute;
+  top: -6px;
+} 
+#guide-content .availability img.crystal{
+  left:4px;
+  width:28px;
+} 
+
 @media (max-width:350px), (max-height:400px) {
   #guide-content{
     padding:0;

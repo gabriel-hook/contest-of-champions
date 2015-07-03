@@ -688,9 +688,7 @@
         <% } %>
         
       </div>
-      
       <div style="clear:both;"></div>
-      
       <div class="left">
       
         <div data-role="collapsible" data-collapsed="false">
@@ -739,19 +737,45 @@
         </div>
       
       </div>
-      
       <div style="clear:both;"></div>
+      <div class="left">
       
-      <% if(data.perks){ %>
+        <% if(data.perks){ %>
+          <div data-role="collapsible" data-collapsed="false">
+            <h4>
+              Perks          
+            </h4>
+            <p>
+              <% _(data.perks).each(function(perk){ %>
+                <div class="selectable"><%= definition(perk, perkSpan) %></div>
+              <% }) %>
+            </p>
+          </div>
+        <% } %>
+        
+      </div>
+      <div class="right">
+      
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Perks          
+            Availablity          
           </h4>
-          <% _(data.perks).each(function(perk){ %>
-            <div class="selectable"><%= definition(perk, perkSpan) %></div>
-          <% }) %>
+          <p>
+            <% if(data.availability){ %>
+              <% _(data.availability).each(function(availability){ %>
+                <div class="availability">
+                  <%= availabilityImage(availability) %>
+                  <%= definition(availability, availabilitySpan) %>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <i>None</i>
+            <% } %>
+          </p>
         </div>
-      <% } %>
+    
+      </div>
+      <div style="clear:both;"></div>
       
     </script>
 
