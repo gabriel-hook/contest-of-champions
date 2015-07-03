@@ -176,15 +176,12 @@ CoC.ui.guides=new function(){
     });
   }
   
+  
   this.open=function(uid){
-    if(this.view){
-      jQuery.mobile.changePage("#page-guide",{
-        transition:"fade"
-      });
-      setTimeout(function(){
-        CoC.ui.guides.view.select(uid);
-      },0);
-    }
+    this._uid = uid;
+    jQuery.mobile.changePage("#page-guide",{
+      transition:"fade"
+    });
   }
 
   this.render=function(){
@@ -201,6 +198,10 @@ CoC.ui.guides=new function(){
     }
     
     var uid = this.seen? undefined: (CoC.getUrlParam("page-guide", "guide") || 0);
+    if(this._uid){
+      uid = this._uid;
+      delete this._uid;
+    }
     this.seen = true;
     
     this.view.enable();
