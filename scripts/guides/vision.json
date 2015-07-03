@@ -1,5 +1,6 @@
 ﻿{
   "fullname":"Vision",
+  "description":"The Vision has few flaws, and you'll be extremely hard pressed to find a player that won't throw him atop the ranks and argue with the fact that he's one of the best champions in the game. He's a blazing fast fighter with quick reflexes and response time. This allows rapid attacks, blocks and smooth combos that seamlessly link up and swiftly make moves on your opponent.",
 
   "grades":{
     "normal": "A",
@@ -9,13 +10,13 @@
   "gameplay":{
     "rating":5,
     "style":"Offensive",
-    "description":"The Vision has few flaws, and you'll be extremely hard pressed to find a player that won't throw him atop the ranks and argue with the fact that he's one of the best champions in the game. He's a blazing fast fighter with quick reflexes and response time. This allows rapid attacks, blocks and smooth combos that seamlessly link up and swiftly make moves on your opponent.",
     "strategy":"Get to love dropping that L1. You're going to want to ensure the opponent can't build up energy and furthermore prevent them from using that energy against you. By locking them down and preventing your opponent from dropping an L3 on you, you have the ability to defeat stronger players with as much as twice the PI!"
   },
   
   "heavy":{
     "rating":5,
-    "description":"The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed."
+    "description":"The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
+    "range":"Short"
   },
   
   "specials":{

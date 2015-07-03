@@ -1,5 +1,6 @@
 ﻿{
   "fullname":"Ultron",
+  "description":"Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set. he also deals critical hits every 5 attack and causes bleed often.",
 
   "grades":{
     "normal": "A",
@@ -9,13 +10,13 @@
   "gameplay":{
     "rating":5,
     "style":"Offensive + Defensive",
-    "description":"Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set. he also deals critical hits every 5 attack and causes bleed often.",
     "strategy":"Critical hits are guaranteed every 5 hits. Wait for a bleed and drop your L1 for critical + cauterize damage!"
   },
   
   "heavy":{
     "rating":5,
-    "description":"Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size."
+    "description":"Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
+    "range":"Long"
   },
   
   "specials":{
