@@ -13,7 +13,7 @@ CoC.view.AddChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "click .hero":"clicked"
+    "click .champion":"clicked"
   },
   
   clicked:function(e){
@@ -75,7 +75,7 @@ CoC.view.RosterView = Backbone.View.extend({
   },
   
   events:{
-    "click .hero":"clicked"
+    "click .champion":"clicked"
   },
   
   clicked:function(e){
@@ -220,7 +220,7 @@ CoC.view.TeamView = Backbone.View.extend({
       }
     }));
     
-    this.$el.find(".hero").click(function(){
+    this.$el.find(".champion").click(function(){
       var uid = $(this).attr("uid");
       CoC.ui.guides.open( uid );
     });
@@ -301,7 +301,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "click .hero":"clicked"
+    "click .champion":"clicked"
   },
   
   disable:function(){
@@ -336,7 +336,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   active:function(event, index, delay){
     var item = this.sly.items[index];
-    var uid = $(item.el).find(".hero").attr("uid");
+    var uid = $(item.el).find(".champion").attr("uid");
     var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];
     if(!view){
@@ -564,7 +564,7 @@ CoC.view.ChampionView = Backbone.View.extend({
     el.html( this.template(json) );
   
     //set my classes
-    el.addClass("hero");
+    el.addClass("champion");
     el.addClass(model.get("typeId"));
     if(model.get("quest") === true)
       el.addClass("quest");

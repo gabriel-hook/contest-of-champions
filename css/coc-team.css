@@ -5,39 +5,58 @@
 #teams .team.three{
   max-width:450px;
 }
-#teams .team.three .hero{
+#teams .team.three .champion{
   width:33.33333333333333333%;
   padding-bottom:33.33333333333333%;
 }
 #teams .team.four{
   max-width:600px;
 }
-#teams .team.four .hero{
+#teams .team.four .champion{
   width:25%;
   padding-bottom:25%;
 }
 #teams .team.five{
   max-width:900px;
 }
-#teams .team.five .hero{
+#teams .team.five .champion{
   width:20%;
   padding-bottom:20%;
 }
 
-#teams .team .hero .container{
+#teams .team .champion .container{
   padding:10px 0 0 0 !important;
 }
 
-#teams .team .heroes .hero:first-child .title{
+#teams .team .champions .champion:first-child .title{
   border-top-right-radius:0;
 }
-#teams .team .heroes .hero:last-child .title{
+#teams .team .champions .champion:last-child .title{
   border-top-left-radius:0;
 }
 
-#teams .team .heroes .hero:not(:first-child):not(:last-child) .title{
+#teams .team .champions .champion:not(:first-child):not(:last-child) .title{
   border-top-left-radius:0;
   border-top-right-radius:0;
+}
+
+.synergies{
+  background:rgba(0,0,0,0.666);
+  padding-top:20px;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+}
+.synergies .synergy{
+  padding:10px;
+  padding-top:0;
+}
+.synergies .synergy span{
+  color:#f6f6f6;
+  text-shadow:1px 1px #111;
+}
+.synergies .synergy img{
+  position:relative;
+  padding-right:3px;
 }
 
 /******************

@@ -3,7 +3,7 @@ body,
 .page{  
   border: none !important;
   padding:0 !important;
-  background:rgba(255,255,255,0) !important;
+  background:none !important;
   overflow:visible !important;
   height:inherit !important;
   min-height:0 !important;
@@ -11,7 +11,7 @@ body,
 }
 
 .message{
-  background:rgba(255,255,255,0) !important;
+  background:none !important;
   padding:none !important;
   color:#111 !important;
   font-size:0.9em !important;
@@ -29,8 +29,8 @@ body,
 
 /* DONT CUT PORTRAITS OR TEAMS */
 #teams .team,
-#roster .hero,
-#extras .hero{
+#roster .champion,
+#extras .champion{
   display:block !important;
   page-break-inside: avoid !important;
 }
@@ -40,9 +40,27 @@ body,
   page-break-before: always !important;
 }
 
-#roster .hero .container,
-#extras .hero .container{
+#roster .champion .container,
+#extras .champion .container{
   padding: 0px 10px 20px 10px !important;
+}
+
+/* CLEAN UP ROSTER AND TEAMS PRINTING */
+
+.champion .title{
+  border-radius:0 !important;
+  background:none !important;
+}
+.champion .name{
+  text-shadow:-1px 1px #000, -1px -1px #000, 1px -1px #000, 1px 1px #000 !important;
+  color:#fff !important;
+}
+
+#teams .synergies{
+  background:none !important;
+}
+#teams .synergy span{
+  color:#000 !important;
 }
 
 /* CLEAN UP GUIDE CONTENT FOR PRINTING */
@@ -60,7 +78,7 @@ body,
 #guide-content h4,
 #guide-content a{
   border:none !important;
-  background:rgba(255,255,255,0) !important;
+  background:none !important;
   border-radius:0 !important;
 }
 #guide-content h2,

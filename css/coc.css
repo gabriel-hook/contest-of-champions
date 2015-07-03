@@ -184,40 +184,6 @@ p, .selectable{
     RESPONSIVE
 ******************/
 
-@media (max-width:355px) {
-  .hero .title{
-    border-bottom-width: 6px;
-  }
-  .hero .stars{
-    bottom:-18%;
-  }
-  .hero .name{
-    font-size:0.6em;
-    line-height:1.5em;
-  }
-}
-@media (max-width:800px) and (min-width:355px) {
-  .hero .title{
-    border-bottom-width: 8px;
-  }
-  .hero .stars{
-    bottom:-16%;
-  }
-  .hero .name{
-    font-size:0.8em;
-    line-height:1.5em;
-  }
-}
-@media (min-width:800px) {
-  .hero .name{
-    font-size:1em;
-    line-height:1.5em;
-  }
-  .hero .stars{
-    bottom:-15%;
-  }
-}
-
 @media (max-height:400px) {
   #header h1{
     font-size:1.0em;

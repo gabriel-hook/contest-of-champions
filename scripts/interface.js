@@ -503,7 +503,7 @@ $("#page-teams").on( "pagecreate", function() {
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = CoC.algorithm[algorithm].build({ heroes:roster, size:size, quest:quest, extras:extras });
+        var result = CoC.algorithm[algorithm].build({ champions:roster, size:size, quest:quest, extras:extras });
         $("#team-build-progressprogress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.update(result, size);

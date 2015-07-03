@@ -29,11 +29,11 @@
 .frame .slidee li.active { 
   opacity:1; 
 }
-.frame .slidee .hero{
+.frame .slidee .champion{
   width:100%;
   padding-bottom:100%;
 }
-.frame .slidee .hero .container{
+.frame .slidee .champion .container{
   padding:0 !important;
 }
 
@@ -201,6 +201,7 @@
 #guide-content .synergy img.champion{
   left:0;
   border-bottom:solid 3px;
+  padding:0;
   width:28px;
   height:25px;
 } 
@@ -258,22 +259,6 @@
 }
 
 @media (min-width:800px) {
-  .hero .name{
-    font-size:1em;
-    line-height:1.5em;
-  }
-  .hero .stars{
-    bottom:-15%;
-  }
-  #teams .synergy span{
-    font-size:1em;
-    line-height:1em;
-  }
-  #teams .synergy img{
-    top: 4px;
-    width:22px;
-  }
-  
   #guide-content  .left,
   #guide-content  .right{
     float:left;

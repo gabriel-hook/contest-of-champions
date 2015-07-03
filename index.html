@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/theme-classic.css" media="all">
     <link rel="stylesheet" href="css/fonts/fonts.css" media="all">
     <link rel="stylesheet" href="css/coc.css" media="all">
-    <link rel="stylesheet" href="css/coc-hero.css" media="all">
+    <link rel="stylesheet" href="css/coc-champion.css" media="all">
     <link rel="stylesheet" href="css/coc-guide.css" media="all">
     <link rel="stylesheet" href="css/coc-roster.css" media="all">
     <link rel="stylesheet" href="css/coc-team.css" media="all">
@@ -549,7 +549,8 @@
     <script id="championTemplate" type="text/template">
     
       <div class="container">
-        <div class="portrait" style="background-image:url(<%= portrait %>)">
+        <div class="inner">
+          <img class="portrait" src="<%= portrait %>">
           <% if( quest ){ %>
             <div class="quest"></div>
           <% } %>
@@ -570,7 +571,7 @@
       
       <% _(teams).each(function(team){ %>
         <div class="team <%= (size==3)? "three": (size==4)? "four": (size==5)? "five": "unknown" %>">
-          <div class="heroes">
+          <div class="champions">
             <% _(team.champions).each(function(champion){ %>
               <%= renderChampion(champion) %>
             <% }) %>
