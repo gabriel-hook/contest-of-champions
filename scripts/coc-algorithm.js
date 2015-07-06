@@ -370,7 +370,7 @@ CoC.algorithm = CoC.algorithm || {};
         return value;
       }
       
-      var progressMax = 8, didExtrasShuffle, array, arrays = [];
+      var progressMax = 32, didExtrasShuffle, array, arrays = [];
       
       function addArray(){
         array = [];
