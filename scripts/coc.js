@@ -10,9 +10,6 @@ CoC.initialize = function(){
     CoC.settings.setValue("hasDefaults", true);
     CoC.settings.setValue("version", CoC.version);
   }
-  
-  //preload next tick (don't block)
-  setTimeout(CoC.preloadImages(), 0);
 }
 
 CoC.reset=function(){
@@ -38,22 +35,6 @@ CoC.setUrlParam=function(fragment, param, value){
   if(fragment === undefined || param === undefined || value === undefined)
     return;
   window.location.hash = "#"+fragment+"?"+param + "=" + value;
-}
-
-//image preloader for known images
-CoC.preloadImages = function(){
-  var images = {};
-  CoC.data.effects.each(function(effect){
-    images[ effect.get("image") ] = true;
-  });
-  CoC.data.champions.each(function(champion){
-    images[ champion.portrait() ] = true;
-    images[ champion.image() ] = true;
-  });
-  
-  var hidden = $('body').append('<div id="img-cache" style="display:none/>').children('#img-cache');
-  for(var src in images)
-    $('<img/>').attr('src', src).appendTo(hidden);
 }
 
 CoC.settings = CoC.settings || {};

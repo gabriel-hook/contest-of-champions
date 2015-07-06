@@ -3,11 +3,35 @@ CoC.ui = CoC.ui || {};
 
 //initialize
 CoC.ui.initialize=function(){
+  setTimeout(CoC.ui.preload, 0);
+  
   CoC.ui.roster.initialize();
   CoC.ui.add.initialize();
   CoC.ui.teams.initialize();
   CoC.ui.guides.initialize();
   CoC.ui.crystals.initialize();
+}
+
+//image preloader for known images
+CoC.ui.preload = function(){
+  //add all to hash so duplicates are loaded once
+  var images = {};
+  CoC.data.effects.each(function(effect){
+    images[ effect.get("image") ] = true;
+  });
+  CoC.data.crystals.each(function(crystal){
+    images[ crystal.image() ] = true;
+  });
+  CoC.data.champions.each(function(champion){
+    images[ champion.portrait() ] = true;
+    images[ champion.image() ] = true;
+  });
+  //add to hidden div to hide from garbage collection
+  var hidden = $('<div>', { style:'display:none' });
+  for(var src in images)
+    $('<img/>').attr('src', src).appendTo(hidden);
+  $(document.body).append(hidden);
+  console.log(hidden)
 }
 
 CoC.ui.roster=new function(){
