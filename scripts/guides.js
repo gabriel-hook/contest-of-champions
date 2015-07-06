@@ -1,3 +1,5 @@
+var CoC = CoC || {};
+
 CoC.guides = new function(){
   
   this.data = {}
@@ -10,7 +12,7 @@ CoC.guides = new function(){
       var working = uids.length;
       _(uids).each(function(uid){
         $.ajax({
-          url: "scripts/guides/"+uid+".json",
+          url: "scripts/data/guides/"+uid+".json",
           complete:function(response){
             var data;
             try{

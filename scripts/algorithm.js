@@ -1,4 +1,7 @@
-﻿(function(){
+﻿var CoC = CoC || {};
+CoC.algorithm = CoC.algorithm || {};
+
+(function(){
     
   function factorial(n){
     if(!factorial.cache)

@@ -1,3 +1,62 @@
+var CoC = CoC || {};
+CoC.settings = CoC.settings || {};
+CoC.settings.preset = CoC.settings.preset || {};
+
+CoC.settings.preset.list=[];
+
+CoC.settings.preset.ids=function(category){
+  var keys = [];
+  for(var i in CoC.settings.preset.list)
+    if(category === undefined || category === CoC.settings.preset.list[i].category)
+      keys.push(CoC.settings.preset.list[i].id);
+  return keys;
+}
+
+CoC.settings.preset.get=function(id){
+  for(var i in CoC.settings.preset.list)
+    if(CoC.settings.preset.list[i].id === id)
+      return CoC.settings.preset.list[i];
+  return null;
+}
+
+CoC.settings.preset.info=function(id){
+  var preset = CoC.settings.preset.get(id);
+  if(preset)
+    return {
+      id:preset.id,
+      name:preset.name,
+      category:preset.category
+    };
+  return null;
+}
+
+CoC.settings.preset.apply=function(id, funcWeights, funcSettings){
+  var preset = CoC.settings.preset.get(id);
+  if(preset){
+    if(funcWeights !== undefined)
+      for(var key in preset.weights)
+        if(funcWeights(key, preset.weights[key]))
+          CoC.settings.setWeight(key, preset.weights[key]);
+    if(funcSettings !== undefined)
+      for(var key in preset.settings)
+        if(funcSettings(key, preset.settings[key]))
+          CoC.settings.setValue(key, preset.settings[key]);
+  }  
+}
+
+CoC.settings.preset.add=function(category, name, weights, settings){
+  var id = (category)? [category,name].join("-").toLowerCase(): name.toLowerCase();
+  CoC.settings.preset.list.push({
+    id:id,
+    name:name,
+    category:category,
+    weights:weights,
+    settings:settings
+  });
+}
+
+CoC.settings.preset.always=function(){ return true; }
+
 CoC.settings.preset.add(null, "Defaults",{
 //weights
   "stars-1":0.5,
@@ -91,11 +150,3 @@ CoC.settings.preset.add("Duplicates", "None",{
   "duplicates-4":0,
   "duplicates-5":0
 })
-
-
-//Set defaults
-if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
-  CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
-  CoC.settings.setValue("hasDefaults", true);
-  CoC.settings.setValue("version", CoC.version);
-}

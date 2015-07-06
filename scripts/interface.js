@@ -1,4 +1,7 @@
-﻿//initialize
+﻿var CoC = CoC || {};
+CoC.ui = CoC.ui || {};
+
+//initialize
 CoC.ui.initialize=function(){
   CoC.ui.roster.initialize();
   CoC.ui.add.initialize();
@@ -30,10 +33,12 @@ CoC.ui.roster=new function(){
 
       
     $(".roster-configure-guide").unbind("click").bind("click",function(event){
-      $('#popup-roster-configure').popup("close");
-      setTimeout(function(){
+    
+      $('#popup-roster-configure').one("popupafterclose", function(){
         CoC.ui.guides.open( champion.get("uid") );
-      }, 100);
+      });
+      $('#popup-roster-configure').popup("close");
+      
     });
 
     $("#roster-configure-image").prop("src", champion.image());
@@ -88,12 +93,14 @@ CoC.ui.roster=new function(){
     });
     
     $("#roster-configure-delete").unbind( "click" ).click(function(){
-      $('#popup-roster-configure').popup("close");
-      setTimeout(function(){
+
+      $('#popup-roster-configure').one("popupafterclose", function(){
         $("#popup-roster-delete-confirm").popup("open",{
           positionTo:"window"
         })
-      },50);
+      });
+      $('#popup-roster-configure').popup("close");
+      
     });
     
     $("#roster-delete-confirm-name").attr("class", champion.get("typeId")).text(champion.get("name"));
