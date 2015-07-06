@@ -14,11 +14,15 @@ p, .selectable{
     user-select: text;
 }
 
-.ui-page-theme-c,
-.ui-page-theme-c .ui-panel-wrapper{  
+body.ui-mobile-viewport{
   background: #f0f0f0;
   background: radial-gradient(#fff, #eee, #aaa); 
   background-attachment: fixed;
+}
+
+.ui-page-theme-c,
+.ui-page-theme-c .ui-panel-wrapper{  
+  background: rgba(0,0,0,0);
 }
 
 #header h1,
