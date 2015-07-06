@@ -18,6 +18,11 @@ CoC.model.CrystalChampion = Backbone.Model.extend({
     if(this._champion === undefined){
       this._champion = CoC.data.champions.findWhere({ uid:this.get("championId"), stars:this.get("championStars") });
     }
+    
+    //If we can't load this champion it probably wasn't defined.
+    if(this._champion === undefined)
+      console.error(this.toJSON())
+    
     return this._champion;
   }
 });

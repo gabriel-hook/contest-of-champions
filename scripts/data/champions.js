@@ -129,6 +129,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 1 },
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 2 },
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 3 },
+  { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 4 },
   { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 2 },
   { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 3 },
   { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 4 }

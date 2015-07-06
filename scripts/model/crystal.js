@@ -32,7 +32,8 @@ CoC.model.Crystal = Backbone.Model.extend({
         champions = [];
         var ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid") });
         for(var i=0; i<ccs.length; i++)
-          champions.push( ccs[i].champion() );
+          if(ccs[i].champion() !== undefined)
+            champions.push( ccs[i].champion() );
         champions = _(champions);
         this._champions[0] = champions;
       }
@@ -43,7 +44,8 @@ CoC.model.Crystal = Backbone.Model.extend({
         champions = [];
         var ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid"), championStars:stars });
         for(var i=0; i<ccs.length; i++)
-          champions.push( ccs[i].champion() );
+          if(ccs[i].champion() !== undefined)
+            champions.push( ccs[i].champion() );
         champions = _(champions);
         this._champions[stars] = champions;
       }

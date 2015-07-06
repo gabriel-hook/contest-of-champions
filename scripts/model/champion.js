@@ -15,9 +15,7 @@ CoC.model.Champion = Backbone.Model.extend({
   
   stars:function(){
     if(this._stars === undefined){
-      this._stars = "";
-      for(var i=0, count = this.get("stars"); i<count; i++)
-        this._stars += "★";
+      this._stars = ["", "★", "★★", "★★★", "★★★★"][this.get("stars")];
     }
     return this._stars;
   },
