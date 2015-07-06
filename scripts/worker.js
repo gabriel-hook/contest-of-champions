@@ -1,15 +1,10 @@
-﻿var CoC=new function(){
-  this.data={}
-  this.model={}
-  this.settings={}
-  this.algorithm={}
-};
-
-//load backbone and underscore
+﻿//load backbone and underscore
 importScripts('lib/underscore-min.js', 'lib/backbone-min.js');
 
 //load models, data and algorithms
-importScripts('models.js', 'data.js', 'algorithm.js');
+importScripts('model/champion.js', 'model/effect.js', 'model/synergy.js', 'model/type.js');
+importScripts('data/champions.js', 'data/effects.js', 'data/synergies.js', 'data/types.js');
+importScripts('algorithm.js');
 
 onmessage = function (event){
   var algorithm = event.data.algorithm;
@@ -19,6 +14,8 @@ onmessage = function (event){
   var quest = event.data.quest;
   var extras = event.data.extras;
   var update = event.data.update;
+  
+  CoC.settings = {};
   
   CoC.settings.getWeight=function(key){
     var value = weights[key];
