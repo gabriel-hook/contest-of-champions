@@ -1,16 +1,18 @@
 var CoC=CoC || {};
-CoC.version = "1.0";
+CoC.version = "1.0.1";
 
 CoC.initialize = function(){
   console.log("Contest of Champions - Roster Manager v"+CoC.version);
 
+  //reset settings if we are a new version!
   if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
     CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
     CoC.settings.setValue("hasDefaults", true);
     CoC.settings.setValue("version", CoC.version);
   }
-  CoC.roster.load();
-  CoC.preloadImages();
+  
+  //preload next tick (don't block)
+  setTimeout(CoC.preloadImages(), 0);
 }
 
 CoC.reset=function(){
@@ -40,13 +42,18 @@ CoC.setUrlParam=function(fragment, param, value){
 
 //image preloader for known images
 CoC.preloadImages = function(){
+  var images = {};
   CoC.data.effects.each(function(effect){
-    $('<img/>')[0].src = effect.get("image");
+    images[ effect.get("image") ] = true;
   });
   CoC.data.champions.each(function(champion){
-    $('<img/>')[0].src = champion.portrait();
-    $('<img/>')[0].src = champion.image();
+    images[ champion.portrait() ] = true;
+    images[ champion.image() ] = true;
   });
+  
+  var hidden = $('body').append('<div id="img-cache" style="display:none/>').children('#img-cache');
+  for(var src in images)
+    $('<img/>').attr('src', src).appendTo(hidden);
 }
 
 CoC.settings = CoC.settings || {};
