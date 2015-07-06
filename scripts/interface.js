@@ -7,6 +7,7 @@ CoC.ui.initialize=function(){
   CoC.ui.add.initialize();
   CoC.ui.teams.initialize();
   CoC.ui.guides.initialize();
+  CoC.ui.crystals.initialize();
 }
 
 CoC.ui.roster=new function(){
@@ -223,6 +224,19 @@ CoC.ui.guides=new function(){
   }
 }
 
+CoC.ui.crystals=new function(){
+  
+  this.initialize=function(){
+    this.view = new CoC.view.CrystalsView({
+      el: $("#crystals")[0]
+    });
+  }
+  
+  this.update=function(){
+    this.view.render();
+  }
+}
+
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swiperight", "#page-roster", function( e ) {
@@ -255,7 +269,9 @@ $("#page-guide").on("pagehide",function(){
   CoC.ui.guides.hide();
 });
 
-
+$("#page-crystals").on("pagebeforeshow",function(){
+  CoC.ui.crystals.update();
+});
 
 $("#page-add").on("pagebeforeshow",function(){
   $("#page-add #add-stars a").removeClass("ui-btn-active");

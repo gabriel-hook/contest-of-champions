@@ -20,5 +20,44 @@ CoC.model.Crystal = Backbone.Model.extend({
       this._hologram = 'images/crystals/hologram_'+this.get('hologram')+'.png'
     }
     return this._hologram;
+  },
+  
+  champions:function(stars){
+    var champions;
+    if(this._champions === undefined)
+      this._champions = [];
+    if(stars === undefined){
+      champions = this._champions[0]
+      if(champions === undefined){
+        champions = [];
+      
+        var ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid") });
+        for(var i=0; i<ccs.length; i++)
+          champions.push( ccs[i].champion() );
+      
+        champions = _(champions);
+        this._champions[0] = champions;
+      }
+    }
+    else{
+      champions = this._champions[stars]
+      if(champions === undefined){
+        champions = [];
+      
+        var ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid"), championStars:stars });
+        for(var i=0; i<ccs.length; i++)
+          champions.push( ccs[i].champion() );
+          
+        if(champions.length){
+          console.log("-------------------")
+          console.log(this.get("name"))
+          console.log(champions)
+        }
+        
+        champions = _(champions);
+        this._champions[stars] = champions;
+      }
+    }
+    return champions;
   }
 });

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/coc.css" media="all">
     <link rel="stylesheet" href="css/coc-champion.css" media="all">
     <link rel="stylesheet" href="css/coc-guide.css" media="all">
+    <link rel="stylesheet" href="css/coc-crystal.css" media="all">
     <link rel="stylesheet" href="css/coc-roster.css" media="all">
     <link rel="stylesheet" href="css/coc-team.css" media="all">
     <link rel="stylesheet" href="css/print.css" media="print">
@@ -516,8 +517,9 @@
           data-role="button" 
           data-icon="crystal" 
           data-iconpos="notext"
-          data-rel="panel"
-          data-transition="slide">Crystals</a>
+          data-transition="flip"
+          data-rel="page"
+          data-direction="reverse">Crystals</a>
       
         <h1>Guide</h1>
         
@@ -542,6 +544,25 @@
         </div>
       </div>
       
+    </div>
+    
+    <div class="page" id="page-crystals"
+      data-title="Champions - Guide"
+      data-theme="c"
+      data-role="page">
+
+      <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
+        <a href="#page-guide" class="ui-btn-right"
+          data-transition="flip" 
+          data-role="button" 
+          data-iconpos="notext"
+          data-icon="back">Back</a>
+      
+        <h1>Crystals</h1>
+      </div>
+
+        
+      <div role="main" class="ui-content" id="crystals"></div>
     </div>
     
     <script id="sliderTemplate" type="text/template">
@@ -873,6 +894,29 @@
       
     </script>
     
+    <script id="crystalsTemplate" type="text/template">
+      <h3 class="bold"><img class="icon" src="<%- crystal.image() %>"> <%- crystal.get("name") %> Crystal</h3>
+      <div data-role="collapsibleset">
+      
+        <% _.each([1,2,3,4], function(stars){ %>
+          <% if (crystal.champions(stars).size() > 0){ %>
+            <div data-role="collapsible" data-mini="true">
+              <h4>
+                <%- ["", "★","★★","★★★","★★★★"][stars] %>
+              </h4>
+               <% crystal.champions(stars).each(function(champion){ %>
+                <div class="crystal-champion">
+                  <img class="champion <%= champion.get("typeId") %>" src="<%= champion.portrait() %>" />
+                  <%- champion.get("name") %>
+                </div>
+               <% }) %>
+            </div>
+          <% } %>
+        <% }) %>
+        
+      </div>
+    </script>
+    
     <script src="scripts/model/champion.js"></script>
     <script src="scripts/model/crystal.js"></script>
     <script src="scripts/model/crystal-champion.js"></script>
@@ -893,6 +937,7 @@
     <script src="scripts/view/team.js"></script>
     <script src="scripts/view/guide-champions.js"></script>
     <script src="scripts/view/guide.js"></script>
+    <script src="scripts/view/crystals.js"></script>
     
     <script src="scripts/base.js"></script>
     <script src="scripts/roster.js"></script>

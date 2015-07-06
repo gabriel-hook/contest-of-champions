@@ -70,6 +70,18 @@ CoC.view.GuideViewHelpers={
     return "";
   },
   
+  crystals:function(uid){
+    var crystals = this._crystals[uid];
+    if(crystals === undefined){
+      crystals = [];
+      
+      //TODO: add crystals here
+      
+      this._crystals[uid] = crystals;
+    }
+    return _(crystals);
+  },
+  
   synergiesFrom:function(uid){
     var synergies = this._synergiesFrom[uid], from;
     if(synergies === undefined){

@@ -1,0 +1,51 @@
+#crystals h3.bold{
+  position:relative;
+  padding-left:32px;
+}
+
+#crystals .icon{
+  position:absolute;
+  top:0;
+  left:0;
+  height:24px;
+  width:24px;
+}
+
+#crystals .crystal-champion{
+  position:relative;
+  padding-left:32px;
+  min-height:32px;
+  line-height:2em;
+}
+
+#crystals .crystal-champion img{
+  position:absolute;
+  top: 2px;
+} 
+#crystals .crystal-champion img.champion{
+  left:0;
+  border-bottom:solid 4px;
+  padding:0;
+  width:20px;
+  height:20px;
+} 
+
+
+@media (max-width:350px), (max-height:400px) {
+  #crystals{
+    padding:0;
+    font-size:0.8em;
+  }
+  #crystals .ui-collapsible-inset .ui-collapsible-heading .ui-btn,
+  #crystals .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
+    border-left-width:0;
+    border-right-width:0;
+    border-radius:0;
+  }
+  #crystals.ui-collapsible-inset .ui-collapsible-heading .ui-btn{
+    border-top-width:0;
+  }
+  #crystals .ui-collapsible{
+    margin:0;
+  }
+}
