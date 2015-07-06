@@ -4,7 +4,8 @@ importScripts('lib/underscore-min.js', 'lib/backbone-min.js');
 //load models, data and algorithms
 importScripts('model/champion.js', 'model/effect.js', 'model/synergy.js', 'model/type.js');
 importScripts('data/champions.js', 'data/effects.js', 'data/synergies.js', 'data/types.js');
-importScripts('algorithm.js');
+
+importScripts('coc-algorithm.js');
 
 onmessage = function (event){
   var algorithm = event.data.algorithm;
