@@ -62,10 +62,6 @@
     { "Armor Up": "25% chance, 5% reduction, 3 seconds." },
     { "Evade": "Every 7 seconds" },
     { "Regeneration": "Recovers 25% at both 50% health and 25% health." }
-  ],
-  
-  "availability":[
-    { "Ultron": "★★★ and ★★★★" }
   ]
 
 }

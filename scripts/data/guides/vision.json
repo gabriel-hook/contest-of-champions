@@ -47,19 +47,14 @@
   },
 
   "awakened":{
-    "rating":3,
-    "name":"Power Steal",
-    "description":"Special attacks steals 20% of your opponents power!"
+    "rating":4,
+    "name":"Synthesis",
+    "description":"The Vision is will synthesize 200 power periodically during battle."
   },
 
   "perks":[
     "Bleed Immunity",
     "Poison Immunity"
-  ],
-  
-  "availability":[
-    { "Daily": "★" },
-    { "Premium": "★★" }
   ]
 
 }
