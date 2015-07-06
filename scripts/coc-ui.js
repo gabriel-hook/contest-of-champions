@@ -237,6 +237,25 @@ CoC.ui.crystals=new function(){
   }
 }
 
+//Load onboarding when appropriate
+$("#page-roster").on( "pageshow", function() {
+  if(CoC.data.roster.length === 0){
+    $("#onboarding-roster").addClass("show")
+    $("#page-roster").one("click",function(){
+      $("#onboarding-roster").removeClass("show")
+    })
+  }
+});
+
+$("#page-teams").on( "pageshow", function() {
+  if(CoC.ui.teams.empty){
+    $("#onboarding-teams").addClass("show")
+    $("#page-teams").one("click",function(){
+      $("#onboarding-teams").removeClass("show")
+    })
+  }
+});
+
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swiperight", "#page-roster", function( e ) {
