@@ -1,7 +1,7 @@
 var CoC = CoC || {};
 CoC.roster = {};
 
-CoC.roster.load = function(){
+CoC.roster.initialize = function(){
 
   var typeIds = {};
   CoC.data.types.each(function(type, i){
