@@ -96,6 +96,11 @@ p, .selectable{
   right:0;
 }
 
+
+.ui-icon-crystal:after{
+  background-image:url(../images/icons/crystal.png);
+}
+
 /******************
     ONBOARDING
 ******************/
