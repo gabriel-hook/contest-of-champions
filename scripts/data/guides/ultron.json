@@ -1,0 +1,71 @@
+﻿{
+  "fullname":"Ultron",
+  "description":"Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set. he also deals critical hits every 5 attack and causes bleed often.",
+
+  "grades":{
+    "normal": "A",
+    "awakened":"A+"
+  },
+  
+  "gameplay":{
+    "rating":5,
+    "style":"Offensive + Defensive",
+    "strategy":"Critical hits are guaranteed every 5 hits. Wait for a bleed and drop your L1 for critical + cauterize damage!"
+  },
+  
+  "heavy":{
+    "rating":5,
+    "description":"Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
+    "range":"Long"
+  },
+  
+  "specials":{
+  
+    "1":{
+      "rating":4,
+      "description":"Ultra rapid and quick unleash, making it challenging to block if used at the end of a combo. Does light damage.",
+      "perks":["Cauterize","Stun"],
+      "damagetypes":["Energy"],
+      "ranges":["Long"]
+    },
+    
+    "2":{
+      "rating":3,
+      "description":"Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
+      "perks":["Cauterize","Stun"],
+      "damagetypes":["Energy","Physical"],
+      "ranges":["Long","Short"]
+    },
+    
+    "3":{
+      "rating":3,
+      "description":"Surprisingly doesn't do a ton of damage, but looks badass and gives you a few seconds of rest.",
+      "perks":["Cauterize","Stun"],
+      "damagetypes":["Energy"]
+    }
+    
+  },
+
+  "awakened":{
+    "rating":4,
+    "name":"Absorption",
+    "description":"40.8% of energy attack damage is converted into power and health. Also adds armor up!"
+  },
+
+  "perks":[
+    "Bleed Immunity",
+    "Poison Immunity",
+    { "Bleed": "14% chance, 20% damage, 5.5 seconds." },
+    { "Critical Hits": "Every 5 hits." },
+    { "Cauterize": "Specials deal 50% damage for each bleed on the target." },
+    { "Stun": "40% chance for 3 seconds on every special attack"},
+    { "Armor Up": "25% chance, 5% reduction, 3 seconds." },
+    { "Evade": "Every 7 seconds" },
+    { "Regeneration": "Recovers 25% at both 50% health and 25% health." }
+  ],
+  
+  "availability":[
+    { "Ultron": "★★★ and ★★★★" }
+  ]
+
+}
