@@ -3,6 +3,16 @@ CoC.view = CoC.view || {};
 CoC.view.TeamView = Backbone.View.extend({
   template: _.template( $('#teamsTemplate').html() ),
 
+  events:{
+    "click .champion":"clicked"
+  },
+  
+  clicked:function(e){
+    e.preventDefault();
+    var uid = $(e.currentTarget).attr("uid");
+    CoC.ui.guides.open( uid );
+  },
+  
   //set team size
   size:function(size){
     this._size = size;
@@ -72,12 +82,6 @@ CoC.view.TeamView = Backbone.View.extend({
         return view.render().el.outerHTML;
       }
     }));
-    
-    this.$el.find(".champion").click(function(){
-      var uid = $(this).attr("uid");
-      CoC.ui.guides.open( uid );
-    });
-    
     return this;
   }
 });
