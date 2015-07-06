@@ -811,18 +811,21 @@
           <h4>
             Availablity          
           </h4>
-          <p>
-            <% if(data.availability){ %>
-              <% _(data.availability).each(function(availability){ %>
-                <div class="availability">
-                  <%= availabilityImage(availability) %>
-                  <%= definition(availability, availabilitySpan) %>
-                </div>
-              <% }) %>
-            <% } else { %>
+          <% console.log( crystals(uid) ) %>
+          <% if(crystals(uid).length === 0){ %>
+            <p>
               <i>None</i>
-            <% } %>
-          </p>
+            </p>
+          <% } else { %>
+            <% _(crystals(uid)).each(function(data){ %>
+              <div class="crystal">
+                <img src="<%= data.crystal.image() %>" />
+                <b class="selectable"><%- data.crystal.get("name") %> Crystal</b>:
+                <%= crystalStarsSpan(data) %>
+              
+              </div>
+            <% }) %>
+          <% } %>
         </div>
     
       </div>
@@ -892,6 +895,27 @@
       
       <div style="clear:both;"></div>
       
+      <div data-role="collapsible" data-collapsed="false">
+        <h4>
+          Availablity          
+        </h4>
+        <% console.log( crystals(uid) ) %>
+        <% if(crystals(uid).length === 0){ %>
+          <p>
+            <i>None</i>
+          </p>
+        <% } else { %>
+          <% _(crystals(uid)).each(function(data){ %>
+            <div class="crystal">
+              <img src="<%= data.crystal.image() %>" />
+              <b class="selectable"><%- data.crystal.get("name") %> Crystal</b>:
+              <%= crystalStarsSpan(data) %>
+            
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+        
     </script>
     
     <script id="crystalsTemplate" type="text/template">
@@ -935,8 +959,8 @@
     <script src="scripts/view/roster.js"></script>
     <script src="scripts/view/add-champions.js"></script>
     <script src="scripts/view/team.js"></script>
-    <script src="scripts/view/guide-champions.js"></script>
     <script src="scripts/view/guide.js"></script>
+    <script src="scripts/view/guide-champions.js"></script>
     <script src="scripts/view/crystals.js"></script>
     
     <script src="scripts/base.js"></script>

@@ -9,7 +9,7 @@ CoC.model.CrystalChampion = Backbone.Model.extend({
   
   crystal:function(){
     if(this._crystal === undefined){
-      this._crystal = CoC.data.crystals.findWhere({ uid:this.get("crystal") });
+      this._crystal = CoC.data.crystals.findWhere({ uid:this.get("crystalId") });
     }
     return this._crystal;
   },

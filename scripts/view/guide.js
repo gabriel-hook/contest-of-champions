@@ -37,6 +37,21 @@ CoC.view.GuideViewHelpers={
     return "<span class=\""+id+"\">"+range+"</span>";
   },
   
+  crystalStarsSpan:function(data){
+    if(data === undefined)
+      return "";
+  
+    string = ""
+    
+    for(var i=0; i<data.champions.length; i++){
+      if(i > 0)
+        string += (i==data.champions.length-1)? " and ": ", ";
+      string += data.champions[i].stars();
+    }
+  
+    return "<span class=\"stars\">"+string+"</span>";
+  },
+  
   availabilityImage:function(availability){
     for(var crystal in availability){
       return "<img class=\"crystal\" src=\"images/crystals/crystal_"+crystal.toLowerCase().replace(" ","_")+".png\" />";  
@@ -71,15 +86,32 @@ CoC.view.GuideViewHelpers={
   },
   
   crystals:function(uid){
+    if(this._crystals === undefined)
+      this._crystals = [];
     var crystals = this._crystals[uid];
     if(crystals === undefined){
+      var map = {};
+      var ids = [];
+      var ccs = CoC.data.crystalChampions.where({ championId:uid });
+      for(var i=0; i<ccs.length; i++){
+        var crystal = ccs[i].crystal();
+        var champion = ccs[i].champion();
+        var name = crystal.get("name");
+        if(map[name] === undefined){
+          map[name] = {
+            crystal:crystal,
+            champions:[]
+          };
+          ids.push(name);
+        }
+        map[name].champions.push( champion );
+      }
       crystals = [];
-      
-      //TODO: add crystals here
-      
+      for(var i=0; i<ids.length; i++)
+        crystals.push(map[ids[i]]);
       this._crystals[uid] = crystals;
     }
-    return _(crystals);
+    return crystals;
   },
   
   synergiesFrom:function(uid){

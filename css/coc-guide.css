@@ -217,19 +217,22 @@
   background:rgba(255,255,255,0.75);
 }
 
-#guide-content .availability{
+
+#guide-content .crystal{
   position:relative;
   padding-left:32px;
-  min-height:36px;
+  min-height:32px;
+  line-height:2em;
 }
-#guide-content .availability img{
+
+#guide-content .crystal img{
   position:absolute;
-  top: -6px;
-} 
-#guide-content .availability img.crystal{
-  left:4px;
-  width:28px;
-} 
+  top: 2px;
+  left:0;
+  padding:0;
+  width:24px;
+  height:24px;
+}
 
 @media (max-width:350px), (max-height:400px) {
   #guide-content{

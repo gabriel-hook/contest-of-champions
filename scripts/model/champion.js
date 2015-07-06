@@ -1,4 +1,4 @@
-var CoC = CoC || {};
+﻿var CoC = CoC || {};
 CoC.model = CoC.model || {};
 CoC.model.Champion = Backbone.Model.extend({
 	defaults: {
@@ -11,6 +11,15 @@ CoC.model.Champion = Backbone.Model.extend({
     level: 1,
     pi: 0,
     quest: false
+  },
+  
+  stars:function(){
+    if(this._stars === undefined){
+      this._stars = "";
+      for(var i=0, count = this.get("stars"); i<count; i++)
+        this._stars += "★";
+    }
+    return this._stars;
   },
   
   fid:function(){
@@ -39,6 +48,16 @@ CoC.model.Champion = Backbone.Model.extend({
       this._type = CoC.data.types.findWhere({ uid:this.get("typeId") });
     }
     return this._type;
+  },
+  
+  crystals:function(){
+    if(this._crystals === undefined){
+      this._crystals = [];
+      var ccs = CoC.data.crystalChampions.find({ championId:this.get("uid"), championStars:this.get("stars") });
+      for(var i=0; i<ccs.length; i++)
+        this._crystals.push(ccs.crystal())
+    }
+    return this._crystals;
   },
   
   //dirty way to migrate to new data model using uid/stars as given
