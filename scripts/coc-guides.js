@@ -47,15 +47,12 @@ CoC.guides.add=function(uid, data){
     champion:champion
   };
   if(data){
-  
     if(data.grades)
       if(data.grades.normal){
-        var grade = data.grades.normal;
+        champion.set("grade", data.grades.normal);  
         if(data.grades.awakened)
-          grade += "/" + data.grades.awakened;
-        champion.set("grade", grade);  
+          champion.set("gradeAwakened", data.grades.awakened);  
       }
-  
     value.data = data;
   }
   CoC.guides.data[uid] = value;

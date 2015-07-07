@@ -585,6 +585,10 @@
           <% if( grade ){ %>
             <div class="grade">
               <span class="grade-<%- grade.substr(0,1).toLowerCase() %>"><%- grade %></span>
+              <span>/</span>
+              <% if( gradeAwakened ){ %>
+                <span class="grade-<%- gradeAwakened.substr(0,1).toLowerCase() %>"><%- gradeAwakened %></span>
+              <% } %>
             </div>
           <% } %>
           <div class="title">
