@@ -126,7 +126,6 @@
   padding:0 4px;
   background:rgba(0,0,0,0.5);
   border-radius:5px;
-  color:#fff;
 }
 
 .champion .grade-a{
@@ -204,7 +203,8 @@
   text-transform: uppercase;
 }
 
-.champion .name{
+.champion .name,
+.champion .grade{
   color:#f6f6f6;
   text-shadow: 1px 1px #111;
 }
