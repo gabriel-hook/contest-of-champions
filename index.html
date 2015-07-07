@@ -991,5 +991,11 @@
         catch(e){ }
       });
     </script>
+    <script>
+      var CoC=CoC || {};
+      CoC.onUrlHashChange=function(hash){
+        _gaq.push(['_trackPageview', hash.substr(1)]);
+      };
+    </script>
   </body>
 </html>
