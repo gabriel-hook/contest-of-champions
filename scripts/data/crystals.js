@@ -10,8 +10,10 @@ CoC.data.crystals = new Backbone.Collection([
   
   { uid:"daily", name:"Daily", image:"daily", hologram:"basic" },
   
-  { uid:"2star", name:"2-Star", image:"lottery", hologram:"basic" },
+  { uid:"2star", name:"2-Star", image:"2star", hologram:"basic" },
   { uid:"premium", name:"Premium", image:"premium", hologram:"event" },
+  { uid:"3star", name:"3-Star", image:"3star", hologram:"basic" },
+  { uid:"4star", name:"4-Star", image:"4star", hologram:"basic" },
   
 ], {
   model: CoC.model.Crystal
@@ -53,7 +55,6 @@ CoC.data.crystalChampions.add([
 ]);
 
 CoC.data.crystalChampions.add([
-
   { crystalId:"2star", championId:"blackbolt", championStars:2 },
   { crystalId:"2star", championId:"drax", championStars:2 },
   { crystalId:"2star", championId:"gamora", championStars:2 },
@@ -78,12 +79,10 @@ CoC.data.crystalChampions.add([
   { crystalId:"2star", championId:"ironfist", championStars:2 },
   { crystalId:"2star", championId:"juggernaut", championStars:2 },
   { crystalId:"2star", championId:"magik", championStars:2 },
-  { crystalId:"2star", championId:"scarletwitch", championStars:2 },
-
+  { crystalId:"2star", championId:"scarletwitch", championStars:2 }
 ]);
 
 CoC.data.crystalChampions.add([
-
   { crystalId:"premium", championId:"blackbolt", championStars:2 },
   { crystalId:"premium", championId:"drax", championStars:2 },
   { crystalId:"premium", championId:"gamora", championStars:2 },
@@ -168,5 +167,68 @@ CoC.data.crystalChampions.add([
   { crystalId:"premium", championId:"drstrange", championStars:4 },
   { crystalId:"premium", championId:"juggernaut", championStars:4 },
   { crystalId:"premium", championId:"magik", championStars:4 },
-  { crystalId:"premium", championId:"scarletwitch", championStars:4 },
+  { crystalId:"premium", championId:"scarletwitch", championStars:4 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"3star", championId:"blackbolt", championStars:3 },
+  { crystalId:"3star", championId:"captainmarvel", championStars:3 },
+  { crystalId:"3star", championId:"msmarvel", championStars:3 },
+  { crystalId:"3star", championId:"drax", championStars:3 },
+  { crystalId:"3star", championId:"gamora", championStars:3 },
+  { crystalId:"3star", championId:"ronan", championStars:3 },
+  { crystalId:"3star", championId:"superiorironman", championStars:3 },
+  { crystalId:"3star", championId:"thor", championStars:3 },
+  { crystalId:"3star", championId:"ironman", championStars:3 },
+  { crystalId:"3star", championId:"rocket", championStars:3 },
+  { crystalId:"3star", championId:"starlord", championStars:3 },
+  { crystalId:"3star", championId:"colossus", championStars:3 },
+  { crystalId:"3star", championId:"cyclops", championStars:3 },
+  { crystalId:"3star", championId:"storm", championStars:3 },
+  { crystalId:"3star", championId:"wolverine", championStars:3 },
+  { crystalId:"3star", championId:"blackpanther", championStars:3 },
+  { crystalId:"3star", championId:"blackwidow", championStars:3 },
+  { crystalId:"3star", championId:"daredevil", championStars:3 },
+  { crystalId:"3star", championId:"hawkeye", championStars:3 },
+  { crystalId:"3star", championId:"wintersoldier", championStars:3 },
+  { crystalId:"3star", championId:"abomination", championStars:3 },
+  { crystalId:"3star", championId:"captainamerica", championStars:3 },
+  { crystalId:"3star", championId:"electro", championStars:3 },
+  { crystalId:"3star", championId:"hulk", championStars:3 },
+  { crystalId:"3star", championId:"rhino", championStars:3 },
+  { crystalId:"3star", championId:"spiderman", championStars:3 },
+  { crystalId:"3star", championId:"drstrange", championStars:3 },
+  { crystalId:"3star", championId:"ironfist", championStars:3 },
+  { crystalId:"3star", championId:"juggernaut", championStars:3 },
+  { crystalId:"3star", championId:"magik", championStars:3 },
+  { crystalId:"3star", championId:"scarletwitch", championStars:3 }
+]);
+  
+CoC.data.crystalChampions.add([
+  { crystalId:"4star", championId:"captainmarvel", championStars:4 },
+  { crystalId:"4star", championId:"msmarvel", championStars:4 },
+  { crystalId:"4star", championId:"drax", championStars:4 },
+  { crystalId:"4star", championId:"gamora", championStars:4 },
+  { crystalId:"4star", championId:"superiorironman", championStars:4 },
+  { crystalId:"4star", championId:"thor", championStars:4 },
+  { crystalId:"4star", championId:"ironman", championStars:4 },
+  { crystalId:"4star", championId:"rocket", championStars:4 },
+  { crystalId:"4star", championId:"starlord", championStars:4 },
+  { crystalId:"4star", championId:"colossus", championStars:4 },
+  { crystalId:"4star", championId:"storm", championStars:4 },
+  { crystalId:"4star", championId:"wolverine", championStars:4 },
+  { crystalId:"4star", championId:"blackpanther", championStars:4 },
+  { crystalId:"4star", championId:"blackwidow", championStars:4 },
+  { crystalId:"4star", championId:"daredevil", championStars:4 },
+  { crystalId:"4star", championId:"hawkeye", championStars:4 },
+  { crystalId:"4star", championId:"wintersoldier", championStars:4 },
+  { crystalId:"4star", championId:"abomination", championStars:4 },
+  { crystalId:"4star", championId:"captainamerica", championStars:4 },
+  { crystalId:"4star", championId:"electro", championStars:4 },
+  { crystalId:"4star", championId:"hulk", championStars:4 },
+  { crystalId:"4star", championId:"spiderman", championStars:4 },
+  { crystalId:"4star", championId:"drstrange", championStars:4 },
+  { crystalId:"4star", championId:"juggernaut", championStars:4 },
+  { crystalId:"4star", championId:"magik", championStars:4 },
+  { crystalId:"4star", championId:"scarletwitch", championStars:4 }
 ]);
