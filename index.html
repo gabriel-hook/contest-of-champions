@@ -759,7 +759,8 @@
               <div class="synergy">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
+                <span class="selectable bold"><%- synergy.to().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
           <% } else { %>
@@ -781,7 +782,8 @@
               <div class="synergy">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
+                <span class="selectable bold"><%- synergy.from().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
           <% } else { %>
@@ -857,7 +859,8 @@
               <div class="synergy" title="<%- synergy.to().get("name") %>">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
+                <span class="selectable bold"><%- synergy.to().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
           <% } else { %>
@@ -879,7 +882,8 @@
               <div class="synergy" title="<%- synergy.from().get("name") %>">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
+                <span class="selectable bold"><%- synergy.from().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %></span>
               </div>
             <% }) %>
           <% } else { %>
@@ -928,7 +932,7 @@
                <% crystal.champions(stars).each(function(champion){ %>
                 <div class="crystal-champion">
                   <img class="champion <%= champion.get("typeId") %>" src="<%= champion.portrait() %>" />
-                  <span class="name"><%- champion.get("name") %></span>
+                  <span class="name bold"><%- champion.get("name") %></span>
                 </div>
                <% }) %>
             </div>
