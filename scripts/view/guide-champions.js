@@ -20,7 +20,12 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       });
       view.render();
       that._championViews.push( $("<li>").append( view.el )[0] );
-      that._selector.append($('<option>', { value:uid }).text( champion.get("name") ));
+      
+      var selectName = champion.get("name");
+      if(champion.get("grade"))
+        selectName += " - " + champion.get("grade");
+      
+      that._selector.append($('<option>', { value:uid }).text( selectName ));
       
       //set uids map
       that._indices[uid] = that._uids.length;
