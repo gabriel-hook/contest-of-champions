@@ -22,8 +22,12 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       that._championViews.push( $("<li>").append( view.el )[0] );
       
       var selectName = champion.get("name");
-      if(champion.get("grade"))
-        selectName += " - " + champion.get("grade");
+      if(champion.get("grade")){
+        selectName += " [ " + champion.get("grade");
+        if(champion.get("gradeAwakened"))
+          selectName += " / " + champion.get("gradeAwakened");
+        selectName += " ]";
+      }
       
       that._selector.append($('<option>', { value:uid }).text( selectName ));
       
