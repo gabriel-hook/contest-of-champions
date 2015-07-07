@@ -148,7 +148,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var el = $("#guide-content");
     el.empty();
     el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
-    el.append( view.el ).enhanceWithin();
+    el.append( view.el );
+    el.trigger("create");
     
     //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);

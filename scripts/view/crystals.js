@@ -24,8 +24,7 @@ CoC.view.CrystalsView = Backbone.View.extend({
       container.appendChild(el);
     });
     this.$el.append(container);
-    this.$el.enhanceWithin()
-    
+    this.$el.trigger("create");
     return this;
   }
 });
