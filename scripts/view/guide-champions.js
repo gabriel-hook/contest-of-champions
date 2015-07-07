@@ -128,6 +128,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       this._guideViews[uid] = view;   
     } 
     
+    $("#guide-content").addClass("dirty");
+    
     var that = this;
     if(that._activateTimeout)
       clearTimeout(that._activateTimeout);
@@ -157,6 +159,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
     el.append( view.el );
     el.trigger("create");
+    el.removeClass("dirty");
     
     //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);
