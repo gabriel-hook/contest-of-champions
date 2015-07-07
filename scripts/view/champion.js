@@ -16,10 +16,6 @@ CoC.view.ChampionView = Backbone.View.extend({
     //set my classes
     el.addClass("champion");
     el.addClass(model.get("typeId"));
-    if(model.get("quest") === true)
-      el.addClass("quest");
-    if(model.get("awakened") > 0)
-      el.addClass("awakened");
       
     //set my data
     el.attr("uid", model.get("uid"))

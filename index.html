@@ -580,7 +580,12 @@
         <div class="inner">
           <img class="portrait" src="<%= portrait %>">
           <% if( quest ){ %>
-            <div class="quest"></div>
+            <img class="quest" src="images/icons/quest.png" />
+          <% } %>
+          <% if( grade ){ %>
+            <div class="grade">
+              <span class="grade-<%- grade.substr(0,1).toLowerCase() %>"><%- grade %></span>
+            </div>
           <% } %>
           <div class="title">
             <span class="name"><%- name %></span>

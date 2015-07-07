@@ -117,15 +117,39 @@
   transform:scale(1.1, 1.1);
 }
 
+.champion .grade{
+  display:block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding:0 4px;
+  background:rgba(0,0,0,0.5);
+  border-radius:5px;
+}
+
+.champion .grade-a{
+  color:#0c0;
+} 
+.champion .grade-b{
+  color:#6c0;
+} 
+.champion .grade-c{
+  color:#990;
+} 
+.champion .grade-d{
+  color:#c60;
+} 
+.champion .grade-e,
+.champion .grade-f{
+  color:#c00;
+} 
+
 .champion .quest{
-  position:absolute;
-  top:-10%;
-  right:-10%;
-  width:40%;
-  height:40%;
-  background:url(../images/icons/quest.png);
-  background-size:contain;
-  opacity:0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  height: 33%;
 }
 
 .champion .title{

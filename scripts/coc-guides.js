@@ -46,8 +46,18 @@ CoC.guides.add=function(uid, data){
     uid:uid,
     champion:champion
   };
-  if(data)
+  if(data){
+  
+    if(data.grades)
+      if(data.grades.normal){
+        var grade = data.grades.normal;
+        if(data.grades.awakened)
+          grade += "/" + data.grades.awakened;
+        champion.set("grade", grade);  
+      }
+  
     value.data = data;
+  }
   CoC.guides.data[uid] = value;
 }
 

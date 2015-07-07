@@ -10,6 +10,7 @@ CoC.model.Champion = Backbone.Model.extend({
     rank: 1,
     level: 1,
     pi: 0,
+    grade: 0,
     quest: false
   },
   
