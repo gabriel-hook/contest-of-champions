@@ -182,6 +182,8 @@ CoC.ui.teams=new function(){
   this.empty = true;
  
   this.render=function(result, size){
+    $("#teams").removeClass("dirty");
+  
     this.empty = false;
     this.view.size(size);
     this.view.teams(result.teams);
@@ -190,6 +192,8 @@ CoC.ui.teams=new function(){
   }
   
   this.build=function(){
+    $("#teams").addClass("dirty");
+    
     var size = CoC.settings.getValue("build-size");
     if(size === undefined)
       size = 3;
