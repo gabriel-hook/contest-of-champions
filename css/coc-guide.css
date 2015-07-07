@@ -93,14 +93,6 @@
 /******************
       GUIDES
 ******************/
-#guide-content.dirty .container{
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
-  -moz-filter: blur(4px);
-  -ms-filter: blur(4px);
-  -o-filter: blur(4px);
-}
-
 #guide-content h1, 
 #guide-content h1 a, 
 #guide-content h2, 
