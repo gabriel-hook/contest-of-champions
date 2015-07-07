@@ -69,7 +69,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   disable:function(){
     this.sly.set('keyboardNavBy', null);
-    this._instant = true;
   },
   
   enable:function(){
@@ -96,11 +95,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   //Select a guide by Champion UID
   select:function(uid){
-    var that = this;
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
     if(index === undefined)
       index = 0;
-    that.sly.activate(index, true);
+    this._instant = true;
+    this.sly.activate(index, true);
   },
   
   //Sly activate opens 
