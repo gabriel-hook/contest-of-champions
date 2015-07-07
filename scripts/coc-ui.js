@@ -273,7 +273,7 @@ CoC.ui.teams=new function(){
             
             CoC.ui.teams.render(result, size);
             worker.terminate();
-            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
+            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
           }
         };
         
@@ -306,7 +306,7 @@ CoC.ui.teams=new function(){
           CoC.ui.teams.render(result, size);
           $("#team-build-progress").attr("class","hidden");
           $("#onboarding-progress").removeClass("show");
-          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds (worker failed)");
+          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
         },0);
       },0);
     }
