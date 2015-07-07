@@ -3,9 +3,9 @@ CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
   initialize: function(){
     var that = this;
+    that._instant = true;
     that._guideViews = {};
     that._championViews = [];
-    that._activeUID = null;
     that._uids = [];
     that._indices = {};
     that._selector = $("#guide-champions-selector");
@@ -49,24 +49,17 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       speed:0
     },{
       active:function(event,index){
-        
         if(that._skip){
           that._skip = false;
           return;
         }
-      
-        that.active.call(that, event, index, 250);
+        that.activate.call(that, event, index, (that._instant)? 0: 300);
       }
     }).init();
     
     //reload on page resize
     $(window).bind("resize", function(){
-      that.sly.reload(true, true);
-      setTimeout(function(){
-        if(CoC.hasUrlParam("page-guide") === false)
-          return;
-        that.sly.reload();
-      }, 250);
+      that.reload.call(that);
     });
   },
   
@@ -76,35 +69,42 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   disable:function(){
     this.sly.set('keyboardNavBy', null);
+    this._instant = true;
   },
   
   enable:function(){
     this.sly.set('keyboardNavBy', 'items');
   },
   
+  //Update Sly
   reload:function(){
     var that = this;
     if(CoC.hasUrlParam("page-guide") === false)
       return;
     that.sly.reload();
-    setTimeout(function(){
+    
+    //do delayed but just once
+    if(that._reloadTimeout)
+      clearTimeout(that._reloadTimeout);
+    that._reloadTimeout = setTimeout(function(){
       if(CoC.hasUrlParam("page-guide") === false)
         return;
       that.sly.reload();
+      that._reloadTimeout = undefined;
     }, 250);
   },
   
+  //Select a guide by Champion UID
   select:function(uid){
     var that = this;
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
-    if(index === undefined){
-      CoC.setUrlParam("page-guide","guide",this._activeUID);
-      return;
-    }
+    if(index === undefined)
+      index = 0;
     that.sly.activate(index, true);
   },
   
-  active:function(event, index, delay){
+  //Sly activate opens 
+  activate:function(event, index, delay){
     var item = this.sly.items[index];
     var uid = $(item.el).find(".champion").attr("uid");
     var guide = CoC.guides.get(uid);
@@ -125,23 +125,26 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     } 
     
     var that = this;
-    that._activeUID = uid;
-    setTimeout(function(){
+    if(that._activateTimeout)
+      clearTimeout(that._activateTimeout);
+    if(delay > 0){
+      that._activateTimeout = setTimeout(function(){
+        that.guide.call(that, uid);
+        that._activateTimeout = undefined;
+      }, delay);
+    }
+    else
       that.guide.call(that, uid);
-    }, delay);
   },
   
   guide: function(uid){
     //if we aren't even looking at guides anymore
     if(CoC.hasUrlParam("page-guide") === false)
       return;
-  
-    //if another has been picked in this time
-    if(this._activeUID !== uid)
-      return;
       
+    this._instant = false;
     this._selector.val(uid).selectmenu("refresh")
-  
+
     var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];
     
