@@ -112,10 +112,6 @@
   text-transform:uppercase;
 }
 
-#guide-content,
-#guide-content .container{
-  height: inherit;
-}
 #guide-content .background{
   position:fixed;
   bottom:69px;
