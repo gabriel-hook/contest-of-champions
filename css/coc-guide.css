@@ -190,11 +190,12 @@
   position:relative;
   padding-left:64px;
   min-height:32px;
+  line-height:2em;
 }
 
 #guide-content .synergy img{
   position:absolute;
-  top: -4px;
+  top: 2px;
 } 
 #guide-content .synergy img.champion{
   left:0;

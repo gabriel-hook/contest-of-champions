@@ -643,15 +643,16 @@
         <h2 class="ui-collapsible-heading-toggle">
           <%- (data.fullname)? data.fullname: champion.get("name") %>
         </h2>
+        <% if(data.grades){ %>
+          <div class="bold">
+            Grade: <%= gradeSpan(data.grades.normal) %>
+          </div>
+          <div class="bold">
+            Awakened: <%= gradeSpan(data.grades.awakened) %>
+          </div>
+        <% } %>
         <% if (data.description){ %>
           <p><%- data.description %></p>
-        <% } %>
-        <% if(data.grades){ %>
-          <p class="bold">
-            Grade: <%= gradeSpan(data.grades.normal) %>
-            <br/>
-            Awakened: <%= gradeSpan(data.grades.awakened) %>
-          </p>
         <% } %>
       </div>
       
@@ -667,13 +668,13 @@
             <% } %>
             <p><%= data.gameplay.description %></p>
             <% if (data.gameplay.strategy){ %>
-              <p><b>Strategy:</b>
-                <%= data.gameplay.strategy %>
+              <p>
+                <b>Strategy:</b> <%= data.gameplay.strategy %>
               </p>
             <% } %>
             <% if (data.gameplay.note){ %>
-              <p><b>Note:</b>
-                <%= data.gameplay.note %>
+              <p>
+                <b>Note:</b> <%= data.gameplay.note %>
               </p>
             <% } %>
           </div>
@@ -687,8 +688,8 @@
             <p><b><%- data.awakened.name %></b></p>
             <p><%- data.awakened.description %></p>
             <% if (data.awakened.note){ %>
-              <p><b>Note:</b>
-                <%= data.awakened.note %>
+              <p>
+                <b>Note:</b> <%= data.awakened.note %>
               </p>
             <% } %>
           </div>
@@ -701,8 +702,8 @@
             </h4>
             <p><%= data.heavy.description %></p>
             <% if (data.heavy.note){ %>
-              <p><b>Note:</b>
-                <%= data.heavy.note %>
+              <p>
+                <b>Note:</b> <%= data.heavy.note %>
               </p>
             <% } %>
           </div>
@@ -720,26 +721,24 @@
                 Special <%- number %> <%= ratingSpan(special.rating) %>            
               </h4>
               <p><%= special.description %></p>
-              <p>
               <% if (special.perks){ %>
-                <b>Perks:</b>
-                <%= joinSpans(special.perks, perkSpan) %>
-                <br/>
+                <div>
+                  <b>Perks:</b> <%= joinSpans(special.perks, perkSpan) %>
+                </div>
               <% } %>
               <% if (special.damagetypes){ %>
-                <b>Damage Type:</b>
-                <%= joinSpans(special.damagetypes, damageTypeSpan) %>
-                <br/>
+                <div>
+                  <b>Damage Type:</b> <%= joinSpans(special.damagetypes, damageTypeSpan) %>
+                </div>
               <% } %>
               <% if (special.ranges){ %>
-                <b>Range:</b>
-                <%= joinSpans(special.ranges, rangeSpan) %>
-                <br/>
+                <div>
+                  <b>Range:</b> <%= joinSpans(special.ranges, rangeSpan) %>
+                </div>
               <% } %>
-              </p>
               <% if (data.awakened.note){ %>
-                <p><b>Note:</b>
-                  <%= data.awakened.note %>
+                <p>
+                  <b>Note:</b> <%= data.awakened.note %>
                 </p>
               <% } %>
             </div>
@@ -756,15 +755,13 @@
             Synergies
           </h4>
           <% if(synergiesFrom(uid).size() > 0){ %>
-            <p>
             <% synergiesFrom(uid).each(function(synergy){ %>
               <div class="synergy">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
               </div>
             <% }) %>
-            </p>
           <% } else { %>
             <p>
               <i>None</i>
@@ -780,15 +777,13 @@
             External Synergies
           </h4>
           <% if(synergiesTo(uid).size() > 0){ %>
-            <p>
             <% synergiesTo(uid).each(function(synergy){ %>
               <div class="synergy">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
               </div>
             <% }) %>
-            </p>
           <% } else { %>
             <p>
               <i>None</i>
@@ -805,11 +800,9 @@
             <h4>
               Perks          
             </h4>
-            <p>
-              <% _(data.perks).each(function(perk){ %>
-                <div class="selectable"><%= definition(perk, perkSpan) %></div>
-              <% }) %>
-            </p>
+            <% _(data.perks).each(function(perk){ %>
+              <p class="selectable"><%= definition(perk, perkSpan) %></p>
+            <% }) %>
           </div>
         <% } %>
         
@@ -860,15 +853,13 @@
             Synergies   
           </h4>
           <% if(synergiesFrom(uid).size() > 0){ %>
-            <p>
             <% synergiesFrom(uid).each(function(synergy){ %>
               <div class="synergy" title="<%- synergy.to().get("name") %>">
                 <img class="champion <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
               </div>
             <% }) %>
-            </p>
           <% } else { %>
             <p>
               <i>None</i>
@@ -884,15 +875,13 @@
             External Synergies
           </h4>
           <% if(synergiesTo(uid).size() > 0){ %>
-            <p>
             <% synergiesTo(uid).each(function(synergy){ %>
               <div class="synergy" title="<%- synergy.from().get("name") %>">
                 <img class="champion <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
                 <img class="effect" src="<%= synergy.effect().get("image") %>" />
-                <span class="selectable"><%- synergy.effect().get("name") %></span>
+                <span class="selectable"><%- synergy.effect().get("name") %> %</span>
               </div>
             <% }) %>
-            </p>
           <% } else { %>
             <p>
               <i>None</i>
@@ -939,7 +928,7 @@
                <% crystal.champions(stars).each(function(champion){ %>
                 <div class="crystal-champion">
                   <img class="champion <%= champion.get("typeId") %>" src="<%= champion.portrait() %>" />
-                  <%- champion.get("name") %>
+                  <span class="name"><%- champion.get("name") %></span>
                 </div>
                <% }) %>
             </div>

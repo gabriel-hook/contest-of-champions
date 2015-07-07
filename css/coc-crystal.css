@@ -13,9 +13,15 @@
 
 #crystals .crystal-champion{
   position:relative;
-  padding-left:32px;
+  padding-left:28px;
   min-height:32px;
-  line-height:2em;
+}
+
+#crystals .crystal-champion .name{
+  position: relative;
+  font-weight: bold;
+  top: 4px;
+  line-height: 2em;
 }
 
 #crystals .crystal-champion img{
@@ -26,8 +32,8 @@
   left:0;
   border-bottom:solid 4px;
   padding:0;
-  width:20px;
-  height:20px;
+  width:24px;
+  height:24px;
 } 
 
 
