@@ -211,10 +211,10 @@
 } 
 
 #guide-content .ui-collapsible-heading-toggle{
-  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+  background:linear-gradient( rgba(255,255,255,0.5) /*{c-bup-background-start}*/, rgba(200,200,200,0.5) /*{c-bup-background-end}*/);
 }
 #guide-content .ui-collapsible-content{
-  background:rgba(255,255,255,0.75);
+  background:rgba(255,255,255,0.5);
 }
 
 
