@@ -31,7 +31,6 @@ CoC.ui.preload = function(){
   for(var src in images)
     $('<img/>').attr('src', src).appendTo(hidden);
   $(document.body).append(hidden);
-  console.log(hidden)
 }
 
 CoC.ui.roster=new function(){
