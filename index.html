@@ -812,9 +812,10 @@
             Availablity          
           </h4>
           <% if(crystals(uid).length === 0){ %>
-            <p>
-              <i>None</i>
-            </p>
+            <div class="crystal">
+              <img src="images/crystals/hologram_event.png" />
+              <b><i class="selectable">None</i></b>
+            </div>
           <% } else { %>
             <% _(crystals(uid)).each(function(data){ %>
               <div class="crystal">
@@ -899,16 +900,16 @@
           Availablity          
         </h4>
         <% if(crystals(uid).length === 0){ %>
-          <p>
-            <i>None</i>
-          </p>
+          <div class="crystal">
+            <img src="images/crystals/hologram_event.png" />
+            <b><i class="selectable">None</i></b>
+          </div>
         <% } else { %>
           <% _(crystals(uid)).each(function(data){ %>
             <div class="crystal">
               <img src="<%= data.crystal.image() %>" />
               <b class="selectable"><%- data.crystal.get("name") %> Crystal</b>:
               <%= crystalStarsSpan(data) %>
-            
             </div>
           <% }) %>
         <% } %>
