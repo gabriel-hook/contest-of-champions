@@ -1,18 +1,15 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
-
-//initialize
 CoC.ui.initialize=function(){
-  setTimeout(CoC.ui.preload, 0);
-  
   CoC.ui.roster.initialize();
   CoC.ui.add.initialize();
   CoC.ui.teams.initialize();
   CoC.ui.guides.initialize();
   CoC.ui.crystals.initialize();
+  setTimeout(CoC.ui.preload, 0);
 }
 
-//image preloader for known images
+//Image preloader for known images
 CoC.ui.preload = function(){
   //add all to hash so duplicates are loaded once
   var images = {};
@@ -33,6 +30,7 @@ CoC.ui.preload = function(){
   $(document.body).append(hidden);
 }
 
+//View logic for pages
 CoC.ui.roster=new function(){
 
   this.initialize=function(){
@@ -142,7 +140,7 @@ CoC.ui.roster=new function(){
   
   }
   
-  this.update=function(){
+  this.render=function(){
     this.view.render();
   }
 }
@@ -161,14 +159,13 @@ CoC.ui.add=new function(){
   this.setStars=function(stars){
     this.stars = stars;
     this.view.stars(this.stars)
-    this.update();
+    this.render();
   }
   
-  this.update=function(){
+  this.render=function(){
     this.view.render();
   }
 }
-
 CoC.ui.teams=new function(){
 
   this.initialize=function(){
@@ -180,15 +177,117 @@ CoC.ui.teams=new function(){
   this.worker = null;
   this.empty = true;
  
-  this.update=function(result, size){
+  this.render=function(result, size){
     this.empty = false;
     this.view.size(size);
     this.view.teams(result.teams);
     this.view.extras(result.extras);
     this.view.render();
   }
-}
+  
+  this.build=function(){
+    var size = CoC.settings.getValue("build-size");
+    if(size === undefined)
+      size = 3;
+    
+    var roster = CoC.roster.filtered();
+    var algorithm = CoC.settings.getValue("build-algorithm") || "greedy";
+    var quest = CoC.settings.getValue("build-quest-group")===true;
+    var extras = CoC.settings.getValue("build-include-extras")===true;
+    
+    $("#team-build-progress input").val(0).slider("refresh");
+    $("#team-build-progress").attr("class","");
+    
+    var startTime = new Date(), workerWorking = false;
+    if (window.Worker){
+  
+      try{
+        if(CoC.ui.teams.worker !== null)
+          CoC.ui.teams.worker.terminate();
+        CoC.ui.teams.worker = new Worker('scripts/worker.js?');
+        CoC.ui.teams.worker.onmessage=function(event){
+          if(event.data.type === "progress"){
+            var current = event.data.current;
+            var max = event.data.max;
+            var description = event.data.description;
+            if(description){
+              $("#onboarding-progress .text").text(description);
+              $("#onboarding-progress").addClass("show");
+            }
+            $("#team-build-progress input").val(Math.min(1000 * (current / max), 1000)).slider("refresh");
+          }
+          if(event.data.type === "failed"){
+            $("#team-build-progress input").val(10000).slider("refresh");
+            $("#team-build-progress").attr("class","hidden");
+            $("#onboarding-progress").removeClass("show");
+            CoC.ui.teams.render(event.data.result, size);
+            CoC.ui.teams.worker.terminate();
+            CoC.ui.teams.worker = null;
+            console.log(event.data.message);
+          }
+          if(event.data.type === "complete"){
+            $("#team-build-progress input").val(10000).slider("refresh");
+            $("#team-build-progress").attr("class","hidden");
+            $("#onboarding-progress").removeClass("show");
+            
+            var result = {};
+            if(event.data.result.teams !== undefined){
+              result.teams=[];
+              for(var i=0; i<event.data.result.teams.length; i++){
+                var team = [];
+                for(var j=0; j<event.data.result.teams[i].length; j++)
+                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ))
+                result.teams.push(team);
+              }
+            }
+            if(event.data.result.extras !== undefined){
+              result.extras=[];
+              for(var i=0; i<event.data.result.extras.length; i++)
+                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ))
+            }
+            
+            CoC.ui.teams.render(result, size);
+            CoC.ui.teams.worker.terminate();
+            CoC.ui.teams.worker = null;
+            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
+          }
+        };
+        
+        var rosterJSON = [];
+        for(var i=0; i<roster.length; i++)
+          rosterJSON.push(roster[i].toJSON());
+        
+        CoC.ui.teams.worker.postMessage({
+          algorithm:algorithm,
+          roster:rosterJSON, 
+          size:size, 
+          quest:quest, 
+          extras:extras,
+          weights:CoC.settings.weights, 
+          update:250
+        });
+        workerWorking = true;
+      }
+      catch(e){
+        console.error(e)
+      }
+    }
 
+    if(!workerWorking){
+      setTimeout(function(){
+        var lastTime = (new Date()).getTime();
+        var result = CoC.algorithm[algorithm].build({ champions:roster, size:size, quest:quest, extras:extras });
+        $("#team-build-progressprogress input").val(10000).slider("refresh");
+        setTimeout(function(){
+          CoC.ui.teams.render(result, size);
+          $("#team-build-progress").attr("class","hidden");
+          $("#onboarding-progress").removeClass("show");
+          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds (worker failed)");
+        },0);
+      },0);
+    }
+  }
+}
 CoC.ui.guides=new function(){
 
   this.initialized = false;
@@ -246,7 +345,6 @@ CoC.ui.guides=new function(){
     this.view.disable();
   }
 }
-
 CoC.ui.crystals=new function(){
   
   this.initialize=function(){
@@ -255,7 +353,7 @@ CoC.ui.crystals=new function(){
     });
   }
   
-  this.update=function(){
+  this.render=function(){
     this.view.render();
   }
 }
@@ -269,7 +367,6 @@ $("#page-roster").on( "pageshow", function() {
     })
   }
 });
-
 $("#page-teams").on( "pageshow", function() {
   if(CoC.ui.teams.empty){
     $("#onboarding-teams").addClass("show")
@@ -297,10 +394,10 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   });
 });
   
+//Handle opening/closing pages 
 $("#page-roster").on("pagebeforeshow",function(){
-  CoC.ui.roster.update();
+  CoC.ui.roster.render();
 });
-
 $("#page-guide").on("pagebeforeshow",function(){
   CoC.ui.guides.render();
 });
@@ -310,26 +407,24 @@ $("#page-guide").on("pageshow",function(){
 $("#page-guide").on("pagehide",function(){
   CoC.ui.guides.hide();
 });
-
 $("#page-crystals").on("pagebeforeshow",function(){
-  CoC.ui.crystals.update();
+  CoC.ui.crystals.render();
 });
-
 $("#page-add").on("pagebeforeshow",function(){
   $("#page-add #add-stars a").removeClass("ui-btn-active");
   $("#page-add a#add-stars-"+CoC.ui.add.stars).addClass("ui-btn-active");
-  CoC.ui.add.update();
+  CoC.ui.add.render();
 });
 
+//Initialize inputs
 $("#page-roster").on("pagecreate",function(){
-
   $('#roster-import-input').change(function(e){
     if (this.files && this.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
         var result = e.target.result;
         CoC.roster.csv(result);
-        CoC.ui.roster.update();
+        CoC.ui.roster.render();
       }
       reader.readAsText(this.files[0]);
     }
@@ -366,7 +461,7 @@ $("#page-roster").on("pagecreate",function(){
   
   $("#roster-clear-confirm-yes").click(function(){
     CoC.roster.clear();
-    CoC.ui.roster.update();
+    CoC.ui.roster.render();
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
   });
@@ -386,7 +481,7 @@ $("#page-roster").on("pagecreate",function(){
       CoC.settings.setValue("roster-sort-direction", (newSort || wasAscending)? "descending": "ascending");
       CoC.settings.setValue("roster-sort", sort);
       setAscendingDescending();
-      CoC.ui.roster.update();
+      CoC.ui.roster.render();
     })
     element.prop("checked", (CoC.settings.getValue("roster-sort") === sort)? true: false).checkboxradio('refresh');
     setAscendingDescending();
@@ -402,20 +497,17 @@ $("#page-roster").on("pagecreate",function(){
     (function(filter){
       $('#'+filter).change(function(){
         CoC.settings.setValue(filter, this.checked);
-        CoC.ui.roster.update();
+        CoC.ui.roster.render();
       })
       .prop("checked", CoC.settings.getValue(filter)? true: false)
       .checkboxradio('refresh');
     })(filters[i]);
 });
-
 $("#page-teams").on( "pagecreate", function() {
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
     $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
-});
 
-$("#page-teams").on( "pagecreate", function() {
   $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
@@ -477,113 +569,10 @@ $("#page-teams").on( "pagecreate", function() {
   
   $("#button-build-settings-apply").click(function(){
     $("#panel-team-settings").panel( "close" );
-    
-    var size = CoC.settings.getValue("build-size");
-    if(size === undefined)
-      size = 3;
-    
-    var roster = CoC.roster.filtered();
-    var algorithm = CoC.settings.getValue("build-algorithm") || "greedy";
-    var quest = CoC.settings.getValue("build-quest-group")===true;
-    var extras = CoC.settings.getValue("build-include-extras")===true;
-    
-    $("#team-build-progress input").val(0).slider("refresh");
-    $("#team-build-progress").attr("class","");
-    
-    var startTime = new Date(), workerWorking = false;
-    if (window.Worker){
-  
-      try{
-        if(CoC.ui.teams.worker !== null)
-          CoC.ui.teams.worker.terminate();
-        CoC.ui.teams.worker = new Worker('scripts/worker.js?');
-        CoC.ui.teams.worker.onmessage=function(event){
-          if(event.data.type === "progress"){
-            var current = event.data.current;
-            var max = event.data.max;
-            var description = event.data.description;
-            if(description){
-              $("#onboarding-progress .text").text(description);
-              $("#onboarding-progress").addClass("show");
-            }
-            $("#team-build-progress input").val(Math.min(1000 * (current / max), 1000)).slider("refresh");
-          }
-          if(event.data.type === "failed"){
-            $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").attr("class","hidden");
-            $("#onboarding-progress").removeClass("show");
-            CoC.ui.teams.update(event.data.result, size);
-            CoC.ui.teams.worker.terminate();
-            CoC.ui.teams.worker = null;
-            console.log(event.data.message);
-          }
-          if(event.data.type === "complete"){
-            $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").attr("class","hidden");
-            $("#onboarding-progress").removeClass("show");
-            
-            var result = {};
-            if(event.data.result.teams !== undefined){
-              result.teams=[];
-              for(var i=0; i<event.data.result.teams.length; i++){
-                var team = [];
-                for(var j=0; j<event.data.result.teams[i].length; j++)
-                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ))
-                result.teams.push(team);
-              }
-            }
-            if(event.data.result.extras !== undefined){
-              result.extras=[];
-              for(var i=0; i<event.data.result.extras.length; i++)
-                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ))
-            }
-            
-            CoC.ui.teams.update(result, size);
-            CoC.ui.teams.worker.terminate();
-            CoC.ui.teams.worker = null;
-            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
-          }
-        };
-        
-        var rosterJSON = [];
-        for(var i=0; i<roster.length; i++)
-          rosterJSON.push(roster[i].toJSON());
-        
-        CoC.ui.teams.worker.postMessage({
-          algorithm:algorithm,
-          roster:rosterJSON, 
-          size:size, 
-          quest:quest, 
-          extras:extras,
-          weights:CoC.settings.weights, 
-          update:250
-        });
-        workerWorking = true;
-      }
-      catch(e){
-        console.error(e)
-      }
-    }
-
-    if(!workerWorking){
-      setTimeout(function(){
-        var lastTime = (new Date()).getTime();
-        var result = CoC.algorithm[algorithm].build({ champions:roster, size:size, quest:quest, extras:extras });
-        $("#team-build-progressprogress input").val(10000).slider("refresh");
-        setTimeout(function(){
-          CoC.ui.teams.update(result, size);
-          $("#team-build-progress").attr("class","hidden");
-          $("#onboarding-progress").removeClass("show");
-          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds (worker failed)");
-        },0);
-      },0);
-    }
-    
+    CoC.ui.teams.build();
   });
 });
-
 $("#page-settings-advanced").on( "pagecreate", function() {
-
   var sliders = {};
 
   function addPresets(category){
@@ -644,5 +633,4 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   enableSlider("#settings-advanced-powergain","powergain");
   enableSlider("#settings-advanced-armor","armor");
   enableSlider("#settings-advanced-health","health");
-  
 });
