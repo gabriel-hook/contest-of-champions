@@ -69,10 +69,14 @@ CoC.ui.roster=new function(){
     $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("typeId") }).get("image"));
 
     function setupRankLevel(){
-      var levels = CoC.data.championLevels[champion.get("stars")];
+      var ranks = CoC.data.championLevels[champion.get("stars")];
+      var levels = ranks[champion.get("rank")-1]
+    
+      if(champion.get("level") > levels)
+        champion.set("level", levels)
     
       $("#roster-configure-level").empty();
-      for(var i = 1; i<=levels[champion.get("rank")-1]; i++)
+      for(var i = 1; i<=levels; i++)
         $("#roster-configure-level").append($("<option>").val(i).text(i));
         
       $("#roster-configure-level").unbind( "change" ).change(function(e){              
