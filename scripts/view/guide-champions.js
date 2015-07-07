@@ -28,7 +28,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
           selectName += " / " + champion.get("gradeAwakened");
         selectName += " ]";
       }
-      
       that._selector.append($('<option>', { value:uid }).text( selectName ));
       
       //set uids map
@@ -39,9 +38,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._selector.change(function(event){
       var uid = this.value;
       var index = that._indices[uid];
-      that.active.call(that, event, index, 0);
-      
-      that._skip = true;
+      if(that._indices[uid] === undefined)
+        return;
+      that._instant = true;
       that.sly.activate(index);
     });
     
@@ -58,10 +57,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       speed:0
     },{
       active:function(event,index){
-        if(that._skip){
-          that._skip = false;
-          return;
-        }
         that.activate.call(that, event, index, (that._instant)? 0: 300);
       }
     }).init();
