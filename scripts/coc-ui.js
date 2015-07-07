@@ -176,9 +176,9 @@ CoC.ui.teams=new function(){
     this.view = new CoC.view.TeamView({
       el: $("#teams")[0]
     });
+    this.initWorker();
   }
-      
-  this.worker = null;
+
   this.empty = true;
  
   this.render=function(result, size){
@@ -189,6 +189,24 @@ CoC.ui.teams=new function(){
     this.view.teams(result.teams);
     this.view.extras(result.extras);
     this.view.render();
+  }
+  
+  this.initWorker=function(){
+    this._nextWorker = new Worker('scripts/worker.js?');
+  }
+  
+  this.getWorker=function(){
+    this.destroyWorker();
+    this._currentWorker = this._nextWorker || new Worker('scripts/worker.js?');
+    this._nextWorker = new Worker('scripts/worker.js?');
+    return this._currentWorker
+  }
+  
+  this.destroyWorker=function(){
+    if(this._currentWorker){
+      this._currentWorker.terminate();
+      this._currentWorker = undefined;
+    }
   }
   
   this.build=function(){
@@ -210,10 +228,10 @@ CoC.ui.teams=new function(){
     if (window.Worker){
   
       try{
-        if(CoC.ui.teams.worker !== null)
-          CoC.ui.teams.worker.terminate();
-        CoC.ui.teams.worker = new Worker('scripts/worker.js?');
-        CoC.ui.teams.worker.onmessage=function(event){
+      
+        var worker = CoC.ui.teams.getWorker();
+        
+        worker.onmessage=function(event){
           if(event.data.type === "progress"){
             var current = event.data.current;
             var max = event.data.max;
@@ -229,8 +247,7 @@ CoC.ui.teams=new function(){
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.render(event.data.result, size);
-            CoC.ui.teams.worker.terminate();
-            CoC.ui.teams.worker = null;
+            worker.terminate();
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
@@ -255,8 +272,7 @@ CoC.ui.teams=new function(){
             }
             
             CoC.ui.teams.render(result, size);
-            CoC.ui.teams.worker.terminate();
-            CoC.ui.teams.worker = null;
+            worker.terminate();
             console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds");
           }
         };
@@ -265,7 +281,7 @@ CoC.ui.teams=new function(){
         for(var i=0; i<roster.length; i++)
           rosterJSON.push(roster[i].toJSON());
         
-        CoC.ui.teams.worker.postMessage({
+        worker.postMessage({
           algorithm:algorithm,
           roster:rosterJSON, 
           size:size, 
@@ -516,7 +532,7 @@ $("#page-teams").on( "pagecreate", function() {
   for(var i in CoC.algorithm)
     $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
 
-  $("#team-build-progress").attr("class", (CoC.ui.teams.worker === null)? "hidden": "");
+  $("#team-build-progress").attr("class", "hidden");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
