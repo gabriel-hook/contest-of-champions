@@ -939,6 +939,7 @@
       </div>
     </script>
     
+    <!-- Model definitions -->
     <script src="scripts/model/champion.js"></script>
     <script src="scripts/model/crystal.js"></script>
     <script src="scripts/model/crystal-champion.js"></script>
@@ -946,12 +947,14 @@
     <script src="scripts/model/synergy.js"></script>
     <script src="scripts/model/type.js"></script>
     
+    <!-- Collection population -->
     <script src="scripts/data/champions.js"></script>
     <script src="scripts/data/crystals.js"></script>
     <script src="scripts/data/effects.js"></script>
     <script src="scripts/data/synergies.js"></script>
     <script src="scripts/data/types.js"></script>
     
+    <!-- Model views -->
     <script src="scripts/view/message.js"></script>
     <script src="scripts/view/champion.js"></script>
     <script src="scripts/view/roster.js"></script>
@@ -961,18 +964,23 @@
     <script src="scripts/view/guide-champions.js"></script>
     <script src="scripts/view/crystals.js"></script>
     
+    <!-- App logic -->
     <script src="scripts/coc.js"></script>
     <script src="scripts/coc-algorithm.js"></script>
     <script src="scripts/coc-roster.js"></script>
     <script src="scripts/coc-guides.js"></script>
     <script src="scripts/coc-preset.js"></script>
     <script src="scripts/coc-ui.js"></script>
+    
+    <!-- Init -->
     <script>
       CoC.initialize();
       CoC.roster.initialize();
       CoC.guides.initialize();
       CoC.ui.initialize();
     </script>
+    
+    <!-- Google Analytics -->
     <script type="text/javascript">
       $(document).bind("mobileinit", function(){
         $.mobile.pushStateEnabled = false;
