@@ -3,6 +3,10 @@
   padding-left:2em;
 }
 
+#crystals p{
+  margin:0.5em 0;
+}
+
 #crystals .amount{
   display: inline-block;
   position: relative;
@@ -54,6 +58,7 @@
   border-style:solid;
   border-width:1px;
   border-bottom-width:0;
+  border-color: #ccc;
 }
 #crystals .ui-controlgroup  .ui-collapsible-inset{
   margin:0;
