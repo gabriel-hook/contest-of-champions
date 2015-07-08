@@ -53,7 +53,7 @@ CoC.data.crystalChampions.add([
   { crystalId:"daily", championId:"blackpanther", championStars:2 },
   { crystalId:"daily", championId:"hawkeye", championStars:2 },
   
-  { crystalId:"daily", championId:"gamora", championStars:4 },
+  { crystalId:"daily", championId:"gamora", championStars:3 },
   { crystalId:"daily", championId:"colossus", championStars:3 },
   { crystalId:"daily", championId:"blackpanther", championStars:3 }
 ]);
