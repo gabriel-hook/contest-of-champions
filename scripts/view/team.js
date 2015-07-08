@@ -77,6 +77,10 @@ CoC.view.TeamView = Backbone.View.extend({
       size:this._size,
       teams:this._teams,
       extras:this._extras,
+      renderMessage:function(message){
+        var view = new CoC.view.MessageView({ model:{ message:message } });
+        return view.render().el.outerHTML;
+      },
       renderChampion:function(champion){
         var view = new CoC.view.ChampionView({ model:champion });
         return view.render().el.outerHTML;

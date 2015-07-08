@@ -400,21 +400,45 @@ $("#page-teams").on( "pageshow", function() {
   }
 });
 
+CoC.ui.hasSelection=function(){
+  var text = "";
+  if (window.getSelection) {
+      text = window.getSelection().toString();
+  } else if (document.selection && document.selection.type != "Control") {
+      text = document.selection.createRange().text;
+  }
+  return text.length > 0;
+}
+
+CoC.ui.clearSelection=function(){
+  if ( document.selection ) {
+    document.selection.empty();
+  } else if ( window.getSelection ) {
+    window.getSelection().removeAllRanges();
+  }
+}
+
 //Make swipes move to the next screen
 $( document ).on( "pagecreate", "#page-roster", function() {
   $( document ).on( "swiperight", "#page-roster", function( e ) {
+    if(CoC.ui.hasSelection())
+      return;
     if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
       return;
-    $("#page-roster").find("#header a[href=#panel-roster-options]").click()
+    $("#page-roster").find("#header a[href=#panel-roster-options]").click();
+    setTimeout(CoC.ui.clearSelection, 100);
   });
 });
 
 //Make swipes move to the last screen or open the panel
 $( document ).on( "pagecreate", "#page-teams", function() {
   $( document ).on( "swipeleft", "#page-teams", function( e ) {
+    if(CoC.ui.hasSelection())
+      return;
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
       return;
-    $("#page-teams").find("#header a[href=#panel-team-settings]").click()
+    $("#page-teams").find("#header a[href=#panel-team-settings]").click();
+    setTimeout(CoC.ui.clearSelection, 100);
   });
 });
   
