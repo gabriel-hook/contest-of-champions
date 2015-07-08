@@ -1,4 +1,4 @@
-html, body, div {
+html, body, div, img {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -6,7 +6,7 @@ html, body, div {
     -ms-user-select: none;
     user-select: none;
 }
-p, .selectable{
+.selectable{
     -webkit-user-select: text;
     -khtml-user-select: text;
     -moz-user-select: text;

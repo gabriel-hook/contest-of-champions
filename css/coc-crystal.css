@@ -1,14 +1,26 @@
-#crystals h3.bold{
+#crystals h3{
   position:relative;
-  padding-left:32px;
+  padding-left:2em;
+}
+
+#crystals .amount{
+  display: inline-block;
+  position: relative;
+  padding-right: 1.5em;
+}
+#crystals .currency{
+  position: absolute;
+  bottom: -.5em;
+  right: -1em;
+  height: 3em;
 }
 
 #crystals .icon{
-  position:absolute;
-  top:0;
+  position: absolute;
+  top: -4px;
   left:0;
-  height:24px;
-  width:24px;
+  height: 32px;
+  width: 32px;
 }
 
 #crystals .crystal-champion{
@@ -36,7 +48,55 @@
   height:24px;
 } 
 
+/* Collapsibles in Controlgroup */
+#crystals .description{
+  border-radius:inherit;
+  border-style:solid;
+  border-width:1px;
+  border-bottom-width:0;
+}
+#crystals .ui-controlgroup  .ui-collapsible-inset{
+  margin:0;
+}
+#crystals .ui-controlgroup .ui-controlgroup-controls > div{
+  border-bottom-width:0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#crystals .ui-controlgroup .ui-controlgroup-controls > div:first-child{
+  border-bottom-width:0;
+  -webkit-border-top-right-radius: inherit;
+  border-top-right-radius: inherit;
+  -webkit-border-top-left-radius: inherit;
+  border-top-left-radius: inherit;
+}
+#crystals .ui-controlgroup .ui-controlgroup-controls > div:last-child{
+  border-bottom-width:0;
+  -webkit-border-bottom-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  -webkit-border-bottom-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+#crystals .ui-controlgroup .ui-controlgroup-controls .ui-collapsible .ui-collapsible-content{
+  border-bottom-width:0;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+}
+#crystals .ui-controlgroup .ui-controlgroup-controls .ui-collapsible:last-child .ui-collapsible-content{
+  border-bottom-width:1px;
+  -webkit-border-bottom-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  -webkit-border-bottom-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
 
+/* RESPONSIVE */
 @media (max-width:350px), (max-height:400px) {
   #crystals{
     padding:0;

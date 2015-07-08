@@ -4,16 +4,16 @@ CoC.data = CoC.data || {};
 //Champions
 CoC.data.crystals = new Backbone.Collection([
 
-  { uid:"versus", name:"Versus", image:"versus", hologram:"basic" },
-  { uid:"arena", name:"Arena", image:"battlechips", hologram:"event" },
-  { uid:"alliance", name:"Alliance", image:"alliance", hologram:"event" },
+  { uid:"versus", name:"Versus", image:"versus", description:"Aquired when you win a versus match." },
+  { uid:"arena", name:"Arena", image:"battlechips", description:"Buy for 2000 $BATTLECHIPS$." },
+  { uid:"alliance", name:"Alliance", image:"alliance", description:"Buy for 1000 $LOYALTY$." },
   
-  { uid:"daily", name:"Daily", image:"daily", hologram:"basic" },
+  { uid:"daily", name:"Daily", image:"daily", description:"Aquired once every 24 hours." },
   
-  { uid:"2star", name:"2-Star", image:"2star", hologram:"basic" },
-  { uid:"premium", name:"Premium", image:"premium", hologram:"event" },
-  { uid:"3star", name:"3-Star", image:"3star", hologram:"basic" },
-  { uid:"4star", name:"4-Star", image:"4star", hologram:"basic" },
+  { uid:"2star", name:"2-Star", image:"2star" },
+  { uid:"premium", name:"Premium", image:"premium", description:"Buy for 100 $UNITS$." },
+  { uid:"3star", name:"3-Star", image:"3star", description:"Buy for 400 $UNITS$, rare event." },
+  { uid:"4star", name:"4-Star", image:"4star", description:"Buy for 2500 $UNITS$, very rare event." },
   
 ], {
   model: CoC.model.Crystal

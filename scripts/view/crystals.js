@@ -1,5 +1,19 @@
 var CoC = CoC || {};
 CoC.view = CoC.view || {};
+
+
+CoC.view.CrystalsViewHelpers={
+  
+  parseDescription:function(crystal){
+    //convert $CURRENCY$ strings to images
+    return crystal.get("description").replace(
+      /([0-9]+)\s*[$]([a-zA-Z]+)[$]/gi, 
+      "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/$2.png\" />$1</span>"
+    );
+  }
+  
+}
+
 CoC.view.CrystalsView = Backbone.View.extend({
   template: _.template( $('#crystalsTemplate').html() ),
   
@@ -7,10 +21,12 @@ CoC.view.CrystalsView = Backbone.View.extend({
     var that = this;
     that._views = [];
     CoC.data.crystals.each(function(crystal){
-      var html = $(that.template({
-        crystal:crystal
-      }));
-      
+    
+      var data = {};
+      _.extend(data, { crystal:crystal });
+      _.extend(data, CoC.view.CrystalsViewHelpers);
+    
+      var html = $(that.template(data));
       for(var i=0; i<html.length; i++)
         that._views.push( html[i] );
     });

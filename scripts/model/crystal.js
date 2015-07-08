@@ -4,8 +4,7 @@ CoC.model.Crystal = Backbone.Model.extend({
 	defaults: {
     name: "Crystal",
     uid: "crystal",
-    image:"crystal",
-    hologram:"basic",
+    image:"crystal"
   },
 
   image:function(){

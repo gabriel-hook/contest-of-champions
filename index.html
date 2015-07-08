@@ -618,7 +618,7 @@
             <% _(team.effects).each(function(effect){ %>
               <div class="synergy">
                 <img src="<%= effect.get("image") %>">
-                <span><%- effect.get("name") %> +<%- effect.get("amount") %> %</span>
+                <span class="selectable"><%- effect.get("name") %> +<%- effect.get("amount") %> %</span>
               </div>
             <% }) %>
           </div>
@@ -644,15 +644,15 @@
           <%- (data.fullname)? data.fullname: champion.get("name") %>
         </h2>
         <% if(data.grades){ %>
-          <div class="bold">
+          <div class="selectable bold">
             Grade: <%= gradeSpan(data.grades.normal) %>
           </div>
-          <div class="bold">
+          <div class="selectable bold">
             Awakened: <%= gradeSpan(data.grades.awakened) %>
           </div>
         <% } %>
         <% if (data.description){ %>
-          <p><%- data.description %></p>
+          <p class="selectable"><%- data.description %></p>
         <% } %>
       </div>
       
@@ -664,16 +664,18 @@
               Gameplay <%= ratingSpan(data.gameplay.rating) %>           
             </h4>
             <% if (data.gameplay.style){ %>
-              <p><b><%- data.gameplay.style %></b></p>
+              <p class="selectable">
+                <b><%- data.gameplay.style %></b>
+              </p>
             <% } %>
-            <p><%= data.gameplay.description %></p>
+            <p class="selectable"><%= data.gameplay.description %></p>
             <% if (data.gameplay.strategy){ %>
-              <p>
+              <p class="selectable">
                 <b>Strategy:</b> <%= data.gameplay.strategy %>
               </p>
             <% } %>
             <% if (data.gameplay.note){ %>
-              <p>
+              <p class="selectable">
                 <b>Note:</b> <%= data.gameplay.note %>
               </p>
             <% } %>
@@ -685,10 +687,12 @@
             <h4>
               Awakened Ability <%= ratingSpan(data.awakened.rating) %>           
             </h4>
-            <p><b><%- data.awakened.name %></b></p>
-            <p><%- data.awakened.description %></p>
+            <p class="selectable">
+              <b><%- data.awakened.name %></b>
+            </p>
+            <p class="selectable"><%- data.awakened.description %></p>
             <% if (data.awakened.note){ %>
-              <p>
+              <p class="selectable">
                 <b>Note:</b> <%= data.awakened.note %>
               </p>
             <% } %>
@@ -700,9 +704,9 @@
             <h4>
               Heavy Attack <%= ratingSpan(data.heavy.rating) %>           
             </h4>
-            <p><%= data.heavy.description %></p>
+            <p class="selectable"><%= data.heavy.description %></p>
             <% if (data.heavy.note){ %>
-              <p>
+              <p class="selectable">
                 <b>Note:</b> <%= data.heavy.note %>
               </p>
             <% } %>
@@ -720,24 +724,24 @@
               <h4>
                 Special <%- number %> <%= ratingSpan(special.rating) %>            
               </h4>
-              <p><%= special.description %></p>
+              <p class="selectable"><%= special.description %></p>
               <% if (special.perks){ %>
-                <div>
+                <div class="selectable">
                   <b>Perks:</b> <%= joinSpans(special.perks, perkSpan) %>
                 </div>
               <% } %>
               <% if (special.damagetypes){ %>
-                <div>
+                <div class="selectable">
                   <b>Damage Type:</b> <%= joinSpans(special.damagetypes, damageTypeSpan) %>
                 </div>
               <% } %>
               <% if (special.ranges){ %>
-                <div>
+                <div class="selectable">
                   <b>Range:</b> <%= joinSpans(special.ranges, rangeSpan) %>
                 </div>
               <% } %>
               <% if (data.awakened.note){ %>
-                <p>
+                <p class="selectable">
                   <b>Note:</b> <%= data.awakened.note %>
                 </p>
               <% } %>
@@ -920,12 +924,24 @@
     </script>
     
     <script id="crystalsTemplate" type="text/template">
-      <h3 class="bold"><img class="icon" src="<%- crystal.image() %>"> <%- crystal.get("name") %> Crystal</h3>
-      <div data-role="collapsibleset">
+      <h3 class="bold">
+        <img class="icon" src="<%- crystal.image() %>">
+        <span><%- crystal.get("name") %> Crystal</span>
+      </h3>
+      
+      <fieldset data-role="controlgroup" data-mini="true">
+      
+        <% if(crystal.get("description")){ %>
+          <div class="ui-collapsible-content ui-body-inherit description" aria-hidden="false">
+            <p class="selectable">
+              <%= parseDescription(crystal) %>
+            </p>
+          </div>
+        <% } %>
       
         <% _.each([1,2,3,4], function(stars){ %>
           <% if (crystal.champions(stars).size() > 0){ %>
-            <div data-role="collapsible" data-mini="true">
+            <div data-role="collapsible">
               <h4>
                 <%- ["", "★","★★","★★★","★★★★"][stars] %>
               </h4>
@@ -939,7 +955,7 @@
           <% } %>
         <% }) %>
         
-      </div>
+      </fieldset>
     </script>
     
     <!-- Model definitions -->
