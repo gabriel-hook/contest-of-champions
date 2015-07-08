@@ -52,6 +52,13 @@
   height:24px;
 } 
 
+#crystals .ui-collapsible-heading-toggle{
+  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.5) /*{c-bup-background-end}*/);
+}
+#crystals .ui-collapsible-content{
+  background:rgba(255,255,255,0.75);
+}
+
 /* Collapsibles in Controlgroup */
 #crystals .description{
   border-radius:inherit;
