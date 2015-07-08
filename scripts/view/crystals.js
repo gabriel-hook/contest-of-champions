@@ -7,8 +7,9 @@ CoC.view.CrystalsViewHelpers={
   parseDescription:function(crystal){
     //convert $CURRENCY$ strings to images
     return crystal.get("description").replace(
-      /([0-9]+)\s*[$]([a-zA-Z]+)[$]/gi, 
-      "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/$2.png\" />$1</span>"
+      /([0-9]+)\s*[$]([A-Z]+)[$]/gi, function(match, amount, currency){
+        return "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/"+currency.toLowerCase()+".png\" />"+amount+"</span>"
+      }
     );
   }
   
