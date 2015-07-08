@@ -4,11 +4,11 @@ CoC.data = CoC.data || {};
 //Champions
 CoC.data.crystals = new Backbone.Collection([
 
-  { uid:"versus", name:"Versus", image:"versus", description:"Aquired when you win a versus match." },
+  { uid:"versus", name:"Versus", image:"versus", description:"Acquired when you win a versus match." },
   { uid:"arena", name:"Arena", image:"battlechips", description:"Buy for 2000 $BATTLECHIPS$." },
   { uid:"alliance", name:"Alliance", image:"alliance", description:"Buy for 1000 $LOYALTY$." },
   
-  { uid:"daily", name:"Daily", image:"daily", description:"Aquired once every 24 hours." },
+  { uid:"daily", name:"Daily", image:"daily", description:"Acquired once every 24 hours." },
   
   { uid:"2star", name:"2-Star", image:"2star" },
   { uid:"premium", name:"Premium", image:"premium", description:"Buy for 100 $UNITS$." },
