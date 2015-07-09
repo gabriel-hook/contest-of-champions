@@ -24,7 +24,7 @@
     "1":{
       "rating":4,
       "description":"Ultra rapid and quick unleash, making it challenging to block if used at the end of a combo. Does light damage.",
-      "perks":["Cauterize","Stun"],
+      "abilities":["Cauterize","Stun"],
       "damagetypes":["Energy"],
       "ranges":["Long"]
     },
@@ -32,7 +32,7 @@
     "2":{
       "rating":3,
       "description":"Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
-      "perks":["Cauterize","Stun"],
+      "abilities":["Cauterize","Stun"],
       "damagetypes":["Energy","Physical"],
       "ranges":["Long","Short"]
     },
@@ -40,19 +40,19 @@
     "3":{
       "rating":3,
       "description":"Surprisingly doesn't do a ton of damage, but looks badass and gives you a few seconds of rest.",
-      "perks":["Cauterize","Stun"],
+      "abilities":["Cauterize","Stun"],
       "damagetypes":["Energy"]
     }
     
   },
 
-  "awakened":{
+  "signature":{
     "rating":4,
     "name":"Absorption",
     "description":"40.8% of energy attack damage is converted into power and health. Also adds armor up!"
   },
 
-  "perks":[
+  "abilities":[
     "Bleed Immunity",
     "Poison Immunity",
     { "Bleed": "14% chance, 20% damage, 5.5 seconds." },

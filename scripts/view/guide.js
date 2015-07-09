@@ -23,11 +23,11 @@ CoC.view.GuideViewHelpers={
     return "<span class=\""+id+"\">"+damage+"</span>";
   },
   
-  perkSpan:function(perk){
-    if(perk === undefined)
+  abilitySpan:function(ability){
+    if(ability === undefined)
       return "";
-    var id = "perk-"+perk.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+perk+"</span>";
+    var id = "ability-"+ability.toLowerCase().replace(" ","-");
+    return "<span class=\""+id+"\">"+ability+"</span>";
   },
   
   rangeSpan:function(range){

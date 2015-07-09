@@ -673,9 +673,9 @@
               Gameplay <%= ratingSpan(data.gameplay.rating) %>           
             </h4>
             <% if (data.gameplay.style){ %>
-              <p class="selectable">
-                <b><%- data.gameplay.style %></b>
-              </p>
+              <div class="selectable bold">
+                <%- data.gameplay.style %>
+              </div>
             <% } %>
             <p class="selectable"><%= data.gameplay.description %></p>
             <% if (data.gameplay.strategy){ %>
@@ -691,18 +691,18 @@
           </div>
         <% } %>
         
-        <% if(data.awakened){ %>
+        <% if(data.signature){ %>
           <div data-role="collapsible" data-collapsed="false" data-mini="true">
             <h4>
-              Awakened Ability <%= ratingSpan(data.awakened.rating) %>           
+              Signature Ability <%= ratingSpan(data.signature.rating) %>           
             </h4>
-            <p class="selectable">
-              <b><%- data.awakened.name %></b>
-            </p>
-            <p class="selectable"><%- data.awakened.description %></p>
-            <% if (data.awakened.note){ %>
+            <div class="selectable">
+              <b><%- data.signature.name %></b>
+            </div>
+            <p class="selectable"><%- data.signature.description %></p>
+            <% if (data.signature.note){ %>
               <p class="selectable">
-                <b>Note:</b> <%= data.awakened.note %>
+                <b>Note:</b> <%= data.signature.note %>
               </p>
             <% } %>
           </div>
@@ -734,9 +734,9 @@
                 Special <%- number %> <%= ratingSpan(special.rating) %>            
               </h4>
               <p class="selectable"><%= special.description %></p>
-              <% if (special.perks){ %>
+              <% if (special.abilities){ %>
                 <div class="selectable">
-                  <b>Perks:</b> <%= joinSpans(special.perks, perkSpan) %>
+                  <b>Abilities:</b> <%= joinSpans(special.abilities, abilitySpan) %>
                 </div>
               <% } %>
               <% if (special.damagetypes){ %>
@@ -749,9 +749,9 @@
                   <b>Range:</b> <%= joinSpans(special.ranges, rangeSpan) %>
                 </div>
               <% } %>
-              <% if (data.awakened.note){ %>
+              <% if (special.note){ %>
                 <p class="selectable">
-                  <b>Note:</b> <%= data.awakened.note %>
+                  <b>Note:</b> <%= special.note %>
                 </p>
               <% } %>
             </div>
@@ -810,13 +810,13 @@
       <div style="clear:both;"></div>
       <div class="left">
       
-        <% if(data.perks){ %>
+        <% if(data.abilities){ %>
           <div data-role="collapsible" data-collapsed="false">
             <h4>
-              Perks          
+              Abilities          
             </h4>
-            <% _(data.perks).each(function(perk){ %>
-              <p class="selectable"><%= definition(perk, perkSpan) %></p>
+            <% _(data.abilities).each(function(ability){ %>
+              <p class="selectable"><%= definition(ability, abilitySpan) %></p>
             <% }) %>
           </div>
         <% } %>
