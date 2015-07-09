@@ -228,9 +228,13 @@ CoC.ui.teams=new function(){
     if (window.Worker){
   
       try{
+        //Convert Champion models to JSON for message transport
+        var rosterJSON = [];
+        for(var i=0; i<roster.length; i++)
+          rosterJSON.push(roster[i].toJSON());
       
+        //Setup and start the worker
         var worker = CoC.ui.teams.getWorker();
-        
         worker.onmessage=function(event){
           if(event.data.type === "progress"){
             var current = event.data.current;
@@ -247,14 +251,12 @@ CoC.ui.teams=new function(){
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.render(event.data.result, size);
-            worker.terminate();
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
-            $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").attr("class","hidden");
-            $("#onboarding-progress").removeClass("show");
+            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
             
+            //Convert the result back to Champion models post-transport
             var result = {};
             if(event.data.result.teams !== undefined){
               result.teams=[];
@@ -271,16 +273,13 @@ CoC.ui.teams=new function(){
                 result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ))
             }
             
+            //update the UI
+            $("#team-build-progress input").val(10000).slider("refresh");
+            $("#team-build-progress").attr("class","hidden");
+            $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.render(result, size);
-            worker.terminate();
-            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
           }
         };
-        
-        var rosterJSON = [];
-        for(var i=0; i<roster.length; i++)
-          rosterJSON.push(roster[i].toJSON());
-        
         worker.postMessage({
           algorithm:algorithm,
           roster:rosterJSON, 
@@ -290,6 +289,7 @@ CoC.ui.teams=new function(){
           weights:CoC.settings.weights, 
           update:250
         });
+        
         workerWorking = true;
       }
       catch(e){
