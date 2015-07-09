@@ -1,10 +1,11 @@
 ﻿//load backbone and underscore
 importScripts('lib/underscore-min.js', 'lib/backbone-min.js');
 
-//load models, data and algorithms
+//load models and data
 importScripts('model/champion.js', 'model/effect.js', 'model/synergy.js', 'model/type.js');
 importScripts('data/champions.js', 'data/effects.js', 'data/synergies.js', 'data/types.js');
 
+//load algorithms
 importScripts('coc-algorithm.js');
 
 onmessage = function (event){
@@ -16,8 +17,13 @@ onmessage = function (event){
   var extras = event.data.extras;
   var update = event.data.update;
   
-  CoC.settings = {};
+  if(!CoC.algorithm[algorithm]){
+    postMessage({ type:"failed", message:"Algorithm not found" });
+    return;
+  }
   
+  //build mock settings with weights
+  CoC.settings = {};
   CoC.settings.getWeight=function(key){
     var value = weights[key];
     if(value === undefined || value === null)
@@ -41,40 +47,40 @@ onmessage = function (event){
     }[number]);
   }
   
+  //Build progress function (update only every %update)
   var lastTime = (new Date()).getTime();
-  if(!CoC.algorithm[algorithm]){
-    postMessage({ type:"failed", message:"Algorithm not found" });
-    return;
-  }
+  var progress = function(current, max, description){
+    var time = (new Date()).getTime();
+    if(!description && time-lastTime < update)
+      return;
+    lastTime = time;
+    postMessage({ 
+      type:"progress", 
+      current:current, 
+      max:max,
+      description:description        
+    });
+  } 
   
+  //Convert Champion JSON to models
   var roster = [];
   for(var i=0; i<rosterJSON.length; i++)
     roster.push(new CoC.model.Champion( rosterJSON[i] ));
   
+  //Get result from algorithm
   var result = CoC.algorithm[algorithm].build({ 
     champions:roster, 
     size:size, 
     extras:extras, 
     quest:quest, 
-    progress:function(current, max, description){
-      var time = (new Date()).getTime();
-      if(!description && time-lastTime < update)
-        return;
-      lastTime = time;
-      postMessage({ 
-        type:"progress", 
-        current:current, 
-        max:max,
-        description:description        
-      });
-    }  
+    progress:progress 
   });
 
+  //Convert Champion models to JSON
   if(result.teams)
     for(var i=0; i<result.teams.length; i++)
       for(var j=0; j<result.teams[i].length; j++)
         result.teams[i][j] = result.teams[i][j].toJSON();
-  
   if(result.extras)
     for(var i=0; i<result.extras.length; i++)
       result.extras[i] = result.extras[i].toJSON();
