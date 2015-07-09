@@ -86,7 +86,7 @@ CoC.ui.roster=new function(){
       }).val(champion.get("level")).selectmenu('refresh');
     }
     
-    $("#roster-configure-rank").text("");
+    $("#roster-configure-rank").empty();
     for(var i = 1; i<=CoC.data.championLevels[champion.get("stars")].length; i++)
       $("#roster-configure-rank").append($("<option>").val(i).text(i));
     $("#roster-configure-rank").unbind( "change" ).change(function(e){        
@@ -152,22 +152,26 @@ CoC.ui.roster=new function(){
 CoC.ui.add=new function(){
   
   this.initialize=function(){
+    this._stars = 2;
     this.view = new CoC.view.AddChampionsView({
       el: $("#add-champions")[0]
     });
-    this.view.stars(this.stars)
+    this.view.stars(this._stars)
   }
-  
-  this.stars = 2;
 
   this.setStars=function(stars){
-    this.stars = stars;
-    this.view.stars(this.stars)
+    this._stars = stars;
+    this.view.stars(this._stars)
     this.render();
   }
   
   this.render=function(){
     this.view.render();
+  }
+  
+  this.show=function(){
+    $("#page-add #add-stars a").removeClass("ui-btn-active");
+    $("#page-add #add-stars a#add-stars-" + this._stars).addClass("ui-btn-active");
   }
 }
 CoC.ui.teams=new function(){
@@ -330,7 +334,6 @@ CoC.ui.guides=new function(){
     });
   }
   
-  
   this.open=function(uid){
     this._uid = uid;
     jQuery.mobile.changePage("#page-guide",{
@@ -400,6 +403,7 @@ $("#page-teams").on( "pageshow", function() {
   }
 });
 
+//handle checking and clearing selections on page swipes
 CoC.ui.hasSelection=function(){
   var text = "";
   if (window.getSelection) {
@@ -409,7 +413,6 @@ CoC.ui.hasSelection=function(){
   }
   return text.length > 0;
 }
-
 CoC.ui.clearSelection=function(){
   if ( document.selection ) {
     document.selection.empty();
@@ -446,6 +449,12 @@ $( document ).on( "pagecreate", "#page-teams", function() {
 $("#page-roster").on("pagebeforeshow",function(){
   CoC.ui.roster.render();
 });
+$("#page-add").on("pagebeforeshow",function(){
+  CoC.ui.add.render();
+});
+$("#page-add").on("pageshow",function(){
+  CoC.ui.add.show();
+});
 $("#page-guide").on("pagebeforeshow",function(){
   CoC.ui.guides.render();
 });
@@ -457,11 +466,6 @@ $("#page-guide").on("pagehide",function(){
 });
 $("#page-crystals").on("pagebeforeshow",function(){
   CoC.ui.crystals.render();
-});
-$("#page-add").on("pagebeforeshow",function(){
-  $("#page-add #add-stars a").removeClass("ui-btn-active");
-  $("#page-add a#add-stars-"+CoC.ui.add.stars).addClass("ui-btn-active");
-  CoC.ui.add.render();
 });
 
 //Initialize inputs
