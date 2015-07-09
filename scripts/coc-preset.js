@@ -63,6 +63,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "stars-2":1,
   "stars-3":2,
   "stars-4":4,
+  "stars-5":8,
 
   "awakened":1.5,
 
@@ -85,6 +86,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "roster-sort":"stars",
   "roster-sort-direction":"descending",
   
+  "roster-filter-stars-5":true,
   "roster-filter-stars-4":true,
   "roster-filter-stars-3":true,
   "roster-filter-stars-2":true,
@@ -92,6 +94,7 @@ CoC.settings.preset.add(null, "Defaults",{
 //build settings 
   "build-algorithm":"shuffle",
   "build-size":3,
+  "build-filter-stars-5":true,
   "build-filter-stars-4":true,
   "build-filter-stars-3":true,
   "build-filter-stars-2":true,

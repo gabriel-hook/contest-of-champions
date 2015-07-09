@@ -54,7 +54,8 @@ CoC.view.RosterView = Backbone.View.extend({
       1: CoC.settings.getValue("roster-filter-stars-1"),
       2: CoC.settings.getValue("roster-filter-stars-2"),
       3: CoC.settings.getValue("roster-filter-stars-3"),
-      4: CoC.settings.getValue("roster-filter-stars-4")
+      4: CoC.settings.getValue("roster-filter-stars-4"),
+      5: CoC.settings.getValue("roster-filter-stars-5")
     };
     
     CoC.data.roster.each(function(champion){

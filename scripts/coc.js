@@ -105,7 +105,7 @@ CoC.settings.keys.duplicates=new function(){
 };
 
 CoC.settings.setStarWeight=function(stars,weight){
-  if(parseInt(stars) === NaN || stars < 1 || stars > 4)
+  if(parseInt(stars) === NaN || stars < 1 || stars > 5)
     return;
   CoC.settings.setWeight(CoC.settings.keys.stars.get(stars), weight);
 }

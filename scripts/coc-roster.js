@@ -67,7 +67,8 @@ CoC.roster.filtered = function(){
     1: CoC.settings.getValue("build-filter-stars-1"),
     2: CoC.settings.getValue("build-filter-stars-2"),
     3: CoC.settings.getValue("build-filter-stars-3"),
-    4: CoC.settings.getValue("build-filter-stars-4")
+    4: CoC.settings.getValue("build-filter-stars-4"),
+    5: CoC.settings.getValue("build-filter-stars-5")
   };
   return CoC.data.roster.filter(function(champion){
     return filterStars[champion.get("stars")];

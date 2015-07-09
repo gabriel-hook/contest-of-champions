@@ -1140,7 +1140,7 @@ CoC.algorithm = CoC.algorithm || {};
       };
       for(i=2; i<=5; i++)
         weights.types[i] = CoC.settings.getDuplicateWeight(i);
-      for(i=0; i<=4; i++)
+      for(i=0; i<=5; i++)
         weights.stars[i] = CoC.settings.getStarWeight(i)
       weights.awakened = CoC.settings.getWeight("awakened");
       return weights;

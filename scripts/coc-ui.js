@@ -539,7 +539,8 @@ $("#page-roster").on("pagecreate",function(){
     'roster-filter-stars-1',
     'roster-filter-stars-2',
     'roster-filter-stars-3',
-    'roster-filter-stars-4'
+    'roster-filter-stars-4',
+    'roster-filter-stars-5'
   ];
   for(var i=0; i<filters.length; i++)
     (function(filter){
@@ -602,7 +603,8 @@ $("#page-teams").on( "pagecreate", function() {
     'build-filter-stars-1',
     'build-filter-stars-2',
     'build-filter-stars-3',
-    'build-filter-stars-4'
+    'build-filter-stars-4',
+    'build-filter-stars-5'
   ];
   for(var i=0; i<filters.length; i++)
     (function(filter){
@@ -663,6 +665,7 @@ $("#page-settings-advanced").on( "pagecreate", function() {
     })
     sliders[type]=id;
   }
+  enableSlider("#settings-advanced-star5","stars-5");
   enableSlider("#settings-advanced-star4","stars-4");
   enableSlider("#settings-advanced-star3","stars-3");
   enableSlider("#settings-advanced-star2","stars-2");

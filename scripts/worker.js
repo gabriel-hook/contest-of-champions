@@ -28,7 +28,8 @@ onmessage = function (event){
     return CoC.settings.getWeight({
       2:"stars-2",
       3:"stars-3",
-      4:"stars-4"
+      4:"stars-4",
+      4:"stars-5"
     }[stars]);
   }
   CoC.settings.getDuplicateWeight=function(number){

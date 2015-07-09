@@ -6,7 +6,8 @@ CoC.data.championLevels={
   1:[ 10, 20 ],
   2:[ 10, 20, 30 ],
   3:[ 10, 20, 30, 40 ],
-  4:[ 10, 20, 30, 40, 50 ]
+  4:[ 10, 20, 30, 40, 50 ],
+  5:[ 10, 20, 30, 40, 50, 60 ]
 }
 
 //Champions
@@ -42,6 +43,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"hulkbuster", name:"Hulkbuster", typeId:"tech", stars: 2 },
   { uid:"hulkbuster", name:"Hulkbuster", typeId:"tech", stars: 3 },
   { uid:"hulkbuster", name:"Hulkbuster", typeId:"tech", stars: 4 },
+  { uid:"kang", name:"Kang", typeId:"tech", stars: 4 },
   { uid:"rocket", name:"Rocket Raccoon", typeId:"tech", stars: 3 },
   { uid:"rocket", name:"Rocket Raccoon", typeId:"tech", stars: 4 },
   { uid:"starlord", name:"Star-Lord", typeId:"tech", stars: 2 },

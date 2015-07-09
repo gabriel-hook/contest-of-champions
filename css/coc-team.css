@@ -93,7 +93,13 @@
   width:33.333%;
 }
 #panel-team-settings #build-filter-stars .ui-checkbox{
-  width:25%;
+  width:20%;
+}
+#panel-team-settings .ui-radio label,
+#panel-team-settings .ui-checkbox label{
+  padding-left:0;
+  padding-right:0;
+  text-align:center;
 }
 
 
