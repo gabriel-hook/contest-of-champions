@@ -14,6 +14,7 @@ CoC.data.championLevels={
 CoC.data.champions = new Backbone.Collection([
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 2 },
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 3 },
+  { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 4 },
   { uid:"captainmarvel", name:"Cap. Marvel", typeId:"cosmic", stars: 3 },
   { uid:"captainmarvel", name:"Cap. Marvel", typeId:"cosmic", stars: 4 },
   { uid:"drax", name:"Drax", typeId:"cosmic", stars: 2 },
