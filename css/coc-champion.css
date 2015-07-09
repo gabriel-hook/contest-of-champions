@@ -221,7 +221,7 @@
     border-bottom-width: 6px;
   }
   .champion .stars{
-    bottom:-17%;
+    bottom:-18%;
   }
   .champion span{
     font-size:0.6em;
@@ -233,7 +233,7 @@
     border-bottom-width: 8px;
   }
   .champion .stars{
-    bottom:-15%;
+    bottom:-16%;
   }
   .champion span{
     font-size:0.8em;
@@ -242,7 +242,7 @@
 }
 @media (min-width:800px) {
   .champion .stars{
-    bottom:-14%;
+    bottom:-15%;
   }
   .champion span{
     font-size:1em;
