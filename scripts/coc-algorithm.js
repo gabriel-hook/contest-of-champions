@@ -4,11 +4,13 @@ CoC.algorithm = CoC.algorithm || {};
 (function(){
     
   function factorial(n){
-    if(!factorial.cache)
-      factorial.cache = [ 1, 1 ];
-    if(factorial.cache.length < n)
+    if(factorial.cache === undefined)
+      factorial.cache = { 0:1, 1:1, length:1 };
+    if(factorial.cache.length < n){
       for(var i=factorial.cache.length; i <= n; i++)
         factorial.cache[i] = i * factorial.cache[i - 1];
+      factorial.cache.length = n;
+    }
     return factorial.cache[n];
   }
 
