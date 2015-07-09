@@ -429,7 +429,7 @@ $( document ).on( "pagecreate", "#page-roster", function() {
     if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
       return;
     $("#page-roster").find("#header a[href=#panel-roster-options]").click();
-    setTimeout(CoC.ui.clearSelection, 100);
+    setTimeout(CoC.ui.clearSelection, 50);
   });
 });
 
@@ -441,7 +441,7 @@ $( document ).on( "pagecreate", "#page-teams", function() {
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
       return;
     $("#page-teams").find("#header a[href=#panel-team-settings]").click();
-    setTimeout(CoC.ui.clearSelection, 100);
+    setTimeout(CoC.ui.clearSelection, 50);
   });
 });
   
