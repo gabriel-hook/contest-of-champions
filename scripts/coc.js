@@ -1,12 +1,12 @@
 var CoC=CoC || {};
-CoC.version = "1.0.1";
+CoC.version = "1.0.5";
 
 CoC.initialize = function(){
   console.log("Contest of Champions - Roster Manager v"+CoC.version);
 
   //reset settings if we are a new version!
   if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
-    CoC.settings.preset.apply("defaults", CoC.settings.preset.always, CoC.settings.preset.always);
+    CoC.settings.preset.apply("defaults", true, true);
     CoC.settings.setValue("hasDefaults", true);
     CoC.settings.setValue("version", CoC.version);
   }

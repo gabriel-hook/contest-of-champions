@@ -35,11 +35,11 @@ CoC.settings.preset.apply=function(id, funcWeights, funcSettings){
   if(preset){
     if(funcWeights !== undefined)
       for(var key in preset.weights)
-        if(funcWeights(key, preset.weights[key]))
+        if(funcWeights === true || funcWeights(key, preset.weights[key]))
           CoC.settings.setWeight(key, preset.weights[key]);
     if(funcSettings !== undefined)
       for(var key in preset.settings)
-        if(funcSettings(key, preset.settings[key]))
+        if(funcSettings === true || funcSettings(key, preset.settings[key]))
           CoC.settings.setValue(key, preset.settings[key]);
   }  
 }
@@ -54,8 +54,6 @@ CoC.settings.preset.add=function(category, name, weights, settings){
     settings:settings
   });
 }
-
-CoC.settings.preset.always=function(){ return true; }
 
 CoC.settings.preset.add(null, "Defaults",{
 //weights
