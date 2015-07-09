@@ -31,20 +31,25 @@ onmessage = function (event){
     return value;
   }
   CoC.settings.getStarWeight=function(stars){
-    return CoC.settings.getWeight({
-      2:"stars-2",
-      3:"stars-3",
-      4:"stars-4",
-      4:"stars-5"
-    }[stars]);
+    if(CoC.settings.getStarWeight.keys === undefined)
+      CoC.settings.getStarWeight.keys = {
+        1:"stars-1",
+        2:"stars-2",
+        3:"stars-3",
+        4:"stars-4",
+        5:"stars-5"
+      }
+    return CoC.settings.getWeight(CoC.settings.getStarWeight.keys[stars]);
   }
   CoC.settings.getDuplicateWeight=function(number){
-    return CoC.settings.getWeight({
-    2:"duplicates-2",
-    3:"duplicates-3",
-    4:"duplicates-4",
-    5:"duplicates-5"
-    }[number]);
+    if(CoC.settings.getDuplicateWeight.keys === undefined)
+      CoC.settings.getDuplicateWeight.keys = {
+        2:"duplicates-2",
+        3:"duplicates-3",
+        4:"duplicates-4",
+        5:"duplicates-5"
+      }
+    return CoC.settings.getWeight(CoC.settings.getDuplicateWeight.keys[number]);
   }
   
   //Build progress function (update only every %update)
