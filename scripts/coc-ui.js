@@ -219,7 +219,7 @@ CoC.ui.teams=new function(){
     var roster = CoC.roster.filtered();
     var algorithm = CoC.settings.getValue("build-algorithm") || "greedy";
     var quest = CoC.settings.getValue("build-quest-group")===true;
-    var extras = CoC.settings.getValue("build-include-extras")===true;
+    var extras = CoC.settings.getValue("build-quest-group")===false;
     
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
