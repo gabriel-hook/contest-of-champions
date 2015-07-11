@@ -78,7 +78,7 @@
   background-image:url(../images/icons/star-awakened.png);
 }
 #roster-delete-confirm-name{
-  text-shadow: 0 1px #111, -1px 1px #eee;
+  text-shadow: 0 1px #111, -1px 1px 1px #eee;
 }
 
 #popup-roster-configure .extras{
