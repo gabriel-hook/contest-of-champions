@@ -628,6 +628,33 @@ $("#page-teams").on( "pagecreate", function() {
 });
 $("#page-settings-advanced").on( "pagecreate", function() {
   var sliders = {};
+  
+  function enableSlider(id, type){
+    var value = CoC.settings.getWeight(type);
+    $(id).val(value * 100).slider("refresh").change(function(){
+      CoC.settings.setWeight(type, parseInt(this.value) / 100.0);
+    })
+    sliders[type]=id;
+  }
+  enableSlider("#settings-advanced-star5","stars-5");
+  enableSlider("#settings-advanced-star4","stars-4");
+  enableSlider("#settings-advanced-star3","stars-3");
+  enableSlider("#settings-advanced-star2","stars-2");
+  enableSlider("#settings-advanced-star1","stars-1");
+  enableSlider("#settings-advanced-awakened","awakened");
+  enableSlider("#settings-advanced-class2","duplicates-2");
+  enableSlider("#settings-advanced-class3","duplicates-3");
+  enableSlider("#settings-advanced-class4","duplicates-4");
+  enableSlider("#settings-advanced-class5","duplicates-5");
+  enableSlider("#settings-advanced-attack","attack");
+  enableSlider("#settings-advanced-stun","stun");
+  enableSlider("#settings-advanced-critrate","critrate");
+  enableSlider("#settings-advanced-critdamage","critdamage");
+  enableSlider("#settings-advanced-perfectblock","perfectblock");
+  enableSlider("#settings-advanced-block","block");
+  enableSlider("#settings-advanced-powergain","powergain");
+  enableSlider("#settings-advanced-armor","armor");
+  enableSlider("#settings-advanced-health","health");
 
   function addPresets(category){
     var container = $("#settings-advanced-preset-"+category.toLowerCase()),
@@ -661,31 +688,4 @@ $("#page-settings-advanced").on( "pagecreate", function() {
       return false;
     });
   });
-  
-  function enableSlider(id, type){
-    var value = CoC.settings.getWeight(type);
-    $(id).val(value * 100).slider("refresh").change(function(){
-      CoC.settings.setWeight(type, parseInt(this.value) / 100.0);
-    })
-    sliders[type]=id;
-  }
-  enableSlider("#settings-advanced-star5","stars-5");
-  enableSlider("#settings-advanced-star4","stars-4");
-  enableSlider("#settings-advanced-star3","stars-3");
-  enableSlider("#settings-advanced-star2","stars-2");
-  enableSlider("#settings-advanced-star1","stars-1");
-  enableSlider("#settings-advanced-awakened","awakened");
-  enableSlider("#settings-advanced-class2","duplicates-2");
-  enableSlider("#settings-advanced-class3","duplicates-3");
-  enableSlider("#settings-advanced-class4","duplicates-4");
-  enableSlider("#settings-advanced-class5","duplicates-5");
-  enableSlider("#settings-advanced-attack","attack");
-  enableSlider("#settings-advanced-stun","stun");
-  enableSlider("#settings-advanced-critrate","critrate");
-  enableSlider("#settings-advanced-critdamage","critdamage");
-  enableSlider("#settings-advanced-perfectblock","perfectblock");
-  enableSlider("#settings-advanced-block","block");
-  enableSlider("#settings-advanced-powergain","powergain");
-  enableSlider("#settings-advanced-armor","armor");
-  enableSlider("#settings-advanced-health","health");
 });
