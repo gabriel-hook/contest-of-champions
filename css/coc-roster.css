@@ -77,6 +77,16 @@
 #roster-configure-stars.awakened .star{
   background-image:url(../images/icons/star-awakened.png);
 }
+
+#roster-delete-confirm-stars .cosmic,
+#roster-delete-confirm-stars .tech,
+#roster-delete-confirm-stars .mutant,
+#roster-delete-confirm-stars .skill,
+#roster-delete-confirm-stars .science,
+#roster-delete-confirm-stars .mystic{
+  text-shadow: 0 1px #111, -1px 1px #eee;
+}
+
 #popup-roster-configure .extras{
   display:none;
   position:absolute;
@@ -96,10 +106,6 @@
 
 #popup-roster-configure .extras .roster-configure-guide{
   background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
-}
-
-.roster-configure-guide{
-
 }
 
 @media (min-width:500px) and (min-height:400px) {
