@@ -1,11 +1,3 @@
-#teams.dirty{
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
-  -moz-filter: blur(4px);
-  -ms-filter: blur(4px);
-  -o-filter: blur(4px);
-}
-
 #teams .team{
   margin:auto;
 }
