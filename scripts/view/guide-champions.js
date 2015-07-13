@@ -41,7 +41,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       if(that._indices[uid] === undefined)
         return;
       that._instant = true;
-      that.sly.activate(index);
+      setTimeout(function(){
+        that.sly.activate(index);
+      },0);
     });
     
     that.sly = new Sly( "#guide-champions-frame", {
@@ -68,7 +70,15 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "click .champion":"clicked"
+    "click li.active":"click"
+  },
+  
+  click:function(event){
+    var element = $(event.currentTarget).find(".champion");
+    if(!element)
+      return;
+    
+    $( "#guide-champions-selector" ).selectmenu( "open" );
   },
   
   disable:function(){

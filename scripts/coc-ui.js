@@ -354,7 +354,7 @@ CoC.ui.guides=new function(){
       return;
     }
     
-    var uid = this.seen? undefined: (CoC.getUrlParam("page-guide", "guide") || 0);
+    var uid = CoC.getUrlParam("page-guide", "guide") || 0;
     if(this._uid){
       uid = this._uid;
       delete this._uid;

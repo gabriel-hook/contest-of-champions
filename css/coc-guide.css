@@ -37,8 +37,14 @@
   padding:0 !important;
 }
 
-#page-guide #header .ui-select{
+#page-guide #guide-champions-selector-container,
+#page-guide #guide-champions-selector-container .ui-select{
+  float:none;
   margin:0;
+  width:100%;
+}
+#page-guide #guide-champions-selector-container label{
+  display:none;
 }
 #guide-champions-selector-button{
   width: 100%;
@@ -49,12 +55,12 @@
   .frame{
     display:none;
   }
-  #page-guide #header .ui-select{
+  #page-guide #guide-champions-selector-container{
     display:block;
   }
 }
 @media (min-height:355px) {
-  #page-guide #header .ui-select{
+  #page-guide #guide-champions-selector-container{
     display:none;
   }
 }
