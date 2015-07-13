@@ -24,7 +24,7 @@
 }
 
 #teams .team .champion .container{
-  padding:10px 0 0 0 !important;
+  padding:10px 0 0 0;
 }
 
 #teams .team .champions .champion:first-child .title{
