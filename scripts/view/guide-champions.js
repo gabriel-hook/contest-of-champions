@@ -123,16 +123,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var guide = CoC.guides.get(uid);
     var view = this._guideViews[uid];
     if(!view){
-      try{
-        if(guide.data !== undefined)
-          view = new CoC.view.GuideView({ model:guide });
-      }
-      catch(error){
-        console.log(error);
-      }
-      //either missing or just broken
-      if(!view)
-        view = new CoC.view.GuideMissingView({ model:guide });
+      view = new CoC.view.GuideView({ model:guide });
       view.render();
       this._guideViews[uid] = view;   
     } 

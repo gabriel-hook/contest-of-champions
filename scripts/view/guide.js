@@ -154,28 +154,15 @@ CoC.view.GuideViewHelpers={
 //Message View
 CoC.view.GuideView = Backbone.View.extend({
   tagName: 'div',
-  template: _.template( $('#guideTemplate').html() ),
-  render:function(){  
+  guideTemplate: _.template( $('#guideTemplate').html() ),
+  missingTemplate: _.template( $('#guideMissingTemplate').html() ),
+  render:function(){
     var data = {};
     _.extend(data, this.model);
     _.extend(data, CoC.view.GuideViewHelpers);
     
-    this.$el.html( this.template(data) );
+    this.$el.html( (this.model.data !== undefined)? this.guideTemplate(data): this.missingTemplate(data) );
     this.$el.addClass("container")
-    return this;
-  }
-});
-//Message View
-CoC.view.GuideMissingView = Backbone.View.extend({
-  tagName: 'div',
-  template: _.template( $('#guideMissingTemplate').html() ),
-  render:function(){ 
-    var data = {};
-    _.extend(data, this.model);
-    _.extend(data, CoC.view.GuideViewHelpers);
-    
-    this.$el.html( this.template( data ) );
-    this.$el.addClass("container");
     return this;
   }
 });
