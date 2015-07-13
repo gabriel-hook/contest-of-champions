@@ -221,9 +221,9 @@ CoC.ui.teams=new function(){
       size = 3;
     
     var roster = CoC.roster.filtered();
-    var algorithm = CoC.settings.getValue("build-algorithm") || "greedy";
+    var algorithm = CoC.algorithm[CoC.settings.getValue("build-algorithm")] || CoC.algorithm["shuffle"];
     var quest = CoC.settings.getValue("build-quest-group")===true;
-    var extras = CoC.settings.getValue("build-quest-group")===false;
+    var extras = CoC.settings.getValue("build-quest-group")===false || !algorithm.canQuest;
     
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
@@ -258,7 +258,7 @@ CoC.ui.teams=new function(){
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
-            console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
+            console.log(algorithm.name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
             
             //Convert the result back to Champion models post-transport
             var result = {};
@@ -285,7 +285,7 @@ CoC.ui.teams=new function(){
           }
         };
         worker.postMessage({
-          algorithm:algorithm,
+          algorithm:algorithm.uid,
           roster:rosterJSON, 
           size:size, 
           quest:quest, 
@@ -304,13 +304,13 @@ CoC.ui.teams=new function(){
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = CoC.algorithm[algorithm].build({ champions:roster, size:size, quest:quest, extras:extras });
+        var result = algorithm.build({ champions:roster, size:size, quest:quest, extras:extras });
         $("#team-build-progressprogress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.render(result, size);
           $("#team-build-progress").attr("class","hidden");
           $("#onboarding-progress").removeClass("show");
-          console.log(CoC.algorithm[algorithm].name + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
+          console.log(algorithm.name + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
         },0);
       },0);
     }

@@ -16,6 +16,7 @@ CoC.algorithm = CoC.algorithm || {};
 
   CoC.algorithm["greedy"]=new function(){
     
+    this.uid = "greedy";
     this.name = "Greedy";
     this.description = "Slow & Consistent. Finds the best possible team and then does the same with remainders.";
     this.canQuest = true;
@@ -304,6 +305,8 @@ CoC.algorithm = CoC.algorithm || {};
   };
 
   CoC.algorithm["shuffle"]=new function(){
+  
+    this.uid = "shuffle";
     this.name = "Shuffle";
     this.description = "Fast & Varied. Does iterated scans and swaps, balancing teams as best as possible.";
     this.canQuest = false;
@@ -526,6 +529,8 @@ CoC.algorithm = CoC.algorithm || {};
   }
 
   CoC.algorithm["distinct"]=new function(){
+  
+    this.uid = "distinct";
     this.name = "Distinct";
     this.description = "Fast & Consistent. Gets available synergy connections and then splits distinct groups into teams.";
     this.canQuest = false;
