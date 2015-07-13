@@ -3,6 +3,7 @@ CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
   initialize: function(){
     var that = this;
+    that._init = true;
     that._instant = true;
     that._guideViews = {};
     that._championViews = [];
@@ -73,6 +74,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     "click li.active":"click"
   },
   
+  selected:function(){
+    return (this._selected)? this._selected: 0;
+  },
+  
   click:function(event){
     var element = $(event.currentTarget).find(".champion");
     if(!element)
@@ -108,7 +113,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   //Select a guide by Champion UID
-  select:function(uid){
+  select:function(uid){  
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
     if(index === undefined)
       index = 0;
@@ -118,6 +123,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   
   //Sly activate opens 
   activate:function(event, index, delay){
+    if(this._init){
+      this._init = false;
+      return;
+    }
+
     var item = this.sly.items[index];
     var uid = $(item.el).find(".champion").attr("uid");
     var guide = CoC.guides.get(uid);
@@ -126,7 +136,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       view = new CoC.view.GuideView({ model:guide });
       view.render();
       this._guideViews[uid] = view;   
-    } 
+    }
     
     $("#guide-content").addClass("dirty");
     
@@ -148,6 +158,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     if(CoC.hasUrlParam("page-guide") === false)
       return;
       
+    this._selected = uid;
     this._instant = false;
     this._selector.val(uid).selectmenu("refresh")
 
@@ -163,7 +174,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     
     //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);
-    CoC.setUrlParam("page-guide","guide",uid);
+    setTimeout(function(){
+    
+      console.log("setting "+uid)
+      CoC.setUrlParam("page-guide","guide",uid);
+    },1);
   },
   
   render: function(){
