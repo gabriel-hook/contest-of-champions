@@ -153,7 +153,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       that.guide.call(that, uid);
   },
   
-  guide: function(uid){
+  guide: function(uid){      
     //if we aren't even looking at guides anymore
     if(CoC.hasUrlParam("page-guide") === false)
       return;
@@ -174,11 +174,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     
     //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);
-    setTimeout(function(){
-    
-      console.log("setting "+uid)
-      CoC.setUrlParam("page-guide","guide",uid);
-    },1);
+    CoC.setUrlParam("page-guide","guide",uid);
   },
   
   render: function(){

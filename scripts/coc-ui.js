@@ -364,6 +364,9 @@ CoC.ui.guides=new function(){
     this.view.enable();
     this.view.reload();
     this.view.select(uid);
+
+    if(typeof uid === "string")
+      CoC.setUrlParam("page-guide", "guide", uid)
   }
   
   this.hide=function(){
