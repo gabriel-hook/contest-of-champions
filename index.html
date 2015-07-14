@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#5393c5 ">
     <link rel="icon" sizes="192x192" href="images/icon.png">
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" media="all">
     <link rel="stylesheet" href="css/jquery.mobile-theme-classic.css" media="all">
     <link rel="stylesheet" href="css/fonts/fonts.css" media="all">
     <link rel="stylesheet" href="css/coc.css" media="all">
@@ -17,15 +17,15 @@
     <link rel="stylesheet" href="css/coc-roster.css" media="all">
     <link rel="stylesheet" href="css/coc-team.css" media="all">
     <link rel="stylesheet" href="css/print.css" media="print">
-    <script src="scripts/lib/jquery-1.11.2.min.js"></script>
-    <script src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
-    <script src="scripts/lib/jquery.csv.js"></script>
-    <script src="scripts/lib/purl.js"></script>
-    <script src="scripts/lib/sly.min.js"></script>
-    <script src="scripts/lib/underscore-min.js"></script>
-    <script src="scripts/lib/backbone-min.js"></script>
-    <script src="scripts/lib/backbone.localStorage-min.js"></script>
-    <script>
+    <script type="text/javascript"  src="scripts/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/jquery.csv.js"></script>
+    <script type="text/javascript"  src="scripts/lib/purl.js"></script>
+    <script type="text/javascript"  src="scripts/lib/sly.min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/backbone.localStorage-min.js"></script>
+    <script type="text/javascript" >
       var _gaq = _gaq || [];
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; 
@@ -970,40 +970,40 @@
     </script>
     
     <!-- Model definitions -->
-    <script src="scripts/model/champion.js"></script>
-    <script src="scripts/model/crystal.js"></script>
-    <script src="scripts/model/crystal-champion.js"></script>
-    <script src="scripts/model/effect.js"></script>
-    <script src="scripts/model/synergy.js"></script>
-    <script src="scripts/model/type.js"></script>
+    <script type="text/javascript" src="scripts/model/champion.js"></script>
+    <script type="text/javascript"  src="scripts/model/crystal.js"></script>
+    <script type="text/javascript"  src="scripts/model/crystal-champion.js"></script>
+    <script type="text/javascript"  src="scripts/model/effect.js"></script>
+    <script type="text/javascript"  src="scripts/model/synergy.js"></script>
+    <script type="text/javascript"  src="scripts/model/type.js"></script>
     
     <!-- Collection population -->
-    <script src="scripts/data/champions.js"></script>
-    <script src="scripts/data/crystals.js"></script>
-    <script src="scripts/data/effects.js"></script>
-    <script src="scripts/data/synergies.js"></script>
-    <script src="scripts/data/types.js"></script>
+    <script type="text/javascript"  src="scripts/data/champions.js"></script>
+    <script type="text/javascript"  src="scripts/data/crystals.js"></script>
+    <script type="text/javascript"  src="scripts/data/effects.js"></script>
+    <script type="text/javascript"  src="scripts/data/synergies.js"></script>
+    <script type="text/javascript"  src="scripts/data/types.js"></script>
     
     <!-- Model views -->
-    <script src="scripts/view/message.js"></script>
-    <script src="scripts/view/champion.js"></script>
-    <script src="scripts/view/roster.js"></script>
-    <script src="scripts/view/add-champions.js"></script>
-    <script src="scripts/view/team.js"></script>
-    <script src="scripts/view/guide.js"></script>
-    <script src="scripts/view/guide-champions.js"></script>
-    <script src="scripts/view/crystals.js"></script>
+    <script type="text/javascript"  src="scripts/view/message.js"></script>
+    <script type="text/javascript"  src="scripts/view/champion.js"></script>
+    <script type="text/javascript"  src="scripts/view/roster.js"></script>
+    <script type="text/javascript"  src="scripts/view/add-champions.js"></script>
+    <script type="text/javascript"  src="scripts/view/team.js"></script>
+    <script type="text/javascript"  src="scripts/view/guide.js"></script>
+    <script type="text/javascript"  src="scripts/view/guide-champions.js"></script>
+    <script type="text/javascript"  src="scripts/view/crystals.js"></script>
     
     <!-- App logic -->
-    <script src="scripts/coc.js"></script>
-    <script src="scripts/coc-algorithm.js"></script>
-    <script src="scripts/coc-roster.js"></script>
-    <script src="scripts/coc-guides.js"></script>
-    <script src="scripts/coc-preset.js"></script>
-    <script src="scripts/coc-ui.js"></script>
+    <script type="text/javascript"  src="scripts/coc.js"></script>
+    <script type="text/javascript"  src="scripts/coc-algorithm.js"></script>
+    <script type="text/javascript"  src="scripts/coc-roster.js"></script>
+    <script type="text/javascript"  src="scripts/coc-guides.js"></script>
+    <script type="text/javascript"  src="scripts/coc-preset.js"></script>
+    <script type="text/javascript"  src="scripts/coc-ui.js"></script>
     
     <!-- Init -->
-    <script>
+    <script type="text/javascript" >
       CoC.initialize();
       CoC.roster.initialize();
       CoC.guides.initialize();
@@ -1011,12 +1011,12 @@
     </script>
     
     <!-- Google Analytics -->
-    <script type="text/javascript">
+    <script type="text/javascript" >
       $(document).bind("mobileinit", function(){
         $.mobile.pushStateEnabled = false;
       });
     </script>
-    <script>
+    <script type="text/javascript" >
       $('[data-role=page]').on('pageshow', function(){
         try {
           _gaq.push(['_setAccount', 'UA-64735733-1']);
@@ -1029,7 +1029,7 @@
         catch(e){ }
       });
     </script>
-    <script>
+    <script type="text/javascript" >
       var CoC=CoC || {};
       CoC.onUrlHashChange=function(hash){
         _gaq.push(['_trackPageview', hash.substr(1)]);
