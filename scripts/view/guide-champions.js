@@ -37,8 +37,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     });
     
     that._selector.change(function(event){
-      var uid = this.value;
-      var index = that._indices[uid];
+      var uid = this.value,
+        index = that._indices[uid];
       if(that._indices[uid] === undefined)
         return;
       that._instant = true;
@@ -128,10 +128,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       return;
     }
 
-    var item = this.sly.items[index];
-    var uid = $(item.el).find(".champion").attr("uid");
-    var guide = CoC.guides.get(uid);
-    var view = this._guideViews[uid];
+    var item = this.sly.items[index],
+      uid = $(item.el).find(".champion").attr("uid"),
+      guide = CoC.guides.get(uid),
+      view = this._guideViews[uid];
     if(!view){
       view = new CoC.view.GuideView({ model:guide });
       view.render();
@@ -162,10 +162,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     this._instant = false;
     this._selector.val(uid).selectmenu("refresh")
 
-    var guide = CoC.guides.get(uid);
-    var view = this._guideViews[uid];
-    
-    var el = $("#guide-content");
+    var guide = CoC.guides.get(uid),
+      view = this._guideViews[uid],
+      el = $("#guide-content");
     el.empty();
     el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
     el.append( view.el );

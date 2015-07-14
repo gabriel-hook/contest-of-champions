@@ -18,9 +18,9 @@ CoC.view.RosterView = Backbone.View.extend({
   
   clicked:function(e){
     e.preventDefault();
-    var uid = $(e.currentTarget).attr("uid");
-    var stars = parseInt( $(e.currentTarget).attr("stars") );
-    var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    var uid = $(e.currentTarget).attr("uid"),
+      stars = parseInt( $(e.currentTarget).attr("stars") ),
+      champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
     if(champion)
       CoC.ui.roster.popup(e.currentTarget, champion);
   },
@@ -57,11 +57,9 @@ CoC.view.RosterView = Backbone.View.extend({
       4: CoC.settings.getValue("roster-filter-stars-4"),
       5: CoC.settings.getValue("roster-filter-stars-5")
     };
-    
     CoC.data.roster.each(function(champion){
       if(filterStars[champion.get("stars")] !== true)
         return;
-      
       var view = that.championView(champion);
       if(view){      
         els.push(view.el);

@@ -4,9 +4,8 @@ CoC.guides=CoC.guides || {}
 CoC.guides.initialize=function(){
   CoC.guides.data = {};
   setTimeout(function(){
-  
-    var uids = _.uniq( CoC.data.champions.pluck("uid") );
-    var working = uids.length;
+    var uids = _.uniq( CoC.data.champions.pluck("uid") ),
+      working = uids.length;
     _(uids).each(function(uid){
       $.ajax({
         url: "scripts/data/guides/"+uid+".json",
@@ -31,7 +30,6 @@ CoC.guides.initialize=function(){
         }
       });
     });
-    
   },0);
 }
   

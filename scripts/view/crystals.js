@@ -22,21 +22,20 @@ CoC.view.CrystalsView = Backbone.View.extend({
     var that = this;
     that._views = [];
     CoC.data.crystals.each(function(crystal){
-    
-      var data = {};
+      var html, data = {};
       _.extend(data, { crystal:crystal });
       _.extend(data, CoC.view.CrystalsViewHelpers);
     
-      var html = $(that.template(data));
+      html = $(that.template(data));
       for(var i=0; i<html.length; i++)
         that._views.push( html[i] );
     });
   },
   
   render: function(){
+    var container = document.createDocumentFragment();
 
     this.$el.empty();
-    var container = document.createDocumentFragment();
     _(this._views).each(function(el){
       container.appendChild(el);
     });

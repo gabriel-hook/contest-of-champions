@@ -9,13 +9,13 @@ importScripts('data/champions.js', 'data/effects.js', 'data/synergies.js', 'data
 importScripts('coc-algorithm.js');
 
 onmessage = function (event){
-  var algorithm = event.data.algorithm;
-  var rosterJSON = event.data.roster;
-  var size = event.data.size;
-  var weights = event.data.weights;
-  var quest = event.data.quest;
-  var extras = event.data.extras;
-  var update = event.data.update;
+  var algorithm = event.data.algorithm,
+    rosterJSON = event.data.roster,
+    size = event.data.size,
+    weights = event.data.weights,
+    quest = event.data.quest,
+    extras = event.data.extras,
+    update = event.data.update;
   
   if(!CoC.algorithm[algorithm]){
     postMessage({ type:"failed", message:"Algorithm not found" });
@@ -53,19 +53,19 @@ onmessage = function (event){
   }
   
   //Build progress function (update only every %update)
-  var lastTime = (new Date()).getTime();
-  var progress = function(current, max, description){
-    var time = (new Date()).getTime();
-    if(!description && time-lastTime < update)
-      return;
-    lastTime = time;
-    postMessage({ 
-      type:"progress", 
-      current:current, 
-      max:max,
-      description:description        
-    });
-  } 
+  var lastTime = (new Date()).getTime(),
+    progress = function(current, max, description){
+      var time = (new Date()).getTime();
+      if(!description && time-lastTime < update)
+        return;
+      lastTime = time;
+      postMessage({ 
+        type:"progress", 
+        current:current, 
+        max:max,
+        description:description        
+      });
+    };
   
   //Convert Champion JSON to models
   var roster = [];

@@ -90,13 +90,13 @@ CoC.view.GuideViewHelpers={
       this._crystals = [];
     var crystals = this._crystals[uid];
     if(crystals === undefined){
-      var map = {};
-      var ids = [];
-      var ccs = CoC.data.crystalChampions.where({ championId:uid });
+      var map = {},
+        ids = [],
+        ccs = CoC.data.crystalChampions.where({ championId:uid });
       for(var i=0; i<ccs.length; i++){
-        var crystal = ccs[i].crystal();
-        var champion = ccs[i].champion();
-        var name = crystal.get("name");
+        var crystal = ccs[i].crystal(),
+          champion = ccs[i].champion(),
+          name = crystal.get("name");
         if(map[name] === undefined){
           map[name] = {
             crystal:crystal,

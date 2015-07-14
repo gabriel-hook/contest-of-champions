@@ -97,11 +97,11 @@ CoC.roster.csv=function(string){
       if(values.length != 5)
         throw "Invalid roster CSV";
         
-      var uid = JSON.parse(values[0]);
-      var stars = JSON.parse(values[1]);
-      var rank = JSON.parse(values[2]);
-      var level = JSON.parse(values[3]);
-      var awakened = JSON.parse(values[4]);
+      var uid = JSON.parse(values[0]),
+        stars = JSON.parse(values[1]),
+        rank = JSON.parse(values[2]),
+        level = JSON.parse(values[3]),
+        awakened = JSON.parse(values[4]);
         
       var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
       if(champion === undefined){
