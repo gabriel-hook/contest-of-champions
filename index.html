@@ -1,6 +1,5 @@
 ﻿<!doctype html>
 <html>
-
   <head>
     <title>Champions</title>
     <meta charset="utf-8">
@@ -35,7 +34,6 @@
     </script>
   </head>
   <body>
-  
     <div class="page" id="page-roster" 
       data-title="Champions - Roster"
       data-theme="c"
@@ -65,7 +63,6 @@
         data-position="left" 
         data-display="overlay"
         data-theme="b">
-        
         <div id="roster-import-input-container">
           <input id="roster-import-input" type="file" accept=".csv">
         </div>
@@ -112,7 +109,6 @@
           <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
           <label for="roster-filter-stars-1">★</label>
         </fieldset> 
-       
       </div>
       
       <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false">
@@ -133,11 +129,6 @@
         data-arrow="true">
         <div id="roster-configure-stars" class="stars"></div>
         <div role="main" class="ui-content">
-        
-          <!-- this is some stupid shit -->
-          <div tabindex="1"></div>
-          <!-- but focus was being stolen otherwise -->
-          
           <h3>
             <img id="roster-configure-type" /><span id="roster-configure-name">Name</span>
           </h3>
@@ -207,14 +198,12 @@
           <a href="#" id="roster-clear-confirm-no" data-role="button">Cancel</a>
         </div>
       </div>
-      
     </div> 
     
     <div class="page" id="page-add" 
       data-title="Champions - Roster"
       data-theme="c"
       data-role="page">
-    
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <h3>Add a Champion</h3>
         <a href="#page-roster" class="ui-btn-right"
@@ -237,14 +226,12 @@
         <div id="add-champions"></div>
         <br>
       </div>
-      
     </div>
     
     <div class="page" id="page-teams"
       data-title="Champions - Team"
       data-theme="c"
       data-role="page">
-    
       <div class="panel" id="panel-team-settings" 
         data-role="panel"
         data-position="right" 
@@ -303,10 +290,8 @@
           data-iconpos="left">
           Build
         </a>
-        
       </div>
-    
-    
+
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a id="button-team-build" href="#panel-team-settings" class="ui-btn-right"
           data-role="button" 
@@ -342,15 +327,12 @@
           </ul>
         </div>
       </div>
-      
     </div>
-    
-    
+
     <div class="page" id="page-settings-advanced"
       data-title="Champions - Team"
       data-theme="a"
       data-role="page">
-        
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a href="#page-teams" class="ui-btn-left"
           data-role="button" 
@@ -361,8 +343,8 @@
           
         <h1>Advanced Settings</h1>
       </div>
+      
       <div role="main" class="ui-content">
-        
         <a href="#" id="settings-advanced-preset-defaults" data-role="button">Reset to Defaults</a> 
         
         <h3>Syngergy Weights</h3>
@@ -511,16 +493,13 @@
             value="100" min="0" max="1000" 
             data-highlight="true"/>
         </div>
-      
       </div>
-      
     </div>
 
     <div class="page" id="page-guide"
       data-title="Champions - Guide"
       data-theme="c"
       data-role="page">
-
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a id="button-page-crystals" href="#page-crystals" class="ui-btn-left"
           data-role="button" 
@@ -541,7 +520,6 @@
           <select name="guide-champions-selector" id="guide-champions-selector" data-native-menu="false" data-theme="a"></select>
         </div>
       </div>
-
         
       <div role="main" class="ui-content" id="guide-content"></div>
       
@@ -554,14 +532,12 @@
           </ul>
         </div>
       </div>
-      
     </div>
     
     <div class="page" id="page-crystals"
       data-title="Champions - Guide"
       data-theme="c"
       data-role="page">
-
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a href="#page-guide" class="ui-btn-right"
           data-transition="flip" 
@@ -572,7 +548,6 @@
         <h1>Crystals</h1>
       </div>
 
-        
       <div role="main" class="ui-content" id="crystals"></div>
     </div>
     
@@ -584,7 +559,6 @@
       </div>
     
     </script>
-
     <script id="championTemplate" type="text/template">
     
       <div class="container">
@@ -612,7 +586,6 @@
       </div>
     
     </script>
-
     <script id="teamsTemplate" type="text/template">
     
       <%= renderMessage(message) %>
@@ -636,18 +609,15 @@
         </div>
       <% }); %>
       <% if(extras){ %>
-      
         <div id="extras" style="clear:both">
           <h3>Extras</h3>
           <% _(extras).each(function(champion){ %>
             <%= renderChampion(champion) %>
           <% }) %>
         </div>
-      
       <% } %>
     
     </script>
-
     <script id="guideTemplate" type="text/template">
 
       <div data-role="collapsible" data-disabled="true" data-collapsed="false" data-expanded-icon="<%= champion.get("typeId") %>">
@@ -666,9 +636,7 @@
           <p class="selectable"><%- data.description %></p>
         <% } %>
       </div>
-      
       <div class="left">
-      
         <% if(data.gameplay){ %>
           <div data-role="collapsible" data-collapsed="false">
             <h4>
@@ -692,7 +660,6 @@
             <% } %>
           </div>
         <% } %>
-        
         <% if(data.signature){ %>
           <div data-role="collapsible" data-collapsed="false" data-mini="true">
             <h4>
@@ -709,7 +676,6 @@
             <% } %>
           </div>
         <% } %>
-        
         <% if(data.heavy){ %>
           <div data-role="collapsible" data-collapsed="false">
             <h4>
@@ -723,14 +689,11 @@
             <% } %>
           </div>
         <% } %>
-        
       </div>
       <div class="right">
-        
         <% if(data.specials){ %>
           <% for(var number in data.specials){ 
             var special = data.specials[number]; %>
-          
             <div data-role="collapsible" data-collapsed="false">
               <h4>
                 Special <%- number %> <%= ratingSpan(special.rating) %>            
@@ -757,14 +720,11 @@
                 </p>
               <% } %>
             </div>
-          
           <% }%>
         <% } %>
-        
       </div>
       <div style="clear:both;"></div>
       <div class="left">
-      
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             Synergies
@@ -784,10 +744,8 @@
             </p>
           <% } %>
         </div>
-        
       </div>
       <div class="right">
-
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             External Synergies
@@ -807,11 +765,9 @@
             </p>
           <% } %>
         </div>
-      
       </div>
       <div style="clear:both;"></div>
       <div class="left">
-      
         <% if(data.abilities){ %>
           <div data-role="collapsible" data-collapsed="false">
             <h4>
@@ -822,10 +778,8 @@
             <% }) %>
           </div>
         <% } %>
-        
       </div>
       <div class="right">
-      
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             Availablity          
@@ -846,12 +800,10 @@
             <% }) %>
           <% } %>
         </div>
-    
       </div>
       <div style="clear:both;"></div>
       
     </script>
-
     <script id="guideMissingTemplate" type="text/template">
 
       <div data-role="collapsible" data-disabled="true" data-collapsed="false" data-expanded-icon="<%= champion.get("typeId") %>">
@@ -862,9 +814,7 @@
           Coming Soon!
         </p>
       </div>
-      
       <div class="left">
-      
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             Synergies   
@@ -884,10 +834,8 @@
             </p>
           <% } %>
         </div>
-        
       </div>
       <div class="right">
-
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             External Synergies
@@ -907,11 +855,8 @@
             </p>
           <% } %>
         </div>
-      
       </div>
-      
       <div style="clear:both;"></div>
-      
       <div data-role="collapsible" data-collapsed="false">
         <h4>
           Availablity          
@@ -933,15 +878,13 @@
       </div>
         
     </script>
-    
     <script id="crystalsTemplate" type="text/template">
+    
       <h3 class="bold">
         <img class="icon" src="<%- crystal.image() %>">
         <span><%- crystal.get("name") %> Crystal</span>
       </h3>
-      
       <fieldset data-role="controlgroup" data-mini="true">
-      
         <% if(crystal.get("description")){ %>
           <div class="ui-collapsible-content ui-body-inherit description" aria-hidden="false">
             <p class="selectable">
@@ -949,7 +892,6 @@
             </p>
           </div>
         <% } %>
-      
         <% _.each([1,2,3,4], function(stars){ %>
           <% if (crystal.champions(stars).size() > 0){ %>
             <div data-role="collapsible">
@@ -965,8 +907,8 @@
             </div>
           <% } %>
         <% }) %>
-        
       </fieldset>
+      
     </script>
     
     <!-- Model definitions -->
