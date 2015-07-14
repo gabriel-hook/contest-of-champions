@@ -19,10 +19,9 @@ CoC.view.AddChampionsView = Backbone.View.extend({
   
   clicked:function(e){
     e.preventDefault();
-    var uid = $(e.currentTarget).attr("uid");
-    var stars = parseInt( $(e.currentTarget).attr("stars") );
-    
-    var found = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    var uid = $(e.currentTarget).attr("uid"),
+      stars = parseInt( $(e.currentTarget).attr("stars") ),
+      found = CoC.data.roster.findWhere({ uid: uid, stars:stars });
     if(found)
       return;
 
