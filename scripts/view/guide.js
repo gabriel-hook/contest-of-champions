@@ -166,13 +166,42 @@ CoC.view.GuideView = Backbone.View.extend({
   tagName: 'div',
   guideTemplate: _.template( $('#guideTemplate').html() ),
   
-  render:function(){
-    var data = {};
-    _.extend(data, this.model);
-    _.extend(data, CoC.view.GuideViewHelpers);
+  initialize:function(){
+    this._guides = {};
+    this._parent = this.model;
+  },
+  
+  events:{
+    "click .synergy":"synergyClick"
+  },
+  
+  synergyClick:function(event){
+    var uid = $(event.currentTarget).attr("uid");
+    if(uid === undefined)
+      return;
+    this._parent.select(uid);
+  },
+  
+  render:function(uid){
+    if(uid === undefined)
+      return this;
+      
+    var html = this._guides[uid];
+    if(html === undefined){
+      var guide = CoC.guides.get(uid),
+        data = {};
+      _.extend(data, guide);
+      _.extend(data, CoC.view.GuideViewHelpers);
+      this._guides[uid] = html = this.guideTemplate(data);
+    }
+    if(html === undefined)
+      return this;
+
+    this.$el.empty();
+    this.$el.append( html );
+    this.$el.trigger("create");
+    this.$el.removeClass("dirty");
     
-    this.$el.html( this.guideTemplate(data) );
-    this.$el.addClass("container")
     return this;
   }
 });

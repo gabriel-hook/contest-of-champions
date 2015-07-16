@@ -3,24 +3,25 @@ CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
   initialize: function(){
     var that = this;
+    
     that._init = true;
     that._instant = true;
-    that._guideViews = {};
     that._championViews = [];
     that._uids = [];
     that._indices = {};
     that._selector = $("#guide-champions-selector");
+    that._guideView = new CoC.view.GuideView({
+      model: that,
+      el: $("#guide-content")[0]
+    });
     
-    var uids = _.uniq( CoC.data.champions.pluck("uid") );
-    
-    _(uids).each(function(uid){
+    _( _.uniq( CoC.data.champions.pluck("uid") ) ).each(function(uid){
       var guide = CoC.guides.get(uid);
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
         model:champion
       });
-      view.render();
-      that._championViews.push( $("<li>").append( view.el )[0] );
+      that._championViews.push( $("<li>").append( view.render().el )[0] );
       
       var selectName = champion.get("name");
       if(champion.get("grade")){
@@ -74,10 +75,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     "click li.active":"click"
   },
   
-  selected:function(){
-    return (this._selected)? this._selected: 0;
-  },
-  
   click:function(event){
     var element = $(event.currentTarget).find(".champion");
     if(!element)
@@ -112,6 +109,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     }, 250);
   },
   
+  selected:function(){
+    return (this._selected)? this._selected: 0;
+  },
+  
   //Select a guide by Champion UID
   select:function(uid){  
     var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
@@ -128,19 +129,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       return;
     }
 
-    var item = this.sly.items[index],
-      uid = $(item.el).find(".champion").attr("uid"),
-      guide = CoC.guides.get(uid),
-      view = this._guideViews[uid];
-    if(!view){
-      view = new CoC.view.GuideView({ model:guide });
-      view.render();
-      this._guideViews[uid] = view;   
-    }
-    
-    $("#guide-content").addClass("dirty");
-    
-    var that = this;
+    var that = this,
+      uid = $( that.sly.items[index].el ).find(".champion").attr("uid");
+
     if(that._activateTimeout)
       clearTimeout(that._activateTimeout);
     if(delay > 0){
@@ -160,16 +151,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       
     this._selected = uid;
     this._instant = false;
-    this._selector.val(uid).selectmenu("refresh")
-
-    var guide = CoC.guides.get(uid),
-      view = this._guideViews[uid],
-      el = $("#guide-content");
-    el.empty();
-    el.append( $("<img>").addClass("background").attr("src", guide.champion.image() ) );
-    el.append( view.el );
-    el.trigger("create");
-    el.removeClass("dirty");
+    this._selector.val(uid).selectmenu("refresh");
+    this._guideView.render(uid);
     
     //scroll to beginning when we replace, and set url so a refresh goes back here
     $.mobile.silentScroll(0);
