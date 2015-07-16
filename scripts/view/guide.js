@@ -1,4 +1,4 @@
-var CoC = CoC || {};
+﻿var CoC = CoC || {};
 CoC.view = CoC.view || {};
 
 CoC.view.GuideViewHelpers={
@@ -120,8 +120,12 @@ CoC.view.GuideViewHelpers={
       synergies = CoC.data.synergies.where({ fromId:uid });
       
       from = {};
-      for(var i=0; i<synergies.length; i++)
-        from[synergies[i].get("toId")]=synergies[i];
+      for(var i=0; i<synergies.length; i++){
+        var key = synergies[i].get("toId"),
+          old = from[key];
+        if(!old || old.from().get("stars") >= synergies[i].from().get("stars"))
+          from[key]=synergies[i];
+      }
       synergies = [];
       for(var key in from)
         synergies.push(from[key]);
@@ -138,8 +142,14 @@ CoC.view.GuideViewHelpers={
       synergies = CoC.data.synergies.where({ toId:uid });
       
       to = {};
-      for(var i=0; i<synergies.length; i++)
-        to[synergies[i].get("fromId")]=synergies[i];
+
+      for(var i=0; i<synergies.length; i++){
+        var key = synergies[i].get("fromId"),
+          old = to[key];
+        if(!old || old.to().get("stars") < synergies[i].to().get("stars"))
+          to[key]=synergies[i];
+      }
+        
       synergies = [];
       for(var key in to)
         synergies.push(to[key]);
@@ -155,13 +165,13 @@ CoC.view.GuideViewHelpers={
 CoC.view.GuideView = Backbone.View.extend({
   tagName: 'div',
   guideTemplate: _.template( $('#guideTemplate').html() ),
-  missingTemplate: _.template( $('#guideMissingTemplate').html() ),
+  
   render:function(){
     var data = {};
     _.extend(data, this.model);
     _.extend(data, CoC.view.GuideViewHelpers);
     
-    this.$el.html( (this.model.data !== undefined)? this.guideTemplate(data): this.missingTemplate(data) );
+    this.$el.html( this.guideTemplate(data) );
     this.$el.addClass("container")
     return this;
   }

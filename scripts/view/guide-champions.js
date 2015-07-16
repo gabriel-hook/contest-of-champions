@@ -1,6 +1,8 @@
 var CoC = CoC || {};
 CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
+  guidePopupChampionTemplate: _.template( $('#guidePopupChampionTemplate').html() ),
+  
   initialize: function(){
     var that = this;
     that._init = true;
@@ -10,8 +12,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     that._uids = [];
     that._indices = {};
     that._selector = $("#guide-champions-selector");
+    that._popup = $("#guide-champions-selector");
     
-    var uids = _.uniq( CoC.data.champions.pluck("uid") );
+    var uids = _.uniq( CoC.data.champions.pluck("uid") ),
+      popupList = $("#guide-champions-popup-select");
     
     _(uids).each(function(uid){
       var guide = CoC.guides.get(uid);
@@ -30,6 +34,10 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         selectName += " ]";
       }
       that._selector.append($('<option>', { value:uid }).text( selectName ));
+      
+      var popupChampion = that.guidePopupChampionTemplate({ champion:champion });
+      
+      popupList.append(popupChampion)
       
       //set uids map
       that._indices[uid] = that._uids.length;
@@ -71,7 +79,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "click li.active":"click"
+    //"click li.active":"click"
   },
   
   selected:function(){
@@ -82,6 +90,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     var element = $(event.currentTarget).find(".champion");
     if(!element)
       return;
+    
+    
+    $("#popup-guide-champions-select").popup("open",{
+      positionTo:element
+    })
     
     $( "#guide-champions-selector" ).selectmenu( "open" );
   },

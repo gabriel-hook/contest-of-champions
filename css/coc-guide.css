@@ -97,6 +97,19 @@
 }
 
 /******************
+  GUIDE SELECTOR
+******************/
+#popup-guide-champions-select{
+  position:fixed;
+}
+
+#guide-champions-popup-select{
+  min-width:200px;
+  min-height:200px;
+  overflow-y:scroll;
+}
+
+/******************
       GUIDES
 ******************/
 #guide-content h1, 

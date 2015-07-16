@@ -51,8 +51,12 @@ CoC.guides.add=function(uid, data){
         if(data.grades.awakened)
           champion.set("gradeAwakened", data.grades.awakened);  
       }
-    value.data = data;
   }
+  else
+    data = {
+      unavailable:true
+    };
+  value.data = data;
   CoC.guides.data[uid] = value;
 }
 
