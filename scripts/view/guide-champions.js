@@ -15,7 +15,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       el: $("#guide-content")[0]
     });
     
-    _( _.uniq( CoC.data.champions.pluck("uid") ) ).each(function(uid){
+    var uids = _.uniq( CoC.data.champions.pluck("uid") );
+    _( uids ).each(function(uid){
       var guide = CoC.guides.get(uid);
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
@@ -30,7 +31,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
           selectName += " / " + champion.get("gradeAwakened");
         selectName += " ]";
       }
-      that._selector.append($('<option>', { value:uid }).text( selectName ));
+      that._selector.append( $('<option>', { value:uid }).text( selectName ) );
       
       //set uids map
       that._indices[uid] = that._uids.length;
