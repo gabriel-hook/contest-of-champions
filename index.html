@@ -517,7 +517,7 @@
         
         <div id="guide-champions-selector-container" class="ui-field-contain">
           <label for="guide-champions-selector">Choose a Guide...</label>
-          <select name="guide-champions-selector" id="guide-champions-selector" data-theme="a"></select>
+          <select name="guide-champions-selector" id="guide-champions-selector" data-native-menu="false" data-theme="a"></select>
         </div>
       </div>
         
@@ -531,19 +531,6 @@
             <li><a href="#page-teams" data-icon="gear" data-transition="fade">Team</a></li>           
           </ul>
         </div>
-      </div>
-      
-      <div id="popup-guide-champions-select" 
-        data-role="popup" 
-        data-tolerance="32"
-        data-theme="c"
-        data-arrow="true">
-        <div role="main" class="ui-content">
-          <h3>
-            Choose a Champion
-          </h3>
-        </div>
-        <ul id="guide-champions-popup-select"></ul>
       </div>
     </div>
     
@@ -570,13 +557,6 @@
         <label for="<%= id %>"><%- name %></label>
         <input type="range" name="<%= id %>" id="<%= id %>" value="100" min="0" max="1000" data-highlight="true"/>
       </div>
-    
-    </script>
-    <script id="guidePopupChampionTemplate" type="text/template">
-    
-      <li>
-        <%- champion.get("name") %>
-      </li>
     
     </script>
     <script id="championTemplate" type="text/template">
