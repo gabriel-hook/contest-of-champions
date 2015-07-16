@@ -168,7 +168,7 @@ CoC.view.GuideView = Backbone.View.extend({
   
   initialize:function(){
     this._guides = {};
-    this._parent = this.model;
+    this._guideChampionsView = this.model;
   },
   
   events:{
@@ -179,7 +179,7 @@ CoC.view.GuideView = Backbone.View.extend({
     var uid = $(event.currentTarget).attr("uid");
     if(uid === undefined)
       return;
-    this._parent.select(uid);
+    this._guideChampionsView.select(uid);
   },
   
   render:function(uid){
