@@ -226,6 +226,15 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"abomination", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:4 },
   { fromId:"abomination", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
   { fromId:"abomination", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:5 },
+  
+  { fromId:"antman", fromStars:3, toId:"hulk", effectId:"armor", effectAmount:5 },
+  { fromId:"antman", fromStars:3, toId:"yellowjacket", effectId:"attack", effectAmount:5 },
+  { fromId:"antman", fromStars:3, toId:"spiderman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"yellowjacket", effectId:"attack", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"spiderman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"antman", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
 
   { fromId:"captainamerica", fromStars:2, toId:"spiderman", effectId:"armor", effectAmount:4 },
   { fromId:"captainamerica", fromStars:2, toId:"superiorironman", effectId:"critrate", effectAmount:5 },
