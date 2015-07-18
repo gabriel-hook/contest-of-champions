@@ -146,6 +146,8 @@ jQuery.fn.springy = function(params) {
 			var from = graph.getEdges(edge.source, edge.target);
 			var to = graph.getEdges(edge.target, edge.source);
 
+      var isSelected = selected && (selected.node === edge.source || selected.node === edge.target);
+      
 			var total = from.length + to.length;
 
 			// Figure out edge's position in relation to other edges between the same nodes
@@ -182,7 +184,7 @@ jQuery.fn.springy = function(params) {
 			var arrowWidth;
 			var arrowLength;
 
-			var weight = (edge.data.weight !== undefined) ? edge.data.weight : 1.0;
+			var weight = (isSelected) ? 2.0 : 1.0;
 
 			ctx.lineWidth = Math.max(weight *  2, 0.1);
 			arrowWidth = 1 + ctx.lineWidth;
@@ -221,7 +223,7 @@ jQuery.fn.springy = function(params) {
 			}
 
 			// label
-			if (edge.data.label !== undefined && selected && (selected.node === edge.source || selected.node === edge.target)) {
+			if (edge.data.label !== undefined && isSelected) {
 				text = edge.data.label
 				ctx.save();
 				ctx.textAlign = "center";
