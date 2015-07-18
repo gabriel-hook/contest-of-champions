@@ -14,6 +14,13 @@ CoC.algorithm = CoC.algorithm || {};
     return factorial.cache[n];
   }
 
+  function combination(n, r){
+    var value = n / factorial(r);
+    for(var i = n - 1; i > n - r; i--)
+      value *= i;
+    return value;
+  }
+
   function shuffle(array){
     var counter = array.length, temp, index;
     while (counter > 0) {
@@ -51,7 +58,7 @@ CoC.algorithm = CoC.algorithm || {};
           max:(function(r){
             var value = 0;
             for(var n = list.length; n > r; n-=r){
-              value += factorial(n) / (factorial(r) * factorial(n - r));
+              value += combination(n, r);
               if(options.quest)
                 break;
             }
