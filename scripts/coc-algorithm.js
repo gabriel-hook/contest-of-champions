@@ -14,6 +14,19 @@ CoC.algorithm = CoC.algorithm || {};
     return factorial.cache[n];
   }
 
+  function shuffle(array){
+    var counter = array.length, temp, index;
+    while (counter > 0) {
+      index = Math.floor(Math.random() * counter);
+      counter--;
+      if(index != counter){
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+    }
+  }
+
   CoC.algorithm["greedy"]=new function(){
     
     this.uid = "greedy";
@@ -381,7 +394,7 @@ CoC.algorithm = CoC.algorithm || {};
         array = [];
         for(var i in heroMap)
           array.push(heroMap[i]);
-        array.sort(function(){ return Math.random() > 0.5; });
+        shuffle(array);
         arrays.push(array);
         didExtrasShuffle = false;
       }
