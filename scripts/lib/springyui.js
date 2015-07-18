@@ -146,7 +146,13 @@ jQuery.fn.springy = function(params) {
 			var from = graph.getEdges(edge.source, edge.target);
 			var to = graph.getEdges(edge.target, edge.source);
 
-      var isSelected = selected && (selected.node === edge.source || selected.node === edge.target);
+      var isSelected = false;
+      if(selected && selected.node){
+        if(selected.node === edge.source || selected.node === edge.target)
+          isSelected = true;
+        if(selected.node.data.neighbors[ edge.source.id ] && selected.node.data.neighbors[ edge.target.id ])
+          isSelected = true;
+      }
       
 			var total = from.length + to.length;
 
@@ -200,6 +206,7 @@ jQuery.fn.springy = function(params) {
 				lineEnd = s2;
 			}
 
+      ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x, s1.y);
@@ -209,6 +216,7 @@ jQuery.fn.springy = function(params) {
 			// arrow
 			if (directional) {
 				ctx.save();
+        ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
 				ctx.fillStyle = stroke;
 				ctx.translate(intersection.x, intersection.y);
 				ctx.rotate(Math.atan2(y2 - y1, x2 - x1));
@@ -245,7 +253,8 @@ jQuery.fn.springy = function(params) {
 				ctx.fillText(text, 0,-2);
 				ctx.restore();
 			}
-
+      
+      ctx.globalAlpha=1.0;
 		},
 		function drawNode(node, p) {
 			var s = toScreen(p);
@@ -253,6 +262,15 @@ jQuery.fn.springy = function(params) {
 
 			var contentWidth = node.getWidth();
 			var contentHeight = node.getHeight();
+      
+      if(selected !== null && selected.node !== null){
+        if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
+          ctx.globalAlpha = 1.0;
+        else
+          ctx.globalAlpha = 0.25;
+      }
+      else
+        ctx.globalAlpha=1.0;
 
 			if (node.data.image !== undefined){
 				// Currently we just ignore any labels if the image object is set. One might want to extend this logic to allow for both, or other composite nodes.
@@ -280,6 +298,8 @@ jQuery.fn.springy = function(params) {
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
       ctx.fillRect(s.x - contentWidth/2, s.y + contentHeight/2 - contentHeight/10, contentWidth, contentHeight/10);
       
+      
+      ctx.globalAlpha=1.0;
 			ctx.restore();
 		},
 		function drawNodeOverlay(node, p) {

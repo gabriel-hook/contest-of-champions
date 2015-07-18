@@ -139,6 +139,11 @@
             health:"#3f3",
             healthsteal:"#3f3"
           };
+          
+        function addNeighbors(n1, n2){
+          n1.data.neighbors[ n2.id ] = true;
+          n2.data.neighbors[ n1.id ] = true; 
+        }
         
         //add nodes
         var champions = CoC.data.champions.where({ stars:stars });
@@ -152,7 +157,8 @@
               return image;
             })( champion.portrait() ),
             type: champion.get('typeId'),
-            color: typeColors[ champion.get('typeId') ]
+            color: typeColors[ champion.get('typeId') ],
+            neighbors: {}
           });
         }
         //add edges
@@ -161,6 +167,7 @@
           var synergy = synergies[i];
           if(nodes[ synergy.get("toId") ] === undefined)
             continue;
+          addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ])
           graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
             label: synergy.effect().get('name'),
             effect: synergy.get('effectId'),
