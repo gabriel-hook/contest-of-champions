@@ -2,37 +2,6 @@
 CoC.algorithm = CoC.algorithm || {};
 
 (function(){
-    
-  function factorial(n){
-    if(factorial.cache === undefined)
-      factorial.cache = { 0:1, 1:1, length:1 };
-    if(factorial.cache.length < n){
-      for(var i=factorial.cache.length; i <= n; i++)
-        factorial.cache[i] = i * factorial.cache[i - 1];
-      factorial.cache.length = n;
-    }
-    return factorial.cache[n];
-  }
-
-  function combination(n, r){
-    var value = n / factorial(r);
-    for(var i = n - 1; i > n - r; i--)
-      value *= i;
-    return value;
-  }
-
-  function shuffle(array){
-    var counter = array.length, temp, index;
-    while (counter > 0) {
-      index = Math.floor(Math.random() * counter);
-      counter--;
-      if(index != counter){
-        temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
-      }
-    }
-  }
 
   CoC.algorithm["greedy"]=new function(){
     
@@ -1171,6 +1140,37 @@ CoC.algorithm = CoC.algorithm || {};
         weights.stars[i] = CoC.settings.getStarWeight(i)
       weights.awakened = CoC.settings.getWeight("awakened");
       return weights;
+    }
+  }
+    
+  function factorial(n){
+    if(factorial.cache === undefined)
+      factorial.cache = { 0:1, 1:1, length:1 };
+    if(factorial.cache.length < n){
+      for(var i=factorial.cache.length; i <= n; i++)
+        factorial.cache[i] = i * factorial.cache[i - 1];
+      factorial.cache.length = n;
+    }
+    return factorial.cache[n];
+  }
+
+  function combination(n, r){
+    var value = n / factorial(r);
+    for(var i = n - 1; i > n - r; i--)
+      value *= i;
+    return value;
+  }
+
+  function shuffle(array){
+    var counter = array.length, temp, index;
+    while (counter > 0) {
+      index = Math.floor(Math.random() * counter);
+      counter--;
+      if(index != counter){
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
     }
   }
   
