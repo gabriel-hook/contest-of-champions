@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <title>Champion Synergies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#5393c5 ">
+    <link rel="icon" sizes="192x192" href="images/icon.png">
+    <link rel="stylesheet" href="css/fonts/fonts.css" media="all">
+    <script type="text/javascript"  src="scripts/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
+    <style>
+      html, body {
+        width:  100%;
+        height: 100%;
+        margin: 0px;
+        font-family:Hanzel, Verdana, Geneva, sans-serif !important;
+        text-transform: uppercase;
+      }
+      .container{
+        display:none;
+        position:absolute;
+        top:33px;
+        left:0;
+        background: radial-gradient(#fff, #eee, #aaa); 
+      }
+      .container.active{
+        display:block;
+      }
+      .buttons{
+        position:absolute;
+        box-sizing: border-box;
+        top:0;
+        left:0;
+        width:100%;
+        height:32px;
+      }
+      .buttons .button{
+        float:left;
+        position:relative;
+        box-sizing: border-box;
+        width:20%;
+        height:32px;
+        cursor:pointer;
+        
+        background: radial-gradient(#fff, #eee, #aaa); 
+        text-align:center;
+        line-height:32px;
+        font-size: 20px;
+        
+        border:solid 1px #666;
+        border-right:solid 1px #eee;
+      }
+      .buttons .button:last-child{
+        border-right:solid 1px #666;
+      }
+    </style>
+
+  </head>
+  <body>
+  
+    <div class="buttons">
+      <div class="button" onclick="drawSynergies(1)"> 1 ★ </div>
+      <div class="button" onclick="drawSynergies(2)"> 2 ★ </div>
+      <div class="button" onclick="drawSynergies(3)"> 3 ★ </div>
+      <div class="button" onclick="drawSynergies(4)"> 4 ★ </div>
+      <div class="button" onclick="drawSynergies(5)"> 5 ★ </div>
+    </div>
+  
+    <canvas class="container" id="container-1"></canvas>
+    <canvas class="container" id="container-2"></canvas>
+    <canvas class="container" id="container-3"></canvas>
+    <canvas class="container" id="container-4"></canvas>
+    <canvas class="container" id="container-5"></canvas>
+
+    <script type="text/javascript" src="scripts/model/champion.js"></script>
+    <script type="text/javascript" src="scripts/model/effect.js"></script>
+    <script type="text/javascript" src="scripts/model/synergy.js"></script>
+    <script type="text/javascript" src="scripts/model/type.js"></script>
+    
+    <script type="text/javascript" src="scripts/data/champions.js"></script>
+    <script type="text/javascript" src="scripts/data/effects.js"></script>
+    <script type="text/javascript" src="scripts/data/synergies.js"></script>
+    <script type="text/javascript" src="scripts/data/types.js"></script>
+
+    <script type="text/javascript" src="scripts/lib/springy.js"></script>
+    <script type="text/javascript" src="scripts/lib/springyui.js"></script>
+    
+    <script type="text/javascript">
+      $(document).on('ready', function(){
+        $('.container').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
+      });
+      $(window).on('resize', function(){
+        $('.container').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
+      });
+    </script>
+    <script type="text/javascript">
+      var typeColors = {
+        cosmic:"#3af",
+        tech:"#23f",
+        mutant:"#fa0",
+        skill:"#f30",
+        science:"#0a0",
+        mystic:"#90f"
+      }
+      var effectColors = {
+        attack:"#f33",
+        critrate:"#fa3",
+        critdamage:"#faa",
+        stun:"#f30",
+        powergain:"#a3f",
+        powersteal:"#a3f",
+        perfectblock:"#33f",
+        block:"#33f",
+        armor:"#3af",
+        health:"#3f3",
+        healthsteal:"#3f3"
+      }
+      
+      function newImage(src, width, height){
+        var image = new Image(width, height);
+        image.src = src;
+        return image;
+      }
+      
+      function initSynergies(stars){
+        
+        if(renderer !== undefined)
+          renderer.stop();
+    
+        var graph = new Springy.Graph();
+        var nodes = {};
+        var champions = {};
+        var synergies = {};
+        
+        var champions = CoC.data.champions.where({ stars:stars });
+        for(var i=0; i<champions.length; i++){
+          var champion = champions[i];
+          nodes[ champion.get('uid') ] = graph.newNode({
+            label: champion.get('name'),
+            image: newImage(champion.portrait(), 50, 50),
+            color: typeColors[ champion.get('typeId') ],
+            size: 50
+          });
+        }
+        
+        var synergies = CoC.data.synergies.where({ fromStars:stars });
+        for(var i=0; i<synergies.length; i++){
+          var synergy = synergies[i];
+          if(nodes[ synergy.get("toId") ] === undefined)
+            continue;
+          graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
+            label: synergy.effect().get('name'),
+            color: effectColors[ synergy.get('effectId') ]
+          });
+        }
+
+        var layout = new Springy.Layout.ForceDirected(graph);
+        var springy = $('#container-'+stars).springy({
+          graph: graph
+        });
+        
+        var renderer = new Springy.Renderer(layout,
+          function clear() {
+            // code to clear screen
+          },
+          function drawEdge(edge, p1, p2) {
+          
+          },
+          function drawNode(node, p) {
+          
+          });
+        renderer.start();
+      }
+      
+      var init = [false,false,false,false,false];
+      function drawSynergies(stars){
+        $(".container").removeClass("active");
+        $("#container-"+stars).addClass("active");
+      
+      
+        if(!init[stars]){
+          initSynergies(stars);
+          init[stars] = true;
+        }
+      }
+        
+      $(document).on('ready', function(){
+        drawSynergies(2);
+      });
+    </script>
+  </body>
+</html>
