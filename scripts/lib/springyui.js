@@ -27,7 +27,7 @@ Copyright (c) 2010 Dennis Hotson
 
 jQuery.fn.springy = function(params) {
 	var graph = this.graph = params.graph || new Springy.Graph();
-	var nodeFont = "16px Verdana, sans-serif";
+	var nodeFont = "16px Hanzel, sans-serif";
 	var edgeFont = "8px Verdana, sans-serif";
 	var stiffness = params.stiffness || 400.0;
 	var repulsion = params.repulsion || 400.0;
@@ -83,29 +83,29 @@ jQuery.fn.springy = function(params) {
 	jQuery(canvas).mousedown(function(e) {
 		var pos = jQuery(this).offset();
 		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-		selected = nearest = dragged = layout.nearest(p);
-
-		if (selected.node !== null) {
+    
+    var o = layout.nearest(p);
+    
+    if(o.node !== null){
+      if(o.distance > 1){
+        
+        selected = nearest = dragged = null;
+        renderer.start();
+        return;
+      
+      }
+    }
+    
+		selected = nearest = dragged = o;
+		if (o.node !== null) {
 			dragged.point.m = 10000.0;
-
 			if (nodeSelected) {
-				nodeSelected(selected.node);
+				nodeSelected(o.node);
 			}
 		}
-
 		renderer.start();
 	});
 
-	// Basic double click handler
-	jQuery(canvas).dblclick(function(e) {
-		var pos = jQuery(this).offset();
-		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-		selected = layout.nearest(p);
-		node = selected.node;
-		if (node && node.data && node.data.ondoubleclick) {
-			node.data.ondoubleclick();
-		}
-	});
 
 	jQuery(canvas).mousemove(function(e) {
 		var pos = jQuery(this).offset();
@@ -124,62 +124,6 @@ jQuery.fn.springy = function(params) {
 		dragged = null;
 	});
 
-	var getTextWidth = function(node) {
-		var text = (node.data.label !== undefined) ? node.data.label : node.id;
-		if (node._width && node._width[text])
-			return node._width[text];
-
-		ctx.save();
-		ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
-		var width = ctx.measureText(text).width;
-		ctx.restore();
-
-		node._width || (node._width = {});
-		node._width[text] = width;
-
-		return width;
-	};
-
-	var getTextHeight = function(node) {
-		return 16;
-		// In a more modular world, this would actually read the font size, but I think leaving it a constant is sufficient for now.
-		// If you change the font size, I'd adjust this too.
-	};
-
-	var getImageWidth = function(node) {
-		var width = (node.data.image.width !== undefined) ? node.data.image.width : nodeImages[node.data.image.src].object.width;
-		return width;
-	}
-
-	var getImageHeight = function(node) {
-		var height = (node.data.image.height !== undefined) ? node.data.image.height : nodeImages[node.data.image.src].object.height;
-		return height;
-	}
-/*
-	Springy.Node.prototype.getHeight = function() {
-		var height;
-		if (this.data.image == undefined) {
-			height = getTextHeight(this);
-		} else {
-			if (this.data.image.src in nodeImages && nodeImages[this.data.image.src].loaded) {
-				height = getImageHeight(this);
-			} else {height = 10;}
-		}
-		return height;
-	}
-
-	Springy.Node.prototype.getWidth = function() {
-		var width;
-		if (this.data.image == undefined) {
-			width = getTextWidth(this);
-		} else {
-			if (this.data.image.src in nodeImages && nodeImages[this.data.image.src].loaded) {
-				width = getImageWidth(this);
-			} else {width = 10;}
-		}
-		return width;
-	}
-*/
 	Springy.Node.prototype.getHeight = Springy.Node.prototype.getWidth = function() {
 		var size = Math.min(Math.max(24, Math.min(window.innerWidth, window.innerHeight)/20), 64);
     
@@ -293,6 +237,9 @@ jQuery.fn.springy = function(params) {
 				var textPos = s1.add(s2).divide(2).add(normal.multiply(displacement));
 				ctx.translate(textPos.x, textPos.y);
 				ctx.rotate(angle);
+        ctx.shadowColor = "#fff";
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
 				ctx.fillText(text, 0,-2);
 				ctx.restore();
 			}
@@ -300,44 +247,11 @@ jQuery.fn.springy = function(params) {
 		},
 		function drawNode(node, p) {
 			var s = toScreen(p);
-
 			ctx.save();
-
-			// Pulled out the padding aspect sso that the size functions could be used in multiple places
-			// These should probably be settable by the user (and scoped higher) but this suffices for now
-			var paddingX = 6;
-			var paddingY = 6;
 
 			var contentWidth = node.getWidth();
 			var contentHeight = node.getHeight();
-			var boxWidth = contentWidth + paddingX;
-			var boxHeight = contentHeight + paddingY;
 
-      /*
-      // clear background
-      ctx.clearRect(s.x - boxWidth/2, s.y - boxHeight/2, boxWidth, boxHeight);
-    
-      // fill background
-      if (selected !== null && selected.node !== null && selected.node.id === node.id) {
-        ctx.fillStyle = "#FFFFE0";
-      } else if (nearest !== null && nearest.node !== null && nearest.node.id === node.id) {
-        ctx.fillStyle = "#EEEEEE";
-      } else {
-        ctx.fillStyle = "#FFFFFF";
-      }
-      ctx.fillRect(s.x - boxWidth/2, s.y - boxHeight/2, boxWidth, boxHeight);
-      */
-
-      if (selected !== null && selected.node !== null && selected.node.id === node.id) {
-      
-				ctx.textAlign = "left";
-				ctx.textBaseline = "bottom";
-				ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
-				ctx.fillStyle = "#000000";
-				ctx.fillText(node.data.label, s.x - ctx.measureText(node.data.label).width/2, s.y - contentHeight/2);
-      }
-
-        
 			if (node.data.image !== undefined){
 				// Currently we just ignore any labels if the image object is set. One might want to extend this logic to allow for both, or other composite nodes.
 				var src = node.data.image.src;  // There should probably be a sanity check here too, but un-src-ed images aren't exaclty a disaster.
@@ -365,7 +279,37 @@ jQuery.fn.springy = function(params) {
       ctx.fillRect(s.x - contentWidth/2, s.y + contentHeight/2 - contentHeight/10, contentWidth, contentHeight/10);
       
 			ctx.restore();
-		}
+		},
+		function drawNodeOverlay(node, p) {
+      if (selected === null || selected.node === null || selected.node.id !== node.id)
+        return;
+    
+			var s = toScreen(p);
+			ctx.save();
+      
+      var padding = 2;
+      
+      ctx.textAlign = "left";
+      ctx.textBaseline = "bottom";
+      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
+      ctx.fillStyle = "rgba(0, 0, 0, 0.66)";
+      ctx.opacity = 0.5;
+      
+			var contentWidth = ctx.measureText(node.data.label).width;
+			var contentHeight = 16 + padding;
+      var nodeHeight = node.getHeight();
+      ctx.fillRect(s.x - contentWidth/2 - padding, s.y - nodeHeight/2 - contentHeight, contentWidth + padding*2, contentHeight);
+      
+      ctx.fillStyle = "#fff";
+      ctx.shadowColor = "#000";
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 1;
+      ctx.shadowBlur = 1;
+      
+      ctx.fillText(node.data.label, s.x - contentWidth/2, s.y - nodeHeight/2);
+
+			ctx.restore();
+    }
 	);
 
 	renderer.start();

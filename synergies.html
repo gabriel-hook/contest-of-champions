@@ -11,6 +11,14 @@
     <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
     <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
     <style>
+      html, body, div, img {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
       html, body {
         width:  100%;
         height: 100%;
@@ -55,7 +63,6 @@
       .button.active{
         background: radial-gradient(#ccc, #bbb, #888); 
       }
-      
       .button .narrow{
         display:inherit;
       }
@@ -63,16 +70,13 @@
         display:none;
       }
       @media (min-width:800px){
-        
         .button .narrow{
           display:none;
         }
         .button .wide{
           display:inherit;
         }
-      
       }
-      
     </style>
 
   </head>
@@ -124,7 +128,7 @@
           effectColors = {
             attack:"#f33",
             critrate:"#fa3",
-            critdamage:"#faa",
+            critdamage:"#f3a",
             stun:"#f30",
             powergain:"#a3f",
             powersteal:"#a3f",
@@ -146,6 +150,7 @@
               image.src = src;
               return image;
             })( champion.portrait() ),
+            type: champion.get('typeId'),
             color: typeColors[ champion.get('typeId') ]
           });
         }
@@ -157,6 +162,7 @@
             continue;
           graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
             label: synergy.effect().get('name'),
+            effect: synergy.get('effectId'),
             color: effectColors[ synergy.get('effectId') ]
           });
         }
