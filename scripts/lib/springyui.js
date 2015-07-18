@@ -155,7 +155,7 @@ jQuery.fn.springy = function(params) {
 		var height = (node.data.image.height !== undefined) ? node.data.image.height : nodeImages[node.data.image.src].object.height;
 		return height;
 	}
-
+/*
 	Springy.Node.prototype.getHeight = function() {
 		var height;
 		if (this.data.image == undefined) {
@@ -178,6 +178,12 @@ jQuery.fn.springy = function(params) {
 			} else {width = 10;}
 		}
 		return width;
+	}
+*/
+	Springy.Node.prototype.getHeight = Springy.Node.prototype.getWidth = function() {
+		var size = Math.min(Math.max(24, Math.min(window.innerWidth, window.innerHeight)/20), 64);
+    
+    return size;
 	}
 
 	var renderer = this.renderer = new Springy.Renderer(layout,
@@ -302,8 +308,8 @@ jQuery.fn.springy = function(params) {
 			var paddingX = 6;
 			var paddingY = 6;
 
-			var contentWidth = (node.data.size !== undefined)? node.data.size: node.getWidth();
-			var contentHeight = (node.data.size !== undefined)? node.data.size: node.getHeight();
+			var contentWidth = node.getWidth();
+			var contentHeight = node.getHeight();
 			var boxWidth = contentWidth + paddingX;
 			var boxHeight = contentHeight + paddingY;
 
@@ -356,7 +362,7 @@ jQuery.fn.springy = function(params) {
       
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(s.x - contentWidth/2, s.y + contentHeight/2 - 5, node.data.size, 5);
+      ctx.fillRect(s.x - contentWidth/2, s.y + contentHeight/2 - contentHeight/10, contentWidth, contentHeight/10);
       
 			ctx.restore();
 		}
