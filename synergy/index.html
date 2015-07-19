@@ -187,7 +187,9 @@
         }
         //start the renderer
         var springy = $('.container').springy({
-          graph: graph
+          graph: graph,
+          stiffness: 100.0,
+          repulsion: 800.0
         });
         $(".button[stars="+stars+"]").addClass("active");
       }
