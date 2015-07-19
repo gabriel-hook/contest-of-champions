@@ -78,6 +78,12 @@
           display:inherit;
         }
       }
+      a{
+        position:absolute;
+        top:-1000px;
+        left:-1000px;
+        opacity:0;
+      }
     </style>
 
   </head>
@@ -147,20 +153,25 @@
         
         //add nodes
         var champions = CoC.data.champions.where({ stars:stars });
-        for(var i=0; i<champions.length; i++){
-          var champion = champions[i];
-          nodes[ champion.get('uid') ] = graph.newNode({
-            label: champion.get('name'),
-            image: (function(src){
-              var image = new Image();
-              image.src = src;
-              return image;
-            })( champion.portrait() ),
-            type: champion.get('typeId'),
-            color: typeColors[ champion.get('typeId') ],
-            neighbors: {}
-          });
-        }
+        for(var i=0; i<champions.length; i++)
+          (function(champion){
+            var link = $('<a>', { href: "/#page-guide?guide="+champion.get('uid') });
+            $(document.body).append(link);
+            nodes[ champion.get('uid') ] = graph.newNode({
+              label: champion.get('name'),
+              image: (function(src){
+                var image = new Image();
+                image.src = src;
+                return image;
+              })( champion.portrait() ),
+              type: champion.get('typeId'),
+              color: typeColors[ champion.get('typeId') ],
+              neighbors: {},
+              ondoubleclick:function(){
+                link[0].click();
+              }
+            });
+          })(champions[i]);
         //add edges
         var synergies = CoC.data.synergies.where({ fromStars:stars });
         for(var i=0; i<synergies.length; i++){

@@ -84,19 +84,14 @@ jQuery.fn.springy = function(params) {
 	jQuery(canvas).mousedown(function(e) {
 		var pos = jQuery(this).offset();
 		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    
     var o = layout.nearest(p);
-    
     if(o.node !== null){
       if(o.distance > 1){
-        
         selected = nearest = dragged = null;
         renderer.start();
         return;
-      
       }
     }
-    
 		selected = nearest = dragged = o;
 		if (o.node !== null) {
 			dragged.point.m = 10000.0;
@@ -107,6 +102,15 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
 	});
 
+  jQuery(canvas).dblclick(function(e) {
+		var pos = jQuery(this).offset();
+		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
+		var o = layout.nearest(p);
+    if(selected && o.node.id === selected.node.id)
+      if (o.node && o.node.data && o.node.data.ondoubleclick) {
+        o.node.data.ondoubleclick();
+      }
+	});
 
 	jQuery(canvas).mousemove(function(e) {
 		var pos = jQuery(this).offset();
@@ -249,8 +253,8 @@ jQuery.fn.springy = function(params) {
 				ctx.translate(textPos.x, textPos.y);
 				ctx.rotate(angle);
         ctx.shadowColor = "#fff";
-        ctx.shadowOffsetX = 1;
-        ctx.shadowOffsetY = 1;
+        ctx.shadowOffsetX = 0.5;
+        ctx.shadowOffsetY = 0.5;
 				ctx.fillText(text, 0,-2);
 				ctx.restore();
 			}
