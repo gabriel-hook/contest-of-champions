@@ -35,6 +35,7 @@ jQuery.fn.springy = function(params) {
 	var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
 	var nodeSelected = params.nodeSelected || null;
 	var nodeImages = {};
+	var nodeImageContexts = {};
 	var edgeLabelsUpright = true;
 
 	var canvas = this[0];
@@ -124,7 +125,7 @@ jQuery.fn.springy = function(params) {
 		dragged = null;
 	});
 
-	Springy.Node.prototype.getHeight = Springy.Node.prototype.getWidth = function() {
+	Springy.Node.prototype.getSize = function() {
 		var size = Math.min(Math.max(24, Math.min(window.innerWidth, window.innerHeight)/20), 64);
     
     return size;
@@ -176,8 +177,8 @@ jQuery.fn.springy = function(params) {
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
 
-			var boxWidth = edge.target.getWidth() + paddingX;
-			var boxHeight = edge.target.getHeight() + paddingY;
+			var boxWidth = edge.target.getSize() + paddingX;
+			var boxHeight = edge.target.getSize() + paddingY;
 
 			var intersection = intersect_line_box(s1, s2, {x: x2-boxWidth/2.0, y: y2-boxHeight/2.0}, boxWidth, boxHeight);
 
@@ -260,8 +261,7 @@ jQuery.fn.springy = function(params) {
 			var s = toScreen(p);
 			ctx.save();
 
-			var contentWidth = node.getWidth();
-			var contentHeight = node.getHeight();
+			var contentSize = node.getSize();
       
       if(selected !== null && selected.node !== null){
         if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
@@ -273,22 +273,37 @@ jQuery.fn.springy = function(params) {
         ctx.globalAlpha=1.0;
 
 			if (node.data.image !== undefined){
-				// Currently we just ignore any labels if the image object is set. One might want to extend this logic to allow for both, or other composite nodes.
-				var src = node.data.image.src;  // There should probably be a sanity check here too, but un-src-ed images aren't exaclty a disaster.
+				var src = node.data.image.src;
 				if (src in nodeImages) {
 					if (nodeImages[src].loaded) {
-						// Our image is loaded, so it's safe to draw
-						ctx.drawImage(nodeImages[src].object, s.x - contentWidth/2, s.y - contentHeight/2, contentWidth, contentHeight);
+            //sample down for better antialiasing
+            var contexts = nodeImageContexts[src], image;
+            for(var i=0; i < contexts.length; i++)
+              if(contexts[i].width < contentSize * 2){
+                image = contexts[i];
+                break;
+              }
+            if(image === undefined){
+              var lastImage = contexts[contexts.length - 1];
+              do{
+                // step 1
+                var image = document.createElement('canvas'),
+                    context = image.getContext('2d');
+                image.width = lastImage.width * 0.5;
+                image.height = lastImage.height * 0.5;
+                context.drawImage(lastImage, 0, 0, image.width, image.height);
+                lastImage = image;
+              } while( image.width > contentSize * 2 )
+            }
+						ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
 					}
 				}else{
-					// First time seeing an image with this src address, so add it to our set of image objects
-					// Note: we index images by their src to avoid making too many duplicates
 					nodeImages[src] = {};
 					var img = new Image();
 					nodeImages[src].object = img;
 					img.addEventListener("load", function () {
-						// HTMLImageElement objects are very finicky about being used before they are loaded, so we set a flag when it is done
 						nodeImages[src].loaded = true;
+            nodeImageContexts[src] = [ img ];
 					});
 					img.src = src;
 				}
@@ -296,7 +311,7 @@ jQuery.fn.springy = function(params) {
       
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(s.x - contentWidth/2, s.y + contentHeight/2 - contentHeight/10, contentWidth, contentHeight/10);
+      ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
       
       
       ctx.globalAlpha=1.0;
@@ -319,7 +334,7 @@ jQuery.fn.springy = function(params) {
       
 			var contentWidth = ctx.measureText(node.data.label).width;
 			var contentHeight = 16 + padding;
-      var nodeHeight = node.getHeight();
+      var nodeHeight = node.getSize();
       ctx.fillRect(s.x - contentWidth/2 - padding, s.y - nodeHeight/2 - contentHeight, contentWidth + padding*2, contentHeight);
       
       ctx.fillStyle = "#fff";
