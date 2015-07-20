@@ -5,14 +5,14 @@
     <title>Champion Synergies</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#909090 ">
+    <meta name="theme-color" content="#b0b0b0">
     <link rel="icon" sizes="192x192" href="images/icon.png">
     <link rel="stylesheet" href="css/fonts/fonts.css" media="all">
     <script type="text/javascript"  src="scripts/lib/jquery-1.11.2.min.js"></script>
     <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
     <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
     <style>
-      html, body, div, img {
+      html, body, div, img, canvas {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
@@ -28,7 +28,7 @@
         text-transform: uppercase;
       }
       .header{
-        position:fixed;
+        position:absolute;
         box-sizing: border-box;
         top:0;
         left:0;
@@ -89,9 +89,6 @@
 
   </head>
   <body>
-  
-    <canvas class="container"></canvas>
-  
     <div class="header">
       <div class="button" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
       <div class="button" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
@@ -99,7 +96,9 @@
       <div class="button" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
       <div class="button" stars="5"><span class="narrow">5 ★</span><span class="wide">★ ★ ★ ★ ★</span></div>
     </div>
-
+  
+    <canvas class="container"></canvas>
+  
     <script type="text/javascript" src="scripts/model/champion.js"></script>
     <script type="text/javascript" src="scripts/model/effect.js"></script>
     <script type="text/javascript" src="scripts/model/synergy.js"></script>
