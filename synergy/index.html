@@ -27,14 +27,8 @@
         font-family:Hanzel, Verdana, Geneva, sans-serif !important;
         text-transform: uppercase;
       }
-      .container{
-        position:absolute;
-        top:33px;
-        left:0;
-        background: radial-gradient(#fff, #eee, #aaa); 
-      }
       .header{
-        position:absolute;
+        position:fixed;
         box-sizing: border-box;
         top:0;
         left:0;
@@ -84,10 +78,18 @@
         left:-1000px;
         opacity:0;
       }
+      .container{
+        position:absolute;
+        top:33px;
+        left:0;
+        background: radial-gradient(#fff, #eee, #aaa); 
+      }
     </style>
 
   </head>
   <body>
+  
+    <canvas class="container"></canvas>
   
     <div class="header">
       <div class="button" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
@@ -96,8 +98,6 @@
       <div class="button" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
       <div class="button" stars="5"><span class="narrow">5 ★</span><span class="wide">★ ★ ★ ★ ★</span></div>
     </div>
-  
-    <canvas class="container"></canvas>
 
     <script type="text/javascript" src="scripts/model/champion.js"></script>
     <script type="text/javascript" src="scripts/model/effect.js"></script>
@@ -113,12 +113,11 @@
     <script type="text/javascript" src="scripts/lib/springyui.js"></script>
     
     <script type="text/javascript">
-      $(document).on('ready', function(){
+      function setCanvasSize(){
         $('.container').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
-      });
-      $(window).on('resize', function(){
-        $('.container').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
-      });
+      }
+      $(document).on('ready', setCanvasSize);
+      $(window).on('resize', setCanvasSize);
     </script>
     <script type="text/javascript">
       function initialize(stars){
@@ -189,7 +188,8 @@
         var springy = $('.container').springy({
           graph: graph,
           stiffness: 100.0,
-          repulsion: 800.0
+          repulsion: 800.0,
+          damping: 0.5
         });
         $(".button[stars="+stars+"]").addClass("active");
       }
