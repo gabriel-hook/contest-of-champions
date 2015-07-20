@@ -171,7 +171,6 @@ jQuery.fn.springy = function(params) {
     pointerEnd(p);
 	});
 	$(window).on('mouseup',function(e) {
-    e.preventDefault();
 		var pos = $(canvas).offset()
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerEnd(p);
