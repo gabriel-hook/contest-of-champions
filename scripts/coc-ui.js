@@ -1,11 +1,6 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 CoC.ui.initialize=function(){
-  CoC.ui.roster.initialize();
-  CoC.ui.add.initialize();
-  CoC.ui.teams.initialize();
-  CoC.ui.guides.initialize();
-  CoC.ui.crystals.initialize();
   setTimeout(CoC.ui.preload, 0);
 }
 
@@ -34,9 +29,12 @@ CoC.ui.preload = function(){
 CoC.ui.roster=new function(){
 
   this.initialize=function(){
+    if(this._initialized)
+      return;
     this.view = new CoC.view.RosterView({
       el: $("#roster")[0]
     });
+    this._initialized = true;
   }
   
   this.popup=function(element, champion){
@@ -152,11 +150,14 @@ CoC.ui.roster=new function(){
 CoC.ui.add=new function(){
   
   this.initialize=function(){
+    if(this._initialized)
+      return;
     this._stars = 2;
     this.view = new CoC.view.AddChampionsView({
       el: $("#add-champions")[0]
     });
     this.view.stars(this._stars)
+    this._initialized = true;
   }
 
   this.setStars=function(stars){
@@ -175,12 +176,17 @@ CoC.ui.add=new function(){
   }
 }
 CoC.ui.teams=new function(){
+  var useWorkers = window.Worker !== undefined && 
+    !(window.location.protocol == "file:" && navigator.userAgent.toLowerCase().indexOf('chrome') > -1);
 
   this.initialize=function(){
+    if(this._initialized)
+      return;
+    this.initWorker();
     this.view = new CoC.view.TeamView({
       el: $("#teams")[0]
     });
-    this.initWorker();
+    this._initialized = true;
   }
 
   this.empty = true;
@@ -196,20 +202,26 @@ CoC.ui.teams=new function(){
   }
   
   this.initWorker=function(){
-    this._nextWorker = new Worker('scripts/worker.js?');
+    if(!useWorkers)
+      return;  
+    this._nextWorker = new Worker('scripts/worker-teams.js?');
   }
   
   this.getWorker=function(){
+    if(!useWorkers)
+      return null;  
     this.destroyWorker();
-    this._currentWorker = this._nextWorker || new Worker('scripts/worker.js?');
-    this._nextWorker = new Worker('scripts/worker.js?');
+    this._currentWorker = this._nextWorker || new Worker('scripts/worker-teams.js?');
+    this._nextWorker = new Worker('scripts/worker-teams.js?');
     return this._currentWorker
   }
   
   this.destroyWorker=function(){
+    if(!useWorkers)
+      return;
     if(this._currentWorker){
       this._currentWorker.terminate();
-      this._currentWorker = undefined;
+      delete this._currentWorker;
     }
   }
   
@@ -228,8 +240,10 @@ CoC.ui.teams=new function(){
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
     
-    var startTime = new Date(), workerWorking = false;
-    if (window.Worker){
+    var startTime = new Date(), 
+      workerWorking = false,
+      worker = CoC.ui.teams.getWorker();
+    if (worker){
   
       try{
         //Convert Champion models to JSON for message transport
@@ -238,7 +252,6 @@ CoC.ui.teams=new function(){
           rosterJSON.push(roster[i].toJSON());
       
         //Setup and start the worker
-        var worker = CoC.ui.teams.getWorker();
         worker.onmessage=function(event){
           if(event.data.type === "progress"){
             var current = event.data.current;
@@ -323,6 +336,8 @@ CoC.ui.guides=new function(){
   this.seen = false;
   
   this.initialize=function(){
+    if(this._initialized)
+      return;
     var that = this;
     CoC.guides.complete(function(){
       that.view = new CoC.view.GuideChampionsView({
@@ -332,6 +347,7 @@ CoC.ui.guides=new function(){
       if(that.shown)
         that.show();
     });
+    this._initialized = true;
   }
   
   this.open=function(uid){
@@ -378,9 +394,12 @@ CoC.ui.guides=new function(){
 CoC.ui.crystals=new function(){
   
   this.initialize=function(){
+    if(this._initialized)
+      return;
     this.view = new CoC.view.CrystalsView({
       el: $("#crystals")[0]
     });
+    this._initialized = true;
   }
   
   this.render=function(){
@@ -450,15 +469,21 @@ $( document ).on( "pagecreate", "#page-teams", function() {
   
 //Handle opening/closing pages 
 $("#page-roster").on("pagebeforeshow",function(){
+  CoC.ui.roster.initialize();
   CoC.ui.roster.render();
 });
 $("#page-add").on("pagebeforeshow",function(){
+  CoC.ui.add.initialize();
   CoC.ui.add.render();
+});
+$("#page-teams").on("pagebeforeshow",function(){
+  CoC.ui.teams.initialize();
 });
 $("#page-add").on("pageshow",function(){
   CoC.ui.add.show();
 });
 $("#page-guide").on("pagebeforeshow",function(){
+  CoC.ui.guides.initialize();
   CoC.ui.guides.render();
 });
 $("#page-guide").on("pageshow",function(){
@@ -468,6 +493,7 @@ $("#page-guide").on("pagehide",function(){
   CoC.ui.guides.hide();
 });
 $("#page-crystals").on("pagebeforeshow",function(){
+  CoC.ui.crystals.initialize();
   CoC.ui.crystals.render();
 });
 
