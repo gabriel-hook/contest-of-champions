@@ -138,7 +138,7 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
     pointerMove(p);
   });
-  $(canvas).on('touchend',function(e) {
+  $(canvas).on('touchend touchleave touchcancel',function(e) {
     e.preventDefault();
     var event = window.event,
       pos = $(canvas).offset(),
