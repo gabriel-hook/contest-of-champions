@@ -81,10 +81,8 @@ jQuery.fn.springy = function(params) {
 	var nearest = null;
 	var dragged = null;
 
-	jQuery(canvas).mousedown(function(e) {
-		var pos = jQuery(this).offset();
-		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    var o = layout.nearest(p);
+  function pointerStart(point){
+    var o = layout.nearest(point);
     if(o.node !== null){
       if(o.distance > 1){
         selected = nearest = dragged = null;
@@ -100,9 +98,23 @@ jQuery.fn.springy = function(params) {
 			}
 		}
 		renderer.start();
-	});
+  }
+  
+  function pointerMove(point){
+		nearest = layout.nearest(point);
+		if (dragged !== null && dragged.node !== null) {
+			dragged.point.p.x = point.x;
+			dragged.point.p.y = point.y;
+		}
+		renderer.start();
+  }
+  
+  function pointerEnd(point){
+		dragged = null;
+  }
 
-  jQuery(canvas).dblclick(function(e) {
+  this.on('dblclick', function(e) {
+    e.preventDefault();
 		var pos = jQuery(this).offset();
 		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
 		var o = layout.nearest(p);
@@ -112,25 +124,61 @@ jQuery.fn.springy = function(params) {
       }
 	});
 
-	jQuery(canvas).mousemove(function(e) {
-		var pos = jQuery(this).offset();
-		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-		nearest = layout.nearest(p);
-
-		if (dragged !== null && dragged.node !== null) {
-			dragged.point.p.x = p.x;
-			dragged.point.p.y = p.y;
-		}
-
-		renderer.start();
+  $(canvas).on('touchstart', function(e){
+    e.preventDefault();
+		var pos = $(canvas).offset(),
+      event = window.event,
+      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerStart(p);
+  });
+  $(canvas).on('touchmove', function(e) {
+    e.preventDefault();
+    var event = window.event,
+      pos = $(canvas).offset(),
+      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerMove(p);
+  });
+  $(canvas).on('touchend',function(e) {
+    e.preventDefault();
+    var event = window.event,
+      pos = $(canvas).offset(),
+      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerEnd(p);
 	});
-
-	jQuery(window).bind('mouseup',function(e) {
-		dragged = null;
+	$(window).on('touchend',function(e) {
+    e.preventDefault();
+    var event = window.event,
+      pos = $(canvas).offset(),
+      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerEnd(p);
+	});
+	$(canvas).on('mousedown', function(e) {
+    e.preventDefault();
+		var pos = $(canvas).offset(),
+      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerStart(p);
+	});
+	$(canvas).on('mousemove', function(e) {
+    e.preventDefault();
+		var pos = $(canvas).offset()
+      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerMove(p);
+	});
+	$(canvas).on('mouseup',function(e) {
+    e.preventDefault();
+		var pos = $(canvas).offset()
+      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerEnd(p);
+	});
+	$(window).on('mouseup',function(e) {
+    e.preventDefault();
+		var pos = $(canvas).offset()
+      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerEnd(p);
 	});
 
 	Springy.Node.prototype.getSize = function() {
-		var size = Math.min(Math.max(24, Math.min(window.innerWidth, window.innerHeight)/20), 64);
+		var size = Math.min(Math.max(16, Math.min(window.innerWidth, window.innerHeight)/20), 64);
     
     return size;
 	}
@@ -170,7 +218,7 @@ jQuery.fn.springy = function(params) {
 			}
 
 			//change default to  10.0 to allow text fit between edges
-			var spacing = 12.0;
+			var spacing = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 18);
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
@@ -195,7 +243,7 @@ jQuery.fn.springy = function(params) {
 			var arrowWidth;
 			var arrowLength;
 
-			var weight = (isSelected) ? 2.0 : 1.0;
+			var weight = (isSelected) ? 1.5 : 1.0;
 
 			ctx.lineWidth = Math.max(weight *  2, 0.1);
 			arrowWidth = 1 + ctx.lineWidth;
@@ -236,7 +284,7 @@ jQuery.fn.springy = function(params) {
 			}
 
 			// label
-			if (edge.data.label !== undefined && isSelected) {
+			if (edge.data.label !== undefined && isSelected && spacing > 10) {
 				text = edge.data.label
 				ctx.save();
 				ctx.textAlign = "center";
@@ -316,7 +364,6 @@ jQuery.fn.springy = function(params) {
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
       ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
-      
       
       ctx.globalAlpha=1.0;
 			ctx.restore();
