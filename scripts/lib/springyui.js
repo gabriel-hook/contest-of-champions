@@ -146,7 +146,6 @@ jQuery.fn.springy = function(params) {
     pointerEnd(p);
 	});
 	$(window).on('touchend',function(e) {
-    e.preventDefault();
     var event = window.event,
       pos = $(canvas).offset(),
       p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
