@@ -185,8 +185,7 @@ jQuery.fn.springy = function(params) {
         cursor = 'pointer';
     $(canvas).css('cursor', cursor);
 	});
-  
-  var imageResizeAmount = 1.5;
+
   function getImageBySize(img, size){
     if(img === undefined)
       return;
@@ -196,7 +195,7 @@ jQuery.fn.springy = function(params) {
         //sample down for better antialiasing
         var contexts = nodeImageContexts[src], image;
         for(var i=0; i < contexts.length; i++)
-          if(contexts[i].width < size * imageResizeAmount){
+          if(contexts[i].width < (size << 1)){
             image = contexts[i];
             break;
           }
@@ -208,8 +207,7 @@ jQuery.fn.springy = function(params) {
             nodeImageContextTimeouts[src] = setTimeout(function(){
               var canvas = document.createElement('canvas'),
                   context = canvas.getContext('2d');
-              canvas.width = image.width / imageResizeAmount;
-              canvas.height = image.height / imageResizeAmount;
+              canvas.width = canvas.height = image.width >> 1;
               context.drawImage(image, 0, 0, canvas.width, canvas.height);
               contexts.push(canvas);
               delete nodeImageContextTimeouts[src]
@@ -231,8 +229,9 @@ jQuery.fn.springy = function(params) {
   }
 
 	Springy.Node.prototype.getSize = function() {
-		var size = Math.min(Math.max(16, Math.min(window.innerWidth, window.innerHeight)/20), 64);
-    if(selected && this.id === selected.node.id)
+    var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
+      size = Math.min(Math.max(16, canvasSize / 20.0), 64);
+    if(selected && selected.node.id === this.ids)
       size *= 1.5;
     return size;
 	}
@@ -242,12 +241,10 @@ jQuery.fn.springy = function(params) {
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		},
 		function drawEdge(edge, p1, p2) {
-			var x1 = toScreen(p1).x;
-			var y1 = toScreen(p1).y;
-			var x2 = toScreen(p2).x;
-			var y2 = toScreen(p2).y;
-
-			var direction = new Springy.Vector(x2-x1, y2-y1);
+      var point1 = toScreen(p1);
+      var point2 = toScreen(p2);
+      
+			var direction = new Springy.Vector(point2.x-point1.x, point2.y-point1.y);
 			var normal = direction.normal().normalise();
 
 			var from = graph.getEdges(edge.source, edge.target);
@@ -276,42 +273,27 @@ jQuery.fn.springy = function(params) {
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
-
-			var paddingX = 6;
-			var paddingY = 6;
-
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
 
+			var paddingX = 6;
+			var paddingY = 6;
 			var boxWidth = edge.target.getSize() + paddingX;
 			var boxHeight = edge.target.getSize() + paddingY;
 
-			var intersection = intersect_line_box(s1, s2, {x: x2-boxWidth/2.0, y: y2-boxHeight/2.0}, boxWidth, boxHeight);
-
+			var intersection = intersect_line_box(s1, s2, {x: point2.x-boxWidth/2.0, y: point2.y-boxHeight/2.0}, boxWidth, boxHeight);
 			if (!intersection) {
 				intersection = s2;
 			}
-
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
-
-			var arrowWidth;
-			var arrowLength;
-
 			var weight = (isSelected) ? 1.5 : 1.0;
 
 			ctx.lineWidth = Math.max(weight *  2, 0.1);
-			arrowWidth = 1 + ctx.lineWidth;
-			arrowLength = 8;
-
-			var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
-
-			// line
-			var lineEnd;
-			if (directional) {
-				lineEnd = intersection.subtract(direction.normalise().multiply(arrowLength * 0.5));
-			} else {
-				lineEnd = s2;
-			}
+      
+			var arrowWidth = 1 + ctx.lineWidth;
+      var arrowLength = 8;
+      var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
+      var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
 
       ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
 			ctx.strokeStyle = stroke;
@@ -326,7 +308,7 @@ jQuery.fn.springy = function(params) {
         ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
 				ctx.fillStyle = stroke;
 				ctx.translate(intersection.x, intersection.y);
-				ctx.rotate(Math.atan2(y2 - y1, x2 - x1));
+				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
 				ctx.beginPath();
 				ctx.moveTo(-arrowLength, arrowWidth);
 				ctx.lineTo(0, 0);
@@ -360,7 +342,6 @@ jQuery.fn.springy = function(params) {
 				ctx.fillText(text, 0,-2);
 				ctx.restore();
 			}
-      
       ctx.globalAlpha=1.0;
 		},
 		function drawNode(node, p) {
