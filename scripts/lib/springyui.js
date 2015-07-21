@@ -212,7 +212,7 @@ jQuery.fn.springy = function(params) {
               context.drawImage(image, 0, 0, canvas.width, canvas.height);
               contexts.push(canvas);
               delete nodeImageContextTimeouts[src]
-            },100 + Math.random() * 100);
+            }, Math.random() * 250);
           }
         }
         return image;
