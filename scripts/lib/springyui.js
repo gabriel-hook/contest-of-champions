@@ -186,6 +186,7 @@ jQuery.fn.springy = function(params) {
     $(canvas).css('cursor', cursor);
 	});
   
+  var imageResizeAmount = 1.5;
   function getImageBySize(img, size){
     if(img === undefined)
       return;
@@ -195,7 +196,7 @@ jQuery.fn.springy = function(params) {
         //sample down for better antialiasing
         var contexts = nodeImageContexts[src], image;
         for(var i=0; i < contexts.length; i++)
-          if(contexts[i].width < size * 2){
+          if(contexts[i].width < size * imageResizeAmount){
             image = contexts[i];
             break;
           }
@@ -207,8 +208,8 @@ jQuery.fn.springy = function(params) {
             nodeImageContextTimeouts[src] = setTimeout(function(){
               var canvas = document.createElement('canvas'),
                   context = canvas.getContext('2d');
-              canvas.width = image.width * 0.5;
-              canvas.height = image.height * 0.5;
+              canvas.width = image.width / imageResizeAmount;
+              canvas.height = image.height / imageResizeAmount;
               context.drawImage(image, 0, 0, canvas.width, canvas.height);
               contexts.push(canvas);
               delete nodeImageContextTimeouts[src]
