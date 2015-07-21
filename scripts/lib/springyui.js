@@ -35,6 +35,7 @@ jQuery.fn.springy = function(params) {
 	var nodeSelected = params.nodeSelected || null;
 	var nodeImages = {};
 	var nodeImageContexts = {};
+	var nodeImageContextTimeouts = {};
 	var edgeLabelsUpright = true;
 
 	var canvas = this[0];
@@ -174,10 +175,64 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerEnd(p);
 	});
+  
+	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
+		var pos = $(canvas).offset()
+      point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
+      o = layout.nearest(point),
+      cursor = 'auto';
+    if(o.node !== null && o.distance <= 1)
+        cursor = 'pointer';
+    $(canvas).css('cursor', cursor);
+	});
+  
+  function getImageBySize(img, size){
+    if(img === undefined)
+      return;
+    var src = img.src;
+    if (src in nodeImages) {
+      if (nodeImages[src].loaded) {
+        //sample down for better antialiasing
+        var contexts = nodeImageContexts[src], image;
+        for(var i=0; i < contexts.length; i++)
+          if(contexts[i].width < size * 2){
+            image = contexts[i];
+            break;
+          }
+        //if we are too big, use the smallest one, and then resize with timer,
+        // and only do one at a time
+        if(image === undefined){
+          image = contexts[contexts.length - 1];
+          if(nodeImageContextTimeouts[src] === undefined){
+            nodeImageContextTimeouts[src] = setTimeout(function(){
+              var canvas = document.createElement('canvas'),
+                  context = canvas.getContext('2d');
+              canvas.width = image.width * 0.5;
+              canvas.height = image.height * 0.5;
+              context.drawImage(image, 0, 0, canvas.width, canvas.height);
+              contexts.push(canvas);
+              delete nodeImageContextTimeouts[src]
+            },100 + Math.random() * 100);
+          }
+        }
+        return image;
+      }
+    }else{
+      nodeImages[src] = {};
+      var img = new Image();
+      nodeImages[src].object = img;
+      img.addEventListener("load", function () {
+        nodeImages[src].loaded = true;
+        nodeImageContexts[src] = [ img ];
+      });
+      img.src = src;
+    }
+  }
 
 	Springy.Node.prototype.getSize = function() {
 		var size = Math.min(Math.max(16, Math.min(window.innerWidth, window.innerHeight)/20), 64);
-    
+    if(selected && this.id === selected.node.id)
+      size *= 1.5;
     return size;
 	}
 
@@ -308,11 +363,13 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha=1.0;
 		},
 		function drawNode(node, p) {
+      if(selected !== null && selected.node !== null && selected.node.id === node.id)
+        return;
+    
 			var s = toScreen(p);
 			ctx.save();
-
-			var contentSize = node.getSize();
       
+			var contentSize = node.getSize();
       if(selected !== null && selected.node !== null){
         if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
           ctx.globalAlpha = 1.0;
@@ -321,44 +378,12 @@ jQuery.fn.springy = function(params) {
       }
       else
         ctx.globalAlpha=1.0;
-
-			if (node.data.image !== undefined){
-				var src = node.data.image.src;
-				if (src in nodeImages) {
-					if (nodeImages[src].loaded) {
-            //sample down for better antialiasing
-            var contexts = nodeImageContexts[src], image;
-            for(var i=0; i < contexts.length; i++)
-              if(contexts[i].width < contentSize * 2){
-                image = contexts[i];
-                break;
-              }
-            if(image === undefined){
-              var lastImage = contexts[contexts.length - 1];
-              do{
-                // step 1
-                var image = document.createElement('canvas'),
-                    context = image.getContext('2d');
-                image.width = lastImage.width * 0.5;
-                image.height = lastImage.height * 0.5;
-                context.drawImage(lastImage, 0, 0, image.width, image.height);
-                lastImage = image;
-              } while( image.width > contentSize * 2 )
-            }
-						ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
-					}
-				}else{
-					nodeImages[src] = {};
-					var img = new Image();
-					nodeImages[src].object = img;
-					img.addEventListener("load", function () {
-						nodeImages[src].loaded = true;
-            nodeImageContexts[src] = [ img ];
-					});
-					img.src = src;
-				}
-			}
-      
+        
+      //draw the portrait
+      var image = getImageBySize(node.data.image, contentSize);
+      if(image){
+        ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
+      }
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
       ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
@@ -373,26 +398,32 @@ jQuery.fn.springy = function(params) {
 			var s = toScreen(p);
 			ctx.save();
       
+      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
+			var contentSize = node.getSize();
       var padding = 2;
+			var textWidth = ctx.measureText(node.data.label).width;
+			var textHeight = 16 + padding;
       
+      //draw the portrait
+      var image = getImageBySize(node.data.image, contentSize);
+      if(image){
+        ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
+      }
+      //show the type
+      ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
+      ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
+      //draw the text background
+      ctx.fillStyle = "rgba(0, 0, 0, 0.66)";
+      ctx.fillRect(s.x - textWidth/2 - padding, s.y - contentSize/2 - textHeight, textWidth + padding*2, textHeight);
+      //draw the name
+      ctx.fillStyle = "#ffffff";
       ctx.textAlign = "left";
       ctx.textBaseline = "bottom";
-      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
-      ctx.fillStyle = "rgba(0, 0, 0, 0.66)";
-      ctx.opacity = 0.5;
-      
-			var contentWidth = ctx.measureText(node.data.label).width;
-			var contentHeight = 16 + padding;
-      var nodeHeight = node.getSize();
-      ctx.fillRect(s.x - contentWidth/2 - padding, s.y - nodeHeight/2 - contentHeight, contentWidth + padding*2, contentHeight);
-      
-      ctx.fillStyle = "#fff";
       ctx.shadowColor = "#000";
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
       ctx.shadowBlur = 1;
-      
-      ctx.fillText(node.data.label, s.x - contentWidth/2, s.y - nodeHeight/2);
+      ctx.fillText(node.data.label, s.x - textWidth/2, s.y - contentSize/2);
 
 			ctx.restore();
     }
