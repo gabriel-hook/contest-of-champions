@@ -121,8 +121,13 @@
     </script>
     <script type="text/javascript">
       function initialize(stars){
-        var graph = new Springy.Graph(),
-          nodes = {},
+        var springy = $('.container').springy({
+          stiffness: 100.0,
+          repulsion: 800.0,
+          damping: 0.5
+        });
+      
+        var nodes = {},
           typeColors = {
             cosmic:"#3af",
             tech:"#23f",
@@ -156,7 +161,7 @@
           (function(champion){
             var link = $('<a>', { href: "/#page-guide?guide="+champion.get('uid') });
             $(document.body).append(link);
-            nodes[ champion.get('uid') ] = graph.newNode({
+            nodes[ champion.get('uid') ] = springy.graph.newNode({
               label: champion.get('name'),
               image: (function(src){
                 var image = new Image();
@@ -178,19 +183,12 @@
           if(nodes[ synergy.get("toId") ] === undefined)
             continue;
           addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ])
-          graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
+          springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
             label: synergy.effect().get('name'),
             effect: synergy.get('effectId'),
             color: effectColors[ synergy.get('effectId') ]
           });
         }
-        //start the renderer
-        var springy = $('.container').springy({
-          graph: graph,
-          stiffness: 100.0,
-          repulsion: 800.0,
-          damping: 0.5
-        });
         $(".button[stars="+stars+"]").addClass("active");
       }
       

@@ -26,7 +26,6 @@ Copyright (c) 2010 Dennis Hotson
 (function() {
 
 jQuery.fn.springy = function(params) {
-	var graph = this.graph = params.graph || new Springy.Graph();
 	var nodeFont = "16px Hanzel, sans-serif";
 	var edgeFont = "8px Verdana, sans-serif";
 	var stiffness = params.stiffness || 400.0;
@@ -41,6 +40,7 @@ jQuery.fn.springy = function(params) {
 	var canvas = this[0];
 	var ctx = canvas.getContext("2d");
 
+	var graph = this.graph = params.graph || new Springy.Graph();
 	var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
 	// calculate bounding box of graph layout.. with ease-in

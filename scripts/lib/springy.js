@@ -577,7 +577,7 @@
 	};
 
 	Vector.random = function() {
-		return new Vector(10.0 * (Math.random() - 0.5), 10.0 * (Math.random() - 0.5));
+		return new Vector(5.0 * (Math.random() - 0.5), 5.0 * (Math.random() - 0.5));
 	};
 
 	Vector.prototype.add = function(v2) {
