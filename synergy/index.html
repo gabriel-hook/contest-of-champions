@@ -24,8 +24,6 @@
         width:  100%;
         height: 100%;
         margin: 0px;
-        font-family:Hanzel, Verdana, Geneva, sans-serif !important;
-        text-transform: uppercase;
       }
       .header{
         position:absolute;
@@ -35,6 +33,8 @@
         width:100%;
         height:32px;
         z-index:1000;
+        font-family:Hanzel, Verdana, Geneva, sans-serif;
+        text-transform: uppercase;
       }
       .button{
         position:relative;
@@ -50,11 +50,19 @@
         border-right:solid 1px #eee;
         cursor:pointer;
       }
-      .button{
-        width:4%;
+      .button.legend{
+        width:32px;
+      }
+      .buttons{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        padding-left:33px;
+        box-sizing: border-box;
       }
       .button.stars{
-        width:24%;
+        width:25%;
       }
       .button:last-child{
         border-right:solid 1px #666;
@@ -102,32 +110,56 @@
       }
       #legend{
         position:absolute;
-        padding:0.5em;
+        padding:1px;
         top:33px;
-        left:0;
-        border-bottom-right-radius:.5em;
         background:rgba(0,0,0,0.5);
         z-index:100;
         color:#fff;
         text-shadow: 1px 1px #111;
         pointer-events:none;
-        transition: left 0.5s;
+        transition: left 0.333s ease;
       }
       #legend div{
-        margin:3px;
+        margin: 2px 4px 2px 2px;
+        padding-left:2px;
         border-left:solid 1em;
-        padding-left:0.5em;
+        font-size:16px;
+        font-family:Hanzel, Verdana, Geneva, sans-serif;
+      }
+      @media (max-height:500px), (max-width:500px){
+        #legend{
+          padding-top:1px;
+          padding-bottom:1px;
+        }
+        #legend div{
+          margin: 1px 2px 1px 1px;
+          padding-left:2px;
+          font-size:14px;
+        }
+      }
+      @media (max-height:350px), (max-width:350px){
+        #legend{
+          padding-top:1px;
+          padding-bottom:1px;
+        }
+        #legend div{
+          margin: 0 2px 0 0;
+          padding-left:1px;
+          font-size:12px;
+        }
       }
     </style>
 
   </head>
   <body>
     <div class="header">
+      <div class="buttons">
+        <div class="button stars" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
+        <div class="button stars" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
+        <div class="button stars" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
+        <div class="button stars" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
+      </div>
       <div class="button legend"><span class="on">-</span><span class="off">+</span></div>
-      <div class="button stars" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
-      <div class="button stars" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
-      <div class="button stars" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
-      <div class="button stars" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
     </div>
   
     <canvas class="container"></canvas>
