@@ -110,7 +110,6 @@ jQuery.fn.springy = function(params) {
   
   function pointerEnd(){
     if(dragged != null){
-      console.log(moved)
       if(moved < 10){
         selected = dragged;
         if (nodeSelected){
