@@ -80,10 +80,10 @@ jQuery.fn.springy = function(params) {
 	// half-assed drag and drop
 	var selected = null;
 	var dragged = null;
-  var moved = false;
+  var moved = 0;
 
   function pointerStart(point){
-    moved = false;
+    moved = 0;
     var o = layout.nearest(point);
     if(o.node !== null){
       if(o.distance > 1){
@@ -101,7 +101,7 @@ jQuery.fn.springy = function(params) {
   
   function pointerMove(point){
 		if (dragged !== null && dragged.node !== null) {
-      moved = true;
+      moved += point.subtract(dragged.point.p).magnitude();
 			dragged.point.p.x = point.x;
 			dragged.point.p.y = point.y;
 		}
@@ -109,7 +109,8 @@ jQuery.fn.springy = function(params) {
   }
   
   function pointerEnd(point){
-    if(!moved){
+    console.log(moved)
+    if(moved < 0.1){
       selected = dragged;
 			if (nodeSelected){
 				nodeSelected(selected.node);
