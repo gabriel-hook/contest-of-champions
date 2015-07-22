@@ -37,21 +37,24 @@
         z-index:1000;
       }
       .button{
-        float:left;
         position:relative;
-        box-sizing: border-box;
-        width:20%;
+        float:left;
         height:32px;
-        cursor:pointer;
-        
+        box-sizing: border-box;
         background: radial-gradient(#fff, #eee, #aaa); 
         text-align:center;
         line-height:32px;
         font-size: 20px;
         text-shadow:1px 1px #fff;
-        
         border:solid 1px #666;
         border-right:solid 1px #eee;
+        cursor:pointer;
+      }
+      .button{
+        width:4%;
+      }
+      .button.stars{
+        width:24%;
       }
       .button:last-child{
         border-right:solid 1px #666;
@@ -63,6 +66,18 @@
         display:inherit;
       }
       .button .wide{
+        display:none;
+      }
+      .button .on{
+        display:none;
+      }
+      .button.active .on{
+        display:inherit;
+      }
+      .button .off{
+        display:inherit;
+      }
+      .button.active .off{
         display:none;
       }
       @media (min-width:800px){
@@ -85,19 +100,43 @@
         left:0;
         background: radial-gradient(#fff, #eee, #aaa); 
       }
+      #legend{
+        display:none;
+        position:absolute;
+        margin:0.5em;
+        padding:0.5em;
+        top:33px;
+        left:0;
+        border-radius:.2em;
+        background:rgba(0,0,0,0.5);
+        z-index:100;
+        color:#fff;
+        text-shadow: 1px 1px #111;
+        pointer-events:none;
+      }
+      #legend.active{
+        display:block;
+      }
+      #legend div{
+        margin:3px;
+        border-left:solid 1em;
+        padding-left:0.5em;
+      }
     </style>
 
   </head>
   <body>
     <div class="header">
-      <div class="button" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
-      <div class="button" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
-      <div class="button" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
-      <div class="button" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
-      <div class="button" stars="5"><span class="narrow">5 ★</span><span class="wide">★ ★ ★ ★ ★</span></div>
+      <div class="button legend"><span class="on">-</span><span class="off">+</span></div>
+      <div class="button stars" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
+      <div class="button stars" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
+      <div class="button stars" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
+      <div class="button stars" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
     </div>
   
     <canvas class="container"></canvas>
+    
+    <div id="legend"></div>
   
     <script type="text/javascript" src="scripts/model/champion.js"></script>
     <script type="text/javascript" src="scripts/model/effect.js"></script>
@@ -120,6 +159,18 @@
       $(window).on('resize', setCanvasSize);
     </script>
     <script type="text/javascript">
+      function toggleLegend(){
+        if($('.button.legend').hasClass('active')){
+          $('.button.legend').removeClass('active');
+          $('#legend').removeClass('active');
+        
+        }
+        else{
+          $('.button.legend').addClass('active');
+          $('#legend').addClass('active');
+        }
+      }
+    
       function initialize(stars){
         var springy = $('.container').springy({
           stiffness: 100.0,
@@ -137,17 +188,17 @@
             mystic:"#90f"
           },
           effectColors = {
-            attack:"#f33",
-            critrate:"#fa3",
-            critdamage:"#f3a",
-            stun:"#f30",
-            powergain:"#a3f",
-            powersteal:"#a3f",
-            perfectblock:"#33f",
-            block:"#33f",
+            attack:"#f00",
+            stun:"#f66",
+            critrate:"#fa0",
+            critdamage:"#fa6",
+            powergain:"#a0f",
+            powersteal:"#a6f",
+            perfectblock:"#00f",
+            block:"#66f",
             armor:"#3af",
-            health:"#3f3",
-            healthsteal:"#3f3"
+            health:"#0f0",
+            healthsteal:"#af0"
           };
           
         function addNeighbors(n1, n2){
@@ -189,11 +240,21 @@
             color: effectColors[ synergy.get('effectId') ]
           });
         }
+        
+        //add types to legend
+        CoC.data.effects.each(function(type){          
+          $('#legend').append( $('<div>', {
+            style:'border-color:'+(effectColors[type.get('uid')] || '#000')+';'
+          }).text(type.get('name')) );
+        });
+        
         $(".button[stars="+stars+"]").addClass("active");
+        toggleLegend();
       }
       
       //make buttons clickable
-      $('.button').click(function(event){
+      $('.button.legend').click(toggleLegend);
+      $('.button.stars').click(function(event){
         location.search = "?stars="+$(event.currentTarget).attr('stars');
       });
     
