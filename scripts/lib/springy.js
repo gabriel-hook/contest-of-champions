@@ -474,17 +474,17 @@
 		return energy;
 	};
 
-	var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }; // stolen from coffeescript, thanks jashkenas! ;-)
-
-	Springy.requestAnimationFrame = __bind(this.requestAnimationFrame ||
-		this.webkitRequestAnimationFrame ||
-		this.mozRequestAnimationFrame ||
-		this.oRequestAnimationFrame ||
-		this.msRequestAnimationFrame ||
-		(function(callback, element) {
-			this.setTimeout(callback, 10);
-		}), this);
-
+  //requestAnimFrame function from Paul Irish
+  var requestAnimationFrame = (function(){
+    return window.requestAnimationFrame || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame || 
+      window.oRequestAnimationFrame || 
+      window.msRequestAnimationFrame || 
+      function( callback ){
+        setTimeout(callback, 10);
+      };
+  })();
 
 	/**
 	 * Start simulation if it's not running already.
@@ -499,7 +499,7 @@
 
 		if (onRenderStart !== undefined) { onRenderStart(); }
 
-		Springy.requestAnimationFrame(function step() {
+		requestAnimationFrame(function step() {
 			t.tick(0.03);
 
 			if (render !== undefined) {
@@ -509,9 +509,11 @@
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold) {
 				t._started = false;
-				if (onRenderStop !== undefined) { onRenderStop(); }
+				if (onRenderStop !== undefined){ 
+          onRenderStop(); 
+        }
 			} else {
-				Springy.requestAnimationFrame(step);
+				requestAnimationFrame(step);
 			}
 		});
 	};
