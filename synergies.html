@@ -252,11 +252,13 @@
           n2.data.neighbors[ n1.id ] = true; 
         }
         
+        var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1);
+        
         //add nodes
         var champions = CoC.data.champions.where({ stars:stars });
         for(var i=0; i<champions.length; i++)
           (function(champion){
-            var link = $('<a>', { href: "../#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
+            var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
             $(document.body).append(link);
             nodes[ champion.get('uid') ] = springy.graph.newNode({
               label: champion.get('name'),
