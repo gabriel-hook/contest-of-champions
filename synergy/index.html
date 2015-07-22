@@ -101,21 +101,17 @@
         background: radial-gradient(#fff, #eee, #aaa); 
       }
       #legend{
-        display:none;
         position:absolute;
-        margin:0.5em;
         padding:0.5em;
         top:33px;
         left:0;
-        border-radius:.2em;
+        border-bottom-right-radius:.5em;
         background:rgba(0,0,0,0.5);
         z-index:100;
         color:#fff;
         text-shadow: 1px 1px #111;
         pointer-events:none;
-      }
-      #legend.active{
-        display:block;
+        transition: left 0.5s;
       }
       #legend div{
         margin:3px;
@@ -162,12 +158,12 @@
       function toggleLegend(){
         if($('.button.legend').hasClass('active')){
           $('.button.legend').removeClass('active');
-          $('#legend').removeClass('active');
+          $('#legend').css('left', -($('#legend').outerWidth()));
         
         }
         else{
           $('.button.legend').addClass('active');
-          $('#legend').addClass('active');
+          $('#legend').css('left', 0);
         }
       }
     
