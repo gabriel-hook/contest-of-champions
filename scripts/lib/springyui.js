@@ -84,14 +84,14 @@ jQuery.fn.springy = function(params) {
 
   function pointerStart(point){
     moved = 0;
-    var o = layout.nearest(point);
-    if(o.node !== null){
-      if(o.distance > 1){
+    var nearest = layout.nearest(point);
+    if(nearest.node !== null){
+      if(nearest.distance > 1){
         selected = dragged = null;
         renderer.start();
         return;
       }
-      dragged = o;
+      dragged = nearest;
       if (dragged.node !== null) {
         dragged.point.m = 10000.0;
       }
@@ -108,10 +108,10 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerEnd(point){
+  function pointerEnd(){
     if(dragged != null){
       console.log(moved)
-      if(true){//moved < 10){
+      if(moved < 10){
         selected = dragged;
         if (nodeSelected){
           nodeSelected(selected.node);
@@ -148,17 +148,12 @@ jQuery.fn.springy = function(params) {
   });
   $(canvas).on('touchend touchleave touchcancel',function(e) {
     e.preventDefault();
-    var event = window.event,
-      pos = $(canvas).offset(),
-      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
-    pointerEnd(p);
+    pointerEnd();
 	});
 	$(window).on('touchend',function(e) {
-    var event = window.event,
-      pos = $(canvas).offset(),
-      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
-    pointerEnd(p);
+    pointerEnd();
 	});
+
 	$(canvas).on('mousedown', function(e) {
     e.preventDefault();
 		var pos = $(canvas).offset(),
@@ -173,11 +168,8 @@ jQuery.fn.springy = function(params) {
 	});
 	$(canvas).on('mouseup mouseleave',function(e) {
     e.preventDefault();
-		var pos = $(canvas).offset()
-      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    pointerEnd(p);
+    pointerEnd();
 	});
-  
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
 		var pos = $(canvas).offset()
       point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
@@ -187,6 +179,7 @@ jQuery.fn.springy = function(params) {
         cursor = 'pointer';
     $(canvas).css('cursor', cursor);
 	});
+
 
   function getImageBySize(img, size){
     if(img === undefined)
