@@ -91,17 +91,17 @@ jQuery.fn.springy = function(params) {
         renderer.start();
         return;
       }
+      dragged = o;
+      if (dragged.node !== null) {
+        dragged.point.m = 10000.0;
+      }
     }
-		dragged = o;
-		if (dragged.node !== null) {
-			dragged.point.m = 10000.0;
-		}
 		renderer.start();
   }
   
   function pointerMove(point){
-		if (dragged !== null && dragged.node !== null) {
-      moved += point.subtract(dragged.point.p).magnitude();
+		if (dragged !== null) {
+      moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
 			dragged.point.p.x = point.x;
 			dragged.point.p.y = point.y;
 		}
@@ -109,14 +109,16 @@ jQuery.fn.springy = function(params) {
   }
   
   function pointerEnd(point){
-    console.log(moved)
-    if(moved < 0.1){
-      selected = dragged;
-			if (nodeSelected){
-				nodeSelected(selected.node);
-			}
+    if(dragged != null){
+      console.log(moved)
+      if(true){//moved < 10){
+        selected = dragged;
+        if (nodeSelected){
+          nodeSelected(selected.node);
+        }
+      }
+      dragged = null;
     }
-		dragged = null;
   }
 
   this.on('dblclick', function(e) {
