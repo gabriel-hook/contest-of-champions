@@ -475,7 +475,7 @@
 	};
 
   //requestAnimFrame function from Paul Irish
-  var requestAnimationFrame = (function(){
+  var requestNextFrame = (function(){
     return window.requestAnimationFrame || 
       window.webkitRequestAnimationFrame || 
       window.mozRequestAnimationFrame || 
@@ -497,15 +497,17 @@
 		this._started = true;
 		this._stop = false;
 
-		if (onRenderStart !== undefined) { onRenderStart(); }
+		if (onRenderStart !== undefined) {
+      onRenderStart(); 
+    }
 
-		requestAnimationFrame(function step() {
+		requestNextFrame(function animationLoop() {
 			t.tick(0.03);
 
 			if (render !== undefined) {
 				render();
 			}
-
+      
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold) {
 				t._started = false;
@@ -513,7 +515,7 @@
           onRenderStop(); 
         }
 			} else {
-				requestAnimationFrame(step);
+				requestNextFrame(animationLoop);
 			}
 		});
 	};
