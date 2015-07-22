@@ -1,0 +1,315 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <title>Champion Synergies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#b0b0b0">
+    <link rel="icon" sizes="192x192" href="images/icon.png">
+    <link rel="stylesheet" href="css/fonts/fonts.css" media="all">
+    <script type="text/javascript"  src="scripts/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
+    <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
+    <style>
+      *{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      html, body{
+        width:  100%;
+        height: 100%;
+        margin: 0px;
+      }
+      .header{
+        position:absolute;
+        box-sizing: border-box;
+        top:0;
+        left:0;
+        width:100%;
+        height:33px;
+        background:#eee;
+        z-index:1000;
+        font-family:Hanzel, Verdana, Geneva, sans-serif;
+        text-transform: uppercase;
+      }
+      .button{
+        position:relative;
+        float:left;
+        height:32px;
+        box-sizing: border-box;
+        background: radial-gradient(#fff, #eee, #aaa); 
+        text-align:center;
+        line-height:32px;
+        font-size: 20px;
+        text-shadow:1px 1px #fff;
+        border-right:solid 1px #eee;
+        cursor:pointer;
+      }
+      .button::after{
+        position:absolute;
+        box-sizing: border-box;
+        bottom:0;
+        right:0;
+        height:100%;
+        width:100%;
+        content:'';
+        border:solid 1px #666;
+        pointer-events:none;
+      }
+      .button:last-child{
+        border-right:none;
+      }
+      .button.legend{
+        width:32px;
+      }
+      .buttons{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        padding-left:33px;
+        box-sizing: border-box;
+      }
+      .button.stars{
+        width:25%;
+      }
+      .button.active{
+        background: radial-gradient(#ccc, #bbb, #888); 
+      }
+      .button .narrow{
+        display:inherit;
+      }
+      .button .wide{
+        display:none;
+      }
+      .button .on{
+        display:none;
+      }
+      .button.active .on{
+        display:inherit;
+      }
+      .button .off{
+        display:inherit;
+      }
+      .button.active .off{
+        display:none;
+      }
+      @media (min-width:800px){
+        .button .narrow{
+          display:none;
+        }
+        .button .wide{
+          display:inherit;
+        }
+      }
+      a{
+        position:absolute;
+        top:-1000px;
+        left:-1000px;
+        opacity:0;
+      }
+      .container{
+        position:absolute;
+        top:33px;
+        left:0;
+        background: radial-gradient(#fff, #eee, #aaa);
+        border:solid 1px #666;
+      }
+      #legend{
+        position:absolute;
+        box-sizing: border-box;
+        padding:1px;
+        top:34px;
+        background:rgba(0,0,0,0.5);
+        z-index:100;
+        color:#fff;
+        text-shadow: 1px 1px #111;
+        pointer-events:none;
+        transition: left 0.333s ease;
+      }
+      #legend div{
+        margin: 2px 4px 2px 2px;
+        padding-left:2px;
+        border-left:solid 1em;
+        font-size:16px;
+        font-family:Hanzel, Verdana, Geneva, sans-serif;
+      }
+      @media (max-height:500px), (max-width:500px){
+        #legend{
+          padding-top:1px;
+          padding-bottom:1px;
+        }
+        #legend div{
+          margin: 1px 2px 1px 1px;
+          padding-left:2px;
+          font-size:14px;
+        }
+      }
+      @media (max-height:350px), (max-width:350px){
+        #legend{
+          padding-top:1px;
+          padding-bottom:1px;
+        }
+        #legend div{
+          margin: 0 2px 0 0;
+          padding-left:1px;
+          font-size:12px;
+        }
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="header">
+      <div class="buttons">
+        <div class="button stars" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
+        <div class="button stars" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
+        <div class="button stars" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
+        <div class="button stars" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
+      </div>
+      <div class="button legend"><span class="on">-</span><span class="off">+</span></div>
+    </div>
+  
+    <canvas class="container"></canvas>
+    
+    <div id="legend"></div>
+  
+    <script type="text/javascript" src="scripts/model/champion.js"></script>
+    <script type="text/javascript" src="scripts/model/effect.js"></script>
+    <script type="text/javascript" src="scripts/model/synergy.js"></script>
+    <script type="text/javascript" src="scripts/model/type.js"></script>
+    
+    <script type="text/javascript" src="scripts/data/champions.js"></script>
+    <script type="text/javascript" src="scripts/data/effects.js"></script>
+    <script type="text/javascript" src="scripts/data/synergies.js"></script>
+    <script type="text/javascript" src="scripts/data/types.js"></script>
+
+    <script type="text/javascript" src="scripts/lib/springy.js"></script>
+    <script type="text/javascript" src="scripts/lib/springyui.js"></script>
+    
+    <script type="text/javascript">
+      function setCanvasSize(){
+        //adjust for 1px border and header
+        //width - 2px
+        //height - 2px - 33px
+        $('.container').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 35);
+      }
+      $(document).on('ready', setCanvasSize);
+      $(window).on('resize', setCanvasSize);
+    </script>
+    <script type="text/javascript">
+      function toggleLegend(){
+        if($('.button.legend').hasClass('active')){
+          $('.button.legend').removeClass('active');
+          $('#legend').css('left', -($('#legend').outerWidth()));
+        
+        }
+        else{
+          $('.button.legend').addClass('active');
+          $('#legend').css('left', 1);
+        }
+      }
+    
+      function initialize(stars){
+        var springy = $('.container').springy({
+          stiffness: 100.0,
+          repulsion: 800.0,
+          damping: 0.5
+        });
+      
+        var nodes = {},
+          typeColors = {
+            cosmic:"#3af",
+            tech:"#23f",
+            mutant:"#fa0",
+            skill:"#f30",
+            science:"#0a0",
+            mystic:"#90f"
+          },
+          effectColors = {
+            attack:"#f00",
+            stun:"#f66",
+            critrate:"#fa0",
+            critdamage:"#fa6",
+            powergain:"#a0f",
+            powersteal:"#a6f",
+            perfectblock:"#00f",
+            block:"#66f",
+            armor:"#3af",
+            health:"#0f0",
+            healthsteal:"#af0"
+          };
+          
+        function addNeighbors(n1, n2){
+          n1.data.neighbors[ n2.id ] = true;
+          n2.data.neighbors[ n1.id ] = true; 
+        }
+        
+        //add nodes
+        var champions = CoC.data.champions.where({ stars:stars });
+        for(var i=0; i<champions.length; i++)
+          (function(champion){
+            var link = $('<a>', { href: "../#page-guide?guide="+champion.get('uid'), target:'_blank' });
+            $(document.body).append(link);
+            nodes[ champion.get('uid') ] = springy.graph.newNode({
+              label: champion.get('name'),
+              image: (function(src){
+                var image = new Image();
+                image.src = src;
+                return image;
+              })( champion.portrait() ),
+              type: champion.get('typeId'),
+              color: typeColors[ champion.get('typeId') ],
+              neighbors: {},
+              ondoubleclick:function(){
+                link[0].click();
+              }
+            });
+          })(champions[i]);
+        //add edges
+        var synergies = CoC.data.synergies.where({ fromStars:stars });
+        for(var i=0; i<synergies.length; i++){
+          var synergy = synergies[i];
+          if(nodes[ synergy.get("toId") ] === undefined)
+            continue;
+          addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ])
+          springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
+            label: synergy.effect().get('name'),
+            effect: synergy.get('effectId'),
+            color: effectColors[ synergy.get('effectId') ]
+          });
+        }
+        
+        //add types to legend
+        CoC.data.effects.each(function(type){          
+          $('#legend').append( $('<div>', {
+            style:'border-color:'+(effectColors[type.get('uid')] || '#000')+';'
+          }).text(type.get('name')) );
+        });
+        
+        $(".button[stars="+stars+"]").addClass("active");
+        toggleLegend();
+      }
+      
+      //make buttons clickable
+      $('.button.legend').click(toggleLegend);
+      $('.button.stars').click(function(event){
+        location.search = "?stars="+$(event.currentTarget).attr('stars');
+      });
+    
+      //initialize with stars or go to a valid star amount
+      $(document).on('ready', function(){
+        var stars = Math.min(5, Math.max(1, parseInt(location.search.substr(7)))) || 2;
+        if(location.search === "?stars=" + stars){
+          initialize(stars);
+        }
+        else
+          location.search = "?stars=" + stars;
+      });
+    </script>
+  </body>
+</html>
