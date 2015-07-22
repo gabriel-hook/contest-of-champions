@@ -79,31 +79,29 @@ jQuery.fn.springy = function(params) {
 
 	// half-assed drag and drop
 	var selected = null;
-	var nearest = null;
 	var dragged = null;
+  var moved = false;
 
   function pointerStart(point){
+    moved = false;
     var o = layout.nearest(point);
     if(o.node !== null){
       if(o.distance > 1){
-        selected = nearest = dragged = null;
+        selected = dragged = null;
         renderer.start();
         return;
       }
     }
-		selected = nearest = dragged = o;
-		if (o.node !== null) {
+		dragged = o;
+		if (dragged.node !== null) {
 			dragged.point.m = 10000.0;
-			if (nodeSelected) {
-				nodeSelected(o.node);
-			}
 		}
 		renderer.start();
   }
   
   function pointerMove(point){
-		nearest = layout.nearest(point);
 		if (dragged !== null && dragged.node !== null) {
+      moved = true;
 			dragged.point.p.x = point.x;
 			dragged.point.p.y = point.y;
 		}
@@ -111,6 +109,12 @@ jQuery.fn.springy = function(params) {
   }
   
   function pointerEnd(point){
+    if(!moved){
+      selected = dragged;
+			if (nodeSelected){
+				nodeSelected(selected.node);
+			}
+    }
 		dragged = null;
   }
 
@@ -164,13 +168,8 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerMove(p);
 	});
-	$(canvas).on('mouseup',function(e) {
+	$(canvas).on('mouseup mouseleave',function(e) {
     e.preventDefault();
-		var pos = $(canvas).offset()
-      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    pointerEnd(p);
-	});
-	$(window).on('mouseup',function(e) {
 		var pos = $(canvas).offset()
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerEnd(p);
@@ -231,7 +230,7 @@ jQuery.fn.springy = function(params) {
 	Springy.Node.prototype.getSize = function() {
     var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
       size = Math.min(Math.max(16, canvasSize / 20.0), 64);
-    if(selected && selected.node.id === this.ids)
+    if(selected && selected.node.id === this.id)
       size *= 1.5;
     return size;
 	}
