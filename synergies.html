@@ -39,6 +39,7 @@
       .button{
         position:relative;
         float:left;
+        display:block;
         height:32px;
         box-sizing: border-box;
         background: radial-gradient(#fff, #eee, #aaa); 
@@ -48,6 +49,8 @@
         text-shadow:1px 1px #fff;
         border-right:solid 1px #eee;
         cursor:pointer;
+        color:#000;
+        text-decoration:none;
       }
       .button::after{
         position:absolute;
@@ -106,7 +109,7 @@
           display:inherit;
         }
       }
-      a{
+      a.hidden{
         position:absolute;
         top:-1000px;
         left:-1000px;
@@ -166,10 +169,10 @@
   <body>
     <div class="header">
       <div class="buttons">
-        <div class="button stars" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></div>
-        <div class="button stars" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></div>
-        <div class="button stars" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></div>
-        <div class="button stars" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></div>
+        <a class="button stars" href="?stars=1" stars="1"><span class="narrow">1 ★</span><span class="wide">★</span></a>
+        <a class="button stars" href="?stars=2" stars="2"><span class="narrow">2 ★</span><span class="wide">★ ★</span></a>
+        <a class="button stars" href="?stars=3" stars="3"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></a>
+        <a class="button stars" href="?stars=4" stars="4"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></a>
       </div>
       <div class="button legend"><span class="on">-</span><span class="off">+</span></div>
     </div>
@@ -253,7 +256,7 @@
         var champions = CoC.data.champions.where({ stars:stars });
         for(var i=0; i<champions.length; i++)
           (function(champion){
-            var link = $('<a>', { href: "../#page-guide?guide="+champion.get('uid'), target:'_blank' });
+            var link = $('<a>', { href: "../#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
             $(document.body).append(link);
             nodes[ champion.get('uid') ] = springy.graph.newNode({
               label: champion.get('name'),
@@ -292,14 +295,9 @@
         });
         
         $(".button[stars="+stars+"]").addClass("active");
+        $('.button.legend').click(toggleLegend);
         toggleLegend();
       }
-      
-      //make buttons clickable
-      $('.button.legend').click(toggleLegend);
-      $('.button.stars').click(function(event){
-        location.search = "?stars="+$(event.currentTarget).attr('stars');
-      });
     
       //initialize with stars or go to a valid star amount
       $(document).on('ready', function(){
