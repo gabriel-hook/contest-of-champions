@@ -383,7 +383,7 @@ jQuery.fn.springy = function(params) {
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
       ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
       //draw the text background
-      ctx.fillStyle = "rgba(0, 0, 0, 0.66)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
       ctx.fillRect(s.x - textWidth/2 - padding, s.y - contentSize/2 - textHeight, textWidth + padding*2, textHeight);
       //draw the name
       ctx.fillStyle = "#ffffff";
