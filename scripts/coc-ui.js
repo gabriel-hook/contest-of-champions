@@ -298,10 +298,17 @@ CoC.ui.teams=new function(){
             $("#team-build-progress input").val(10000).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
-            CoC.ui.teams.render(result, size);
             
             if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "teams", "build", algorithm.uid);
+              CoC.trackEvent.call(this, "teams", "build", {
+                algorithm: algorithm.uid,
+                size: size,
+                quest: quest,
+                teams: (result.teams)? result.teams.length: 0,
+                extras: (result.extras)? result.extras.length: 0
+              });
+              
+            CoC.ui.teams.render(result, size);
           }
         };
         worker.postMessage({
