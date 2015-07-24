@@ -892,7 +892,12 @@
     <script type="text/javascript" >
       var CoC=CoC || {};
       CoC.trackPageView = function(){
-        _gaq.push(['_trackPageview']);
+        var relativeUrl = location.pathname;
+        if(location.search)
+          relativeUrl += location.search;
+        if(location.hash)
+          relativeUrl += location.hash;
+        _gaq.push(['_trackPageview'], relativeUrl);
       }
       CoC.trackEvent = function(){
         var array = ['_trackEvent'];
