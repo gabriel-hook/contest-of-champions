@@ -893,8 +893,6 @@
       var CoC=CoC || {};
       CoC.trackPageView = function(){
         var relativeUrl = location.pathname;
-        if(location.search)
-          relativeUrl += location.search;
         if(location.hash)
           relativeUrl += location.hash;
           
