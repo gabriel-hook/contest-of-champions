@@ -904,16 +904,14 @@
         if(page)
           array.push(page)
         _gaq.push(array);
-        console.log(array)
       }
       CoC.trackEvent = function(){
         var array = ['_trackEvent'];
         for(var i=0; i<arguments.length; i++)
           array.push(arguments[i])
         _gaq.push(array);
-        console.log(array)
       }
-      $('[data-tracking]').on('pageshow', function(){
+      $('[data-tracking=true]').on('pageshow', function(){
         CoC.trackPageView();
       });
       _gaq.push(['_setAccount', 'UA-64735733-1']);
