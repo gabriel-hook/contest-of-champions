@@ -297,12 +297,12 @@ CoC.ui.teams=new function(){
             $("#team-build-progress input").val(10000).slider("refresh");
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
-            
-            if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "teams", "build", algorithm.uid + '-' + size);
               
             //update the UI
             CoC.ui.teams.render(result, size);
+            
+            if(CoC.trackEvent !== undefined)
+              CoC.trackEvent.call(this, "teams", "build", algorithm.uid + '-' + size);
           }
         };
         worker.postMessage({
