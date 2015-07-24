@@ -301,7 +301,7 @@ CoC.ui.teams=new function(){
             CoC.ui.teams.render(result, size);
             
             if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "search", "teams", algorithm.uid, (result.teams && result.teams.length)? result.teams.length: 0);
+              CoC.trackEvent.call(this, "teams", "build", algorithm.uid);
           }
         };
         worker.postMessage({
