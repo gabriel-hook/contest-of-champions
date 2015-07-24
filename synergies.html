@@ -10,6 +10,14 @@
     <script type="text/javascript"  src="scripts/lib/jquery-1.11.2.min.js"></script>
     <script type="text/javascript"  src="scripts/lib/underscore-min.js"></script>
     <script type="text/javascript"  src="scripts/lib/backbone-min.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; 
+        ga.async = true; ga.src = 'http://www.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
     <style>
       *{
         -webkit-touch-callout: none;
@@ -309,6 +317,15 @@
         }
         else
           location.search = "?stars=" + stars;
+      });
+    </script>
+    <script type="text/javascript" >
+      $(document).on('ready', function(){
+        try {
+          _gaq.push(['_setAccount', 'UA-64735733-1']);
+          _gaq.push(['_trackPageview']);
+        } 
+        catch(e){ }
       });
     </script>
   </body>
