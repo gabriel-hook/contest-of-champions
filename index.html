@@ -912,7 +912,8 @@
         _gaq.push(array);
       }
       $('[data-tracking=true]').on('pageshow', function(){
-        CoC.trackPageView();
+        if(CoC.trackPageView !== undefined)
+          CoC.trackPageView.call(this);
       });
       _gaq.push(['_setAccount', 'UA-64735733-1']);
     </script>
