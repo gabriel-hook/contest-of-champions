@@ -137,7 +137,7 @@ CoC.ui.roster=new function(){
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
       if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "roster", "delete", { uid, stars });
+        CoC.trackEvent.call(this, "roster", "delete", uid + '-"' + stars);
     })
     
     $('#popup-roster-configure').popup("open",{
@@ -300,13 +300,7 @@ CoC.ui.teams=new function(){
             $("#onboarding-progress").removeClass("show");
             
             if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "teams", "build", {
-                algorithm: algorithm.uid,
-                size: size,
-                quest: quest,
-                teams: (result.teams)? result.teams.length: 0,
-                extras: (result.extras)? result.extras.length: 0
-              });
+              CoC.trackEvent.call(this, "teams", "build", algorithm.uid + '-' + size);
               
             CoC.ui.teams.render(result, size);
           }
