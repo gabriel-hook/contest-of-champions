@@ -29,6 +29,9 @@ CoC.view.AddChampionsView = Backbone.View.extend({
     CoC.data.roster.add(champion);
     champion.save();
     
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "roster", "add", uid, stars);
+    
     this.render();
   },
   

@@ -890,8 +890,15 @@
     </script>
     <!-- Google Analytics -->
     <script type="text/javascript" >
-      window.trackPageView = function(){
+      var CoC=CoC || {};
+      CoC.trackPageView = function(){
         _gaq.push(['_trackPageview']);
+      }
+      CoC.trackEvent = function(){
+        var array = ['_trackEvent'];
+        for(var i=0; i<arguments.length; i++)
+          array.push(arguments[i])
+        _gaq.push(array);
       }
       $('[data-role=page]').on('pageshow', function(){
         try {
@@ -900,12 +907,6 @@
         } 
         catch(e){ }
       });
-    </script>
-    <script type="text/javascript" >
-      var CoC=CoC || {};
-      CoC.onUrlHashChange=function(hash){
-        _gaq.push(['_trackPageview', hash.substr(1)]);
-      };
     </script>
   </body>
 </html>

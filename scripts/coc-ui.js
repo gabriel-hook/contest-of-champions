@@ -132,8 +132,12 @@ CoC.ui.roster=new function(){
     for(var i=0; i<champion.get("stars");i++)
       $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
     $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
+      var uid = champion.get('uid'),
+        stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
+      if(CoC.trackEvent !== undefined)
+        CoC.trackEvent.call(this, "roster", "delete", uid, stars);
     })
     
     $('#popup-roster-configure').popup("open",{
@@ -295,6 +299,9 @@ CoC.ui.teams=new function(){
             $("#team-build-progress").attr("class","hidden");
             $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.render(result, size);
+            
+            if(CoC.trackEvent !== undefined)
+              CoC.trackEvent.call(this, "search", "teams", algorithm.uid, (result.teams && result.teams.length)? result.teams.length: 0);
           }
         };
         worker.postMessage({
@@ -515,15 +522,17 @@ $("#page-roster").on("pagecreate",function(){
     console.log("importing csv...");
     $('#roster-import-input').click();
     $('#panel-roster-options').panel("close");
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "roster", "import");
   });
   
   $('#roster-export').click(function(){
     console.log("exporting to csv...");
-    
     var csvRoster = CoC.roster.csv();
     $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
-    
     $('#panel-roster-options').panel("close");
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "roster", "export");
   });  
   
   $('#roster-clear-all').click(function(){
@@ -545,6 +554,8 @@ $("#page-roster").on("pagecreate",function(){
     CoC.ui.roster.render();
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "roster", "delete-all");
   });
 
   var sorts = [ "stars", "type", "name" ];

@@ -34,12 +34,10 @@ CoC.getUrlParam=function(fragment, param){
 CoC.setUrlParam=function(fragment, param, value){
   if(fragment === undefined || param === undefined || value === undefined)
     return;
-  var hash = "#"+fragment+"?"+param + "=" + value
-  if(CoC.onUrlHashChange !== undefined)
-    CoC.onUrlHashChange.call(this, hash);
+  var hash = "#"+fragment+"?"+param + "=" + value;
   window.location.hash = hash;
-  if(window.updateTracking)
-    window.updateTracking.call(this);
+  if(CoC.trackPageView !== undefined)
+    CoC.trackPageView.call(this);
 }
 
 CoC.settings = CoC.settings || {};
