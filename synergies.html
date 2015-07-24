@@ -307,6 +307,10 @@
         $(".button[stars="+stars+"]").addClass("active");
         $('.button.legend').click(toggleLegend);
         toggleLegend();
+        
+        //track
+        if(CoC.trackPageView !== undefined)
+          CoC.trackPageView.call(this);
       }
     
       //initialize with stars or go to a valid star amount
@@ -320,10 +324,11 @@
       });
     </script>
     <script type="text/javascript" >
-      $(document).on('ready', function(){
+      var CoC=CoC || {};
+      CoC.trackPageView = function(){
         _gaq.push(['_setAccount', 'UA-64735733-1']);
         _gaq.push(['_trackPageview']);
-      });
+      }
     </script>
   </body>
 </html>
