@@ -892,13 +892,13 @@
     <script type="text/javascript" >
       var CoC=CoC || {};
       CoC.trackPageView = function(){
+        var array = ['_trackPageview'];
         var relativeUrl = location.pathname;
         if(location.hash)
           relativeUrl += location.hash;
-          
-        console.log(relativeUrl)
-          
-        _gaq.push(['_trackPageview'], relativeUrl);
+        if(relativeUrl)
+          array.push(relativeUrl)
+        _gaq.push(array);
       }
       CoC.trackEvent = function(){
         var array = ['_trackEvent'];
@@ -907,12 +907,9 @@
         _gaq.push(array);
       }
       $('[data-role=page]').on('pageshow', function(){
-        try {
-          _gaq.push(['_setAccount', 'UA-64735733-1']);
-          trackPageView();
-        } 
-        catch(e){ }
+        CoC.trackPageView();
       });
+      _gaq.push(['_setAccount', 'UA-64735733-1']);
     </script>
   </body>
 </html>
