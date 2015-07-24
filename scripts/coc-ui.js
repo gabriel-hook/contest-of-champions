@@ -137,7 +137,7 @@ CoC.ui.roster=new function(){
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
       if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "roster", "delete", uid, stars);
+        CoC.trackEvent.call(this, "roster-delete", uid + '-' + stars);
     })
     
     $('#popup-roster-configure').popup("open",{
@@ -301,7 +301,7 @@ CoC.ui.teams=new function(){
             CoC.ui.teams.render(result, size);
             
             if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "teams", "build", algorithm.uid);
+              CoC.trackEvent.call(this, "teams-build", algorithm.uid);
           }
         };
         worker.postMessage({
@@ -523,7 +523,7 @@ $("#page-roster").on("pagecreate",function(){
     $('#roster-import-input').click();
     $('#panel-roster-options').panel("close");
     if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "import");
+      CoC.trackEvent.call(this, "roster-import", "csv");
   });
   
   $('#roster-export').click(function(){
@@ -532,7 +532,7 @@ $("#page-roster").on("pagecreate",function(){
     $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     $('#panel-roster-options').panel("close");
     if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "export");
+      CoC.trackEvent.call(this, "roster-export", "csv");
   });  
   
   $('#roster-clear-all').click(function(){
@@ -555,7 +555,7 @@ $("#page-roster").on("pagecreate",function(){
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
     if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "delete-all");
+      CoC.trackEvent.call(this, "roster-delete", "all");
   });
 
   var sorts = [ "stars", "type", "name" ];
