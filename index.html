@@ -37,6 +37,7 @@
     <div class="page" id="page-roster" 
       data-title="Champions - Roster"
       data-theme="c"
+      data-tracking="true"
       data-role="page">
     
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
@@ -203,6 +204,7 @@
     <div class="page" id="page-add" 
       data-title="Champions - Roster"
       data-theme="c"
+      data-tracking="true"
       data-role="page">
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <h3>Add a Champion</h3>
@@ -231,6 +233,7 @@
     <div class="page" id="page-teams"
       data-title="Champions - Team"
       data-theme="c"
+      data-tracking="true"
       data-role="page">
       <div class="panel" id="panel-team-settings" 
         data-role="panel"
@@ -332,6 +335,7 @@
     <div class="page" id="page-settings-advanced"
       data-title="Champions - Team"
       data-theme="a"
+      data-tracking="true"
       data-role="page">
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a href="#page-teams" class="ui-btn-left"
@@ -537,6 +541,7 @@
     <div class="page" id="page-crystals"
       data-title="Champions - Guide"
       data-theme="c"
+      data-tracking="true"
       data-role="page">
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
         <a href="#page-guide" class="ui-btn-right"
@@ -908,7 +913,7 @@
         _gaq.push(array);
         console.log(array)
       }
-      $('[data-role=page]').on('pageshow', function(){
+      $('[data-tracking]').on('pageshow', function(){
         CoC.trackPageView();
       });
       _gaq.push(['_setAccount', 'UA-64735733-1']);
