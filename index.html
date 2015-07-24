@@ -893,18 +893,20 @@
       var CoC=CoC || {};
       CoC.trackPageView = function(){
         var array = ['_trackPageview'];
-        var relativeUrl = location.pathname;
+        var page = location.pathname;
         if(location.hash)
-          relativeUrl += location.hash;
-        if(relativeUrl)
-          array.push(relativeUrl)
+          page += location.hash;
+        if(page)
+          array.push(page)
         _gaq.push(array);
+        console.log(array)
       }
       CoC.trackEvent = function(){
         var array = ['_trackEvent'];
         for(var i=0; i<arguments.length; i++)
           array.push(arguments[i])
         _gaq.push(array);
+        console.log(array)
       }
       $('[data-role=page]').on('pageshow', function(){
         CoC.trackPageView();
