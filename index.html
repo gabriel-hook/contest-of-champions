@@ -897,6 +897,9 @@
           relativeUrl += location.search;
         if(location.hash)
           relativeUrl += location.hash;
+          
+        console.log(relativeUrl)
+          
         _gaq.push(['_trackPageview'], relativeUrl);
       }
       CoC.trackEvent = function(){
