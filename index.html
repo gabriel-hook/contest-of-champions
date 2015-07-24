@@ -890,14 +890,13 @@
     </script>
     <!-- Google Analytics -->
     <script type="text/javascript" >
-      $('[data-role=page]').on('pagebeforeshow', function(){
+      window.trackPageView = function(){
+        _gaq.push(['_trackPageview']);
+      }
+      $('[data-role=page]').on('pageshow', function(){
         try {
           _gaq.push(['_setAccount', 'UA-64735733-1']);
-          hash = location.hash;
-          if (hash)
-            _gaq.push(['_trackPageview', hash.substr(1)]);
-          else
-            _gaq.push(['_trackPageview']);
+          trackPageView();
         } 
         catch(e){ }
       });

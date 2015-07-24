@@ -38,6 +38,8 @@ CoC.setUrlParam=function(fragment, param, value){
   if(CoC.onUrlHashChange !== undefined)
     CoC.onUrlHashChange.call(this, hash);
   window.location.hash = hash;
+  if(window.updateTracking)
+    window.updateTracking.call(this);
 }
 
 CoC.settings = CoC.settings || {};
