@@ -34,6 +34,35 @@
     </script>
   </head>
   <body>
+    
+    <div id="popup-share" 
+      data-role="popup" 
+      data-tolerance="32"
+      data-theme="c" 
+      data-overlay-theme="a">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider">Share to...</li>
+        <li>
+          <a class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target="_blank">
+            <img src="images/share/facebook_32.png" class="ui-li-icon ui-corner-none">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a class="share-button" href="https://twitter.com/share?url=http://tiny.cc/champions" target="_blank">
+            <img src="images/share/twitter_32.png" class="ui-li-icon ui-corner-none">
+            Twitter
+          </a>
+        </li>
+        <li>
+          <a class="share-button" href="https://plus.google.com/share?url=http://tiny.cc/champions" target="_blank">
+            <img src="images/share/googleplus_32.png" class="ui-li-icon ui-corner-none">
+            Google+
+          </a>
+        </li>
+      </ul>
+    </div>
+    
     <div class="page" id="page-roster" 
       data-title="Champions - Roster"
       data-theme="c"
@@ -47,6 +76,12 @@
           data-iconpos="notext"
           data-rel="panel"
           data-transition="slide">Options</a>
+        <a class="button-share" href="#popup-share" class="ui-btn-right"
+          data-role="button" 
+          data-icon="action" 
+          data-iconpos="notext"
+          data-rel="popup"
+          data-transition="fade">Share</a>
         <h1>Roster</h1>
       </div>
       
@@ -237,15 +272,14 @@
       data-role="page">
       <div class="panel" id="panel-team-settings" 
         data-role="panel"
-        data-position="right" 
+        data-position="left" 
         data-display="overlay"
         data-theme="a">
         
         <a href="#page-settings-advanced"
           data-role="button" 
-          data-rel="panel" 
-          data-icon="carat-r"
-          data-iconpos="right"
+          data-rel="panel"
+          data-direction="reverse"
           data-transition="flip">Advanced Settings</a>
           
         <label>Size</label>
@@ -290,17 +324,23 @@
           data-theme="b" 
           data-role="button"
           data-icon="gear"
-          data-iconpos="left">
+          data-iconpos="right">
           Build
         </a>
       </div>
 
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
-        <a id="button-team-build" href="#panel-team-settings" class="ui-btn-right"
+        <a id="button-team-build" href="#panel-team-settings" class="ui-btn-left"
           data-role="button" 
           data-rel="panel"
           data-iconpos="notext"
           data-icon="gear">Build</a>
+        <a class="button-share" href="#popup-share" class="ui-btn-right"
+          data-role="button" 
+          data-icon="action" 
+          data-iconpos="notext"
+          data-rel="popup"
+          data-transition="fade">Share</a>
         <h1>Team</h1>
         
         <div id="team-build-progress">
@@ -312,7 +352,7 @@
         <p class="text"></p>
       </div>
       
-      <div id="onboarding-teams" class="onboarding right">
+      <div id="onboarding-teams" class="onboarding left">
         <h3>Use the Build menu create your teams!</h3>
       </div>
       
@@ -338,10 +378,9 @@
       data-tracking="true"
       data-role="page">
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
-        <a href="#page-teams" class="ui-btn-left"
+        <a href="#page-teams" class="ui-btn-right"
           data-role="button" 
           data-transition="flip"
-          data-direction="reverse"
           data-iconpos="notext"
           data-icon="back">Back</a>
           
@@ -512,7 +551,12 @@
           data-transition="flip"
           data-rel="page"
           data-direction="reverse">Crystals</a>
-      
+        <a class="button-share" href="#popup-share" class="ui-btn-right"
+          data-role="button" 
+          data-icon="action" 
+          data-iconpos="notext"
+          data-rel="popup"
+          data-transition="fade">Share</a>      
         <h1>Guide</h1>
         
         <div id="guide-champions-frame" class="frame">
@@ -891,6 +935,7 @@
         $.mobile.changePage.defaults.changeHash = false;
         $.mobile.hashListeningEnabled = false;
         $.mobile.pushStateEnabled = false;
+      });
       });
     </script>
     <!-- Google Analytics -->

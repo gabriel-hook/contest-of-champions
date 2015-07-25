@@ -1,6 +1,7 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 CoC.ui.initialize=function(){
+	$( "#popup-share" ).enhanceWithin().popup();
   setTimeout(CoC.ui.preload, 0);
 }
 
@@ -462,7 +463,7 @@ $( document ).on( "pagecreate", "#page-roster", function() {
 
 //Make swipes move to the last screen or open the panel
 $( document ).on( "pagecreate", "#page-teams", function() {
-  $( document ).on( "swipeleft", "#page-teams", function( e ) {
+  $( document ).on( "swiperight", "#page-teams", function( e ) {
     if(CoC.ui.hasSelection())
       return;
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
