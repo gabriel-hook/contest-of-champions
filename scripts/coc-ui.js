@@ -137,7 +137,7 @@ CoC.ui.roster=new function(){
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
       if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "roster", "delete", uid + '-"' + stars);
+        CoC.trackEvent.call(this, "roster", "delete", uid + '-' + stars);
     })
     
     $('#popup-roster-configure').popup("open",{
