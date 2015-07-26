@@ -3,55 +3,41 @@ Kabam/Marvel's Contest of Champions
 
   Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
   
-  Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
+  Roster Manager Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
   
-  Tiny: [tiny.cc/champions](http://tiny.cc/champions)
+  Roster Manager Tiny: [tiny.cc/champions](http://tiny.cc/champions)
+  
+  Synergy Tool Webapp: [gabriel-hook.github.io/contest-of-champions/synergies.html](http://gabriel-hook.github.io/contest-of-champions/synergies.html)
+  
+  Synergy Tool Tiny: [tiny.cc/champions](http://tiny.cc/synergies)
 
 ## Mobile Structure
 
    Quickguide on how to use the site created by this .git
+  
+### Roster Manager
 
-### Roster Page (Roster Tab)
+#### Roster Page
 
     This is the default view where you can view and modify your roster.
-
-##### Champion Popup
-
-      Clicking on a champion in the roster will open a popup that gives and overview of the champion.
-
-      From here you can update its' stats, view available synergies (in high res mode) or remove from your roster.
-
-##### Options Panel
-  
-      Swiping 'right' on the page or clicking the button in the top left corner will open the Options Panel.
-
-      From here you can Add new champions, import/export rosters, or clear your existing roster.
-      
-      There are also filtering options that will change your Roster view and Team building output.
-
-#### Roster - Add Page
-
-     This page is a tabbed collection of all available champions not already in your roster.
-     
-     The tabbed pages each contain all available champions for each star designation.
-     
-     Click on a champion to add it to your roster.
     
-### Team Page (Team Tab)
+    Use the side panel to open an Add Champion subpage as well as filter and sort your champions.
+    
+    Selecting a champion here lets you update their rank, level and other attributes.
+
+    
+#### Team Page
 
     This is where your teams will be displayed (with extras if the option is selected) once they are built.
 
-##### Build Panel
-  
-      Swiping 'left' on the page or clicking the button in the top right corner will open the Build Panel.
+    From the build settings panel you can go to the advanced settings page or build a set of teams.
+    
+#### Guide Page
 
-      From here you can start building your teams (filtered by the Roster Options) using the options available.
-      
-      Different algorithms will be better/worse/faster/slower depending on the algorithm chosen and searching options.
+    These pages give details on each champion: abilities, styles, synergies and availablity.
+    
+### Synergy Tool
 
-      
-#### Team - Advanced Options Page
-
-     This page has the advanced settings for your team builder.
-     
-     Change back to default, to a preset or modify options individually to tweak your build results.
+    This tool lets you see the synergies between all champions of a given star value.
+    
+    Double-clicking on a desktop browser will redirect to the Roster Manager's Guide for that champion.
