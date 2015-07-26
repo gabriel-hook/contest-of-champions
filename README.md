@@ -1,5 +1,8 @@
-Kabam/Marvel's Contest of Champions
-# Roster Manager & Team Builder
+# Kabam/Marvel's [Contest of Champions](https://github.com/gabriel-hook/contest-of-champions/)
+
+  These tools are meant for the community of the game Contest of Champions.
+
+## Github Source and Pages Links
 
   Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
   
@@ -11,10 +14,6 @@ Kabam/Marvel's Contest of Champions
   
   Synergy Tool Tiny: [tiny.cc/synergies](http://tiny.cc/synergies)
 
-## Mobile Structure
-
-   Quickguide on how to use the site created by this .git
-  
 ## Roster Manager
 
 #### Roster Page
