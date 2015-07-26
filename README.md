@@ -1,6 +1,6 @@
-# Kabam/Marvel's [Contest of Champions](https://github.com/gabriel-hook/contest-of-champions/)
+# Contest of Champions
 
-  These tools are meant for the community of the game Contest of Champions.
+  These tools are meant for the community of the game Marvel/Kabam's [Contest of Champions](https://github.com/gabriel-hook/contest-of-champions/).
 
 ## Github Source and Pages Links
 
