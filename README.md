@@ -1,20 +1,14 @@
 # Contest of Champions
 
+  Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
+
   These tools are meant for the community of the game Marvel/Kabam's [Contest of Champions](https://github.com/gabriel-hook/contest-of-champions/).
 
-## Github Source and Pages Links
-
-  Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
-  
-  Roster Manager Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
-  
-  Roster Manager Tiny: [tiny.cc/champions](http://tiny.cc/champions)
-  
-  Synergy Tool Webapp: [gabriel-hook.github.io/contest-of-champions/synergies.html](http://gabriel-hook.github.io/contest-of-champions/synergies.html)
-  
-  Synergy Tool Tiny: [tiny.cc/synergies](http://tiny.cc/synergies)
-
 ## Roster Manager
+  
+  Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
+  
+  Tiny: [tiny.cc/champions](http://tiny.cc/champions)
 
 #### Roster Page
 
@@ -24,7 +18,6 @@
     
   Selecting a champion here lets you update their rank, level and other attributes.
 
-    
 #### Team Page
 
   This is where your teams will be displayed (with extras if the option is selected) once they are built.
@@ -36,6 +29,10 @@
   These pages give details on each champion: abilities, styles, synergies and availablity.
     
 ## Synergy Tool
+  
+  Webapp: [gabriel-hook.github.io/contest-of-champions/synergies.html](http://gabriel-hook.github.io/contest-of-champions/synergies.html)
+  
+  Tiny: [tiny.cc/synergies](http://tiny.cc/synergies)
 
 #### Synergies Page
 
