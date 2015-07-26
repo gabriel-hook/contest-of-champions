@@ -26,7 +26,7 @@
     
 #### Guide Page
 
-  These pages give details on each champion: abilities, styles, synergies and availablity.
+  These pages give details on each champion: abilities, styles, synergies and availablity in crystals.
     
 ## Synergy Tool
   
