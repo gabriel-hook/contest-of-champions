@@ -934,6 +934,7 @@
     <script type="text/javascript" src="scripts/coc-guides.js"></script>
     <script type="text/javascript" src="scripts/coc-preset.js"></script>
     <script type="text/javascript" src="scripts/coc-ui.js"></script>
+    <script type="text/javascript" src="scripts/coc-tracking.js"></script>
     <!-- Init -->
     <script type="text/javascript" >
       CoC.initialize();
@@ -951,25 +952,11 @@
     </script>
     <!-- Google Analytics -->
     <script type="text/javascript" >
-      var CoC=CoC || {};
-      CoC.trackPageView = function(){
-        var array = ['_trackPageview'];
-        var page = location.pathname;
-        if(location.hash)
-          page += location.hash;
-        if(page)
-          array.push(page)
-        _gaq.push(array);
-      }
-      CoC.trackEvent = function(){
-        var array = ['_trackEvent'];
-        for(var i=0; i<arguments.length; i++)
-          array.push(arguments[i])
-        _gaq.push(array);
-      }
       $('[data-tracking=true]').on('pageshow', function(){
-        if(CoC.trackPageView !== undefined)
-          CoC.trackPageView.call(this);
+        var path = location.pathname;
+        if(location.hash)
+          path += location.hash;
+        CoC.tracking.pageView(path);
       });
       _gaq.push(['_setAccount', 'UA-64735733-1']);
     </script>

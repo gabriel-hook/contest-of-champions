@@ -9,16 +9,13 @@ CoC.ui.share=new function(){
   this.initialize=function(){
     $("#popup-share").enhanceWithin().popup();
     $("#share-facebook").click(function(){
-      if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "share", "facebook");
+      CoC.tracking.event("share", "facebook");
     });
     $("#share-twitter").click(function(){
-      if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "share", "twitter");
+      CoC.tracking.event("share", "twitter");
     });
     $("#share-googleplus").click(function(){
-      if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "share", "googleplus");
+      CoC.tracking.event("share", "googleplus");
     });
   }
 };
@@ -155,8 +152,7 @@ CoC.ui.roster=new function(){
         stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
       champion.destroy();
-      if(CoC.trackEvent !== undefined)
-        CoC.trackEvent.call(this, "roster", "delete", uid + '-' + stars);
+      CoC.tracking.event("roster", "delete", uid + '-' + stars);
     })
     
     $('#popup-roster-configure').popup("open",{
@@ -319,9 +315,7 @@ CoC.ui.teams=new function(){
               
             //update the UI
             CoC.ui.teams.render(result, size);
-            
-            if(CoC.trackEvent !== undefined)
-              CoC.trackEvent.call(this, "teams", "build", algorithm.uid + '-' + size);
+            CoC.tracking.event("teams", "build", algorithm.uid + '-' + size);
           }
         };
         worker.postMessage({
@@ -539,8 +533,7 @@ $("#page-roster").on("pagecreate",function(){
     console.log("importing csv...");
     $('#roster-import-input').click();
     $('#panel-roster-options').panel("close");
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "import");
+    CoC.tracking.event("roster", "import");
   });
   
   $('#roster-export').click(function(){
@@ -548,8 +541,7 @@ $("#page-roster").on("pagecreate",function(){
     var csvRoster = CoC.roster.csv();
     $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     $('#panel-roster-options').panel("close");
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "export");
+    CoC.tracking.event("roster", "export");
   });  
   
   $('#roster-clear-all').click(function(){
@@ -571,8 +563,7 @@ $("#page-roster").on("pagecreate",function(){
     CoC.ui.roster.render();
     $("#popup-roster-clear-confirm").popup("close");
     $('#panel-roster-options').panel("close");
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "roster", "delete", "all");
+    CoC.tracking.event("roster", "delete", "all");
   });
 
   var sorts = [ "stars", "type", "name" ];

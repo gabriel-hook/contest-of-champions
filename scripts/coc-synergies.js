@@ -75,16 +75,13 @@ CoC.synergies.initialize=function(stars){
   
   $( "#popup-share" ).enhanceWithin().popup();
   $("#share-facebook").click(function(){
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "share", "facebook");
+    CoC.tracking.event("share", "facebook");
   });
   $("#share-twitter").click(function(){
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "share", "twitter");
+    CoC.tracking.event("share", "twitter");
   });
   $("#share-googleplus").click(function(){
-    if(CoC.trackEvent !== undefined)
-      CoC.trackEvent.call(this, "share", "googleplus");
+    CoC.tracking.event("share", "googleplus");
   });
   
   
@@ -100,8 +97,7 @@ CoC.synergies.initialize=function(stars){
   CoC.synergies.toggleLegend();
   
   //track
-  if(CoC.trackPageView !== undefined)
-    CoC.trackPageView.call(this);
+  CoC.tracking.pageView();
 }
 
 CoC.synergies.toggleLegend = function(){

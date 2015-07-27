@@ -36,8 +36,7 @@ CoC.setUrlParam=function(fragment, param, value){
     return;
   var hash = "#"+fragment+"?"+param + "=" + value;
   window.location.hash = hash;
-  if(CoC.trackPageView !== undefined)
-    CoC.trackPageView.call(this);
+  CoC.tracking.pageView();
 }
 
 CoC.settings = CoC.settings || {};

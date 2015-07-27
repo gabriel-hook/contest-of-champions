@@ -95,34 +95,26 @@
     <script type="text/javascript" src="scripts/lib/springyui.js"></script>
     <!-- App logic -->
     <script type="text/javascript" src="scripts/coc-synergies.js"></script>
+    <script type="text/javascript" src="scripts/coc-tracking.js"></script>
     <!-- Init -->
     <script type="text/javascript">
-      //initialize with stars or go to a valid star amount url
+      function setCanvasSize(){
+        $('.container').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
+      }
+      $(document).on('ready', setCanvasSize);
+      $(window).on('resize', setCanvasSize);
+    </script>
+    <!-- Init -->
+    <script type="text/javascript">
       $('.page').on('pageshow', function(){
         var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7)))) || 2;
-        if(location.search === "?stars=" + stars){
-          function setCanvasSize(){
-            $('.container').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
-          }
-          $(document).on('ready', setCanvasSize);
-          $(window).on('resize', setCanvasSize);
+        if(location.search === "?stars=" + stars)
           CoC.synergies.initialize(stars);
-        }
         else
           location.search = "?stars=" + stars;
       });
     </script>
     <script type="text/javascript" >
-      var CoC=CoC || {};
-      CoC.trackPageView = function(){
-        _gaq.push(['_trackPageview']);
-      }
-      CoC.trackEvent = function(){
-        var array = ['_trackEvent'];
-        for(var i=0; i<arguments.length; i++)
-          array.push(arguments[i])
-        _gaq.push(array);
-      }
       _gaq.push(['_setAccount', 'UA-64735733-1']);
     </script>
   </body>
