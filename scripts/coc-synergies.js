@@ -74,6 +74,19 @@ CoC.synergies.initialize=function(stars){
   }
   
   $( "#popup-share" ).enhanceWithin().popup();
+  $("#share-facebook").click(function(){
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "share", "facebook");
+  });
+  $("#share-twitter").click(function(){
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "share", "twitter");
+  });
+  $("#share-googleplus").click(function(){
+    if(CoC.trackEvent !== undefined)
+      CoC.trackEvent.call(this, "share", "googleplus");
+  });
+  
   
   //add types to legend
   CoC.data.effects.each(function(type){          

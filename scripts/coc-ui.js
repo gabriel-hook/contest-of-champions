@@ -1,9 +1,27 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 CoC.ui.initialize=function(){
-	$( "#popup-share" ).enhanceWithin().popup();
+  CoC.ui.share.initialize();
   setTimeout(CoC.ui.preload, 0);
 }
+
+CoC.ui.share=new function(){
+  this.initialize(){
+    $("#popup-share").enhanceWithin().popup();
+    $("#share-facebook").click(function(){
+      if(CoC.trackEvent !== undefined)
+        CoC.trackEvent.call(this, "share", "facebook");
+    });
+    $("#share-twitter").click(function(){
+      if(CoC.trackEvent !== undefined)
+        CoC.trackEvent.call(this, "share", "twitter");
+    });
+    $("#share-googleplus").click(function(){
+      if(CoC.trackEvent !== undefined)
+        CoC.trackEvent.call(this, "share", "googleplus");
+    });
+  }
+};
 
 //Image preloader for known images
 CoC.ui.preload = function(){
