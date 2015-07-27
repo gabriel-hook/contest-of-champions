@@ -16,9 +16,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     });
     
     var optgroups = {};
-    var uids = _.uniq( CoC.data.champions.pluck("uid") );
-    _( uids ).each(function(uid){
-      var guide = CoC.guides.get(uid);
+    CoC.data.guides.each(function(guide){
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
         model:champion
@@ -38,11 +36,11 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         optgroups[selectType] = $('<optgroup>',{ label:champion.type().get("name") });
         that._selector.append( optgroups[selectType] );
       }
-      optgroups[selectType].append( $('<option>', { value:uid }).text( selectName ) );
+      optgroups[selectType].append( $('<option>', { value:guide.uid }).text( selectName ) );
       
       //set uids map
-      that._indices[uid] = that._uids.length;
-      that._uids.push(uid);
+      that._indices[guide.uid] = that._uids.length;
+      that._uids.push(guide.uid);
     });
     
     that._selector.change(function(event){

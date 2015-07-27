@@ -188,7 +188,7 @@ CoC.view.GuideView = Backbone.View.extend({
       
     var html = this._guides[uid];
     if(html === undefined){
-      var guide = CoC.guides.get(uid),
+      var guide = CoC.data.guides.get(uid),
         data = {};
       _.extend(data, guide);
       _.extend(data, CoC.view.GuideViewHelpers);

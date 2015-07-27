@@ -360,7 +360,7 @@ CoC.ui.guides=new function(){
     if(this._initialized)
       return;
     var that = this;
-    CoC.guides.complete(function(){
+    CoC.data.guides.onComplete(function(){
       that.view = new CoC.view.GuideChampionsView({
         el: $("#guide-champions")[0]
       });
