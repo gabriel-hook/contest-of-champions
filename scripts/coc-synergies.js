@@ -1,14 +1,10 @@
 ﻿var CoC = CoC || {};
 CoC.synergies = CoC.synergies || {};
+CoC.synergies.version = "1.0.0";
 CoC.synergies.initialize=function(stars){
-
-  var springy = $('.container').springy({
-    stiffness: 100.0,
-    repulsion: 800.0,
-    damping: 0.5
-  });
-
-  var nodes = {},
+  console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
+  
+  var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1),
     typeColors = {
       cosmic:"#3af",
       tech:"#23f",
@@ -29,14 +25,13 @@ CoC.synergies.initialize=function(stars){
       armor:"#3af",
       health:"#0f0",
       healthsteal:"#af0"
-    };
-    
-  function addNeighbors(n1, n2){
-    n1.data.neighbors[ n2.id ] = true;
-    n2.data.neighbors[ n1.id ] = true; 
-  }
-  
-  var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1);
+    },
+    springy = $('.container').springy({
+      stiffness: 100.0,
+      repulsion: 800.0,
+      damping: 0.5
+    }),
+    nodes = {};
   
   //add nodes
   var champions = CoC.data.champions.where({ stars:stars });
@@ -59,8 +54,13 @@ CoC.synergies.initialize=function(stars){
         }
       });
     })(champions[i]);
+    
   //add edges
   var synergies = CoC.data.synergies.where({ fromStars:stars });
+  function addNeighbors(n1, n2){
+    n1.data.neighbors[ n2.id ] = true;
+    n2.data.neighbors[ n1.id ] = true; 
+  }
   for(var i=0; i<synergies.length; i++){
     var synergy = synergies[i];
     if(nodes[ synergy.get("toId") ] === undefined)
@@ -73,6 +73,7 @@ CoC.synergies.initialize=function(stars){
     });
   }
   
+  //enable share popup with tracking
   $( "#popup-share" ).enhanceWithin().popup();
   $("#share-facebook").click(function(){
     CoC.tracking.event("share", "facebook");
@@ -84,7 +85,6 @@ CoC.synergies.initialize=function(stars){
     CoC.tracking.event("share", "googleplus");
   });
   
-  
   //add types to legend
   CoC.data.effects.each(function(type){          
     $('#legend').append( $('<div>', {
@@ -92,6 +92,7 @@ CoC.synergies.initialize=function(stars){
     }).text(type.get('name')) );
   });
   
+  //enable legend and stars buttons
   $(".button[stars="+stars+"]").addClass("active");
   $('.button.legend').click(CoC.synergies.toggleLegend);
   CoC.synergies.toggleLegend();
