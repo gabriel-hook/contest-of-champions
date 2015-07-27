@@ -84,6 +84,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ironpatriot", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
   { fromId:"ironpatriot", fromStars:4, toId:"captainamerica", effectId:"critdamage", effectAmount:25 },
 
+  { fromId:"kang", fromStars:4, toId:"blackbolt", effectId:"armor", effectAmount:6 },
+  { fromId:"kang", fromStars:4, toId:"thevision", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"thor", effectId:"critrate", effectAmount:7 },
+
   { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
   { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },
   { fromId:"hulkbuster", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
