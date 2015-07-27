@@ -131,13 +131,6 @@ a.hidden{
   left:-1000px;
   opacity:0;
 }
-.container{
-  position:absolute;
-  top:33px;
-  left:0;
-  background: radial-gradient(#fff, #eee, #aaa);
-  border:solid 1px #666;
-}
 #legend{
   position:absolute;
   box-sizing: border-box;
@@ -178,4 +171,12 @@ a.hidden{
     padding-left:1px;
     font-size:12px;
   }
+}
+canvas{
+  position:absolute;
+  top:33px;
+  left:0;
+  background: radial-gradient(#fff, #eee, #aaa);
+  border:solid 1px #666;
+  width:100%;
 }

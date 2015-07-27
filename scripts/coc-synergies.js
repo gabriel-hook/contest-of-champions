@@ -26,7 +26,7 @@ CoC.synergies.initialize=function(stars){
       health:"#0f0",
       healthsteal:"#af0"
     },
-    springy = $('.container').springy({
+    springy = $('canvas').springy({
       stiffness: 100.0,
       repulsion: 800.0,
       damping: 0.5
@@ -102,7 +102,7 @@ CoC.synergies.initialize=function(stars){
 }
 
 CoC.synergies.canvasResize  = function(){
-  $('.container').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
+  $('canvas').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
 }
 
 CoC.synergies.toggleLegend = function(){

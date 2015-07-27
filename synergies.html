@@ -77,7 +77,7 @@
           <span>Share</span>
         </a>
       </div>
-      <canvas class="container"></canvas>
+      <canvas></canvas>
       <div id="legend"></div>
     </div>
     <!-- Model definitions -->
@@ -98,8 +98,6 @@
     <script type="text/javascript" src="scripts/coc-synergies.js"></script>
     <!-- Init -->
     <script type="text/javascript">
-      $(document).on('ready', CoC.synergies.canvasResize);
-      $(window).on('resize', CoC.synergies.canvasResize);
       $('.page').on('pageshow', function(){
         var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7), 10))) || 2;
         if(location.search === "?stars=" + stars)
@@ -107,6 +105,9 @@
         else
           location.search = "?stars=" + stars;
       });
+      $(window).on('resize', CoC.synergies.canvasResize);
+      $(document).on('ready', CoC.synergies.canvasResize);
+      CoC.synergies.canvasResize();
     </script>
   </body>
 </html>
