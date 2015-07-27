@@ -15,9 +15,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       el: $("#guide-content")[0]
     });
     
-    //hide until first activate
-    $("#guide-champions-frame").css("display", "none");
-    
     var optgroups = {};
     CoC.data.guides.each(function(guide){
       var champion = guide.champion;
@@ -135,7 +132,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   activate:function(event, index, delay){
     if(this._init){
       this._init = false;
-      $("#guide-champions-frame").css("display", "block");
       return;
     }
 
