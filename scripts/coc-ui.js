@@ -6,7 +6,7 @@ CoC.ui.initialize=function(){
 }
 
 CoC.ui.share=new function(){
-  this.initialize(){
+  this.initialize=function(){
     $("#popup-share").enhanceWithin().popup();
     $("#share-facebook").click(function(){
       if(CoC.trackEvent !== undefined)
