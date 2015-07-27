@@ -100,6 +100,10 @@ CoC.synergies.initialize=function(stars){
   CoC.tracking.pageView();
 }
 
+CoC.synergies.canvasResize  = function(){
+  $('.container').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
+}
+
 CoC.synergies.toggleLegend = function(){
   if($('.button.legend').hasClass('active')){
     $('.button.legend').removeClass('active');

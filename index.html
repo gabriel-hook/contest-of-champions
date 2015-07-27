@@ -929,12 +929,12 @@
     <script type="text/javascript" src="scripts/view/crystals.js"></script>
     <!-- App logic -->
     <script type="text/javascript" src="scripts/coc.js"></script>
+    <script type="text/javascript" src="scripts/coc-tracking.js"></script>
     <script type="text/javascript" src="scripts/coc-algorithm.js"></script>
     <script type="text/javascript" src="scripts/coc-roster.js"></script>
     <script type="text/javascript" src="scripts/coc-guides.js"></script>
     <script type="text/javascript" src="scripts/coc-preset.js"></script>
     <script type="text/javascript" src="scripts/coc-ui.js"></script>
-    <script type="text/javascript" src="scripts/coc-tracking.js"></script>
     <!-- Init -->
     <script type="text/javascript" >
       CoC.initialize();
@@ -949,16 +949,6 @@
         $.mobile.hashListeningEnabled = false;
         $.mobile.pushStateEnabled = false;
       });
-    </script>
-    <!-- Google Analytics -->
-    <script type="text/javascript" >
-      $('[data-tracking=true]').on('pageshow', function(){
-        var path = location.pathname;
-        if(location.hash)
-          path += location.hash;
-        CoC.tracking.pageView(path);
-      });
-      _gaq.push(['_setAccount', 'UA-64735733-1']);
     </script>
   </body>
 </html>

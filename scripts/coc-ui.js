@@ -737,3 +737,11 @@ $("#page-settings-advanced").on( "pagecreate", function() {
     });
   });
 });
+
+//Tracking for pages that have the data attribute
+$('[data-tracking=true]').on('pageshow', function(){
+  var path = location.pathname;
+  if(location.hash)
+    path += location.hash;
+  CoC.tracking.pageView(path);
+});

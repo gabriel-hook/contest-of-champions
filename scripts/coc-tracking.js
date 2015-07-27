@@ -13,3 +13,5 @@ CoC.tracking.event = function(){
     array.push(arguments[i])
   _gaq.push(array);
 }
+
+_gaq.push(['_setAccount', 'UA-64735733-1']);
