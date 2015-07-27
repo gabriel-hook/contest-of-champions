@@ -102,7 +102,7 @@ CoC.synergies.initialize=function(stars){
 }
 
 CoC.synergies.canvasResize  = function(){
-  $('canvas').attr('width', window.innerWidth-2).attr('height', window.innerHeight - 2 - 33);
+  $('canvas').attr('width', window.innerWidth - 2).attr('height', window.innerHeight - 2 - 33);
 }
 
 CoC.synergies.toggleLegend = function(){

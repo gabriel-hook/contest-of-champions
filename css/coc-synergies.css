@@ -11,6 +11,14 @@ html, body{
   height: 100%;
   margin: 0px;
 }
+
+body.ui-mobile-viewport,
+.ui-page-theme-a{
+  background: #f0f0f0;
+  background: radial-gradient(#fff, #eee, #aaa); 
+  background-attachment: fixed;
+}
+
 .header{
   position:absolute;
   box-sizing: border-box;
