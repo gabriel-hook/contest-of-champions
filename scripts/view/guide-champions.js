@@ -45,8 +45,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         index = that._indices[uid];
       if(that._indices[uid] === undefined)
         return;
-      that._instant = true;
       setTimeout(function(){
+        that._instant = true;
         that.sly.activate(index);
       },0);
     });
