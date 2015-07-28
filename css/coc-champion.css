@@ -128,20 +128,20 @@
   border-radius:5px;
 }
 
-.champion .grade-a{
+.grade-a{
   color:#0c0;
 } 
-.champion .grade-b{
+.grade-b{
   color:#6c0;
 } 
-.champion .grade-c{
+.grade-c{
   color:#990;
 } 
-.champion .grade-d{
+.grade-d{
   color:#c60;
 } 
-.champion .grade-e,
-.champion .grade-f{
+.grade-e,
+.grade-f{
   color:#c00;
 } 
 

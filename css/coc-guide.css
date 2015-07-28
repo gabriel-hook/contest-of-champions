@@ -109,6 +109,22 @@
   overflow-y:scroll;
 }
 
+#guide-champions-selector-dialog img.champion{
+  width: 32px;
+  height: 32px;
+  max-height: 32px;
+  max-width: 28px;
+  top: 4px;
+  left: 4px;
+  padding:0;
+  border-bottom:solid 4px;
+  box-sizing: border-box;
+}
+
+#guide-champions-selector-dialog .grade{
+  float:right;
+}
+
 /******************
       GUIDES
 ******************/

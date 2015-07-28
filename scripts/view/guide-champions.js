@@ -23,20 +23,13 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       });
       that._championViews.push( $("<li>").append( view.render().el )[0] );
       
-      var selectName = champion.get("name");
-      if(champion.get("grade")){
-        selectName += " [ " + champion.get("grade");
-        if(champion.get("gradeAwakened"))
-          selectName += " / " + champion.get("gradeAwakened");
-        selectName += " ]";
-      }
-      
+      //add select menu options
       var selectType = champion.get("typeId");
       if(optgroups[selectType]===undefined){
         optgroups[selectType] = $('<optgroup>',{ label:champion.type().get("name") });
         that._selector.append( optgroups[selectType] );
       }
-      optgroups[selectType].append( $('<option>', { value:guide.uid }).text( selectName ) );
+      optgroups[selectType].append( $('<option>', { value:guide.uid }).text( champion.get("name") ) );
       
       //set uids map
       that._indices[guide.uid] = that._uids.length;
@@ -52,6 +45,35 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       setTimeout(function(){
         that.sly.activate(index);
       },0);
+    });
+    
+    //pretty up select menu options when we open it
+    $.mobile.document.on( "pagebeforeshow", "#guide-champions-selector-dialog", function(event, ui){
+      var currentTarget = $(event.currentTarget); 
+      currentTarget.find("li[role=option]").each(function(index){
+        var li = $(this),
+          anchor = li.find("a"),
+          guide = CoC.data.guides.get(that._uids[index]);
+        li.addClass("ui-li-has-icon");
+        anchor.text(guide.champion.get("name"));
+        anchor.prepend($('<img>',{ 
+          src:guide.champion.portrait(), 
+          class:"ui-li-icon ui-corner-none champion "+guide.champion.get("typeId") 
+        }));
+        if(guide.champion.get("grade")){
+          var grade = $('<div>',{ class:"grade" });
+          grade.append($('<span>',{ 
+            class:"grade-"+guide.champion.get("grade").substr(0,1).toLowerCase() 
+          }).text( guide.champion.get("grade") ));
+          if(guide.champion.get("gradeAwakened")){
+            grade.append($('<span>').text('/'));
+            grade.append($('<span>',{ 
+              class:"grade-"+guide.champion.get("gradeAwakened").substr(0,1).toLowerCase() 
+            }).text( guide.champion.get("gradeAwakened") ));
+          }
+          anchor.append(grade);
+        }
+      });
     });
     
     that.sly = new Sly( "#guide-champions-frame", {
