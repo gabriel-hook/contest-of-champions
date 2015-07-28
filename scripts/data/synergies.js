@@ -130,6 +130,8 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"thevision", fromStars:4, toId:"scarletwitch", effectId:"perfectblock", effectAmount:5 },
   { fromId:"thevision", fromStars:4, toId:"ultron", effectId:"attack", effectAmount:5 },
 
+  { fromId:"ultron", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"ultron", fromStars:2, toId:"scarletwitch", effectId:"armor", effectAmount:4 },
   { fromId:"ultron", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
   { fromId:"ultron", fromStars:3, toId:"scarletwitch", effectId:"armor", effectAmount:5 },
   { fromId:"ultron", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
