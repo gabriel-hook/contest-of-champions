@@ -81,7 +81,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       releaseSwing:1,
       speed:0
     },{
-      active:function(event,index){
+      active:function(event, index){    
         that.activate.call(that, event, index, (that._instant)? 0: 300);
       }
     }).init();
@@ -101,8 +101,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     event.stopPropagation();
     event.preventDefault();
   
-    var element = $(event.currentTarget).find(".champion");
-    if(!element)
+    var champion = $(event.currentTarget).find(".champion");
+    if(!champion || champion.attr("uid") !== this._selected)
       return;
     
     $("#guide-champions-selector").selectmenu("open");
