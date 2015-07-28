@@ -1,6 +1,9 @@
 var CoC = CoC || {};
 CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
+  optionTemplate: _.template( $('#guideSelectOptionTemplate').html() ),
+  optgroupTemplate: _.template( $('#guideSelectOptgroupTemplate').html() ),
+  
   initialize: function(){
     var that = this;
     
@@ -15,7 +18,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       el: $("#guide-content")[0]
     });
     
-    var optgroups = {};
+    var optgroups = {}, optindex = [];
     CoC.data.guides.each(function(guide){
       var champion = guide.champion;
       var view = new CoC.view.ChampionView({
@@ -26,8 +29,9 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       //add select menu options
       var selectType = champion.get("typeId");
       if(optgroups[selectType]===undefined){
-        optgroups[selectType] = $('<optgroup>',{ label:champion.type().get("name") });
+        optgroups[selectType] = $('<optgroup>',{ label:champion.get("typeId") });
         that._selector.append( optgroups[selectType] );
+        optindex.push(selectType);
       }
       optgroups[selectType].append( $('<option>', { value:guide.uid }).text( champion.get("name") ) );
       
@@ -51,28 +55,18 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     $.mobile.document.on( "pagebeforeshow", "#guide-champions-selector-dialog", function(event, ui){
       var currentTarget = $(event.currentTarget); 
       currentTarget.find("li[role=option]").each(function(index){
-        var li = $(this),
-          anchor = li.find("a"),
-          guide = CoC.data.guides.get(that._uids[index]);
-        li.addClass("ui-li-has-icon");
-        anchor.text(guide.champion.get("name"));
-        anchor.prepend($('<img>',{ 
-          src:guide.champion.portrait(), 
-          class:"ui-li-icon ui-corner-none champion "+guide.champion.get("typeId") 
+        //add class to li, set contents of a to template of guide champion
+        $(this).addClass("ui-li-has-icon").find("a").html(that.optionTemplate({
+          champion: CoC.data.guides.get(that._uids[index]).champion
         }));
-        if(guide.champion.get("grade")){
-          var grade = $('<div>',{ class:"grade" });
-          grade.append($('<span>',{ 
-            class:"grade-"+guide.champion.get("grade").substr(0,1).toLowerCase() 
-          }).text( guide.champion.get("grade") ));
-          if(guide.champion.get("gradeAwakened")){
-            grade.append($('<span>').text('/'));
-            grade.append($('<span>',{ 
-              class:"grade-"+guide.champion.get("gradeAwakened").substr(0,1).toLowerCase() 
-            }).text( guide.champion.get("gradeAwakened") ));
-          }
-          anchor.append(grade);
-        }
+      });
+      currentTarget.find("li[role=heading]").each(function(index){
+        var li = $(this),
+          typeId = optindex[index];
+        li.data("typeId");
+        li.html(that.optgroupTemplate({
+          type: CoC.data.types.findWhere({ uid:typeId })
+        }));
       });
     });
     
@@ -100,10 +94,14 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "click li.active":"click"
+    "tap li.active":"openMenu",
+    "click li.active":"openMenu"
   },
   
-  click:function(event){
+  openMenu:function(event){
+    event.stopPropagation();
+    event.preventDefault();
+  
     var element = $(event.currentTarget).find(".champion");
     if(!element)
       return;

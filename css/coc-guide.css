@@ -125,6 +125,21 @@
   float:right;
 }
 
+#guide-champions-selector-dialog .ui-dialog-contain {
+  margin: 3em auto 1em auto;
+}
+
+#guide-champions-selector-dialog li[role=heading]{
+  padding-left:30px;
+}
+
+#guide-champions-selector-dialog li[role=heading] img{
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+}
+
 /******************
       GUIDES
 ******************/
