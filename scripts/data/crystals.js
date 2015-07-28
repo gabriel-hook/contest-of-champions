@@ -68,6 +68,7 @@ CoC.data.crystalChampions.add([
   { crystalId:"2star", championId:"ironman", championStars:2 },
   { crystalId:"2star", championId:"starlord", championStars:2 },
   { crystalId:"2star", championId:"thevision", championStars:2 },
+  { crystalId:"2star", championId:"ultron", championStars:2 },
   { crystalId:"2star", championId:"vision", championStars:2 },
   { crystalId:"2star", championId:"colossus", championStars:2 },
   { crystalId:"2star", championId:"cyclops", championStars:2 },
