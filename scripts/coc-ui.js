@@ -93,7 +93,7 @@ CoC.ui.roster=new function(){
       for(var i = 1; i<=levels; i++)
         $("#roster-configure-level").append($("<option>").val(i).text(i));
         
-      $("#roster-configure-level").unbind( "change" ).change(function(e){              
+      $("#roster-configure-level").unbind("change").change(function(e){              
         champion.set("level", e.target.value);
         champion.save();
         $("#roster-configure-level").selectmenu('refresh');
@@ -103,7 +103,7 @@ CoC.ui.roster=new function(){
     $("#roster-configure-rank").empty();
     for(var i = 1; i<=CoC.data.championLevels[champion.get("stars")].length; i++)
       $("#roster-configure-rank").append($("<option>").val(i).text(i));
-    $("#roster-configure-rank").unbind( "change" ).change(function(e){        
+    $("#roster-configure-rank").unbind("change").change(function(e){        
       champion.set("rank", e.target.value);
       champion.save();
       setupRankLevel();
@@ -112,7 +112,7 @@ CoC.ui.roster=new function(){
     
     setupRankLevel();
     
-    $("#roster-configure-awakened").prop("checked", champion.get("awakened") != 0).checkboxradio("refresh").unbind( "change" ).change(function(e){
+    $("#roster-configure-awakened").prop("checked", champion.get("awakened") != 0).checkboxradio("refresh").unbind("change").change(function(e){
 
       champion.set("awakened", (e.target.checked)? 1: 0)
       champion.save();
@@ -127,12 +127,12 @@ CoC.ui.roster=new function(){
       }
     });
     
-    $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind( "change" ).change(function(e){
+    $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind("change").change(function(e){
       champion.set("quest", (e.target.checked)? true: false);
       champion.save();
     });
     
-    $("#roster-configure-delete").unbind( "click" ).click(function(){
+    $("#roster-configure-delete").unbind("click").click(function(){
 
       $('#popup-roster-configure').one("popupafterclose", function(){
         $("#popup-roster-delete-confirm").popup("open",{
@@ -147,7 +147,7 @@ CoC.ui.roster=new function(){
     $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
     for(var i=0; i<champion.get("stars");i++)
       $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
-    $("#roster-delete-confirm-yes").unbind( "click" ).click(function(){
+    $("#roster-delete-confirm-yes").unbind("click").click(function(){
       var uid = champion.get('uid'),
         stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
@@ -426,7 +426,7 @@ CoC.ui.crystals=new function(){
 }
 
 //Load onboarding when appropriate
-$("#page-roster").on( "pageshow", function() {
+$("#page-roster").on("pageshow", function() {
   if(CoC.data.roster.length === 0){
     $("#onboarding-roster").addClass("show")
     $("#page-roster").one("click",function(){
@@ -434,7 +434,7 @@ $("#page-roster").on( "pageshow", function() {
     })
   }
 });
-$("#page-teams").on( "pageshow", function() {
+$("#page-teams").on("pageshow", function() {
   if(CoC.ui.teams.empty){
     $("#onboarding-teams").addClass("show")
     $("#page-teams").one("click",function(){
@@ -462,8 +462,8 @@ CoC.ui.clearSelection=function(){
 }
 
 //Make swipes move to the next screen
-$( document ).on( "pagecreate", "#page-roster", function() {
-  $( document ).on( "swiperight", "#page-roster", function( e ) {
+$(document).on("pagecreate", "#page-roster", function() {
+  $(document).on("swiperight", "#page-roster", function( e ) {
     if(CoC.ui.hasSelection())
       return;
     if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
@@ -474,8 +474,8 @@ $( document ).on( "pagecreate", "#page-roster", function() {
 });
 
 //Make swipes move to the last screen or open the panel
-$( document ).on( "pagecreate", "#page-teams", function() {
-  $( document ).on( "swiperight", "#page-teams", function( e ) {
+$(document).on("pagecreate", "#page-teams", function() {
+  $(document).on("swiperight", "#page-teams", function( e ) {
     if(CoC.ui.hasSelection())
       return;
     if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
@@ -604,7 +604,7 @@ $("#page-roster").on("pagecreate",function(){
       .checkboxradio('refresh');
     })(filters[i]);
 });
-$("#page-teams").on( "pagecreate", function() {
+$("#page-teams").on("pagecreate", function() {
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
     $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
@@ -670,11 +670,11 @@ $("#page-teams").on( "pagecreate", function() {
   enableResultOptions();
   
   $("#button-build-settings-apply").click(function(){
-    $("#panel-team-settings").panel( "close" );
+    $("#panel-team-settings").panel("close");
     CoC.ui.teams.build();
   });
 });
-$("#page-settings-advanced").on( "pagecreate", function() {
+$("#page-settings-advanced").on("pagecreate", function() {
   var sliders = {};
   
   function enableSlider(id, type){

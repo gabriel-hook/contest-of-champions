@@ -50,9 +50,8 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
         that.sly.activate(index);
       },0);
     });
-    
-    //pretty up select menu options when we open it
-    $.mobile.document.on( "pagebeforeshow", "#guide-champions-selector-dialog", function(event, ui){
+
+    $.mobile.document.on("pagebeforeshow", "#guide-champions-selector-dialog", function(event, ui){    
       var currentTarget = $(event.currentTarget); 
       currentTarget.find("li[role=option]").each(function(index){
         //add class to li, set contents of a to template of guide champion
@@ -70,7 +69,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       });
     });
     
-    that.sly = new Sly( "#guide-champions-frame", {
+    that.sly = new Sly("#guide-champions-frame", {
       horizontal: 1,
       itemNav: 'forceCentered',
       activateMiddle: 1,
@@ -106,7 +105,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
     if(!element)
       return;
     
-    $( "#guide-champions-selector" ).selectmenu( "open" );
+    $("#guide-champions-selector").selectmenu("open");
   },
   
   disable:function(){
