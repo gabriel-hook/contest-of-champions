@@ -738,6 +738,18 @@ $("#page-settings-advanced").on( "pagecreate", function() {
   });
 });
 
+    
+//close dialogs when we click outside of them or click escape
+$.mobile.document.on("tap click", "[data-role=dialog]", function(event, ui){
+  if(event.target === this){
+    $(this).dialog("close");
+  }
+}).on("keyup", "[data-role=dialog]", function(event, ui){
+  if(event.keyCode == 27){
+    $(this).dialog("close");
+  }
+});
+
 //Tracking for pages that have the data attribute
 $('[data-tracking=true]').on('pageshow', function(){
   var path = location.pathname;
