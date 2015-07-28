@@ -93,7 +93,6 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   },
   
   events:{
-    "tap li.active":"openMenu",
     "click li.active":"openMenu"
   },
   
