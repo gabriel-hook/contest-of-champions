@@ -59,9 +59,9 @@
     { "Critical Hits": "Every 5 hits." },
     { "Cauterize": "Specials deal 50% damage for each bleed on the target." },
     { "Stun": "40% chance for 3 seconds on every special attack"},
-    { "Armor Up": "25% chance, 5% reduction, 3 seconds." },
+    { "Armor Up": "26% chance, 5% reduction, 15 seconds." },
     { "Evade": "Every 7 seconds" },
-    { "Regeneration": "Recovers 25% at both 50% health and 25% health." }
+    { "Regeneration": "Recovers 25% over 10 seconds at both 50% health and 25% health." }
   ]
 
 }
