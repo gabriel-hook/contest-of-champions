@@ -76,8 +76,18 @@ CoC.roster.filtered = function(){
 }
 
 CoC.roster.csv=function(string){
+  //Export
   if(string === undefined){
     var array = []
+    //add headers
+    array.push([
+      "Id",
+      "Stars",
+      "Rank",
+      "Level",
+      "Awakened"
+    ].join(','));
+    //add champions
     CoC.data.roster.each(function(champion){
       array.push([
         JSON.stringify(champion.get("uid")),
@@ -90,19 +100,26 @@ CoC.roster.csv=function(string){
     var csv = array.join('\n').replace(/(^\[)|(\]$)/mg, '');
     return csv;
   }
-  else{
+  //Import
+  else{  
     var lines = string.split("\n");
     for(var i=0;i<lines.length;i++){
+      //skip first line if its headings
+      if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
+        continue;
+    
       var values = lines[i].split(",");
       if(values.length != 5)
         throw "Invalid roster CSV";
         
-      var uid = JSON.parse(values[0]),
+      var uid = values[0].replace(/["]/g,'').toLowerCase(),
         stars = JSON.parse(values[1]),
         rank = JSON.parse(values[2]),
         level = JSON.parse(values[3]),
         awakened = JSON.parse(values[4]);
         
+      console.log(uid, stars, rank, level, awakened)
+
       var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
       if(champion === undefined){
         champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
