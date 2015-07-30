@@ -40,6 +40,7 @@
         root.Springy = factory();
     }
 }(this, function() {
+  "use strict";
 
 	var Springy = {};
 

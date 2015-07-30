@@ -24,6 +24,7 @@ Copyright (c) 2010 Dennis Hotson
 */
 
 (function() {
+  "use strict";
 
 jQuery.fn.springy = function(params) {
 	var nodeFont = "16px Hanzel, sans-serif";

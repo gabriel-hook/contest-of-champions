@@ -2,6 +2,7 @@
 CoC.algorithm = CoC.algorithm || {};
 
 (function(){
+  "use strict";
 
   CoC.algorithm["greedy"]=new function(){
     
