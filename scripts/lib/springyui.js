@@ -108,14 +108,14 @@ jQuery.fn.springy = function(params) {
 
   function selectedOpen(){
     if (selected.node && selected.node.data && selected.node.data.onopen) {
-      selected.node.data.onopen();
+      selected.node.data.onOpen();
     }
   }
   
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
     if(moved < 10 && selected){
-      selectedOpen(p);
+      selectedOpen();
     }
 	});
   

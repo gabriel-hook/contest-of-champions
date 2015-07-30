@@ -49,7 +49,7 @@ CoC.synergies.initialize=function(stars){
         type: champion.get('typeId'),
         color: typeColors[ champion.get('typeId') ],
         neighbors: {},
-        onopen:function(){
+        onOpen:function(){
           link[0].click();
         }
       });
