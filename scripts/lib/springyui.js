@@ -382,9 +382,9 @@ jQuery.fn.springy = function(params) {
 			var contentSize = node.getSize();
       var x = Math.floor(s.x - contentSize/2),
         y = Math.floor(s.y - contentSize/2),
-        y2 = Math.floor(s.y + contentSize/2),
         size = Math.floor(contentSize),
-        size2 = Math.floor(contentSize/10);
+        y2 = y + size,
+        size2 = Math.max(2, Math.floor(contentSize/10));
       
       //draw the portrait
       var image = getImageBySize(node.data.image, contentSize);
@@ -393,7 +393,7 @@ jQuery.fn.springy = function(params) {
       }
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(x, y2, size, size2);
+      ctx.fillRect(x, y2 - size2, size, size2);
       
       ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
       var padding = 2;
