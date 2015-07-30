@@ -114,7 +114,7 @@ jQuery.fn.springy = function(params) {
   
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
-    if(moved === 0 && selected){
+    if(moved < 10 && selected){
       selectedOpen(p);
     }
 	});
