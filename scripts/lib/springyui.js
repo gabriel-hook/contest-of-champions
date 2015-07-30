@@ -106,15 +106,26 @@ jQuery.fn.springy = function(params) {
     }
   }
 
-  this.on('dblclick', function(e) {
+  function selectedOpen(){
+    if (selected.node && selected.node.data && selected.node.data.onopen) {
+      selected.node.data.onopen();
+    }
+  }
+  
+  $(canvas).on('taphold', function(e) {
     e.preventDefault();
-		var pos = jQuery(this).offset();
-		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-		var o = layout.nearest(p);
-    if(selected && o.node.id === selected.node.id)
-      if (o.node && o.node.data && o.node.data.ondoubleclick) {
-        o.node.data.ondoubleclick();
-      }
+    if(moved === 0 && selected){
+      selectedOpen(p);
+    }
+	});
+  
+  $(canvas).on('dblclick', function(e) {
+    e.preventDefault();
+		var pos = $(canvas).offset(),
+      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
+      nearest = layout.nearest(p);
+    if(moved < 10 && selected && nearest.node.id === selected.node.id)
+      selectedOpen();
 	});
 
   $(canvas).on('touchstart', function(e){
