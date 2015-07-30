@@ -12,7 +12,7 @@ CoC.algorithm = CoC.algorithm || {};
     this.canQuest = true;
 
     this.build=function(options){
-      var teams = {}, team, list = [], preselect = [], typeWeights = [], progress = null;
+      var size = parseInt(options.size, 10), teams = {}, team, list = [], preselect = [], typeWeights = [], progress = null;
       preProcess(options.champions, list, typeWeights);
       
       if(options.quest)
@@ -33,17 +33,17 @@ CoC.algorithm = CoC.algorithm || {};
                 break;
             }
             return value;
-          })(preselect.length? options.size - preselect.length: options.size),
+          })(preselect.length? size - preselect.length: size),
           callback:options.progress
         }
 
       if(preselect.length > 0){      
-        if(preselect.length > options.size){
-          team = getTopPartner(preselect,0,options.size, typeWeights, progress);
+        if(preselect.length > size){
+          team = getTopPartner(preselect, 0, size, typeWeights, progress);
         }
         else{
           var synergies = [], types = getTypes(preselect);
-          team = getNextPartner(list, preselect, synergies, types, 0, options.size, typeWeights, progress);
+          team = getNextPartner(list, preselect, synergies, types, 0, size, typeWeights, progress);
         }
         if(team && team.value > 0)
           teams[0]=team;
@@ -52,7 +52,7 @@ CoC.algorithm = CoC.algorithm || {};
         
         var team_index = 0;
         do {
-          team = getTopPartner(list,0,options.size, typeWeights, progress);
+          team = getTopPartner(list, 0, size, typeWeights, progress);
           if(team){          
             if (team.value){
               if(!options.quest)
@@ -74,7 +74,7 @@ CoC.algorithm = CoC.algorithm || {};
         var needed = 0;
         for(var i in teams)
           if(i !== 'length')
-            needed += options.size - teams[i].champions.length;
+            needed += size - teams[i].champions.length;
           
         //break up teams if we dont have enough
         while(list.length < needed){
@@ -97,8 +97,8 @@ CoC.algorithm = CoC.algorithm || {};
         //add into existing teams, using the comparison to find best partner
         for(var i=teams.length-1, index; i>=0; i--){
           var team;
-          if(teams[i].champions.length < options.size){
-            var team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, options.size, typeWeights, progress);
+          if(teams[i].champions.length < size){
+            var team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, size, typeWeights, progress);
             if(team){
               for(var o in team.champions){
                 index = list.indexOf(team.champions[o]);
@@ -302,7 +302,7 @@ CoC.algorithm = CoC.algorithm || {};
     this.canQuest = false;
     
     this.build=function(options){
-      var size = parseInt(options.size), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
+      var size = parseInt(options.size, 10), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
       var heroMap = {}, synergyMap = {}, typeWeights = {}, teamValues = {};
       preprocess(options.champions, heroMap, synergyMap, typeWeights);
     
@@ -526,18 +526,19 @@ CoC.algorithm = CoC.algorithm || {};
     this.canQuest = false;
     
     this.build=function(options){
-      var synergies, distinct, missing, full;
-      var weights = getWeights();
-      var championsMap = getHeroesMap(options.champions);
-      var synergiesMap = getSynergiesMap(options.champions);
-      var teams = { map:{}, list:[], heroIds:{}, heroCount: 0 };
-      var extras = getRemainingHeroes(teams, championsMap);
+      var synergies, distinct, missing, full,
+        size = parseInt(options.size, 10),
+        weights = getWeights(),
+        championsMap = getHeroesMap(options.champions),
+        synergiesMap = getSynergiesMap(options.champions),
+        teams = { map:{}, list:[], heroIds:{}, heroCount: 0 },
+        extras = getRemainingHeroes(teams, championsMap);
        
       if(options.progress)
         options.progress(10, options.champions.length);
         
       //all synergies 
-      var wanted = Math.floor(options.champions.length / options.size);
+      var wanted = Math.floor(options.champions.length / size);
       fillTeams: do{
       
         synergies = getSynergies(getRemainingHeroes(teams, championsMap), synergiesMap);
@@ -552,7 +553,7 @@ CoC.algorithm = CoC.algorithm || {};
           for(var i=distinct.length-1; i>=0; i--){
             var synergies = distinct[i].synergies;
             var champions = getHeroesFromSynergies(synergies, championsMap, teams);
-            if(champions.length <= options.size && getTeamValue(champions, synergiesMap, weights) > 0){
+            if(champions.length <= size && getTeamValue(champions, synergiesMap, weights) > 0){
               var value = getTeamValue(champions, synergiesMap, weights)
               addTeam(teams, champions);
               distinct.splice(i, 1);
@@ -566,7 +567,7 @@ CoC.algorithm = CoC.algorithm || {};
             if(!synergies)
               continue;
             var champions = getHeroesFromSynergies(synergies, championsMap, teams);
-            if(champions.length > options.size && champions.length > splitBiggest){
+            if(champions.length > size && champions.length > splitBiggest){
               splitIndex = i;
               splitBiggest = champions.length;
             }
@@ -578,7 +579,7 @@ CoC.algorithm = CoC.algorithm || {};
             distinct.splice(splitIndex, 1);
             
             //pull out a group from
-            var result = splitDistinctGroup(group, championsMap, synergiesMap, weights, teams, options.size);
+            var result = splitDistinctGroup(group, championsMap, synergiesMap, weights, teams, size);
             
             if(getTeamValue(result.champions, synergiesMap, weights) > 0)
               addTeam(teams, result.champions);
@@ -598,14 +599,14 @@ CoC.algorithm = CoC.algorithm || {};
       
         function getTeamsBySize(){
           var map = {}, needed = 0;
-          for(var i=1;i<options.size;i++)
+          for(var i=1;i<size;i++)
             map[i]=[];
           for(var i=0; i<teams.list.length; i++){
-            var size = teams.list[i].champions.length;
-            if( options.size - size > 0){
-              needed += options.size - size;
-              map[size].push({
-                size:size,
+            var subsize = teams.list[i].champions.length;
+            if( size - subsize > 0){
+              needed += size - subsize;
+              map[subsize].push({
+                size:subsize,
                 team: teams.list[i]
               });
             }
@@ -617,13 +618,13 @@ CoC.algorithm = CoC.algorithm || {};
         tooManyTeams: while(teams.list.length > wanted){
           
           extras = getRemainingHeroes(teams, championsMap);
-          teamsBySize = getTeamsBySize();
+          var teamsBySize = getTeamsBySize();
         
           //look for prefect then undersized fits, if we find one start again
-          findfit: for(var size=options.size; size > 1; size--)
-            for(var i=2; i<size; i++){
+          findfit: for(var subsize=size; subsize > 1; subsize--)
+            for(var i=2; i<subsize; i++){
               var smallTeams = teamsBySize[i];
-              var largeTeams = teamsBySize[size - i];
+              var largeTeams = teamsBySize[subsize - i];
               for(var s in smallTeams)
                 for(var l in largeTeams)
                   if(smallTeams[s] !== largeTeams[l]){
@@ -641,14 +642,14 @@ CoC.algorithm = CoC.algorithm || {};
           teamsBySize = getTeamsBySize();
 
           //look for near perfect fits, if we find one, combine, throw away extra, then start again
-          findcombine: for(var i=2; i<options.size; i++){
+          findcombine: for(var i=2; i<size; i++){
             var smallTeams = teamsBySize[i];
-            var largeTeams = teamsBySize[options.size - i + 1];
+            var largeTeams = teamsBySize[size - i + 1];
             for(var s in smallTeams)
               for(var l in largeTeams)
                 if(smallTeams[s] !== largeTeams[l]){
                   var team = combineTeams(smallTeams[s].team.champions, largeTeams[l].team.champions, 
-                    championsMap, synergiesMap, weights, teams, options.size)
+                    championsMap, synergiesMap, weights, teams, size)
                   if(getTeamValue(team, synergiesMap, weights) > 0){
                     removeTeam(teams, smallTeams[s].team);
                     removeTeam(teams, largeTeams[l].team);
@@ -663,7 +664,7 @@ CoC.algorithm = CoC.algorithm || {};
           //Take the worst team out and add to extras
           var worst = undefined;
           for(var i=0; i<teams.list.length; i++)
-            if(teams.list[i].champions.length < options.size){
+            if(teams.list[i].champions.length < size){
               var value = getTeamValue(teams.list[i].champions, synergiesMap, weights);
               if(worst === undefined || value < worst.value)
                 worst={
@@ -683,7 +684,7 @@ CoC.algorithm = CoC.algorithm || {};
           return b.champions.length - a.champions.length;
         })
         for(var i=0; i<teams.list.length; i++)
-          while(teams.list[i].champions.length < options.size && extras.length > 0){
+          while(teams.list[i].champions.length < size && extras.length > 0){
             var team = teams.list[i], best = undefined;
             
             for(var j=0; j<extras.length; j++){
@@ -702,7 +703,7 @@ CoC.algorithm = CoC.algorithm || {};
         extras = getRemainingHeroes(teams, championsMap);
         missing = false;
         for(var i=0; i<teams.list.length; i++)
-          if(teams.list[i].champions.length != options.size)
+          if(teams.list[i].champions.length != size)
             missing = true;
         full = (teams.list.length == wanted);
         var extraSynergies = (function(){
@@ -1004,15 +1005,13 @@ CoC.algorithm = CoC.algorithm || {};
         var champion = champions[i];
         var synergies = CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })
         for(var s=0;s < synergies.length; s++){
-          var synergy = synergies[s];
-          var effect = synergy.effect();
-          
-          data = {
-            fromId: getHeroStarId({ id:champion.get("uid"), stars:champion.get("stars") }),
-            toId: synergy.get("toId"),
-            value: CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
-          }
-          
+          var synergy = synergies[s],
+            effect = synergy.effect(),
+            data = {
+              fromId: getHeroStarId({ id:champion.get("uid"), stars:champion.get("stars") }),
+              toId: synergy.get("toId"),
+              value: CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
+            };          
           addSynergy('from', data.fromId, data.toId, data);
           addSynergy('to', data.toId, champion.get("uid"), data);
         }
@@ -1116,7 +1115,7 @@ CoC.algorithm = CoC.algorithm || {};
       var array = [];
       for(var i=0; i<teams.list.length; i++){
         var team = [];
-        for(j=0; j<teams.list[i].champions.length; j++)
+        for(var j=0; j<teams.list[i].champions.length; j++)
           team.push(teams.list[i].champions[j].champion)
         array.push(team);
       }
