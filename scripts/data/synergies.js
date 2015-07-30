@@ -295,6 +295,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
   { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"attack", effectAmount:6 },
 
+  { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
+  { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
+  { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
+  
   { fromId:"drstrange", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
   { fromId:"drstrange", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
   { fromId:"drstrange", fromStars:3, toId:"scarletwitch", effectId:"block", effectAmount:15 },
