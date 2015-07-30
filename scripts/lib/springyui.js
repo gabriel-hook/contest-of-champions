@@ -282,8 +282,9 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
-
-      ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
+      var alpha;
+      
+      ctx.globalAlpha = alpha = (selected !== null && !isSelected)? 0.25: 1.0;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x, s1.y);
@@ -330,7 +331,9 @@ jQuery.fn.springy = function(params) {
 				ctx.fillText(text, 0,-2);
 				ctx.restore();
 			}
-      ctx.globalAlpha=1.0;
+      
+      if(alpha !== 1)
+        ctx.globalAlpha=1.0;
 		},
 		function drawNode(node, p) {
       if(selected !== null && selected.node !== null && selected.node.id === node.id)
@@ -339,26 +342,34 @@ jQuery.fn.springy = function(params) {
 			var s = toScreen(p);
 			ctx.save();
       
-			var contentSize = node.getSize();
+			var contentSize = node.getSize(), alpha;
       if(selected !== null && selected.node !== null){
         if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
-          ctx.globalAlpha = 1.0;
+          ctx.globalAlpha = alpha = 1.0;
         else
-          ctx.globalAlpha = 0.25;
+          ctx.globalAlpha = alpha = 0.25;
       }
       else
-        ctx.globalAlpha=1.0;
+        ctx.globalAlpha = alpha = 1.0;
+        
+      var x = Math.floor(s.x - contentSize/2),
+        y = Math.floor(s.y - contentSize/2),
+        size = Math.floor(contentSize),
+        y2 = y + size,
+        size2 = Math.max(2, Math.floor(contentSize/10));
         
       //draw the portrait
       var image = getImageBySize(node.data.image, contentSize);
       if(image){
-        ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
+        ctx.drawImage(image, x, y, size, size);
       }
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
+      ctx.fillRect(x, y2 - size2, size, size2);
       
-      ctx.globalAlpha=1.0;
+      if(alpha !== 1)
+        ctx.globalAlpha=1.0;
+        
 			ctx.restore();
 		},
 		function drawNodeOverlay(node, p) {
@@ -368,20 +379,27 @@ jQuery.fn.springy = function(params) {
 			var s = toScreen(p);
 			ctx.save();
       
-      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
 			var contentSize = node.getSize();
-      var padding = 2;
-			var textWidth = ctx.measureText(node.data.label).width;
-			var textHeight = 16 + padding;
+      var x = Math.floor(s.x - contentSize/2),
+        y = Math.floor(s.y - contentSize/2),
+        y2 = Math.floor(s.y + contentSize/2),
+        size = Math.floor(contentSize),
+        size2 = Math.floor(contentSize/10);
       
       //draw the portrait
       var image = getImageBySize(node.data.image, contentSize);
       if(image){
-        ctx.drawImage(image, s.x - contentSize/2, s.y - contentSize/2, contentSize, contentSize);
+        ctx.drawImage(image, x, y, size, size);
       }
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(s.x - contentSize/2, s.y + contentSize/2 - contentSize/10, contentSize, contentSize/10);
+      ctx.fillRect(x, y2, size, size2);
+      
+      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
+      var padding = 2;
+			var textWidth = ctx.measureText(node.data.label).width;
+			var textHeight = 16 + padding;
+      
       //draw the text background
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
       ctx.fillRect(s.x - textWidth/2 - padding, s.y - contentSize/2 - textHeight, textWidth + padding*2, textHeight);
@@ -392,7 +410,6 @@ jQuery.fn.springy = function(params) {
       ctx.shadowColor = "#000";
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
-      ctx.shadowBlur = 1;
       ctx.fillText(node.data.label, s.x - textWidth/2, s.y - contentSize/2);
 
 			ctx.restore();
