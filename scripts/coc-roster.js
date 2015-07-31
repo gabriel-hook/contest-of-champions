@@ -75,9 +75,9 @@ CoC.roster.filtered = function(){
   });
 }
 
-CoC.roster.csv=function(string){
+CoC.roster.csv=function(csv, filename){
   //Export
-  if(string === undefined){
+  if(csv === undefined){
     var array = []
     //add headers
     array.push([
@@ -97,12 +97,12 @@ CoC.roster.csv=function(string){
         champion.get("awakened")
       ].join(','));
     });
-    var csv = array.join('\n').replace(/(^\[)|(\]$)/mg, '');
-    return csv;
+    return array.join('\n').replace(/(^\[)|(\]$)/mg, '');
   }
   //Import
   else{  
-    var lines = string.split("\n");
+    var name = filename || "csv";
+    var lines = csv.split("\n");
     for(var i=0;i<lines.length;i++){
       //skip first line if its headings
       if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
@@ -120,7 +120,7 @@ CoC.roster.csv=function(string){
 
       //throw a useful error
       if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
-        console.error("Invalid line at csv line "+(i+1));
+        console.error("Invalid line in "+filename+":"+(i+1));
         continue;
       }
       
@@ -131,7 +131,7 @@ CoC.roster.csv=function(string){
       }
       
       if(champion === undefined){
-        console.error("Champion not found \""+ uid + "\" at csv line "+(i+1));
+        console.error("Champion not found \""+ uid + "\" in "+filename+":"+(i+1));
         continue;
       }
         

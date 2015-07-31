@@ -520,12 +520,14 @@ $("#page-roster").on("pagecreate",function(){
   $('#roster-import-input').change(function(e){
     if (this.files && this.files[0]) {
       var reader = new FileReader();
+      var file = this.files[0];
       reader.onload = function (e) {
         var result = e.target.result;
-        CoC.roster.csv(result);
+        CoC.roster.csv(result, file.name || undefined);
         CoC.ui.roster.render();
       }
-      reader.readAsText(this.files[0]);
+      reader.readAsText(file);
+      $(this).val("")
     }
   });
 
