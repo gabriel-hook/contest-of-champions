@@ -726,6 +726,8 @@ $("#page-settings-advanced").on("pagecreate", function() {
       }
       return false;
     });
+    $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates")
+      .val(null).selectmenu("refresh");
   });
   
   $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").change(function(){
