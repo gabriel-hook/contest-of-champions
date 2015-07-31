@@ -108,7 +108,7 @@ jQuery.fn.springy = function(params) {
   }
 
   function selectedOpen(){
-    if (selected.node && selected.node.data && selected.node.data.onopen) {
+    if (selected.node && selected.node.data && selected.node.data.onOpen) {
       selected.node.data.onOpen();
     }
   }
@@ -159,7 +159,7 @@ jQuery.fn.springy = function(params) {
 	});
 	$(canvas).on('mousemove', function(e) {
     e.preventDefault();
-		var pos = $(canvas).offset()
+		var pos = $(canvas).offset(),
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerMove(p);
 	});
@@ -168,7 +168,7 @@ jQuery.fn.springy = function(params) {
     pointerEnd();
 	});
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
-		var pos = $(canvas).offset()
+		var pos = $(canvas).offset(),
       point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
       o = layout.nearest(point),
       cursor = 'auto';
@@ -322,7 +322,7 @@ jQuery.fn.springy = function(params) {
 
 			// label
 			if (edge.data.label !== undefined && isSelected && spacing > 10) {
-				text = edge.data.label
+				var text = edge.data.label
 				ctx.save();
 				ctx.textAlign = "center";
 				ctx.textBaseline = "top";
