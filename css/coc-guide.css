@@ -241,6 +241,8 @@
   padding-left:58px;
   min-height:32px;
   line-height:2em;
+}
+#guide-content .synergy span{
   cursor:pointer;
 }
 
