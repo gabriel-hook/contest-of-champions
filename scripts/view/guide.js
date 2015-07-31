@@ -172,14 +172,29 @@ CoC.view.GuideView = Backbone.View.extend({
   },
   
   events:{
-    "click .synergy":"synergyClick"
+    "click .synergy .champion-title":"synergyChampionClick",
+    "click .synergy .effect":"synergyEffectClick",
   },
   
-  synergyClick:function(event){
+  synergyChampionClick:function(event){
     var uid = $(event.currentTarget).attr("uid");
     if(uid === undefined)
       return;
     this._guideChampionsView.select(uid);
+  },
+  
+  synergyEffectClick:function(event){
+    var effectElement = $(event.currentTarget),
+      uid = effectElement.attr("uid");
+    if(uid === undefined)
+      return;
+  
+    var effect = CoC.data.effects.findWhere({ uid:uid });
+    if(!effect)
+      return;
+      
+    $("#popup-guide-effect .ui-content").text(effect.get("description"));
+    $("#popup-guide-effect").popup("open",{ positionTo:effectElement });
   },
   
   render:function(uid){

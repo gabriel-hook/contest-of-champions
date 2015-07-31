@@ -4,13 +4,28 @@ CoC.view.TeamView = Backbone.View.extend({
   template: _.template( $('#teamsTemplate').html() ),
 
   events:{
-    "click .champion":"clicked"
+    "click .champion":"championClicked",
+    "click .synergy":"synergyClicked"
   },
   
-  clicked:function(e){
-    e.preventDefault();
-    var uid = $(e.currentTarget).attr("uid");
+  championClicked:function(event){
+    event.preventDefault();
+    var uid = $(event.currentTarget).attr("uid");
     CoC.ui.guides.open( uid );
+  },
+  
+  synergyClicked:function(event){
+    var effectElement = $(event.currentTarget),
+      uid = effectElement.attr("effectId");
+    if(uid === undefined)
+      return;
+  
+    var effect = CoC.data.effects.findWhere({ uid:uid });
+    if(!effect)
+      return;
+      
+    $("#popup-team-effect .ui-content").text(effect.get("description"));
+    $("#popup-team-effect").popup("open",{ positionTo:effectElement.find("span") });
   },
   
   //set team size
