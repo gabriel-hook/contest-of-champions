@@ -34,9 +34,14 @@ CoC.getUrlParam=function(fragment, param){
 CoC.setUrlParam=function(fragment, param, value){
   if(fragment === undefined || param === undefined || value === undefined)
     return;
+  //build hash
   var hash = "#"+fragment+"?"+param + "=" + value;
   window.location.hash = hash;
-  CoC.tracking.pageView();
+  //track this pageview
+  var path = location.pathname;
+  if(location.hash)
+    path += location.hash;
+  CoC.tracking.pageView(path);
 }
 
 CoC.settings = CoC.settings || {};
