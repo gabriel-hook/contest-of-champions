@@ -90,15 +90,16 @@
     <script type="text/javascript" src="scripts/coc-synergies.js"></script>
     <!-- Init -->
     <script type="text/javascript">
-      $('.page').on('pageshow', function(){
-        var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7), 10))) || 2;
-        if(location.search === "?stars=" + stars)
-          CoC.synergies.initialize(stars);
-        else
-          location.search = "?stars=" + stars;
-      });
-      $(window).on('resize', CoC.synergies.canvasResize);
-      $(document).on('ready', CoC.synergies.canvasResize);
+      var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7), 10))) || 2;
+      if(location.search === "?stars=" + stars){
+        $('.page').on('pageshow', function(){
+            CoC.synergies.initialize(stars);
+        });
+        $(window).on('resize', CoC.synergies.canvasResize);
+        $(document).on('ready', CoC.synergies.canvasResize);
+      }
+      else
+        location.search = "?stars=" + stars;
     </script>
   </body>
 </html>
