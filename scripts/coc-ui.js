@@ -1,5 +1,6 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
+
 CoC.ui.initialize=function(){
   CoC.ui.share.initialize();
   setTimeout(CoC.ui.preload, 0);
