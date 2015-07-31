@@ -118,13 +118,20 @@ CoC.roster.csv=function(string){
         level = parseInt(values[3].replace(/["]/g,''), 10),
         awakened = parseInt(values[4].replace(/["]/g,''), 10);
 
+      //throw a useful error
+      if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
+        console.error("Invalid line at csv line "+(i+1));
+        continue;
+      }
+      
       var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
       if(champion === undefined){
         champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
         CoC.data.roster.add(champion);
       }
+      
       if(champion === undefined){
-        console.error("Champion not found \""+ uid + "\"");
+        console.error("Champion not found \""+ uid + "\" at csv line "+(i+1));
         continue;
       }
         
