@@ -182,6 +182,7 @@ CoC.data.crystalChampions.add([
   { crystalId:"premium", championId:"hulk", championStars:4 },
   { crystalId:"premium", championId:"spiderman", championStars:4 },
   { crystalId:"premium", championId:"drstrange", championStars:4 },
+  { crystalId:"premium", championId:"ironfist", championStars:4 },
   { crystalId:"premium", championId:"juggernaut", championStars:4 },
   { crystalId:"premium", championId:"magik", championStars:4 },
   { crystalId:"premium", championId:"scarletwitch", championStars:4 }
@@ -251,6 +252,7 @@ CoC.data.crystalChampions.add([
   { crystalId:"4star", championId:"hulk", championStars:4 },
   { crystalId:"4star", championId:"spiderman", championStars:4 },
   { crystalId:"4star", championId:"drstrange", championStars:4 },
+  { crystalId:"4star", championId:"ironfist", championStars:4 },
   { crystalId:"4star", championId:"juggernaut", championStars:4 },
   { crystalId:"4star", championId:"magik", championStars:4 },
   { crystalId:"4star", championId:"scarletwitch", championStars:4 }
