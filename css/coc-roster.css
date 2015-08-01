@@ -87,16 +87,29 @@
   padding:1em;
   z-index:9999;
 }
+
+#popup-roster-configure .ui-select,
+#popup-roster-configure button.label{
+  box-sizing:border-box;
+  width: 50% !important;
+}
+#popup-roster-configure button.label{
+  padding: .7em 0;
+  color:#222;
+  opacity:1;
+  filter: Alpha(Opacity=100);
+}
+
+#popup-roster-configure .extras .roster-configure-guide{
+  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+}
+
 #roster-configure-image{
   position:absolute;
   bottom: 1em;
   margin-bottom: 8px;
   width:256px;
   z-index:-1;
-}
-
-#popup-roster-configure .extras .roster-configure-guide{
-  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
 }
 
 @media (min-width:500px) and (min-height:400px) {

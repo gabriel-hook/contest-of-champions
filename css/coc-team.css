@@ -78,9 +78,6 @@
 .ui-controlgroup-controls{
   width:100%;
 }
-#popup-roster-configure .ui-select{
-    width: 50% !important;
-}
 #panel-team-settings #build-settings-size .ui-radio{
   width:33.333%;
 }

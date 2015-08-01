@@ -110,6 +110,19 @@ CoC.ui.roster=new function(){
     
     setupRankLevel();
     
+    $("#roster-configure-awakened").empty();
+    $("#roster-configure-awakened").append($("<option>").val(0).text("None"));
+    for(var i = 1; i<=99; i++)
+      $("#roster-configure-awakened").append($("<option>").val(i).text(i));
+    $("#roster-configure-awakened").unbind("change").change(function(e){
+      var value = parseInt(e.target.value, 10);
+      champion.set("awakened", value);
+      champion.save();
+      $("#roster-configure-awakened").selectmenu('refresh');
+    }).val(champion.get("awakened")).selectmenu('refresh');
+      
+    /*
+    
     $("#roster-configure-awakened").prop("checked", champion.get("awakened") != 0).checkboxradio("refresh").unbind("change").change(function(e){
 
       champion.set("awakened", (e.target.checked)? 1: 0)
@@ -124,6 +137,8 @@ CoC.ui.roster=new function(){
         $("#roster-delete-confirm-stars").removeClass("awakened");
       }
     });
+    
+    */
     
     $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind("change").change(function(e){
       champion.set("quest", (e.target.checked)? true: false);
