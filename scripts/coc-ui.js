@@ -517,26 +517,35 @@ $("#page-crystals").on("pagebeforeshow",function(){
 
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
-  $('#roster-import-input').change(function(e){
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-      var file = this.files[0];
-      reader.onload = function (e) {
-        var result = e.target.result;
-        CoC.roster.csv(result, file.name || undefined);
-        CoC.ui.roster.render();
-      }
-      reader.readAsText(file);
-      $(this).val("")
-    }
-  });
+  if(window.FileReader){
 
-  $('#roster-import').click(function(){
-    console.log("importing csv...");
-    $('#roster-import-input').click();
-    $('#panel-roster-options').panel("close");
-    CoC.tracking.event("roster", "import");
-  });
+    $('#roster-import-input').change(function(e){
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        var file = this.files[0];
+        reader.onload = function (e) {
+          var result = e.target.result;
+          CoC.roster.csv(result, file.name || undefined);
+          CoC.ui.roster.render();
+        }
+        reader.readAsText(file);
+        $(this).val("")
+      }
+    });
+
+    $('#roster-import').click(function(){
+      console.log("importing csv...");
+      $('#roster-import-input').click();
+      $('#panel-roster-options').panel("close");
+      CoC.tracking.event("roster", "import");
+    });
+  
+  }
+  else{
+    //windows safari and other bullshit browsers that dont support FileReader
+    $('#roster-import').addClass("ui-disabled");
+    $('#roster-export').addClass("ui-disabled");
+  }
   
   $('#roster-export').click(function(){
     console.log("exporting to csv...");
