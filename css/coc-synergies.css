@@ -15,6 +15,9 @@ html, body{
 body.ui-mobile-viewport,
 .ui-page-theme-a{
   background: #f0f0f0;
+  background: -webkit-radial-gradient(#fff, #eee, #aaa); 
+  background: -o-radial-gradient(#fff, #eee, #aaa); 
+  background: -moz-radial-gradient(#fff, #eee, #aaa); 
   background: radial-gradient(#fff, #eee, #aaa); 
   background-attachment: fixed;
 }
@@ -37,6 +40,9 @@ body.ui-mobile-viewport,
   display:block;
   height:32px;
   box-sizing: border-box;
+  background: -webkit-radial-gradient(#fff, #eee, #aaa); 
+  background: -o-radial-gradient(#fff, #eee, #aaa); 
+  background: -moz-radial-gradient(#fff, #eee, #aaa); 
   background: radial-gradient(#fff, #eee, #aaa); 
   text-align:center;
   line-height:32px;
@@ -105,7 +111,10 @@ body.ui-mobile-viewport,
   width:25%;
 }
 .button.active{
-  background: radial-gradient(#ccc, #bbb, #888); 
+  background: -webkit-radial-gradient(#ccc, #bbb, #888);
+  background: -o-radial-gradient(#ccc, #bbb, #888);
+  background: -moz-radial-gradient(#ccc, #bbb, #888);
+  background: radial-gradient(#ccc, #bbb, #888);
 }
 .button .narrow{
   display:inherit;
@@ -184,6 +193,9 @@ canvas{
   position:absolute;
   top:33px;
   left:0;
-  background: radial-gradient(#fff, #eee, #aaa);
+  background: -webkit-radial-gradient(#fff, #eee, #aaa); 
+  background: -o-radial-gradient(#fff, #eee, #aaa); 
+  background: -moz-radial-gradient(#fff, #eee, #aaa); 
+  background: radial-gradient(#fff, #eee, #aaa); 
   border:solid 1px #666;
 }

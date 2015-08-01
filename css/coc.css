@@ -16,7 +16,10 @@ html, body, div, img {
 
 body.ui-mobile-viewport{
   background: #f0f0f0;
-  background: radial-gradient(#fff, #eee, #aaa); 
+  background: -webkit-radial-gradient(#fff, #eee, #aaa); 
+  background: -o-radial-gradient(#fff, #eee, #aaa); 
+  background: -moz-radial-gradient(#fff, #eee, #aaa); 
+  background: radial-gradient(#fff, #eee, #aaa);   
   background-attachment: fixed;
 }
 
