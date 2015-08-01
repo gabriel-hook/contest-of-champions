@@ -1,15 +1,6 @@
 var CoC = CoC || {};
 CoC.data = CoC.data || {};
 
-//Champion Ranks and Levels
-CoC.data.championLevels={
-  1:[ 10, 20 ],
-  2:[ 10, 20, 30 ],
-  3:[ 10, 20, 30, 40 ],
-  4:[ 10, 20, 30, 40, 50 ],
-  5:[ 10, 20, 30, 40, 50, 60 ]
-}
-
 //Champions
 CoC.data.champions = new Backbone.Collection([
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 2 },

@@ -1129,33 +1129,6 @@ CoC.algorithm = CoC.algorithm || {};
     }
   }
   
-  //championStarRankValue[stars][rank]
-  var championStarRankValue={
-    1:{
-      1:{ levels: 10, min:100, max:175 }, 
-      2:{ levels: 20, min:175, max:250 }
-    },
-    2:{
-      1:{ levels: 10, min:150, max:250 }, 
-      2:{ levels: 20, min:250, max:400 }, 
-      3:{ levels: 30, min:400, max:600 }
-    },
-    3:{
-      1:{ levels: 10, min:300, max:500 }, 
-      2:{ levels: 20, min:500, max:900 }, 
-      3:{ levels: 30, min:900, max:1200 }, 
-      4:{ levels: 40, min:1200, max:1500 }
-    },
-    4:{
-      1:{ levels: 10, min:750, max:1000 }, 
-      2:{ levels: 20, min:1000, max:1750 }, 
-      3:{ levels: 30, min:1750, max:2500 }, 
-      4:{ levels: 40, min:2500, max:3500 }, 
-      5:{ levels: 50, min:3500, max:4500 }
-    }
-    //TODO: 5-star values
-  }
-  
   function calculateChampionValue(champion, levels){
     if(levels === false)
       return 1;
@@ -1164,10 +1137,11 @@ CoC.algorithm = CoC.algorithm || {};
       rank = champion.get("rank"),
       level = champion.get("level"),
       awakened = champion.get("awakened"),
-      range = championStarRankValue[stars][rank];
-
-    return range.min + (level / range.levels) * (range.max - range.min) +
-      awakened * 1.1;
+      pi = champion.pi() * (1 + awakened * 0.05);
+    
+console.log(champion.get("uid"), stars, rank, level, awakened, pi);
+     
+    return pi;
   }
   
   function factorial(n){

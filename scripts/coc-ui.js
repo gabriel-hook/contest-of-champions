@@ -84,28 +84,25 @@ CoC.ui.roster=new function(){
     $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("typeId") }).get("image"));
 
     function setupRankLevel(){
-      var ranks = CoC.data.championLevels[champion.get("stars")];
-      var levels = ranks[champion.get("rank")-1]
-    
-      if(champion.get("level") > levels)
-        champion.set("level", levels)
-    
       $("#roster-configure-level").empty();
-      for(var i = 1; i<=levels; i++)
+      for(var i = 1, levels = champion.levels(); i<=levels; i++)
         $("#roster-configure-level").append($("<option>").val(i).text(i));
         
-      $("#roster-configure-level").unbind("change").change(function(e){              
-        champion.set("level", e.target.value);
+      $("#roster-configure-level").unbind("change").change(function(e){
+        var value = parseInt(e.target.value, 10);
+        champion.set("level", value);
         champion.save();
         $("#roster-configure-level").selectmenu('refresh');
       }).val(champion.get("level")).selectmenu('refresh');
     }
     
     $("#roster-configure-rank").empty();
-    for(var i = 1; i<=CoC.data.championLevels[champion.get("stars")].length; i++)
+    for(var i = 1, ranks = champion.ranks(); i<=ranks; i++)
       $("#roster-configure-rank").append($("<option>").val(i).text(i));
-    $("#roster-configure-rank").unbind("change").change(function(e){        
-      champion.set("rank", e.target.value);
+    $("#roster-configure-rank").unbind("change").change(function(e){
+      var value = parseInt(e.target.value, 10)
+      champion.set("rank", value);
+      champion.set("level", 1);
       champion.save();
       setupRankLevel();
       $("#roster-configure-rank").selectmenu('refresh');
