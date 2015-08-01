@@ -1133,14 +1133,10 @@ CoC.algorithm = CoC.algorithm || {};
     if(levels === false)
       return 1;
       
-    var stars = champion.get("stars"),
-      rank = champion.get("rank"),
-      level = champion.get("level"),
-      awakened = champion.get("awakened"),
-      pi = champion.pi() * (1 + awakened * 0.05);
-    
-console.log(champion.get("uid"), stars, rank, level, awakened, pi);
-     
+    var pi = champion.pi(), awakened = champion.get("awakened");
+    if(awakened > 0)
+      pi *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+      
     return pi;
   }
   
