@@ -65,7 +65,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "perfectblock":1,
   "block":1,
   "armor":1,
-  "health":1
+  "health":1,
 //class duplicate weights  
   "duplicates-2":0.8,
   "duplicates-3":0.4,
