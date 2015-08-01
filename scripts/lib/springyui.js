@@ -414,7 +414,10 @@ jQuery.fn.springy = function(params) {
       
       //draw the text background
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-      ctx.fillRect(s.x - textWidth/2 - padding, s.y - contentSize/2 - textHeight, textWidth + padding*2, textHeight);
+      ctx.fillRect(Math.floor(s.x - textWidth/2 - padding), 
+        Math.floor(s.y - contentSize/2 - textHeight),
+        Math.floor(textWidth + padding*2), 
+        Math.floor(textHeight));
       //draw the name
       ctx.fillStyle = "#ffffff";
       ctx.textAlign = "left";
@@ -422,7 +425,9 @@ jQuery.fn.springy = function(params) {
       ctx.shadowColor = "#000";
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
-      ctx.fillText(node.data.label, s.x - textWidth/2, s.y - contentSize/2);
+      ctx.fillText(node.data.label, 
+        Math.floor(s.x - textWidth / 2), 
+        Math.floor(s.y - contentSize / 2));
 
 			ctx.restore();
     }
