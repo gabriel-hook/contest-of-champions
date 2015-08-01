@@ -1132,12 +1132,7 @@ CoC.algorithm = CoC.algorithm || {};
   function calculateChampionValue(champion, levels){
     if(levels === false)
       return 1;
-      
-    var pi = champion.pi(), awakened = champion.get("awakened");
-    if(awakened > 0)
-      pi *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
-      
-    return pi;
+    return champion.value();
   }
   
   function factorial(n){

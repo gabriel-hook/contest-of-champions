@@ -48,14 +48,20 @@ CoC.model = CoC.model || {};
       quest: false
     },
     
-    pi:function(){
-      var stars = this.get("stars"), rank = this.get("rank"), level = this.get("level");
+    value:function(){
+      var stars = this.get("stars"), 
+        rank = this.get("rank"), 
+        level = this.get("level"), 
+        awakened = this.get("awakened");
       if(level < 1 || championStarRankLevels[stars] === undefined)
         return 0;
       var range = championStarRankLevels[stars][rank];
       if(range === undefined || level > range.levels )
         return 0;
-      return range.min + (this.get("level") / range.levels) * (range.max - range.min);
+      var value = range.min + (level / range.levels) * (range.max - range.min);
+      if(awakened > 0)
+        value *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+      return value;
     },
     
     ranks:function(){
