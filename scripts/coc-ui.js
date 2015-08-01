@@ -256,7 +256,8 @@ CoC.ui.teams=new function(){
     var algorithm = CoC.algorithm[CoC.settings.getValue("build-algorithm")] || CoC.algorithm["shuffle"];
     var quest = CoC.settings.getValue("build-quest-group")===true;
     var extras = CoC.settings.getValue("build-quest-group")===false || !algorithm.canQuest;
-    
+    var levels = CoC.settings.getValue("build-levels")===true;
+
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").attr("class","");
     
@@ -323,6 +324,7 @@ CoC.ui.teams=new function(){
           algorithm:algorithm.uid,
           roster:rosterJSON, 
           size:size, 
+          levels:levels,
           quest:quest, 
           extras:extras,
           weights:CoC.settings.weights, 
@@ -339,7 +341,7 @@ CoC.ui.teams=new function(){
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = algorithm.build({ champions:roster, size:size, quest:quest, extras:extras });
+        var result = algorithm.build({ champions:roster, size:size, levels:levels, quest:quest, extras:extras });
         $("#team-build-progressprogress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.render(result, size);
@@ -678,7 +680,7 @@ $("#page-teams").on("pagecreate", function() {
   });
 });
 $("#page-settings-advanced").on("pagecreate", function() {
-  var sliders = {};
+  var sliders = {}, checkboxes = {};
   
   function enableSlider(id, type){
     var value = CoC.settings.getWeight(type);
@@ -687,12 +689,6 @@ $("#page-settings-advanced").on("pagecreate", function() {
     })
     sliders[type]=id;
   }
-  enableSlider("#settings-advanced-star5","stars-5");
-  enableSlider("#settings-advanced-star4","stars-4");
-  enableSlider("#settings-advanced-star3","stars-3");
-  enableSlider("#settings-advanced-star2","stars-2");
-  enableSlider("#settings-advanced-star1","stars-1");
-  enableSlider("#settings-advanced-awakened","awakened");
   enableSlider("#settings-advanced-class2","duplicates-2");
   enableSlider("#settings-advanced-class3","duplicates-3");
   enableSlider("#settings-advanced-class4","duplicates-4");
@@ -707,6 +703,15 @@ $("#page-settings-advanced").on("pagecreate", function() {
   enableSlider("#settings-advanced-armor","armor");
   enableSlider("#settings-advanced-health","health");
 
+  function enableCheckbox(id, type){
+    var value = CoC.settings.getValue(type);
+    $(id).prop("checked", value).checkboxradio("refresh").change(function(){
+      CoC.settings.setValue(type, this.checked);
+    })
+    checkboxes[type]=id;
+  }
+  enableCheckbox("#settings-advanced-levels","build-levels");
+  
   function addPresets(category){
     var container = $("#settings-advanced-preset-"+category.toLowerCase()),
       presets = CoC.settings.preset.ids(category);      
@@ -726,9 +731,15 @@ $("#page-settings-advanced").on("pagecreate", function() {
         return true;
       }
       return false;
+    }, function(key, value){
+      var checkbox = $(checkboxes[key]);
+      if(checkbox.length){
+        checkbox.prop("checked",value).checkboxradio("refresh")
+        return true;
+      }
+      return false;
     });
-    $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates")
-      .val(null).selectmenu("refresh");
+    $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").val(null).selectmenu("refresh");
   });
   
   $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").change(function(){

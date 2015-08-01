@@ -56,15 +56,7 @@ CoC.settings.preset.add=function(category, name, weights, settings){
 }
 
 CoC.settings.preset.add(null, "Defaults",{
-//weights
-  "stars-1":0.5,
-  "stars-2":1,
-  "stars-3":2,
-  "stars-4":4,
-  "stars-5":8,
-
-  "awakened":1.5,
-
+//effect weights
   "attack":8,
   "stun":5,
   "critrate":5,
@@ -74,7 +66,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "block":1,
   "armor":1,
   "health":1,
-  
+//class duplicate weights  
   "duplicates-2":0.8,
   "duplicates-3":0.4,
   "duplicates-4":0.2,
@@ -92,6 +84,7 @@ CoC.settings.preset.add(null, "Defaults",{
 //build settings 
   "build-algorithm":"shuffle",
   "build-size":3,
+  "build-levels":true,
   "build-filter-stars-5":true,
   "build-filter-stars-4":true,
   "build-filter-stars-3":true,

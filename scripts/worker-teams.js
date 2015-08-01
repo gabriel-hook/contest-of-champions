@@ -12,6 +12,7 @@ onmessage = function (event){
   var algorithm = event.data.algorithm,
     rosterJSON = event.data.roster,
     size = event.data.size,
+    levels = event.data.levels,
     weights = event.data.weights,
     quest = event.data.quest,
     extras = event.data.extras,
@@ -76,6 +77,7 @@ onmessage = function (event){
   var result = CoC.algorithm[algorithm].build({ 
     champions:roster, 
     size:size, 
+    levels:levels,
     extras:extras, 
     quest:quest, 
     progress:progress 

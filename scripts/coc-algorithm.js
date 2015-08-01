@@ -13,7 +13,7 @@ CoC.algorithm = CoC.algorithm || {};
 
     this.build=function(options){
       var size = parseInt(options.size, 10), teams = {}, team, list = [], preselect = [], typeWeights = [], progress = null;
-      preProcess(options.champions, list, typeWeights);
+      preProcess(options.champions, list, typeWeights, options.levels);
       
       if(options.quest)
         for(var i=list.length-1;i>=0;i--)
@@ -121,7 +121,7 @@ CoC.algorithm = CoC.algorithm || {};
       return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
     }
     
-    function preProcess(champions, list, typeWeights){
+    function preProcess(champions, list, typeWeights, useLevels){
       for(var i=2; i<=5; i++)
         typeWeights[i] = CoC.settings.getDuplicateWeight(i);
         
@@ -146,12 +146,7 @@ CoC.algorithm = CoC.algorithm || {};
           data:champion,
           type:CoC.data.types.indexOf(champion.type()),
           synergies:synergies,
-          value:(function(stars, awakened){
-            var value = CoC.settings.getStarWeight(stars);
-            if(awakened > 0)
-              value *= CoC.settings.getWeight("awakened");
-            return value;
-          })(champion.get("stars"), champion.get("awakened"))
+          value:calculateChampionValue(champion, useLevels)
         })
       }  
     }
@@ -304,7 +299,7 @@ CoC.algorithm = CoC.algorithm || {};
     this.build=function(options){
       var size = parseInt(options.size, 10), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
       var heroMap = {}, synergyMap = {}, typeWeights = {}, teamValues = {};
-      preprocess(options.champions, heroMap, synergyMap, typeWeights);
+      preprocess(options.champions, heroMap, synergyMap, typeWeights, options.levels);
     
       var swaps;
       
@@ -441,7 +436,7 @@ CoC.algorithm = CoC.algorithm || {};
       });
     }
     
-    function preprocess(champions, heroMap, synergyMap, typeWeights){
+    function preprocess(champions, heroMap, synergyMap, typeWeights, levels){
       for(i=2; i<=5; i++)
         typeWeights[i] = CoC.settings.getDuplicateWeight(i);
     
@@ -454,12 +449,7 @@ CoC.algorithm = CoC.algorithm || {};
           id:champion.get("uid"),
           fid:fid,
           type:champion.get("typeId"),
-          value:(function(stars, awakened){
-            var value = CoC.settings.getStarWeight(stars);
-            if(awakened)
-              value *= CoC.settings.getWeight("awakened");
-            return value;
-          })(champion.get("stars"), champion.get("awakened")),
+          value:calculateChampionValue(champion, levels),
           data:champion
         }
         synergyMap[fid] = {};
@@ -529,7 +519,7 @@ CoC.algorithm = CoC.algorithm || {};
       var synergies, distinct, missing, full,
         size = parseInt(options.size, 10),
         weights = getWeights(),
-        championsMap = getHeroesMap(options.champions),
+        championsMap = getHeroesMap(options.champions, options.levels),
         synergiesMap = getSynergiesMap(options.champions),
         teams = { map:{}, list:[], heroIds:{}, heroCount: 0 },
         extras = getRemainingHeroes(teams, championsMap);
@@ -949,11 +939,7 @@ CoC.algorithm = CoC.algorithm || {};
       
       var hvalue = 0;
       for(var i=0; i<champions.length; i++){
-        //get my value
-        var heroValue = weights.stars[champions[i].stars];
-        if(champions[i].awakened)
-          heroValue = weights.awakened;
-        hvalue += heroValue;
+        hvalue += champions[i].value;
       }
         
       if(hvalue === 0)
@@ -1020,15 +1006,15 @@ CoC.algorithm = CoC.algorithm || {};
     }
     
     //getHeroesMap
-    function getHeroesMap(champions){
+    function getHeroesMap(champions, levels){
       var championsMap = { fids:{}, ids:{} };
       for(var i = 0; i<champions.length; i++){
         var champion = champions[i];
         var data = {
           id: champion.get("uid"),
           stars: champion.get("stars"),
-          awakened: champion.get("awakened"),
           type: champion.get("typeId"),
+          value: calculateChampionValue(champion, levels),
           champion:champion
         }
         data.fid = getHeroStarId(data)
@@ -1142,7 +1128,48 @@ CoC.algorithm = CoC.algorithm || {};
       return weights;
     }
   }
-    
+  
+  //championStarRankValue[stars][rank]
+  var championStarRankValue={
+    1:{
+      1:{ levels: 10, min:100, max:175 }, 
+      2:{ levels: 20, min:175, max:250 }
+    },
+    2:{
+      1:{ levels: 10, min:150, max:250 }, 
+      2:{ levels: 20, min:250, max:400 }, 
+      3:{ levels: 30, min:400, max:600 }
+    },
+    3:{
+      1:{ levels: 10, min:300, max:500 }, 
+      2:{ levels: 20, min:500, max:900 }, 
+      3:{ levels: 30, min:900, max:1200 }, 
+      4:{ levels: 40, min:1200, max:1500 }
+    },
+    4:{
+      1:{ levels: 10, min:750, max:1000 }, 
+      2:{ levels: 20, min:1000, max:1750 }, 
+      3:{ levels: 30, min:1750, max:2500 }, 
+      4:{ levels: 40, min:2500, max:3500 }, 
+      5:{ levels: 50, min:3500, max:4500 }
+    }
+    //TODO: 5-star values
+  }
+  
+  function calculateChampionValue(champion, levels){
+    if(levels === false)
+      return 1;
+      
+    var stars = champion.get("stars"),
+      rank = champion.get("rank"),
+      level = champion.get("level"),
+      awakened = champion.get("awakened"),
+      range = championStarRankValue[stars][rank];
+
+    return range.min + (level / range.levels) * (range.max - range.min) +
+      awakened * 1.1;
+  }
+  
   function factorial(n){
     if(factorial.cache === undefined)
       factorial.cache = { 0:1, 1:1, length:1 };
