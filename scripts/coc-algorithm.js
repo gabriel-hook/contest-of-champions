@@ -87,7 +87,7 @@ CoC.algorithm = CoC.algorithm || {};
           teams.length--;
         }
         
-        function appendToTeam(list, object){
+        var appendToTeam = function appendToTeam(list, object){
           var l = list.slice();
           l.push(object);
           return l;
