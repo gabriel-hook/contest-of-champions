@@ -57,15 +57,15 @@ CoC.settings.preset.add=function(category, name, weights, settings){
 
 CoC.settings.preset.add(null, "Defaults",{
 //effect weights
-  "attack":8,
+  "attack":6,
   "stun":5,
-  "critrate":5,
-  "critdamage":5,
-  "powergain":3,
+  "critrate":4,
+  "critdamage":4,
+  "powergain":2,
   "perfectblock":1,
   "block":1,
   "armor":1,
-  "health":1,
+  "health":1
 //class duplicate weights  
   "duplicates-2":0.8,
   "duplicates-3":0.4,
@@ -93,11 +93,11 @@ CoC.settings.preset.add(null, "Defaults",{
   "build-include-extras":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{
-  "attack":8,
-  "stun":4,
+  "attack":6,
+  "stun":5,
   "critrate":4,
   "critdamage":4,
-  "powergain":3,
+  "powergain":2,
   "perfectblock":1,
   "block":1,
   "armor":1,
