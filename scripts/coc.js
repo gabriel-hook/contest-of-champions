@@ -5,7 +5,7 @@ CoC.initialize = function(){
   console.log("Contest of Champions - Roster Manager v"+CoC.version);
 
   //reset settings if we are a new version!
-  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") != CoC.version){
+  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.version){
     CoC.settings.preset.apply("defaults", true, true);
     CoC.settings.setValue("hasDefaults", true);
     CoC.settings.setValue("version", CoC.version);
