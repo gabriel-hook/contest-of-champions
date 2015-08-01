@@ -518,7 +518,6 @@ $("#page-crystals").on("pagebeforeshow",function(){
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
   if(window.FileReader){
-
     $('#roster-import-input').change(function(e){
       if (this.files && this.files[0]) {
         var reader = new FileReader();
@@ -532,28 +531,25 @@ $("#page-roster").on("pagecreate",function(){
         $(this).val("")
       }
     });
-
     $('#roster-import').click(function(){
       console.log("importing csv...");
       $('#roster-import-input').click();
       $('#panel-roster-options').panel("close");
       CoC.tracking.event("roster", "import");
     });
-  
+    $('#roster-export').click(function(){
+      console.log("exporting to csv...");
+      var csvRoster = CoC.roster.csv();
+      $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+      $('#panel-roster-options').panel("close");
+      CoC.tracking.event("roster", "export");
+    }); 
   }
   else{
     //windows safari and other bullshit browsers that dont support FileReader
     $('#roster-import').addClass("ui-disabled");
     $('#roster-export').addClass("ui-disabled");
-  }
-  
-  $('#roster-export').click(function(){
-    console.log("exporting to csv...");
-    var csvRoster = CoC.roster.csv();
-    $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
-    $('#panel-roster-options').panel("close");
-    CoC.tracking.event("roster", "export");
-  });  
+  } 
   
   $('#roster-clear-all').click(function(){
     $("#popup-roster-clear-confirm").popup("open",{
@@ -564,11 +560,6 @@ $("#page-roster").on("pagecreate",function(){
   $("#roster-delete-confirm-no").click(function(){
     $("#popup-roster-delete-confirm").popup("close");
   });
-  
-  $("#roster-clear-confirm-no").click(function(){
-    $("#popup-roster-clear-confirm").popup("close");
-  });
-  
   $("#roster-clear-confirm-yes").click(function(){
     CoC.roster.clear();
     CoC.ui.roster.render();
