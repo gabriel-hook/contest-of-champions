@@ -392,8 +392,9 @@ jQuery.fn.springy = function(params) {
 			ctx.save();
       
 			var contentSize = node.getSize();
-      var x = Math.floor(s.x - contentSize/2),
-        y = Math.floor(s.y - contentSize/2),
+      var halfSize = Math.floor(contentSize/2),
+        x = Math.floor(s.x) - halfSize,
+        y = Math.floor(s.y) - halfSize,
         size = Math.floor(contentSize),
         y2 = y + size,
         size2 = Math.max(2, Math.floor(contentSize/10));
@@ -410,14 +411,14 @@ jQuery.fn.springy = function(params) {
       ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
       var padding = 2;
 			var textWidth = ctx.measureText(node.data.label).width;
-			var textHeight = 16 + padding;
+			var textHeight = 16;
       
       //draw the text background
       ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-      ctx.fillRect(Math.floor(s.x - textWidth/2 - padding), 
-        Math.floor(s.y - contentSize/2 - textHeight),
-        Math.floor(textWidth + padding*2), 
-        Math.floor(textHeight));
+      ctx.fillRect(Math.floor(s.x) - Math.floor(textWidth/2) - padding, 
+        Math.floor(s.y) - halfSize - Math.floor(textHeight),
+        Math.floor(textWidth) + padding*2, 
+        Math.floor(textHeight) + padding);
       //draw the name
       ctx.fillStyle = "#ffffff";
       ctx.textAlign = "left";
@@ -426,8 +427,8 @@ jQuery.fn.springy = function(params) {
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
       ctx.fillText(node.data.label, 
-        Math.floor(s.x - textWidth / 2), 
-        Math.floor(s.y - contentSize / 2));
+        Math.floor(s.x) - Math.floor(textWidth / 2), 
+        Math.floor(s.y) - halfSize + padding);
 
 			ctx.restore();
     }
