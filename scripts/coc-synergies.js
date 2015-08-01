@@ -41,6 +41,16 @@ CoC.synergies.initialize=function(stars){
     (function(champion){
       var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
       $(document.body).append(link);
+      
+      //windows safari is stupid and doesn't give dom elements a click method
+      if(link[0].click === undefined && document.createEvent){
+        link[0].click = function(){
+          var clickEvent = document.createEvent('MouseEvents');
+              clickEvent.initEvent('click', true, true);
+          this.dispatchEvent(clickEvent);
+        }
+      }
+      
       nodes[ champion.get('uid') ] = springy.graph.newNode({
         label: champion.get('name'),
         image: (function(src){
