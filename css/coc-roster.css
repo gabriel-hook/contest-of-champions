@@ -110,6 +110,7 @@
   margin-bottom: 8px;
   width:256px;
   z-index:-1;
+  pointer-events:none;
 }
 
 @media (min-width:500px) and (min-height:400px) {
