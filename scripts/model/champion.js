@@ -133,9 +133,10 @@ CoC.model = CoC.model || {};
         return false;
       this.set("name", other.get("name"));
       this.set("typeId", other.get("typeId"));
-      this.set("stars", parseInt(this.get("stars"), 10));
-      this.set("rank", parseInt(this.get("rank"), 10));
-      this.set("level", parseInt(this.get("level"), 10));
+      this.set("stars", parseInt(this.get("stars"), 10) || 1);
+      this.set("rank", parseInt(this.get("rank"), 10) || 1);
+      this.set("level", parseInt(this.get("level"), 10) || 1);
+      this.set("awakened", parseInt(this.get("awakened"), 10) || 0);
       return true;
     }
   });
