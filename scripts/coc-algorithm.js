@@ -587,7 +587,7 @@ CoC.algorithm = CoC.algorithm || {};
       
         extras = getRemainingHeroes(teams, championsMap);
       
-        function getTeamsBySize(){
+        var getTeamsBySize = function getTeamsBySize(){
           var map = {}, needed = 0;
           for(var i=1;i<size;i++)
             map[i]=[];
