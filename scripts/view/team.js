@@ -15,6 +15,9 @@ CoC.view.TeamView = Backbone.View.extend({
   },
   
   synergyClicked:function(event){
+    if(CoC.ui.hasSelection())
+      return;
+  
     var effectElement = $(event.currentTarget),
       uid = effectElement.attr("effectId");
     if(uid === undefined)

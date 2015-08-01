@@ -184,6 +184,9 @@ CoC.view.GuideView = Backbone.View.extend({
   },
   
   synergyEffectClick:function(event){
+    if(CoC.ui.hasSelection())
+      return;
+      
     var effectElement = $(event.currentTarget),
       uid = effectElement.attr("uid");
     if(uid === undefined)

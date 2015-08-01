@@ -52,6 +52,7 @@
 .synergies .synergy span{
   color:#f6f6f6;
   text-shadow:1px 1px #111;
+  cursor:pointer;
 }
 .synergies .synergy img{
   position:relative;
