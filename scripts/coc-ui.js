@@ -56,15 +56,8 @@ CoC.ui.roster=new function(){
   
   this.popup=function(element, champion){
 
-    if($("#popup-roster-configure-popup").hasClass("ui-popup-active")){
-      $('#popup-roster-configure').popup("close");
-      $("#page-roster [data-position='fixed']").toolbar('show');
-      return;
-    }
 
     $(element).addClass("selected");
-    $("#page-roster [data-position='fixed']").toolbar('hide');
-      
     $('#popup-roster-configure').one("popupafterclose", function(){
       $("#roster .champion").removeClass("selected");
       $("#page-roster [data-position='fixed']").toolbar('show');

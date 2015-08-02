@@ -110,6 +110,7 @@
 
 #roster .champion.selected .container{
   z-index:1100;
+  pointer-events:none;
 }
 
 /*
