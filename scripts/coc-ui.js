@@ -58,6 +58,7 @@ CoC.ui.roster=new function(){
 
     if($("#popup-roster-configure-popup").hasClass("ui-popup-active")){
       $('#popup-roster-configure').popup("close");
+      $("#page-roster [data-position='fixed']").toolbar('show');
       return;
     }
 
@@ -66,7 +67,7 @@ CoC.ui.roster=new function(){
       
     $('#popup-roster-configure').one("popupafterclose", function(){
       $("#roster .champion").removeClass("selected");
-    $("#page-roster [data-position='fixed']").toolbar('show');
+      $("#page-roster [data-position='fixed']").toolbar('show');
     });
     
     $("#roster-configure-stars").text("");
