@@ -55,11 +55,11 @@ CoC.ui.roster=new function(){
   }
   
   this.popup=function(element, champion){
-
-
+  
     $(element).addClass("selected");
+    $("#page-roster [data-position='fixed']").toolbar('hide');
     $('#popup-roster-configure').one("popupafterclose", function(){
-      $("#roster .champion").removeClass("selected");
+      $(element).removeClass("selected");
       $("#page-roster [data-position='fixed']").toolbar('show');
     });
     
