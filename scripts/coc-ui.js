@@ -55,6 +55,19 @@ CoC.ui.roster=new function(){
   }
   
   this.popup=function(element, champion){
+
+    if($("#popup-roster-configure-popup").hasClass("ui-popup-active")){
+      $('#popup-roster-configure').popup("close");
+      return;
+    }
+
+    $(element).addClass("selected");
+    $("#page-roster [data-position='fixed']").toolbar('hide');
+      
+    $('#popup-roster-configure').one("popupafterclose", function(){
+      $("#roster .champion").removeClass("selected");
+    $("#page-roster [data-position='fixed']").toolbar('show');
+    });
     
     $("#roster-configure-stars").text("");
     $("#roster-configure-stars").append((function(){
@@ -120,25 +133,6 @@ CoC.ui.roster=new function(){
       champion.save();
       $("#roster-configure-awakened").selectmenu('refresh');
     }).val(champion.get("awakened")).selectmenu('refresh');
-      
-    /*
-    
-    $("#roster-configure-awakened").prop("checked", champion.get("awakened") != 0).checkboxradio("refresh").unbind("change").change(function(e){
-
-      champion.set("awakened", (e.target.checked)? 1: 0)
-      champion.save();
-      
-      if(champion.get("awakened") > 0){
-        $("#roster-configure-stars").addClass("awakened");
-        $("#roster-delete-confirm-stars").addClass("awakened");
-      }
-      else{
-        $("#roster-configure-stars").removeClass("awakened")
-        $("#roster-delete-confirm-stars").removeClass("awakened");
-      }
-    });
-    
-    */
     
     $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind("change").change(function(e){
       champion.set("quest", (e.target.checked)? true: false);
@@ -147,6 +141,8 @@ CoC.ui.roster=new function(){
     
     $("#roster-configure-delete").unbind("click").click(function(){
 
+      $("#roster .champion").removeClass("selected");
+    
       $('#popup-roster-configure').one("popupafterclose", function(){
         $("#popup-roster-delete-confirm").popup("open",{
           positionTo:"window"
