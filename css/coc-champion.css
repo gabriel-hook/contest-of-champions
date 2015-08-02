@@ -108,15 +108,17 @@
   pointer-events:none;
 }
 
-#roster .champion .container.selected,
+#roster .champion.selected .container{
+  z-index:1100;
+}
+
+/*
 #roster .champion .container:active,
 #roster .champion .container:hover,
 #add-champions .champion .container:active,
 #add-champions .champion .container:hover{
-  -ms-transform:scale(1.1, 1.1);
-  -webkit-transform:scale(1.1, 1.1);
-  transform:scale(1.1, 1.1);
 }
+*/
 
 .champion .grade{
   display:block;
