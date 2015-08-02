@@ -16,13 +16,14 @@ CoC.view.RosterView = Backbone.View.extend({
     "click .champion":"clicked"
   },
   
-  clicked:function(e){
-    e.preventDefault();
-    var uid = $(e.currentTarget).attr("uid"),
-      stars = parseInt( $(e.currentTarget).attr("stars") ),
+  clicked:function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    var uid = $(event.currentTarget).attr("uid"),
+      stars = parseInt( $(event.currentTarget).attr("stars") ),
       champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
     if(champion)
-      CoC.ui.roster.popup(e.currentTarget, champion);
+      CoC.ui.roster.popup(event.currentTarget, champion);
   },
   
   championView:function(champion){
