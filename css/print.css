@@ -45,6 +45,14 @@ body,
   padding: 0px 10px 20px 10px !important;
 }
 
+/* HIDE BUTTONS AND STUFF */
+
+
+#add-champions .add-all,
+#page-settings-advanced{
+  display:none !important;
+}
+
 /* CLEAN UP ROSTER AND TEAMS PRINTING */
 
 .champion .stars{
