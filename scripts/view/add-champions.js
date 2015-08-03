@@ -58,6 +58,7 @@ CoC.view.AddChampionsView = Backbone.View.extend({
     
     container.appendChild($('<button>',{ 
       'class':'add-all',
+      'data-theme': 'b',
       'disabled':(champions.length > 0)? undefined: ""
     }).text( "Add All" )[0]);
     
