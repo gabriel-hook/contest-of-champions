@@ -522,6 +522,10 @@ $("#page-crystals").on("pagebeforeshow",function(){
 
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
+  function isInternetExplorer() {
+    return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
+      !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
+  }
 
   //csv importer
   if(window.FileReader){
@@ -553,11 +557,7 @@ $("#page-roster").on("pagecreate",function(){
   //csv exporter
   $('#roster-export').click(function(){
     console.log("exporting to csv...");
-    function isMicrosoftExplorer() {
-      return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
-        !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
-    }
-    if (isMicrosoftExplorer()){
+    if (isInternetExplorer()){
       var csvRoster = CoC.roster.csvExport('\r\n');
       rosterExportFrame.document.open("text/html", "replace");
       rosterExportFrame.document.write('sep=,\r\n' + csvRoster);
