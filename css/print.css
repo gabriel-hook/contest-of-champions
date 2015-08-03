@@ -47,12 +47,22 @@ body,
 
 /* CLEAN UP ROSTER AND TEAMS PRINTING */
 
-.champion .title{
-  border-radius:0 !important;
+.champion .stars{
+  bottom:10% !important;
 }
-.champion .name{
-  color:#fff !important;
-  text-shadow:-1px 1px #000, -1px -1px #000, 1px -1px #000, 1px 1px #000 !important;
+.champion .title{
+  left:-1%;
+  bottom:-1px;
+  width:102%;
+  background:#fff;
+  border-radius:0 !important;
+  border-bottom-width:0 !important;
+  border-top-style:solid !important;
+  border-top-width:10px !important;
+}
+.champion .title span.name{
+  color:#000 !important;
+  text-shadow:none !important;
 }
 
 #teams .synergies{
