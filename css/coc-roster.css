@@ -113,12 +113,16 @@
   pointer-events:none;
 }
 
+#add-champions .add-all{
+  margin:0 auto;
+  max-width:500px;
+}
+  
 @media (min-width:500px) and (min-height:400px) {
   
   #popup-roster-configure  .no-extras{
     display:none;
   }
-
   #popup-roster-configure .extras{
     display:block;
   }

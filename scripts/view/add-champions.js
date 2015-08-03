@@ -11,25 +11,37 @@ CoC.view.AddChampionsView = Backbone.View.extend({
       view.render();
       that._championViews[champion.fid()] = view;
     });
+    
+    that._addChampion=function(element){
+      var uid = $(element).attr("uid"),
+        stars = parseInt($(element).attr("stars"), 10),
+        found = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+      if(found)
+        return;
+      var champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+      CoC.data.roster.add(champion);
+      champion.save();
+      CoC.tracking.event("roster", "add", uid + '-' + stars);
+    };
   },
   
   events:{
-    "click .champion":"clicked"
+    "click .champion":"championClicked",
+    "click .add-all":"addAllClicked"
   },
   
-  clicked:function(e){
+  championClicked:function(e){
     e.preventDefault();
-    var uid = $(e.currentTarget).attr("uid"),
-      stars = parseInt( $(e.currentTarget).attr("stars") ),
-      found = CoC.data.roster.findWhere({ uid: uid, stars:stars });
-    if(found)
-      return;
-
-    var champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
-    CoC.data.roster.add(champion);
-    champion.save();
-    CoC.tracking.event("roster", "add", uid + '-' + stars);
-    
+    this._addChampion(e.currentTarget);
+    this.render();
+  },
+  
+  addAllClicked:function(e){
+    e.preventDefault();
+    var that = this, champions = $(e.currentTarget).parent().find(".champion");
+    champions.each(function(index, element){
+      that._addChampion(element);
+    });
     this.render();
   },
   
@@ -43,11 +55,18 @@ CoC.view.AddChampionsView = Backbone.View.extend({
       champions.remove(found);
     });
     var container = document.createDocumentFragment();
+    
+    container.appendChild($('<button>',{ 
+      'class':'add-all',
+      'disabled':(champions.length > 0)? undefined: ""
+    }).text( "Add All" )[0]);
+    
     champions.each(function(champion){
       var view = that._championViews[champion.fid()];
       container.appendChild(view.el);
     });
     that.$el.append(container);
+    this.$el.trigger("create");
     
     return this;
   },
