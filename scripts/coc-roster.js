@@ -75,70 +75,66 @@ CoC.roster.filtered = function(){
   });
 }
 
-CoC.roster.csv=function(csv, filename){
-  //Export
-  if(csv === undefined){
-    var array = []
-    //add headers
+CoC.roster.csvExport=function(separator, filename){
+  var separator = separator || '\n', array = []
+  //add headers
+  array.push([
+    "Id",
+    "Stars",
+    "Rank",
+    "Level",
+    "Awakened"
+  ].join(','));
+  //add champions
+  CoC.data.roster.each(function(champion){
     array.push([
-      "Id",
-      "Stars",
-      "Rank",
-      "Level",
-      "Awakened"
+      '"' + champion.get("uid") + '"',
+      champion.get("stars"),
+      champion.get("rank"),
+      champion.get("level"),
+      champion.get("awakened")
     ].join(','));
-    //add champions
-    CoC.data.roster.each(function(champion){
-      array.push([
-        '"' + champion.get("uid") + '"',
-        champion.get("stars"),
-        champion.get("rank"),
-        champion.get("level"),
-        champion.get("awakened")
-      ].join(','));
-    });
-    return array.join('\n').replace(/(^\[)|(\]$)/mg, '');
-  }
-  //Import
-  else{  
-    var name = filename || "csv";
-    var lines = csv.split("\n");
-    for(var i=0;i<lines.length;i++){
-      //skip first line if its headings
-      if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
-        continue;
-    
-      var values = lines[i].split(",");
-      if(values.length != 5)
-        throw "Invalid roster CSV";
-        
-      var uid = values[0].replace(/["]/g,'').toLowerCase(),
-        stars = parseInt(values[1].replace(/["]/g,''), 10),
-        rank = parseInt(values[2].replace(/["]/g,''), 10),
-        level = parseInt(values[3].replace(/["]/g,''), 10),
-        awakened = parseInt(values[4].replace(/["]/g,''), 10);
+  });
+  return array.join(separator);
+};
+  
+CoC.roster.csvImport=function(csv, filename){
+  var name = filename || "csv", lines = csv.match(/[^\r\n]+/g);
+  for(var i=0;i<lines.length;i++){
+    //skip first line if its headings
+    if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
+      continue;
+  
+    var values = lines[i].split(",");
+    if(values.length != 5)
+      throw "Invalid roster CSV";
+      
+    var uid = values[0].replace(/["]/g,'').toLowerCase(),
+      stars = parseInt(values[1].replace(/["]/g,''), 10),
+      rank = parseInt(values[2].replace(/["]/g,''), 10),
+      level = parseInt(values[3].replace(/["]/g,''), 10),
+      awakened = parseInt(values[4].replace(/["]/g,''), 10);
 
-      //throw a useful error
-      if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
-        console.error("Invalid line in "+filename+":"+(i+1));
-        continue;
-      }
-      
-      var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
-      if(champion === undefined){
-        champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
-        CoC.data.roster.add(champion);
-      }
-      
-      if(champion === undefined){
-        console.error("Champion not found \""+ uid + "\" in "+filename+":"+(i+1));
-        continue;
-      }
-        
-      champion.set("rank", rank);
-      champion.set("level", level);
-      champion.set("awakened", awakened);
-      champion.save();
+    //throw a useful error
+    if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
+      console.error("Invalid line in "+filename+":"+(i+1));
+      continue;
     }
+    
+    var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    if(champion === undefined){
+      champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+      CoC.data.roster.add(champion);
+    }
+    
+    if(champion === undefined){
+      console.error("Champion not found \""+ uid + "\" in "+filename+":"+(i+1));
+      continue;
+    }
+      
+    champion.set("rank", rank);
+    champion.set("level", level);
+    champion.set("awakened", awakened);
+    champion.save();
   }
-}
+};

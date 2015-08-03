@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#5393c5 ">
     <!-- Icons, description and sharing information -->
     <link rel="icon" sizes="192x192" href="images/icon.png">
-    <link rel="image_src" href="images/icon.png" / >
+    <link rel="image_src" href="images/icon.png">
     <meta name="keywords" content="Marvel,Kabam,Contest of Champions,Team Builder,Roster,Roster Manager,Guides">
     <meta name="description" content="A roster tool and champion guide for the mobile game Marvel/Kabam's Contest of Champions." />
     <meta property="og:title" content="Champions - Roster Manager and Champion Guides" />
@@ -103,8 +103,9 @@
         data-position="left" 
         data-display="overlay"
         data-theme="b">
-        <div id="roster-import-input-container">
+        <div id="roster-csv-io-container">
           <input id="roster-import-input" type="file" accept=".csv">
+          <iframe id="rosterExportFrame" style="display:none"></iframe>
         </div>
         
         <fieldset data-role="controlgroup" data-mini="true">
@@ -119,6 +120,7 @@
             data-role="button" 
             data-icon="tag">Import .csv</a>  
           <a id="roster-export" href="#"
+            download="champions.csv"
             data-role="button" 
             data-icon="action">Export .csv</a>
           <a id="roster-clear-all" href="#"

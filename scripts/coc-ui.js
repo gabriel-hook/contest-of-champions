@@ -522,6 +522,8 @@ $("#page-crystals").on("pagebeforeshow",function(){
 
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
+
+  //csv importer
   if(window.FileReader){
     $('#roster-import-input').change(function(e){
       if (this.files && this.files[0]) {
@@ -529,7 +531,7 @@ $("#page-roster").on("pagecreate",function(){
         var file = this.files[0];
         reader.onload = function (e) {
           var result = e.target.result;
-          CoC.roster.csv(result, file.name || undefined);
+          CoC.roster.csvImport(result, file.name || undefined);
           CoC.ui.roster.render();
         }
         reader.readAsText(file);
@@ -542,28 +544,42 @@ $("#page-roster").on("pagecreate",function(){
       $('#panel-roster-options').panel("close");
       CoC.tracking.event("roster", "import");
     });
-    $('#roster-export').click(function(){
-      console.log("exporting to csv...");
-      var csvRoster = CoC.roster.csv();
-      $('#roster-export').attr('download', 'champions.csv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
-      $('#panel-roster-options').panel("close");
-      CoC.tracking.event("roster", "export");
-    }); 
   }
+  //windows safari and other bullshit browsers that dont support FileReader
   else{
-    //windows safari and other bullshit browsers that dont support FileReader
     $('#roster-import').addClass("ui-disabled");
-    $('#roster-export').addClass("ui-disabled");
   } 
+  
+  //csv exporter
+  $('#roster-export').click(function(){
+    console.log("exporting to csv...");
+    function isMicrosoftExplorer() {
+      return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
+        !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
+    }
+    if (isMicrosoftExplorer()){
+      var csvRoster = CoC.roster.csvExport('\r\n');
+      rosterExportFrame.document.open("text/html", "replace");
+      rosterExportFrame.document.write('sep=,\r\n' + csvRoster);
+      rosterExportFrame.document.close();
+      rosterExportFrame.focus();
+      rosterExportFrame.document.execCommand('SaveAs', true, 'champions.csv');
+    }
+    else{
+      var csvRoster = CoC.roster.csvExport();
+      $('#roster-export').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+    }
+    $('#panel-roster-options').panel("close");
+    CoC.tracking.event("roster", "export");
+  }); 
   
   $('#roster-clear-all').click(function(){
     $("#popup-roster-clear-confirm").popup("open",{
       positionTo:"window"
     });
   });
-  
-  $("#roster-delete-confirm-no").click(function(){
-    $("#popup-roster-delete-confirm").popup("close");
+  $("#roster-clear-confirm-no").click(function(){
+    $("#popup-roster-clear-confirm").popup("close");
   });
   $("#roster-clear-confirm-yes").click(function(){
     CoC.roster.clear();
