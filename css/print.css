@@ -81,39 +81,62 @@ body,
 }
 
 /* CLEAN UP GUIDE CONTENT FOR PRINTING */
+#crystals  div.ui-collapsible,
 #guide-content div.ui-collapsible{
   display:block !important;
   page-break-inside: avoid !important;
 }
 
+#crystals .ui-collapsible-content-collapsed,
 #guide-content .ui-collapsible-content-collapsed{
   display:block !important;
 }
 
+#crystals div,
+#crystals h2,
+#crystals h4,
+#crystals a,
 #guide-content div,
 #guide-content h2,
 #guide-content h4,
-#guide-content a{
+#guide-content h2 a,
+#guide-content h4 a{
   border:none !important;
   background:none !important;
   border-radius:0 !important;
 }
-#guide-content h2,
-#guide-content h4{
-  border-bottom:solid 2px #ccc !important;
+#crystals h3 a,
+#crystals h4 a,
+#guide-content h2 a,
+#guide-content h4 a{
+  padding-left:0 !important;
 }
+#crystals h3,
+#guide-content h2{
+  border-bottom:solid 2px #666 !important;
+}
+#crystals h4,
+#guide-content h4{
+  border-bottom:solid 1px #666 !important;
+}
+#crystals h3 a,
+#crystals h4 a,
+#crystals .bold,
 #guide-content h2 a,
 #guide-content h4 a,
 #guide-content .bold{
+  font-size:1.3em;
   font-weight: normal !important;
 }
 
-#guide-content .ui-icon-minus,
-#guide-content .ui-icon-plus{
-  padding-left:0 !important;
-}
-#guide-content .ui-icon-minus:after,
-#guide-content .ui-icon-plus:after{
+#crystals h3 .ui-btn-icon-left::before,
+#crystals h3 .ui-btn-icon-left::after,
+#crystals h4 .ui-btn-icon-left::before,
+#crystals h4 .ui-btn-icon-left::after,
+#guide-content h2 .ui-btn-icon-left::before,
+#guide-content h2 .ui-btn-icon-left::after,
+#guide-content h4 .ui-btn-icon-left::before,
+#guide-content h4 .ui-btn-icon-left::after{
   display:none !important;
 }
 
