@@ -134,16 +134,15 @@ CoC.ui.roster=new function(){
     });
     
     $("#roster-configure-delete").unbind("click").click(function(){
-
       $("#roster .champion").removeClass("selected");
-    
+      $("#page-roster [data-position='fixed']").toolbar('show');
       $('#popup-roster-configure').one("popupafterclose", function(){
+        $("#page-roster [data-position='fixed']").toolbar('show');
         $("#popup-roster-delete-confirm").popup("open",{
           positionTo:"window"
-        })
+        });
       });
       $('#popup-roster-configure').popup("close");
-      
     });
     
     $("#roster-delete-confirm-name").attr("class", champion.get("typeId")).text(champion.get("name"));
@@ -154,6 +153,7 @@ CoC.ui.roster=new function(){
       var uid = champion.get('uid'),
         stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
+      $("#page-roster [data-position='fixed']").toolbar('show');
       champion.destroy();
       CoC.tracking.event("roster", "delete", uid + '-' + stars);
     })
