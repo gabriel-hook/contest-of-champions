@@ -261,7 +261,7 @@ CoC.ui.teams=new function(){
     var levels = CoC.settings.getValue("build-levels")===true;
 
     $("#team-build-progress input").val(0).slider("refresh");
-    $("#team-build-progress").attr("class","");
+    $("#team-build-progress").removeClass("hidden");
     
     var startTime = new Date(), 
       workerWorking = false,
@@ -288,7 +288,7 @@ CoC.ui.teams=new function(){
           }
           if(event.data.type === "failed"){
             $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").attr("class","hidden");
+            $("#team-build-progress").addClass("hidden");
             $("#onboarding-progress").removeClass("show");
             CoC.ui.teams.render(event.data.result, size);
             console.log(event.data.message);
@@ -314,7 +314,7 @@ CoC.ui.teams=new function(){
             }
             
             $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").attr("class","hidden");
+            $("#team-build-progress").addClass("hidden");
             $("#onboarding-progress").removeClass("show");
               
             //update the UI
@@ -344,10 +344,10 @@ CoC.ui.teams=new function(){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
         var result = algorithm.build({ champions:roster, size:size, levels:levels, quest:quest, extras:extras });
-        $("#team-build-progressprogress input").val(10000).slider("refresh");
+        $("#team-build-progress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.render(result, size);
-          $("#team-build-progress").attr("class","hidden");
+          $("#team-build-progress").addClass("hidden");
           $("#onboarding-progress").removeClass("show");
           console.log(algorithm.name + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
         },0);
@@ -440,7 +440,7 @@ $("#page-roster").on("pageshow", function() {
   }
 });
 $("#page-teams").on("pageshow", function() {
-  if(CoC.ui.teams.empty){
+  if(CoC.ui.teams.empty && $("#team-build-progress").hasClass("hidden")){
     $("#onboarding-teams").addClass("show")
     $("#page-teams").one("click",function(){
       $("#onboarding-teams").removeClass("show")
@@ -632,7 +632,7 @@ $("#page-teams").on("pagecreate", function() {
   for(var i in CoC.algorithm)
     $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
 
-  $("#team-build-progress").attr("class", "hidden");
+  $("#team-build-progress").addClass("hidden");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
   $("#team-build-progress .ui-slider-handle").remove();
   $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
