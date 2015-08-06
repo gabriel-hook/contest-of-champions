@@ -794,3 +794,11 @@ $('[data-tracking=true]').on('pageshow', function(){
     path += location.hash;
   CoC.tracking.pageView(path);
 });
+
+//remove '&ui-state=dialog' from url hash when loading
+(function(){
+  var hash = location.hash.replace(/([&][u][i][-][s][t][a][t][e][=][d][i][a][l][o][g])/g, '');
+  if(hash !== location.hash)
+    location.hash = hash;
+})();
+
