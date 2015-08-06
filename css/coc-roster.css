@@ -89,15 +89,15 @@
 }
 
 #popup-roster-configure .ui-select,
-#popup-roster-configure button.label{
+#popup-roster-configure label.roster-configure-awakened{
   box-sizing:border-box;
   width: 50% !important;
 }
-#popup-roster-configure button.label{
+#popup-roster-configure label.roster-configure-awakened{
   padding: .7em 0;
-  color:#222;
-  opacity:1;
-  filter: Alpha(Opacity=100);
+  position: relative !important;
+  height: inherit;
+  width: inherit;
 }
 
 #popup-roster-configure .extras .roster-configure-guide{
