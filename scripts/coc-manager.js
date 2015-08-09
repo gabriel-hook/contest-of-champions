@@ -1,18 +1,19 @@
 var CoC=CoC || {};
-CoC.version = "1.0.6";
+CoC.manager = CoC.manager || {};
+CoC.manager.version = "1.1.0";
 
-CoC.initialize = function(){
-  console.log("Contest of Champions - Roster Manager v"+CoC.version);
+CoC.manager.initialize = function(){
+  console.log("Contest of Champions - Roster Manager v"+CoC.manager.version);
 
   //reset settings if we are a new version!
-  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.version){
+  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.manager.version){
     CoC.settings.preset.apply("defaults", true, true);
     CoC.settings.setValue("hasDefaults", true);
-    CoC.settings.setValue("version", CoC.version);
+    CoC.settings.setValue("version", CoC.manager.version);
   }
 }
 
-CoC.reset=function(){
+CoC.manager.reset=function(){
   localStorage.clear();
   location.reload();
 }
