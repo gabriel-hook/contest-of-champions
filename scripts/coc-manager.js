@@ -84,17 +84,6 @@ CoC.settings.setWeight=function(type, weight){
 }
 
 CoC.settings.keys = CoC.settings.keys || {};
- 
-CoC.settings.keys.stars=new function(){
-  this.map = {};
-  this.get=function(stars){
-    var value = this.map[stars]
-    if(value === undefined){
-      value = this.map[stars] = "stars-"+stars;
-    }
-    return value;
-  }
-};  
 
 //duplcates-X
 CoC.settings.keys.duplicates=new function(){
@@ -108,14 +97,6 @@ CoC.settings.keys.duplicates=new function(){
   }
 };
 
-CoC.settings.setStarWeight=function(stars,weight){
-  if(parseInt(stars) === NaN || stars < 1 || stars > 5)
-    return;
-  CoC.settings.setWeight(CoC.settings.keys.stars.get(stars), weight);
-}
-CoC.settings.getStarWeight=function(stars){
-  return CoC.settings.getWeight(CoC.settings.keys.stars.get(stars));
-}
 
 CoC.settings.setDuplicateWeight=function(number,weight){
   if(parseInt(number) === NaN || number < 2 || number > 5)

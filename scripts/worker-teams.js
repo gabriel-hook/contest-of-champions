@@ -31,17 +31,7 @@ onmessage = function (event){
       return 1;
     return value;
   }
-  CoC.settings.getStarWeight=function(stars){
-    if(CoC.settings.getStarWeight.keys === undefined)
-      CoC.settings.getStarWeight.keys = {
-        1:"stars-1",
-        2:"stars-2",
-        3:"stars-3",
-        4:"stars-4",
-        5:"stars-5"
-      }
-    return CoC.settings.getWeight(CoC.settings.getStarWeight.keys[stars]);
-  }
+
   CoC.settings.getDuplicateWeight=function(number){
     if(CoC.settings.getDuplicateWeight.keys === undefined)
       CoC.settings.getDuplicateWeight.keys = {
