@@ -75,6 +75,9 @@ jQuery.fn.springy = function(params) {
     if(nearest.node !== null){
       if(nearest.distance > 1){
         selected = dragged = null;
+        if(nodeSelected){
+          nodeSelected();
+        }
         renderer.start();
         return;
       }
@@ -100,7 +103,13 @@ jQuery.fn.springy = function(params) {
       if(moved < 10){
         selected = dragged;
         if (nodeSelected){
-          nodeSelected(selected.node);
+          var selectedEdges = [];
+          for(var i=0,edge; i<graph.edges.length; i++){
+            edge = graph.edges[i];
+            if(selected.node === edge.source || selected.node === edge.target || (selected.node.data.neighbors[ edge.source.id ] && selected.node.data.neighbors[ edge.target.id ]) )
+              selectedEdges.push(edge);
+          }
+          nodeSelected(selected.node, selectedEdges);
         }
       }
       dragged = null;

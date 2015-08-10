@@ -167,6 +167,13 @@ a.hidden{
   font-size:16px;
   font-family:Hanzel, Verdana, Geneva, sans-serif;
 }
+#legend.selected div{
+  opacity:0.25;
+}
+#legend.selected div.selected{
+  opacity:1.0;
+}
+
 @media (max-height:500px), (max-width:500px){
   #legend{
     padding-top:1px;

@@ -31,7 +31,20 @@ CoC.synergies.initialize=function(stars){
     springy = $('canvas').springy({
       stiffness: 100.0,
       repulsion: 800.0,
-      damping: 0.5
+      damping: 0.5,
+      nodeSelected:function(node, edges){
+        $('#legend div').removeClass('selected');
+        if(node === undefined){
+          $('#legend').removeClass('selected');
+        }
+        else if(edges !== undefined){
+          $('#legend').addClass('selected');
+          for(var i=0; i<edges.length; i++){
+            $('#legend div[type='+edges[i].data.effect+']').addClass('selected');
+
+          }
+        }
+      }
     }),
     nodes = {};
   
@@ -100,6 +113,7 @@ CoC.synergies.initialize=function(stars){
   //add types to legend
   CoC.data.effects.each(function(type){          
     $('#legend').append( $('<div>', {
+      type:type.get('uid'),
       style:'border-color:'+(effectColors[type.get('uid')] || '#000')+';'
     }).text(type.get('name')) );
   });
