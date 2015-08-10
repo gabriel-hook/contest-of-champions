@@ -9,6 +9,8 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 _gaTracker('create', 'UA-64735733-1', 'auto');
 
 CoC.tracking.pageView = function(){
+  if(location.hostname === "localhost")
+    return;
   var array = ['send', 'pageview'];
   for(var i=0; i<arguments.length; i++)
     array.push(arguments[i]);
@@ -16,6 +18,8 @@ CoC.tracking.pageView = function(){
 };
 
 CoC.tracking.event = function(){
+  if(location.hostname === "localhost")
+    return;
   var array = ['send','event'];
   for(var i=0; i<arguments.length; i++)
     array.push(arguments[i])
@@ -23,6 +27,8 @@ CoC.tracking.event = function(){
 };
 
 window.onerror = function(description, file, line){
+  if(location.hostname === "localhost")
+    return;
   //Send (description text...\t filename:line) exception message for size 155 bytes
   var location = "\t"+((file.lastIndexOf('/') !== -1)? file.substr(file.lastIndexOf('/')+1): file)+":"+line,
     bytes = 155 - unescape(encodeURIComponent(location)).length;
