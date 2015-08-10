@@ -64,6 +64,14 @@ jQuery.fn.springy = function(params) {
 		return new Springy.Vector(px, py);
 	};
 
+  var edgeSelected = null;
+  this.selectEdgeType=function(type){
+    edgeSelected = type;
+    selected = null;
+    dragged = null;
+    renderer.start();
+  };
+
 	// half-assed drag and drop
 	var selected = null;
 	var dragged = null;
@@ -101,6 +109,7 @@ jQuery.fn.springy = function(params) {
   function pointerEnd(){
     if(dragged != null){
       if(moved < 10){
+        edgeSelected = null;
         selected = dragged;
         if (nodeSelected){
           var selectedEdges = [];
@@ -114,6 +123,8 @@ jQuery.fn.springy = function(params) {
       }
       dragged = null;
     }
+    else
+      edgeSelected = null;
   }
 
   function selectedOpen(){
@@ -260,12 +271,18 @@ jQuery.fn.springy = function(params) {
 			var to = graph.getEdges(edge.target, edge.source);
 
       var isSelected = false;
-      if(selected && selected.node){
+      if(edgeSelected){
+        if(edge.data.effect === edgeSelected)
+          isSelected = true;
+      }
+      else if(selected && selected.node){
         if(selected.node === edge.source || selected.node === edge.target)
           isSelected = true;
         if(selected.node.data.neighbors[ edge.source.id ] && selected.node.data.neighbors[ edge.target.id ])
           isSelected = true;
       }
+      else
+        isSelected = true;
       
 			var total = from.length + to.length;
 
@@ -305,7 +322,7 @@ jQuery.fn.springy = function(params) {
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
       var alpha;
       
-      ctx.globalAlpha = alpha = (selected !== null && !isSelected)? 0.25: 1.0;
+      ctx.globalAlpha = alpha = (!isSelected)? 0.25: 1.0;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x, s1.y);
@@ -315,7 +332,7 @@ jQuery.fn.springy = function(params) {
 			// arrow
 			if (directional) {
 				ctx.save();
-        ctx.globalAlpha= (selected !== null && !isSelected)? 0.25: 1.0;
+        ctx.globalAlpha= (!isSelected)? 0.25: 1.0;
 				ctx.fillStyle = stroke;
 				ctx.translate(intersection.x, intersection.y);
 				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
@@ -330,7 +347,7 @@ jQuery.fn.springy = function(params) {
 			}
 
 			// label
-			if (edge.data.label !== undefined && isSelected && spacing > 10) {
+			if (edge.data.label !== undefined && isSelected && selected && spacing > 10) {
 				var text = edge.data.label
 				ctx.save();
 				ctx.textAlign = "center";
@@ -364,7 +381,15 @@ jQuery.fn.springy = function(params) {
 			ctx.save();
       
 			var contentSize = node.getSize(), alpha;
-      if(selected !== null && selected.node !== null){
+
+
+      if(edgeSelected){
+        if(node.data.effects[edgeSelected])
+          ctx.globalAlpha = alpha = 1.0;
+        else
+          ctx.globalAlpha = alpha = 0.25;
+      }
+      else if(selected !== null && selected.node !== null){
         if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
           ctx.globalAlpha = alpha = 1.0;
         else

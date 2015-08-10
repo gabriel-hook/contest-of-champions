@@ -40,7 +40,7 @@ CoC.synergies.initialize=function(stars){
         else if(edges !== undefined){
           $('#legend').addClass('selected');
           for(var i=0; i<edges.length; i++){
-            $('#legend div[type='+edges[i].data.effect+']').addClass('selected');
+            $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
 
           }
         }
@@ -74,6 +74,7 @@ CoC.synergies.initialize=function(stars){
         type: champion.get('typeId'),
         color: typeColors[ champion.get('typeId') ],
         neighbors: {},
+        effects:{},
         onOpen:function(){
           link[0].click();
         }
@@ -82,15 +83,17 @@ CoC.synergies.initialize=function(stars){
     
   //add edges
   var synergies = CoC.data.synergies.where({ fromStars:stars });
-  function addNeighbors(n1, n2){
-    n1.data.neighbors[ n2.id ] = true;
-    n2.data.neighbors[ n1.id ] = true; 
+  function addNeighbors(node1, node2, effectId){
+    node1.data.neighbors[ node2.id ] = true;
+    node2.data.neighbors[ node1.id ] = true; 
+    node1.data.effects[effectId] = true;
+    node2.data.effects[effectId] = true;
   }
   for(var i=0; i<synergies.length; i++){
     var synergy = synergies[i];
     if(nodes[ synergy.get("toId") ] === undefined)
       continue;
-    addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ])
+    addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ], synergy.get('effectId'));
     springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
       label: synergy.effect().get('name'),
       effect: synergy.get('effectId'),
@@ -111,11 +114,19 @@ CoC.synergies.initialize=function(stars){
   });
   
   //add types to legend
-  CoC.data.effects.each(function(type){          
+  CoC.data.effects.each(function(effect){
+    var uid = effect.get('uid'), name = effect.get('name');
+
+
     $('#legend').append( $('<div>', {
-      type:type.get('uid'),
-      style:'border-color:'+(effectColors[type.get('uid')] || '#000')+';'
-    }).text(type.get('name')) );
+      effectId:uid,
+      style:'border-color:'+(effectColors[uid] || '#000')+';'
+    }).text(name).click(function(){
+      $('#legend').addClass('selected');
+      $('#legend div').removeClass('selected');
+      $('#legend div[effectId='+uid+']').addClass('selected');
+      springy.selectEdgeType(uid);
+    }));
   });
   
   //enable legend and stars buttons

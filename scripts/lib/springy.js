@@ -677,21 +677,17 @@
 		var t = this;
 		this.layout.start(function render() {
 			t.clear();
-
 			t.layout.eachEdge(function(edge, spring) {
 				t.drawEdge(edge, spring.point1.p, spring.point2.p);
 			});
-
 			t.layout.eachNode(function(node, point) {
 				t.drawNode(node, point.p);
 			});
-      
-      if(t.drawNodeOverlay !== undefined){
-        t.layout.eachNode(function(node, point) {
-          t.drawNodeOverlay(node, point.p);
-        });
-      }
-      
+			if(t.drawNodeOverlay !== undefined){
+				t.layout.eachNode(function(node, point) {
+					t.drawNodeOverlay(node, point.p);
+				});
+			}
 		}, this.onRenderStop, this.onRenderStart);
 	};
 

@@ -157,7 +157,6 @@ a.hidden{
   z-index:100;
   color:#fff;
   text-shadow: 1px 1px #111;
-  pointer-events:none;
   transition: left 0.333s ease;
 }
 #legend div{
@@ -166,6 +165,7 @@ a.hidden{
   border-left:solid 1em;
   font-size:16px;
   font-family:Hanzel, Verdana, Geneva, sans-serif;
+  cursor:pointer;
 }
 #legend.selected div{
   opacity:0.25;
