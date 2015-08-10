@@ -106,7 +106,7 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerEnd(){
+  function pointerEnd(clicked){
     if(dragged != null){
       if(moved < 10){
         edgeSelected = null;
@@ -123,7 +123,7 @@ jQuery.fn.springy = function(params) {
       }
       dragged = null;
     }
-    else
+    else if(clicked)
       edgeSelected = null;
   }
 
@@ -163,7 +163,11 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
     pointerMove(p);
   });
-  $(canvas).on('touchend touchleave touchcancel',function(e) {
+  $(canvas).on('touchend',function(e) {
+    e.preventDefault();
+    pointerEnd(true);
+  });
+  $(canvas).on('touchleave touchcancel',function(e) {
     e.preventDefault();
     pointerEnd();
 	});
@@ -183,10 +187,14 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerMove(p);
 	});
-	$(canvas).on('mouseup mouseleave',function(e) {
+	$(canvas).on('mouseleave',function(e) {
     e.preventDefault();
     pointerEnd();
 	});
+  $(canvas).on('mouseup',function(e) {
+    e.preventDefault();
+    pointerEnd(true);
+  });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
 		var pos = $(canvas).offset(),
       point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
