@@ -83,17 +83,17 @@ CoC.synergies.initialize=function(stars){
     
   //add edges
   var synergies = CoC.data.synergies.where({ fromStars:stars });
-  function addNeighbors(node1, node2, effectId){
-    node1.data.neighbors[ node2.id ] = true;
-    node2.data.neighbors[ node1.id ] = true; 
-    node1.data.effects[effectId] = true;
-    node2.data.effects[effectId] = true;
+  function addNeighbors(fromId, toId, effectId){
+    nodes[fromId].data.neighbors[toId] = true;
+    nodes[fromId].data.effects[effectId] = true;
+    nodes[toId].data.neighbors[fromId] = true; 
+    nodes[toId].data.effects[effectId] = true;
   }
   for(var i=0; i<synergies.length; i++){
     var synergy = synergies[i];
-    if(nodes[ synergy.get("toId") ] === undefined)
+    if(nodes[ synergy.get("fromId") ] === undefined || nodes[ synergy.get("toId") ] === undefined)
       continue;
-    addNeighbors(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ], synergy.get('effectId'));
+    addNeighbors(synergy.get("fromId"), synergy.get("toId"), synergy.get('effectId'));
     springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
       label: synergy.effect().get('name'),
       effect: synergy.get('effectId'),
