@@ -363,22 +363,17 @@ jQuery.fn.springy = function(params) {
 			ctx.save();
       
 			var contentSize = node.getSize(), alpha;
-
-
       if(edgeSelected){
-        if(node.data.effects[edgeSelected])
-          ctx.globalAlpha = alpha = 1.0;
-        else
-          ctx.globalAlpha = alpha = 0.25;
+        alpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       }
       else if(selected !== null && selected.node !== null){
-        if(selected.node.id === node.id || selected.node.data.neighbors[ node.id ])
-          ctx.globalAlpha = alpha = 1.0;
-        else
-          ctx.globalAlpha = alpha = 0.25;
+        alpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
       }
       else
-        ctx.globalAlpha = alpha = 1.0;
+        alpha = 1.0;
+
+      if(alpha !== 1)
+        ctx.globalAlpha = alpha;
         
       var x = Math.floor(s.x - contentSize/2),
         y = Math.floor(s.y - contentSize/2),
@@ -396,7 +391,7 @@ jQuery.fn.springy = function(params) {
       ctx.fillRect(x, y2 - size2, size, size2);
       
       if(alpha !== 1)
-        ctx.globalAlpha=1.0;
+        ctx.globalAlpha = 1.0;
         
 			ctx.restore();
 		},
