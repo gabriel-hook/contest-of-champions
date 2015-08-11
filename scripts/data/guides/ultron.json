@@ -1,6 +1,6 @@
 ﻿{
   "fullname":"Ultron",
-  "description":"Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set. he also deals critical hits every 5 attack and causes bleed often.",
+  "description":"Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set.",
 
   "grades":{
     "normal": "A",
@@ -10,7 +10,7 @@
   "gameplay":{
     "rating":5,
     "style":"Offensive + Defensive",
-    "strategy":"Critical hits are guaranteed every 5 hits. Wait for a bleed and drop your L1 for critical + cauterize damage!"
+    "strategy":"Wait for a bleed and drop your L1 for critical + cauterize damage!"
   },
   
   "heavy":{
@@ -56,7 +56,6 @@
     "Bleed Immunity",
     "Poison Immunity",
     { "Bleed": "14% chance, 20% damage, 5.5 seconds." },
-    { "Critical Hits": "Every 5 hits." },
     { "Cauterize": "Specials deal 50% damage for each bleed on the target." },
     { "Stun": "40% chance for 3 seconds on every special attack"},
     { "Armor Up": "26% chance, 5% reduction, 15 seconds." },
