@@ -330,7 +330,7 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
-      var alpha = (!isSelected)? 0.25: 1.0;
+      var alpha = (!isSelected)? 0.1: 1.0;
 
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
@@ -373,7 +373,7 @@ jQuery.fn.springy = function(params) {
       if(edgeSelected){
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       }
-      else if(selected !== null && selected.node !== null){
+      else if(selected !== null){
         ctx.globalAlpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
       } 
       //draw the portrait
@@ -392,7 +392,7 @@ jQuery.fn.springy = function(params) {
     
 			var s = toScreen(p);
 			ctx.save();
-      
+
 			var contentSize = node.getSize();
       var halfSize = Math.floor(contentSize/2),
         x = Math.floor(s.x) - halfSize,
