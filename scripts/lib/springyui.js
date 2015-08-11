@@ -322,6 +322,8 @@ jQuery.fn.springy = function(params) {
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
 			var weight = (isSelected) ? 1.5 : 1.0;
 
+      //line
+      ctx.save();
 			ctx.lineWidth = Math.max(weight *  2, 0.1);
       
 			var arrowWidth = 1 + ctx.lineWidth;
@@ -329,13 +331,14 @@ jQuery.fn.springy = function(params) {
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
       var alpha = (!isSelected)? 0.25: 1.0;
-      //line
+
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x, s1.y);
 			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
+      ctx.restore();
 			// arrow
 			if (directional) {
 				ctx.save();
@@ -352,35 +355,27 @@ jQuery.fn.springy = function(params) {
 				ctx.fill();
 				ctx.restore();
 			}
-      if(alpha !== 1)
-        ctx.globalAlpha = 1.0;
 		},
 		function drawNode(node, p) {
       if(selected !== null && selected.node !== null && selected.node.id === node.id)
         return;
     
 			var s = toScreen(p);
-			ctx.save();
+      ctx.save();
       
-			var contentSize = node.getSize(), alpha;
-      if(edgeSelected){
-        alpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
-      }
-      else if(selected !== null && selected.node !== null){
-        alpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
-      }
-      else
-        alpha = 1.0;
-
-      if(alpha !== 1)
-        ctx.globalAlpha = alpha;
-        
-      var x = Math.floor(s.x - contentSize/2),
+			var contentSize = node.getSize(),
+        x = Math.floor(s.x - contentSize/2),
         y = Math.floor(s.y - contentSize/2),
         size = Math.floor(contentSize),
         y2 = y + size,
         size2 = Math.max(2, Math.floor(contentSize/10));
-        
+
+      if(edgeSelected){
+        ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
+      }
+      else if(selected !== null && selected.node !== null){
+        ctx.globalAlpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
+      } 
       //draw the portrait
       var image = getImageBySize(node.data.image, contentSize);
       if(image){
@@ -389,10 +384,6 @@ jQuery.fn.springy = function(params) {
       //show the type
       ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
       ctx.fillRect(x, y2 - size2, size, size2);
-      
-      if(alpha !== 1)
-        ctx.globalAlpha = 1.0;
-        
 			ctx.restore();
 		},
 		function drawNodeOverlay(node, p) {
