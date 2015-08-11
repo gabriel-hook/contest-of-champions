@@ -30,12 +30,12 @@ window.onerror = function(description, file, line){
   if(location.hostname === "localhost")
     return;
   //Send (description text...\t filename:line) exception message for size 155 bytes
-  var location = "\t"+((file.lastIndexOf('/') !== -1)? file.substr(file.lastIndexOf('/')+1): file)+":"+line,
-    bytes = 155 - unescape(encodeURIComponent(location)).length;
+  var _location = "\t"+((file.lastIndexOf('/') !== -1)? file.substr(file.lastIndexOf('/')+1): file)+":"+line,
+    bytes = 155 - unescape(encodeURIComponent(_location)).length;
   while(unescape(encodeURIComponent(description)).length > bytes)
     description = description.substr(0, description.length - 1);
   _gaTracker('send', 'exception', {
-    'exDescription': description + location,
+    'exDescription': description + _location,
     'exFatal': true
   });
 };
