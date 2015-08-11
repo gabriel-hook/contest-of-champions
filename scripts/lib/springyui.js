@@ -328,19 +328,18 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
-      var alpha;
-      
-      ctx.globalAlpha = alpha = (!isSelected)? 0.25: 1.0;
+      var alpha = (!isSelected)? 0.25: 1.0;
+      //line
+      ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x, s1.y);
 			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
-
 			// arrow
 			if (directional) {
 				ctx.save();
-        ctx.globalAlpha= (!isSelected)? 0.25: 1.0;
+        ctx.globalAlpha = alpha;
 				ctx.fillStyle = stroke;
 				ctx.translate(intersection.x, intersection.y);
 				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
@@ -353,33 +352,8 @@ jQuery.fn.springy = function(params) {
 				ctx.fill();
 				ctx.restore();
 			}
-
-			// label
-			if (edge.data.label !== undefined && isSelected && selected && spacing > 10) {
-				var text = edge.data.label
-				ctx.save();
-				ctx.textAlign = "center";
-				ctx.textBaseline = "top";
-				ctx.font = (edge.data.font !== undefined) ? edge.data.font : edgeFont;
-				ctx.fillStyle = "#000000";
-				var angle = Math.atan2(s2.y - s1.y, s2.x - s1.x);
-				var displacement = -8;
-				if (edgeLabelsUpright && (angle > Math.PI/2 || angle < -Math.PI/2)) {
-					displacement = 8;
-					angle += Math.PI;
-				}
-				var textPos = s1.add(s2).divide(2).add(normal.multiply(displacement));
-				ctx.translate(textPos.x, textPos.y);
-				ctx.rotate(angle);
-        ctx.shadowColor = "#fff";
-        ctx.shadowOffsetX = 0.5;
-        ctx.shadowOffsetY = 0.5;
-				ctx.fillText(text, 0,-2);
-				ctx.restore();
-			}
-      
       if(alpha !== 1)
-        ctx.globalAlpha=1.0;
+        ctx.globalAlpha = 1.0;
 		},
 		function drawNode(node, p) {
       if(selected !== null && selected.node !== null && selected.node.id === node.id)
