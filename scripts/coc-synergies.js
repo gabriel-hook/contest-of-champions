@@ -46,7 +46,7 @@ CoC.synergies.initialize=function(stars){
         }
       }
     }),
-    nodes = {};
+    nodes = {}, effects = {};
   
   //add nodes
   var champions = CoC.data.champions.where({ stars:stars });
@@ -99,6 +99,7 @@ CoC.synergies.initialize=function(stars){
       effect: synergy.get('effectId'),
       color: effectColors[ synergy.get('effectId') ]
     });
+    effects[synergy.get('effectId')] = true;
   }
   
   //enable share popup with tracking
@@ -116,8 +117,8 @@ CoC.synergies.initialize=function(stars){
   //add types to legend
   CoC.data.effects.each(function(effect){
     var uid = effect.get('uid'), name = effect.get('name');
-
-
+    if(!effects[uid])
+      return;
     $('#legend').append( $('<div>', {
       effectId:uid,
       style:'border-color:'+(effectColors[uid] || '#000')+';'
