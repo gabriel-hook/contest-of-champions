@@ -84,10 +84,11 @@ CoC.synergies.initialize=function(stars){
   //add edges
   var synergies = CoC.data.synergies.where({ fromStars:stars });
   function addNeighbors(fromId, toId, effectId){
-    nodes[fromId].data.neighbors[toId] = true;
-    nodes[fromId].data.effects[effectId] = true;
-    nodes[toId].data.neighbors[fromId] = true; 
-    nodes[toId].data.effects[effectId] = true;
+    var nodeFrom = nodes[fromId], nodeTo = nodes[toId];
+    nodeFrom.data.neighbors[nodeTo.id] = true;
+    nodeFrom.data.effects[effectId] = true;
+    nodeTo.data.neighbors[nodeFrom.id] = true; 
+    nodeTo.data.effects[effectId] = true;
   }
   for(var i=0; i<synergies.length; i++){
     var synergy = synergies[i];
