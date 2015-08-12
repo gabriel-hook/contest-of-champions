@@ -502,24 +502,16 @@
       onRenderStart(); 
     }
 
-    var rendering = true;
-
-    var lastTime = new Date();
+    var rendering = true, delta = 0.01;
     setTimeout(function tickLoop(){
-			var time = new Date(), delta = Math.min(0.1, Math.max(0.03, (time - lastTime)/1000.0));
 			if(document.hasFocus())
-				t.tick(0.03);
-			lastTime = time;
-
+				t.tick(delta);
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
 				rendering = false;
-
 			if(rendering)
-				setTimeout(tickLoop, 0.01);
-    }, 0.01);
-
-
+				setTimeout(tickLoop, delta);
+    }, delta);
 		requestNextFrame(function animationLoop() {
 			if(rendering){
 				requestNextFrame(animationLoop);
