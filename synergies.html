@@ -99,6 +99,7 @@
         });
         $(window).on('resize', CoC.synergies.canvasResize);
         $(document).on('ready', CoC.synergies.canvasResize);
+        CoC.synergies.canvasResize();
       }
       else
         location.search = "?stars=" + stars;
