@@ -508,7 +508,7 @@
     setTimeout(function tickLoop(){
 			var time = new Date(), delta = Math.min(0.1, Math.max(0.03, (time - lastTime)/1000.0));
 			if(document.hasFocus())
-				t.tick(delta);
+				t.tick(0.03);
 			lastTime = time;
 
 			// stop simulation when energy of the system goes below a threshold
