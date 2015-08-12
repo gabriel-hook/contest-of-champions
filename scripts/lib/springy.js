@@ -502,22 +502,34 @@
       onRenderStart(); 
     }
 
-		requestNextFrame(function animationLoop() {
-			t.tick(0.03);
+    var rendering = true;
 
-			if (render !== undefined) {
-				render();
-			}
-      
+    var lastTime = new Date();
+    setTimeout(function tickLoop(){
+			var time = new Date();
+			if(document.hasFocus())
+				t.tick((time - lastTime)/1000.0);
+			lastTime = time;
+
 			// stop simulation when energy of the system goes below a threshold
-			if (t._stop || t.totalEnergy() < t.minEnergyThreshold) {
-				t._started = false;
-				if (onRenderStop !== undefined){ 
-          onRenderStop(); 
-        }
-			} else {
+			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
+				rendering = false;
+
+			if(rendering)
+				setTimeout(tickLoop, 0.01);
+    }, 0.01);
+
+
+		requestNextFrame(function animationLoop() {
+			if(rendering){
 				requestNextFrame(animationLoop);
+				if (render !== undefined) {
+					render();
+				}
 			}
+			else if (onRenderStop !== undefined){ 
+        onRenderStop(); 
+      }
 		});
 	};
 
