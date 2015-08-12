@@ -17,14 +17,14 @@ CoC.synergies.initialize=function(stars){
     },
     effectColors = {
       attack:"#f00",
-      stun:"#f66",
+      stun:"#f60",
       critrate:"#fa0",
-      critdamage:"#fa6",
+      critdamage:"#a60",
       powergain:"#a0f",
       powersteal:"#a6f",
-      perfectblock:"#00f",
+      perfectblock:"#00a",
       block:"#66f",
-      armor:"#3af",
+      armor:"#0af",
       health:"#0f0",
       healthsteal:"#af0"
     },
