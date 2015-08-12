@@ -46,8 +46,7 @@ jQuery.fn.springy = function(params) {
 	var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
 	// calculate bounding box of graph layout.. with ease-in
-	var currentBB = layout.getBoundingBox();
-	var targetBB = {bottomleft: new Springy.Vector(-2, -2), topright: new Springy.Vector(2, 2)};
+	var currentBB;
 
 	// convert to/from screen coordinates
 	var toScreen = function(p) {
@@ -258,14 +257,7 @@ jQuery.fn.springy = function(params) {
 
 	var renderer = this.renderer = new Springy.Renderer(layout,
 		function clear() {
-    
-      targetBB = layout.getBoundingBox();
-      // current gets 20% closer to target every iteration
-      currentBB = {
-        bottomleft: currentBB.bottomleft.add( targetBB.bottomleft.subtract(currentBB.bottomleft).divide(10) ),
-        topright: currentBB.topright.add( targetBB.topright.subtract(currentBB.topright).divide(10) )
-      };
-    
+      currentBB = layout.getBoundingBox();
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		},
 		function drawEdge(edge, p1, p2) {
