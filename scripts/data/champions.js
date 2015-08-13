@@ -51,6 +51,8 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"ultron", name:"Ultron", typeId:"tech", stars: 2 },
   { uid:"ultron", name:"Ultron", typeId:"tech", stars: 3 },
   { uid:"ultron", name:"Ultron", typeId:"tech", stars: 4 },
+  { uid:"warmachine", name:"War Machine", typeId:"tech", stars: 3 },
+  { uid:"warmachine", name:"War Machine", typeId:"tech", stars: 4 },
   { uid:"colossus", name:"Colossus", typeId:"mutant", stars: 1 },
   { uid:"colossus", name:"Colossus", typeId:"mutant", stars: 2 },
   { uid:"colossus", name:"Colossus", typeId:"mutant", stars: 3 },
