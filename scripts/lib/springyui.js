@@ -195,45 +195,65 @@ jQuery.fn.springy = function(params) {
     pointerEnd(true);
   });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
-		var pos = $(canvas).offset(),
-      point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
-      o = layout.nearest(point),
-      cursor = 'auto';
-    if(o.node !== null && o.distance <= 1)
-        cursor = 'pointer';
-    $(canvas).css('cursor', cursor);
+    try{
+  		var pos = $(canvas).offset(),
+        point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
+        o = layout.nearest(point),
+        cursor = 'auto';
+      if(o.node !== null && o.distance <= 1)
+          cursor = 'pointer';
+      $(canvas).css('cursor', cursor);
+    }
+    catch(x){
+      console.log(e);
+    }
 	});
 
-
-  function getImageBySize(img, size){
+  //we cache the best sized portrait with type bar
+  function getImageBySize(img, size, color){
     if(img === undefined)
       return;
+
+    function canvasFromImage(image){
+      var canvas = document.createElement('canvas'),
+          context = canvas.getContext('2d'),
+          barHeight = Math.max(2, Math.floor(image.height/10));
+      canvas.width = canvas.height = image.width;
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      context.fillStyle = color;
+      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+      return canvas;
+    }
+
     var src = img.src;
     if (src in nodeImages) {
       if (nodeImages[src].loaded) {
         //sample down for better antialiasing
-        var contexts = nodeImageContexts[src], image;
+        var contexts = nodeImageContexts[src], context;
         for(var i=0; i < contexts.length; i++)
-          if(contexts[i].width < (size << 1)){
-            image = contexts[i];
+          if(contexts[i].canvas.width < (size << 1)){
+            context = contexts[i];
             break;
           }
         //if we are too big, use the smallest one, and then resize with timer,
         // and only do one at a time
-        if(image === undefined){
-          image = contexts[contexts.length - 1];
+        if(context === undefined){
+          context = contexts[contexts.length - 1];
           if(nodeImageContextTimeouts[src] === undefined){
             nodeImageContextTimeouts[src] = setTimeout(function(){
-              var canvas = document.createElement('canvas'),
-                  context = canvas.getContext('2d');
-              canvas.width = canvas.height = image.width >> 1;
-              context.drawImage(image, 0, 0, canvas.width, canvas.height);
-              contexts.push(canvas);
+              var resizeCanvas = document.createElement('canvas'),
+                  resizeContext = resizeCanvas.getContext('2d');
+              resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
+              resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
+              contexts.push({
+                image:resizeCanvas,
+                canvas:canvasFromImage(resizeCanvas)
+              });
               delete nodeImageContextTimeouts[src]
             }, Math.random() * 250);
           }
         }
-        return image;
+        return context.canvas;
       }
     }else{
       nodeImages[src] = {};
@@ -241,7 +261,10 @@ jQuery.fn.springy = function(params) {
       nodeImages[src].object = img;
       img.addEventListener("load", function () {
         nodeImages[src].loaded = true;
-        nodeImageContexts[src] = [ img ];
+        nodeImageContexts[src] = [{ 
+          image:img,
+          canvas:canvasFromImage(img)
+        }];
       });
       img.src = src;
     }
@@ -249,7 +272,7 @@ jQuery.fn.springy = function(params) {
 
 	Springy.Node.prototype.getSize = function() {
     var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
-      size = Math.min(Math.max(16, canvasSize / 20.0), 64);
+      size = Math.min(Math.max(16, canvasSize >> 4), 128);
     if(selected && selected.node.id === this.id)
       size *= 1.5;
     return size;
@@ -355,27 +378,24 @@ jQuery.fn.springy = function(params) {
 			var s = toScreen(p);
       ctx.save();
       
-			var contentSize = node.getSize(),
-        x = Math.floor(s.x - contentSize/2),
-        y = Math.floor(s.y - contentSize/2),
-        size = Math.floor(contentSize),
-        y2 = y + size,
-        size2 = Math.max(2, Math.floor(contentSize/10));
-
       if(edgeSelected){
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       }
       else if(selected !== null){
         ctx.globalAlpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
       } 
+
+			var contentSize = node.getSize(),
+        x = Math.floor(s.x - contentSize/2),
+        y = Math.floor(s.y - contentSize/2),
+        size = Math.floor(contentSize),
+        color = (node.data.color !== undefined) ? node.data.color : "#111111";
+
       //draw the portrait
-      var image = getImageBySize(node.data.image, contentSize);
+      var image = getImageBySize(node.data.image, size, color);
       if(image){
         ctx.drawImage(image, x, y, size, size);
       }
-      //show the type
-      ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(x, y2 - size2, size, size2);
 			ctx.restore();
 		},
 		function drawNodeOverlay(node, p) {
@@ -390,39 +410,46 @@ jQuery.fn.springy = function(params) {
         x = Math.floor(s.x) - halfSize,
         y = Math.floor(s.y) - halfSize,
         size = Math.floor(contentSize),
-        y2 = y + size,
-        size2 = Math.max(2, Math.floor(contentSize/10));
+        color = (node.data.color !== undefined) ? node.data.color : "#111111";
       
       //draw the portrait
-      var image = getImageBySize(node.data.image, contentSize);
+      var image = getImageBySize(node.data.image, contentSize, color);
       if(image){
         ctx.drawImage(image, x, y, size, size);
       }
-      //show the type
-      ctx.fillStyle = (node.data.color !== undefined) ? node.data.color : "#111111";
-      ctx.fillRect(x, y2 - size2, size, size2);
-      
-      ctx.font = (node.data.font !== undefined) ? node.data.font : nodeFont;
-      var padding = 2;
-			var textWidth = ctx.measureText(node.data.label).width;
-			var textHeight = 16;
-      
-      //draw the text background
-      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-      ctx.fillRect(Math.floor(s.x) - Math.floor(textWidth/2) - padding, 
-        Math.floor(s.y) - halfSize - Math.floor(textHeight),
-        Math.floor(textWidth) + padding*2, 
-        Math.floor(textHeight) + padding);
-      //draw the name
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "left";
-      ctx.textBaseline = "bottom";
-      ctx.shadowColor = "#000";
-      ctx.shadowOffsetX = 1;
-      ctx.shadowOffsetY = 1;
-      ctx.fillText(node.data.label, 
-        Math.floor(s.x) - Math.floor(textWidth / 2), 
-        Math.floor(s.y) - halfSize + padding);
+
+      //cache the portrait title
+      if(node.textImage === undefined){
+        var canvas = document.createElement('canvas'),
+          context = canvas.getContext('2d');
+
+        context.font = nodeFont;
+
+        var textWidth = context.measureText(node.data.label).width;
+        var textHeight = 16;
+
+        canvas.width = Math.floor(textWidth + 6);
+        canvas.height = Math.floor(textHeight + 4);
+
+        //draw the text background
+        context.fillStyle = "rgba(0, 0, 0, 0.5)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        //draw the name
+        context.font = nodeFont;
+        context.fillStyle = "#ffffff";
+        context.textAlign = "left";
+        context.textBaseline = "top";
+        context.shadowColor = "#000";
+        context.shadowOffsetX = 1;
+        context.shadowOffsetY = 1;
+        context.fillText(node.data.label, 3, 0);
+
+        node.textImage = canvas; 
+      }
+      ctx.drawImage(node.textImage, 
+        x + halfSize - Math.floor(node.textImage.width / 2), y, 
+        node.textImage.width, node.textImage.height);
+
 
 			ctx.restore();
     }
