@@ -483,7 +483,7 @@
       window.oRequestAnimationFrame || 
       window.msRequestAnimationFrame || 
       function( callback ){
-        setTimeout(callback, 10);
+        setTimeout(callback, 16);
       };
   })();
 
@@ -502,16 +502,16 @@
       onRenderStart(); 
     }
 
-    var rendering = true, delta = 0.01;
+    var rendering = true, milliseconds = 10;
     setTimeout(function tickLoop(){
 			if(document.hasFocus())
-				t.tick(delta);
+				t.tick(milliseconds / 1000);
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
 				rendering = false;
 			if(rendering)
-				setTimeout(tickLoop, delta);
-    }, delta);
+				setTimeout(tickLoop, milliseconds);
+    }, milliseconds);
 		requestNextFrame(function animationLoop() {
 			if(rendering){
 				requestNextFrame(animationLoop);
