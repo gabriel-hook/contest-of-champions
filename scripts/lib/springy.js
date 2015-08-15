@@ -502,7 +502,9 @@
       onRenderStart(); 
     }
 
-		//do once for sure (in case we are out of focus)
+    var rendering = true, milliseconds = 10;
+
+		//force initial render in case we start out of focus
 		setTimeout(function(){
 			t.tick(milliseconds / 1000);
 			if (render !== undefined) {
@@ -510,7 +512,7 @@
 			}
 		}, 0);
 
-    var rendering = true, milliseconds = 10;
+		//do physics ticks on a timer
     setTimeout(function tickLoop(){
 			if(document.hasFocus())
 				t.tick(milliseconds / 1000);
@@ -520,6 +522,8 @@
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
     }, milliseconds);
+
+    //do renders every animation frame
 		requestNextFrame(function animationLoop() {
 			if(rendering){
 				requestNextFrame(animationLoop);
