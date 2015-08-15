@@ -502,9 +502,9 @@
       onRenderStart(); 
     }
 
-    var rendering = true, milliseconds = 10;
+    var rendering = true, milliseconds = 10, first100 = 100;
     setTimeout(function tickLoop(){
-			if(document.hasFocus())
+			if(first100-- || document.hasFocus())
 				t.tick(milliseconds / 1000);
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
