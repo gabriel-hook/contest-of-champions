@@ -227,14 +227,14 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"wintersoldier", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
   { fromId:"wintersoldier", fromStars:4, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
 
-  { fromId:"blackwidow", fromStars:2, toId:"msmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
   { fromId:"blackwidow", fromStars:2, toId:"wintersoldier", effectId:"powergain", effectAmount:3 },
   { fromId:"blackwidow", fromStars:3, toId:"hulk", effectId:"stun", effectAmount:20 },
-  { fromId:"blackwidow", fromStars:3, toId:"msmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
   { fromId:"blackwidow", fromStars:3, toId:"wintersoldier", effectId:"powergain", effectAmount:4 },
   { fromId:"blackwidow", fromStars:3, toId:"hawkeye", effectId:"powergain", effectAmount:4 },
   { fromId:"blackwidow", fromStars:4, toId:"hulk", effectId:"stun", effectAmount:25 },
-  { fromId:"blackwidow", fromStars:4, toId:"msmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"blackwidow", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
   { fromId:"blackwidow", fromStars:4, toId:"wintersoldier", effectId:"powergain", effectAmount:5 },
   { fromId:"blackwidow", fromStars:4, toId:"hawkeye", effectId:"powergain", effectAmount:5 },
 
