@@ -24,11 +24,11 @@ CoC.model = CoC.model || {};
       ranks: 4
     },
     4:{
-      1:{ levels: 10, min:750, max:1000 }, 
-      2:{ levels: 20, min:1000, max:1750 }, 
-      3:{ levels: 30, min:1750, max:2500 }, 
-      4:{ levels: 40, min:2500, max:3500 }, 
-      5:{ levels: 50, min:3500, max:4500 },
+      1:{ levels: 10, min:600, max:1000 }, 
+      2:{ levels: 20, min:1000, max:1500 }, 
+      3:{ levels: 30, min:1500, max:2000 }, 
+      4:{ levels: 40, min:2000, max:2800 }, 
+      5:{ levels: 50, min:2800, max:3500 },
       ranks: 5
     }
     //TODO: 5-star values
