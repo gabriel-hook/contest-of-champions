@@ -209,21 +209,27 @@ jQuery.fn.springy = function(params) {
     }
 	});
 
+  function buildPortaitContexts(image, color){
+    var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        barHeight = Math.max(2, (image.height/10) | 0);
+    canvas.width = canvas.height = image.width;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    context.fillStyle = color;
+    context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+    return {
+      image:image,
+      canvas:canvas
+    };
+  }
+
   //we cache the best sized portrait with type bar
-  function getImageBySize(img, size, color){
+  Springy.Node.prototype.getPortraitImage = function(size) {
+    var img = this.data.image, color = this.data.color || "#111111";
+    size = size | 0;
+
     if(img === undefined)
       return;
-
-    function canvasFromImage(image){
-      var canvas = document.createElement('canvas'),
-          context = canvas.getContext('2d'),
-          barHeight = Math.max(2, Math.floor(image.height/10));
-      canvas.width = canvas.height = image.width;
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      context.fillStyle = color;
-      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-      return canvas;
-    }
 
     var src = img.src;
     if (src in nodeImages) {
@@ -245,29 +251,61 @@ jQuery.fn.springy = function(params) {
                   resizeContext = resizeCanvas.getContext('2d');
               resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
               resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
-              contexts.push({
-                image:resizeCanvas,
-                canvas:canvasFromImage(resizeCanvas)
-              });
+              contexts.push( buildPortaitContexts(resizeCanvas, color) );
               delete nodeImageContextTimeouts[src]
             }, Math.random() * 250);
           }
         }
         return context.canvas;
       }
-    }else{
-      nodeImages[src] = {};
-      var img = new Image();
-      nodeImages[src].object = img;
-      img.addEventListener("load", function () {
-        nodeImages[src].loaded = true;
-        nodeImageContexts[src] = [{ 
-          image:img,
-          canvas:canvasFromImage(img)
-        }];
-      });
-      img.src = src;
     }
+    else{
+      nodeImages[src] = {};
+      var image = new Image();
+      nodeImages[src].object = image;
+      image.addEventListener("load", function () {
+        nodeImages[src].loaded = true;
+        nodeImageContexts[src] = [ buildPortaitContexts(image, color) ];
+      });
+      image.src = src;
+    }
+  }
+
+  Springy.Node.prototype.getPortraitTextImage = function() {
+    if(this.textImage)
+      return this.textImage;
+
+    var node = this;
+    if(!node.textImageTimeout)
+      node.textImageTimeout = setTimeout(function(){
+
+        var canvas = document.createElement('canvas'),
+          context = canvas.getContext('2d');
+
+        context.font = nodeFont;
+
+        var textWidth = context.measureText(node.data.label).width;
+        var textHeight = 16;
+
+        canvas.width = (textWidth + 6) | 0;
+        canvas.height = (textHeight + 4) | 0;
+
+        //draw the text background
+        context.fillStyle = "rgba(0, 0, 0, 0.5)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        //draw the name
+        context.font = nodeFont;
+        context.fillStyle = "#ffffff";
+        context.textAlign = "left";
+        context.textBaseline = "top";
+        context.shadowColor = "#000";
+        context.shadowOffsetX = 1;
+        context.shadowOffsetY = 1;
+        context.fillText(node.data.label, 3, 0);
+
+        node.textImage = canvas; 
+        node.textImageTimeout = null;
+      }, 0);
   }
 
 	Springy.Node.prototype.getSize = function() {
@@ -350,8 +388,8 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
-			ctx.moveTo(s1.x, s1.y);
-			ctx.lineTo(lineEnd.x, lineEnd.y);
+			ctx.moveTo(s1.x | 0, s1.y | 0);
+			ctx.lineTo(lineEnd.x | 0, lineEnd.y | 0);
 			ctx.stroke();
       ctx.restore();
 			// arrow
@@ -359,7 +397,7 @@ jQuery.fn.springy = function(params) {
 				ctx.save();
         ctx.globalAlpha = alpha;
 				ctx.fillStyle = stroke;
-				ctx.translate(intersection.x, intersection.y);
+				ctx.translate(intersection.x | 0, intersection.y | 0);
 				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
 				ctx.beginPath();
 				ctx.moveTo(-arrowLength, arrowWidth);
@@ -375,83 +413,49 @@ jQuery.fn.springy = function(params) {
       if(selected !== null && selected.node !== null && selected.node.id === node.id)
         return;
     
-			var s = toScreen(p);
-      ctx.save();
-      
       if(edgeSelected){
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       }
       else if(selected !== null){
         ctx.globalAlpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
-      } 
+      }
+      else
+        ctx.globalAlpha = 1.0;
 
-			var contentSize = node.getSize(),
-        x = Math.floor(s.x - contentSize/2),
-        y = Math.floor(s.y - contentSize/2),
-        size = Math.floor(contentSize),
-        color = (node.data.color !== undefined) ? node.data.color : "#111111";
+      var s = toScreen(p), 
+        x = (s.x | 0), 
+        y = (s.y | 0), 
+        size = node.getSize(),
+        fullSize = size | 0, 
+        halfSize = (size / 2) | 0;
 
       //draw the portrait
-      var image = getImageBySize(node.data.image, size, color);
-      if(image){
-        ctx.drawImage(image, x, y, size, size);
-      }
-			ctx.restore();
+      var image = node.getPortraitImage(size);
+      if(image)
+        ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
 		},
 		function drawNodeOverlay(node, p) {
       if (selected === null || selected.node === null || selected.node.id !== node.id)
         return;
     
-			var s = toScreen(p);
-			ctx.save();
+			var s = toScreen(p), 
+        x = (s.x | 0), 
+        y = (s.y | 0), 
+        size = node.getSize(),
+        fullSize = size | 0, 
+        halfSize = (size / 2) | 0;
 
-			var contentSize = node.getSize();
-      var halfSize = Math.floor(contentSize/2),
-        x = Math.floor(s.x) - halfSize,
-        y = Math.floor(s.y) - halfSize,
-        size = Math.floor(contentSize),
-        color = (node.data.color !== undefined) ? node.data.color : "#111111";
-      
+      ctx.globalAlpha = 1.0;
+
       //draw the portrait
-      var image = getImageBySize(node.data.image, contentSize, color);
-      if(image){
-        ctx.drawImage(image, x, y, size, size);
-      }
+      var image = node.getPortraitImage(size);
+      if(image)
+        ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
 
-      //cache the portrait title
-      if(node.textImage === undefined){
-        var canvas = document.createElement('canvas'),
-          context = canvas.getContext('2d');
-
-        context.font = nodeFont;
-
-        var textWidth = context.measureText(node.data.label).width;
-        var textHeight = 16;
-
-        canvas.width = Math.floor(textWidth + 6);
-        canvas.height = Math.floor(textHeight + 4);
-
-        //draw the text background
-        context.fillStyle = "rgba(0, 0, 0, 0.5)";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        //draw the name
-        context.font = nodeFont;
-        context.fillStyle = "#ffffff";
-        context.textAlign = "left";
-        context.textBaseline = "top";
-        context.shadowColor = "#000";
-        context.shadowOffsetX = 1;
-        context.shadowOffsetY = 1;
-        context.fillText(node.data.label, 3, 0);
-
-        node.textImage = canvas; 
-      }
-      ctx.drawImage(node.textImage, 
-        x + halfSize - Math.floor(node.textImage.width / 2), y - node.textImage.height, 
-        node.textImage.width, node.textImage.height);
-
-
-			ctx.restore();
+      //draw the portrait text
+      var text = node.getPortraitTextImage();
+      if(text)
+        ctx.drawImage(text, x - (text.width / 2) | 0, y - halfSize - text.height, text.width, text.height);
     }
 	);
 
