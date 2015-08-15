@@ -502,9 +502,17 @@
       onRenderStart(); 
     }
 
-    var rendering = true, milliseconds = 10, first100 = 100;
+		//do once for sure (in case we are out of focus)
+		setTimeout(function(){
+			t.tick(milliseconds / 1000);
+			if (render !== undefined) {
+				render();
+			}
+		}, 0);
+
+    var rendering = true, milliseconds = 10;
     setTimeout(function tickLoop(){
-			if(first100-- || document.hasFocus())
+			if(document.hasFocus())
 				t.tick(milliseconds / 1000);
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
