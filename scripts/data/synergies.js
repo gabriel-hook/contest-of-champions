@@ -324,6 +324,7 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ironfist", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
   { fromId:"ironfist", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
   { fromId:"ironfist", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
 
   { fromId:"juggernaut", fromStars:2, toId:"colossus", effectId:"critrate", effectAmount:5 },
   { fromId:"juggernaut", fromStars:3, toId:"drstrange", effectId:"attack", effectAmount:4 },
