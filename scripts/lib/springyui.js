@@ -46,7 +46,7 @@ jQuery.fn.springy = function(params) {
 	var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
 	// calculate bounding box of graph layout.. with ease-in
-	var currentBB;
+	var currentBB = layout.getBoundingBox();
 
 	// convert to/from screen coordinates
 	var toScreen = function(p) {
@@ -447,7 +447,7 @@ jQuery.fn.springy = function(params) {
         node.textImage = canvas; 
       }
       ctx.drawImage(node.textImage, 
-        x + halfSize - Math.floor(node.textImage.width / 2), y, 
+        x + halfSize - Math.floor(node.textImage.width / 2), y - node.textImage.height, 
         node.textImage.width, node.textImage.height);
 
 
