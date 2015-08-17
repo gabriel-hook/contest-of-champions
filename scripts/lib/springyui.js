@@ -36,8 +36,7 @@ jQuery.fn.springy = function(params) {
 	var nodeSelected = params.nodeSelected || null;
 	var nodeImages = {};
 	var nodeImageContexts = {};
-	var nodeImageContextTimeouts = {};
-	var edgeLabelsUpright = true;
+	var nodeImageContextQueue = {};
 
 	var canvas = this[0];
 	var ctx = canvas.getContext("2d");
@@ -209,6 +208,28 @@ jQuery.fn.springy = function(params) {
     }
 	});
 
+  nodeImageContextQueue.list = [];
+  nodeImageContextQueue.todo = {};
+  nodeImageContextQueue.add = function(id, callback){
+    nodeImageContextQueue.todo[id] = callback;
+    nodeImageContextQueue.list.push(id);
+    if(!nodeImageContextQueue.timeout)
+      nodeImageContextQueue.next();
+  }
+  nodeImageContextQueue.next = function(){
+    if(nodeImageContextQueue.list.length === 0)
+      return;
+    var id = nodeImageContextQueue.list.shift();
+    nodeImageContextQueue.timeout = setTimeout(function(){
+      nodeImageContextQueue.todo[id].call(null)
+      delete nodeImageContextQueue.timeout;
+      delete nodeImageContextQueue.todo[id];
+      console.log(id)
+      nodeImageContextQueue.next();
+    }, 100);
+  }
+
+
   function buildPortaitContexts(image, color){
     var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
@@ -245,15 +266,14 @@ jQuery.fn.springy = function(params) {
         // and only do one at a time
         if(context === undefined){
           context = contexts[contexts.length - 1];
-          if(nodeImageContextTimeouts[src] === undefined){
-            nodeImageContextTimeouts[src] = setTimeout(function(){
+          if(!nodeImageContextQueue.todo[src]){
+            nodeImageContextQueue.add(src, function(){
               var resizeCanvas = document.createElement('canvas'),
                   resizeContext = resizeCanvas.getContext('2d');
               resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
               resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
               contexts.push( buildPortaitContexts(resizeCanvas, color) );
-              delete nodeImageContextTimeouts[src]
-            }, Math.random() * 250);
+            });
           }
         }
         return context.canvas;
@@ -272,40 +292,34 @@ jQuery.fn.springy = function(params) {
   }
 
   Springy.Node.prototype.getPortraitTextImage = function() {
-    if(this.textImage)
-      return this.textImage;
+    if(!this.textImage){
+      var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d');
 
-    var node = this;
-    if(!node.textImageTimeout)
-      node.textImageTimeout = setTimeout(function(){
+      context.font = nodeFont;
 
-        var canvas = document.createElement('canvas'),
-          context = canvas.getContext('2d');
+      var textWidth = context.measureText(this.data.label).width;
+      var textHeight = 16;
 
-        context.font = nodeFont;
+      canvas.width = (textWidth + 6) | 0;
+      canvas.height = (textHeight + 4) | 0;
 
-        var textWidth = context.measureText(node.data.label).width;
-        var textHeight = 16;
+      //draw the text background
+      context.fillStyle = "rgba(0, 0, 0, 0.5)";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      //draw the name
+      context.font = nodeFont;
+      context.fillStyle = "#ffffff";
+      context.textAlign = "left";
+      context.textBaseline = "top";
+      context.shadowColor = "#000";
+      context.shadowOffsetX = 1;
+      context.shadowOffsetY = 1;
+      context.fillText(this.data.label, 3, 0);
 
-        canvas.width = (textWidth + 6) | 0;
-        canvas.height = (textHeight + 4) | 0;
-
-        //draw the text background
-        context.fillStyle = "rgba(0, 0, 0, 0.5)";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        //draw the name
-        context.font = nodeFont;
-        context.fillStyle = "#ffffff";
-        context.textAlign = "left";
-        context.textBaseline = "top";
-        context.shadowColor = "#000";
-        context.shadowOffsetX = 1;
-        context.shadowOffsetY = 1;
-        context.fillText(node.data.label, 3, 0);
-
-        node.textImage = canvas; 
-        node.textImageTimeout = null;
-      }, 0);
+      this.textImage = canvas; 
+    }
+    return this.textImage;
   }
 
 	Springy.Node.prototype.getSize = function() {
