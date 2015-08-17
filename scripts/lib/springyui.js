@@ -225,7 +225,7 @@ jQuery.fn.springy = function(params) {
       delete nodeImageContextQueue.timeout;
       delete nodeImageContextQueue.todo[id];
       nodeImageContextQueue.next();
-    }, 100);
+    }, 50);
   }
 
 
