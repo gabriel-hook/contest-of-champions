@@ -37,6 +37,7 @@ jQuery.fn.springy = function(params) {
 	var nodeImages = {};
 	var nodeImageContexts = {};
 	var nodeImageContextQueue = {};
+  var maxTeamSize = params.maxTeamSize || 5;
 
 	var canvas = this[0];
 	var ctx = canvas.getContext("2d");
@@ -74,6 +75,7 @@ jQuery.fn.springy = function(params) {
 	var selected = [];
 	var dragged = null;
   var moved = 0;
+
 
   function pointerStart(point){
     moved = 0;
@@ -127,8 +129,8 @@ jQuery.fn.springy = function(params) {
         else
           selected = [ dragged.node ];
 
-        if(selected.length > 5)
-          selected = selected.slice(-5);
+        if(selected.length > maxTeamSize)
+          selected = selected.slice(-maxTeamSize);
 
 
         if (nodeSelected){
@@ -413,13 +415,19 @@ jQuery.fn.springy = function(params) {
         if(edge.data.effect === edgeSelected)
           isSelected = 1;
       }
-      else if(selected.length > 1){
-        if(edge.source.isSelected() || edge.target.isSelected())
-          isSelected = 0.5;
-        if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
-          isSelected = 0.5;
+      else if (selected.length === maxTeamSize){
         if(edge.source.isSelected() && edge.target.isSelected())
           isSelected = 1;
+      }
+      else if(selected.length > 1){
+        var sourceSelected = edge.source.isSelected(), targetSelected = edge.target.isSelected();
+
+        if(sourceSelected && targetSelected)
+          isSelected = 1;
+        else if(sourceSelected || targetSelected)
+          isSelected = 0.5;
+        else if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
+          isSelected = 0.5;
       }
       else if(selected.length){
         if(edge.source.isSelected() || edge.target.isSelected())
@@ -500,6 +508,9 @@ jQuery.fn.springy = function(params) {
     
       if(edgeSelected){
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
+      }
+      else if(selected.length === maxTeamSize){
+        ctx.globalAlpha = 0.25;
       }
       else if(selected.length > 1){
         ctx.globalAlpha = (node.isSelectedNeighbor())? 0.75: 0.25;
