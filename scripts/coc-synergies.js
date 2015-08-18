@@ -32,18 +32,27 @@ CoC.synergies.initialize=function(stars){
       stiffness: 100.0,
       repulsion: 800.0,
       damping: 0.5,
-      nodeSelected:function(node, edges){
+      nodeSelected:function(nodes, edges){
         $('#legend div').removeClass('selected');
-        if(node === undefined){
+        $('#legend div span').text("");
+        if(nodes.length === 0){
           $('#legend').removeClass('selected');
         }
         else if(edges !== undefined){
           $('#legend').addClass('selected');
           for(var i=0; i<edges.length; i++){
             $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
-
+          }
+          if(nodes.length > 1){
+            var amounts = {};
+            for(var i=0; i<edges.length; i++)
+              amounts[ edges[i].data.effect ] = edges[i].data.amount + 
+                (amounts[ edges[i].data.effect ] || 0);
+            for(var effect in amounts)
+              $('#legend div[effectId='+effect+'] span').text(" - " + amounts[effect] + "%");
           }
         }
+        CoC.synergies.canvasResize();
       }
     }),
     nodes = {}, effects = {};
@@ -98,6 +107,7 @@ CoC.synergies.initialize=function(stars){
     springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
       label: synergy.effect().get('name'),
       effect: synergy.get('effectId'),
+      amount: synergy.get('effectAmount'),
       color: effectColors[ synergy.get('effectId') ]
     });
     effects[synergy.get('effectId')] = true;
@@ -123,7 +133,7 @@ CoC.synergies.initialize=function(stars){
     $('#legend').append( $('<div>', {
       effectId:uid,
       style:'border-color:'+(effectColors[uid] || '#000')+';'
-    }).text(name).click(function(){
+    }).text(name).append('<span>').click(function(){
       $('#legend').addClass('selected');
       $('#legend div').removeClass('selected');
       $('#legend div[effectId='+uid+']').addClass('selected');

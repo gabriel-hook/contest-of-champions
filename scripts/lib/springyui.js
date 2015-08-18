@@ -65,13 +65,13 @@ jQuery.fn.springy = function(params) {
   var edgeSelected = null;
   this.selectEdgeType=function(type){
     edgeSelected = type;
-    selected = null;
+    selected = [];
     dragged = null;
     renderer.start();
   };
 
 	// half-assed drag and drop
-	var selected = null;
+	var selected = [];
 	var dragged = null;
   var moved = 0;
 
@@ -80,9 +80,10 @@ jQuery.fn.springy = function(params) {
     var nearest = layout.nearest(point);
     if(nearest.node !== null){
       if(nearest.distance > 1){
-        selected = dragged = null;
+        dragged = null;
+        selected = [];
         if(nodeSelected){
-          nodeSelected();
+          nodeSelected(selected);
         }
         renderer.start();
         return;
@@ -104,19 +105,49 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerEnd(clicked){
+  function pointerEnd(clicked, event){
     if(dragged != null){
       if(moved < 10){
         edgeSelected = null;
-        selected = dragged;
+
+        //shift/ctrl key multi-select
+        if(event.shiftKey){
+          var i = selected.indexOf(dragged.node);
+          if(i !== -1)
+            selected.splice(i, 1);
+          selected.push( dragged.node );
+        }
+        else if (event.ctrlKey){
+          var i = selected.indexOf(dragged.node);
+          if(i !== -1)
+            selected.splice(i, 1);
+          else
+            selected.push( dragged.node );
+        }
+        else
+          selected = [ dragged.node ];
+
+        if(selected.length > 5)
+          selected = selected.slice(-5);
+
+
         if (nodeSelected){
           var selectedEdges = [];
           for(var i=0,edge; i<graph.edges.length; i++){
             edge = graph.edges[i];
-            if(selected.node === edge.source || selected.node === edge.target || (selected.node.data.neighbors[ edge.source.id ] && selected.node.data.neighbors[ edge.target.id ]) )
-              selectedEdges.push(edge);
+            if(selected.length > 1){
+
+              for(var j=0; j<selected.length; j++)
+                for(var k=0; k<selected.length; k++)
+                  if(selected[j] === edge.source && selected[k] === edge.target)
+                    selectedEdges.push(edge);
+            }
+            else
+              for(var j=0; j<selected.length; j++)
+                if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
+                  selectedEdges.push(edge);
           }
-          nodeSelected(selected.node, selectedEdges);
+          nodeSelected(selected, selectedEdges);
         }
       }
       dragged = null;
@@ -125,17 +156,17 @@ jQuery.fn.springy = function(params) {
       edgeSelected = null;
   }
 
-  function selectedOpen(){
-    if (selected.node && selected.node.data && selected.node.data.onOpen) {
-      selected.node.data.onOpen();
+  function selectedOpen(node){
+    if (node.data.onOpen) {
+      node.data.onOpen();
     }
   }
   
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
-    if(moved < 10 && selected){
-      selectedOpen();
-    }
+    if(moved < 10 && selected.indexOf(dragged.node) !== -1)
+      if(dragged.node.data.onOpen)
+        dragged.node.data.onOpen();
 	});
   
   $(canvas).on('dblclick', function(e) {
@@ -143,8 +174,8 @@ jQuery.fn.springy = function(params) {
 		var pos = $(canvas).offset(),
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
       nearest = layout.nearest(p);
-    if(moved < 10 && selected && nearest.node.id === selected.node.id)
-      selectedOpen();
+    if(moved < 10 && selected.length && nearest.node.id === selected[selected.length - 1].id)
+      selectedOpen(selected[selected.length - 1]);
 	});
 
   $(canvas).on('touchstart', function(e){
@@ -163,14 +194,14 @@ jQuery.fn.springy = function(params) {
   });
   $(canvas).on('touchend',function(e) {
     e.preventDefault();
-    pointerEnd(true);
+    pointerEnd(true, e);
   });
   $(canvas).on('touchleave touchcancel',function(e) {
     e.preventDefault();
-    pointerEnd();
+    pointerEnd(false, e);
 	});
 	$(window).on('touchend',function(e) {
-    pointerEnd();
+    pointerEnd(false, e);
 	});
 
 	$(canvas).on('mousedown', function(e) {
@@ -187,11 +218,11 @@ jQuery.fn.springy = function(params) {
 	});
 	$(canvas).on('mouseleave',function(e) {
     e.preventDefault();
-    pointerEnd();
+    pointerEnd(false, e);
 	});
   $(canvas).on('mouseup',function(e) {
     e.preventDefault();
-    pointerEnd(true);
+    pointerEnd(true, e);
   });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
     try{
@@ -243,6 +274,26 @@ jQuery.fn.springy = function(params) {
     };
   }
 
+  var placeholders={};
+  function getPlaceholder(size, color){
+    var id = size + '_' + color;
+    if(!placeholders[id]){
+      var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        barHeight = Math.max(2, (size/10) | 0),
+        gradient = ctx.createRadialGradient(size>>1, size>>1, 4, size>>1, size>>1, size/2);
+      canvas.height = canvas.width = size;
+      gradient.addColorStop(0,"rgba(200,200,200,1)");
+      gradient.addColorStop(1,"rgba(0,0,0,0)");
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, canvas.width, canvas.height - barHeight);
+      context.fillStyle = color;
+      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+      placeholders[id] = canvas;
+    }
+    return placeholders[id];
+  }
+
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.getPortraitImage = function(size) {
     var img = this.data.image, color = this.data.color || "#111111";
@@ -288,6 +339,19 @@ jQuery.fn.springy = function(params) {
       });
       image.src = src;
     }
+    return getPlaceholder(size, color);
+  }
+
+
+  Springy.Node.prototype.isSelected = function() {
+    return selected.indexOf(this) !== -1;
+  }
+
+  Springy.Node.prototype.isSelectedNeighbor = function() {
+    for(var i=0; i<selected.length; i++)
+      if(selected[i].data.neighbors[ this.id ])
+        return true;
+    return false;
   }
 
   Springy.Node.prototype.getPortraitTextImage = function() {
@@ -324,7 +388,7 @@ jQuery.fn.springy = function(params) {
 	Springy.Node.prototype.getSize = function() {
     var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
       size = Math.min(Math.max(16, canvasSize >> 4), 128);
-    if(selected && selected.node.id === this.id)
+    if(this.isSelected())
       size *= 1.5;
     return size;
 	}
@@ -344,19 +408,27 @@ jQuery.fn.springy = function(params) {
 			var from = graph.getEdges(edge.source, edge.target);
 			var to = graph.getEdges(edge.target, edge.source);
 
-      var isSelected = false;
+      var isSelected = 0;
       if(edgeSelected){
         if(edge.data.effect === edgeSelected)
-          isSelected = true;
+          isSelected = 1;
       }
-      else if(selected && selected.node){
-        if(selected.node === edge.source || selected.node === edge.target)
-          isSelected = true;
-        if(selected.node.data.neighbors[ edge.source.id ] && selected.node.data.neighbors[ edge.target.id ])
-          isSelected = true;
+      else if(selected.length > 1){
+        if(edge.source.isSelected() || edge.target.isSelected())
+          isSelected = 0.5;
+        if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
+          isSelected = 0.5;
+        if(edge.source.isSelected() && edge.target.isSelected())
+          isSelected = 1;
+      }
+      else if(selected.length){
+        if(edge.source.isSelected() || edge.target.isSelected())
+          isSelected = 1;
+        if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
+          isSelected = 0.5;
       }
       else
-        isSelected = true;
+        isSelected = 1;
       
 			var total = from.length + to.length;
 
@@ -386,7 +458,7 @@ jQuery.fn.springy = function(params) {
 				intersection = s2;
 			}
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
-			var weight = (isSelected) ? 1.5 : 1.0;
+			var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
 
       //line
       ctx.save();
@@ -396,7 +468,7 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
-      var alpha = (!isSelected)? 0.1: 1.0;
+      var alpha = (isSelected === 0)? 0.1: 1.0;
 
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
@@ -423,14 +495,17 @@ jQuery.fn.springy = function(params) {
 			}
 		},
 		function drawNode(node, p) {
-      if(selected !== null && selected.node !== null && selected.node.id === node.id)
+      if(node.isSelected())
         return;
     
       if(edgeSelected){
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       }
-      else if(selected !== null){
-        ctx.globalAlpha = (selected.node.id === node.id || selected.node.data.neighbors[ node.id ])? 1.0: 0.25;
+      else if(selected.length > 1){
+        ctx.globalAlpha = (node.isSelectedNeighbor())? 0.75: 0.25;
+      }
+      else if(selected.length){
+        ctx.globalAlpha = (node.isSelectedNeighbor())? 1.0: 0.25;
       }
       else
         ctx.globalAlpha = 1.0;
@@ -444,11 +519,10 @@ jQuery.fn.springy = function(params) {
 
       //draw the portrait
       var image = node.getPortraitImage(size);
-      if(image)
-        ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
+      ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
 		},
 		function drawNodeOverlay(node, p) {
-      if (selected === null || selected.node === null || selected.node.id !== node.id)
+      if (!node.isSelected())
         return;
     
 			var s = toScreen(p), 
@@ -462,13 +536,11 @@ jQuery.fn.springy = function(params) {
 
       //draw the portrait
       var image = node.getPortraitImage(size);
-      if(image)
-        ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
+      ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
 
       //draw the portrait text
       var text = node.getPortraitTextImage();
-      if(text)
-        ctx.drawImage(text, x - (text.width / 2) | 0, y - halfSize - text.height, text.width, text.height);
+      ctx.drawImage(text, x - (text.width / 2) | 0, y - halfSize - text.height, text.width, text.height);
     }
 	);
 
