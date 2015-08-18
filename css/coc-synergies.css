@@ -156,8 +156,8 @@ a.hidden{
   background:rgba(0,0,0,0.5);
   z-index:100;
   color:#fff;
-  text-shadow: 1px 1px #111;
-  transition: left 0.333s ease;
+  text-shadow:1px 1px #111;
+  transition:left 0.333s ease, opacity 0.333s ease;
 }
 #legend div{
   margin: 2px 4px 2px 2px;

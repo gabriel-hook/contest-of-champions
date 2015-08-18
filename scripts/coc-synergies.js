@@ -52,7 +52,7 @@ CoC.synergies.initialize=function(stars){
               $('#legend div[effectId='+effect+'] span').text(" - " + amounts[effect] + "%");
           }
         }
-        CoC.synergies.canvasResize();
+        CoC.synergies.updateLegend();
       }
     }),
     nodes = {}, effects = {};
@@ -152,17 +152,20 @@ CoC.synergies.initialize=function(stars){
 
 CoC.synergies.canvasResize  = function(){
   $('canvas').attr('width', window.innerWidth - 2).attr('height', window.innerHeight - 2 - 33);
-  if($('#legend').hasClass('hidden'))
-    $('#legend').css('left', -($('#legend').outerWidth()));
+  CoC.synergies.updateLegend();
 }
 
 CoC.synergies.toggleLegend = function(){
   if($('.button.legend').hasClass('active')){
     $('.button.legend').removeClass('active');
-    $('#legend').css('left', -($('#legend').outerWidth())).addClass('hidden');
   }
   else{
     $('.button.legend').addClass('active');
-    $('#legend').css('left', 1).removeClass('hidden');
   }
+  CoC.synergies.updateLegend();
+}
+
+CoC.synergies.updateLegend = function(){
+  var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
+  $('#legend').css('left', isActive? 1: -legendWidth).css("opacity", isActive? 1: 0);
 }
