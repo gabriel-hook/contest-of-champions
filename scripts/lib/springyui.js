@@ -551,7 +551,9 @@ jQuery.fn.springy = function(params) {
 
       //draw the portrait text
       var text = node.getPortraitTextImage();
-      ctx.drawImage(text, x - (text.width / 2) | 0, y - halfSize - text.height, text.width, text.height);
+      x = Math.min(Math.max(0, x - (text.width / 2) | 0), canvas.width - text.width);
+      y = Math.min(Math.max(0, y - halfSize - text.height), canvas.height - text.height);
+      ctx.drawImage(text, x, y, text.width, text.height);
     }
 	);
 
