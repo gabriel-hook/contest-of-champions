@@ -107,32 +107,26 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerEnd(clicked, event){
+  function pointerEnd(clicked, selectType){
     if(dragged != null){
       if(moved < 10){
-        edgeSelected = null;
-
-        //shift/ctrl key multi-select
-        if(event.shiftKey){
-          var i = selected.indexOf(dragged.node);
-          if(i !== -1)
-            selected.splice(i, 1);
-          selected.push( dragged.node );
-        }
-        else if (event.ctrlKey){
-          var i = selected.indexOf(dragged.node);
-          if(i !== -1)
-            selected.splice(i, 1);
-          else
+        var index = selected.indexOf(dragged.node);
+        if(index !== -1)
+          selected.splice(index, 1);
+        switch(selectType){
+          case "add":
             selected.push( dragged.node );
+            break;
+          case "toggle":
+            if(index === -1)
+              selected.push( dragged.node );
+            break;
+          case "replace":
+            selected = [ dragged.node ];
+            break;
         }
-        else
-          selected = [ dragged.node ];
-
         if(selected.length > maxTeamSize)
           selected = selected.slice(-maxTeamSize);
-
-
         if (nodeSelected){
           var selectedEdges = [];
           for(var i=0,edge; i<graph.edges.length; i++){
@@ -151,6 +145,7 @@ jQuery.fn.springy = function(params) {
           }
           nodeSelected(selected, selectedEdges);
         }
+        edgeSelected = null;
       }
       dragged = null;
     }
@@ -196,14 +191,14 @@ jQuery.fn.springy = function(params) {
   });
   $(canvas).on('touchend',function(e) {
     e.preventDefault();
-    pointerEnd(true, e);
+    pointerEnd(true, "toggle");
   });
   $(canvas).on('touchleave touchcancel',function(e) {
     e.preventDefault();
-    pointerEnd(false, e);
+    pointerEnd(false, "toggle");
 	});
 	$(window).on('touchend',function(e) {
-    pointerEnd(false, e);
+    pointerEnd(false, "toggle");
 	});
 
 	$(canvas).on('mousedown', function(e) {
@@ -220,11 +215,11 @@ jQuery.fn.springy = function(params) {
 	});
 	$(canvas).on('mouseleave',function(e) {
     e.preventDefault();
-    pointerEnd(false, e);
+    pointerEnd(false, "replace");
 	});
   $(canvas).on('mouseup',function(e) {
     e.preventDefault();
-    pointerEnd(true, e);
+    pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
   });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
     try{
