@@ -24,18 +24,17 @@ CoC.data.crystalChampions = new Backbone.Collection([], {
 });
 
 CoC.data.crystalChampions.add([
-  { crystalId:"versus", championId:"punisher", championStars:2 },
+  { crystalId:"versus", championId:"punisher", championStars:2 }
 ]);
 
 CoC.data.crystalChampions.add([
   { crystalId:"arena", championId:"punisher", championStars:3 },
-  { crystalId:"arena", championId:"punisher", championStars:4 },
+  { crystalId:"arena", championId:"punisher", championStars:4 }
 ]);
 
 CoC.data.crystalChampions.add([
   { crystalId:"alliance", championId:"unstoppablecolossus", championStars:2 },
-  { crystalId:"alliance", championId:"unstoppablecolossus", championStars:3 },
-  { crystalId:"alliance", championId:"unstoppablecolossus", championStars:4 },
+  { crystalId:"alliance", championId:"unstoppablecolossus", championStars:3 }
 ]);
 
 CoC.data.crystalChampions.add([
