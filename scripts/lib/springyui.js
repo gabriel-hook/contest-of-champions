@@ -93,6 +93,8 @@ jQuery.fn.springy = function(params) {
       dragged = nearest;
       if (dragged.node !== null) {
         dragged.point.m = 10000.0;
+        dragged.point.p.x = point.x;
+        dragged.point.p.y = point.y;
       }
     }
 		renderer.start();
