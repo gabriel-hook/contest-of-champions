@@ -354,11 +354,12 @@ jQuery.fn.springy = function(params) {
   Springy.Node.prototype.getPortraitTextImage = function() {
     if(!this.textImage){
       var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d');
+        context = canvas.getContext('2d'),
+        text = this.data.label.toUpperCase();
 
       context.font = nodeFont;
 
-      var textWidth = context.measureText(this.data.label).width;
+      var textWidth = context.measureText(text).width;
       var textHeight = 16;
 
       canvas.width = (textWidth + 6) | 0;
@@ -375,7 +376,7 @@ jQuery.fn.springy = function(params) {
       context.shadowColor = "#000";
       context.shadowOffsetX = 1;
       context.shadowOffsetY = 1;
-      context.fillText(this.data.label, 3, 0);
+      context.fillText(text, 3, 0);
 
       this.textImage = canvas; 
     }
