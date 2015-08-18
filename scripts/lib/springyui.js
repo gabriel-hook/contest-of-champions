@@ -468,7 +468,7 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
-      var alpha = (isSelected === 0)? 0.1: 1.0;
+      var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
