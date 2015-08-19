@@ -124,7 +124,10 @@ jQuery.fn.springy = function(params) {
               selected.push( dragged.node );
             break;
           case "replace":
-            selected = [ dragged.node ];
+            if(index === -1)
+              selected = [ dragged.node ];
+            else
+              selected.push( dragged.node );
             break;
         }
         if(selected.length > maxTeamSize)
