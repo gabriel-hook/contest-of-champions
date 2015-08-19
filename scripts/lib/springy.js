@@ -408,6 +408,28 @@
 		});
 	};
 
+	// Physics stuff
+	Layout.ForceDirected.prototype.decayMasses = function() {
+		this.eachNode(function(node, point) {
+			if(point.active)
+				return;
+			if(point.m !== point.mass){
+				var difference = Math.abs(point.mass - point.m);
+				if(difference < 1){
+					point.m = point.mass;
+					point.delta = undefined;
+				}
+				else{
+					if(point.delta === undefined){
+						point.delta = Math.max(difference / 500, 1);
+						if(point.m < point.mass)
+							point.delta = -point.delta;
+					}
+					point.m -= point.delta
+				}
+			}
+		});
+	};
 
 	// Physics stuff
 	Layout.ForceDirected.prototype.applyCoulombsLaw = function() {
@@ -543,6 +565,7 @@
 	}
 
 	Layout.ForceDirected.prototype.tick = function(timestep) {
+		this.decayMasses();
 		this.applyCoulombsLaw();
 		this.applyHookesLaw();
 		this.attractToCentre();
@@ -633,7 +656,7 @@
 	// Point
 	Layout.ForceDirected.Point = function(position, mass) {
 		this.p = position; // position
-		this.m = mass; // mass
+		this.mass = this.m = mass; // mass
 		this.v = new Vector(0, 0); // velocity
 		this.a = new Vector(0, 0); // acceleration
 	};

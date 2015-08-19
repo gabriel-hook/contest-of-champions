@@ -80,6 +80,8 @@ jQuery.fn.springy = function(params) {
   function pointerStart(point){
     moved = 0;
     var nearest = layout.nearest(point);
+    if(dragged)
+      dragged.point.active = false;
     if(nearest.node !== null){
       if(nearest.distance > 1){
         dragged = null;
@@ -91,7 +93,8 @@ jQuery.fn.springy = function(params) {
         return;
       }
       dragged = nearest;
-      if (dragged.node !== null) {
+      if (dragged.node) {
+        dragged.point.active = true;
         dragged.point.m = 10000.0;
         dragged.point.p.x = point.x;
         dragged.point.p.y = point.y;
@@ -152,6 +155,7 @@ jQuery.fn.springy = function(params) {
         }
         edgeSelected = null;
       }
+      dragged.point.active = false;
       dragged = null;
     }
     else if(clicked)

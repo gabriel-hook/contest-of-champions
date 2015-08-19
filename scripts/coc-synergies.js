@@ -66,8 +66,8 @@ CoC.synergies.initialize=function(stars){
       healthsteal:"#af0"
     },
     springy = $('canvas').springy({
-      stiffness: animateFromTo(800, 200, 5000),
-      repulsion: animateFromTo(100, 10000, 5000),
+      stiffness: animateFromTo(1000, 200, 5000),
+      repulsion: animateFromTo(100, 1000, 5000),
       damping: 0.5,
       nodeSelected:nodeSelected
     }),
