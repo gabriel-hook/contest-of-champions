@@ -216,21 +216,17 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerStart(p);
 	});
-	$(canvas).on('mousemove', function(e) {
+	$(window).on('mousemove', function(e) {
     e.preventDefault();
 		var pos = $(canvas).offset(),
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerMove(p);
 	});
-	$(canvas).on('mouseleave',function(e) {
-    e.preventDefault();
-    pointerEnd(false, "replace");
-	});
   $(canvas).on('mouseup',function(e) {
     e.preventDefault();
     pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
   });
-	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
+	$(canvas).on('mousemove',function(e) {
     try{
   		var pos = $(canvas).offset(),
         point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
