@@ -166,6 +166,8 @@ jQuery.fn.springy = function(params) {
   
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
+    if(e.shiftKey || e.ctrlKey)
+      return;
     if(moved < 10 && selected.indexOf(dragged.node) !== -1)
       if(dragged.node.data.onOpen)
         dragged.node.data.onOpen();
@@ -173,10 +175,12 @@ jQuery.fn.springy = function(params) {
   
   $(canvas).on('dblclick', function(e) {
     e.preventDefault();
+    if(e.shiftKey || e.ctrlKey)
+      return;
 		var pos = $(canvas).offset(),
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
       nearest = layout.nearest(p);
-    if(moved < 10 && selected.length && nearest.node.id === selected[selected.length - 1].id)
+    if(selected.length && nearest.node.id === selected[selected.length - 1].id)
       selectedOpen(selected[selected.length - 1]);
 	});
 
