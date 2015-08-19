@@ -63,18 +63,54 @@ jQuery.fn.springy = function(params) {
 		return new Springy.Vector(px, py);
 	};
 
+
+	// half-assed drag and drop
+	var selected = [];
   var edgeSelected = null;
+	var dragged = null;
+  var moved = 0;
+
   this.selectEdgeType=function(type){
-    edgeSelected = type;
     selected = [];
+    edgeSelected = type;
     dragged = null;
     renderer.start();
   };
 
-	// half-assed drag and drop
-	var selected = [];
-	var dragged = null;
-  var moved = 0;
+  function addSelected(node){
+    var array = selected.slice(), index = array.indexOf(node);
+    if(index !== -1)
+      array.splice(index, 1);
+    array.push(node);
+    updateSelected(array);
+  }
+  function toggleSelected(node){
+    var array = selected.slice(), index = array.indexOf(node);
+    if(index !== -1)
+      array.splice(index, 1);
+    else
+      array.push(node);
+    updateSelected(array);
+  }
+  function replaceSelected(node){
+    var index = selected.indexOf(node);
+    if(index === -1)
+      updateSelected([ node ]);
+  }
+  function clearSelected(){
+    updateSelected([]);
+  }
+  function updateSelected(array){
+    if(array.length > maxTeamSize)
+      array = array.slice(-maxTeamSize);
+
+    for(var i=0; i<selected.length; i++)
+      selected[i].selected = false;
+
+    selected = array;
+    for(var i=0; i<selected.length; i++)
+      selected[i].selected = true;
+  }
 
 
   function pointerStart(point){
@@ -85,7 +121,7 @@ jQuery.fn.springy = function(params) {
     if(nearest.node !== null){
       if(nearest.distance > 1){
         dragged = null;
-        selected = [];
+        clearSelected()
         if(nodeSelected){
           nodeSelected(selected);
         }
@@ -115,26 +151,17 @@ jQuery.fn.springy = function(params) {
   function pointerEnd(clicked, selectType){
     if(dragged != null){
       if(moved < 10){
-        var index = selected.indexOf(dragged.node);
-        if(index !== -1)
-          selected.splice(index, 1);
         switch(selectType){
           case "add":
-            selected.push( dragged.node );
+            addSelected( dragged.node );
             break;
           case "toggle":
-            if(index === -1)
-              selected.push( dragged.node );
+            toggleSelected( dragged.node );
             break;
           case "replace":
-            if(index === -1)
-              selected = [ dragged.node ];
-            else
-              selected.push( dragged.node );
+            replaceSelected( dragged.node );
             break;
         }
-        if(selected.length > maxTeamSize)
-          selected = selected.slice(-maxTeamSize);
         if (nodeSelected){
           var selectedEdges = [];
           for(var i=0,edge; i<graph.edges.length; i++){
@@ -354,7 +381,7 @@ jQuery.fn.springy = function(params) {
 
 
   Springy.Node.prototype.isSelected = function() {
-    return selected.indexOf(this) !== -1;
+    return this.selected;
   }
 
   Springy.Node.prototype.isSelectedNeighbor = function() {

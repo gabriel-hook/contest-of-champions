@@ -411,7 +411,7 @@
 	// Physics stuff
 	Layout.ForceDirected.prototype.decayMasses = function() {
 		this.eachNode(function(node, point) {
-			if(point.active)
+			if(point.active || node.selected)
 				return;
 			if(point.m !== point.mass){
 				var difference = Math.abs(point.mass - point.m);
@@ -441,8 +441,8 @@
 					var direction = d.normalise();
 
 					// apply force to each end point
-					point1.applyForce(direction.multiply(this.repulsion()).divide(distance * distance * 0.5));
-					point2.applyForce(direction.multiply(this.repulsion()).divide(distance * distance * -0.5));
+					point1.applyForce(direction.multiply(this.repulsion()).divide(0.5 * distance * distance));
+					point2.applyForce(direction.multiply(this.repulsion()).divide(-0.5 * distance * distance));
 				}
 			});
 		});
@@ -455,8 +455,8 @@
 			var direction = d.normalise();
 
 			// apply force to each end point
-			spring.point1.applyForce(direction.multiply(spring.k() * displacement * -0.5));
-			spring.point2.applyForce(direction.multiply(spring.k() * displacement * 0.5));
+			spring.point1.applyForce(direction.multiply(-0.5 * spring.k() * displacement));
+			spring.point2.applyForce(direction.multiply(0.5 * spring.k() * displacement));
 		});
 	};
 
