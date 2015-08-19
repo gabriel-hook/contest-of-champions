@@ -77,6 +77,7 @@ jQuery.fn.springy = function(params) {
     renderer.start();
   };
 
+  //Selection Modifications
   function addSelected(node){
     var array = selected.slice(), index = array.indexOf(node);
     if(index !== -1)
@@ -112,7 +113,7 @@ jQuery.fn.springy = function(params) {
       selected[i].selected = true;
   }
 
-
+  //Pointer actions
   function pointerStart(point){
     moved = 0;
     var nearest = layout.nearest(point);
