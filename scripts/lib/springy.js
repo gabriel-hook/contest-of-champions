@@ -413,15 +413,14 @@
 	Layout.ForceDirected.prototype.applyCoulombsLaw = function() {
 		this.eachNode(function(n1, point1) {
 			this.eachNode(function(n2, point2) {
-				if (point1 !== point2)
-				{
+				if (point1 !== point2) {
 					var d = point1.p.subtract(point2.p);
 					var distance = d.magnitude() + 0.1; // avoid massive forces at small distances (and divide by zero)
 					var direction = d.normalise();
 
 					// apply force to each end point
-					point1.applyForce(direction.multiply(this.repulsion).divide(distance * distance * 0.5));
-					point2.applyForce(direction.multiply(this.repulsion).divide(distance * distance * -0.5));
+					point1.applyForce(direction.multiply(this.repulsion()).divide(distance * distance * 0.5));
+					point2.applyForce(direction.multiply(this.repulsion()).divide(distance * distance * -0.5));
 				}
 			});
 		});
@@ -434,15 +433,15 @@
 			var direction = d.normalise();
 
 			// apply force to each end point
-			spring.point1.applyForce(direction.multiply(spring.k * displacement * -0.5));
-			spring.point2.applyForce(direction.multiply(spring.k * displacement * 0.5));
+			spring.point1.applyForce(direction.multiply(spring.k() * displacement * -0.5));
+			spring.point2.applyForce(direction.multiply(spring.k() * displacement * 0.5));
 		});
 	};
 
 	Layout.ForceDirected.prototype.attractToCentre = function() {
 		this.eachNode(function(node, point) {
 			var direction = point.p.multiply(-1.0);
-			point.applyForce(direction.multiply(this.repulsion / 50.0));
+			point.applyForce(direction.multiply(this.repulsion() / 50.0));
 		});
 	};
 
@@ -521,6 +520,8 @@
 				rendering = false;
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
+			else
+				console.log("STOP")
     }, milliseconds);
 
     //do renders every animation frame

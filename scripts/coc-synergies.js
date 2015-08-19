@@ -6,6 +6,43 @@ CoC.synergies.version = "1.1.0";
 CoC.synergies.initialize=function(stars){
   console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
   
+  var nodeSelected = function(nodes, edges){
+    $('#legend div').removeClass('selected');
+    $('#legend div span').text("");
+    if(nodes.length === 0){
+      $('#legend').removeClass('selected');
+    }
+    else if(edges !== undefined){
+      $('#legend').addClass('selected');
+      for(var i=0; i<edges.length; i++){
+        $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
+      }
+      if(nodes.length > 1){
+        var amounts = {};
+        for(var i=0; i<edges.length; i++)
+          amounts[ edges[i].data.effect ] = edges[i].data.amount + 
+            (amounts[ edges[i].data.effect ] || 0);
+        for(var effect in amounts)
+          $('#legend div[effectId='+effect+'] span').text(" - " + amounts[effect] + "%");
+      }
+    }
+    CoC.synergies.updateLegend();
+  };
+
+  function animateFromTo(from, to, milliseconds){
+    var start = new Date(), done = (from === to);
+    return function(){
+      if(done)
+        return to;
+      var now = new Date(), fraction = (now - start)/ milliseconds;
+      if(fraction >= 1){
+        done = true;
+        return to;
+      }
+      return from + (to - from) * fraction;
+    }
+  }
+
   var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1),
     typeColors = {
       cosmic:"#3af",
@@ -29,31 +66,10 @@ CoC.synergies.initialize=function(stars){
       healthsteal:"#af0"
     },
     springy = $('canvas').springy({
-      stiffness: 100.0,
-      repulsion: 800.0,
+      stiffness: animateFromTo(800, 200, 5000),
+      repulsion: animateFromTo(100, 10000, 5000),
       damping: 0.5,
-      nodeSelected:function(nodes, edges){
-        $('#legend div').removeClass('selected');
-        $('#legend div span').text("");
-        if(nodes.length === 0){
-          $('#legend').removeClass('selected');
-        }
-        else if(edges !== undefined){
-          $('#legend').addClass('selected');
-          for(var i=0; i<edges.length; i++){
-            $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
-          }
-          if(nodes.length > 1){
-            var amounts = {};
-            for(var i=0; i<edges.length; i++)
-              amounts[ edges[i].data.effect ] = edges[i].data.amount + 
-                (amounts[ edges[i].data.effect ] || 0);
-            for(var effect in amounts)
-              $('#legend div[effectId='+effect+'] span').text(" - " + amounts[effect] + "%");
-          }
-        }
-        CoC.synergies.updateLegend();
-      }
+      nodeSelected:nodeSelected
     }),
     nodes = {}, effects = {};
   
@@ -91,7 +107,6 @@ CoC.synergies.initialize=function(stars){
     })(champions[i]);
     
   //add edges
-  var synergies = CoC.data.synergies.where({ fromStars:stars });
   function addNeighbors(fromId, toId, effectId){
     var nodeFrom = nodes[fromId], nodeTo = nodes[toId];
     nodeFrom.data.neighbors[nodeTo.id] = true;
@@ -99,6 +114,7 @@ CoC.synergies.initialize=function(stars){
     nodeTo.data.neighbors[nodeFrom.id] = true; 
     nodeTo.data.effects[effectId] = true;
   }
+  var synergies = CoC.data.synergies.where({ fromStars:stars });
   for(var i=0; i<synergies.length; i++){
     var synergy = synergies[i];
     if(nodes[ synergy.get("fromId") ] === undefined || nodes[ synergy.get("toId") ] === undefined)

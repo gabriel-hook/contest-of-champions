@@ -29,8 +29,8 @@ Copyright (c) 2010 Dennis Hotson
 jQuery.fn.springy = function(params) {
 	var nodeFont = "16px Hanzel, sans-serif";
 	var edgeFont = "8px Verdana, sans-serif";
-	var stiffness = params.stiffness || 400.0;
-	var repulsion = params.repulsion || 400.0;
+	var stiffness = params.stiffness || function(){ return 400.0 };
+	var repulsion = params.repulsion || function(){ return 400.0 };
 	var damping = params.damping || 0.5;
 	var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
 	var nodeSelected = params.nodeSelected || null;
@@ -222,11 +222,15 @@ jQuery.fn.springy = function(params) {
       p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
     pointerMove(p);
 	});
-  $(canvas).on('mouseup',function(e) {
+	$('body').on('mouseleave',function(e) {
+    e.preventDefault();
+    pointerEnd(false, "replace");
+	});
+  $(window).on('mouseup',function(e) {
     e.preventDefault();
     pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
   });
-	$(canvas).on('mousemove',function(e) {
+	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
     try{
   		var pos = $(canvas).offset(),
         point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
