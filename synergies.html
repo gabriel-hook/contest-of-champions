@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
   <head>
     <title>Champion Synergies</title>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <!-- Viewport and theme color -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#b0b0b0">
     <!-- Icons, description and sharing information -->
@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="css/coc-synergies.css" media="all">
     <script type="text/javascript" src="scripts/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="scripts/lib/underscore-min.js"></script>
-    <script type="text/javascript" src="scripts/lib/backbone-min.js"></script>
   </head>
   <body>
     <div id="popup-share" 
@@ -81,6 +79,9 @@
       <canvas></canvas>
       <div id="legend"></div>
     </div>
+    <!-- Libraries -->
+    <script type="text/javascript" src="scripts/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone-min.js"></script>
     <!-- Model definitions -->
     <script type="text/javascript" src="scripts/model/champion.js"></script>
     <script type="text/javascript" src="scripts/model/effect.js"></script>
@@ -99,14 +100,14 @@
     <script type="text/javascript" src="scripts/coc-synergies.js"></script>
     <!-- Init -->
     <script type="text/javascript">
+      $(window).on('resize', CoC.synergies.canvasResize);
+      $(document).on('ready', CoC.synergies.canvasResize);
+      CoC.synergies.canvasResize();
       var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7), 10))) || 2;
       if(location.search === "?stars=" + stars){
         $('.page').on('pageshow', function(){
             CoC.synergies.initialize(stars);
         });
-        $(window).on('resize', CoC.synergies.canvasResize);
-        $(document).on('ready', CoC.synergies.canvasResize);
-        CoC.synergies.canvasResize();
       }
       else
         location.search = "?stars=" + stars;
