@@ -210,9 +210,10 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     if(e.shiftKey || e.ctrlKey)
       return;
-    if(moved < 10 && dragged && selected.indexOf(dragged.node) !== -1)
-      if(dragged.node.data.onOpen)
-        dragged.node.data.onOpen();
+    if(moved < 10 && dragged && dragged.node.isSelected()){
+      selectedOpen(dragged.node);
+      pointerEnd();
+    }
 	});
   
   $(canvas).on('dblclick', function(e) {
@@ -220,10 +221,9 @@ jQuery.fn.springy = function(params) {
     if(e.shiftKey || e.ctrlKey)
       return;
 		var pos = $(canvas).offset(),
-      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
-      nearest = layout.nearest(p);
-    if(selected.length && nearest.node.id === selected[selected.length - 1].id)
-      selectedOpen(selected[selected.length - 1]);
+      nearest = nearestNode(e.pageX - pos.left, e.pageY - pos.top, true);
+    if(nearest && nearest.isSelected())
+      selectedOpen(nearest);
 	});
 
   $(canvas).on('touchstart', function(e){
