@@ -153,6 +153,7 @@ CoC.synergies.initialize=function(stars){
       $('#legend').addClass('selected');
       $('#legend div').removeClass('selected');
       $('#legend div[effectId='+uid+']').addClass('selected');
+      $('#legend div span').empty();
       springy.selectEdgeType(uid);
     }));
   });
