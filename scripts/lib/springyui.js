@@ -71,7 +71,7 @@ jQuery.fn.springy = function(params) {
   var moved = 0;
 
   this.selectEdgeType=function(type){
-    selected = [];
+    clearSelected();
     edgeSelected = type;
     dragged = null;
     renderer.start();
