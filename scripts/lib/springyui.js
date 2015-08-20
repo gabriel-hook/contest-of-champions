@@ -200,7 +200,7 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     if(e.shiftKey || e.ctrlKey)
       return;
-    if(moved < 10 && selected.indexOf(dragged.node) !== -1)
+    if(moved < 10 && dragged && selected.indexOf(dragged.node) !== -1)
       if(dragged.node.data.onOpen)
         dragged.node.data.onOpen();
 	});
