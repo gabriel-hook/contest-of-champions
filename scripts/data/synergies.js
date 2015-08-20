@@ -167,9 +167,11 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
   { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
 
+/*
   { fromId:"magneto", fromStars:2, toId:"wolverine", effectId:"critrate", effectAmount:5 },
   { fromId:"magneto", fromStars:2, toId:"cyclops", effectId:"block", effectAmount:10 },
   { fromId:"magneto", fromStars:2, toId:"storm", effectId:"critdamage", effectAmount:15 },
+*/
   { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
   { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
   { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
@@ -305,9 +307,8 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"spiderman", fromStars:4, toId:"hawkeye", effectId:"attack", effectAmount:6 },
   { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
   { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
-/*
+
   { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
-*/
   { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
   { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
   
