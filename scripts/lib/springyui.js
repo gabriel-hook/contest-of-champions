@@ -63,6 +63,19 @@ jQuery.fn.springy = function(params) {
 		return new Springy.Vector(px, py);
 	};
 
+  function nearestNode(x, y, inside){
+    var nearest = {};
+    graph.nodes.forEach(function(node){
+      var distance = node.distance(x, y);
+      if(nearest.distance === undefined || distance < nearest.distance)
+        if(!inside || node.insideBoundingBox(x, y))
+          nearest = {
+            node:node,
+            distance:distance
+          };
+    });
+    return nearest.node;
+  }
 
 	// half-assed drag and drop
 	var selected = [];
@@ -114,33 +127,30 @@ jQuery.fn.springy = function(params) {
   }
 
   //Pointer actions
-  function pointerStart(point){
-    moved = 0;
-    var nearest = layout.nearest(point);
+  function pointerStart(coords){
     if(dragged)
       dragged.point.active = false;
-    if(nearest.node !== null){
-      if(nearest.distance > 1){
-        dragged = null;
-        clearSelected()
-        if(nodeSelected){
-          nodeSelected(selected);
-        }
-        renderer.start();
-        return;
-      }
-      dragged = nearest;
-      if (dragged.node) {
-        dragged.point.active = true;
-        dragged.point.m = 10000.0;
-        dragged.point.p.x = point.x;
-        dragged.point.p.y = point.y;
+    var nearest = nearestNode(coords.x, coords.y, true);
+    if(!nearest){
+      clearSelected()
+      if(nodeSelected){
+        nodeSelected(selected);
       }
     }
+    else{
+      var point = fromScreen(coords);
+      dragged = { node:nearest, point:layout.point(nearest) };
+      dragged.point.active = true;
+      dragged.point.m = 10000.0;
+      dragged.point.p.x = point.x;
+      dragged.point.p.y = point.y;
+    }
+    moved = 0;
 		renderer.start();
   }
   
-  function pointerMove(point){
+  function pointerMove(coords){
+    var point = fromScreen(coords);
 		if (dragged !== null) {
       moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
 			dragged.point.p.x = point.x;
@@ -219,16 +229,14 @@ jQuery.fn.springy = function(params) {
   $(canvas).on('touchstart', function(e){
     e.preventDefault();
 		var pos = $(canvas).offset(),
-      event = window.event,
-      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
-    pointerStart(p);
+      event = window.event;
+    pointerStart({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
   });
   $(canvas).on('touchmove', function(e) {
     e.preventDefault();
     var event = window.event,
-      pos = $(canvas).offset(),
-      p = fromScreen({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
-    pointerMove(p);
+      pos = $(canvas).offset();
+    pointerMove({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
   });
   $(canvas).on('touchend',function(e) {
     e.preventDefault();
@@ -244,15 +252,13 @@ jQuery.fn.springy = function(params) {
 
 	$(canvas).on('mousedown', function(e) {
     e.preventDefault();
-		var pos = $(canvas).offset(),
-      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    pointerStart(p);
+		var pos = $(canvas).offset();
+    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top});
 	});
 	$(window).on('mousemove', function(e) {
     e.preventDefault();
-		var pos = $(canvas).offset(),
-      p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
-    pointerMove(p);
+		var pos = $(canvas).offset();
+    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top});
 	});
 	$('body').on('mouseleave',function(e) {
     e.preventDefault();
@@ -263,18 +269,14 @@ jQuery.fn.springy = function(params) {
     pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
   });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
-    try{
-  		var pos = $(canvas).offset(),
-        point = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top}),
-        o = layout.nearest(point),
-        cursor = 'auto';
-      if(o.node !== null && o.distance <= 1)
-          cursor = 'pointer';
-      $(canvas).css('cursor', cursor);
-    }
-    catch(x){
-      console.log(e);
-    }
+    var pos = $(canvas).offset(),
+      x = e.pageX - pos.left,
+      y = e.pageY - pos.top,
+      node = nearestNode(x, y, true),
+      cursor = 'auto';
+    if(node)
+      cursor = 'pointer';
+    $(canvas).css('cursor', cursor);
 	});
 
   nodeImageContextQueue.list = [];
@@ -396,6 +398,20 @@ jQuery.fn.springy = function(params) {
     return getPlaceholder(size, color);
   }
 
+  Springy.Node.prototype.setBoundingBox = function(x, y, width, height) {
+    this.bb = { left:x, top:y, right:x+width, bottom:y+height, x:(x+width/2)|0, y:(y+height/2)|0 };
+  }
+
+  Springy.Node.prototype.insideBoundingBox = function(x, y) {
+    return this.bb && this.bb.left <= x && this.bb.right >= x && this.bb.top <= y && this.bb.bottom >= y;
+  }
+
+  Springy.Node.prototype.distance = function(x, y) {
+    if(!this.bb)
+      return null;
+    var dx = this.bb.x - x, dy = this.bb.y - y;
+    return Math.sqrt(dx*dx + dy*dy);
+  }
 
   Springy.Node.prototype.isSelected = function() {
     return this.selected;
@@ -580,6 +596,7 @@ jQuery.fn.springy = function(params) {
         size = node.getSize(),
         fullSize = size | 0, 
         halfSize = (size / 2) | 0;
+      node.setBoundingBox(x - halfSize, y - halfSize, fullSize, fullSize);
 
       //draw the portrait
       var image = node.getPortraitImage(size);
@@ -595,6 +612,7 @@ jQuery.fn.springy = function(params) {
         size = node.getSize(),
         fullSize = size | 0, 
         halfSize = (size / 2) | 0;
+      node.setBoundingBox(x - halfSize, y - halfSize, fullSize, fullSize);
 
       ctx.globalAlpha = 1.0;
 
