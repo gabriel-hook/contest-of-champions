@@ -22,6 +22,17 @@ body.ui-mobile-viewport,
   background-attachment: fixed;
 }
 
+@media screen and (orientation: portrait){
+  .ui-mobile .ui-page {
+    min-height: 100%;
+  }
+}
+@media screen and (orientation: landscape){
+  .ui-mobile .ui-page {
+    min-height: 100%;
+  }
+}
+
 .header{
   position:absolute;
   box-sizing: border-box;
