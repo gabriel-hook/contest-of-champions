@@ -154,6 +154,7 @@ jQuery.fn.springy = function(params) {
       moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
 			dragged.point.p.x = point.x + dragged.offset.x;
 			dragged.point.p.y = point.y + dragged.offset.y;
+      dragged.point.m = 10000.0;
 		}
 		renderer.start();
   }
@@ -293,7 +294,7 @@ jQuery.fn.springy = function(params) {
       delete nodeImageContextQueue.timeout;
       delete nodeImageContextQueue.todo[id];
       nodeImageContextQueue.next();
-    }, 50);
+    }, 1);
   }
 
   function buildPortaitContexts(image, color){
@@ -335,7 +336,7 @@ jQuery.fn.springy = function(params) {
     if(!placeholders[id]){
       var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
-        barHeight = Math.max(2, (size/10) | 0),
+        barHeight = Math.max(2, (size / 10) | 0),
         placeholder = getDefaultPlaceholder();
       canvas.height = canvas.width = size;
       context.drawImage(placeholder, 0, 0, canvas.width, canvas.height);
@@ -348,50 +349,50 @@ jQuery.fn.springy = function(params) {
 
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.getPortraitImage = function(size) {
-    var img = this.data.image, color = this.data.color || "#111111";
+    var portrait, img = this.data.image, color = this.data.color || "#111111";
     size = size | 0;
-
-    if(img === undefined)
-      return;
-
-    var src = img.src;
-    if (src in nodeImages) {
-      if (nodeImages[src].loaded) {
-        //sample down for better antialiasing
-        var contexts = nodeImageContexts[src], context;
-        for(var i=0; i < contexts.length; i++)
-          if(contexts[i].canvas.width < (size << 1)){
-            context = contexts[i];
-            break;
+    if(img){
+      var src = img.src;
+      if (src in nodeImages) {
+        if (nodeImages[src].loaded) {
+          //sample down for better antialiasing
+          var contexts = nodeImageContexts[src], context, target = ceilPower2(size);
+          for(var i=0; i < contexts.length; i++)
+            if(contexts[i].canvas.width <= target){
+              context = contexts[i];
+              break;
+            }
+          //if we are too big, use the smallest one, and then resize with timer,
+          // and only do one at a time
+          if(context === undefined){
+            context = contexts[contexts.length - 1];
+            if(!nodeImageContextQueue.todo[src]){
+              nodeImageContextQueue.add(src, function(){
+                var resizeCanvas = document.createElement('canvas'),
+                    resizeContext = resizeCanvas.getContext('2d');
+                resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
+                resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
+                contexts.push( buildPortaitContexts(resizeCanvas, color) );
+              });
+            }
           }
-        //if we are too big, use the smallest one, and then resize with timer,
-        // and only do one at a time
-        if(context === undefined){
-          context = contexts[contexts.length - 1];
-          if(!nodeImageContextQueue.todo[src]){
-            nodeImageContextQueue.add(src, function(){
-              var resizeCanvas = document.createElement('canvas'),
-                  resizeContext = resizeCanvas.getContext('2d');
-              resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
-              resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
-              contexts.push( buildPortaitContexts(resizeCanvas, color) );
-            });
-          }
+          portrait = context.canvas;
         }
-        return context.canvas;
+      }
+      else{
+        nodeImages[src] = {};
+        var image = new Image();
+        nodeImages[src].object = image;
+        image.addEventListener("load", function () {
+          nodeImages[src].loaded = true;
+          nodeImageContexts[src] = [ buildPortaitContexts(image, color) ];
+        });
+        image.src = src;
       }
     }
-    else{
-      nodeImages[src] = {};
-      var image = new Image();
-      nodeImages[src].object = image;
-      image.addEventListener("load", function () {
-        nodeImages[src].loaded = true;
-        nodeImageContexts[src] = [ buildPortaitContexts(image, color) ];
-      });
-      image.src = src;
-    }
-    return getPlaceholder(size, color);
+    if(!portrait)
+      portrait = getPlaceholder(size, color);
+    return portrait;
   }
 
   Springy.Node.prototype.setBoundingBox = function(x, y, width, height) {
@@ -670,6 +671,20 @@ jQuery.fn.springy = function(params) {
 
 		return false;
 	}
+
+  function ceilPower2(number){
+    ceilPower2 = function(number){
+      if(ceilPower2.list[number] === undefined){
+        var i = 1;
+        while(i < number)
+          i = i << 1;
+        ceilPower2.list[number] = i;
+      }
+      return ceilPower2.list[number];
+    }
+    ceilPower2.list = {};
+    return ceilPower2(number);
+  }
 
 	return this;
 }
