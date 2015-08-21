@@ -534,34 +534,30 @@ jQuery.fn.springy = function(params) {
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
-
-			var paddingX = 6;
-			var paddingY = 6;
-			var boxWidth = edge.target.getSize() + paddingX;
-			var boxHeight = edge.target.getSize() + paddingY;
-
-			var intersection = intersect_line_box(s1, s2, {x: point2.x-boxWidth/2.0, y: point2.y-boxHeight/2.0}, boxWidth, boxHeight);
+			var padding = 6;
+			//var boxSize = edge.target.getSize() + padding;
+			//var intersection = intersect_line_box(s1, s2, {x: point2.x-boxSize/2.0, y: point2.y-boxSize/2.0}, boxSize, boxSize);
+      var intersection = intersect_line_node(s1, s2, edge.target, padding);
 			if (!intersection) {
 				intersection = s2;
 			}
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
 			var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
-
-      //line
-      ctx.save();
-			ctx.lineWidth = Math.max(weight *  2, 0.1);
-      
-			var arrowWidth = 1 + ctx.lineWidth;
+      var width = Math.max(weight *  2, 0.1);
+      var arrowWidth = 1 + width;
       var arrowLength = 8;
       var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
+      //line
+      ctx.save();
+			ctx.lineWidth = width;
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
 			ctx.beginPath();
 			ctx.moveTo(s1.x | 0, s1.y | 0);
-			ctx.lineTo(lineEnd.x | 0, lineEnd.y | 0);
+			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
       ctx.restore();
 			// arrow
@@ -569,7 +565,7 @@ jQuery.fn.springy = function(params) {
 				ctx.save();
         ctx.globalAlpha = alpha;
 				ctx.fillStyle = stroke;
-				ctx.translate(intersection.x | 0, intersection.y | 0);
+				ctx.translate(intersection.x, intersection.y);
 				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
 				ctx.beginPath();
 				ctx.moveTo(-arrowLength, arrowWidth);
@@ -673,6 +669,27 @@ jQuery.fn.springy = function(params) {
 
 		return false;
 	}
+
+  function intersect_line_node(p1, p2, node, padding){
+    if(!node.bb)
+      return false;
+
+    //find the fast intersect
+    var size = node.getSize(), halfSize = size >> 1,
+      point = intersect_line_box(p1, p2, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
+    if(!point)
+      return false;
+
+    //now check per pixel from outside in
+    var delta = p2.subtract(p1).normalise(), i=0;
+    do{
+      if(++i > halfSize)
+        break;
+      point = point.add(delta);
+    }
+    while(!node.insideBoundingBox(point.x, point.y))
+    return point.subtract(delta.multiply(padding));
+  }
 
   function ceilPower2(number){
     ceilPower2 = function(number){
