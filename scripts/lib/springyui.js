@@ -251,6 +251,8 @@ jQuery.fn.springy = function(params) {
 	});
 
 	$(canvas).on('mousedown', function(e) {
+    if(e.button === 2)
+      return;
     e.preventDefault();
 		var pos = $(canvas).offset();
     pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top});
