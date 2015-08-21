@@ -139,11 +139,8 @@ jQuery.fn.springy = function(params) {
     }
     else{
       var point = fromScreen(coord);
-      dragged = { 
-        node:node, 
-        point:layout.point(node),
-      };
-      dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y }
+      dragged = { node:node, point:layout.point(node) };
+      dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y };
       dragged.point.active = true;
       dragged.point.m = 10000.0;
     }
