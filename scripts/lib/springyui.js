@@ -63,12 +63,12 @@ jQuery.fn.springy = function(params) {
 		return new Springy.Vector(px, py);
 	};
 
-  function nearestNode(x, y, inside){
+  function findNodeAt(coord){
     var nearest = {};
     graph.nodes.forEach(function(node){
-      var distance = node.distance(x, y);
+      var distance = node.distance(coord.x, coord.y);
       if(nearest.distance === undefined || distance < nearest.distance)
-        if(!inside || node.insideBoundingBox(x, y))
+        if(node.insideBoundingBox(coord.x, coord.y))
           nearest = {
             node:node,
             distance:distance
@@ -127,19 +127,19 @@ jQuery.fn.springy = function(params) {
   }
 
   //Pointer actions
-  function pointerStart(coords){
+  function pointerStart(coord){
     if(dragged)
       dragged.point.active = false;
-    var nearest = nearestNode(coords.x, coords.y, true);
-    if(!nearest){
+    var node = findNodeAt(coord);
+    if(!node){
       clearSelected()
       if(nodeSelected){
         nodeSelected(selected);
       }
     }
     else{
-      var point = fromScreen(coords);
-      dragged = { node:nearest, point:layout.point(nearest) };
+      var point = fromScreen(coord);
+      dragged = { node:node, point:layout.point(node) };
       dragged.point.active = true;
       dragged.point.m = 10000.0;
       dragged.point.p.x = point.x;
@@ -149,8 +149,8 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerMove(coords){
-    var point = fromScreen(coords);
+  function pointerMove(coord){
+    var point = fromScreen(coord);
 		if (dragged !== null) {
       moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
 			dragged.point.p.x = point.x;
@@ -221,9 +221,9 @@ jQuery.fn.springy = function(params) {
     if(e.shiftKey || e.ctrlKey)
       return;
 		var pos = $(canvas).offset(),
-      nearest = nearestNode(e.pageX - pos.left, e.pageY - pos.top, true);
-    if(nearest && nearest.isSelected())
-      selectedOpen(nearest);
+      node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top });
+    if(node && node.isSelected())
+      selectedOpen(node);
 	});
 
   $(canvas).on('touchstart', function(e){
@@ -270,9 +270,7 @@ jQuery.fn.springy = function(params) {
   });
 	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
     var pos = $(canvas).offset(),
-      x = e.pageX - pos.left,
-      y = e.pageY - pos.top,
-      node = nearestNode(x, y, true),
+      node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top}),
       cursor = 'auto';
     if(node)
       cursor = 'pointer';
