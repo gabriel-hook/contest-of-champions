@@ -299,7 +299,6 @@ jQuery.fn.springy = function(params) {
     }, 50);
   }
 
-
   function buildPortaitContexts(image, color){
     var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
@@ -402,8 +401,19 @@ jQuery.fn.springy = function(params) {
     this.bb = { left:x, top:y, right:x+width, bottom:y+height, x:(x+width/2)|0, y:(y+height/2)|0 };
   }
 
+  //return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.insideBoundingBox = function(x, y) {
-    return this.bb && this.bb.left <= x && this.bb.right >= x && this.bb.top <= y && this.bb.bottom >= y;
+    if(this.bb && this.bb.left <= x && this.bb.right >= x && this.bb.top <= y && this.bb.bottom >= y){
+      if(this.image){
+        var px = (this.image.width * (x - this.bb.left) / (this.bb.right - this.bb.left)) | 0,
+          py = (this.image.height * (y - this.bb.top) / (this.bb.bottom - this.bb.top)) | 0,
+          pixel = this.image.getContext('2d').getImageData(px, py, 1, 1).data;
+        if(pixel[3] === 0)
+          return false;
+      }
+      return true;
+    }
+    return false;
   }
 
   Springy.Node.prototype.distance = function(x, y) {
@@ -599,8 +609,8 @@ jQuery.fn.springy = function(params) {
       node.setBoundingBox(x - halfSize, y - halfSize, fullSize, fullSize);
 
       //draw the portrait
-      var image = node.getPortraitImage(size);
-      ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
+      node.image = node.getPortraitImage(size);
+      ctx.drawImage(node.image, x - halfSize, y - halfSize, fullSize, fullSize);
 		},
 		function drawNodeOverlay(node, p) {
       if (!node.isSelected())
@@ -617,8 +627,8 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = 1.0;
 
       //draw the portrait
-      var image = node.getPortraitImage(size);
-      ctx.drawImage(image, x - halfSize, y - halfSize, fullSize, fullSize);
+      node.image = node.getPortraitImage(size);
+      ctx.drawImage(node.image, x - halfSize, y - halfSize, fullSize, fullSize);
 
       //draw the portrait text
       var text = node.getPortraitTextImage();
