@@ -223,7 +223,7 @@ canvas.hover{
   cursor:-webkit-grab;
 }
 canvas.dragging{
-  cursor:pointer;
+  cursor:move;
   cursor:-moz-grabbing;
   cursor:-webkit-grabbing;
 }

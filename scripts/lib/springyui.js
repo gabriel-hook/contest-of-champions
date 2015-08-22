@@ -119,13 +119,14 @@ jQuery.fn.springy = function(params) {
     if(index === -1)
       updateSelected([ node ]);
   }
-  function boxSelected(){
+  function boxSelected(selectType){
     //select the first 5 closest to the start point and inside
     var x1 = Math.min(selectBox.start.x, selectBox.end.x) | 0,
       y1 = Math.min(selectBox.start.y, selectBox.end.y) | 0,
       x2 = x1 + Math.abs(selectBox.start.x - selectBox.end.x) | 0,
       y2 = y1 + Math.abs(selectBox.start.y - selectBox.end.y) | 0;
-    var array = []
+
+    var array = [];
     graph.nodes.forEach(function(node){
       if(!node.bb)
         return;
@@ -141,6 +142,25 @@ jQuery.fn.springy = function(params) {
     });
     for(var i=0; i<array.length; i++)
       array[i] = array[i].node;
+
+    if(selectType === "add"){
+      for(var i=0; i<selectBox.before.length; i++){
+        var index = array.indexOf(selectBox.before[i]);
+        if(index !== -1)
+          array.splice(index, 1);
+        array.push(selectBox.before[i]);
+      }
+    }
+    if(selectType === "toggle"){
+      for(var i=0; i<selectBox.before.length; i++){
+        var index = array.indexOf(selectBox.before[i]);
+        if(index !== -1)
+          array.splice(index, 1);
+        else
+          array.push(selectBox.before[i]);
+      }
+    }
+
     updateSelected(array);
   }
   function clearSelected(){
@@ -157,18 +177,38 @@ jQuery.fn.springy = function(params) {
     for(var i=0; i<selected.length; i++)
       selected[i].selected = true;
   }
+  function updateNodesSelected(){
+    if (nodeSelected){
+      var selectedEdges = [];
+      for(var i=0,edge; i<graph.edges.length; i++){
+        edge = graph.edges[i];
+        if(selected.length > 1){
+
+          for(var j=0; j<selected.length; j++)
+            for(var k=0; k<selected.length; k++)
+              if(selected[j] === edge.source && selected[k] === edge.target)
+                selectedEdges.push(edge);
+        }
+        else
+          for(var j=0; j<selected.length; j++)
+            if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
+              selectedEdges.push(edge);
+      }
+      nodeSelected(selected, selectedEdges);
+    }
+  }
 
   //Pointer actions
-  function pointerStart(coord){
+  function pointerStart(coord, selectType){
     if(dragged)
       dragged.point.active = false;
     var node = findNodeAt(coord);
     if(!node){
-      clearSelected()
-      if(nodeSelected){
-        nodeSelected(selected);
+      if(!selectType || selectType === "replace"){
+        clearSelected();
+        updateNodesSelected();
       }
-      selectBox = { start: coord };
+      selectBox = { start: coord, before:selected };
     }
     else{
       var point = fromScreen(coord);
@@ -181,7 +221,7 @@ jQuery.fn.springy = function(params) {
 		renderer.start();
   }
   
-  function pointerMove(coord){
+  function pointerMove(coord, selectType){
     var point = fromScreen(coord);
 		if (dragged !== null) {
       moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
@@ -191,10 +231,8 @@ jQuery.fn.springy = function(params) {
 		}
     else if(selectBox){
       selectBox.end = coord;
-      boxSelected();
-      if(nodeSelected){
-        nodeSelected(selected);
-      }
+      boxSelected(selectType);
+      updateNodesSelected();
     }
 		renderer.start();
   }
@@ -214,24 +252,7 @@ jQuery.fn.springy = function(params) {
             replaceSelected( dragged.node );
             break;
         }
-        if (nodeSelected){
-          var selectedEdges = [];
-          for(var i=0,edge; i<graph.edges.length; i++){
-            edge = graph.edges[i];
-            if(selected.length > 1){
-
-              for(var j=0; j<selected.length; j++)
-                for(var k=0; k<selected.length; k++)
-                  if(selected[j] === edge.source && selected[k] === edge.target)
-                    selectedEdges.push(edge);
-            }
-            else
-              for(var j=0; j<selected.length; j++)
-                if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
-                  selectedEdges.push(edge);
-          }
-          nodeSelected(selected, selectedEdges);
-        }
+        updateNodesSelected();
         edgeSelected = null;
       }
       dragged.point.active = false;
@@ -311,12 +332,12 @@ jQuery.fn.springy = function(params) {
       return;
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top}, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
 	});
 	$(window).on('mousemove', function(e) {
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top});
+    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top}, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
 	});
   /*
 	$('body').on('mouseleave',function(e) {
