@@ -294,13 +294,25 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
   });
-	$(canvas).on('mousemove mouseenter mouseleave',function(e) {
-    var pos = $(canvas).offset(),
-      node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top}),
-      cursor = 'auto';
-    if(node)
-      cursor = 'pointer';
-    $(canvas).css('cursor', cursor);
+	$(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
+    var state = '';
+    if(dragged != null)
+      state = 'dragging';
+    else{
+      var pos = $(canvas).offset();
+      if(findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top}))
+        state = 'hover';
+    }
+    switch(state){
+      case 'dragging':
+        $(canvas).removeClass('hover').addClass('dragging');
+        break;
+      case 'hover':
+        $(canvas).removeClass('dragging').addClass('hover');
+        break;
+      default:
+        $(canvas).removeClass('dragging').removeClass('hover');
+    }
 	});
 
   nodeImageContextQueue.list = [];
