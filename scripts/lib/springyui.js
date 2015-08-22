@@ -570,13 +570,8 @@ jQuery.fn.springy = function(params) {
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
-			var padding = 6;
-			//var boxSize = edge.target.getSize() + padding;
-			//var intersection = intersect_line_box(s1, s2, {x: point2.x-boxSize/2.0, y: point2.y-boxSize/2.0}, boxSize, boxSize);
+			var padding = Math.max(2, edge.target.getSize() / 10);
       var intersection = intersect_line_node(s1, s2, edge.target, padding);
-			if (!intersection) {
-				intersection = s2;
-			}
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
 			var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
@@ -706,20 +701,22 @@ jQuery.fn.springy = function(params) {
 		return false;
 	}
 
-  function intersect_line_node(p1, p2, node, padding){
+  function intersect_line_node(start, end, node, padding){
     if(!node.bb)
-      return false;
+      return end;
 
     //find the fast intersect
     var size = node.getSize(), halfSize = size >> 1,
-      point = intersect_line_box(p1, p2, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
+      point = intersect_line_box(start, end, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
     if(!point)
-      return false;
+      return end;
+
+    var delta = end.subtract(start).normalise();
     if(size <= 32)
-      return point;
+      return point.subtract(delta.multiply(padding));
 
     //now check per pixel from outside in
-    var delta = p2.subtract(p1).normalise(), i=0;
+    var i = 0;
     do{
       if(++i > halfSize)
         break;
