@@ -247,9 +247,9 @@ jQuery.fn.springy = function(params) {
         break;
     }
   });
-  $(window).on('shake', function(e){
+  window.addEventListener('shake', function(e){
     graphShake();
-  });
+  }, false);
   $(canvas).on('touchstart', function(e){
     e.preventDefault();
 		var pos = $(canvas).offset(),
