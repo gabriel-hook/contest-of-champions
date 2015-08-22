@@ -589,28 +589,25 @@
 		return min;
 	};
 
+
 	// returns [bottomleft, topright]
 	Layout.ForceDirected.prototype.getBoundingBox = function() {
 		var bottomleft = new Vector(-2,-2);
 		var topright = new Vector(2,2);
+		var minimum = -50;
+		var maximum = 50;
 
 		this.eachNode(function(n, point) {
-			if (point.p.x < bottomleft.x) {
-				bottomleft.x = point.p.x;
-			}
-			if (point.p.y < bottomleft.y) {
-				bottomleft.y = point.p.y;
-			}
-			if (point.p.x > topright.x) {
-				topright.x = point.p.x;
-			}
-			if (point.p.y > topright.y) {
-				topright.y = point.p.y;
-			}
+			// Bound the node
+			point.p.x = Math.max(minimum, Math.min(maximum, point.p.x));
+			point.p.y = Math.max(minimum, Math.min(maximum, point.p.y));
+			// Resize the bbox
+			bottomleft.x = Math.min(bottomleft.x, point.p.x);
+			bottomleft.y = Math.min(bottomleft.y, point.p.y);
+			topright.x = Math.max(topright.x, point.p.x);
+			topright.y = Math.max(topright.y, point.p.y);
 		});
-
 		var padding = topright.subtract(bottomleft).multiply(0.07); // ~5% padding
-
 		return {bottomleft: bottomleft.subtract(padding), topright: topright.add(padding)};
 	};
 
