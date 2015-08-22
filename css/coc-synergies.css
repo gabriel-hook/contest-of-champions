@@ -217,3 +217,13 @@ canvas{
   background: radial-gradient(#fff, #eee, #aaa); 
   border:solid 1px #666;
 }
+canvas.hover{
+  cursor:pointer;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;
+}
+canvas.dragging{
+  cursor:pointer;
+  cursor:-moz-grabbing;
+  cursor:-webkit-grabbing;
+}
