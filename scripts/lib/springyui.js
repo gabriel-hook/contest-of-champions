@@ -730,21 +730,26 @@ jQuery.fn.springy = function(params) {
         text.width, text.height);
     },
     function drawOverlay(){
-
       if(selectBox && selectBox.start && selectBox.end){
         var x = Math.min(selectBox.start.x, selectBox.end.x) | 0,
           y = Math.min(selectBox.start.y, selectBox.end.y) | 0,
           width = Math.abs(selectBox.start.x - selectBox.end.x) | 0,
           height = Math.abs(selectBox.start.y - selectBox.end.y) | 0;
-
         ctx.save();
+
+        ctx.lineWidth = 1;
         ctx.strokeStyle = "#000";
         ctx.setLineDash([5, 5]);
-        ctx.rect(x, y, width, height);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x+width, y);
+        ctx.lineTo(x+width, y+height);
+        ctx.lineTo(x, y+height);
+        ctx.lineTo(x, y);
         ctx.stroke();
+
         ctx.restore();
       }
-
     }
 	);
 
