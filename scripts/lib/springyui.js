@@ -133,8 +133,6 @@ jQuery.fn.springy = function(params) {
       selected[i].selected = true;
   }
 
-  var activeMass = 500;
-
   //Pointer actions
   function pointerStart(coord){
     if(dragged)
@@ -286,10 +284,12 @@ jQuery.fn.springy = function(params) {
 		var pos = $(canvas).offset();
     pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top});
 	});
+  /*
 	$('body').on('mouseleave',function(e) {
     e.preventDefault();
     pointerEnd(false, "replace");
 	});
+*/
   $(window).on('mouseup',function(e) {
     e.preventDefault();
     pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
