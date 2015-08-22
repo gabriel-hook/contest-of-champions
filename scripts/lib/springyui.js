@@ -433,6 +433,38 @@ jQuery.fn.springy = function(params) {
     return portrait;
   }
 
+  Springy.Node.prototype.getPortraitTextImage = function() {
+    if(!this.textImage){
+      var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        text = this.data.label.toUpperCase();
+
+      context.font = nodeFont;
+
+      var textWidth = context.measureText(text).width;
+      var textHeight = 16;
+
+      canvas.width = (textWidth + 6) | 0;
+      canvas.height = (textHeight + 4) | 0;
+
+      //draw the text background
+      context.fillStyle = "rgba(0, 0, 0, 0.5)";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      //draw the name
+      context.font = nodeFont;
+      context.fillStyle = "#ffffff";
+      context.textAlign = "left";
+      context.textBaseline = "top";
+      context.shadowColor = "#000";
+      context.shadowOffsetX = 1;
+      context.shadowOffsetY = 1;
+      context.fillText(text, 3, 0);
+
+      this.textImage = canvas; 
+    }
+    return this.textImage;
+  }
+
   Springy.Node.prototype.setBoundingBox = function(x, y, width, height) {
     this.bb = { left:x, top:y, right:x+width, bottom:y+height, x:(x+width/2)|0, y:(y+height/2)|0 };
   }
@@ -468,38 +500,6 @@ jQuery.fn.springy = function(params) {
       if(selected[i].data.neighbors[ this.id ])
         return true;
     return false;
-  }
-
-  Springy.Node.prototype.getPortraitTextImage = function() {
-    if(!this.textImage){
-      var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        text = this.data.label.toUpperCase();
-
-      context.font = nodeFont;
-
-      var textWidth = context.measureText(text).width;
-      var textHeight = 16;
-
-      canvas.width = (textWidth + 6) | 0;
-      canvas.height = (textHeight + 4) | 0;
-
-      //draw the text background
-      context.fillStyle = "rgba(0, 0, 0, 0.5)";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      //draw the name
-      context.font = nodeFont;
-      context.fillStyle = "#ffffff";
-      context.textAlign = "left";
-      context.textBaseline = "top";
-      context.shadowColor = "#000";
-      context.shadowOffsetX = 1;
-      context.shadowOffsetY = 1;
-      context.fillText(text, 3, 0);
-
-      this.textImage = canvas; 
-    }
-    return this.textImage;
   }
 
 	Springy.Node.prototype.getSize = function() {
