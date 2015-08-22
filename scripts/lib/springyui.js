@@ -680,7 +680,7 @@ jQuery.fn.springy = function(params) {
     if(!point)
       return false;
     if(size <= 32)
-      return true;
+      return point;
 
     //now check per pixel from outside in
     var delta = p2.subtract(p1).normalise(), i=0;
