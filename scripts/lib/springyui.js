@@ -38,6 +38,7 @@ jQuery.fn.springy = function(params) {
 	var nodeImageContexts = {};
 	var nodeImageContextQueue = {};
   var maxTeamSize = params.maxTeamSize || 5;
+  var activeMass = 500;
 
 	var canvas = this[0];
 	var ctx = canvas.getContext("2d");
