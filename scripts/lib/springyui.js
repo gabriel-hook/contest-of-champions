@@ -679,6 +679,8 @@ jQuery.fn.springy = function(params) {
       point = intersect_line_box(p1, p2, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
     if(!point)
       return false;
+    if(size <= 32)
+      return true;
 
     //now check per pixel from outside in
     var delta = p2.subtract(p1).normalise(), i=0;
