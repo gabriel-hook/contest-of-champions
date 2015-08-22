@@ -165,7 +165,7 @@ CoC.synergies.initialize=function(stars){
   
   //start shake event
   var shakeEvent = new Shake({
-      threshold: 15, // optional shake strength threshold
+      threshold: 100, // optional shake strength threshold
       timeout: 1000 // optional, determines the frequency of event generation
   });
   shakeEvent.start();
