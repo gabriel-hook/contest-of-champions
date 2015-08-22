@@ -227,3 +227,7 @@ canvas.dragging{
   cursor:-moz-grabbing;
   cursor:-webkit-grabbing;
 }
+canvas.selecting{
+  cursor:crosshair;
+  cursor:cell;
+}

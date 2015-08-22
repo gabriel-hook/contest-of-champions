@@ -684,15 +684,15 @@
 	 * @param onRenderStop optional callback function that gets executed whenever rendering stops.
 	 * @param onRenderStart optional callback function that gets executed whenever rendering starts.
 	 */
-	var Renderer = Springy.Renderer = function(layout, clear, drawEdge, drawNode, drawNodeOverlay, onRenderStop, onRenderStart) {
+	var Renderer = Springy.Renderer = function(layout, clear, drawEdge, drawNode, drawNodeOverlay, drawOverlay, onRenderStop, onRenderStart) {
 		this.layout = layout;
 		this.clear = clear;
 		this.drawEdge = drawEdge;
 		this.drawNode = drawNode;
     this.drawNodeOverlay = drawNodeOverlay;
+    this.drawOverlay = drawOverlay;
 		this.onRenderStop = onRenderStop;
 		this.onRenderStart = onRenderStart;
-
 		this.layout.graph.addGraphListener(this);
 	}
 
@@ -720,11 +720,10 @@
 			t.layout.eachNode(function(node, point) {
 				t.drawNode(node, point.p);
 			});
-			if(t.drawNodeOverlay !== undefined){
-				t.layout.eachNode(function(node, point) {
-					t.drawNodeOverlay(node, point.p);
-				});
-			}
+			t.layout.eachNode(function(node, point) {
+				t.drawNodeOverlay(node, point.p);
+			});
+			t.drawOverlay();
 		}, this.onRenderStop, this.onRenderStart);
 	};
 

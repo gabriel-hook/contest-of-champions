@@ -89,6 +89,7 @@ jQuery.fn.springy = function(params) {
   var edgeSelected = null;
 	var dragged = null;
   var moved = 0;
+  var selectBox = null;
 
   this.selectEdgeType=function(type){
     clearSelected();
@@ -118,6 +119,30 @@ jQuery.fn.springy = function(params) {
     if(index === -1)
       updateSelected([ node ]);
   }
+  function boxSelected(){
+    //select the first 5 closest to the start point and inside
+    var x1 = Math.min(selectBox.start.x, selectBox.end.x) | 0,
+      y1 = Math.min(selectBox.start.y, selectBox.end.y) | 0,
+      x2 = x1 + Math.abs(selectBox.start.x - selectBox.end.x) | 0,
+      y2 = y1 + Math.abs(selectBox.start.y - selectBox.end.y) | 0;
+    var array = []
+    graph.nodes.forEach(function(node){
+      if(!node.bb)
+        return;
+      if(array.indexOf(node) !== -1)
+        return;
+      if(node.bb.x > x1 && node.bb.x < x2 && node.bb.y > y1 && node.bb.y < y2){
+        var dx = selectBox.start.x - node.bb.x, dy = selectBox.start.y - node.bb.y;
+        array.push({ distance: Math.sqrt(dx*dx + dy*dy), node: node });
+      }
+    });
+    array.sort(function(a, b){
+      return b.distance - a.distance;
+    });
+    for(var i=0; i<array.length; i++)
+      array[i] = array[i].node;
+    updateSelected(array);
+  }
   function clearSelected(){
     updateSelected([]);
   }
@@ -143,6 +168,7 @@ jQuery.fn.springy = function(params) {
       if(nodeSelected){
         nodeSelected(selected);
       }
+      selectBox = { start: coord };
     }
     else{
       var point = fromScreen(coord);
@@ -163,10 +189,18 @@ jQuery.fn.springy = function(params) {
 			dragged.point.p.y = point.y + dragged.offset.y;
       dragged.point.m = activeMass;
 		}
+    else if(selectBox){
+      selectBox.end = coord;
+      boxSelected();
+      if(nodeSelected){
+        nodeSelected(selected);
+      }
+    }
 		renderer.start();
   }
   
   function pointerEnd(clicked, selectType){
+    selectBox = null;
     if(dragged != null){
       if(moved < 10){
         switch(selectType){
@@ -296,7 +330,9 @@ jQuery.fn.springy = function(params) {
   });
 	$(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
-    if(dragged != null)
+    if(selectBox)
+      state = 'selecting'
+    else if(dragged != null)
       state = 'dragging';
     else{
       var pos = $(canvas).offset();
@@ -304,14 +340,17 @@ jQuery.fn.springy = function(params) {
         state = 'hover';
     }
     switch(state){
+      case 'selecting':
+        $(canvas)[0].className="selecting";
+        break;
       case 'dragging':
-        $(canvas).removeClass('hover').addClass('dragging');
+        $(canvas)[0].className="dragging";
         break;
       case 'hover':
-        $(canvas).removeClass('dragging').addClass('hover');
+        $(canvas)[0].className="hover";
         break;
       default:
-        $(canvas).removeClass('dragging').removeClass('hover');
+        $(canvas)[0].className="";
     }
 	});
 
@@ -665,6 +704,23 @@ jQuery.fn.springy = function(params) {
         Math.min(Math.max(0, x - (text.width / 2) | 0), canvas.width - text.width), 
         Math.min(Math.max(0, y - halfSize - text.height), canvas.height - text.height), 
         text.width, text.height);
+    },
+    function drawOverlay(){
+
+      if(selectBox && selectBox.start && selectBox.end){
+        var x = Math.min(selectBox.start.x, selectBox.end.x) | 0,
+          y = Math.min(selectBox.start.y, selectBox.end.y) | 0,
+          width = Math.abs(selectBox.start.x - selectBox.end.x) | 0,
+          height = Math.abs(selectBox.start.y - selectBox.end.y) | 0;
+
+        ctx.save();
+        ctx.strokeStyle = "#000";
+        ctx.setLineDash([5, 5]);
+        ctx.rect(x, y, width, height);
+        ctx.stroke();
+        ctx.restore();
+      }
+
     }
 	);
 
