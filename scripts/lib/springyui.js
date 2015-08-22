@@ -63,6 +63,12 @@ jQuery.fn.springy = function(params) {
 		return new Springy.Vector(px, py);
 	};
 
+  function graphShake(){
+    layout.eachNode(function(node, point){
+      point.p = Springy.Vector.random();
+    });
+  }
+
   function findNodeAt(coord){
     var nearest = {};
     graph.nodes.forEach(function(node){
@@ -225,7 +231,25 @@ jQuery.fn.springy = function(params) {
     if(node && node.isSelected())
       selectedOpen(node);
 	});
-
+  $('body').on('keyup', function(e){
+    switch(e.which){
+      case 27: //Escape
+        e.preventDefault();
+        clearSelected()
+        if(nodeSelected){
+          nodeSelected(selected);
+        }
+        break;
+      case 32: //Space Bar
+        graphShake();
+        break;
+      default:
+        break;
+    }
+  });
+  $(window).on('shake', function(e){
+    graphShake();
+  });
   $(canvas).on('touchstart', function(e){
     e.preventDefault();
 		var pos = $(canvas).offset(),
