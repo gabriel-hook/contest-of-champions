@@ -162,13 +162,6 @@ CoC.synergies.initialize=function(stars){
   $(".button[stars="+stars+"]").addClass("active");
   $('.button.legend').click(CoC.synergies.toggleLegend);
   CoC.synergies.toggleLegend();
-  
-  //start shake event
-  var shakeEvent = new Shake({
-      threshold: 32, // optional shake strength threshold
-      timeout: 1000 // optional, determines the frequency of event generation
-  });
-  shakeEvent.start();
 
   //track
   CoC.tracking.pageView();
