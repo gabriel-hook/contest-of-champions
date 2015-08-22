@@ -132,6 +132,8 @@ jQuery.fn.springy = function(params) {
       selected[i].selected = true;
   }
 
+  var activeMass = 500;
+
   //Pointer actions
   function pointerStart(coord){
     if(dragged)
@@ -148,7 +150,7 @@ jQuery.fn.springy = function(params) {
       dragged = { node:node, point:layout.point(node) };
       dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y };
       dragged.point.active = true;
-      dragged.point.m = 10000.0;
+      dragged.point.m = activeMass;
     }
     moved = 0;
 		renderer.start();
@@ -160,7 +162,7 @@ jQuery.fn.springy = function(params) {
       moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
 			dragged.point.p.x = point.x + dragged.offset.x;
 			dragged.point.p.y = point.y + dragged.offset.y;
-      dragged.point.m = 10000.0;
+      dragged.point.m = activeMass;
 		}
 		renderer.start();
   }
