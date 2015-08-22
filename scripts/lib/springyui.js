@@ -703,7 +703,7 @@ jQuery.fn.springy = function(params) {
       return end;
 
     //find the fast intersect
-    var size = node.getSize(), halfSize = size >> 1,
+    var size = node.getSize(), halfSize = (size >> 1) | 0,
       point = intersect_line_box(start, end, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
     if(!point)
       return end;
