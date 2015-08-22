@@ -717,12 +717,20 @@
 			t.layout.eachEdge(function(edge, spring) {
 				t.drawEdge(edge, spring.point1.p, spring.point2.p);
 			});
+
+			//nodes that are below are drawn on top
+			var nodePoints = []
 			t.layout.eachNode(function(node, point) {
-				t.drawNode(node, point.p);
+				nodePoints.push({ node:node, point:point });
 			});
-			t.layout.eachNode(function(node, point) {
-				t.drawNodeOverlay(node, point.p);
-			});
+			nodePoints.sort(function(a, b){
+				return a.point.p.y - b.point.p.y;
+			})
+			for(var i=0; i<nodePoints.length; i++)
+				t.drawNode(nodePoints[i].node, nodePoints[i].point.p);
+			for(var i=0; i<nodePoints.length; i++)
+				t.drawNodeOverlay(nodePoints[i].node, nodePoints[i].point.p);
+
 			t.drawOverlay();
 		}, this.onRenderStop, this.onRenderStart);
 	};
