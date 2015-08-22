@@ -214,6 +214,7 @@ jQuery.fn.springy = function(params) {
       var point = fromScreen(coord);
       dragged = { node:node, point:layout.point(node) };
       dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y };
+      dragged.coord = coord;
       dragged.point.active = true;
       dragged.point.m = activeMass;
     }
@@ -224,7 +225,9 @@ jQuery.fn.springy = function(params) {
   function pointerMove(coord, selectType){
     var point = fromScreen(coord);
 		if (dragged !== null) {
-      moved += toScreen(point).subtract(toScreen(dragged.point.p)).magnitude();
+      var dx = dragged.coord.x - coord.x, dy = dragged.coord.y - coord.y;
+      moved += Math.sqrt(dx*dx + dy*dy) | 0;
+      dragged.coord = coord;
 			dragged.point.p.x = point.x + dragged.offset.x;
 			dragged.point.p.y = point.y + dragged.offset.y;
       dragged.point.m = activeMass;
