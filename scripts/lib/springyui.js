@@ -581,21 +581,22 @@ jQuery.fn.springy = function(params) {
       var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
-      //line
       ctx.save();
+
+      //settings
 			ctx.lineWidth = width;
       ctx.globalAlpha = alpha;
 			ctx.strokeStyle = stroke;
+      ctx.fillStyle = stroke;
+
+      //line
 			ctx.beginPath();
 			ctx.moveTo(s1.x | 0, s1.y | 0);
 			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
-      ctx.restore();
+
 			// arrow
 			if (directional) {
-				ctx.save();
-        ctx.globalAlpha = alpha;
-				ctx.fillStyle = stroke;
 				ctx.translate(intersection.x, intersection.y);
 				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
 				ctx.beginPath();
@@ -605,8 +606,9 @@ jQuery.fn.springy = function(params) {
 				ctx.lineTo(-arrowLength * 0.8, -0);
 				ctx.closePath();
 				ctx.fill();
-				ctx.restore();
 			}
+      
+      ctx.restore();
 		},
 		function drawNode(node, p) {
       if(node.isSelected())
