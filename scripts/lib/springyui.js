@@ -210,7 +210,8 @@ jQuery.fn.springy = function(params) {
         clearSelected();
         updateNodesSelected();
       }
-      selection = { start: coord, before:selected };
+      if(selectType)
+        selection = { start: coord, before:selected };
     }
     else{
       var point = fromScreen(coord);
@@ -266,6 +267,10 @@ jQuery.fn.springy = function(params) {
     }
     else if(clicked)
       edgeSelected = null;
+  }
+
+  function selectType(event){
+    return (event.shiftKey)? "add": (event.ctrlKey)? "toggle": "replace";
   }
 
   function selectedOpen(node){
@@ -338,12 +343,12 @@ jQuery.fn.springy = function(params) {
       return;
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top}, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
+    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top}, selectType(e));
 	});
 	$(window).on('mousemove', function(e) {
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top}, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
+    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top}, selectType(e));
 	});
   /*
 	$('body').on('mouseleave',function(e) {
@@ -353,7 +358,7 @@ jQuery.fn.springy = function(params) {
 */
   $(window).on('mouseup',function(e) {
     e.preventDefault();
-    pointerEnd(true, (e.shiftKey)? "add": (e.ctrlKey)? "toggle": "replace");
+    pointerEnd(true, selectType(e));
   });
 	$(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
