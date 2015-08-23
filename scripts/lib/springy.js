@@ -421,7 +421,7 @@
 				}
 				else{
 					if(point.delta === undefined){
-						point.delta = Math.max(difference / 500, 1);
+						point.delta = Math.max(1, difference / 500);
 						if(point.m < point.mass)
 							point.delta = -point.delta;
 					}
@@ -436,13 +436,13 @@
 		this.eachNode(function(n1, point1) {
 			this.eachNode(function(n2, point2) {
 				if (point1 !== point2) {
-					var d = point1.p.subtract(point2.p);
-					var distance = d.magnitude() + 0.1; // avoid massive forces at small distances (and divide by zero)
-					var direction = d.normalise();
-
+					var d = point1.p.subtract(point2.p),
+						distance = Math.max(0.1, d.magnitude()), // avoid massive forces at small distances (and divide by zero)
+						direction = d.normalise(),
+						repulsion = this.repulsion();
 					// apply force to each end point
-					point1.applyForce(direction.multiply(this.repulsion()).divide(0.5 * distance * distance));
-					point2.applyForce(direction.multiply(this.repulsion()).divide(-0.5 * distance * distance));
+					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distance * distance));
+					point2.applyForce(direction.multiply(repulsion).divide(-0.5 * distance * distance));
 				}
 			});
 		});
