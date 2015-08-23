@@ -38,7 +38,7 @@ jQuery.fn.springy = function(params) {
 	var nodeImageContexts = {};
 	var nodeImageContextQueue = {};
   var maxTeamSize = params.maxTeamSize || 5;
-  var activeMass = 500;
+  var activeMass = params.activeMass || 500;
 
 	var canvas = this[0];
 	var ctx = canvas.getContext("2d");
@@ -51,16 +51,16 @@ jQuery.fn.springy = function(params) {
 
 	// convert to/from screen coordinates
 	var toScreen = function(p) {
-		var size = currentBB.topright.subtract(currentBB.bottomleft);
-		var sx = p.subtract(currentBB.bottomleft).divide(size.x).x * canvas.width;
-		var sy = p.subtract(currentBB.bottomleft).divide(size.y).y * canvas.height;
+		var size = currentBB.topright.subtract(currentBB.bottomleft),
+      sx = p.subtract(currentBB.bottomleft).divide(size.x).x * canvas.width,
+      sy = p.subtract(currentBB.bottomleft).divide(size.y).y * canvas.height;
 		return new Springy.Vector(sx, sy);
 	};
 
 	var fromScreen = function(s) {
-		var size = currentBB.topright.subtract(currentBB.bottomleft);
-		var px = (s.x / canvas.width) * size.x + currentBB.bottomleft.x;
-		var py = (s.y / canvas.height) * size.y + currentBB.bottomleft.y;
+		var size = currentBB.topright.subtract(currentBB.bottomleft),
+      px = (s.x / canvas.width) * size.x + currentBB.bottomleft.x,
+      py = (s.y / canvas.height) * size.y + currentBB.bottomleft.y;
 		return new Springy.Vector(px, py);
 	};
 
@@ -89,11 +89,13 @@ jQuery.fn.springy = function(params) {
   var edgeSelected = null;
 	var dragged = null;
   var moved = 0;
-  var selectBox = null;
+  var selection = null;
 
   this.selectEdgeType=function(type){
     clearSelected();
     edgeSelected = type;
+    if(dragged)
+      dragged.point.active = false;
     dragged = null;
     renderer.start();
   };
@@ -121,10 +123,10 @@ jQuery.fn.springy = function(params) {
   }
   function boxSelected(selectType){
     //select the first 5 closest to the start point and inside
-    var x1 = Math.min(selectBox.start.x, selectBox.end.x) | 0,
-      y1 = Math.min(selectBox.start.y, selectBox.end.y) | 0,
-      x2 = x1 + Math.abs(selectBox.start.x - selectBox.end.x) | 0,
-      y2 = y1 + Math.abs(selectBox.start.y - selectBox.end.y) | 0;
+    var x1 = Math.min(selection.start.x, selection.end.x) | 0,
+      y1 = Math.min(selection.start.y, selection.end.y) | 0,
+      x2 = x1 + Math.abs(selection.start.x - selection.end.x) | 0,
+      y2 = y1 + Math.abs(selection.start.y - selection.end.y) | 0;
 
     var array = [];
     graph.nodes.forEach(function(node){
@@ -133,7 +135,7 @@ jQuery.fn.springy = function(params) {
       if(array.indexOf(node) !== -1)
         return;
       if(node.bb.x > x1 && node.bb.x < x2 && node.bb.y > y1 && node.bb.y < y2){
-        var dx = selectBox.start.x - node.bb.x, dy = selectBox.start.y - node.bb.y;
+        var dx = selection.start.x - node.bb.x, dy = selection.start.y - node.bb.y;
         array.push({ distance: Math.sqrt(dx*dx + dy*dy), node: node });
       }
     });
@@ -144,20 +146,20 @@ jQuery.fn.springy = function(params) {
       array[i] = array[i].node;
 
     if(selectType === "add"){
-      for(var i=0; i<selectBox.before.length; i++){
-        var index = array.indexOf(selectBox.before[i]);
+      for(var i=0; i<selection.before.length; i++){
+        var index = array.indexOf(selection.before[i]);
         if(index !== -1)
           array.splice(index, 1);
-        array.push(selectBox.before[i]);
+        array.push(selection.before[i]);
       }
     }
     if(selectType === "toggle"){
-      for(var i=0; i<selectBox.before.length; i++){
-        var index = array.indexOf(selectBox.before[i]);
+      for(var i=0; i<selection.before.length; i++){
+        var index = array.indexOf(selection.before[i]);
         if(index !== -1)
           array.splice(index, 1);
         else
-          array.push(selectBox.before[i]);
+          array.push(selection.before[i]);
       }
     }
 
@@ -208,7 +210,7 @@ jQuery.fn.springy = function(params) {
         clearSelected();
         updateNodesSelected();
       }
-      selectBox = { start: coord, before:selected };
+      selection = { start: coord, before:selected };
     }
     else{
       var point = fromScreen(coord);
@@ -231,9 +233,10 @@ jQuery.fn.springy = function(params) {
 			dragged.point.p.x = point.x + dragged.offset.x;
 			dragged.point.p.y = point.y + dragged.offset.y;
       dragged.point.m = activeMass;
+      dragged.point.active = true;
 		}
-    else if(selectBox){
-      selectBox.end = coord;
+    else if(selection){
+      selection.end = coord;
       boxSelected(selectType);
       updateNodesSelected();
     }
@@ -241,7 +244,7 @@ jQuery.fn.springy = function(params) {
   }
   
   function pointerEnd(clicked, selectType){
-    selectBox = null;
+    selection = null;
     if(dragged != null){
       if(moved < 10){
         switch(selectType){
@@ -354,7 +357,7 @@ jQuery.fn.springy = function(params) {
   });
 	$(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
-    if(selectBox)
+    if(selection)
       state = 'selecting'
     else if(dragged != null)
       state = 'dragging';
@@ -730,11 +733,11 @@ jQuery.fn.springy = function(params) {
         text.width, text.height);
     },
     function drawOverlay(){
-      if(selectBox && selectBox.start && selectBox.end){
-        var x = Math.min(selectBox.start.x, selectBox.end.x) | 0,
-          y = Math.min(selectBox.start.y, selectBox.end.y) | 0,
-          width = Math.abs(selectBox.start.x - selectBox.end.x) | 0,
-          height = Math.abs(selectBox.start.y - selectBox.end.y) | 0;
+      if(selection && selection.start && selection.end){
+        var x = Math.min(selection.start.x, selection.end.x) | 0,
+          y = Math.min(selection.start.y, selection.end.y) | 0,
+          width = Math.abs(selection.start.x - selection.end.x) | 0,
+          height = Math.abs(selection.start.y - selection.end.y) | 0;
         ctx.save();
 
         ctx.lineWidth = 1;
