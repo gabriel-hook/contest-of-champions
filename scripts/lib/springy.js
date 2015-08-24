@@ -684,9 +684,10 @@
 	 * @param onRenderStop optional callback function that gets executed whenever rendering stops.
 	 * @param onRenderStart optional callback function that gets executed whenever rendering starts.
 	 */
-	var Renderer = Springy.Renderer = function(layout, clear, drawEdge, drawNode, drawNodeOverlay, drawOverlay, onRenderStop, onRenderStart) {
+	var Renderer = Springy.Renderer = function(layout, clear, processNode, drawEdge, drawNode, drawNodeOverlay, drawOverlay, onRenderStop, onRenderStart) {
 		this.layout = layout;
 		this.clear = clear;
+		this.processNode = processNode;
 		this.drawEdge = drawEdge;
 		this.drawNode = drawNode;
     this.drawNodeOverlay = drawNodeOverlay;
@@ -714,15 +715,18 @@
 		var t = this;
 		this.layout.start(function render() {
 			t.clear();
-			t.layout.eachEdge(function(edge, spring) {
-				t.drawEdge(edge, spring.point1.p, spring.point2.p);
-			});
 
 			//nodes that are below are drawn on top
 			var nodePoints = []
 			t.layout.eachNode(function(node, point) {
 				nodePoints.push({ node:node, point:point });
+				t.processNode(node, point.p);
 			});
+
+			t.layout.eachEdge(function(edge, spring) {
+				t.drawEdge(edge, spring.point1.p, spring.point2.p);
+			});
+
 			nodePoints.sort(function(a, b){
 				return a.point.p.y - b.point.p.y;
 			})

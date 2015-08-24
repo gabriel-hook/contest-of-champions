@@ -586,6 +586,15 @@ jQuery.fn.springy = function(params) {
       currentBB = layout.getBoundingBox();
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 		},
+    function processNode(node, p) {
+      var s = toScreen(p), 
+        x = (s.x | 0), 
+        y = (s.y | 0), 
+        size = node.getSize(),
+        fullSize = size | 0, 
+        halfSize = (size / 2) | 0;
+      node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
+    },
 		function drawEdge(edge, p1, p2) {
       var point1 = toScreen(p1);
       var point2 = toScreen(p2);
