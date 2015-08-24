@@ -815,16 +815,16 @@ jQuery.fn.springy = function(params) {
     return point.subtract(delta.multiply(padding));
   }
 
-  function intersect_line_box(p1, p2, p3, w, h) {
-    var tl = {x: p3.x, y: p3.y};
-    var tr = {x: p3.x + w, y: p3.y};
-    var bl = {x: p3.x, y: p3.y + h};
-    var br = {x: p3.x + w, y: p3.y + h};
+  function intersect_line_box(start, end, center, size) {
+    var tl = {x: center.x, y: center.y};
+    var tr = {x: center.x + size, y: center.y};
+    var bl = {x: center.x, y: center.y + size};
+    var br = {x: center.x + size, y: center.y + size};
     var result;
-    if (result = intersect_line_line(p1, p2, tl, tr)) { return result; } // top
-    if (result = intersect_line_line(p1, p2, tr, br)) { return result; } // right
-    if (result = intersect_line_line(p1, p2, br, bl)) { return result; } // bottom
-    if (result = intersect_line_line(p1, p2, bl, tl)) { return result; } // left
+    if (result = intersect_line_line(start, end, tl, tr)) { return result; } // top
+    if (result = intersect_line_line(start, end, tr, br)) { return result; } // right
+    if (result = intersect_line_line(start, end, br, bl)) { return result; } // bottom
+    if (result = intersect_line_line(start, end, bl, tl)) { return result; } // left
     return false;
   }
 
