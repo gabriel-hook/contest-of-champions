@@ -73,9 +73,9 @@ jQuery.fn.springy = function(params) {
   function findNodeAt(coord){
     var nearest = {};
     graph.nodes.forEach(function(node){
-      var distance = node.distance(coord.x, coord.y);
+      var distance = node.distanceSquared(coord.x, coord.y);
       if(nearest.distance === undefined || distance < nearest.distance)
-        if(node.insideBoundingBox(coord.x, coord.y))
+        if(node.containsPoint(coord.x, coord.y))
           nearest = {
             node:node,
             distance:distance
@@ -136,7 +136,7 @@ jQuery.fn.springy = function(params) {
         return;
       if(node.bb.x > x1 && node.bb.x < x2 && node.bb.y > y1 && node.bb.y < y2){
         var dx = selection.start.x - node.bb.x, dy = selection.start.y - node.bb.y;
-        array.push({ distance: Math.sqrt(dx*dx + dy*dy), node: node });
+        array.push({ distance: dx*dx + dy*dy, node: node });
       }
     });
     array.sort(function(a, b){
@@ -211,7 +211,7 @@ jQuery.fn.springy = function(params) {
         updateNodesSelected();
       }
       if(selectType)
-        selection = { start: coord, before:selected };
+        selection = { start: coord, before:selected, type:selectType };
     }
     else{
       var point = fromScreen(coord);
@@ -238,6 +238,7 @@ jQuery.fn.springy = function(params) {
 		}
     else if(selection){
       selection.end = coord;
+      selection.type = selectType;
       boxSelected(selectType);
       updateNodesSelected();
     }
@@ -406,7 +407,7 @@ jQuery.fn.springy = function(params) {
     }, 1);
   }
 
-  function buildPortaitContexts(image, color){
+  function addPortaitContexts(src, image, color){
     var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
         barHeight = Math.max(2, (image.height/10) | 0);
@@ -414,13 +415,17 @@ jQuery.fn.springy = function(params) {
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     context.fillStyle = color;
     context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-    return {
+    if(nodeImageContexts[src] === undefined)
+      nodeImageContexts[src] = [];
+    nodeImageContexts[src].push({
       image:image,
       canvas:canvas
-    };
+    });
   }
 
   var placeholders={};
+  var placeholderHitbox = getHitbox(getPlaceholder(220));
+
   //Used the svg path from here and just filled the path
   //https://upload.wikimedia.org/wikipedia/en/b/b9/No_free_portrait.svg
   function getDefaultPlaceholder(){
@@ -441,7 +446,7 @@ jQuery.fn.springy = function(params) {
     return placeholders['default']
   }
   function getPlaceholder(size, color){
-    var id = size + '_' + color;
+    var id = (color)? size + '_' + color: size;
     if(!placeholders[id]){
       var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
@@ -449,16 +454,42 @@ jQuery.fn.springy = function(params) {
         placeholder = getDefaultPlaceholder();
       canvas.height = canvas.width = size;
       context.drawImage(placeholder, 0, 0, canvas.width, canvas.height);
-      context.fillStyle = color;
+      context.fillStyle = color || "#000";
       context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
       placeholders[id] = canvas;
     }
     return placeholders[id];
   }
 
+  function getHitbox(image){
+    var size = image.width, 
+      imageData = image.getContext('2d').getImageData(0, 0, size, size), 
+      data = imageData.data, 
+      x, 
+      y,
+      opaque = {};
+    for(x=0; x<size; x++){
+      opaque[x] = {};
+      for(y=0; y<size; y++)
+        if(data[(y*size*4) + x*4 + 3] !== 0)
+          opaque[x][y] = true;
+    }
+    return { size:size, opaque:opaque };
+  }
+
+  Springy.Node.prototype.addHitbox = function(image) {
+    if(this.hitbox !== undefined)
+      return;
+    this.hitbox = getHitbox(image);
+  }
+
+  Springy.Node.prototype.getHitbox = function() {
+    return this.hitbox || placeholderHitbox;
+  }
+
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.getPortraitImage = function(size) {
-    var portrait, img = this.data.image, color = this.data.color || "#111111";
+    var portrait, img = this.data.image, color = this.data.color || "#111111", node = this;
     size = size | 0;
     if(img){
       var src = img.src;
@@ -481,7 +512,7 @@ jQuery.fn.springy = function(params) {
                     resizeContext = resizeCanvas.getContext('2d');
                 resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
                 resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
-                contexts.push( buildPortaitContexts(resizeCanvas, color) );
+                addPortaitContexts(src, resizeCanvas, color);
               });
             }
           }
@@ -494,13 +525,15 @@ jQuery.fn.springy = function(params) {
         nodeImages[src].object = image;
         image.addEventListener("load", function () {
           nodeImages[src].loaded = true;
-          nodeImageContexts[src] = [ buildPortaitContexts(image, color) ];
+          addPortaitContexts(src, image, color);
         });
         image.src = src;
       }
     }
     if(!portrait)
       portrait = getPlaceholder(size, color);
+    else
+      node.addHitbox(portrait);
     return portrait;
   }
 
@@ -536,55 +569,14 @@ jQuery.fn.springy = function(params) {
     return this.textImage;
   }
 
-  Springy.Node.prototype.setBoundingBox = function(x, y, width, height) {
-    this.bb = { left:x, top:y, right:x+width, bottom:y+height, x:(x+width/2)|0, y:(y+height/2)|0 };
-  }
-
-  //return true if inside BB and not over a 0 opacity pixel
-  Springy.Node.prototype.insideBoundingBox = function(x, y) {
-    if(this.bb && this.bb.left <= x && this.bb.right >= x && this.bb.top <= y && this.bb.bottom >= y){
-      if(this.image){
-        var px = (this.image.width * (x - this.bb.left) / (this.bb.right - this.bb.left)) | 0,
-          py = (this.image.height * (y - this.bb.top) / (this.bb.bottom - this.bb.top)) | 0,
-          pixel = this.image.getContext('2d').getImageData(px, py, 1, 1).data;
-        if(pixel[3] === 0)
-          return false;
-      }
-      return true;
-    }
-    return false;
-  }
-
-  Springy.Node.prototype.distance = function(x, y) {
-    if(!this.bb)
-      return null;
-    var dx = this.bb.x - x, dy = this.bb.y - y;
-    return Math.sqrt(dx*dx + dy*dy);
-  }
-
-  Springy.Node.prototype.isSelected = function() {
-    return this.selected;
-  }
-
-  Springy.Node.prototype.isSelectedNeighbor = function() {
-    for(var i=0; i<selected.length; i++)
-      if(selected[i].data.neighbors[ this.id ])
-        return true;
-    return false;
-  }
-
-	Springy.Node.prototype.getSize = function() {
-    var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
-      size = Math.min(Math.max(16, canvasSize >> 4), 128);
-    if(this.isSelected())
-      size *= 1.5;
-    return size;
-	}
-
 	var renderer = this.renderer = new Springy.Renderer(layout,
 		function clear() {
       currentBB = layout.getBoundingBox();
 			ctx.clearRect(0,0,canvas.width,canvas.height);
+      if(selection && selection.start && selection.end){
+        boxSelected(selection.type);
+        updateNodesSelected();
+      }
 		},
     function processNode(node, p) {
       var s = toScreen(p), 
@@ -616,7 +608,6 @@ jQuery.fn.springy = function(params) {
       }
       else if(selected.length > 1){
         var sourceSelected = edge.source.isSelected(), targetSelected = edge.target.isSelected();
-
         if(sourceSelected && targetSelected)
           isSelected = 1;
         else if(sourceSelected || targetSelected)
@@ -650,43 +641,42 @@ jQuery.fn.springy = function(params) {
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
-			var padding = Math.max(2, edge.target.getSize() / 10);
-      var intersection = intersect_line_node(s1, s2, edge.target, padding);
-			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
-			var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
+			var padding = Math.max(2, edge.target.getSize() / 20);
+      var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
       var arrowWidth = 1 + width;
       var arrowLength = 8;
-      var directional = (edge.data.directional !== undefined) ? edge.data.directional : true;
-      var lineEnd = (directional)? intersection.subtract(direction.normalise().multiply(arrowLength * 0.5)): s2;
+      var lineStart = edge.source.intersectLine(s2, s1, -1);
+      var lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength);
+      var arrowStart = lineEnd.add( lineEnd.subtract(lineStart).normalise().multiply( arrowLength * 0.75 ) )
+			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
       ctx.save();
 
       //settings
 			ctx.lineWidth = width;
-      ctx.globalAlpha = alpha;
-			ctx.strokeStyle = stroke;
+      ctx.strokeStyle = stroke;
       ctx.fillStyle = stroke;
+      ctx.globalAlpha = alpha;
 
       //line
 			ctx.beginPath();
-			ctx.moveTo(s1.x | 0, s1.y | 0);
+			ctx.moveTo(lineStart.x, lineStart.y);
 			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
 
+
 			// arrow
-			if (directional) {
-				ctx.translate(intersection.x, intersection.y);
-				ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
-				ctx.beginPath();
-				ctx.moveTo(-arrowLength, arrowWidth);
-				ctx.lineTo(0, 0);
-				ctx.lineTo(-arrowLength, -arrowWidth);
-				ctx.lineTo(-arrowLength * 0.8, -0);
-				ctx.closePath();
-				ctx.fill();
-			}
+			ctx.translate(arrowStart.x, arrowStart.y);
+			ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
+			ctx.beginPath();
+			ctx.moveTo(-arrowLength, arrowWidth);
+			ctx.lineTo(0, 0);
+			ctx.lineTo(-arrowLength, -arrowWidth);
+			ctx.lineTo(-arrowLength * 0.8, -0);
+			ctx.closePath();
+			ctx.fill();
       
       ctx.restore();
 		},
@@ -694,56 +684,38 @@ jQuery.fn.springy = function(params) {
       if(node.isSelected())
         return;
     
-      if(edgeSelected){
+      var size = node.bb.size;
+      if(edgeSelected)
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
-      }
-      else if(selected.length === maxTeamSize){
+      else if(selected.length === maxTeamSize)
         ctx.globalAlpha = 0.25;
-      }
-      else if(selected.length > 1){
+      else if(selected.length > 1)
         ctx.globalAlpha = (node.isSelectedNeighbor())? 0.75: 0.25;
-      }
-      else if(selected.length){
+      else if(selected.length)
         ctx.globalAlpha = (node.isSelectedNeighbor())? 1.0: 0.25;
-      }
       else
         ctx.globalAlpha = 1.0;
 
-      var s = toScreen(p), 
-        x = (s.x | 0), 
-        y = (s.y | 0), 
-        size = node.getSize(),
-        fullSize = size | 0, 
-        halfSize = (size / 2) | 0;
-      node.setBoundingBox(x - halfSize, y - halfSize, fullSize, fullSize);
-
       //draw the portrait
       node.image = node.getPortraitImage(size);
-      ctx.drawImage(node.image, x - halfSize, y - halfSize, fullSize, fullSize);
+      ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
 		},
 		function drawNodeOverlay(node, p) {
       if (!node.isSelected())
-        return;
+          return;
     
-			var s = toScreen(p), 
-        x = (s.x | 0), 
-        y = (s.y | 0), 
-        size = node.getSize(),
-        fullSize = size | 0, 
-        halfSize = (size / 2) | 0;
-      node.setBoundingBox(x - halfSize, y - halfSize, fullSize, fullSize);
-
+      var size = node.bb.size;
       ctx.globalAlpha = 1.0;
 
       //draw the portrait
       node.image = node.getPortraitImage(size);
-      ctx.drawImage(node.image, x - halfSize, y - halfSize, fullSize, fullSize);
+      ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
 
       //draw the portrait text
       var text = node.getPortraitTextImage();
       ctx.drawImage(text, 
-        Math.min(Math.max(0, x - (text.width / 2) | 0), canvas.width - text.width), 
-        Math.min(Math.max(0, y - halfSize - text.height), canvas.height - text.height), 
+        Math.min(Math.max(0, node.bb.x - (text.width / 2) | 0), canvas.width - text.width), 
+        Math.min(Math.max(0, node.bb.y - text.height - (size / 2) | 0), canvas.height - text.height), 
         text.width, text.height);
     },
     function drawOverlay(){
@@ -752,83 +724,115 @@ jQuery.fn.springy = function(params) {
           y = Math.min(selection.start.y, selection.end.y) | 0,
           width = Math.abs(selection.start.x - selection.end.x) | 0,
           height = Math.abs(selection.start.y - selection.end.y) | 0;
+
         ctx.save();
+        ctx.globalAlpha = 0.25;
+        ctx.globalCompositeOperation = "destination-over";
+        ctx.fillStyle = "#000";
+        ctx.fillRect(x, y, width, height);
+        ctx.restore();
 
         ctx.lineWidth = 1;
         ctx.strokeStyle = "#000";
-        ctx.setLineDash([5, 5]);
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        ctx.lineTo(x+width, y);
-        ctx.lineTo(x+width, y+height);
-        ctx.lineTo(x, y+height);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-
-        ctx.restore();
+        ctx.strokeRect(x, y, width, height);
       }
     }
 	);
 
-	renderer.start();
+  Springy.Node.prototype.setBoundingBox = function(x, y, size) {
+    this.bb = { left:x, top:y, right:x+size, bottom:y+size, x:(x+size/2)|0, y:(y+size/2)|0, size:size };
+  }
 
-	// helpers for figuring out where to draw arrows
-	function intersect_line_line(p1, p2, p3, p4) {
-		var denom = ((p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y));
+  //return true if inside BB and not over a 0 opacity pixel
+  Springy.Node.prototype.containsPoint = function(x, y) {
+    if(this.bb){
+      var hitbox = this.getHitbox(),
+        px = (hitbox.size * (x - this.bb.left) / this.bb.size) | 0,
+        py = (hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
+      if(hitbox.opaque[px])
+        return hitbox.opaque[px][py] === true;
+    }
+    return false;
+  }
 
-		// lines are parallel
-		if (denom === 0) {
-			return false;
-		}
+  Springy.Node.prototype.distanceSquared = function(x, y) {
+    if(!this.bb)
+      return null;
+    var dx = this.bb.x - x, dy = this.bb.y - y;
+    return dx*dx + dy*dy;
+  }
 
-		var ua = ((p4.x - p3.x)*(p1.y - p3.y) - (p4.y - p3.y)*(p1.x - p3.x)) / denom;
-		var ub = ((p2.x - p1.x)*(p1.y - p3.y) - (p2.y - p1.y)*(p1.x - p3.x)) / denom;
+  Springy.Node.prototype.isSelected = function() {
+    return this.selected;
+  }
 
-		if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
-			return false;
-		}
+  Springy.Node.prototype.isSelectedNeighbor = function() {
+    for(var i=0; i<selected.length; i++)
+      if(selected[i].data.neighbors[ this.id ])
+        return true;
+    return false;
+  }
 
-		return new Springy.Vector(p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y));
-	}
+  Springy.Node.prototype.getSize = function() {
+    var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
+      size = Math.min(Math.max(16, canvasSize >> 4), 128);
+    if(this.isSelected())
+      size *= 1.5;
+    return size;
+  }
 
-	function intersect_line_box(p1, p2, p3, w, h) {
-		var tl = {x: p3.x, y: p3.y};
-		var tr = {x: p3.x + w, y: p3.y};
-		var bl = {x: p3.x, y: p3.y + h};
-		var br = {x: p3.x + w, y: p3.y + h};
-
-		var result;
-		if (result = intersect_line_line(p1, p2, tl, tr)) { return result; } // top
-		if (result = intersect_line_line(p1, p2, tr, br)) { return result; } // right
-		if (result = intersect_line_line(p1, p2, br, bl)) { return result; } // bottom
-		if (result = intersect_line_line(p1, p2, bl, tl)) { return result; } // left
-
-		return false;
-	}
-
-  function intersect_line_node(start, end, node, padding){
-    if(!node.bb)
+  Springy.Node.prototype.intersectLine = function(start, end, padding){
+    if(!this.bb)
       return end;
 
     //find the fast intersect
-    var size = node.getSize(), halfSize = (size >> 1) | 0,
-      point = intersect_line_box(start, end, {x: node.bb.x-halfSize, y: node.bb.y-halfSize}, size, size);
+    var size = this.getSize(), halfSize = (size >> 1) | 0,
+      point = intersect_line_box(start, end, {x: this.bb.x-halfSize, y: this.bb.y-halfSize}, size, size);
     if(!point)
       return end;
 
-    var delta = end.subtract(start).normalise();
+    var direction = end.subtract(point), delta = direction.normalise();
     if(size <= 32)
       return point.subtract(delta.multiply(padding));
 
     //now check per pixel from outside in
-    var i = 0;
+    var i = 0, dx = delta.x, dy = delta.y, distance = direction.magnitude();
     do{
-      if(++i > halfSize)
+      if(++i > distance)
         break;
-      point = point.add(delta);
+      point.x += dx;
+      point.y += dy;
     }
-    while(!node.insideBoundingBox(point.x, point.y))
+    while(!this.containsPoint(point.x, point.y))
     return point.subtract(delta.multiply(padding));
+  }
+
+  function intersect_line_box(p1, p2, p3, w, h) {
+    var tl = {x: p3.x, y: p3.y};
+    var tr = {x: p3.x + w, y: p3.y};
+    var bl = {x: p3.x, y: p3.y + h};
+    var br = {x: p3.x + w, y: p3.y + h};
+    var result;
+    if (result = intersect_line_line(p1, p2, tl, tr)) { return result; } // top
+    if (result = intersect_line_line(p1, p2, tr, br)) { return result; } // right
+    if (result = intersect_line_line(p1, p2, br, bl)) { return result; } // bottom
+    if (result = intersect_line_line(p1, p2, bl, tl)) { return result; } // left
+    return false;
+  }
+
+  // helpers for figuring out where to draw arrows
+  function intersect_line_line(p1, p2, p3, p4) {
+    var denom = ((p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y));
+    // lines are parallel
+    if (denom === 0) {
+      return false;
+    }
+    var ua = ((p4.x - p3.x)*(p1.y - p3.y) - (p4.y - p3.y)*(p1.x - p3.x)) / denom;
+    var ub = ((p2.x - p1.x)*(p1.y - p3.y) - (p2.y - p1.y)*(p1.x - p3.x)) / denom;
+    if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+      return false;
+    }
+    return new Springy.Vector(p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y));
   }
 
   function ceilPower2(number){
@@ -845,6 +849,7 @@ jQuery.fn.springy = function(params) {
     return ceilPower2(number);
   }
 
+  renderer.start();
 	return this;
 }
 
