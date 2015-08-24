@@ -471,7 +471,7 @@ jQuery.fn.springy = function(params) {
     for(x=0; x<size; x++){
       opaque[x] = {};
       for(y=0; y<size; y++)
-        if(data[(y*size*4) + x*4 + 3] !== 0)
+        if(data[(y*size*4) + x*4 + 3] > 127)
           opaque[x][y] = true;
     }
     return { size:size, opaque:opaque };
@@ -591,9 +591,7 @@ jQuery.fn.springy = function(params) {
       var point1 = toScreen(p1);
       var point2 = toScreen(p2);
       
-			var direction = new Springy.Vector(point2.x-point1.x, point2.y-point1.y);
-			var normal = direction.normal().normalise();
-
+			var normal = new Springy.Vector(point2.x-point1.x, point2.y-point1.y).normal().normalise();
 			var from = graph.getEdges(edge.source, edge.target);
 			var to = graph.getEdges(edge.target, edge.source);
 
@@ -641,13 +639,13 @@ jQuery.fn.springy = function(params) {
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
-			var padding = Math.max(2, edge.target.getSize() / 20);
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
       var arrowWidth = 1 + width;
       var arrowLength = 8;
-      var lineStart = edge.source.intersectLine(s2, s1, -1);
-      var lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength);
+      var overlapping = edge.target.overlapping(edge.source);
+      var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, -1);
+      var lineEnd =  edge.target.intersectLine(s1, s2, arrowLength);
       var arrowStart = lineEnd.add( lineEnd.subtract(lineStart).normalise().multiply( arrowLength * 0.75 ) )
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
@@ -665,7 +663,6 @@ jQuery.fn.springy = function(params) {
 			ctx.moveTo(lineStart.x, lineStart.y);
 			ctx.lineTo(lineEnd.x, lineEnd.y);
 			ctx.stroke();
-
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
@@ -761,6 +758,15 @@ jQuery.fn.springy = function(params) {
         return hitbox.opaque[px][py] === true;
     }
     return false;
+  }
+
+  //check bboxes to see if they overlap
+  Springy.Node.prototype.overlapping = function(node) {
+    return this.bb && node.bb &&
+      this.bb.left < node.bb.right && 
+      this.bb.right > node.bb.left &&
+      this.bb.top < node.bb.bottom && 
+      this.bb.bottom > node.bb.top;
   }
 
   Springy.Node.prototype.distanceSquared = function(x, y) {
