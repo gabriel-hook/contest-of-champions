@@ -176,8 +176,12 @@ jQuery.fn.springy = function(params) {
       selected[i].selected = false;
 
     selected = array;
-    for(var i=0; i<selected.length; i++)
+    for(var i=0; i<selected.length; i++){
+      var point = layout.point(selected[i]);
+      if(point)
+        point.m = activeMass;
       selected[i].selected = true;
+    }
   }
   function updateNodesSelected(){
     if (nodeSelected){
