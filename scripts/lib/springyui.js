@@ -355,12 +355,6 @@ jQuery.fn.springy = function(params) {
 		var pos = $(canvas).offset();
     pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top}, selectType(e));
 	});
-  /*
-	$('body').on('mouseleave',function(e) {
-    e.preventDefault();
-    pointerEnd(false, "replace");
-	});
-*/
   $(window).on('mouseup',function(e) {
     e.preventDefault();
     pointerEnd(true, selectType(e));
