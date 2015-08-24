@@ -749,7 +749,15 @@ jQuery.fn.springy = function(params) {
 	);
 
   Springy.Node.prototype.setBoundingBox = function(x, y, size) {
-    this.bb = { left:x, top:y, right:x+size, bottom:y+size, x:(x+size/2)|0, y:(y+size/2)|0, size:size };
+    this.bb = { 
+      left:x, 
+      top:y, 
+      right:x+size, 
+      bottom:y+size, 
+      x:(x+size/2)|0, 
+      y:(y+size/2)|0, 
+      size:size 
+    };
   }
 
   //return true if inside BB and not over a 0 opacity pixel
