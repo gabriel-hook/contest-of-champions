@@ -440,6 +440,10 @@
 						distance = Math.max(0.1, d.magnitude()), // avoid massive forces at small distances (and divide by zero)
 						direction = d.normalise(),
 						repulsion = this.repulsion();
+
+					if(n1.selected && !point2.active)
+						repulsion *= point2.m * 0.15;
+
 					// apply force to each end point
 					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distance * distance));
 					point2.applyForce(direction.multiply(repulsion).divide(-0.5 * distance * distance));
@@ -453,10 +457,11 @@
 			var d = spring.point2.p.subtract(spring.point1.p); // the direction of the spring
 			var displacement = spring.length - d.magnitude();
 			var direction = d.normalise();
+			var k = spring.k();
 
 			// apply force to each end point
-			spring.point1.applyForce(direction.multiply(-0.5 * spring.k() * displacement));
-			spring.point2.applyForce(direction.multiply(0.5 * spring.k() * displacement));
+			spring.point1.applyForce(direction.multiply(-0.5 * k * displacement));
+			spring.point2.applyForce(direction.multiply(0.5 * k * displacement));
 		});
 	};
 
@@ -470,8 +475,6 @@
 
 	Layout.ForceDirected.prototype.updateVelocity = function(timestep) {
 		this.eachNode(function(node, point) {
-			// Is this, along with updatePosition below, the only places that your
-			// integration code exist?
 			point.v = point.v.add(point.a.multiply(timestep)).multiply(this.damping);
 			point.a = new Vector(0,0);
 		});
@@ -479,8 +482,6 @@
 
 	Layout.ForceDirected.prototype.updatePosition = function(timestep) {
 		this.eachNode(function(node, point) {
-			// Same question as above; along with updateVelocity, is this all of
-			// your integration code?
 			point.p = point.p.add(point.v.multiply(timestep));
 		});
 	};
