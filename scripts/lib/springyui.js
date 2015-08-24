@@ -720,21 +720,29 @@ jQuery.fn.springy = function(params) {
     },
     function drawOverlay(){
       if(selection && selection.start && selection.end){
-        var x = Math.min(selection.start.x, selection.end.x) | 0,
-          y = Math.min(selection.start.y, selection.end.y) | 0,
-          width = Math.abs(selection.start.x - selection.end.x) | 0,
-          height = Math.abs(selection.start.y - selection.end.y) | 0;
+        var x = -0.5 + Math.min(selection.start.x, selection.end.x) | 0,
+          y = -0.5 + Math.min(selection.start.y, selection.end.y) | 0,
+          width = 0.5 + Math.abs(selection.start.x - selection.end.x) | 0,
+          height = 0.5 + Math.abs(selection.start.y - selection.end.y) | 0;
 
         ctx.save();
+
+        //translate the entire context by .5 to get 1px width lines
+        ctx.translate(0.5, 0.5);
+
+        //draw the dashed border
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#333";
+        ctx.setLineDash([5, 5]);
+        ctx.strokeRect(x, y, width, height);
+
+        //draw the overlay, but not over drawn content
         ctx.globalAlpha = 0.25;
         ctx.globalCompositeOperation = "destination-over";
         ctx.fillStyle = "#000";
         ctx.fillRect(x, y, width, height);
-        ctx.restore();
 
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = "#000";
-        ctx.strokeRect(x, y, width, height);
+        ctx.restore();
       }
     }
 	);
