@@ -575,6 +575,12 @@ jQuery.fn.springy = function(params) {
         boxSelected(selection.type);
         updateNodesSelected();
       }
+      if(dragged){
+        var point = fromScreen(dragged.coord);
+        dragged.point.p.x = point.x + dragged.offset.x;
+        dragged.point.p.y = point.y + dragged.offset.y;
+        dragged.point.m = activeMass;
+      }
 		},
     function processNode(node, p) {
       var s = toScreen(p), 
