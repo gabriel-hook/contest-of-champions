@@ -794,32 +794,28 @@ jQuery.fn.springy = function(params) {
       return end;
 
     //find the fast intersect
-    var size = this.getSize(), halfSize = (size >> 1) | 0,
-      point = intersect_line_box(start, end, {x: this.bb.x-halfSize, y: this.bb.y-halfSize}, size, size);
+    var size = this.getSize(), 
+      halfSize = (size >> 1) | 0,
+      point = intersect_line_box(start, end, {x: this.bb.left, y: this.bb.top}, size, size);
     if(!point)
       return end;
 
-    var direction = end.subtract(point), delta = direction.normalise();
-    if(size <= 32)
-      return point.subtract(delta.multiply(padding));
-
-    //now check per pixel from outside in
-    var i = 0, dx = delta.x, dy = delta.y, distance = direction.magnitude();
-    do{
-      if(++i > distance)
-        break;
-      point.x += dx;
-      point.y += dy;
+    var i, direction = end.subtract(point), 
+      delta = direction.normalise(),
+      distance = direction.magnitude();
+    for(i=0; i < distance && !this.containsPoint(point.x, point.y); i++){
+      point.x += delta.x;
+      point.y += delta.y;
     }
-    while(!this.containsPoint(point.x, point.y))
+
     return point.subtract(delta.multiply(padding));
   }
 
-  function intersect_line_box(start, end, center, size) {
-    var tl = {x: center.x, y: center.y};
-    var tr = {x: center.x + size, y: center.y};
-    var bl = {x: center.x, y: center.y + size};
-    var br = {x: center.x + size, y: center.y + size};
+  function intersect_line_box(start, end, topleft, size) {
+    var tl = {x: topleft.x, y: topleft.y};
+    var tr = {x: topleft.x + size, y: topleft.y};
+    var bl = {x: topleft.x, y: topleft.y + size};
+    var br = {x: topleft.x + size, y: topleft.y + size};
     var result;
     if (result = intersect_line_line(start, end, tl, tr)) { return result; } // top
     if (result = intersect_line_line(start, end, tr, br)) { return result; } // right
@@ -828,7 +824,6 @@ jQuery.fn.springy = function(params) {
     return false;
   }
 
-  // helpers for figuring out where to draw arrows
   function intersect_line_line(p1, p2, p3, p4) {
     var denom = ((p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y));
     // lines are parallel
