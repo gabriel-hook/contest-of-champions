@@ -659,7 +659,8 @@ jQuery.fn.springy = function(params) {
       ctx.save();
 
       //settings
-			ctx.lineWidth = width;
+      ctx.lineWidth = width;
+      ctx.lineCap = overlapping? "round": "butt";
       ctx.strokeStyle = stroke;
       ctx.fillStyle = stroke;
       ctx.globalAlpha = alpha;
