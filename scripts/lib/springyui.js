@@ -638,19 +638,21 @@ jQuery.fn.springy = function(params) {
 
 			//change default to  10.0 to allow text fit between edges
 			var spacing = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
+      var padding = Math.max(1, spacing/3);
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = toScreen(p1).add(offset);
 			var s2 = toScreen(p2).add(offset);
+      var sdelta = s2.subtract(s1).normalise()
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
       var arrowWidth = 1 + width;
       var arrowLength = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
       var overlapping = edge.target.overlapping(edge.source);
       var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, 0.5);
-      var lineEnd =  overlapping? s2: edge.target.intersectLine(s1, s2, arrowLength);
-      var arrowStart = lineEnd.add( s2.subtract(s1).normalise().multiply( arrowLength * 0.75 ) )
+      var lineEnd =  (overlapping? s2: edge.target.intersectLine(s1, s2, padding)).add(sdelta.multiply( -arrowLength * 0.75 ));
+      var arrowStart = lineEnd.add(sdelta.multiply( arrowLength * 0.75 ));
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.25: (isSelected === 0.5)? 0.5: 1.0;
 
