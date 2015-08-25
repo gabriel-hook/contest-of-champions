@@ -646,11 +646,11 @@ jQuery.fn.springy = function(params) {
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
       var arrowWidth = 1 + width;
-      var arrowLength = 8;
+      var arrowLength = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
       var overlapping = edge.target.overlapping(edge.source);
-      var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, -1);
+      var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, 0.5);
       var lineEnd =  overlapping? s2: edge.target.intersectLine(s1, s2, arrowLength);
-      var arrowStart = lineEnd.add( lineEnd.subtract(lineStart).normalise().multiply( arrowLength * 0.75 ) )
+      var arrowStart = lineEnd.add( s2.subtract(s1).normalise().multiply( arrowLength * 0.75 ) )
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.25: (isSelected === 0.5)? 0.5: 1.0;
 
