@@ -681,12 +681,11 @@ jQuery.fn.springy = function(params) {
       
       ctx.restore();
 		},
-		function drawNode(node, p) {
-      if(node.isSelected())
-        return;
-    
+		function drawNode(node, p) {    
       var size = node.bb.size;
-      if(edgeSelected)
+      if (node.isSelected())
+        ctx.globalAlpha = 1.0;
+      else if(edgeSelected)
         ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
       else if(selected.length === maxTeamSize)
         ctx.globalAlpha = 0.25;
@@ -705,14 +704,10 @@ jQuery.fn.springy = function(params) {
       if (!node.isSelected())
           return;
     
-      var size = node.bb.size;
       ctx.globalAlpha = 1.0;
 
-      //draw the portrait
-      node.image = node.getPortraitImage(size);
-      ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
-
       //draw the portrait text
+      var size = node.bb.size;
       var text = node.getPortraitTextImage();
       ctx.drawImage(text, 
         Math.min(Math.max(0, node.bb.x - (text.width / 2) | 0), canvas.width - text.width), 
