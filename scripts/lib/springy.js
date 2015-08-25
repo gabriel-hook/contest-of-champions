@@ -543,8 +543,6 @@
 				rendering = false;
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
-			else
-				console.log("STOP")
     }, milliseconds);
 
     //do renders every animation frame
