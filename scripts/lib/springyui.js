@@ -90,6 +90,7 @@ jQuery.fn.springy = function(params) {
 	var dragged = null;
   var moved = 0;
   var selection = null;
+  var clicks = 0;
 
   this.selectEdgeType=function(type){
     clearSelected();
@@ -216,8 +217,11 @@ jQuery.fn.springy = function(params) {
       }
       if(selectType)
         selection = { start: coord, before:selected, type:selectType };
+      clicks = 0;
     }
     else{
+      if(node.isSelected())
+        clicks++;
       var point = fromScreen(coord);
       dragged = { node:node, point:layout.point(node) };
       dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y };
@@ -288,7 +292,7 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     if(e.shiftKey || e.ctrlKey)
       return;
-    if(moved < 10 && dragged && dragged.node.isSelected()){
+    if(moved < 5 && dragged && dragged.node.isSelected()){
       selectedOpen(dragged.node);
       pointerEnd();
     }
@@ -296,11 +300,11 @@ jQuery.fn.springy = function(params) {
   
   $(canvas).on('dblclick', function(e) {
     e.preventDefault();
-    if(e.shiftKey || e.ctrlKey)
+    if(clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
 		var pos = $(canvas).offset(),
       node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top });
-    if(moved < 10 && node && node.isSelected())
+    if(moved < 5 && node && node.isSelected())
       selectedOpen(node);
 	});
   $('body').on('keyup', function(e){
