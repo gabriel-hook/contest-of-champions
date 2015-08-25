@@ -649,7 +649,7 @@ jQuery.fn.springy = function(params) {
       var arrowLength = 8;
       var overlapping = edge.target.overlapping(edge.source);
       var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, -1);
-      var lineEnd =  edge.target.intersectLine(s1, s2, arrowLength);
+      var lineEnd =  overlapping? s2: edge.target.intersectLine(s1, s2, arrowLength);
       var arrowStart = lineEnd.add( lineEnd.subtract(lineStart).normalise().multiply( arrowLength * 0.75 ) )
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
