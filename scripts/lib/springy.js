@@ -716,26 +716,40 @@
 		var t = this;
 		this.layout.start(function render() {
 			t.clear();
-
-			//nodes that are below are drawn on top
-			var nodePoints = []
+			//build arrays of functions to process
+			var opsBefore = [], opsAfter = [];
 			t.layout.eachNode(function(node, point) {
-				nodePoints.push({ node:node, point:point });
 				t.processNode(node, point.p);
+				opsBefore.push({ 
+					args:[node, point], 
+					func:t.drawNode, 
+					zindex:point.p.y
+				});
+				opsAfter.push({ 
+					args:[node, point], 
+					func:t.drawNodeOverlay, 
+					zindex:point.p.y
+				});
 			});
-
 			t.layout.eachEdge(function(edge, spring) {
-				t.drawEdge(edge, spring.point1.p, spring.point2.p);
+				opsBefore.push({ 
+					args:[edge, spring.point1.p, spring.point2.p], 
+					func:t.drawEdge, 
+					zindex:(spring.point1.p.y + spring.point2.p.y) / 2
+				});
 			});
-
-			nodePoints.sort(function(a, b){
-				return a.point.p.y - b.point.p.y;
-			})
-			for(var i=0; i<nodePoints.length; i++)
-				t.drawNode(nodePoints[i].node, nodePoints[i].point.p);
-			for(var i=0; i<nodePoints.length; i++)
-				t.drawNodeOverlay(nodePoints[i].node, nodePoints[i].point.p);
-
+			//sort by z-index
+			opsBefore.sort(function(a, b){
+				return a.zindex - b.zindex;
+			});
+			opsAfter.sort(function(a, b){
+				return a.zindex - b.zindex;
+			});
+			//process the rendering functions
+			for(var i=0; i<opsBefore.length; i++)
+				opsBefore[i].func.apply(t, opsBefore[i].args);
+			for(var i=0; i<opsAfter.length; i++)
+				opsAfter[i].func.apply(t, opsAfter[i].args);
 			t.drawOverlay();
 		}, this.onRenderStop, this.onRenderStart);
 	};
