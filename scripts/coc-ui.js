@@ -126,6 +126,7 @@ CoC.ui.roster=new function(){
       champion.set("awakened", value);
       champion.save();
       $("#roster-configure-awakened").selectmenu('refresh');
+      $("#roster-configure-stars").attr("class", (value > 0)? "awakened": "");
     }).val(champion.get("awakened")).selectmenu('refresh');
     
     $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind("change").change(function(e){
