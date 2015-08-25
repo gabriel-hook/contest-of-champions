@@ -733,7 +733,7 @@
 				opsBefore.push({ 
 					args:[edge, spring.point1.p, spring.point2.p], 
 					func:t.drawEdge, 
-					zindex:(spring.point1.p.y + spring.point2.p.y) / 2
+					zindex:(spring.point1.p.y + spring.point2.p.y + Math.max(spring.point1.p.y, spring.point2.p.y)) / 3
 				});
 			});
 			//sort by z-index
