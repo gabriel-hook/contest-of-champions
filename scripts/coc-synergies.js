@@ -3,7 +3,7 @@ CoC.synergies = CoC.synergies || {};
 
 CoC.synergies.version = "1.1.0";
 
-CoC.synergies.initialize=function(stars){
+CoC.synergies.initialize=function(stars, roster){
   console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
   
   var nodeSelected = function(nodes, edges){
@@ -74,7 +74,9 @@ CoC.synergies.initialize=function(stars){
     nodes = {}, effects = {};
   
   //add nodes
-  var champions = CoC.data.champions.where({ stars:stars });
+  var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars });
+
+
   for(var i=0; i<champions.length; i++)
     (function(champion){
       var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
@@ -160,6 +162,18 @@ CoC.synergies.initialize=function(stars){
   
   //enable legend and stars buttons
   $(".button[stars="+stars+"]").addClass("active");
+  if(!roster){
+    $(".button[stars="+stars+"]").attr('href','?roster='+stars);
+  }
+  else{    
+    $(".button[stars]").each(function(button){
+      var el = $(this), s = el.attr("stars");
+      if(stars === parseInt(s,10))
+        el.addClass('roster');
+      else
+        el.attr('href','?roster='+s);
+    });
+  }
   $('.button.legend').click(CoC.synergies.toggleLegend);
   CoC.synergies.toggleLegend();
 

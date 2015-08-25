@@ -82,6 +82,7 @@
     <!-- Libraries -->
     <script type="text/javascript" src="scripts/lib/underscore-min.js"></script>
     <script type="text/javascript" src="scripts/lib/backbone-min.js"></script>
+    <script type="text/javascript" src="scripts/lib/backbone.localStorage-min.js"></script>
     <!-- Model definitions -->
     <script type="text/javascript" src="scripts/model/champion.js"></script>
     <script type="text/javascript" src="scripts/model/effect.js"></script>
@@ -98,19 +99,34 @@
     <!-- App logic -->
     <script type="text/javascript" src="scripts/coc-tracking.js"></script>
     <script type="text/javascript" src="scripts/coc-synergies.js"></script>
+    <script type="text/javascript" src="scripts/coc-roster.js"></script>
     <!-- Init -->
     <script type="text/javascript">
       $(window).on('resize', CoC.synergies.canvasResize);
       $(document).on('ready', CoC.synergies.canvasResize);
       CoC.synergies.canvasResize();
-      var stars = Math.min(4, Math.max(1, parseInt(location.search.substr(7), 10))) || 2;
-      if(location.search === "?stars=" + stars){
+      function checkStars(search, key){
+        var query = '?'+key+'=', value, stars;
+        if(!search.startsWith(query))
+          return false;
+        value = parseInt(location.search.substr(query.length), 10);
+        stars = Math.min(4, Math.max(1, value)) || 2;
+        return (search === query + stars)? stars: false;
+      }
+      var stars;
+      if(stars = checkStars(location.search, 'roster')){
+        CoC.roster.initialize();
+        $('.page').on('pageshow', function(){
+            CoC.synergies.initialize(stars, true);
+        });
+      }
+      else if(stars = checkStars(location.search, 'stars')){
         $('.page').on('pageshow', function(){
             CoC.synergies.initialize(stars);
         });
       }
       else
-        location.search = "?stars=" + stars;
+        location.search = "?stars=" + (stars || 2);
     </script>
   </body>
 </html>

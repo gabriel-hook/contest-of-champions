@@ -127,6 +127,12 @@ body.ui-mobile-viewport,
   background: -moz-radial-gradient(#ccc, #bbb, #888);
   background: radial-gradient(#ccc, #bbb, #888);
 }
+.button.active.roster{
+  background: -webkit-radial-gradient(#ccf, #bbe, #88c);
+  background: -o-radial-gradient(#ccf, #bbe, #88c);
+  background: -moz-radial-gradient(#ccf, #bbe, #88c);
+  background: radial-gradient(#ccf, #bbe, #88c);
+}
 .button .narrow{
   display:inherit;
 }
