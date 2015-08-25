@@ -300,7 +300,7 @@ jQuery.fn.springy = function(params) {
       return;
 		var pos = $(canvas).offset(),
       node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top });
-    if(node && node.isSelected())
+    if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
 	});
   $('body').on('keyup', function(e){
