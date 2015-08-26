@@ -110,7 +110,7 @@
       CoC.synergies.canvasResize();
       function checkStars(search, key){
         var query = '?'+key+'=', value, stars;
-        if(!search.startsWith(query))
+        if(search.indexOf(query) !== 0)
           return false;
         value = parseInt(location.search.substr(query.length), 10);
         stars = Math.min(4, Math.max(1, value)) || 2;
