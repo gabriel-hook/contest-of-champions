@@ -19,7 +19,7 @@ CoC.view.ChampionView = Backbone.View.extend({
     setTimeout(function(){
       el.find(".portrait").addClass('fade');
       el.find(".portrait-placeholder").addClass('fade');
-    }, 100);
+    }, 250);
 
     return this;
   }
