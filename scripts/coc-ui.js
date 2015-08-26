@@ -2,44 +2,16 @@
 CoC.ui = CoC.ui || {};
 
 CoC.ui.initialize=function(){
-  CoC.ui.share.initialize();
-  setTimeout(CoC.ui.preload, 0);
-}
-
-CoC.ui.share=new function(){
-  this.initialize=function(){
-    $("#popup-share").css('display','block').enhanceWithin().popup();
-    $("#share-facebook").click(function(){
-      CoC.tracking.event("share", "facebook");
-    });
-    $("#share-twitter").click(function(){
-      CoC.tracking.event("share", "twitter");
-    });
-    $("#share-googleplus").click(function(){
-      CoC.tracking.event("share", "googleplus");
-    });
-  }
-};
-
-//Image preloader for known images
-CoC.ui.preload = function(){
-  //add all to hash so duplicates are loaded once
-  var images = {};
-  CoC.data.effects.each(function(effect){
-    images[ effect.get("image") ] = true;
+  $("#popup-share").css('display','block').enhanceWithin().popup();
+  $("#share-facebook").click(function(){
+    CoC.tracking.event("share", "facebook");
   });
-  CoC.data.crystals.each(function(crystal){
-    images[ crystal.image() ] = true;
+  $("#share-twitter").click(function(){
+    CoC.tracking.event("share", "twitter");
   });
-  CoC.data.champions.each(function(champion){
-    images[ champion.portrait() ] = true;
-    images[ champion.image() ] = true;
+  $("#share-googleplus").click(function(){
+    CoC.tracking.event("share", "googleplus");
   });
-  //add to hidden div to hide from garbage collection
-  var hidden = $('<div>', { style:'display:none' });
-  for(var src in images)
-    $('<img/>').attr('src', src).appendTo(hidden);
-  $(document.body).append(hidden);
 }
 
 //View logic for pages
