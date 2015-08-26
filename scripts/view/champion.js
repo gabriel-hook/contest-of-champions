@@ -15,11 +15,11 @@ CoC.view.ChampionView = Backbone.View.extend({
     el.addClass("champion").addClass(model.get("typeId"));
     el.attr("uid", model.get("uid")).attr("stars", model.get("stars"));
 
-    //animate placeholder swap if we take more than 50ms
+    //show and animate placeholder if we take a while to load
     setTimeout(function(){
       el.find(".portrait").addClass('fade');
-      el.find(".portrait-placeholder").addClass('show').addClass('fade');
-    }, 50);
+      el.find(".portrait-placeholder").addClass('fade');
+    }, 100);
 
     return this;
   }
