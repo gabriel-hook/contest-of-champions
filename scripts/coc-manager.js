@@ -98,7 +98,6 @@ CoC.settings.keys.duplicates=new function(){
   }
 };
 
-
 CoC.settings.setDuplicateWeight=function(number,weight){
   if(parseInt(number) === NaN || number < 2 || number > 5)
     return;

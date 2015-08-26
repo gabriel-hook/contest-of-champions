@@ -8,7 +8,7 @@ CoC.ui.initialize=function(){
 
 CoC.ui.share=new function(){
   this.initialize=function(){
-    $("#popup-share").enhanceWithin().popup();
+    $("#popup-share").css('display','block').enhanceWithin().popup();
     $("#share-facebook").click(function(){
       CoC.tracking.event("share", "facebook");
     });
@@ -379,7 +379,7 @@ CoC.ui.guides=new function(){
   
   this.open=function(uid){
     this._uid = uid;
-    jQuery.mobile.changePage("#page-guide",{
+    $.mobile.changePage("#page-guide",{
       transition:"fade"
     });
   }
