@@ -524,11 +524,11 @@
       onRenderStart(); 
     }
 
-    var rendering = true, milliseconds = 10;
+    var rendering = true, tickDelta = 0.01, milliseconds = 25;
 
 		//force initial render in case we start out of focus
 		setTimeout(function(){
-			t.tick(milliseconds / 1000);
+			t.tick(tickDelta);
 			if (render !== undefined) {
 				render();
 			}
@@ -537,7 +537,7 @@
 		//do physics ticks on a timer
     setTimeout(function tickLoop(){
 			if(document.hasFocus())
-				t.tick(milliseconds / 1000);
+				t.tick(tickDelta);
 			// stop simulation when energy of the system goes below a threshold
 			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
 				rendering = false;
@@ -719,12 +719,12 @@
 			t.layout.eachNode(function(node, point) {
 				t.processNode(node, point.p);
 				opsBefore.push({ 
-					args:[node, point], 
+					args:[node, point.p], 
 					func:t.drawNode, 
 					zindex:point.p.y
 				});
 				opsAfter.push({ 
-					args:[node, point], 
+					args:[node, point.p], 
 					func:t.drawNodeOverlay, 
 					zindex:point.p.y
 				});
