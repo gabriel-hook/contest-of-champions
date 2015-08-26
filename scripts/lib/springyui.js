@@ -598,8 +598,8 @@ jQuery.fn.springy = function(params) {
         dragged.point.m = activeMass;
       }
 		},
-    function processNode(node, p) {
-      var s = toScreen(p), 
+    function processNode(node, point) {
+      var s = toScreen(point), 
         x = (s.x | 0), 
         y = (s.y | 0), 
         size = node.getSize(),
@@ -607,11 +607,10 @@ jQuery.fn.springy = function(params) {
         halfSize = (size / 2) | 0;
       node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
     },
-		function drawEdge(edge, p1, p2) {
-      var point1 = toScreen(p1);
-      var point2 = toScreen(p2);
+		function drawEdge(edge, pointStart, pointEnd) {
+      var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
       
-			var normal = new Springy.Vector(point2.x-point1.x, point2.y-point1.y).normal().normalise();
+			var normal = new Springy.Vector(p2.x-p1.x, p2.y-p1.y).normal().normalise();
 			var from = graph.getEdges(edge.source, edge.target);
 			var to = graph.getEdges(edge.target, edge.source);
 
@@ -658,8 +657,8 @@ jQuery.fn.springy = function(params) {
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
-			var s1 = toScreen(p1).add(offset);
-			var s2 = toScreen(p2).add(offset);
+			var s1 = p1.add(offset);
+			var s2 = p2.add(offset);
       var sdelta = s2.subtract(s1).normalise()
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
@@ -689,7 +688,7 @@ jQuery.fn.springy = function(params) {
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
-			ctx.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x));
+			ctx.rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x));
 			ctx.beginPath();
 			ctx.moveTo(-arrowLength, arrowWidth);
 			ctx.lineTo(0, 0);
@@ -700,7 +699,7 @@ jQuery.fn.springy = function(params) {
       
       ctx.restore();
 		},
-		function drawNode(node, p) {    
+		function drawNode(node, point) {    
       var size = node.bb.size;
       if (node.isSelected())
         ctx.globalAlpha = 1.0;
@@ -719,7 +718,7 @@ jQuery.fn.springy = function(params) {
       node.image = node.getPortraitImage(size);
       ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
 		},
-		function drawNodeOverlay(node, p) {
+		function drawNodeOverlay(node, point) {
       if (!node.isSelected())
           return;
     
