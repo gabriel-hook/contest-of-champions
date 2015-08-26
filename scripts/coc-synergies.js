@@ -161,6 +161,7 @@ CoC.synergies.initialize=function(stars, roster){
   //enable legend
   if(roster && champions.length === 0){
     $("#roster-hint").addClass("active");
+    $("#roster-hint-stars").text(Array(stars + 1).join("★"));
   }
 
   if(_.isEmpty(effects))
