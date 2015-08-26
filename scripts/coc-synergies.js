@@ -75,8 +75,6 @@ CoC.synergies.initialize=function(stars, roster){
   
   //add nodes
   var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars });
-
-
   for(var i=0; i<champions.length; i++)
     (function(champion){
       var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
@@ -160,7 +158,19 @@ CoC.synergies.initialize=function(stars, roster){
     }));
   });
   
-  //enable legend and stars buttons
+  //enable legend
+  if(roster && champions.length === 0){
+    $("#roster-hint").addClass("active");
+  }
+
+  if(_.isEmpty(effects))
+    $("#legend").css("display", "none");
+  else{
+    $('.button.legend').click(CoC.synergies.toggleLegend);
+    CoC.synergies.toggleLegend();
+  }
+
+  //enable stars buttons
   $(".button[stars="+stars+"]").addClass("active");
   if(!roster){
     $(".button[stars="+stars+"]").attr('href','?roster='+stars);
@@ -174,8 +184,6 @@ CoC.synergies.initialize=function(stars, roster){
         el.attr('href','?roster='+s);
     });
   }
-  $('.button.legend').click(CoC.synergies.toggleLegend);
-  CoC.synergies.toggleLegend();
 
   //track
   CoC.tracking.pageView();
