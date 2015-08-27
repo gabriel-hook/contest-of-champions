@@ -167,17 +167,19 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
   { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
 
-/*
-  { fromId:"magneto", fromStars:2, toId:"wolverine", effectId:"critrate", effectAmount:5 },
-  { fromId:"magneto", fromStars:2, toId:"cyclops", effectId:"block", effectAmount:10 },
-  { fromId:"magneto", fromStars:2, toId:"storm", effectId:"critdamage", effectAmount:15 },
-*/
   { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
   { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
   { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
   { fromId:"magneto", fromStars:4, toId:"wolverine", effectId:"critrate", effectAmount:7 },
   { fromId:"magneto", fromStars:4, toId:"cyclops", effectId:"block", effectAmount:20 },
   { fromId:"magneto", fromStars:4, toId:"storm", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"magik", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"magik", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
 
   { fromId:"storm", fromStars:2, toId:"blackpanther", effectId:"powergain", effectAmount:3 },
   { fromId:"storm", fromStars:3, toId:"magik", effectId:"armor", effectAmount:6 },
