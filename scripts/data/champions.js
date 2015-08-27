@@ -6,8 +6,8 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 2 },
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 3 },
   { uid:"blackbolt", name:"Black Bolt", typeId:"cosmic", stars: 4 },
-  { uid:"captainmarvel", name:"Cap. Marvel", typeId:"cosmic", stars: 3 },
-  { uid:"captainmarvel", name:"Cap. Marvel", typeId:"cosmic", stars: 4 },
+  { uid:"captainmarvel", name:"Captain Marvel", typeId:"cosmic", stars: 3 },
+  { uid:"captainmarvel", name:"Captain Marvel", typeId:"cosmic", stars: 4 },
   { uid:"drax", name:"Drax", typeId:"cosmic", stars: 2 },
   { uid:"drax", name:"Drax", typeId:"cosmic", stars: 3 },
   { uid:"drax", name:"Drax", typeId:"cosmic", stars: 4 },
@@ -20,9 +20,9 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 2 },
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 3 },
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 4 },
-  { uid:"superiorironman", name:"Sup. Iron Man", typeId:"cosmic", stars: 2 },
-  { uid:"superiorironman", name:"Sup. Iron Man", typeId:"cosmic", stars: 3 },
-  { uid:"superiorironman", name:"Sup. Iron Man", typeId:"cosmic", stars: 4 },
+  { uid:"superiorironman", name:"Superior Iron Man", typeId:"cosmic", stars: 2 },
+  { uid:"superiorironman", name:"Superior Iron Man", typeId:"cosmic", stars: 3 },
+  { uid:"superiorironman", name:"Superior Iron Man", typeId:"cosmic", stars: 4 },
   { uid:"thor", name:"Thor", typeId:"cosmic", stars: 2 },
   { uid:"thor", name:"Thor", typeId:"cosmic", stars: 3 },
   { uid:"thor", name:"Thor", typeId:"cosmic", stars: 4 },
@@ -102,8 +102,8 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"captainamerica", name:"Captain America", typeId:"science", stars: 2 },
   { uid:"captainamerica", name:"Captain America", typeId:"science", stars: 3 },
   { uid:"captainamerica", name:"Captain America", typeId:"science", stars: 4 },
-  { uid:"captainamericawwii", name:"Cpt. America WWII", typeId:"science", stars: 3 },
-  { uid:"captainamericawwii", name:"Cpt. America WWII", typeId:"science", stars: 4 },
+  { uid:"captainamericawwii", name:"Captain America WWII", typeId:"science", stars: 3 },
+  { uid:"captainamericawwii", name:"Captain America WWII", typeId:"science", stars: 4 },
   { uid:"electro", name:"Electro", typeId:"science", stars: 3 },
   { uid:"electro", name:"Electro", typeId:"science", stars: 4 },
   { uid:"hulk", name:"Hulk", typeId:"science", stars: 1 },
@@ -136,9 +136,9 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 2 },
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 3 },
   { uid:"scarletwitch", name:"Scarlet Witch", typeId:"mystic", stars: 4 },
-  { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 2 },
-  { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 3 },
-  { uid:"unstoppablecolossus", name:"Unst. Colossus", typeId:"mystic", stars: 4 }
+  { uid:"unstoppablecolossus", name:"Unstoppable Colossus", typeId:"mystic", stars: 2 },
+  { uid:"unstoppablecolossus", name:"Unstoppable Colossus", typeId:"mystic", stars: 3 },
+  { uid:"unstoppablecolossus", name:"Unstoppable Colossus", typeId:"mystic", stars: 4 }
   
 ], {
   model: CoC.model.Champion

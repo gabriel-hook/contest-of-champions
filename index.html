@@ -705,7 +705,7 @@
       <div class="container">
         <div data-role="collapsible" data-disabled="true" data-collapsed="false" data-expanded-icon="<%= champion.get("typeId") %>">
           <h2 class="ui-collapsible-heading-toggle">
-            <%- (data.fullname)? data.fullname: champion.get("name") %>
+            <%- champion.get("name") %>
           </h2>
           <% if(data.grades){ %>
             <div class="selectable bold">
