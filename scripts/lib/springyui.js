@@ -34,9 +34,6 @@ jQuery.fn.springy = function(params) {
 	var damping = params.damping || 0.5;
 	var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
 	var nodeSelected = params.nodeSelected || null;
-	var nodeImages = {};
-	var nodeImageContexts = {};
-	var nodeImageContextQueue = {};
   var maxTeamSize = params.maxTeamSize || 5;
   var activeMass = params.activeMass || 500;
 
@@ -389,8 +386,14 @@ jQuery.fn.springy = function(params) {
     }
 	});
 
-  nodeImageContextQueue.list = [];
-  nodeImageContextQueue.todo = {};
+
+  var nodeImages = {};
+  var nodeImageContexts = {};
+  var nodeImageContextQueue = {
+    list:[],
+    todo:{}
+  };
+
   nodeImageContextQueue.add = function(id, callback){
     nodeImageContextQueue.todo[id] = callback;
     nodeImageContextQueue.list.push(id);
@@ -406,73 +409,7 @@ jQuery.fn.springy = function(params) {
       delete nodeImageContextQueue.timeout;
       delete nodeImageContextQueue.todo[id];
       nodeImageContextQueue.next();
-    }, 1);
-  }
-
-  function addPortaitContexts(src, image, color){
-    var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        barHeight = Math.max(2, (image.height/10) | 0);
-    canvas.width = canvas.height = image.width;
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
-    context.fillStyle = color;
-    context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-    if(nodeImageContexts[src] === undefined)
-      nodeImageContexts[src] = [];
-    nodeImageContexts[src].push({
-      image:image,
-      canvas:canvas
-    });
-  }
-
-  var placeholders={};
-  var placeholderHitbox = getHitbox(getPlaceholder(220));
-
-  //Used the svg path from here and just filled the path
-  //https://upload.wikimedia.org/wikipedia/en/b/b9/No_free_portrait.svg
-  function getDefaultPlaceholder(){
-    if(!placeholders['default']){
-      var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        coords = [
-          3.5709275,215.81378,3.7352275,204.03019,3.8497975,199.05392,3.5005675,183.77748,11.214111,174.15409,38.3674,
-          169.74066,45.785393,167.0981,55.358378,159.98075,66.203698,153.92378,75.552667,148.56151,80.7154,145.60034,
-          80.782546,135.45005,80.404668,128.63362,78.689369,118.98009,77.782686,110.65561,70.86354,103.56735,70.47649,
-          101.54341,69.346365,96.899211,65.948685,90.832271,63.662168,80.636072,54.650066,68.010083,56.914311,61.532735,
-          62.944238,44.282973,57.676043,37.272904,61.378834,35.798494,69.823479,32.435953,72.10706,25.082426,79.841538,
-          17.698566,102.43887,13.411138,98.965362,1.9932189,115.84961,4.1987589,136.77696,6.9324259,125.2515,10.014792,
-          139.60507,17.279644,157.23926,26.204921,146.73196,27.108963,162.83032,50.739759,172.38972,64.771999,153.76819,
-          65.728581,158.59298,78.146165,163.04993,89.617072,152.54354,91.572613,147.24294,104.12579,142.15767,116.16899,
-          138.96668,119.70997,144.82195,135.58386,150.25927,150.32462,159.28667,143.58938,179.677,165.66778,184.85448,
-          171.27389,203.45549,164.48784,216.26305,180.85898,216.25506,189.25148,216.44185,198.19473,216.49943,216.08121,
-          159.09474,215.87646,3.5709275,215.81378,3.5709275,215.81378
-        ];
-      canvas.height = canvas.width = 220;
-      context.fillStyle = "#999";
-      context.beginPath();
-      context.moveTo(coords[0], coords[1]);
-      for(var i=2; i<coords.length; i+=2)
-        context.lineTo(coords[i], coords[i+1]);
-      context.closePath();
-      context.fill();
-      placeholders['default'] = canvas;
-    }
-    return placeholders['default']
-  }
-  function getPlaceholder(size, color){
-    var id = (color)? size + '_' + color: size;
-    if(!placeholders[id]){
-      var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        barHeight = Math.max(2, (size / 10) | 0),
-        placeholder = getDefaultPlaceholder();
-      canvas.height = canvas.width = size;
-      context.drawImage(placeholder, 0, 0, canvas.width, canvas.height);
-      context.fillStyle = color || "#000";
-      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-      placeholders[id] = canvas;
-    }
-    return placeholders[id];
+    }, 50);
   }
 
   function getHitbox(image){
@@ -491,14 +428,86 @@ jQuery.fn.springy = function(params) {
     return { size:size, opaque:opaque };
   }
 
-  Springy.Node.prototype.addHitbox = function(image) {
-    if(this.hitbox !== undefined)
-      return;
-    this.hitbox = getHitbox(image);
+  function addPortaitContexts(src, image, color){
+    var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        barHeight = Math.max(2, (image.height/10) | 0);
+    canvas.width = canvas.height = image.width;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    context.fillStyle = color;
+    context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+    canvas.hitbox = getHitbox(canvas);
+    if(nodeImageContexts[src] === undefined)
+      nodeImageContexts[src] = [];
+    nodeImageContexts[src].push({
+      image:image,
+      canvas:canvas
+    });
   }
 
-  Springy.Node.prototype.getHitbox = function() {
-    return this.hitbox || placeholderHitbox;
+  var placeholders={};
+  var placeholderCoords = [
+    //Used the svg path from here and just filled the path with bezier curves.
+    //The original size of the svg path was 220x220 so scale to new size.
+    //https://upload.wikimedia.org/wikipedia/en/b/b9/No_free_portrait.svg
+    3.5709275,215.81378,
+    3.7352275,204.03019,3.8497975,199.05392,3.5005675,183.77748,
+    11.214111,174.15409,38.3674,169.74066,45.785393,167.0981,
+    55.358378,159.98075,66.203698,153.92378,75.552667,148.56151,
+    80.7154,145.60034,80.782546,135.45005,80.404668,128.63362,
+    78.689369,118.98009,77.782686,110.65561,70.86354,103.56735,
+    70.47649,101.54341,69.346365,96.899211,65.948685,90.832271,
+    63.662168,80.636072,54.650066,68.010083,56.914311,61.532735,
+    62.944238,44.282973,57.676043,37.272904,61.378834,35.798494,
+    69.823479,32.435953,72.10706,25.082426,79.841538,17.698566,
+    102.43887,13.411138,98.965362,1.9932189,115.84961,4.1987589,
+    136.77696,6.9324259,125.2515,10.014792,139.60507,17.279644,
+    157.23926,26.204921,146.73196,27.108963,162.83032,50.739759,
+    172.38972,64.771999,153.76819,65.728581,158.59298,78.146165,
+    163.04993,89.617072,152.54354,91.572613,147.24294,104.12579,
+    142.15767,116.16899,138.96668,119.70997,144.82195,135.58386,
+    150.25927,150.32462,159.28667,143.58938,179.677,165.66778,
+    184.85448,171.27389,203.45549,164.48784,216.26305,180.85898,
+    216.25506,189.25148,216.44185,198.19473,216.49943,216.08121,
+    159.09474,215.87646,3.5709275,215.81378,3.5709275,215.81378
+  ];
+
+  function getPlaceholder(size, color){
+    var id = size + '_' + color, sizeId = size.toString();
+    if(!placeholders[id]){
+      var canvas, context;
+      if(!placeholders[sizeId]){
+        var ratio = size / 220;
+        canvas = document.createElement('canvas');
+        context = canvas.getContext('2d');
+        canvas.height = canvas.width = size;
+        context.beginPath();
+        context.moveTo(placeholderCoords[0] * ratio, placeholderCoords[1] * ratio);
+        for(var i=2; i<placeholderCoords.length; i+=6)
+          context.bezierCurveTo(
+            placeholderCoords[i]*ratio, placeholderCoords[i+1]*ratio,
+            placeholderCoords[i+2]*ratio, placeholderCoords[i+3]*ratio,
+            placeholderCoords[i+4]*ratio, placeholderCoords[i+5]*ratio
+          );
+        context.closePath();
+        context.lineWidth = 2;
+        context.strokeStyle = "#888";
+        context.stroke();
+        context.fillStyle = "#999";
+        context.fill();
+        placeholders[sizeId] = canvas;
+      }
+      var canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d'),
+        barHeight = Math.max(2, (size / 10) | 0);
+      canvas.height = canvas.width = size;
+      context.drawImage(placeholders[sizeId], 0, 0, canvas.width, canvas.height);
+      context.fillStyle = color || "#000";
+      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+      canvas.hitbox = getHitbox(canvas);
+      placeholders[id] = canvas;
+    }
+    return placeholders[id]
   }
 
   //we cache the best sized portrait with type bar
@@ -546,8 +555,6 @@ jQuery.fn.springy = function(params) {
     }
     if(!portrait)
       portrait = getPlaceholder(size, color);
-    else
-      node.addHitbox(portrait);
     return portrait;
   }
 
@@ -583,6 +590,10 @@ jQuery.fn.springy = function(params) {
     return this.textImage;
   }
 
+  Springy.Node.prototype.setHitbox = function(image) {
+    this.hitbox = image.hitbox;
+  }
+
 	var renderer = this.renderer = new Springy.Renderer(layout,
 		function clear() {
       currentBB = layout.getBoundingBox();
@@ -606,6 +617,7 @@ jQuery.fn.springy = function(params) {
         fullSize = size | 0, 
         halfSize = (size / 2) | 0;
       node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
+      node.setHitbox(node.getPortraitImage(size));
     },
 		function drawEdge(edge, pointStart, pointEnd) {
       var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
@@ -775,23 +787,51 @@ jQuery.fn.springy = function(params) {
 
   //return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.containsPoint = function(x, y) {
-    if(this.bb){
-      var hitbox = this.getHitbox(),
-        px = (hitbox.size * (x - this.bb.left) / this.bb.size) | 0,
-        py = (hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
-      if(hitbox.opaque[px])
-        return hitbox.opaque[px][py] === true;
+    if(this.bb && this.hitbox){
+      var px = (this.hitbox.size * (x - this.bb.left) / this.bb.size) | 0,
+        py = (this.hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
+      if(this.hitbox.opaque[px])
+        return this.hitbox.opaque[px][py] === true;
     }
     return false;
   }
 
   //check bboxes to see if they overlap
   Springy.Node.prototype.overlapping = function(node) {
-    return this.bb && node.bb &&
+    if(this.bb && node.bb &&
       this.bb.left < node.bb.right && 
       this.bb.right > node.bb.left &&
       this.bb.top < node.bb.bottom && 
-      this.bb.bottom > node.bb.top;
+      this.bb.bottom > node.bb.top){
+
+      //see if hitboxes overlap in bbox overlap range
+      if(this.hitbox && node.hitbox){
+        var tlx, tly, brx, bry;
+        if(this.bb.bottom < node.bb.bottom){
+          tly = node.bb.top | 0;
+          bry = this.bb.bottom | 0;
+        }
+        else{
+          tly = this.bb.top | 0;
+          bry = node.bb.bottom | 0;
+        }
+        if(this.bb.left < node.bb.left){
+          tlx = node.bb.left | 0;
+          brx = this.bb.right | 0;
+        }
+        else{
+          tlx = this.bb.left | 0;
+          brx = node.bb.right | 0;
+        }
+        for(var x=tlx; x<brx; x++)
+          for(var y=tly; y<bry; y++)
+            if(this.containsPoint(x,y) && node.containsPoint(x,y))
+              return true;
+        return false;
+      }
+      return true;
+    }
+    return false;
   }
 
   Springy.Node.prototype.distanceSquared = function(x, y) {
