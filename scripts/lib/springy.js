@@ -436,7 +436,7 @@
 		this.eachNode(function(n1, point1) {
 			this.eachNode(function(n2, point2) {
 				if (point1 !== point2) {
-					var d = point1.p.subtract(point2.p),
+					var d = point1.p.copy().subtract(point2.p),
 						distance = Math.max(0.1, d.magnitude()), // avoid massive forces at small distances (and divide by zero)
 						direction = d.normalise(),
 						repulsion = this.repulsion();
@@ -446,7 +446,7 @@
 
 					// apply force to each end point
 					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distance * distance));
-					point2.applyForce(direction.multiply(repulsion).divide(-0.5 * distance * distance));
+					point2.applyForce(direction.multiply(-1));
 				}
 			});
 		});
@@ -454,35 +454,36 @@
 
 	Layout.ForceDirected.prototype.applyHookesLaw = function() {
 		this.eachSpring(function(spring){
-			var d = spring.point2.p.subtract(spring.point1.p); // the direction of the spring
+			var d = spring.point2.p.copy().subtract(spring.point1.p); // the direction of the spring
 			var displacement = spring.length - d.magnitude();
 			var direction = d.normalise();
 			var k = spring.k();
 
 			// apply force to each end point
 			spring.point1.applyForce(direction.multiply(-0.5 * k * displacement));
-			spring.point2.applyForce(direction.multiply(0.5 * k * displacement));
+			spring.point2.applyForce(direction.multiply(-1));
 		});
 	};
 
 	Layout.ForceDirected.prototype.attractToCentre = function() {
 		this.eachNode(function(node, point) {
-			var direction = point.p.multiply(-1.0);
-			point.applyForce(direction.multiply(this.repulsion() / 50.0));
+			var direction = point.p.copy().multiply(-1.0),
+				repulsion = this.repulsion();
+			point.applyForce(direction.multiply(repulsion / 50.0));
 		});
 	};
 
 
 	Layout.ForceDirected.prototype.updateVelocity = function(timestep) {
 		this.eachNode(function(node, point) {
-			point.v = point.v.add(point.a.multiply(timestep)).multiply(this.damping);
+			point.v.add(point.a.multiply(timestep)).multiply(this.damping);
 			point.a = new Vector(0,0);
 		});
 	};
 
 	Layout.ForceDirected.prototype.updatePosition = function(timestep) {
 		this.eachNode(function(node, point) {
-			point.p = point.p.add(point.v.multiply(timestep));
+			point.p.add(point.v.copy().multiply(timestep));
 		});
 	};
 
@@ -578,8 +579,7 @@
 		var t = this;
 		this.graph.nodes.forEach(function(n){
 			var point = t.point(n);
-			var distance = point.p.subtract(pos).magnitude();
-
+			var distance = point.p.copy().subtract(pos).magnitude();
 			if (min.distance === null || distance < min.distance) {
 				min = {node: n, point: point, distance: distance};
 			}
@@ -606,7 +606,7 @@
 			topright.x = Math.max(topright.x, point.p.x);
 			topright.y = Math.max(topright.y, point.p.y);
 		});
-		var padding = topright.subtract(bottomleft).multiply(0.07); // ~5% padding
+		var padding = topright.copy().subtract(bottomleft).multiply(0.07); // ~5% padding
 		return {bottomleft: bottomleft.subtract(padding), topright: topright.add(padding)};
 	};
 
@@ -621,20 +621,36 @@
 		return new Vector(5.0 * (Math.random() - 0.5), 5.0 * (Math.random() - 0.5));
 	};
 
+	Vector.prototype.copy = function(){
+		return new Vector(this.x, this.y);
+	}
+
 	Vector.prototype.add = function(v2) {
-		return new Vector(this.x + v2.x, this.y + v2.y);
+		this.x += v2.x;
+		this.y += v2.y;
+		return this;
+		//return new Vector(this.x + v2.x, this.y + v2.y);
 	};
 
 	Vector.prototype.subtract = function(v2) {
-		return new Vector(this.x - v2.x, this.y - v2.y);
+		this.x -= v2.x;
+		this.y -= v2.y;
+		return this;
+		//return new Vector(this.x - v2.x, this.y - v2.y);
 	};
 
 	Vector.prototype.multiply = function(n) {
-		return new Vector(this.x * n, this.y * n);
+		this.x *= n;
+		this.y *= n;
+		return this;
+		//return new Vector(this.x * n, this.y * n);
 	};
 
 	Vector.prototype.divide = function(n) {
-		return new Vector((this.x / n) || 0, (this.y / n) || 0); // Avoid divide by zero errors..
+		this.x = (this.x / n) || 0;
+		this.y = (this.y / n) || 0;
+		return this;
+		//return new Vector((this.x / n) || 0, (this.y / n) || 0); // Avoid divide by zero errors..
 	};
 
 	Vector.prototype.magnitude = function() {
@@ -642,17 +658,22 @@
 	};
 
 	Vector.prototype.normal = function() {
-		return new Vector(-this.y, this.x);
+		var tmp = this.x;
+		this.x = -this.y;
+		this.y = tmp;
+		return this;
+		//return new Vector(-this.y, this.x);
 	};
 
 	Vector.prototype.normalise = function() {
-		return this.divide(this.magnitude());
+		this.divide(this.magnitude());
+		return this;
+		//return this.divide(this.magnitude());
 	};
 
 	Vector.prototype.equals = function(v2) {
 		return Math.max(Math.abs(this.x - v2.x), Math.abs(this.y - v2.y)) < 0.0000001;
 	};
-
 
 	// Point
 	Layout.ForceDirected.Point = function(position, mass) {
@@ -663,7 +684,7 @@
 	};
 
 	Layout.ForceDirected.Point.prototype.applyForce = function(force) {
-		this.a = this.a.add(force.divide(this.m));
+		this.a.add(force.divide(this.m));
 	};
 
 	// Spring
