@@ -394,12 +394,9 @@ jQuery.fn.springy = function(params) {
     todo:{}
   };
 
-  nodeImageContextQueue.addNext = function(id, callback){
-    nodeImageContextQueue.add(id, callback, 'unshift');
-  }
-  nodeImageContextQueue.add = function(id, callback, where){
+  nodeImageContextQueue.add = function(id, callback, method){
     nodeImageContextQueue.todo[id] = callback;
-    nodeImageContextQueue.list[where || 'push'].call(nodeImageContextQueue.list, id);
+    nodeImageContextQueue.list[method || 'push'].call(nodeImageContextQueue.list, id);
     if(!nodeImageContextQueue.timeout)
       nodeImageContextQueue.next();
   }
@@ -490,10 +487,10 @@ jQuery.fn.springy = function(params) {
   ];
 
   function getPlaceholder(size, color){
-    var id = size + '_' + color, sizeId = size.toString();
+    var id = size + '_' + color;
     if(!placeholders[id]){
       var canvas, context;
-      if(!placeholders[sizeId]){
+      if(!placeholders[size]){
         var ratio = size / 220;
         canvas = document.createElement('canvas');
         context = canvas.getContext('2d');
@@ -512,13 +509,13 @@ jQuery.fn.springy = function(params) {
         context.stroke();
         context.fillStyle = "#999";
         context.fill();
-        placeholders[sizeId] = canvas;
+        placeholders[size] = canvas;
       }
       var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
         barHeight = Math.max(2, (size / 10) | 0);
       canvas.height = canvas.width = size;
-      context.drawImage(placeholders[sizeId], 0, 0, canvas.width, canvas.height);
+      context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
       context.fillStyle = color || "#000";
       context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
       canvas.hitbox = getHitbox(canvas);
@@ -536,12 +533,10 @@ jQuery.fn.springy = function(params) {
       if (src in nodeImages) {
         if (nodeImages[src].loaded) {
           //sample down for better antialiasing
-          var portraits = nodeImages[src].portraits, target = ceilPower2(size);
-          for(var i=0; i < portraits.length; i++)
-            if(portraits[i].width <= target){
-              portrait = portraits[i];
-              break;
-            }
+          var portraits = nodeImages[src].portraits, 
+            target = ceilPower2(size);
+          for(var i=0; i < portraits.length && portraits[i].width >= target; i++)
+            portrait = portraits[i];
         }
       }
       else{
