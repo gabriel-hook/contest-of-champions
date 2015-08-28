@@ -72,7 +72,7 @@ jQuery.fn.springy = function(params) {
     graph.nodes.forEach(function(node){
       var distance = node.distanceSquared(coord.x, coord.y);
       if(nearest.distance === undefined || distance < nearest.distance)
-        if(node.containsPoint(coord.x, coord.y))
+        if(node.containsPoint(coord))
           nearest = {
             node:node,
             distance:distance
@@ -673,14 +673,45 @@ jQuery.fn.springy = function(params) {
 			var s2 = p2.copy().add(offset);
       var sdelta = s2.copy().subtract(s1).normalise();
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
-      var width = Math.max(weight *  2, 0.1);
+      var width = Math.max(weight *  1.5, 0.1);
       var arrowWidth = 1 + width;
       var arrowLength = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
       var overlapping = edge.target.overlapping(edge.source);
-      var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, 0.5);
-      var lineEnd =  (overlapping? s2: edge.target.intersectLine(s1, s2, padding)).add(sdelta.copy().multiply( -arrowLength * 0.75 ));
+      var lineStart, lineEnd, lineDelta;
+      var halfArrow = sdelta.copy().multiply( arrowLength * 0.75 );
+      var sourceAbove = s1.y < s2.y;
+
+      //get best line start/end
+      if(overlapping){
+        if(sourceAbove){
+          lineStart = s1.copy();
+          lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+        }
+        else{
+          lineStart = edge.source.intersectLine(s2, s1, 0.5);
+          lineEnd = s2.copy().subtract(halfArrow);
+        }
+      }
+      else{
+        lineStart = edge.source.intersectLine(s2, s1, 0.5);
+        lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+
+        //adjust if we have problems
+        var lineMagnitude = lineEnd.copy().subtract(lineStart).magnitude();
+        if(lineMagnitude < arrowLength || (sourceAbove && edge.target.containsPoint(lineEnd)) || (!sourceAbove && edge.source.containsPoint(lineStart)) ){
+          if(sourceAbove){
+            lineStart = s1.copy();
+            lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+          }
+          else{
+            lineStart = edge.source.intersectLine(s2, s1, 0.5);
+            lineEnd = s2.copy().subtract(halfArrow);
+          }
+        }
+      }
       var ldelta = lineEnd.copy().subtract(lineStart).normalise();
-      var arrowStart = lineEnd.copy().add(sdelta.copy().multiply( arrowLength * 0.75 ));
+
+      var arrowStart = lineEnd.copy().add(halfArrow);
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.25: (isSelected === 0.5)? 0.5: 1.0;
 
@@ -694,12 +725,11 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = alpha;
 
       //line
-      if(ldelta.equals(sdelta)){
-  			ctx.beginPath();
-  			ctx.moveTo(lineStart.x, lineStart.y);
-  			ctx.lineTo(lineEnd.x, lineEnd.y);
-  			ctx.stroke();
-      }
+			ctx.beginPath();
+			ctx.moveTo(lineStart.x, lineStart.y);
+			ctx.lineTo(lineEnd.x, lineEnd.y);
+      ctx.closePath();
+			ctx.stroke();
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
@@ -789,7 +819,16 @@ jQuery.fn.springy = function(params) {
   }
 
   //return true if inside BB and not over a 0 opacity pixel
-  Springy.Node.prototype.containsPoint = function(x, y) {
+  Springy.Node.prototype.containsPoint = function(point, other) {
+    var x, y;
+    if(other && typeof point === "number" && typeof other === "number"){
+      x = point;
+      y = other;
+    }
+    else{
+      x = point.x;
+      y = point.y;
+    }
     if(this.bb && this.hitbox){
       var px = (this.hitbox.size * (x - this.bb.left) / this.bb.size) | 0,
         py = (this.hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
@@ -801,10 +840,10 @@ jQuery.fn.springy = function(params) {
 
   Springy.Node.prototype.overlappingBoundingBox = function(node) {
     return this.bb && node.bb &&
-      this.bb.left < node.bb.right && 
-      this.bb.right > node.bb.left &&
-      this.bb.top < node.bb.bottom && 
-      this.bb.bottom > node.bb.top;
+      this.bb.left <= node.bb.right && 
+      this.bb.right >= node.bb.left &&
+      this.bb.top <= node.bb.bottom && 
+      this.bb.bottom >= node.bb.top;
   }
 
   Springy.Node.prototype.overlapping = function(node) {
@@ -871,16 +910,27 @@ jQuery.fn.springy = function(params) {
     //find the fast intersect
     var size = this.getSize(), 
       halfSize = (size >> 1) | 0,
+      //if we are inside the bbox but not over an opaque spot, we can start tracing from start
       point = intersect_line_box(start, end, {x: this.bb.left, y: this.bb.top}, size, size);
-    if(!point)
-      return end;
+    if(!point){
+      var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
+      if(inBBox && !this.containsPoint(start))
+        point = start;
+      else{
+        return end;
+      }
+    }
 
     var delta = end.copy().subtract(point), distance = delta.magnitude();
     delta.normalise();
-    for(var i=0; i < distance && !this.containsPoint(point.x, point.y); i++){
+    for(var i=0; i < distance && !this.containsPoint(point); i++){
       point.x += delta.x;
       point.y += delta.y;
     }
+    point.subtract(delta);
+
+    if(!point.copy().subtract(start).normalise().equals(delta))
+      return start;
 
     return point.subtract(delta.multiply(padding));
   }
