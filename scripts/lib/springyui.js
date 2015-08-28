@@ -577,9 +577,6 @@ jQuery.fn.springy = function(params) {
     }
     if(!portrait)
       portrait = getPlaceholder(size, color);
-
-    console.log(size, portrait.width)
-    
     return portrait;
   }
 
