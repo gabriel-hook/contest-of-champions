@@ -394,9 +394,15 @@ jQuery.fn.springy = function(params) {
     todo:{}
   };
 
-  nodeImageContextQueue.add = function(id, callback, method){
+  nodeImageContextQueue.push = function(id, callback){
+    nodeImageContextQueue.insert(id, callback, 'push');
+  }
+  nodeImageContextQueue.unshift = function(id, callback){
+    nodeImageContextQueue.insert(id, callback, 'unshift');
+  }
+  nodeImageContextQueue.insert = function(id, callback, method){
     nodeImageContextQueue.todo[id] = callback;
-    nodeImageContextQueue.list[method || 'push'].call(nodeImageContextQueue.list, id);
+    nodeImageContextQueue.list[method].call(nodeImageContextQueue.list, id);
     if(!nodeImageContextQueue.timeout)
       nodeImageContextQueue.next();
   }
@@ -410,7 +416,7 @@ jQuery.fn.springy = function(params) {
       delete nodeImageContextQueue.timeout;
       todo.call(null);
       nodeImageContextQueue.next();
-    }, 50);
+    }, 25);
   }
 
   function getHitbox(image){
@@ -445,12 +451,12 @@ jQuery.fn.springy = function(params) {
     nodeImages[src].portraits.push(canvas);
 
     var resize = image.width >> 1;
-    if(resize >= 32){
+    if(resize >= 16){
       var resizeCanvas = document.createElement('canvas'),
           resizeContext = resizeCanvas.getContext('2d');
       resizeCanvas.width = resizeCanvas.height = resize;
       resizeContext.drawImage(image, 0, 0, resize, resize);
-      nodeImageContextQueue.add(src, function(){
+      nodeImageContextQueue.unshift(src, function(){
         addPortaitImages(src, resizeCanvas, color, resize);
       }, 'unshift');
     }
@@ -504,10 +510,10 @@ jQuery.fn.springy = function(params) {
             placeholderCoords[i+4]*ratio, placeholderCoords[i+5]*ratio
           );
         context.closePath();
-        context.lineWidth = 2;
-        context.strokeStyle = "#888";
+        context.lineWidth = 3;
+        context.strokeStyle = "#868686";
         context.stroke();
-        context.fillStyle = "#999";
+        context.fillStyle = "#909090";
         context.fill();
         placeholders[size] = canvas;
       }
@@ -524,6 +530,22 @@ jQuery.fn.springy = function(params) {
     return placeholders[id]
   }
 
+  function getPortraitSizeTarget(number){
+    var list = {};
+    getPortraitSizeTarget = function(number){
+      if(list[number] === undefined){
+        var i = 1, last = 0;
+        while(i != number && i + (i-last)>>1 < number){
+          last = i;
+          i = i << 1;
+        }
+        list[number] = i;
+      }
+      return list[number];
+    }
+    return getPortraitSizeTarget(number);
+  }
+
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.getPortraitImage = function(size) {
     var portrait, img = this.data.image, color = this.data.color || "#111111", node = this;
@@ -534,7 +556,7 @@ jQuery.fn.springy = function(params) {
         if (nodeImages[src].loaded) {
           //sample down for better antialiasing
           var portraits = nodeImages[src].portraits, 
-            target = ceilPower2(size);
+            target = getPortraitSizeTarget(size);
           for(var i=0; i < portraits.length && portraits[i].width >= target; i++)
             portrait = portraits[i];
         }
@@ -545,8 +567,8 @@ jQuery.fn.springy = function(params) {
           portraits:[]
         };
         var image = new Image();
-        image.addEventListener("load", function () {
-          nodeImageContextQueue.add(src, function(){
+        image.addEventListener("load", function (){
+          nodeImageContextQueue.push(src, function(){
             addPortaitImages(src, image, color);
           });
         });
@@ -555,6 +577,9 @@ jQuery.fn.springy = function(params) {
     }
     if(!portrait)
       portrait = getPlaceholder(size, color);
+
+    console.log(size, portrait.width)
+    
     return portrait;
   }
 
@@ -960,20 +985,6 @@ jQuery.fn.springy = function(params) {
       return false;
     }
     return new Springy.Vector(p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y));
-  }
-
-  function ceilPower2(number){
-    ceilPower2 = function(number){
-      if(ceilPower2.list[number] === undefined){
-        var i = 1;
-        while(i < number)
-          i = i << 1;
-        ceilPower2.list[number] = i;
-      }
-      return ceilPower2.list[number];
-    }
-    ceilPower2.list = {};
-    return ceilPower2(number);
   }
 
   renderer.start();
