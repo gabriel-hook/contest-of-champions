@@ -27,8 +27,12 @@ CoC.data.guides = CoC.data.guides = new function(){
     onComplete = callback;
   };
   
-  //Initialize next tick
-  setTimeout(function(){
+  var initialized = false;
+  this.initialize=function(){
+    if(initialized)
+      return;
+    initialized = true;
+
     uids = _.uniq( CoC.data.champions.pluck("uid") );
     var working = uids.length;
     _(uids).each(function(uid){
@@ -75,6 +79,5 @@ CoC.data.guides = CoC.data.guides = new function(){
       });
       
     });
-    
-  }, 0);
+  };
 };
