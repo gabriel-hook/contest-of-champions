@@ -6,6 +6,7 @@ CoC.data.guides = CoC.data.guides = new function(){
     map = {},
     uids = [],
     loaded = false,
+    initialized = false,
     onComplete;
   
   this.each = function(callback){
@@ -27,7 +28,6 @@ CoC.data.guides = CoC.data.guides = new function(){
     onComplete = callback;
   };
   
-  var initialized = false;
   this.initialize=function(){
     if(initialized)
       return;
