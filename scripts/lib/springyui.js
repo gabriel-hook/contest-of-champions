@@ -394,9 +394,12 @@ jQuery.fn.springy = function(params) {
     todo:{}
   };
 
-  nodeImageContextQueue.add = function(id, callback){
+  nodeImageContextQueue.addNext = function(id, callback){
+    nodeImageContextQueue.add(id, callback, 'unshift');
+  }
+  nodeImageContextQueue.add = function(id, callback, where){
     nodeImageContextQueue.todo[id] = callback;
-    nodeImageContextQueue.list.push(id);
+    nodeImageContextQueue.list[where || 'push'].call(nodeImageContextQueue.list, id);
     if(!nodeImageContextQueue.timeout)
       nodeImageContextQueue.next();
   }
@@ -404,10 +407,11 @@ jQuery.fn.springy = function(params) {
     if(nodeImageContextQueue.list.length === 0)
       return;
     var id = nodeImageContextQueue.list.shift();
+    var todo = nodeImageContextQueue.todo[id];
+    delete nodeImageContextQueue.todo[id];
     nodeImageContextQueue.timeout = setTimeout(function(){
-      nodeImageContextQueue.todo[id].call(null)
       delete nodeImageContextQueue.timeout;
-      delete nodeImageContextQueue.todo[id];
+      todo.call(null);
       nodeImageContextQueue.next();
     }, 50);
   }
@@ -428,21 +432,34 @@ jQuery.fn.springy = function(params) {
     return { size:size, opaque:opaque };
   }
 
-  function addPortaitContexts(src, image, color){
+  function addPortaitImages(src, image, color){
+    //build the image 
     var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
-        barHeight = Math.max(2, (image.height/10) | 0);
+        barHeight = Math.max(2, (image.width/10) | 0);
     canvas.width = canvas.height = image.width;
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     context.fillStyle = color;
     context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
     canvas.hitbox = getHitbox(canvas);
-    if(nodeImageContexts[src] === undefined)
-      nodeImageContexts[src] = [];
-    nodeImageContexts[src].push({
-      image:image,
-      canvas:canvas
-    });
+
+    if(nodeImages[src].portraits === undefined)
+      nodeImages[src].portraits = [];
+    nodeImages[src].portraits.push(canvas);
+
+    var resize = image.width >> 1;
+    if(resize >= 32){
+      var resizeCanvas = document.createElement('canvas'),
+          resizeContext = resizeCanvas.getContext('2d');
+      resizeCanvas.width = resizeCanvas.height = resize;
+      resizeContext.drawImage(image, 0, 0, resize, resize);
+      nodeImageContextQueue.add(src, function(){
+        addPortaitImages(src, resizeCanvas, color, resize);
+      }, 'unshift');
+    }
+    else{
+      nodeImages[src].loaded = true;
+    }
   }
 
   var placeholders={};
@@ -519,36 +536,24 @@ jQuery.fn.springy = function(params) {
       if (src in nodeImages) {
         if (nodeImages[src].loaded) {
           //sample down for better antialiasing
-          var contexts = nodeImageContexts[src], context, target = ceilPower2(size);
-          for(var i=0; i < contexts.length; i++)
-            if(contexts[i].canvas.width <= target){
-              context = contexts[i];
+          var portraits = nodeImages[src].portraits, target = ceilPower2(size);
+          for(var i=0; i < portraits.length; i++)
+            if(portraits[i].width <= target){
+              portrait = portraits[i];
               break;
             }
-          //if we are too big, use the smallest one, and then resize with timer,
-          // and only do one at a time
-          if(context === undefined){
-            context = contexts[contexts.length - 1];
-            if(!nodeImageContextQueue.todo[src]){
-              nodeImageContextQueue.add(src, function(){
-                var resizeCanvas = document.createElement('canvas'),
-                    resizeContext = resizeCanvas.getContext('2d');
-                resizeCanvas.width = resizeCanvas.height = context.image.width >> 1;
-                resizeContext.drawImage(context.image, 0, 0, resizeCanvas.width, resizeCanvas.height);
-                addPortaitContexts(src, resizeCanvas, color);
-              });
-            }
-          }
-          portrait = context.canvas;
         }
       }
       else{
-        nodeImages[src] = {};
+        nodeImages[src] = {  
+          loaded: false,
+          portraits:[]
+        };
         var image = new Image();
-        nodeImages[src].object = image;
         image.addEventListener("load", function () {
-          nodeImages[src].loaded = true;
-          addPortaitContexts(src, image, color);
+          nodeImageContextQueue.add(src, function(){
+            addPortaitImages(src, image, color);
+          });
         });
         image.src = src;
       }
