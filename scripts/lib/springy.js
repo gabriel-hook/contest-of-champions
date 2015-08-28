@@ -649,6 +649,11 @@
 		return this.divide(this.magnitude());
 	};
 
+	Vector.prototype.equals = function(v2) {
+		return Math.max(Math.abs(this.x - v2.x), Math.abs(this.y - v2.y)) < 0.0000001;
+	};
+
+
 	// Point
 	Layout.ForceDirected.Point = function(position, mass) {
 		this.p = position; // position

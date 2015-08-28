@@ -671,7 +671,7 @@ jQuery.fn.springy = function(params) {
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
 			var s1 = p1.add(offset);
 			var s2 = p2.add(offset);
-      var sdelta = s2.subtract(s1).normalise()
+      var sdelta = s2.subtract(s1).normalise();
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  2, 0.1);
       var arrowWidth = 1 + width;
@@ -679,6 +679,7 @@ jQuery.fn.springy = function(params) {
       var overlapping = edge.target.overlapping(edge.source);
       var lineStart = overlapping? s1: edge.source.intersectLine(s2, s1, 0.5);
       var lineEnd =  (overlapping? s2: edge.target.intersectLine(s1, s2, padding)).add(sdelta.multiply( -arrowLength * 0.75 ));
+      var ldelta = lineEnd.subtract(lineStart).normalise();
       var arrowStart = lineEnd.add(sdelta.multiply( arrowLength * 0.75 ));
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
       var alpha = (isSelected === 0)? 0.25: (isSelected === 0.5)? 0.5: 1.0;
@@ -692,11 +693,14 @@ jQuery.fn.springy = function(params) {
       ctx.fillStyle = stroke;
       ctx.globalAlpha = alpha;
 
-      //line
-			ctx.beginPath();
-			ctx.moveTo(lineStart.x, lineStart.y);
-			ctx.lineTo(lineEnd.x, lineEnd.y);
-			ctx.stroke();
+      if(ldelta.equals(sdelta)){
+        //line
+  			ctx.beginPath();
+  			ctx.moveTo(lineStart.x, lineStart.y);
+  			ctx.lineTo(lineEnd.x, lineEnd.y);
+  			ctx.stroke();
+      }
+
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
@@ -796,15 +800,16 @@ jQuery.fn.springy = function(params) {
     return false;
   }
 
-  //check bboxes to see if they overlap
-  Springy.Node.prototype.overlapping = function(node) {
-    if(this.bb && node.bb &&
+  Springy.Node.prototype.overlappingBoundingBox = function(node) {
+    return this.bb && node.bb &&
       this.bb.left < node.bb.right && 
       this.bb.right > node.bb.left &&
       this.bb.top < node.bb.bottom && 
-      this.bb.bottom > node.bb.top){
+      this.bb.bottom > node.bb.top;
+  }
 
-      //see if hitboxes overlap in bbox overlap range
+  Springy.Node.prototype.overlapping = function(node) {
+    if(this.overlappingBoundingBox(node)){
       if(this.hitbox && node.hitbox){
         var tlx, tly, brx, bry;
         if(this.bb.bottom < node.bb.bottom){
