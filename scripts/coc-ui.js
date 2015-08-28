@@ -346,7 +346,6 @@ CoC.ui.guides=new function(){
       if(that.shown)
         that.show();
     });
-    CoC.data.guides.initialize();
     this._initialized = true;
   }
   

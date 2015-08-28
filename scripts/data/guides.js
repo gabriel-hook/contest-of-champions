@@ -6,7 +6,6 @@ CoC.data.guides = CoC.data.guides = new function(){
     map = {},
     uids = [],
     loaded = false,
-    initialized = false,
     onComplete;
   
   this.each = function(callback){
@@ -28,11 +27,7 @@ CoC.data.guides = CoC.data.guides = new function(){
     onComplete = callback;
   };
   
-  this.initialize=function(){
-    if(initialized)
-      return;
-    initialized = true;
-
+  setTimeout(function(){
     uids = _.uniq( CoC.data.champions.pluck("uid") );
     var working = uids.length;
     _(uids).each(function(uid){
@@ -79,5 +74,5 @@ CoC.data.guides = CoC.data.guides = new function(){
       });
       
     });
-  };
+  }, 0)
 };
