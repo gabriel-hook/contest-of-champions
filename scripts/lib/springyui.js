@@ -737,7 +737,7 @@ jQuery.fn.springy = function(params) {
       var ldelta = lineEnd.copy().subtract(lineStart).normalise();
 
       var arrowStart = lineEnd.copy().add(halfArrow);
-			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
+			var stroke = edge.data.color || '#000000';
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
       ctx.save();
