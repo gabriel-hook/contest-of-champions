@@ -437,7 +437,7 @@
 			this.eachNode(function(n2, point2) {
 				if (point1 !== point2) {
 					var d = point1.p.copy().subtract(point2.p),
-						distance = Math.max(0.1, d.magnitude()), // avoid massive forces at small distances (and divide by zero)
+						distanceSquared = Math.max(0.1, d.magnitudeSquared()), // avoid massive forces at small distances (and divide by zero)
 						direction = d.normalise(),
 						repulsion = this.repulsion();
 
@@ -445,7 +445,7 @@
 						repulsion *= point2.m * 0.15;
 
 					// apply force to each end point
-					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distance * distance));
+					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
 					point2.applyForce(direction.multiply(-1));
 				}
 			});
@@ -491,8 +491,8 @@
 	Layout.ForceDirected.prototype.totalEnergy = function(timestep) {
 		var energy = 0.0;
 		this.eachNode(function(node, point) {
-			var speed = point.v.magnitude();
-			energy += 0.5 * point.m * speed * speed;
+			var speedSquared = point.v.magnitudeSquared();
+			energy += 0.5 * point.m * speedSquared;
 		});
 
 		return energy;
