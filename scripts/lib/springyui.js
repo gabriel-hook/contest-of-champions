@@ -47,18 +47,15 @@ jQuery.fn.springy = function(params) {
 	var currentBB = layout.getBoundingBox();
 
 	// convert to/from screen coordinates
-	var toScreen = function(p) {
-		var size = currentBB.topright.copy().subtract(currentBB.bottomleft),
-      sx = p.copy().subtract(currentBB.bottomleft).divide(size.x).x * canvas.width,
-      sy = p.copy().subtract(currentBB.bottomleft).divide(size.y).y * canvas.height;
-		return new Springy.Vector(sx, sy);
+	var toScreen = function(point) {
+		var size = currentBB.topright.clone().subtract(currentBB.bottomleft),
+      delta = point.clone().subtract(currentBB.bottomleft);
+		return new Springy.Vector(delta.x / size.x * canvas.width, delta.y / size.y * canvas.height);
 	};
 
-	var fromScreen = function(s) {
-		var size = currentBB.topright.copy().subtract(currentBB.bottomleft),
-      px = (s.x / canvas.width) * size.x + currentBB.bottomleft.x,
-      py = (s.y / canvas.height) * size.y + currentBB.bottomleft.y;
-		return new Springy.Vector(px, py);
+	var fromScreen = function(point) {
+		var size = currentBB.topright.clone().subtract(currentBB.bottomleft);
+		return new Springy.Vector((point.x / canvas.width) * size.x + currentBB.bottomleft.x, (point.y / canvas.height) * size.y + currentBB.bottomleft.y);
 	};
 
   function graphShake(){
@@ -134,11 +131,11 @@ jQuery.fn.springy = function(params) {
         return;
       if(node.bb.x > x1 && node.bb.x < x2 && node.bb.y > y1 && node.bb.y < y2){
         var dx = selection.start.x - node.bb.x, dy = selection.start.y - node.bb.y;
-        array.push({ distance: dx*dx + dy*dy, node: node });
+        array.push({ distanceSquared: dx*dx + dy*dy, node: node });
       }
     });
     array.sort(function(a, b){
-      return b.distance - a.distance;
+      return b.distanceSquared - a.distanceSquared;
     });
     for(var i=0; i<array.length; i++)
       array[i] = array[i].node;
@@ -221,7 +218,7 @@ jQuery.fn.springy = function(params) {
         clicks++;
       var point = fromScreen(coord);
       dragged = { node:node, point:layout.point(node) };
-      dragged.offset = { x: dragged.point.p.x - point.x, y: dragged.point.p.y - point.y };
+      dragged.offset = new Springy.Vector(dragged.point.p.x - point.x, dragged.point.p.y - point.y);
       dragged.coord = coord;
       dragged.point.active = true;
       dragged.point.m = activeMass;
@@ -299,37 +296,34 @@ jQuery.fn.springy = function(params) {
     if(clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
 		var pos = $(canvas).offset(),
-      node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top });
+      node = findNodeAt(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top));
     if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
 	});
   $('body').on('keyup', function(e){
-    switch(e.which){
-      case 27: //Escape
-        e.preventDefault();
-        clearSelected()
-        if(nodeSelected){
-          nodeSelected(selected);
-        }
-        break;
-      case 32: //Space Bar
-        graphShake();
-        break;
-      default:
-        break;
+    if(e.which === 27){ // escape
+      e.preventDefault();
+      clearSelected();
+      if(nodeSelected){
+        nodeSelected(selected);
+      }
+    }
+    else if(e.which === 32){ // space bar
+      e.preventDefault();
+      graphShake();
     }
   });
   $(canvas).on('touchstart', function(e){
     e.preventDefault();
 		var pos = $(canvas).offset(),
       event = window.event;
-    pointerStart({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerStart(new Springy.Vector(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchmove', function(e) {
     e.preventDefault();
     var event = window.event,
       pos = $(canvas).offset();
-    pointerMove({x: event.touches[0].pageX - pos.left, y: event.touches[0].pageY - pos.top});
+    pointerMove(new Springy.Vector(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchend',function(e) {
     e.preventDefault();
@@ -348,12 +342,12 @@ jQuery.fn.springy = function(params) {
       return;
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerStart({x: e.pageX - pos.left, y: e.pageY - pos.top}, selectType(e));
+    pointerStart(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
 	});
 	$(window).on('mousemove', function(e) {
     e.preventDefault();
 		var pos = $(canvas).offset();
-    pointerMove({x: e.pageX - pos.left, y: e.pageY - pos.top}, selectType(e));
+    pointerMove(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
 	});
   $(window).on('mouseup',function(e) {
     e.preventDefault();
@@ -367,7 +361,7 @@ jQuery.fn.springy = function(params) {
       state = 'dragging';
     else{
       var pos = $(canvas).offset();
-      if(findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top}))
+      if(findNodeAt(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top)))
         state = 'hover';
     }
     switch(state){
@@ -546,9 +540,8 @@ jQuery.fn.springy = function(params) {
   }
 
   //we cache the best sized portrait with type bar
-  Springy.Node.prototype.getPortraitImage = function(size) {
+  Springy.Node.prototype.setPortraitImage = function(size) {
     var portrait, img = this.data.image, color = this.data.color || "#111111", node = this;
-    size = size | 0;
     if(img){
       var src = img.src;
       if (src in nodeImages) {
@@ -576,11 +569,13 @@ jQuery.fn.springy = function(params) {
     }
     if(!portrait)
       portrait = getPlaceholder(size, color);
-    return portrait;
+
+    this.image = portrait;
+    this.hitbox = portrait.hitbox;
   }
 
-  Springy.Node.prototype.getPortraitTextImage = function() {
-    if(!this.textImage){
+  Springy.Node.prototype.setPortraitText = function() {
+    if(!this.text){
       var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
         text = this.data.label.toUpperCase();
@@ -606,13 +601,9 @@ jQuery.fn.springy = function(params) {
       context.shadowOffsetY = 1;
       context.fillText(text, 3, 0);
 
-      this.textImage = canvas; 
+      this.text = canvas; 
     }
-    return this.textImage;
-  }
-
-  Springy.Node.prototype.setHitbox = function(image) {
-    this.hitbox = image.hitbox;
+    return this.text;
   }
 
 	var renderer = this.renderer = new Springy.Renderer(layout,
@@ -634,11 +625,12 @@ jQuery.fn.springy = function(params) {
       var s = toScreen(point), 
         x = (s.x | 0), 
         y = (s.y | 0), 
-        size = node.getSize(),
-        fullSize = size | 0, 
-        halfSize = (size / 2) | 0;
+        fullSize = node.getSize() | 0, 
+        halfSize = fullSize >> 1;
+      //set images/bounds/hitboxes
+      node.setPortraitText();
+      node.setPortraitImage(fullSize);
       node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
-      node.setHitbox(node.getPortraitImage(size));
     },
 		function drawEdge(edge, pointStart, pointEnd) {
       var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
@@ -690,27 +682,27 @@ jQuery.fn.springy = function(params) {
 
 			// Figure out how far off center the line should be drawn
 			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
-			var s1 = p1.copy().add(offset);
-			var s2 = p2.copy().add(offset);
-      var sdelta = s2.copy().subtract(s1).normalise();
+			var s1 = p1.clone().add(offset);
+			var s2 = p2.clone().add(offset);
+      var sdelta = s2.clone().subtract(s1).normalise();
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  1.5, 0.1);
       var arrowWidth = 1 + width;
       var arrowLength = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
       var overlapping = edge.target.overlapping(edge.source);
       var lineStart, lineEnd, lineDelta;
-      var halfArrow = sdelta.copy().multiply( arrowLength * 0.75 );
+      var halfArrow = sdelta.clone().multiply( arrowLength * 0.75 );
       var sourceAbove = s1.y < s2.y;
 
       //get best line start/end
       if(overlapping){
         if(sourceAbove){
-          lineStart = s1.copy();
+          lineStart = s1.clone();
           lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
         }
         else{
           lineStart = edge.source.intersectLine(s2, s1);
-          lineEnd = s2.copy().subtract(halfArrow);
+          lineEnd = s2.clone().subtract(halfArrow);
         }
       }
       else{
@@ -718,24 +710,24 @@ jQuery.fn.springy = function(params) {
         lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
 
         //adjust if we have problems
-        if(lineEnd.copy().subtract(lineStart).magnitude() < arrowLength || //line too short
-          lineEnd.copy().subtract(lineStart).normalise().equals(sdelta.copy().multiply(-1))  || //line going in wrong direction
+        if(lineEnd.clone().subtract(lineStart).lengthSquared() < arrowLength*arrowLength || //line too short
+          lineEnd.clone().subtract(lineStart).normalise().equals(sdelta.clone().multiply(-1))  || //line going in wrong direction
           (sourceAbove && edge.target.containsPoint(lineEnd)) || //source above and end point inside target
           (!sourceAbove && edge.source.containsPoint(lineStart)) //source below and end point inside source
         ){
           if(sourceAbove){
-            lineStart = s1.copy();
+            lineStart = s1.clone();
             lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
           }
           else{
             lineStart = edge.source.intersectLine(s2, s1);
-            lineEnd = s2.copy().subtract(halfArrow);
+            lineEnd = s2.clone().subtract(halfArrow);
           }
         }
       }
-      var ldelta = lineEnd.copy().subtract(lineStart).normalise();
+      var ldelta = lineEnd.clone().subtract(lineStart).normalise();
 
-      var arrowStart = lineEnd.copy().add(halfArrow);
+      var arrowStart = lineEnd.clone().add(halfArrow);
 			var stroke = edge.data.color || '#000000';
       var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
@@ -787,7 +779,6 @@ jQuery.fn.springy = function(params) {
         ctx.globalAlpha = 1.0;
 
       //draw the portrait
-      node.image = node.getPortraitImage(size);
       ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
 		},
 		function drawNodeOverlay(node, point) {
@@ -797,11 +788,10 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = 1.0;
 
       //draw the portrait text
-      var size = node.bb.size;
-      var text = node.getPortraitTextImage();
+      var text = node.text;
       ctx.drawImage(text, 
         Math.min(Math.max(0, node.bb.x - (text.width / 2) | 0), canvas.width - text.width), 
-        Math.min(Math.max(0, node.bb.y - text.height - (size / 2) | 0), canvas.height - text.height), 
+        Math.min(Math.max(0, node.bb.y - text.height - (node.bb.size / 2) | 0), canvas.height - text.height), 
         text.width, text.height);
     },
     function drawOverlay(){
@@ -839,8 +829,8 @@ jQuery.fn.springy = function(params) {
       top:y, 
       right:x+size, 
       bottom:y+size, 
-      x:(x+size/2)|0, 
-      y:(y+size/2)|0, 
+      x:(x + size / 2)|0, 
+      y:(y + size / 2)|0, 
       size:size 
     };
   }
@@ -936,7 +926,7 @@ jQuery.fn.springy = function(params) {
     // if we are inside the bbox but not over an opaque spot, we can start tracing from start
     var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
     if(inBBox && !this.containsPoint(start)){
-      point = start.copy();
+      point = start.clone();
     }
     // find the bbox intersect
     else{
@@ -948,9 +938,9 @@ jQuery.fn.springy = function(params) {
       }
     }
 
-    var delta = end.copy().subtract(point), magnitude = delta.magnitude();
-    delta.divide(magnitude);
-    for(var i=0; i < magnitude && !this.containsPoint(point); i++){
+    var delta = end.clone().subtract(point), length = delta.length();
+    delta.divide(length);
+    for(var i=0; i < length && !this.containsPoint(point); i++){
       point.x += delta.x;
       point.y += delta.y;
     }

@@ -436,8 +436,8 @@
 		this.eachNode(function(n1, point1) {
 			this.eachNode(function(n2, point2) {
 				if (point1 !== point2) {
-					var d = point1.p.copy().subtract(point2.p),
-						distanceSquared = Math.max(0.1, d.magnitudeSquared()), // avoid massive forces at small distances (and divide by zero)
+					var d = point1.p.clone().subtract(point2.p),
+						distanceSquared = Math.max(0.1, d.lengthSquared()), // avoid massive forces at small distances (and divide by zero)
 						direction = d.normalise(),
 						repulsion = this.repulsion();
 
@@ -454,8 +454,8 @@
 
 	Layout.ForceDirected.prototype.applyHookesLaw = function() {
 		this.eachSpring(function(spring){
-			var d = spring.point2.p.copy().subtract(spring.point1.p); // the direction of the spring
-			var displacement = spring.length - d.magnitude();
+			var d = spring.point2.p.clone().subtract(spring.point1.p); // the direction of the spring
+			var displacement = spring.length - d.length();
 			var direction = d.normalise();
 			var k = spring.k();
 
@@ -467,7 +467,7 @@
 
 	Layout.ForceDirected.prototype.attractToCentre = function() {
 		this.eachNode(function(node, point) {
-			var direction = point.p.copy().multiply(-1.0),
+			var direction = point.p.clone().multiply(-1.0),
 				repulsion = this.repulsion();
 			point.applyForce(direction.multiply(repulsion / 50.0));
 		});
@@ -483,7 +483,7 @@
 
 	Layout.ForceDirected.prototype.updatePosition = function(timestep) {
 		this.eachNode(function(node, point) {
-			point.p.add(point.v.copy().multiply(timestep));
+			point.p.add(point.v.clone().multiply(timestep));
 		});
 	};
 
@@ -491,7 +491,7 @@
 	Layout.ForceDirected.prototype.totalEnergy = function(timestep) {
 		var energy = 0.0;
 		this.eachNode(function(node, point) {
-			var speedSquared = point.v.magnitudeSquared();
+			var speedSquared = point.v.lengthSquared();
 			energy += 0.5 * point.m * speedSquared;
 		});
 
@@ -579,7 +579,7 @@
 		var t = this;
 		this.graph.nodes.forEach(function(n){
 			var point = t.point(n);
-			var distance = point.p.copy().subtract(pos).magnitude();
+			var distance = point.p.clone().subtract(pos).length();
 			if (min.distance === null || distance < min.distance) {
 				min = {node: n, point: point, distance: distance};
 			}
@@ -598,15 +598,12 @@
 
 		this.eachNode(function(n, point) {
 			// Bound the node
-			point.p.x = Math.max(minimum, Math.min(maximum, point.p.x));
-			point.p.y = Math.max(minimum, Math.min(maximum, point.p.y));
-			// Resize the bbox
-			bottomleft.x = Math.min(bottomleft.x, point.p.x);
-			bottomleft.y = Math.min(bottomleft.y, point.p.y);
-			topright.x = Math.max(topright.x, point.p.x);
-			topright.y = Math.max(topright.y, point.p.y);
+			point.p.bound(minimum, maximum);
+			// Resize the BBox if needed
+			bottomleft.set(Math.min(bottomleft.x, point.p.x), Math.min(bottomleft.y, point.p.y));
+			topright.set(Math.max(topright.x, point.p.x), Math.max(topright.y, point.p.y));
 		});
-		var padding = topright.copy().subtract(bottomleft).multiply(0.07); // ~5% padding
+		var padding = topright.clone().subtract(bottomleft).multiply(0.07); // ~5% padding
 		return {bottomleft: bottomleft.subtract(padding), topright: topright.add(padding)};
 	};
 
@@ -623,43 +620,61 @@
 		return new Vector(5.0 * (Math.random() - 0.5), 5.0 * (Math.random() - 0.5));
 	};
 
-	Vector.prototype.copy = function(){
+	Vector.prototype.clone = function(){
 		return new Vector(this.x, this.y);
+	}
+
+	Vector.prototype.bound = function(minimum, maximum){
+		this.x = Math.max(minimum, Math.min(maximum, this.x));
+		this.y = Math.max(minimum, Math.min(maximum, this.y));
+		return this;
+	}
+
+	Vector.prototype.set = function(x, y){
+		this.x = x;
+		this.y = y;
+		return this;
+	}
+
+	Vector.prototype.copy = function(v2){
+		this.x = v2.x;
+		this.y = v2.y;
+		return this;
 	}
 
 	Vector.prototype.add = function(v2) {
 		this.x += v2.x;
 		this.y += v2.y;
 		return this;
-		//return new Vector(this.x + v2.x, this.y + v2.y);
 	};
 
 	Vector.prototype.subtract = function(v2) {
 		this.x -= v2.x;
 		this.y -= v2.y;
 		return this;
-		//return new Vector(this.x - v2.x, this.y - v2.y);
 	};
 
 	Vector.prototype.multiply = function(n) {
 		this.x *= n;
 		this.y *= n;
 		return this;
-		//return new Vector(this.x * n, this.y * n);
 	};
 
 	Vector.prototype.divide = function(n) {
 		this.x = (this.x / n) || 0;
 		this.y = (this.y / n) || 0;
 		return this;
-		//return new Vector((this.x / n) || 0, (this.y / n) || 0); // Avoid divide by zero errors..
 	};
 
-	Vector.prototype.magnitudeSquared = function() {
+	Vector.prototype.dot = function(v2) {
+		return this.x * v2.x + this.y * v2.y;
+	};
+
+	Vector.prototype.lengthSquared = function() {
 		return this.x*this.x + this.y*this.y;
 	};
 
-	Vector.prototype.magnitude = function() {
+	Vector.prototype.length = function() {
 		return mathSqrt(this.x*this.x + this.y*this.y);
 	};
 
@@ -668,13 +683,11 @@
 		this.x = -this.y;
 		this.y = tmp;
 		return this;
-		//return new Vector(-this.y, this.x);
 	};
 
 	Vector.prototype.normalise = function() {
-		this.divide(this.magnitude());
+		this.divide(this.length());
 		return this;
-		//return this.divide(this.magnitude());
 	};
 
 	var omega = 0.0000001;
@@ -691,7 +704,8 @@
 	};
 
 	Layout.ForceDirected.Point.prototype.applyForce = function(force) {
-		this.a.add(force.copy().divide(this.m));
+		this.a.x += force.x / this.m;
+		this.a.y += force.y / this.m;
 	};
 
 	// Spring
