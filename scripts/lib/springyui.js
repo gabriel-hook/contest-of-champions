@@ -27,7 +27,6 @@ Copyright (c) 2010 Dennis Hotson
 
   jQuery.fn.springy = function(params) {
    var nodeFont = "16px Hanzel, sans-serif";
-   var edgeFont = "8px Verdana, sans-serif";
    var stiffness = params.stiffness || function(){ return 400.0 };
    var repulsion = params.repulsion || function(){ return 400.0 };
    var damping = params.damping || 0.5;
@@ -348,7 +347,8 @@ Copyright (c) 2010 Dennis Hotson
   });
   $(window).on('mouseup',function(e) {
     e.preventDefault();
-    pointerEnd(true, selectType(e));
+    if(e.target === canvas || dragged)
+      pointerEnd(true, selectType(e));
   });
   $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
