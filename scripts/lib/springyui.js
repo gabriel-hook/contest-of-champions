@@ -747,11 +747,13 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = alpha;
 
       //line
-			ctx.beginPath();
-			ctx.moveTo(lineStart.x, lineStart.y);
-			ctx.lineTo(lineEnd.x, lineEnd.y);
-      ctx.closePath();
-			ctx.stroke();
+      if(ldelta.equals(sdelta)){
+  			ctx.beginPath();
+  			ctx.moveTo(lineStart.x, lineStart.y);
+  			ctx.lineTo(lineEnd.x, lineEnd.y);
+        ctx.closePath();
+  			ctx.stroke();
+      }
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
@@ -929,32 +931,31 @@ jQuery.fn.springy = function(params) {
     if(!this.bb)
       return end;
 
-    //find the fast intersect
-    var size = this.getSize(), 
-      halfSize = (size >> 1) | 0,
-      //if we are inside the bbox but not over an opaque spot, we can start tracing from start
-      point = intersect_line_box(start, end, {x: this.bb.left, y: this.bb.top}, size, size);
-    if(!point){
-      var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
-      if(inBBox && !this.containsPoint(start))
-        point = start;
-      else{
+    //if we are inside the bbox but not over an opaque spot, we can start tracing from start
+    var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
+    if(inBBox && !this.containsPoint(start)){
+      point = start.copy();
+    }
+    //find the bbox intersect
+    else{
+      var size = this.getSize(), 
+        halfSize = (size >> 1) | 0,
+        point = intersect_line_box(start, end, {x: this.bb.left, y: this.bb.top}, size, size);
+      if(!point){
         return end;
       }
     }
 
     var delta = end.copy().subtract(point), distance = delta.magnitude();
     delta.normalise();
+    
     for(var i=0; i < distance && !this.containsPoint(point); i++){
       point.x += delta.x;
       point.y += delta.y;
     }
     point.subtract(delta);
 
-    if(!point.copy().subtract(start).normalise().equals(delta))
-      return start;
-
-    return point.subtract(delta.multiply(padding));
+    return point.subtract( delta.multiply(padding) );
   }
 
   function intersect_line_box(start, end, topleft, size) {
@@ -963,10 +964,10 @@ jQuery.fn.springy = function(params) {
     var bl = {x: topleft.x, y: topleft.y + size};
     var br = {x: topleft.x + size, y: topleft.y + size};
     var result;
-    if (result = intersect_line_line(start, end, tl, tr)) { return result; } // top
-    if (result = intersect_line_line(start, end, tr, br)) { return result; } // right
-    if (result = intersect_line_line(start, end, br, bl)) { return result; } // bottom
-    if (result = intersect_line_line(start, end, bl, tl)) { return result; } // left
+    if (start.y < tr.y && (result = intersect_line_line(start, end, tl, tr))) { return result; } // top
+    if (start.x > tr.x && (result = intersect_line_line(start, end, tr, br))) { return result; } // right
+    if (start.y > bl.y && (result = intersect_line_line(start, end, br, bl))) { return result; } // bottom
+    if (start.x < bl.x && (result = intersect_line_line(start, end, bl, tl))) { return result; } // left
     return false;
   }
 
