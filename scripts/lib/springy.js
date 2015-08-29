@@ -610,6 +610,8 @@
 		return {bottomleft: bottomleft.subtract(padding), topright: topright.add(padding)};
 	};
 
+	var mathSqrt = Math.sqrt, 
+		mathAbs = Math.abs;
 
 	// Vector
 	var Vector = Springy.Vector = function(x, y) {
@@ -653,8 +655,12 @@
 		//return new Vector((this.x / n) || 0, (this.y / n) || 0); // Avoid divide by zero errors..
 	};
 
+	Vector.prototype.magnitudeSquared = function() {
+		return this.x*this.x + this.y*this.y;
+	};
+
 	Vector.prototype.magnitude = function() {
-		return Math.sqrt(this.x*this.x + this.y*this.y);
+		return mathSqrt(this.x*this.x + this.y*this.y);
 	};
 
 	Vector.prototype.normal = function() {
@@ -671,8 +677,9 @@
 		//return this.divide(this.magnitude());
 	};
 
+	var omega = 0.0000001;
 	Vector.prototype.equals = function(v2) {
-		return Math.max(Math.abs(this.x - v2.x), Math.abs(this.y - v2.y)) < 0.0000001;
+		return mathAbs(this.x - v2.x) < omega && mathAbs(this.y - v2.y) < omega;
 	};
 
 	// Point
@@ -684,7 +691,7 @@
 	};
 
 	Layout.ForceDirected.Point.prototype.applyForce = function(force) {
-		this.a.add(force.divide(this.m));
+		this.a.add(force.copy().divide(this.m));
 	};
 
 	// Spring
