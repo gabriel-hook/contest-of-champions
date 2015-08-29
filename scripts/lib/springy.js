@@ -24,70 +24,70 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
+ (function (root, factory) {
+ 	if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(function () {
-            return (root.returnExportsGlobal = factory());
+        	return (root.returnExportsGlobal = factory());
         });
-    } else if (typeof exports === 'object') {
+      } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
         module.exports = factory();
-    } else {
+      } else {
         // Browser globals
         root.Springy = factory();
-    }
-}(this, function() {
-  "use strict";
+      }
+    }(this, function() {
+    	"use strict";
 
-	var Springy = {};
+    	var Springy = {};
 
-	var Graph = Springy.Graph = function() {
-		this.nodeSet = {};
-		this.nodes = [];
-		this.edges = [];
-		this.adjacency = {};
+    	var Graph = Springy.Graph = function() {
+    		this.nodeSet = {};
+    		this.nodes = [];
+    		this.edges = [];
+    		this.adjacency = {};
 
-		this.nextNodeId = 0;
-		this.nextEdgeId = 0;
-		this.eventListeners = [];
-	};
+    		this.nextNodeId = 0;
+    		this.nextEdgeId = 0;
+    		this.eventListeners = [];
+    	};
 
-	var Node = Springy.Node = function(id, data) {
-		this.id = id;
-		this.data = (data !== undefined) ? data : {};
+    	var Node = Springy.Node = function(id, data) {
+    		this.id = id;
+    		this.data = (data !== undefined) ? data : {};
 
 	// Data fields used by layout algorithm in this file:
 	// this.data.mass
 	// Data used by default renderer in springyui.js
 	// this.data.label
-	};
+};
 
-	var Edge = Springy.Edge = function(id, source, target, data) {
-		this.id = id;
-		this.source = source;
-		this.target = target;
-		this.data = (data !== undefined) ? data : {};
+var Edge = Springy.Edge = function(id, source, target, data) {
+	this.id = id;
+	this.source = source;
+	this.target = target;
+	this.data = (data !== undefined) ? data : {};
 
 	// Edge data field used by layout alorithm
 	// this.data.length
 	// this.data.type
-	};
+};
 
-	Graph.prototype.addNode = function(node) {
-		if (!(node.id in this.nodeSet)) {
-			this.nodes.push(node);
-		}
+Graph.prototype.addNode = function(node) {
+	if (!(node.id in this.nodeSet)) {
+		this.nodes.push(node);
+	}
 
-		this.nodeSet[node.id] = node;
+	this.nodeSet[node.id] = node;
 
-		this.notify();
-		return node;
-	};
+	this.notify();
+	return node;
+};
 
-	Graph.prototype.addNodes = function() {
+Graph.prototype.addNodes = function() {
 		// accepts variable number of arguments, where each argument
 		// is a string that becomes both node identifier and label
 		for (var i = 0; i < arguments.length; i++) {
@@ -116,7 +116,7 @@
 
 		exists = false;
 		this.adjacency[edge.source.id][edge.target.id].forEach(function(e) {
-				if (edge.id === e.id) { exists = true; }
+			if (edge.id === e.id) { exists = true; }
 		});
 
 		if (!exists) {
@@ -182,7 +182,7 @@
 			]
 		}
 
-	**/
+		**/
 		// parse if a string is passed (EC5+ browsers)
 		if (typeof json == 'string' || json instanceof String) {
 			json = JSON.parse( json );
@@ -200,10 +200,10 @@
 		if (node1.id in this.adjacency
 			&& node2.id in this.adjacency[node1.id]) {
 			return this.adjacency[node1.id][node2.id];
-		}
+	}
 
-		return [];
-	};
+	return [];
+};
 
 	// remove a node and it's associated edges from the graph
 	Graph.prototype.removeNode = function(node) {
@@ -287,14 +287,14 @@
 			var to = nodes[e.to];
 
 			var id = (e.directed)
-				? (id = e.type + "-" + from.id + "-" + to.id)
+			? (id = e.type + "-" + from.id + "-" + to.id)
 				: (from.id < to.id) // normalise id for non-directed edges
-					? e.type + "-" + from.id + "-" + to.id
-					: e.type + "-" + to.id + "-" + from.id;
+				? e.type + "-" + from.id + "-" + to.id
+				: e.type + "-" + to.id + "-" + from.id;
 
-			var edge = this.addEdge(new Edge(id, from, to, e.data));
-			edge.data.type = e.type;
-		}, this);
+				var edge = this.addEdge(new Edge(id, from, to, e.data));
+				edge.data.type = e.type;
+			}, this);
 	};
 
 	Graph.prototype.filterNodes = function(fn) {
@@ -378,7 +378,7 @@
 
 			this.edgeSprings[edge.id] = new Layout.ForceDirected.Spring(
 				this.point(edge.source), this.point(edge.target), length, this.stiffness
-			);
+				);
 		}
 
 		return this.edgeSprings[edge.id];
@@ -441,8 +441,8 @@
 						direction = d.normalise(),
 						repulsion = this.repulsion();
 
-					if(n1.selected && !point2.active)
-						repulsion *= point2.m * 0.15;
+						if(n1.selected && !point2.active)
+							repulsion *= point2.m * 0.15;
 
 					// apply force to each end point
 					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
@@ -468,7 +468,7 @@
 	Layout.ForceDirected.prototype.attractToCentre = function() {
 		this.eachNode(function(node, point) {
 			var direction = point.p.clone().multiply(-1.0),
-				repulsion = this.repulsion();
+			repulsion = this.repulsion();
 			point.applyForce(direction.multiply(repulsion / 50.0));
 		});
 	};
@@ -500,14 +500,14 @@
 
   //requestAnimFrame function from Paul Irish
   var requestNextFrame = (function(){
-    return window.requestAnimationFrame || 
-      window.webkitRequestAnimationFrame || 
-      window.mozRequestAnimationFrame || 
-      window.oRequestAnimationFrame || 
-      window.msRequestAnimationFrame || 
-      function( callback ){
-        setTimeout(callback, 16);
-      };
+  	return window.requestAnimationFrame || 
+  	window.webkitRequestAnimationFrame || 
+  	window.mozRequestAnimationFrame || 
+  	window.oRequestAnimationFrame || 
+  	window.msRequestAnimationFrame || 
+  	function( callback ){
+  		setTimeout(callback, 16);
+  	};
   })();
 
 	/**
@@ -515,17 +515,17 @@
 	 * In case it's running then the call is ignored, and none of the callbacks passed is ever executed.
 	 */
 	Layout.ForceDirected.prototype.start = function(render, onRenderStop, onRenderStart) {
-		var t = this;
+	 	var t = this;
 
-		if (this._started) return;
-		this._started = true;
-		this._stop = false;
+	 	if (this._started) return;
+	 	this._started = true;
+	 	this._stop = false;
 
-		if (onRenderStart !== undefined) {
-      onRenderStart(); 
-    }
+	 	if (onRenderStart !== undefined) {
+	 		onRenderStart(); 
+	 	}
 
-    var rendering = true, tickDelta = 0.01, milliseconds = 25;
+	 	var rendering = true, tickDelta = 0.01, milliseconds = 25;
 
 		//force initial render in case we start out of focus
 		setTimeout(function(){
@@ -536,7 +536,7 @@
 		}, 0);
 
 		//do physics ticks on a timer
-    setTimeout(function tickLoop(){
+		setTimeout(function tickLoop(){
 			if(document.hasFocus())
 				t.tick(tickDelta);
 			// stop simulation when energy of the system goes below a threshold
@@ -544,34 +544,34 @@
 				rendering = false;
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
-    }, milliseconds);
+		}, milliseconds);
 
     //do renders every animation frame
-		requestNextFrame(function animationLoop() {
-			if(rendering){
-				requestNextFrame(animationLoop);
-				if (render !== undefined) {
-					render();
-				}
-			}
-			else if (onRenderStop !== undefined){ 
-        onRenderStop(); 
-      }
-		});
-	};
+    requestNextFrame(function animationLoop() {
+    	if(rendering){
+    		requestNextFrame(animationLoop);
+    		if (render !== undefined) {
+    			render();
+    		}
+    	}
+    	else if (onRenderStop !== undefined){ 
+    		onRenderStop(); 
+    	}
+    });
+  };
 
-	Layout.ForceDirected.prototype.stop = function() {
-		this._stop = true;
-	}
+  Layout.ForceDirected.prototype.stop = function() {
+  	this._stop = true;
+  }
 
-	Layout.ForceDirected.prototype.tick = function(timestep) {
-		this.decayMasses();
-		this.applyCoulombsLaw();
-		this.applyHookesLaw();
-		this.attractToCentre();
-		this.updateVelocity(timestep);
-		this.updatePosition(timestep);
-	};
+  Layout.ForceDirected.prototype.tick = function(timestep) {
+  	this.decayMasses();
+  	this.applyCoulombsLaw();
+  	this.applyHookesLaw();
+  	this.attractToCentre();
+  	this.updateVelocity(timestep);
+  	this.updatePosition(timestep);
+  };
 
 	// Find the nearest point to a particular position
 	Layout.ForceDirected.prototype.nearest = function(pos) {
@@ -608,7 +608,7 @@
 	};
 
 	var mathSqrt = Math.sqrt, 
-		mathAbs = Math.abs;
+	mathAbs = Math.abs;
 
 	// Vector
 	var Vector = Springy.Vector = function(x, y) {
@@ -731,21 +731,21 @@
 	 * @param onRenderStart optional callback function that gets executed whenever rendering starts.
 	 */
 	var Renderer = Springy.Renderer = function(layout, clear, processNode, drawEdge, drawNode, drawNodeOverlay, drawOverlay, onRenderStop, onRenderStart) {
-		this.layout = layout;
-		this.clear = clear;
-		this.processNode = processNode;
-		this.drawEdge = drawEdge;
-		this.drawNode = drawNode;
-    this.drawNodeOverlay = drawNodeOverlay;
-    this.drawOverlay = drawOverlay;
-		this.onRenderStop = onRenderStop;
-		this.onRenderStart = onRenderStart;
-		this.layout.graph.addGraphListener(this);
-	}
+	 	this.layout = layout;
+	 	this.clear = clear;
+	 	this.processNode = processNode;
+	 	this.drawEdge = drawEdge;
+	 	this.drawNode = drawNode;
+	 	this.drawNodeOverlay = drawNodeOverlay;
+	 	this.drawOverlay = drawOverlay;
+	 	this.onRenderStop = onRenderStop;
+	 	this.onRenderStart = onRenderStart;
+	 	this.layout.graph.addGraphListener(this);
+	 }
 
-	Renderer.prototype.graphChanged = function(e) {
-		this.start();
-	};
+	 Renderer.prototype.graphChanged = function(e) {
+	 	this.start();
+	 };
 
 	/**
 	 * Starts the simulation of the layout in use.
@@ -758,9 +758,9 @@
 	 * either because it ended or because stop() was called.
 	 */
 	Renderer.prototype.start = function(done) {
-		var t = this;
-		this.layout.start(function render() {
-			t.clear();
+	 	var t = this;
+	 	this.layout.start(function render() {
+	 		t.clear();
 			//build arrays of functions to process
 			var opsBefore = [], opsAfter = [];
 			t.layout.eachNode(function(node, point) {
@@ -797,11 +797,11 @@
 				opsAfter[i].func.apply(t, opsAfter[i].args);
 			t.drawOverlay();
 		}, this.onRenderStop, this.onRenderStart);
-	};
+};
 
-	Renderer.prototype.stop = function() {
-		this.layout.stop();
-	};
+Renderer.prototype.stop = function() {
+	this.layout.stop();
+};
 
 	// Array.forEach implementation for IE support..
 	//https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
@@ -840,5 +840,5 @@
 		return true;
 	};
 
-  return Springy;
+	return Springy;
 }));
