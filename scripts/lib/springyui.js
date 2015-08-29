@@ -644,9 +644,6 @@ jQuery.fn.springy = function(params) {
 		function drawEdge(edge, pointStart, pointEnd) {
       var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
       
-			var normal = new Springy.Vector(p2.x-p1.x, p2.y-p1.y).normal().normalise();
-			var from = graph.getEdges(edge.source, edge.target);
-			var to = graph.getEdges(edge.target, edge.source);
 
       var isSelected = 0;
       if(edgeSelected){
@@ -675,6 +672,9 @@ jQuery.fn.springy = function(params) {
       else
         isSelected = 1;
       
+      var normal = new Springy.Vector(p2.x-p1.x, p2.y-p1.y).normal().normalise();
+      var from = graph.getEdges(edge.source, edge.target);
+      var to = graph.getEdges(edge.target, edge.source);
 			var total = from.length + to.length;
 
 			// Figure out edge's position in relation to other edges between the same nodes
@@ -710,23 +710,26 @@ jQuery.fn.springy = function(params) {
           lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
         }
         else{
-          lineStart = edge.source.intersectLine(s2, s1, 0.5);
+          lineStart = edge.source.intersectLine(s2, s1);
           lineEnd = s2.copy().subtract(halfArrow);
         }
       }
       else{
-        lineStart = edge.source.intersectLine(s2, s1, 0.5);
+        lineStart = edge.source.intersectLine(s2, s1);
         lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
 
         //adjust if we have problems
-        var lineMagnitude = lineEnd.copy().subtract(lineStart).magnitude();
-        if(lineMagnitude < arrowLength || (sourceAbove && edge.target.containsPoint(lineEnd)) || (!sourceAbove && edge.source.containsPoint(lineStart)) ){
+        if(lineEnd.copy().subtract(lineStart).magnitude() < arrowLength || //line too short
+          lineEnd.copy().subtract(lineStart).normalise().equals(sdelta.copy().multiply(-1))  || //line going in wrong direction
+          (sourceAbove && edge.target.containsPoint(lineEnd)) || //source above and end point inside target
+          (!sourceAbove && edge.source.containsPoint(lineStart)) //source below and end point inside source
+        ){
           if(sourceAbove){
             lineStart = s1.copy();
             lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
           }
           else{
-            lineStart = edge.source.intersectLine(s2, s1, 0.5);
+            lineStart = edge.source.intersectLine(s2, s1);
             lineEnd = s2.copy().subtract(halfArrow);
           }
         }
@@ -735,7 +738,7 @@ jQuery.fn.springy = function(params) {
 
       var arrowStart = lineEnd.copy().add(halfArrow);
 			var stroke = (edge.data.color !== undefined) ? edge.data.color : '#000000';
-      var alpha = (isSelected === 0)? 0.25: (isSelected === 0.5)? 0.5: 1.0;
+      var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
 
       ctx.save();
 
@@ -770,6 +773,7 @@ jQuery.fn.springy = function(params) {
 		},
 		function drawNode(node, point) {    
       var size = node.bb.size;
+
       if (node.isSelected())
         ctx.globalAlpha = 1.0;
       else if(edgeSelected)
@@ -842,20 +846,19 @@ jQuery.fn.springy = function(params) {
     };
   }
 
-  //return true if inside BB and not over a 0 opacity pixel
-  Springy.Node.prototype.containsPoint = function(point, other) {
-    var x, y;
-    if(other && typeof point === "number" && typeof other === "number"){
-      x = point;
-      y = other;
-    }
-    else{
-      x = point.x;
+  // return true if inside BB and not over a 0 opacity pixel
+  Springy.Node.prototype.containsPoint = function(point, y) {
+    var x, px, py;
+    if(y === undefined){
       y = point.y;
+      x = point.x;
     }
+    else
+      x = point;
+
     if(this.bb && this.hitbox){
-      var px = (this.hitbox.size * (x - this.bb.left) / this.bb.size) | 0,
-        py = (this.hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
+      px = (this.hitbox.size * (x - this.bb.left) / this.bb.size) | 0;
+      py = (this.hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
       if(this.hitbox.opaque[px])
         return this.hitbox.opaque[px][py] === true;
     }
@@ -931,12 +934,12 @@ jQuery.fn.springy = function(params) {
     if(!this.bb)
       return end;
 
-    //if we are inside the bbox but not over an opaque spot, we can start tracing from start
+    // if we are inside the bbox but not over an opaque spot, we can start tracing from start
     var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
     if(inBBox && !this.containsPoint(start)){
       point = start.copy();
     }
-    //find the bbox intersect
+    // find the bbox intersect
     else{
       var size = this.getSize(), 
         halfSize = (size >> 1) | 0,
@@ -946,16 +949,14 @@ jQuery.fn.springy = function(params) {
       }
     }
 
-    var delta = end.copy().subtract(point), distance = delta.magnitude();
-    delta.normalise();
-    
-    for(var i=0; i < distance && !this.containsPoint(point); i++){
+    var delta = end.copy().subtract(point), magnitude = delta.magnitude();
+    delta.divide(magnitude);
+    for(var i=0; i < magnitude && !this.containsPoint(point); i++){
       point.x += delta.x;
       point.y += delta.y;
     }
-    point.subtract(delta);
-
-    return point.subtract( delta.multiply(padding) );
+    padding = Math.max(1, padding || 1);
+    return point.subtract(delta.multiply(padding));
   }
 
   function intersect_line_box(start, end, topleft, size) {
@@ -964,24 +965,26 @@ jQuery.fn.springy = function(params) {
     var bl = {x: topleft.x, y: topleft.y + size};
     var br = {x: topleft.x + size, y: topleft.y + size};
     var result;
-    if (start.y < tr.y && (result = intersect_line_line(start, end, tl, tr))) { return result; } // top
-    if (start.x > tr.x && (result = intersect_line_line(start, end, tr, br))) { return result; } // right
-    if (start.y > bl.y && (result = intersect_line_line(start, end, br, bl))) { return result; } // bottom
-    if (start.x < bl.x && (result = intersect_line_line(start, end, bl, tl))) { return result; } // left
+    if (start.y < tr.y && (result = intersect_line_line(start, end, tl, tr))) // top
+      return result;
+    if (start.x > tr.x && (result = intersect_line_line(start, end, tr, br))) // right
+      return result;
+    if (start.y > bl.y && (result = intersect_line_line(start, end, br, bl))) // bottom
+      return result;
+    if (start.x < bl.x && (result = intersect_line_line(start, end, bl, tl))) // left
+      return result;
     return false;
   }
 
   function intersect_line_line(p1, p2, p3, p4) {
     var denom = ((p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y));
     // lines are parallel
-    if (denom === 0) {
+    if (denom === 0)
       return false;
-    }
     var ua = ((p4.x - p3.x)*(p1.y - p3.y) - (p4.y - p3.y)*(p1.x - p3.x)) / denom;
     var ub = ((p2.x - p1.x)*(p1.y - p3.y) - (p2.y - p1.y)*(p1.x - p3.x)) / denom;
-    if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+    if (ua < 0 || ua > 1 || ub < 0 || ub > 1)
       return false;
-    }
     return new Springy.Vector(p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y));
   }
 
