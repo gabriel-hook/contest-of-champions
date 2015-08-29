@@ -287,21 +287,20 @@ jQuery.fn.springy = function(params) {
   
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
-    if(e.shiftKey || e.ctrlKey)
+    if(clicks || e.shiftKey || e.ctrlKey)
       return;
-    if(moved < 5 && dragged && dragged.node.isSelected()){
+    if(moved < 10 && dragged && dragged.node.isSelected()){
       selectedOpen(dragged.node);
       pointerEnd();
     }
 	});
-  
   $(canvas).on('dblclick', function(e) {
     e.preventDefault();
     if(clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
 		var pos = $(canvas).offset(),
       node = findNodeAt({x: e.pageX - pos.left, y: e.pageY - pos.top });
-    if(moved < 5 && node && node.isSelected())
+    if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
 	});
   $('body').on('keyup', function(e){
