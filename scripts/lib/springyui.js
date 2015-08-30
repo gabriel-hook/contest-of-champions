@@ -25,21 +25,35 @@ Copyright (c) 2010 Dennis Hotson
 (function() {
   "use strict";
 
-  jQuery.fn.springy = function(params) {
-   var nodeFont = "16px Hanzel, sans-serif";
-   var stiffness = params.stiffness || function(){ return 400.0 };
-   var repulsion = params.repulsion || function(){ return 400.0 };
-   var damping = params.damping || 0.5;
-   var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
-   var nodeSelected = params.nodeSelected || null;
-   var maxTeamSize = params.maxTeamSize || 5;
-   var activeMass = params.activeMass || 500;
+jQuery.fn.springy = function(params) {
+  var stiffness = params.stiffness || function(){ return 400.0 };
+  var repulsion = params.repulsion || function(){ return 400.0 };
+  var damping = params.damping || 0.5;
+  var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
+  var nodeSelected = params.nodeSelected || null;
+  var maxTeamSize = params.maxTeamSize || 5;
+  var activeMass = params.activeMass || 500;
 
-   var canvas = this[0];
-   var ctx = canvas.getContext("2d");
+  var canvas = this[0];
+  var ctx = canvas.getContext("2d");
 
-   var graph = this.graph = params.graph || new Springy.Graph();
-   var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
+  var graph = this.graph = params.graph || new Springy.Graph();
+  var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
+
+  //We can check to see if the font has been loaded before using.
+  var nodeFont = new function(){
+    this.font = "16px Hanzel, sans-serif";
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    context.font = this.font;
+
+    this.isReady = function(){
+      if(!this.loaded && context.measureText("wE arE reaDY.").width === 113.6875)
+        this.loaded = true;
+      return this.loaded;
+    }
+  };
 
 	// calculate bounding box of graph layout.. with ease-in
 	var currentBB = layout.getBoundingBox();
@@ -575,13 +589,12 @@ Copyright (c) 2010 Dennis Hotson
   }
 
   Springy.Node.prototype.setPortraitText = function() {
-    if(!this.text){
+    if(!this.text && nodeFont.isReady()){
       var canvas = document.createElement('canvas'),
       context = canvas.getContext('2d'),
       text = this.data.label.toUpperCase();
 
-      context.font = nodeFont;
-
+      context.font = nodeFont.font;
       var textWidth = context.measureText(text).width;
       var textHeight = 16;
 
@@ -592,7 +605,7 @@ Copyright (c) 2010 Dennis Hotson
       context.fillStyle = "rgba(0, 0, 0, 0.5)";
       context.fillRect(0, 0, canvas.width, canvas.height);
       //draw the name
-      context.font = nodeFont;
+      context.font = nodeFont.font;
       context.fillStyle = "#ffffff";
       context.textAlign = "left";
       context.textBaseline = "top";
@@ -603,7 +616,6 @@ Copyright (c) 2010 Dennis Hotson
 
       this.text = canvas; 
     }
-    return this.text;
   }
 
   var renderer = this.renderer = new Springy.Renderer(layout,
@@ -781,17 +793,17 @@ Copyright (c) 2010 Dennis Hotson
       ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
     },
     function drawNodeOverlay(node, point) {
-      if (!node.isSelected())
+      if (!node.isSelected() || !node.text)
         return;
 
       ctx.globalAlpha = 1.0;
 
       //draw the portrait text
-      var text = node.text;
-      ctx.drawImage(text, 
-        Math.min(Math.max(0, node.bb.x - (text.width / 2) | 0), canvas.width - text.width), 
-        Math.min(Math.max(0, node.bb.y - text.height - (node.bb.size / 2) | 0), canvas.height - text.height), 
-        text.width, text.height);
+      var width = node.text.width, height = node.text.height;
+      ctx.drawImage(node.text, 
+        Math.min(Math.max(0, node.bb.x - (width / 2) | 0), canvas.width - width), 
+        Math.min(Math.max(0, node.bb.y - height - (node.bb.size / 2) | 0), canvas.height - height), 
+        width, height);
     },
     function drawOverlay(){
       if(selection && selection.start && selection.end){
