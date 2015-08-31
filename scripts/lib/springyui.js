@@ -392,34 +392,33 @@ jQuery.fn.springy = function(params) {
 
 
   var nodeImages = {};
-  var nodeImageContexts = {};
-  var nodeImageContextQueue = {
+
+  var nodeImageQueue = {
     list:[],
     todo:{}
   };
-
-  nodeImageContextQueue.push = function(id, callback){
-    nodeImageContextQueue.insert(id, callback, 'push');
+  nodeImageQueue.push = function(id, callback){
+    nodeImageQueue.insert(id, callback, 'push');
   }
-  nodeImageContextQueue.unshift = function(id, callback){
-    nodeImageContextQueue.insert(id, callback, 'unshift');
+  nodeImageQueue.unshift = function(id, callback){
+    nodeImageQueue.insert(id, callback, 'unshift');
   }
-  nodeImageContextQueue.insert = function(id, callback, method){
-    nodeImageContextQueue.todo[id] = callback;
-    nodeImageContextQueue.list[method].call(nodeImageContextQueue.list, id);
-    if(!nodeImageContextQueue.timeout)
-      nodeImageContextQueue.next();
+  nodeImageQueue.insert = function(id, callback, method){
+    nodeImageQueue.todo[id] = callback;
+    nodeImageQueue.list[method].call(nodeImageQueue.list, id);
+    if(!nodeImageQueue.timeout)
+      nodeImageQueue.next();
   }
-  nodeImageContextQueue.next = function(){
-    if(nodeImageContextQueue.list.length === 0)
+  nodeImageQueue.next = function(){
+    if(nodeImageQueue.list.length === 0)
       return;
-    var id = nodeImageContextQueue.list.shift();
-    var todo = nodeImageContextQueue.todo[id];
-    delete nodeImageContextQueue.todo[id];
-    nodeImageContextQueue.timeout = setTimeout(function(){
-      delete nodeImageContextQueue.timeout;
+    var id = nodeImageQueue.list.shift();
+    var todo = nodeImageQueue.todo[id];
+    delete nodeImageQueue.todo[id];
+    nodeImageQueue.timeout = setTimeout(function(){
+      delete nodeImageQueue.timeout;
       todo.call(null);
-      nodeImageContextQueue.next();
+      nodeImageQueue.next();
     }, 25);
   }
 
@@ -460,7 +459,7 @@ jQuery.fn.springy = function(params) {
       resizeContext = resizeCanvas.getContext('2d');
       resizeCanvas.width = resizeCanvas.height = resize;
       resizeContext.drawImage(image, 0, 0, resize, resize);
-      nodeImageContextQueue.unshift(src, function(){
+      nodeImageQueue.unshift(src, function(){
         addPortaitImages(src, resizeCanvas, color, resize);
       }, 'unshift');
     }
