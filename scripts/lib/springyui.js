@@ -495,43 +495,43 @@ jQuery.fn.springy = function(params) {
     159.09474,215.87646,3.5709275,215.81378,3.5709275,215.81378
     ];
 
-    function getPlaceholder(size, color){
-      var id = size + '_' + color;
-      if(!placeholders[id]){
-        var canvas, context;
-        if(!placeholders[size]){
-          var ratio = size / 220;
-          canvas = document.createElement('canvas');
-          context = canvas.getContext('2d');
-          canvas.height = canvas.width = size;
-          context.beginPath();
-          context.moveTo(placeholderCoords[0] * ratio, placeholderCoords[1] * ratio);
-          for(var i=2; i<placeholderCoords.length; i+=6)
-            context.bezierCurveTo(
-              placeholderCoords[i]*ratio, placeholderCoords[i+1]*ratio,
-              placeholderCoords[i+2]*ratio, placeholderCoords[i+3]*ratio,
-              placeholderCoords[i+4]*ratio, placeholderCoords[i+5]*ratio
-              );
-          context.closePath();
-          context.lineWidth = 3;
-          context.strokeStyle = "#868686";
-          context.stroke();
-          context.fillStyle = "#909090";
-          context.fill();
-          placeholders[size] = canvas;
-        }
-        var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        barHeight = Math.max(2, (size / 10) | 0);
+  function getPlaceholder(size, color){
+    var id = size + '_' + color;
+    if(!placeholders[id]){
+      var canvas, context;
+      if(!placeholders[size]){
+        var ratio = size / 220;
+        canvas = document.createElement('canvas');
+        context = canvas.getContext('2d');
         canvas.height = canvas.width = size;
-        context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
-        context.fillStyle = color || "#000";
-        context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-        canvas.hitbox = getHitbox(canvas);
-        placeholders[id] = canvas;
+        context.beginPath();
+        context.moveTo(placeholderCoords[0] * ratio, placeholderCoords[1] * ratio);
+        for(var i=2; i<placeholderCoords.length; i+=6)
+          context.bezierCurveTo(
+            placeholderCoords[i]*ratio, placeholderCoords[i+1]*ratio,
+            placeholderCoords[i+2]*ratio, placeholderCoords[i+3]*ratio,
+            placeholderCoords[i+4]*ratio, placeholderCoords[i+5]*ratio
+          );
+        context.closePath();
+        context.lineWidth = 3;
+        context.strokeStyle = "#868686";
+        context.stroke();
+        context.fillStyle = "#909090";
+        context.fill();
+        placeholders[size] = canvas;
       }
-      return placeholders[id]
+      var canvas = document.createElement('canvas'),
+      context = canvas.getContext('2d'),
+      barHeight = Math.max(2, (size / 10) | 0);
+      canvas.height = canvas.width = size;
+      context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
+      context.fillStyle = color || "#000";
+      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+      canvas.hitbox = getHitbox(canvas);
+      placeholders[id] = canvas;
     }
+    return placeholders[id]
+  }
 
   function getPortraitSizeTarget(number){
     var list = {};
