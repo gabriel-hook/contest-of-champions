@@ -708,16 +708,19 @@ jQuery.fn.springy = function(params) {
       if(overlapping){
         if(sourceAbove){
           lineStart = s1.clone();
-          lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+          lineEnd = edge.target.intersection(s1, s2);
+          lineEnd.subtract(halfArrow);
         }
         else{
-          lineStart = edge.source.intersectLine(s2, s1);
+          lineStart = edge.source.intersection(s2, s1);
           lineEnd = s2.clone().subtract(halfArrow);
         }
       }
       else{
-        lineStart = edge.source.intersectLine(s2, s1);
-        lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+        lineStart = edge.source.intersection(s2, s1);
+        lineEnd = edge.target.intersection(s1, s2);
+        lineEnd.subtract(halfArrow);
+
 
         //adjust if we have problems
         if(lineEnd.clone().subtract(lineStart).lengthSquared() < arrowLength*arrowLength || //line too short
@@ -727,10 +730,11 @@ jQuery.fn.springy = function(params) {
           ){
           if(sourceAbove){
             lineStart = s1.clone();
-            lineEnd = edge.target.intersectLine(s1, s2, padding + arrowLength * 0.75);
+            lineEnd = edge.target.intersection(s1, s2);
+            lineEnd.subtract(halfArrow);
           }
           else{
-            lineStart = edge.source.intersectLine(s2, s1);
+            lineStart = edge.source.intersection(s2, s1);
             lineEnd = s2.clone().subtract(halfArrow);
           }
         }
@@ -864,6 +868,14 @@ jQuery.fn.springy = function(params) {
     return false;
   }
 
+  Springy.Node.prototype.containsPointRaw = function(x, y) {
+    if(this.hitbox){
+      if(this.hitbox.opaque[x])
+        return this.hitbox.opaque[x][y] === true;
+    }
+    return false;
+  }
+
   Springy.Node.prototype.overlappingBoundingBox = function(node) {
     return this.bb && node.bb &&
     this.bb.left <= node.bb.right && 
@@ -921,62 +933,40 @@ jQuery.fn.springy = function(params) {
       return false;
     }
 
-        Springy.Node.prototype.intersectLine = function(start, end, padding){
-          if(!this.bb)
-            return end;
+  Springy.Node.prototype.getSize = function() {
+    var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
+    size = Math.min(Math.max(16, canvasSize >> 4), 128);
+    if(this.isSelected())
+      size *= 1.5;
+    return size;
+  }
 
-    // if we are inside the bbox but not over an opaque spot, we can start tracing from start
-    var inBBox = this.bb.left <= start.x && this.bb.right >= start.x && this.bb.top <= start.y && this.bb.bottom >= start.y;
-    if(inBBox && !this.containsPoint(start)){
-      point = start.clone();
-    }
-    // find the bbox intersect
-    else{
-      var size = this.getSize(), 
-      halfSize = (size >> 1) | 0,
-      point = intersect_line_box(start, end, {x: this.bb.left, y: this.bb.top}, size, size);
-      if(!point){
-        return end;
+  //find the nearest edge of the image, assuming end is inside of node
+  Springy.Node.prototype.intersection = function(start, end){
+    var check = new Springy.Vector(end.x - this.bb.left, end.y - this.bb.top),
+      from = new Springy.Vector(start.x - this.bb.left, start.y - this.bb.top);
+
+    check.divide(this.bb.size).multiply(this.hitbox.size);
+    from.divide(this.bb.size).multiply(this.hitbox.size);
+
+    var delta = from.clone().subtract(check).normalise();
+    var last = check.clone();
+    while(true){
+      check.x += delta.x;
+      check.y += delta.y;
+      if(this.containsPointRaw(check.x | 0, check.y | 0)){
+        last.x = check.x + delta.x;
+        last.y = check.y + delta.y;
       }
+      if(check.x < 0 || check.y < 0 || check.y > this.hitbox.size || check.x > this.hitbox.size)
+        break;
     }
 
-    var delta = end.clone().subtract(point), length = delta.length();
-    delta.divide(length);
-    for(var i=0; i < length && !this.containsPoint(point); i++){
-      point.x += delta.x;
-      point.y += delta.y;
-    }
-    padding = Math.max(1, padding || 1);
-    return point.subtract(delta.multiply(padding));
-  }
-
-  function intersect_line_box(start, end, topleft, size) {
-    var tl = {x: topleft.x, y: topleft.y};
-    var tr = {x: topleft.x + size, y: topleft.y};
-    var bl = {x: topleft.x, y: topleft.y + size};
-    var br = {x: topleft.x + size, y: topleft.y + size};
-    var result;
-    if (start.y < tr.y && (result = intersect_line_line(start, end, tl, tr))) // top
-      return result;
-    if (start.x > tr.x && (result = intersect_line_line(start, end, tr, br))) // right
-      return result;
-    if (start.y > bl.y && (result = intersect_line_line(start, end, br, bl))) // bottom
-      return result;
-    if (start.x < bl.x && (result = intersect_line_line(start, end, bl, tl))) // left
-      return result;
-    return false;
-  }
-
-  function intersect_line_line(p1, p2, p3, p4) {
-    var denom = ((p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y));
-    // lines are parallel
-    if (denom === 0)
-      return false;
-    var ua = ((p4.x - p3.x)*(p1.y - p3.y) - (p4.y - p3.y)*(p1.x - p3.x)) / denom;
-    var ub = ((p2.x - p1.x)*(p1.y - p3.y) - (p2.y - p1.y)*(p1.x - p3.x)) / denom;
-    if (ua < 0 || ua > 1 || ub < 0 || ub > 1)
-      return false;
-    return new Springy.Vector(p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y));
+    //scale and move to relative position
+    return new Springy.Vector(
+      this.bb.left + last.x / this.hitbox.size * this.bb.size,
+      this.bb.top + last.y / this.hitbox.size * this.bb.size
+    );
   }
 
   renderer.start();
