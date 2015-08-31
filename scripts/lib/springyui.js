@@ -942,19 +942,21 @@ jQuery.fn.springy = function(params) {
   }
 
   //find the nearest edge of the image, assuming end is inside of node
-  Springy.Node.prototype.intersection = function(start, end){
-    var check = new Springy.Vector(end.x - this.bb.left, end.y - this.bb.top),
-      from = new Springy.Vector(start.x - this.bb.left, start.y - this.bb.top);
-
+  Springy.Node.prototype.intersection = function(outside, inside){
+    //get position relative to hitbox
+    var check = new Springy.Vector(inside.x - this.bb.left, inside.y - this.bb.top),
+      from = new Springy.Vector(outside.x - this.bb.left, outside.y - this.bb.top);
     check.divide(this.bb.size).multiply(this.hitbox.size);
     from.divide(this.bb.size).multiply(this.hitbox.size);
 
+    //iterate inside-out to find the last opaque pixel
     var delta = from.clone().subtract(check).normalise();
     var last = check.clone();
     while(true){
       check.x += delta.x;
       check.y += delta.y;
       if(this.containsPointRaw(check.x | 0, check.y | 0)){
+        //push 1px outside of last opaque
         last.x = check.x + delta.x;
         last.y = check.y + delta.y;
       }
@@ -962,7 +964,7 @@ jQuery.fn.springy = function(params) {
         break;
     }
 
-    //scale and move to relative position
+    //scale and move back to relative position
     return new Springy.Vector(
       this.bb.left + last.x / this.hitbox.size * this.bb.size,
       this.bb.top + last.y / this.hitbox.size * this.bb.size
