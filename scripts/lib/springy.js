@@ -419,7 +419,7 @@ Graph.prototype.addNodes = function() {
 				}
 				else{
 					if(point.delta === undefined){
-						point.delta = Math.max(1, difference / 500);
+						point.delta = Math.max(1, difference / 100);
 						if(point.m < point.mass)
 							point.delta = -point.delta;
 					}
@@ -439,8 +439,8 @@ Graph.prototype.addNodes = function() {
 						direction = d.normalise(),
 						repulsion = this.repulsion;
 
-						if(n1.selected && !point2.active)
-							repulsion *= point2.m * 0.15;
+					if(n1.selected && !point2.active)
+						repulsion *= Math.min(1000, point2.m * 0.15);
 
 					// apply force to each end point
 					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
