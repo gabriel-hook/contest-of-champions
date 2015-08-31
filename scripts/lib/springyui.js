@@ -361,7 +361,7 @@ jQuery.fn.springy = function(params) {
   });
   $(window).on('mouseup',function(e) {
     e.preventDefault();
-    if(e.target === canvas || dragged)
+    if(e.target === canvas || dragged || selection)
       pointerEnd(true, selectType(e));
   });
   $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
