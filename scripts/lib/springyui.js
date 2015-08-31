@@ -434,11 +434,11 @@ jQuery.fn.springy = function(params) {
       for(y=0; y<size; y++)
         if(data[(y*size*4) + x*4 + 3] > 127)
           opaque[x][y] = true;
-      }
-      return { size:size, opaque:opaque };
     }
+    return { size:size, opaque:opaque };
+  }
 
-    function addPortaitImages(src, image, color){
+  function addPortaitImages(src, image, color){
     //build the image 
     var canvas = document.createElement('canvas'),
     context = canvas.getContext('2d'),
@@ -533,21 +533,21 @@ jQuery.fn.springy = function(params) {
       return placeholders[id]
     }
 
-    function getPortraitSizeTarget(number){
-      var list = {};
-      getPortraitSizeTarget = function(number){
-        if(list[number] === undefined){
-          var i = 1, last = 0;
-          while(i != number && i + (i-last)>>1 < number){
-            last = i;
-            i = i << 1;
-          }
-          list[number] = i;
+  function getPortraitSizeTarget(number){
+    var list = {};
+    getPortraitSizeTarget = function(number){
+      if(list[number] === undefined){
+        var i = 1, last = 0;
+        while(i != number && i + (i-last)>>1 < number){
+          last = i;
+          i = i << 1;
         }
-        return list[number];
+        list[number] = i;
       }
-      return getPortraitSizeTarget(number);
+      return list[number];
     }
+    return getPortraitSizeTarget(number);
+  }
 
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.setPortraitImage = function(size){
@@ -573,7 +573,7 @@ jQuery.fn.springy = function(params) {
         };
         var image = new Image();
         image.addEventListener("load", function (){
-          nodeImageContextQueue.push(src, function(){
+          nodeImageQueue.push(src, function(){
             addPortaitImages(src, image, color);
           });
         });
@@ -831,19 +831,19 @@ jQuery.fn.springy = function(params) {
         ctx.restore();
       }
     }
-    );
+  );
 
-Springy.Node.prototype.setBoundingBox = function(x, y, size) {
-  this.bb = { 
-    left:x, 
-    top:y, 
-    right:x+size, 
-    bottom:y+size, 
-    x:(x + size / 2)|0, 
-    y:(y + size / 2)|0, 
-    size:size 
-  };
-}
+  Springy.Node.prototype.setBoundingBox = function(x, y, size) {
+    this.bb = { 
+      left:x, 
+      top:y, 
+      right:x+size, 
+      bottom:y+size, 
+      x:(x + size / 2)|0, 
+      y:(y + size / 2)|0, 
+      size:size 
+    };
+  }
 
   // return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.containsPoint = function(point, y) {
@@ -897,37 +897,29 @@ Springy.Node.prototype.setBoundingBox = function(x, y, size) {
             if(this.containsPoint(x,y) && node.containsPoint(x,y))
               return true;
             return false;
-          }
-          return true;
-        }
-        return false;
       }
+      return true;
+    }
+    return false;
+  }
 
-      Springy.Node.prototype.distanceSquared = function(x, y) {
-        if(!this.bb)
-          return null;
-        var dx = this.bb.x - x, dy = this.bb.y - y;
-        return dx*dx + dy*dy;
-      }
+  Springy.Node.prototype.distanceSquared = function(x, y) {
+    if(!this.bb)
+      return null;
+    var dx = this.bb.x - x, dy = this.bb.y - y;
+    return dx*dx + dy*dy;
+  }
 
-      Springy.Node.prototype.isSelected = function() {
-        return this.selected;
-      }
+  Springy.Node.prototype.isSelected = function() {
+    return this.selected;
+  }
 
-      Springy.Node.prototype.isSelectedNeighbor = function() {
-        for(var i=0; i<selected.length; i++)
-          if(selected[i].data.neighbors[ this.id ])
-            return true;
-          return false;
-        }
-
-        Springy.Node.prototype.getSize = function() {
-          var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
-          size = Math.min(Math.max(16, canvasSize >> 4), 128);
-          if(this.isSelected())
-            size *= 1.5;
-          return size;
-        }
+  Springy.Node.prototype.isSelectedNeighbor = function() {
+    for(var i=0; i<selected.length; i++)
+      if(selected[i].data.neighbors[ this.id ])
+        return true;
+      return false;
+    }
 
         Springy.Node.prototype.intersectLine = function(start, end, padding){
           if(!this.bb)
