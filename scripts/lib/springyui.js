@@ -76,17 +76,17 @@ jQuery.fn.springy = function(params) {
     });
   }
 
-  function findNodeAt(coord){
+  function findNodeAt(coord, touch){
     var nearest = {};
     graph.nodes.forEach(function(node){
-      var distance = node.distanceSquared(coord.x, coord.y);
-      if(nearest.distance === undefined || distance < nearest.distance)
-        if(node.containsPoint(coord))
-          nearest = {
-            node:node,
-            distance:distance
-          };
-        });
+      var distance = node.distanceSquared(coord.x, coord.y), inside;
+      if(nearest.distance === undefined || distance < nearest.distance){
+        if(node.containsPoint(coord)){
+          nearest.node = node,
+          nearest.distance = distance
+        }
+      }
+    });
     return nearest.node;
   }
 
@@ -215,7 +215,7 @@ jQuery.fn.springy = function(params) {
   function pointerStart(coord, selectType){
     if(dragged)
       dragged.point.active = false;
-    var node = findNodeAt(coord);
+    var node = findNodeAt(coord, selectType === undefined);
     if(!node){
       if(!selectType || selectType === "replace"){
         clearSelected();
@@ -390,9 +390,62 @@ jQuery.fn.springy = function(params) {
     }
   });
 
+  var nodeHitmasks = {};
+  function getHitmask(src, image){
+    if(!nodeHitmasks[src]){
+      if(typeof image === "function")
+        image = image();
+
+      var size = image.width, 
+      imageData = image.getContext('2d').getImageData(0, 0, size, size), 
+      data = imageData.data, 
+      x, 
+      y,
+      opaque = {};
+
+      //first perpixel mask
+      for(x=0; x<size; x++){
+        opaque[x] = {};
+        for(y=0; y<size; y++)
+          opaque[x][y] = (data[(y*size*4) + x*4 + 3] > 127)? 1: 0;
+      }
+
+      function check(hitmask, x, y){
+        return (hitmask.opaque[x])? hitmask.opaque[x][y]: 0;
+      }
+      function half(hitmask){
+        var size = hitmask.size >> 1,
+        x,
+        y,
+        o,
+        opaque = {};
+        for(x=0; x<size; x++){
+          opaque[x] = {};
+          for(y=0; y<size; y++){
+            o = 0;
+            o += check(hitmask, x * 2, y * 2);
+            o += check(hitmask, x * 2 + 1, y * 2);
+            o += check(hitmask, x * 2, y * 2 + 1);
+            o += check(hitmask, x * 2 + 1, y * 2 + 1);
+            opaque[x][y] = (o === 4)? 1:(o === 0)? 0: 2;
+          }
+        }
+        return { size:size, opaque:opaque };
+      }
+
+      var hitmask = { size:size, opaque:opaque };
+      while(hitmask.size > 4){
+        var next = hitmask;
+        hitmask = half(next);
+        hitmask.next = next;
+      }
+
+      nodeHitmasks[src] = hitmask;
+    }
+    return nodeHitmasks[src];
+  }
 
   var nodeImages = {};
-
   var nodeImageQueue = {
     list:[],
     todo:{}
@@ -422,22 +475,6 @@ jQuery.fn.springy = function(params) {
     }, 25);
   }
 
-  function getHitbox(image){
-    var size = image.width, 
-    imageData = image.getContext('2d').getImageData(0, 0, size, size), 
-    data = imageData.data, 
-    x, 
-    y,
-    opaque = {};
-    for(x=0; x<size; x++){
-      opaque[x] = {};
-      for(y=0; y<size; y++)
-        if(data[(y*size*4) + x*4 + 3] > 127)
-          opaque[x][y] = true;
-    }
-    return { size:size, opaque:opaque };
-  }
-
   function addPortaitImages(src, image, color){
     //build the image 
     var canvas = document.createElement('canvas'),
@@ -447,7 +484,6 @@ jQuery.fn.springy = function(params) {
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     context.fillStyle = color;
     context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-    canvas.hitbox = getHitbox(canvas);
 
     if(nodeImages[src].portraits === undefined)
       nodeImages[src].portraits = [];
@@ -460,7 +496,7 @@ jQuery.fn.springy = function(params) {
       resizeCanvas.width = resizeCanvas.height = resize;
       resizeContext.drawImage(image, 0, 0, resize, resize);
       nodeImageQueue.unshift(src, function(){
-        addPortaitImages(src, resizeCanvas, color, resize);
+        addPortaitImages(src, resizeCanvas, color);
       }, 'unshift');
     }
     else{
@@ -496,7 +532,7 @@ jQuery.fn.springy = function(params) {
     ];
 
   function getPlaceholder(size, color){
-    var id = size + '_' + color;
+    var id = size + '_' + (color || '');
     if(!placeholders[id]){
       var canvas, context;
       if(!placeholders[size]){
@@ -527,7 +563,6 @@ jQuery.fn.springy = function(params) {
       context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
       context.fillStyle = color || "#000";
       context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-      canvas.hitbox = getHitbox(canvas);
       placeholders[id] = canvas;
     }
     return placeholders[id]
@@ -552,9 +587,10 @@ jQuery.fn.springy = function(params) {
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.setPortraitImage = function(size){
     var portrait,
-    img = this.data.image, 
-    color = this.data.color || "#111111", 
-    node = this;
+      hitmask,
+      img = this.data.image, 
+      color = this.data.color || "#111111", 
+      node = this;
     if(img){
       var src = img.src;
       if (src in nodeImages) {
@@ -564,6 +600,9 @@ jQuery.fn.springy = function(params) {
           target = getPortraitSizeTarget(size);
           for(var i=0; i < portraits.length && portraits[i].width >= target; i++)
             portrait = portraits[i];
+
+          //get hitmask from largest image
+          hitmask = getHitmask(src, portraits[0]);
         }
       }
       else{
@@ -580,11 +619,13 @@ jQuery.fn.springy = function(params) {
         image.src = src;
       }
     }
-    if(!portrait)
+    if(!portrait){
       portrait = getPlaceholder(size, color);
+      hitmask = getHitmask('portrait', function(){ return getPlaceholder(256) });
+    }
 
     this.image = portrait;
-    this.hitbox = portrait.hitbox;
+    this.hitmask = hitmask;
   }
 
   Springy.Node.prototype.setPortraitText = function() {
@@ -637,7 +678,7 @@ jQuery.fn.springy = function(params) {
       y = (s.y | 0), 
       fullSize = node.getSize() | 0, 
       halfSize = fullSize >> 1;
-      //set images/bounds/hitboxes
+      //set images/bounds
       node.setPortraitText();
       node.setPortraitImage(fullSize);
       node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
@@ -851,7 +892,7 @@ jQuery.fn.springy = function(params) {
 
   // return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.containsPoint = function(point, y) {
-    var x, px, py;
+    var x, px, py, hitmask;
     if(y === undefined){
       y = point.y;
       x = point.x;
@@ -859,20 +900,22 @@ jQuery.fn.springy = function(params) {
     else
       x = point;
 
-    if(this.bb && this.hitbox){
-      px = (this.hitbox.size * (x - this.bb.left) / this.bb.size) | 0;
-      py = (this.hitbox.size * (y - this.bb.top) / this.bb.size) | 0;
-      if(this.hitbox.opaque[px])
-        return this.hitbox.opaque[px][py] === true;
+    if(this.bb && this.hitmask){
+      hitmask = this.hitmask;
+      while(hitmask.size < this.bb.size)
+        hitmask = hitmask.next;
+
+      px = (hitmask.size * (x - this.bb.left) / this.bb.size) | 0;
+      py = (hitmask.size * (y - this.bb.top) / this.bb.size) | 0;
+      if(hitmask.opaque[px])
+        return hitmask.opaque[px][py];
     }
     return false;
   }
 
-  Springy.Node.prototype.containsPointRaw = function(x, y) {
-    if(this.hitbox){
-      if(this.hitbox.opaque[x])
-        return this.hitbox.opaque[x][y] === true;
-    }
+  Springy.Node.prototype.containsPointRaw = function(hitmask, x, y) {
+    if(hitmask.opaque[x])
+      return hitmask.opaque[x][y];
     return false;
   }
 
@@ -886,7 +929,7 @@ jQuery.fn.springy = function(params) {
 
   Springy.Node.prototype.overlapping = function(node) {
     if(this.overlappingBoundingBox(node)){
-      if(this.hitbox && node.hitbox){
+      if(this.hitmask && node.hitmask){
         var tlx, tly, brx, bry;
         if(this.bb.bottom < node.bb.bottom){
           tly = node.bb.top | 0;
@@ -943,11 +986,18 @@ jQuery.fn.springy = function(params) {
 
   //find the nearest edge of the image, assuming end is inside of node
   Springy.Node.prototype.intersection = function(outside, inside){
-    //get position relative to hitbox
+    var hitmask = this.hitmask;
+    if(!hitmask && !this.bb)
+      return inside;
+
+    while(hitmask.size < this.bb.size >> 1)
+      hitmask = hitmask.next;
+
+    //get position relative to hitmask
     var check = new Springy.Vector(inside.x - this.bb.left, inside.y - this.bb.top),
       from = new Springy.Vector(outside.x - this.bb.left, outside.y - this.bb.top);
-    check.divide(this.bb.size).multiply(this.hitbox.size);
-    from.divide(this.bb.size).multiply(this.hitbox.size);
+    check.divide(this.bb.size).multiply(hitmask.size);
+    from.divide(this.bb.size).multiply(hitmask.size);
 
     //iterate inside-out to find the last opaque pixel
     var delta = from.clone().subtract(check).normalise();
@@ -955,19 +1005,19 @@ jQuery.fn.springy = function(params) {
     while(true){
       check.x += delta.x;
       check.y += delta.y;
-      if(this.containsPointRaw(check.x | 0, check.y | 0)){
+      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0)){
         //push 1px outside of last opaque
         last.x = check.x + delta.x;
         last.y = check.y + delta.y;
       }
-      if(check.x < 0 || check.y < 0 || check.y > this.hitbox.size || check.x > this.hitbox.size)
+      if(check.x < 0 || check.y < 0 || check.y > hitmask.size || check.x > hitmask.size)
         break;
     }
 
     //scale and move back to relative position
     return new Springy.Vector(
-      this.bb.left + last.x / this.hitbox.size * this.bb.size,
-      this.bb.top + last.y / this.hitbox.size * this.bb.size
+      this.bb.left + last.x / hitmask.size * this.bb.size,
+      this.bb.top + last.y / hitmask.size * this.bb.size
     );
   }
 
