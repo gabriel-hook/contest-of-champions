@@ -29,20 +29,6 @@ CoC.synergies.initialize=function(stars, roster){
     CoC.synergies.updateLegend();
   };
 
-  function animateFromTo(from, to, milliseconds, easing){
-    var start = new Date(), done = (from === to), ease = CoC.synergies.easingFunctions[easing] || CoC.synergies.easingFunctions['linear'];
-    return function(){
-      if(done)
-        return to;
-      var now = new Date(), fraction = (now - start)/ milliseconds;
-      if(fraction >= 1){
-        done = true;
-        return to;
-      }
-      return from + (to - from) * ease( fraction );
-    }
-  }
-
   var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1),
     typeColors = {
       cosmic:"#3af",
@@ -66,8 +52,8 @@ CoC.synergies.initialize=function(stars, roster){
       healthsteal:"#af0"
     },
     springy = $('canvas').springy({
-      stiffness: animateFromTo(1000, 200, 10000, 'easeInQuad'),
-      repulsion: animateFromTo(100, 1000, 10000, 'easeInQuad'),
+      stiffness: 800,
+      repulsion: 1600,
       damping: 0.5,
       nodeSelected:nodeSelected
     }),
@@ -208,20 +194,4 @@ CoC.synergies.toggleLegend = function(){
 CoC.synergies.updateLegend = function(){
   var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
   $('#legend').css('left', isActive? 1: -legendWidth).css("opacity", isActive? 1: 0);
-}
-
-CoC.synergies.easingFunctions = {
-  linear: function (t) { return t },
-  easeInQuad: function (t) { return t*t },
-  easeOutQuad: function (t) { return t*(2-t) },
-  easeInOutQuad: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
-  easeInCubic: function (t) { return t*t*t },
-  easeOutCubic: function (t) { return (--t)*t*t+1 },
-  easeInOutCubic: function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 },
-  easeInQuart: function (t) { return t*t*t*t },
-  easeOutQuart: function (t) { return 1-(--t)*t*t*t },
-  easeInOutQuart: function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t },
-  easeInQuint: function (t) { return t*t*t*t*t },
-  easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
-  easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 }

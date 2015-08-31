@@ -88,14 +88,14 @@ Graph.prototype.addNode = function(node) {
 };
 
 Graph.prototype.addNodes = function() {
-		// accepts variable number of arguments, where each argument
-		// is a string that becomes both node identifier and label
-		for (var i = 0; i < arguments.length; i++) {
-			var name = arguments[i];
-			var node = new Node(name, {label:name});
-			this.addNode(node);
-		}
-	};
+	// accepts variable number of arguments, where each argument
+	// is a string that becomes both node identifier and label
+	for (var i = 0; i < arguments.length; i++) {
+		var name = arguments[i];
+		var node = new Node(name, {label:name});
+		this.addNode(node);
+	}
+};
 
 	Graph.prototype.addEdge = function(edge) {
 		var exists = false;
@@ -197,13 +197,11 @@ Graph.prototype.addNodes = function() {
 
 	// find the edges from node1 to node2
 	Graph.prototype.getEdges = function(node1, node2) {
-		if (node1.id in this.adjacency
-			&& node2.id in this.adjacency[node1.id]) {
+		if (node1.id in this.adjacency && node2.id in this.adjacency[node1.id]) {
 			return this.adjacency[node1.id][node2.id];
-	}
-
-	return [];
-};
+		}
+		return [];
+	};
 
 	// remove a node and it's associated edges from the graph
 	Graph.prototype.removeNode = function(node) {
@@ -439,7 +437,7 @@ Graph.prototype.addNodes = function() {
 					var d = point1.p.clone().subtract(point2.p),
 						distanceSquared = Math.max(0.1, d.lengthSquared()), // avoid massive forces at small distances (and divide by zero)
 						direction = d.normalise(),
-						repulsion = this.repulsion();
+						repulsion = this.repulsion;
 
 						if(n1.selected && !point2.active)
 							repulsion *= point2.m * 0.15;
@@ -457,7 +455,7 @@ Graph.prototype.addNodes = function() {
 			var d = spring.point2.p.clone().subtract(spring.point1.p); // the direction of the spring
 			var displacement = spring.length - d.length();
 			var direction = d.normalise();
-			var k = spring.k();
+			var k = spring.k;
 
 			// apply force to each end point
 			spring.point1.applyForce(direction.multiply(-0.5 * k * displacement));
@@ -468,7 +466,7 @@ Graph.prototype.addNodes = function() {
 	Layout.ForceDirected.prototype.attractToCentre = function() {
 		this.eachNode(function(node, point) {
 			var direction = point.p.clone().multiply(-1.0),
-			repulsion = this.repulsion();
+			repulsion = this.repulsion;
 			point.applyForce(direction.multiply(repulsion / 50.0));
 		});
 	};

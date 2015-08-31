@@ -26,8 +26,8 @@ Copyright (c) 2010 Dennis Hotson
   "use strict";
 
 jQuery.fn.springy = function(params) {
-  var stiffness = params.stiffness || function(){ return 400.0 };
-  var repulsion = params.repulsion || function(){ return 400.0 };
+  var stiffness = params.stiffness || 400.0;
+  var repulsion = params.repulsion || 400.0;
   var damping = params.damping || 0.5;
   var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
   var nodeSelected = params.nodeSelected || null;
