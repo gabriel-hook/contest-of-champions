@@ -71,13 +71,17 @@ var Edge = Springy.Edge = function(id, source, target, data) {
 	this.target = target;
 	this.data = (data !== undefined) ? data : {};
 
+	var nodes = [this.source.id, this.target.id];
+	nodes.sort();
+	this.nodes = nodes.join('_');
+
 	// Edge data field used by layout alorithm
 	// this.data.length
 	// this.data.type
 };
 
 Graph.prototype.addNode = function(node) {
-	if (!(node.id in this.nodeSet)) {
+	if (!(node.id in this.nodeSet)){
 		this.nodes.push(node);
 	}
 
@@ -406,6 +410,20 @@ Graph.prototype.addNodes = function() {
 		});
 	};
 
+	// callback should accept one argument: Spring
+	Layout.ForceDirected.prototype.eachUniqueSpring = function(callback) {
+		var t = this;
+
+		var ids = {};
+		this.graph.edges.forEach(function(e){
+			if(ids[e.nodes])
+				return;
+			ids[e.nodes] = true;
+
+			callback.call(t, t.spring(e));
+		});
+	};
+
 	// Physics stuff
 	Layout.ForceDirected.prototype.decayMasses = function() {
 		this.eachNode(function(node, point) {
@@ -431,27 +449,32 @@ Graph.prototype.addNodes = function() {
 
 	// Physics stuff
 	Layout.ForceDirected.prototype.applyCoulombsLaw = function() {
-		this.eachNode(function(n1, point1) {
-			this.eachNode(function(n2, point2) {
-				if (point1 !== point2) {
-					var d = point1.p.clone().subtract(point2.p),
-						distanceSquared = Math.max(0.1, d.lengthSquared()), // avoid massive forces at small distances (and divide by zero)
-						direction = d.normalise(),
-						repulsion = this.repulsion;
+		var between = {}, id;
 
-					if(n1.selected && !point2.active)
-						repulsion *= Math.min(1000, point2.m * 0.15);
+		this.eachNode(function(n1, point1){
+			this.eachNode(function(n2, point2){
+				if (n1.id === n2.id)
+					return;
 
-					// apply force to each end point
-					point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
-					point2.applyForce(direction.multiply(-1));
-				}
+				var d = point1.p.clone().subtract(point2.p),
+					distanceSquared = Math.max(0.1, d.lengthSquared()), // avoid massive forces at small distances (and divide by zero)
+					direction = d.normalise(),
+					repulsion = this.repulsion,
+					strong1 = n1.selected || point1.active,
+					strong2 = n2.selected || point2.active;
+
+				if(strong1 || strong2)
+						repulsion *= Math.max(1, Math.min(Math.max(point1.m, point2.m) / 10, (strong1 && strong2)? 10: 5));
+
+				// apply force to each end point
+				point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
+				point2.applyForce(direction.multiply(-1));
 			});
 		});
 	};
 
 	Layout.ForceDirected.prototype.applyHookesLaw = function() {
-		this.eachSpring(function(spring){
+		this.eachUniqueSpring(function(spring){
 			var d = spring.point2.p.clone().subtract(spring.point1.p); // the direction of the spring
 			var displacement = spring.length - d.length();
 			var direction = d.normalise();
