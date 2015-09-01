@@ -638,8 +638,8 @@ jQuery.fn.springy = function(params) {
       context.textAlign = "left";
       context.textBaseline = "top";
       context.shadowColor = "#000";
-      context.shadowOffsetX = 1;
-      context.shadowOffsetY = 1;
+      context.shadowOffsetX = 1 * pixelRatio;
+      context.shadowOffsetY = 1 * pixelRatio;
       context.fillText(text, paddingX >> 1, paddingY >> 1 + 1);
 
       this.text = canvas; 
