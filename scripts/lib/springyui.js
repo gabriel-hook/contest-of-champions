@@ -1019,6 +1019,8 @@ jQuery.fn.springy = function(params) {
       if(check.x < 0 || check.y < 0 || check.y > hitmask.size || check.x > hitmask.size)
         break;
     }
+    //one more just in case
+    last.add(delta);
 
     //scale and move back to relative position
     return new Springy.Vector(
