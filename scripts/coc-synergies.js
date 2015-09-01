@@ -177,7 +177,10 @@ CoC.synergies.initialize=function(stars, roster){
 }
 
 CoC.synergies.canvasResize  = function(){
-  $('canvas').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
+  var width = window.innerWidth, 
+    height = window.innerHeight - 33,
+    ratio = window.devicePixelRatio || 1;
+  $('canvas').attr('width', width * ratio).attr('height', height * ratio).css("width", width).css("height", height);
   CoC.synergies.updateLegend();
 }
 

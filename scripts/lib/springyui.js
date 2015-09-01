@@ -36,20 +36,26 @@ jQuery.fn.springy = function(params) {
 
   var canvas = this[0];
   var ctx = canvas.getContext("2d");
+  var pixelRatio = window.devicePixelRatio || 1;
 
   var graph = this.graph = params.graph || new Springy.Graph();
   var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
   //We can check to see if the font has been loaded before using.
   var nodeFont = new function(){
-    this.font = "16px Hanzel, sans-serif";
+    this.fontSize = 14 * pixelRatio;
+    this.font = this.fontSize + "px Hanzel, sans-serif";
 
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
+
+    context.font = this.fontSize + "px sans-serif";
+    var wrongSize = context.measureText("wE arE reaDY.").width;
+
     context.font = this.font;
 
     this.isReady = function(){
-      if(!this.loaded && context.measureText("wE arE reaDY.").width === 113.6875)
+      if(!this.loaded && context.measureText("wE arE reaDY.").width !== wrongSize)
         this.loaded = true;
       return this.loaded;
     }
@@ -69,6 +75,10 @@ jQuery.fn.springy = function(params) {
     var size = currentBB.topright.clone().subtract(currentBB.bottomleft);
     return new Springy.Vector((point.x / canvas.width) * size.x + currentBB.bottomleft.x, (point.y / canvas.height) * size.y + currentBB.bottomleft.y);
   };
+
+  var getCoordinate = function(x, y){
+    return new Springy.Vector(x, y).multiply(pixelRatio);
+  }
 
   function graphShake(){
     layout.eachNode(function(node, point){
@@ -316,7 +326,7 @@ jQuery.fn.springy = function(params) {
     if(clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
     var pos = $(canvas).offset(),
-    node = findNodeAt(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top));
+    node = findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top));
     if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
   });
@@ -337,13 +347,13 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     var pos = $(canvas).offset(),
     event = window.event;
-    pointerStart(new Springy.Vector(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
+    pointerStart(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchmove', function(e) {
     e.preventDefault();
     var event = window.event,
     pos = $(canvas).offset();
-    pointerMove(new Springy.Vector(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
+    pointerMove(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchend',function(e) {
     e.preventDefault();
@@ -362,12 +372,12 @@ jQuery.fn.springy = function(params) {
       return;
     e.preventDefault();
     var pos = $(canvas).offset();
-    pointerStart(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
+    pointerStart(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
   });
   $(window).on('mousemove', function(e) {
     e.preventDefault();
     var pos = $(canvas).offset();
-    pointerMove(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
+    pointerMove(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
   });
   $(window).on('mouseup',function(e) {
     e.preventDefault();
@@ -382,7 +392,7 @@ jQuery.fn.springy = function(params) {
       state = 'dragging';
     else{
       var pos = $(canvas).offset();
-      if(findNodeAt(new Springy.Vector(e.pageX - pos.left, e.pageY - pos.top)))
+      if(findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top)))
         state = 'hover';
     }
     switch(state){
@@ -611,7 +621,7 @@ jQuery.fn.springy = function(params) {
 
       context.font = nodeFont.font;
       var textWidth = context.measureText(text).width;
-      var textHeight = 16;
+      var textHeight = nodeFont.fontSize;
 
       canvas.width = (textWidth + 6) | 0;
       canvas.height = (textHeight + 4) | 0;
