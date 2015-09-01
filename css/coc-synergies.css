@@ -154,6 +154,8 @@ a.hidden{
   padding:10px;
   font-size:16px;
   font-family:Hanzel, Verdana, Geneva, sans-serif;
+  color:#fff;
+  text-shadow:1px 1px #111;
   background:rgba(0,0,0,0.5);
   pointer-events:none;
   transition:left 0.333s ease, opacity 0.333s ease;
