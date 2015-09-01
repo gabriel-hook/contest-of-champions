@@ -720,7 +720,7 @@ jQuery.fn.springy = function(params) {
 			var s2 = p2.clone().add(offset);
       var sdelta = s2.clone().subtract(s1).normalise();
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
-      var width = Math.max(weight *  1.5, 0.1);
+      var width = Math.max(weight *  1.5, 0.1) * pixelRatio;
       var arrowWidth = 1 + width;
       var arrowLength = arrowWidth * 4;
       var overlapping = edge.target.overlapping(edge.source);
@@ -843,7 +843,7 @@ jQuery.fn.springy = function(params) {
         ctx.translate(0.5, 0.5);
 
         //draw the dashed border
-        ctx.lineWidth = 1;
+        ctx.lineWidth = pixelRatio;
         ctx.strokeStyle = "#333";
         ctx.setLineDash([5, 5]);
         ctx.strokeRect(x, y, width, height);
