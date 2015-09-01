@@ -561,7 +561,7 @@ Graph.prototype.addNodes = function() {
 			if(document.hasFocus())
 				t.tick(tickDelta);
 			// stop simulation when energy of the system goes below a threshold
-			if (t._stop || t.totalEnergy() < t.minEnergyThreshold)
+			if (t._stop)// || t.totalEnergy() < t.minEnergyThreshold)
 				rendering = false;
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
