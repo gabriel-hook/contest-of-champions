@@ -76,12 +76,22 @@ jQuery.fn.springy = function(params) {
     });
   }
 
+  var touchSize = 500;
+
   function findNodeAt(coord, touch){
     var nearest = {};
+    if(touch && Math.min(canvas.width, canvas.height) < touchSize)
+      touch = undefined;
+
     graph.nodes.forEach(function(node){
       var distance = node.distanceSquared(coord.x, coord.y), inside;
       if(nearest.distance === undefined || distance < nearest.distance){
-        if(node.containsPoint(coord)){
+        var found;
+        if(touch)
+          found = (node.bb)? distance < node.bb.size * node.bb.size : false;
+        else
+          found = node.containsPoint(coord);
+        if(found){
           nearest.node = node,
           nearest.distance = distance
         }
@@ -977,7 +987,7 @@ jQuery.fn.springy = function(params) {
     }
 
   Springy.Node.prototype.getSize = function() {
-    var canvasSize = Math.min($(canvas).width(), $(canvas).height()),
+    var canvasSize = Math.min(canvas.width, canvas.height),
     size = Math.min(Math.max(16, canvasSize >> 4), 128);
     if(this.isSelected())
       size *= 1.5;
