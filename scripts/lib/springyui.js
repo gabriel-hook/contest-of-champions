@@ -622,7 +622,7 @@ jQuery.fn.springy = function(params) {
 
       context.font = nodeFont.font;
       var paddingX = pixelRatio * 6;
-      var paddingY = pixelRatio * 2;
+      var paddingY = pixelRatio * 3;
       var textWidth = context.measureText(text).width;
       var textHeight = nodeFont.fontSize;
 
@@ -640,7 +640,7 @@ jQuery.fn.springy = function(params) {
       context.shadowColor = "#000";
       context.shadowOffsetX = 1 * pixelRatio;
       context.shadowOffsetY = 1 * pixelRatio;
-      context.fillText(text, paddingX >> 1, paddingY >> 1 + 1);
+      context.fillText(text, paddingX >> 1, paddingY >> 1);
 
       this.text = canvas; 
     }
