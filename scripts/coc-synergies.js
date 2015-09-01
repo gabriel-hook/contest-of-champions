@@ -158,7 +158,7 @@ CoC.synergies.initialize=function(stars, roster){
   }
 
   //enable stars buttons
-  $(".button[stars="+stars+"]").addClass("active");
+  $(".button[stars="+stars+"]").addClass("ui-btn-b");
   if(!roster){
     $(".button[stars="+stars+"]").attr('href','?roster='+stars);
   }
@@ -166,7 +166,7 @@ CoC.synergies.initialize=function(stars, roster){
     $(".button[stars]").each(function(button){
       var el = $(this), s = el.attr("stars");
       if(stars === parseInt(s,10))
-        el.addClass('roster');
+        el.addClass("ui-btn-e");
       else
         el.attr('href','?roster='+s);
     });
@@ -177,7 +177,7 @@ CoC.synergies.initialize=function(stars, roster){
 }
 
 CoC.synergies.canvasResize  = function(){
-  $('canvas').attr('width', window.innerWidth - 2).attr('height', window.innerHeight - 2 - 33);
+  $('canvas').attr('width', window.innerWidth).attr('height', window.innerHeight - 33);
   CoC.synergies.updateLegend();
 }
 
@@ -193,5 +193,5 @@ CoC.synergies.toggleLegend = function(){
 
 CoC.synergies.updateLegend = function(){
   var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
-  $('#legend').css('left', isActive? 1: -legendWidth).css("opacity", isActive? 1: 0);
+  $('#legend').css('left', isActive? 0: -legendWidth).css("opacity", isActive? 1: 0);
 }
