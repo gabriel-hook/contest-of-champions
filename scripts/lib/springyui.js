@@ -99,7 +99,7 @@ jQuery.fn.springy = function(params) {
       if(nearest.distance === undefined || distance < nearest.distance){
         var found;
         if(touch)
-          found = (node.bb)? distance < node.bb.size * node.bb.size : false;
+          found = (node.bb)? distance < node.bb.size * node.bb.size * 1.5 : false;
         else
           found = node.containsPoint(coord);
         if(found){
