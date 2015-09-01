@@ -1010,17 +1010,21 @@ jQuery.fn.springy = function(params) {
     from.divide(this.bb.size).multiply(hitmask.size);
 
     //iterate inside-out to find the last opaque pixel
-    var delta = from.clone().subtract(check).normalise();
-    var last = check.clone();
+    var found,
+      last = check.clone(),
+      delta = from.clone().subtract(check).normalise();
     while(true){
       check.add(delta);
-      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0))
-        last.copy(check).add(delta);
+      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0)){
+        found = true;
+        last.copy(check);
+      }
       if(check.x < 0 || check.y < 0 || check.y > hitmask.size || check.x > hitmask.size)
         break;
     }
-    //one more just in case
-    last.add(delta);
+    //make sure to push all the way to the next pixel
+    if(found)
+      last.add(delta.multiply(hitmask.size / this.bb.size));
 
     //scale and move back to relative position
     return new Springy.Vector(
