@@ -158,7 +158,7 @@ CoC.synergies.initialize=function(stars, roster){
   }
 
   //enable stars buttons
-  $(".button[stars="+stars+"]").addClass("ui-btn-b");
+  $(".button[stars="+stars+"]").addClass("ui-btn-a");
   if(!roster){
     $(".button[stars="+stars+"]").attr('href','?roster='+stars);
   }
