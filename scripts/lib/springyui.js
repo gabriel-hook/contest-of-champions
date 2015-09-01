@@ -405,52 +405,17 @@ jQuery.fn.springy = function(params) {
     if(!nodeHitmasks[src]){
       if(typeof image === "function")
         image = image();
-
-      var size = image.width, 
-      imageData = image.getContext('2d').getImageData(0, 0, size, size), 
-      data = imageData.data, 
-      x, 
-      y,
-      opaque = {};
-
-      //first perpixel mask
+      var x, y,
+        size = image.width, 
+        imageData = image.getContext('2d').getImageData(0, 0, size, size), 
+        data = imageData.data, 
+        opaque = {};
       for(x=0; x<size; x++){
         opaque[x] = {};
         for(y=0; y<size; y++)
-          opaque[x][y] = (data[(y*size*4) + x*4 + 3] > 127)? 1: 0;
+          opaque[x][y] = (data[(y*size*4) + x*4 + 3] > 127)? true: undefined;
       }
-
-      function check(hitmask, x, y){
-        return (hitmask.opaque[x])? hitmask.opaque[x][y]: 0;
-      }
-      function half(hitmask){
-        var size = hitmask.size >> 1,
-        x,
-        y,
-        o,
-        opaque = {};
-        for(x=0; x<size; x++){
-          opaque[x] = {};
-          for(y=0; y<size; y++){
-            o = 0;
-            o += check(hitmask, x * 2, y * 2);
-            o += check(hitmask, x * 2 + 1, y * 2);
-            o += check(hitmask, x * 2, y * 2 + 1);
-            o += check(hitmask, x * 2 + 1, y * 2 + 1);
-            opaque[x][y] = (o === 4)? 1:(o === 0)? 0: 2;
-          }
-        }
-        return { size:size, opaque:opaque };
-      }
-
-      var hitmask = { size:size, opaque:opaque };
-      while(hitmask.size > 4){
-        var next = hitmask;
-        hitmask = half(next);
-        hitmask.next = next;
-      }
-
-      nodeHitmasks[src] = hitmask;
+      nodeHitmasks[src] = { size:size, opaque:opaque };
     }
     return nodeHitmasks[src];
   }
@@ -695,8 +660,6 @@ jQuery.fn.springy = function(params) {
     },
     function drawEdge(edge, pointStart, pointEnd) {
       var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
-      
-
       var isSelected = 0;
       if(edgeSelected){
         if(edge.data.effect === edgeSelected)
@@ -749,9 +712,9 @@ jQuery.fn.springy = function(params) {
       var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
       var width = Math.max(weight *  1.5, 0.1);
       var arrowWidth = 1 + width;
-      var arrowLength = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12);
+      var arrowLength = arrowWidth * 4;
       var overlapping = edge.target.overlapping(edge.source);
-      var lineStart, lineEnd, lineDelta;
+      var lineStart, lineEnd, lineDelta, lineDiff;
       var halfArrow = sdelta.clone().multiply( arrowLength * 0.75 );
       var sourceAbove = s1.y < s2.y;
 
@@ -760,36 +723,33 @@ jQuery.fn.springy = function(params) {
         if(sourceAbove){
           lineStart = s1.clone();
           lineEnd = edge.target.intersection(s1, s2);
-          lineEnd.subtract(halfArrow);
         }
         else{
           lineStart = edge.source.intersection(s2, s1);
-          lineEnd = s2.clone().subtract(halfArrow);
+          lineEnd = s2.clone();
         }
       }
       else{
         lineStart = edge.source.intersection(s2, s1);
         lineEnd = edge.target.intersection(s1, s2);
-        lineEnd.subtract(halfArrow);
 
-
-        //adjust if we have problems
-        if(lineEnd.clone().subtract(lineStart).lengthSquared() < arrowLength*arrowLength || //line too short
-          lineEnd.clone().subtract(lineStart).normalise().equals(sdelta.clone().multiply(-1))  || //line going in wrong direction
-          (sourceAbove && edge.target.containsPoint(lineEnd)) || //source above and end point inside target
-          (!sourceAbove && edge.source.containsPoint(lineStart)) //source below and end point inside source
-          ){
+        //adjust if we have too short or long direction
+        if(!lineStart || !lineEnd ||
+          (lineDiff = lineEnd.clone().subtract(lineStart)).lengthSquared() < arrowLength*arrowLength || 
+          lineDiff.normalise().dot(sdelta) < 0){
           if(sourceAbove){
             lineStart = s1.clone();
             lineEnd = edge.target.intersection(s1, s2);
-            lineEnd.subtract(halfArrow);
           }
           else{
             lineStart = edge.source.intersection(s2, s1);
-            lineEnd = s2.clone().subtract(halfArrow);
+            lineEnd = s2.clone();
           }
         }
       }
+      lineStart = lineStart || s1.clone();
+      lineEnd = lineEnd || s2.clone();
+      lineEnd.subtract(halfArrow);
       var ldelta = lineEnd.clone().subtract(lineStart).normalise();
 
       var arrowStart = lineEnd.clone().add(halfArrow);
@@ -806,13 +766,14 @@ jQuery.fn.springy = function(params) {
       ctx.globalAlpha = alpha;
 
       //line
-      if(ldelta.equals(sdelta)){
-       ctx.beginPath();
-       ctx.moveTo(lineStart.x, lineStart.y);
-       ctx.lineTo(lineEnd.x, lineEnd.y);
-       ctx.closePath();
-       ctx.stroke();
-     }
+
+      if(ldelta.dot(sdelta) > 0){
+        ctx.beginPath();
+        ctx.moveTo(lineStart.x, lineStart.y);
+        ctx.lineTo(lineEnd.x, lineEnd.y);
+        ctx.closePath();
+        ctx.stroke();
+      }
 
 			// arrow
 			ctx.translate(arrowStart.x, arrowStart.y);
@@ -902,7 +863,7 @@ jQuery.fn.springy = function(params) {
 
   // return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.containsPoint = function(point, y) {
-    var x, px, py, hitmask;
+    var x, px, py;
     if(y === undefined){
       y = point.y;
       x = point.x;
@@ -911,21 +872,19 @@ jQuery.fn.springy = function(params) {
       x = point;
 
     if(this.bb && this.hitmask){
-      hitmask = this.hitmask;
-      while(hitmask.size < this.bb.size)
-        hitmask = hitmask.next;
-
-      px = (hitmask.size * (x - this.bb.left) / this.bb.size) | 0;
-      py = (hitmask.size * (y - this.bb.top) / this.bb.size) | 0;
-      if(hitmask.opaque[px])
-        return hitmask.opaque[px][py];
+      px = (this.hitmask.size * (x - this.bb.left) / this.bb.size) | 0;
+      py = (this.hitmask.size * (y - this.bb.top) / this.bb.size) | 0;
+      if(this.hitmask.opaque[px])
+        return this.hitmask.opaque[px][py];
     }
     return false;
   }
 
-  Springy.Node.prototype.containsPointRaw = function(hitmask, x, y) {
-    if(hitmask.opaque[x])
-      return hitmask.opaque[x][y];
+  Springy.Node.prototype.containsPointRelative = function(x, y) {
+    x = (x * this.hitmask.size) | 0;
+    y = (y * this.hitmask.size) | 0;
+    if(this.hitmask.opaque[x])
+      return this.hitmask.opaque[x][y];
     return false;
   }
 
@@ -996,41 +955,29 @@ jQuery.fn.springy = function(params) {
 
   //find the nearest edge of the image, assuming end is inside of node
   Springy.Node.prototype.intersection = function(outside, inside){
-    var hitmask = this.hitmask;
-    if(!hitmask && !this.bb)
+    if(!this.hitmask || !this.bb)
       return inside;
 
-    while(hitmask.size < this.bb.size)
-      hitmask = hitmask.next;
-
     //get position relative to hitmask
-    var check = new Springy.Vector(inside.x - this.bb.left, inside.y - this.bb.top),
-      from = new Springy.Vector(outside.x - this.bb.left, outside.y - this.bb.top);
-    check.divide(this.bb.size).multiply(hitmask.size);
-    from.divide(this.bb.size).multiply(hitmask.size);
-
-    //iterate inside-out to find the last opaque pixel
-    var found,
-      last = check.clone(),
-      delta = from.clone().subtract(check).normalise();
+    var check = new Springy.Vector(inside.x - this.bb.left, inside.y - this.bb.top).divide(this.bb.size),
+      delta = outside.clone().subtract(inside).normalise().divide(this.bb.size),
+      last;
     while(true){
       check.add(delta);
-      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0)){
-        found = true;
-        last.copy(check);
-      }
-      if(check.x < 0 || check.y < 0 || check.y > hitmask.size || check.x > hitmask.size)
+      if(check.x < 0 || check.y < 0 || check.y > 1 || check.x > 1)
         break;
+      if(this.containsPointRelative(check.x, check.y)){
+        if(!last)
+          last = check.clone();
+        else
+          last.copy(check);
+      }
     }
-    //make sure to push all the way to the next pixel
-    if(found)
-      last.add(delta.multiply(hitmask.size / this.bb.size));
+    if(!last)
+      return null;
 
     //scale and move back to relative position
-    return new Springy.Vector(
-      this.bb.left + last.x / hitmask.size * this.bb.size,
-      this.bb.top + last.y / hitmask.size * this.bb.size
-    );
+    return new Springy.Vector(this.bb.left, this.bb.top).add(last.multiply(this.bb.size));
   }
 
   renderer.start();
