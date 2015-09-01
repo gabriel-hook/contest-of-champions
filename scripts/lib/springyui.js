@@ -1000,7 +1000,7 @@ jQuery.fn.springy = function(params) {
     if(!hitmask && !this.bb)
       return inside;
 
-    while(hitmask.size < this.bb.size >> 1)
+    while(hitmask.size < this.bb.size)
       hitmask = hitmask.next;
 
     //get position relative to hitmask
@@ -1013,13 +1013,9 @@ jQuery.fn.springy = function(params) {
     var delta = from.clone().subtract(check).normalise();
     var last = check.clone();
     while(true){
-      check.x += delta.x;
-      check.y += delta.y;
-      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0)){
-        //push 1px outside of last opaque
-        last.x = check.x + delta.x;
-        last.y = check.y + delta.y;
-      }
+      check.add(delta);
+      if(this.containsPointRaw(hitmask, check.x | 0, check.y | 0))
+        last.copy(check).add(delta);
       if(check.x < 0 || check.y < 0 || check.y > hitmask.size || check.x > hitmask.size)
         break;
     }
