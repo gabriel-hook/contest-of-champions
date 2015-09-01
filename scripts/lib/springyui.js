@@ -86,7 +86,8 @@ jQuery.fn.springy = function(params) {
     });
   }
 
-  var touchSize = 500;
+  // minimum width/height for simple touches
+  var touchSize = 500 * pixelRatio;
 
   function findNodeAt(coord, touch){
     var nearest = {};
