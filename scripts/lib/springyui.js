@@ -338,29 +338,6 @@ jQuery.fn.springy = function(params) {
     return (event.shiftKey)? "add": (event.ctrlKey)? "toggle": "replace";
   }
 
-  function selectedOpen(node){
-    if (node.data.onOpen) {
-      node.data.onOpen();
-    }
-  }
-  
-  $(canvas).on('taphold', function(e) {
-    e.preventDefault();
-    if(clickSource !== "touch" || e.shiftKey || e.ctrlKey)
-      return;
-    if(moved < 10 && dragged && dragged.node.isSelected()){
-      selectedOpen(dragged.node);
-      pointerEnd();
-    }
-  });
-  $(canvas).on('dblclick', function(e) {
-    e.preventDefault();
-    if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
-      return;
-    var node = findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top));
-    if(moved < 10 && node && node.isSelected())
-      selectedOpen(node);
-  });
   $('body').on('keyup', function(e){
     if(e.which === 27){ // escape
       e.preventDefault();
@@ -374,62 +351,89 @@ jQuery.fn.springy = function(params) {
       graphShake();
     }
   });
+  
+  $(canvas).on('taphold', function(e) {
+    if(clickSource !== "touch")
+      return;
+    var node = dragged && dragged.node;
+    if(moved < 10 && node && node.isSelected() && node.data.onOpen){
+      node.data.onOpen();
+      pointerEnd();
+    }
+    e.preventDefault();
+  });
+
+  $(canvas).on('dblclick', function(e) {
+    if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
+      return;
+    var node = findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top));
+    if(moved < 10 && node && node.isSelected() && node.data.onOpen){
+      node.data.onOpen();
+      pointerEnd();
+    }
+    e.preventDefault();
+  });
+
   $(canvas).on('touchstart', function(e){
     clickSource = "touch";
-    e.preventDefault();
     var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
       otherCoord;
     if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerStart(coord, "toggle", otherCoord);
-    return false;
+    e.preventDefault();
   });
+
   $(canvas).on('touchmove', function(e) {
     clickSource = "touch";
-    e.preventDefault();
     var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
       otherCoord;
     if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerMove(coord, "toggle", otherCoord);
-    return false;
+    e.preventDefault();
   });
+
   $(canvas).on('touchend',function(e) {
     clickSource = "touch";
-    e.preventDefault();
     pointerEnd(true, "toggle");
-    return false;
+    e.preventDefault();
   });
+
   $(canvas).on('touchleave touchcancel',function(e) {
     clickSource = "touch";
-    e.preventDefault();
     pointerEnd(false, "toggle");
-    return false;
+    e.preventDefault();
   });
+
   $(window).on('touchend',function(e) {
     clickSource = "touch";
     pointerEnd(false, "toggle");
-    return false;
+    e.preventDefault();
   });
 
   $(canvas).on('mousedown', function(e) {
     if(e.button === 2)
       return;
     clickSource = "mouse";
-    e.preventDefault();
     pointerStart(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
+    e.preventDefault();
   });
+
   $(window).on('mousemove', function(e) {
     clickSource = "mouse";
-    e.preventDefault();
     pointerMove(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
-  });
-  $(window).on('mouseup',function(e) {
-    clickSource = "mouse";
     e.preventDefault();
-    if(e.target === canvas || dragged || selection)
-      pointerEnd(true, selectType(e));
   });
+
+  $(window).on('mouseup',function(e) {
+    if(e.target !== canvas && !dragged && !selection)
+      return;
+    clickSource = "mouse";
+    pointerEnd(true, selectType(e));
+    e.preventDefault();
+  });
+
   $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
     if(selection)
