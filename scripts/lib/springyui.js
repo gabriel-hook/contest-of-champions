@@ -115,7 +115,7 @@ jQuery.fn.springy = function(params) {
       touch = undefined;
 
     graph.nodes.forEach(function(node){
-      var distance = node.distanceSquared(coord.x, coord.y), inside;
+      var distance = node.distanceSquared(coord.x, coord.y);
       if(nearest.distance === undefined || distance < nearest.distance){
         var found;
         if(touch){
@@ -126,7 +126,7 @@ jQuery.fn.springy = function(params) {
           found = node.containsPoint(coord);
         if(found){
           nearest.node = node,
-          nearest.distance = distance
+          nearest.distance = distance;
         }
       }
     });
@@ -908,8 +908,8 @@ jQuery.fn.springy = function(params) {
       x = point;
 
     if(this.bb && this.hitmask){
-      px = (this.hitmask.size * (x - this.bb.topLeft.x) / this.bb.size) | 0;
-      py = (this.hitmask.size * (y - this.bb.topLeft.y) / this.bb.size) | 0;
+      px = ((x - this.bb.topLeft.x) / this.bb.size * this.hitmask.size) | 0;
+      py = ((y - this.bb.topLeft.y) / this.bb.size * this.hitmask.size) | 0;
       if(this.hitmask.opaque[px])
         return this.hitmask.opaque[px][py];
     }
