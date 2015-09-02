@@ -892,7 +892,7 @@ jQuery.fn.springy = function(params) {
         //draw the dashed border
         ctx.lineWidth = pixelRatio;
         ctx.strokeStyle = "#333";
-        ctx.setLineDash([5, 5]);
+        ctx.setLineDash([5 * pixelRatio, 5 * pixelRatio]);
         ctx.strokeRect(x, y, width, height);
 
         //draw the overlay, but not over drawn content
