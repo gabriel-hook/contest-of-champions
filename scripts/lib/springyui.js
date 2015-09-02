@@ -382,6 +382,7 @@ jQuery.fn.springy = function(params) {
     if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerStart(coord, "toggle", otherCoord);
+    return false;
   });
   $(canvas).on('touchmove', function(e) {
     clickSource = "touch";
@@ -391,20 +392,24 @@ jQuery.fn.springy = function(params) {
     if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerMove(coord, "toggle", otherCoord);
+    return false;
   });
   $(canvas).on('touchend',function(e) {
     clickSource = "touch";
     e.preventDefault();
     pointerEnd(true, "toggle");
+    return false;
   });
   $(canvas).on('touchleave touchcancel',function(e) {
     clickSource = "touch";
     e.preventDefault();
     pointerEnd(false, "toggle");
+    return false;
   });
   $(window).on('touchend',function(e) {
     clickSource = "touch";
     pointerEnd(false, "toggle");
+    return false;
   });
 
   $(canvas).on('mousedown', function(e) {
