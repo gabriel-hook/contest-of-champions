@@ -106,9 +106,6 @@
     <script type="text/javascript" src="scripts/coc-roster.js"></script>
     <!-- Init -->
     <script type="text/javascript">
-      $(window).on('resize', CoC.synergies.canvasResize);
-      $(document).on('ready', CoC.synergies.canvasResize);
-      CoC.synergies.canvasResize();
       function checkStars(search, key){
         var query = '?'+key+'=', value, stars;
         if(search.indexOf(query) !== 0)

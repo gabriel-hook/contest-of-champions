@@ -176,14 +176,6 @@ CoC.synergies.initialize=function(stars, roster){
   CoC.tracking.pageView();
 }
 
-CoC.synergies.canvasResize  = function(){
-  var width = window.innerWidth, 
-    height = window.innerHeight - 33,
-    ratio = window.devicePixelRatio || 1;
-  $('canvas').attr('width', width * ratio).attr('height', height * ratio).css("width", width).css("height", height);
-  CoC.synergies.updateLegend();
-}
-
 CoC.synergies.toggleLegend = function(){
   if($('.button.legend').hasClass('active')){
     $('.button.legend').removeClass('active');
@@ -198,3 +190,26 @@ CoC.synergies.updateLegend = function(){
   var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
   $('#legend').css('left', isActive? 0: -legendWidth).css("opacity", isActive? 1: 0);
 }
+
+CoC.synergies.canvasResize  = function(){
+  var width = window.innerWidth, 
+    height = window.innerHeight - 33,
+    ratio = window.devicePixelRatio || 1;
+  $('canvas').attr('width', width * ratio).attr('height', height * ratio).css("width", width).css("height", height);
+  CoC.synergies.updateLegend();
+}
+
+var delayedResizeTimeout;
+function delayedResize(){
+  if(delayedResizeTimeout)
+    clearTimeout(delayedResizeTimeout);
+  delayedResizeTimeout = setTimeout(function(){
+    CoC.synergies.canvasResize();
+
+    delayedResizeTimeout = null;
+  }, 10);
+}
+
+$(window).on('resize', delayedResize);
+$(document).on('ready', delayedResize);
+CoC.synergies.canvasResize();
