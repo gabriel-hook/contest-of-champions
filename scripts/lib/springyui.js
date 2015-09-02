@@ -313,11 +313,13 @@ jQuery.fn.springy = function(params) {
     }
   }
   
+  var maxMoved = 15 * pixelRatio;
+
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
     if(clicks || e.shiftKey || e.ctrlKey)
       return;
-    if(moved < 10 && dragged && dragged.node.isSelected()){
+    if(moved < maxMoved && dragged && dragged.node.isSelected()){
       selectedOpen(dragged.node);
       pointerEnd();
     }
@@ -328,7 +330,7 @@ jQuery.fn.springy = function(params) {
       return;
     var pos = $(canvas).offset(),
     node = findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top));
-    if(moved < 10 && node && node.isSelected())
+    if(moved < maxMoved && node && node.isSelected())
       selectedOpen(node);
   });
   $('body').on('keyup', function(e){
