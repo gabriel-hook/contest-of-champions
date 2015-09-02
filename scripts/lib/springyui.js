@@ -118,6 +118,7 @@ jQuery.fn.springy = function(params) {
   var moved = 0;
   var selection = null;
   var clicks = 0;
+  var clickSource;
 
   this.selectEdgeType=function(type){
     clearSelected();
@@ -317,7 +318,7 @@ jQuery.fn.springy = function(params) {
 
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
-    if(clicks || e.shiftKey || e.ctrlKey)
+    if(clickSource !== "touch" || e.shiftKey || e.ctrlKey)
       return;
     if(moved < maxMoved && dragged && dragged.node.isSelected()){
       selectedOpen(dragged.node);
@@ -326,7 +327,7 @@ jQuery.fn.springy = function(params) {
   });
   $(canvas).on('dblclick', function(e) {
     e.preventDefault();
-    if(clicks < 2 || e.shiftKey || e.ctrlKey)
+    if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
     var pos = $(canvas).offset(),
     node = findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top));
@@ -353,37 +354,44 @@ jQuery.fn.springy = function(params) {
     pointerStart(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchmove', function(e) {
+    clickSource = "touch";
     e.preventDefault();
     var event = window.event,
-    pos = $(canvas).offset();
+      pos = $(canvas).offset();
     pointerMove(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top));
   });
   $(canvas).on('touchend',function(e) {
+    clickSource = "touch";
     e.preventDefault();
     pointerEnd(true, "toggle");
   });
   $(canvas).on('touchleave touchcancel',function(e) {
+    clickSource = "touch";
     e.preventDefault();
     pointerEnd(false, "toggle");
   });
   $(window).on('touchend',function(e) {
+    clickSource = "touch";
     pointerEnd(false, "toggle");
   });
 
   $(canvas).on('mousedown', function(e) {
     if(e.button === 2)
       return;
+    clickSource = "mouse";
     e.preventDefault();
     var pos = $(canvas).offset();
     pointerStart(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
   });
   $(window).on('mousemove', function(e) {
     e.preventDefault();
+    clickSource = "mouse";
     var pos = $(canvas).offset();
     pointerMove(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
   });
   $(window).on('mouseup',function(e) {
     e.preventDefault();
+    clickSource = "mouse";
     if(e.target === canvas || dragged || selection)
       pointerEnd(true, selectType(e));
   });
