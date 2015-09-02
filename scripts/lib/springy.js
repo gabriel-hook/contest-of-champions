@@ -546,7 +546,7 @@ Graph.prototype.addNodes = function() {
 	 		onRenderStart(); 
 	 	}
 
-	 	var rendering = true, tickDelta = 0.01, milliseconds = 25;
+	 	var rendering = true, tickDelta = 0.01, milliseconds = 25, totalEnergy = 500;
 
 		//force initial render in case we start out of focus
 		setTimeout(function(){
@@ -558,10 +558,11 @@ Graph.prototype.addNodes = function() {
 
 		//do physics ticks on a timer
 		setTimeout(function tickLoop(){
-			if(document.hasFocus())
+			if(document.hasFocus()){
 				t.tick(tickDelta);
-			// stop simulation when energy of the system goes below a threshold
-			if (t._stop)// || t.totalEnergy() < t.minEnergyThreshold)
+				totalEnergy = t.totalEnergy();
+			}
+			if (t._stop)
 				rendering = false;
 			if(rendering)
 				setTimeout(tickLoop, milliseconds);
@@ -571,7 +572,7 @@ Graph.prototype.addNodes = function() {
     requestNextFrame(function animationLoop() {
     	if(rendering){
     		requestNextFrame(animationLoop);
-    		if (render !== undefined) {
+    		if (render !== undefined && totalEnergy > t.minEnergyThreshold) {
     			render();
     		}
     	}
