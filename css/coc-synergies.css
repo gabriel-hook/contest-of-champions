@@ -189,6 +189,9 @@ a.hidden{
 #legend.selected div.selected{
   opacity:1.0;
 }
+#legend div:hover{
+  color:#ccc;
+}
 
 @media (max-height:500px), (max-width:500px){
   #legend{
