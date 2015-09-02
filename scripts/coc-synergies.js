@@ -172,6 +172,14 @@ CoC.synergies.initialize=function(stars, roster){
     });
   }
 
+  if(navigator.wakeLock && navigator.wakeLock.request)
+    try{
+      navigator.wakeLock.request("screen");
+    }
+    catch (e){
+
+    }
+
   //track
   CoC.tracking.pageView();
 }
