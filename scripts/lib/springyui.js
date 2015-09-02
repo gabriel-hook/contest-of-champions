@@ -261,7 +261,7 @@ jQuery.fn.springy = function(params) {
       dragged.point.active = false;
     var node = findNodeAt(coord, clickSource === "touch");
     if(!node){
-      if(!selectType || selectType === "replace"){
+      if(selectType === "replace" || clickSource === "touch"){
         clearSelected();
         updateNodesSelected();
       }
