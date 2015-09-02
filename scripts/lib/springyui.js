@@ -43,7 +43,7 @@ jQuery.fn.springy = function(params) {
 
   //We can check to see if the font has been loaded before using.
   var ScaledNodeFont = function(){
-    this.fontSize = 14 * pixelRatio;
+    this.fontSize = 16 * pixelRatio;
     this.font = this.fontSize + "px Hanzel, sans-serif";
 
     var canvas = document.createElement('canvas');
