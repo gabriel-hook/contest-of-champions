@@ -36,15 +36,10 @@ jQuery.fn.springy = function(params) {
 
   var canvas = this[0];
   var ctx = canvas.getContext("2d");
-  var pixelRatio = window.devicePixelRatio || 1;
 
-  $(window).on("resize", function(e){
-    pixelRatio = window.devicePixelRatio || 1;
-    nodeFont = new ScaledNodeFont();
-  });
-
-  var graph = this.graph = params.graph || new Springy.Graph();
-  var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
+  var nodeFont;
+  var pixelRatio;
+  var canvasOffset;
 
   //We can check to see if the font has been loaded before using.
   var ScaledNodeFont = function(){
@@ -65,7 +60,26 @@ jQuery.fn.springy = function(params) {
       return this.loaded;
     }
   };
-  var nodeFont = new ScaledNodeFont();
+
+  function doResize(){
+    pixelRatio = window.devicePixelRatio || 1;
+    canvasOffset = $(canvas).offset();
+    nodeFont = new ScaledNodeFont();
+  }
+  doResize();
+
+  var resizeTimeout;
+  $(window).on("resize", function(e){
+    if(resizeTimeout)
+      clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function(){
+      doResize();
+      resizeTimeout = null;
+    }, 50);
+  });
+
+  var graph = this.graph = params.graph || new Springy.Graph();
+  var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
 	// calculate bounding box of graph layout.. with ease-in
 	var currentBB = layout.getBoundingBox();
@@ -336,8 +350,7 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
-    var pos = $(canvas).offset(),
-    node = findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top));
+    var node = findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top));
     if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
   });
@@ -357,15 +370,14 @@ jQuery.fn.springy = function(params) {
   $(canvas).on('touchstart', function(e){
     clickSource = "touch";
     e.preventDefault();
-    var pos = $(canvas).offset(),
-    event = window.event;
-    pointerStart(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top), "touch");
+    var touch = window.event.touches[0];
+    pointerStart(getCoordinate(touch.pageX - canvasOffset.left, touch.pageY - canvasOffset.top), "touch");
   });
   $(canvas).on('touchmove', function(e) {
     clickSource = "touch";
     e.preventDefault();
-    var event = window.event, pos = $(canvas).offset();
-    pointerMove(getCoordinate(event.touches[0].pageX - pos.left, event.touches[0].pageY - pos.top), "touch");
+    var touch = window.event.touches[0];
+    pointerMove(getCoordinate(touch.pageX - canvasOffset.left, touch.pageY - canvasOffset.top), "touch");
   });
   $(canvas).on('touchend',function(e) {
     clickSource = "touch";
@@ -387,18 +399,16 @@ jQuery.fn.springy = function(params) {
       return;
     clickSource = "mouse";
     e.preventDefault();
-    var pos = $(canvas).offset();
-    pointerStart(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
+    pointerStart(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
   });
   $(window).on('mousemove', function(e) {
-    e.preventDefault();
     clickSource = "mouse";
-    var pos = $(canvas).offset();
-    pointerMove(getCoordinate(e.pageX - pos.left, e.pageY - pos.top), selectType(e));
+    e.preventDefault();
+    pointerMove(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
   });
   $(window).on('mouseup',function(e) {
-    e.preventDefault();
     clickSource = "mouse";
+    e.preventDefault();
     if(e.target === canvas || dragged || selection)
       pointerEnd(true, selectType(e));
   });
@@ -409,8 +419,7 @@ jQuery.fn.springy = function(params) {
     else if(dragged != null)
       state = 'dragging';
     else{
-      var pos = $(canvas).offset();
-      if(findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top)))
+      if(findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top)))
         state = 'hover';
     }
     switch(state){
@@ -632,7 +641,7 @@ jQuery.fn.springy = function(params) {
   }
 
   Springy.Node.prototype.setPortraitText = function() {
-    if(!this.text && nodeFont.isReady() || this.text.font !== nodeFont){
+    if(nodeFont.isReady() && (!this.text || this.text.font != nodeFont)){
       var canvas = document.createElement('canvas'),
       context = canvas.getContext('2d'),
       text = this.data.label.toUpperCase();
