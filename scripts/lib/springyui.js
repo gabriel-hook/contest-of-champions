@@ -256,16 +256,21 @@ jQuery.fn.springy = function(params) {
           }
 
   //Pointer actions
-  function pointerStart(coord, selectType){
+  function pointerStart(coord, selectType, otherCoord){
     if(dragged)
       dragged.point.active = false;
     var node = findNodeAt(coord, clickSource === "touch");
     if(!node){
-      if(!selectType || selectType === "replace" || selectType === "touch"){
+      if(!selectType || selectType === "replace"){
         clearSelected();
         updateNodesSelected();
       }
-      if(selectType)
+      if(clickSource === "touch"){
+        if(coord && otherCoord){
+          selection = { start: coord, end: otherCoord, before:selected, type:selectType };
+        }
+      }
+      else if(selectType)
         selection = { start: coord, before:selected, type:selectType };
       clicks = 0;
     }
@@ -283,7 +288,7 @@ jQuery.fn.springy = function(params) {
     renderer.start();
   }
   
-  function pointerMove(coord, selectType){
+  function pointerMove(coord, selectType, otherCoord){
     var point = fromScreen(coord);
     if (dragged !== null) {
       moved += coord.clone().subtract(dragged.coord).length();
@@ -291,6 +296,15 @@ jQuery.fn.springy = function(params) {
       dragged.point.p = point.add(dragged.offset);
       dragged.point.m = activeMass;
       dragged.point.active = true;
+    }
+    else if(clickSource === "touch"){
+      if(coord && otherCoord){
+        selection.start = coord;
+        selection.end = otherCoord;
+        selection.type = selectType;
+        boxSelected(selectType);
+        updateNodesSelected();
+      }
     }
     else if(selection){
       selection.end = coord;
@@ -307,15 +321,14 @@ jQuery.fn.springy = function(params) {
       if(moved < 10){
         switch(selectType){
           case "add":
-          addSelected( dragged.node );
-          break;
-          case "touch":
-          toggleSelected( dragged.node );
-          break;
+            addSelected( dragged.node );
+            break;
           case "toggle":
+            toggleSelected( dragged.node );
+            break;
           case "replace":
-          replaceSelected( dragged.node );
-          break;
+            replaceSelected( dragged.node );
+            break;
         }
         updateNodesSelected();
         edgeSelected = null;
@@ -370,28 +383,34 @@ jQuery.fn.springy = function(params) {
   $(canvas).on('touchstart', function(e){
     clickSource = "touch";
     e.preventDefault();
-    var touch = window.event.touches[0];
-    pointerStart(getCoordinate(touch.pageX - canvasOffset.left, touch.pageY - canvasOffset.top), "touch");
+    var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
+      otherCoord;
+    if(window.event.touches > 1)
+      otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
+    pointerStart(coord, "toggle", otherCoord);
   });
   $(canvas).on('touchmove', function(e) {
     clickSource = "touch";
     e.preventDefault();
-    var touch = window.event.touches[0];
-    pointerMove(getCoordinate(touch.pageX - canvasOffset.left, touch.pageY - canvasOffset.top), "touch");
+    var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
+      otherCoord;
+    if(window.event.touches > 1)
+      otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
+    pointerMove(coord, "toggle", otherCoord);
   });
   $(canvas).on('touchend',function(e) {
     clickSource = "touch";
     e.preventDefault();
-    pointerEnd(true, "touch");
+    pointerEnd(true, "toggle");
   });
   $(canvas).on('touchleave touchcancel',function(e) {
     clickSource = "touch";
     e.preventDefault();
-    pointerEnd(false, "touch");
+    pointerEnd(false, "toggle");
   });
   $(window).on('touchend',function(e) {
     clickSource = "touch";
-    pointerEnd(false, "touch");
+    pointerEnd(false, "toggle");
   });
 
   $(canvas).on('mousedown', function(e) {
