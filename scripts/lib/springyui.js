@@ -106,33 +106,6 @@ jQuery.fn.springy = function(params) {
     });
   }
 
-  // minimum width/height for simple touches
-  var maxTouchSize = 500;
-
-  function findNodeAt(coord, touch){
-    var nearest = {};
-    if(touch && Math.min(canvas.width, canvas.height) > maxTouchSize * pixelRatio)
-      touch = undefined;
-
-    graph.nodes.forEach(function(node){
-      var distance = node.distanceSquared(coord.x, coord.y);
-      if(nearest.distance === undefined || distance < nearest.distance){
-        var found;
-        if(touch){
-          var radius = Math.max(32, node.bb.size);
-          found = (node.bb)? distance < radius * radius : false;
-        }
-        else
-          found = node.containsPoint(coord);
-        if(found){
-          nearest.node = node,
-          nearest.distance = distance;
-        }
-      }
-    });
-    return nearest.node;
-  }
-
 	// half-assed drag and drop
 	var selected = [];
   var edgeSelected = null;
@@ -240,26 +213,47 @@ jQuery.fn.springy = function(params) {
       for(var i=0,edge; i<graph.edges.length; i++){
         edge = graph.edges[i];
         if(selected.length > 1){
-
           for(var j=0; j<selected.length; j++)
             for(var k=0; k<selected.length; k++)
               if(selected[j] === edge.source && selected[k] === edge.target)
                 selectedEdges.push(edge);
-            }
-            else
-              for(var j=0; j<selected.length; j++)
-                if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
-                  selectedEdges.push(edge);
-              }
-              nodeSelected(selected, selectedEdges);
-            }
-          }
+        } 
+        else{
+          for(var j=0; j<selected.length; j++)
+            if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
+              selectedEdges.push(edge);
+        }
+      }
+      nodeSelected(selected, selectedEdges);
+    }  
+  }
+
+  function findNodeAt(coord){
+    var nearest = {};
+    graph.nodes.forEach(function(node){
+      var distance = node.distanceSquared(coord.x, coord.y);
+      if(nearest.distance === undefined || distance < nearest.distance){
+        var found;
+        if(clickSource === "touch"){
+          var radius = Math.max(32, node.bb.size);
+          found = (node.bb)? distance < radius * radius : false;
+        }
+        else
+          found = node.containsPoint(coord);
+        if(found){
+          nearest.node = node,
+          nearest.distance = distance;
+        }
+      }
+    });
+    return nearest.node;
+  }
 
   //Pointer actions
   function pointerStart(coord, selectType, otherCoord){
     if(dragged)
       dragged.point.active = false;
-    var node = findNodeAt(coord, clickSource === "touch");
+    var node = findNodeAt(coord);
     if(!node){
       if(selectType === "replace" || clickSource === "touch"){
         clearSelected();
