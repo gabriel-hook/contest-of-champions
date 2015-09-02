@@ -163,8 +163,8 @@ jQuery.fn.springy = function(params) {
         return;
       if(array.indexOf(node) !== -1)
         return;
-      if(node.bb.x > x1 && node.bb.x < x2 && node.bb.y > y1 && node.bb.y < y2){
-        var dx = selection.start.x - node.bb.x, dy = selection.start.y - node.bb.y;
+      if(node.bb.center.x > x1 && node.bb.center.x < x2 && node.bb.center.y > y1 && node.bb.center.y < y2){
+        var dx = selection.start.x - node.bb.center.x, dy = selection.start.y - node.bb.center.y;
         array.push({ distanceSquared: dx*dx + dy*dy, node: node });
       }
     });
@@ -314,13 +314,11 @@ jQuery.fn.springy = function(params) {
     }
   }
   
-  var maxMoved = 15 * pixelRatio;
-
   $(canvas).on('taphold', function(e) {
     e.preventDefault();
     if(clickSource !== "touch" || e.shiftKey || e.ctrlKey)
       return;
-    if(moved < maxMoved && dragged && dragged.node.isSelected()){
+    if(moved < 10 && dragged && dragged.node.isSelected()){
       selectedOpen(dragged.node);
       pointerEnd();
     }
@@ -331,7 +329,7 @@ jQuery.fn.springy = function(params) {
       return;
     var pos = $(canvas).offset(),
     node = findNodeAt(getCoordinate(e.pageX - pos.left, e.pageY - pos.top));
-    if(moved < maxMoved && node && node.isSelected())
+    if(moved < 10 && node && node.isSelected())
       selectedOpen(node);
   });
   $('body').on('keyup', function(e){
@@ -827,7 +825,7 @@ jQuery.fn.springy = function(params) {
         ctx.globalAlpha = 1.0;
 
       //draw the portrait
-      ctx.drawImage(node.image, node.bb.left, node.bb.top, size, size);
+      ctx.drawImage(node.image, node.bb.topLeft.x, node.bb.topLeft.y, size, size);
     },
     function drawNodeOverlay(node, point) {
       if (!node.isSelected() || !node.text)
@@ -838,8 +836,8 @@ jQuery.fn.springy = function(params) {
       //draw the portrait text
       var width = node.text.width, height = node.text.height;
       ctx.drawImage(node.text, 
-        Math.min(Math.max(0, node.bb.x - (width / 2) | 0), canvas.width - width), 
-        Math.min(Math.max(0, node.bb.y - height - (node.bb.size / 2) | 0), canvas.height - height), 
+        Math.min(Math.max(0, node.bb.center.x - (width / 2) | 0), canvas.width - width), 
+        Math.min(Math.max(0, node.bb.center.y - height - (node.bb.size / 2) | 0), canvas.height - height), 
         width, height);
     },
     function drawOverlay(){
@@ -873,12 +871,9 @@ jQuery.fn.springy = function(params) {
 
   Springy.Node.prototype.setBoundingBox = function(x, y, size) {
     this.bb = { 
-      left:x, 
-      top:y, 
-      right:x+size, 
-      bottom:y+size, 
-      x:(x + size / 2)|0, 
-      y:(y + size / 2)|0, 
+      topLeft: new Springy.Vector(x, y),
+      bottomRight: new Springy.Vector(x + size, y + size),
+      center: new Springy.Vector((x + size / 2) | 0, (y + size / 2) | 0),
       size:size 
     };
   }
@@ -894,8 +889,8 @@ jQuery.fn.springy = function(params) {
       x = point;
 
     if(this.bb && this.hitmask){
-      px = (this.hitmask.size * (x - this.bb.left) / this.bb.size) | 0;
-      py = (this.hitmask.size * (y - this.bb.top) / this.bb.size) | 0;
+      px = (this.hitmask.size * (x - this.bb.topLeft.x) / this.bb.size) | 0;
+      py = (this.hitmask.size * (y - this.bb.topLeft.y) / this.bb.size) | 0;
       if(this.hitmask.opaque[px])
         return this.hitmask.opaque[px][py];
     }
@@ -912,31 +907,31 @@ jQuery.fn.springy = function(params) {
 
   Springy.Node.prototype.overlappingBoundingBox = function(node) {
     return this.bb && node.bb &&
-    this.bb.left <= node.bb.right && 
-    this.bb.right >= node.bb.left &&
-    this.bb.top <= node.bb.bottom && 
-    this.bb.bottom >= node.bb.top;
+    this.bb.topLeft.x <= node.bb.bottomRight.x && 
+    this.bb.bottomRight.x >= node.bb.topLeft.x &&
+    this.bb.topLeft.y <= node.bb.bottomRight.y && 
+    this.bb.bottomRight.y >= node.bb.topLeft.y;
   }
 
   Springy.Node.prototype.overlapping = function(node) {
     if(this.overlappingBoundingBox(node)){
       if(this.hitmask && node.hitmask){
         var tlx, tly, brx, bry;
-        if(this.bb.bottom < node.bb.bottom){
-          tly = node.bb.top | 0;
-          bry = this.bb.bottom | 0;
+        if(this.bb.bottomRight.y < node.bb.bottomRight.y){
+          tly = node.bb.topLeft.y | 0;
+          bry = this.bb.bottomRight.y | 0;
         }
         else{
-          tly = this.bb.top | 0;
-          bry = node.bb.bottom | 0;
+          tly = this.bb.topLeft.y | 0;
+          bry = node.bb.bottomRight.y | 0;
         }
-        if(this.bb.left < node.bb.left){
-          tlx = node.bb.left | 0;
-          brx = this.bb.right | 0;
+        if(this.bb.topLeft.x < node.bb.topLeft.x){
+          tlx = node.bb.topLeft.x | 0;
+          brx = this.bb.bottomRight.x | 0;
         }
         else{
-          tlx = this.bb.left | 0;
-          brx = node.bb.right | 0;
+          tlx = this.bb.topLeft.x | 0;
+          brx = node.bb.bottomRight.x | 0;
         }
         for(var x=tlx; x<brx; x++)
           for(var y=tly; y<bry; y++)
@@ -952,7 +947,7 @@ jQuery.fn.springy = function(params) {
   Springy.Node.prototype.distanceSquared = function(x, y) {
     if(!this.bb)
       return null;
-    var dx = this.bb.x - x, dy = this.bb.y - y;
+    var dx = this.bb.center.x - x, dy = this.bb.center.y - y;
     return dx*dx + dy*dy;
   }
 
@@ -981,7 +976,7 @@ jQuery.fn.springy = function(params) {
       return inside;
 
     //get position relative to hitmask
-    var check = new Springy.Vector(inside.x - this.bb.left, inside.y - this.bb.top).divide(this.bb.size),
+    var check = inside.clone().subtract(this.bb.topLeft).divide(this.bb.size),
       delta = outside.clone().subtract(inside).normalise().divide(this.bb.size),
       last;
     while(true){
@@ -999,7 +994,7 @@ jQuery.fn.springy = function(params) {
       return null;
 
     //scale and move back to relative position
-    return new Springy.Vector(this.bb.left, this.bb.top).add(last.multiply(this.bb.size));
+    return last.multiply(this.bb.size).add(this.bb.topLeft);
   }
 
   renderer.start();
