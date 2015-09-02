@@ -385,7 +385,7 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
       otherCoord;
-    if(window.event.touches > 1)
+    if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerStart(coord, "toggle", otherCoord);
   });
@@ -394,7 +394,7 @@ jQuery.fn.springy = function(params) {
     e.preventDefault();
     var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
       otherCoord;
-    if(window.event.touches > 1)
+    if(window.event.touches.length > 1)
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerMove(coord, "toggle", otherCoord);
   });
