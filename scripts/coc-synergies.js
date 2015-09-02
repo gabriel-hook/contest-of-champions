@@ -171,15 +171,7 @@ CoC.synergies.initialize=function(stars, roster){
         el.attr('href','?roster='+s);
     });
   }
-/*
-  if(navigator.wakeLock && navigator.wakeLock.request)
-    try{
-      navigator.wakeLock.request("screen");
-    }
-    catch (e){
 
-    }
-*/
   //track
   CoC.tracking.pageView();
 }
