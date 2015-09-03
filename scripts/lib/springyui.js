@@ -409,7 +409,6 @@ jQuery.fn.springy = function(params) {
   $(window).on('touchend',function(e) {
     clickSource = "touch";
     pointerEnd(false, "toggle");
-    e.preventDefault();
   });
 
   $(canvas).on('mousedown', function(e) {
