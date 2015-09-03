@@ -396,7 +396,8 @@ jQuery.fn.springy = function(params) {
 
   $(canvas).on('touchend',function(e) {
     clickSource = "touch";
-    pointerEnd(true, "toggle");
+    if(window.event.touches.length === 0)
+      pointerEnd(true, "toggle");
     e.preventDefault();
   });
 
