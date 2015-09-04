@@ -753,11 +753,6 @@ $("#page-settings-advanced").on("pagecreate", function() {
     });
   });
 });
-
-//close active popups on any window resize
-$(window).on("resize", function(e){
-  $('.ui-popup-active .ui-popup').popup('close');
-});
     
 //close dialogs when we click outside of them or click escape
 $.mobile.document.on("tap click", "[data-role=dialog]", function(event, ui){
