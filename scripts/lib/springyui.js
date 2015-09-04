@@ -159,7 +159,8 @@ jQuery.fn.springy = function(params) {
       if(array.indexOf(node) !== -1)
         return;
       if(node.bb.center.x > x1 && node.bb.center.x < x2 && node.bb.center.y > y1 && node.bb.center.y < y2){
-        var dx = selection.start.x - node.bb.center.x, dy = selection.start.y - node.bb.center.y;
+        var dx = Math.abs(selection.start.x + selection.end.x) / 2 - node.bb.center.x, 
+          dy = Math.abs(selection.start.y + selection.end.y) / 2 - node.bb.center.y;
         array.push({ distanceSquared: dx*dx + dy*dy, node: node });
       }
     });
