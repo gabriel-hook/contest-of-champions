@@ -666,13 +666,14 @@ jQuery.fn.springy = function(params) {
       text = this.data.label.toUpperCase();
 
       context.font = nodeFont.font;
-      var paddingX = pixelRatio * 6;
-      var paddingY =  pixelRatio * 3;
+      var paddingX = pixelRatio * (nodeFont.isReady()? 6: 3);
+      var paddingTop = pixelRatio * (nodeFont.isReady()? 4: 3);
+      var paddingBottom = pixelRatio * 3;
       var textWidth = context.measureText(text).width;
       var textHeight = nodeFont.fontSize;
 
-      canvas.width = (textWidth + paddingX) | 0;
-      canvas.height = (textHeight + paddingY) | 0;
+      canvas.width = (textWidth + paddingX * 2) | 0;
+      canvas.height = (textHeight + paddingTop + paddingBottom) | 0;
 
       //draw the text background
       context.fillStyle = "rgba(0, 0, 0, 0.5)";
@@ -685,7 +686,7 @@ jQuery.fn.springy = function(params) {
       context.shadowColor = "#000";
       context.shadowOffsetX = 1 * pixelRatio;
       context.shadowOffsetY = 1 * pixelRatio;
-      context.fillText(text, paddingX >> 1, nodeFont.isReady()?( paddingY >> 1 ): ( paddingY >> 2 ));
+      context.fillText(text, paddingX, paddingTop);
 
       this.text = canvas;
       this.text.font = nodeFont;
