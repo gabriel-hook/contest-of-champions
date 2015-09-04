@@ -119,16 +119,16 @@
             data-rel="page"
             data-direction="reverse"
             data-transition="flip">Add a Champion</a> 
-          <a id="roster-import" href="#"
+          <button id="roster-import"
             data-role="button" 
-            data-icon="tag">Import .csv</a>  
-          <a id="roster-export" href="#"
+            data-icon="tag">Import .csv</button>  
+          <button id="roster-export"
             download="champions.csv"
             data-role="button" 
             data-icon="action">Export .csv</a>
-          <a id="roster-clear-all" href="#"
+          <button id="roster-clear-all"
             data-role="button" 
-            data-icon="delete">Delete All</a> 
+            data-icon="delete">Delete All</button> 
         </fieldset>
         
         <fieldset data-role="controlgroup" data-mini="true">
@@ -180,7 +180,6 @@
             <img id="roster-configure-type" /><span id="roster-configure-name">Name</span>
           </h3>
           
-          <form>          
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
               <label for="roster-configure-rank">Rank</label>
               <select name="roster-configure-rank" id="roster-configure-rank"></select>
@@ -197,21 +196,19 @@
               <label for="roster-configure-quest">Quest</label>
               <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
             </fieldset>
+
             <fieldset class="no-extras" data-role="controlgroup" data-mini="true">
-              <a class="roster-configure-guide" href="#" 
-                data-role="button" 
-                data-icon="info">View Guide</a>     
+              <button class="roster-configure-guide" data-role="button" data-icon="info">View Guide</button>
             </fieldset>
+
             <fieldset data-role="controlgroup" data-mini="true">
-              <a href="#" id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</a>          
+              <button id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</button>
             </fieldset>
-          </form>
+
         </div>
         <div class="extras">
           <img id="roster-configure-image" />
-          <a class="roster-configure-guide" href="#" 
-            data-role="button" 
-            data-icon="info">View Guide</a>
+          <button class="roster-configure-guide" data-role="button" data-icon="info">View Guide</button>
         </div>
       </div>
       
@@ -230,8 +227,10 @@
             </div>?
           </h3>
           <p>This action cannot be undone.</p>
-          <a href="#" id="roster-delete-confirm-yes" data-role="button" data-theme="b">Delete</a>
-          <a href="#" id="roster-delete-confirm-no" data-role="button">Cancel</a>
+          <fieldset data-role="controlgroup" data-mini="true">
+            <button id="roster-delete-confirm-yes" data-role="button" data-theme="b">Delete</button>
+            <button id="roster-delete-confirm-no" data-role="button">Cancel</button>
+          </fieldset>
         </div>
       </div>
       
@@ -245,8 +244,8 @@
             Are you sure you want to delete all of your champions?
           </h3>
           <p>This action cannot be undone.</p>
-          <a href="#" id="roster-clear-confirm-yes" data-role="button" data-theme="b">Delete</a>
-          <a href="#" id="roster-clear-confirm-no" data-role="button">Cancel</a>
+          <button id="roster-clear-confirm-yes" data-role="button" data-theme="b">Delete</button>
+          <button id="roster-clear-confirm-no" data-role="button">Cancel</button>
         </div>
       </div>
     </div> 
@@ -265,12 +264,12 @@
           data-icon="back">Back</a>
         <div id="add-stars" data-role="navbar">
           <ul>
-            <li><a id="add-stars-1" href="#" onclick="CoC.ui.add.setStars(1)" data-theme="c">1 ★</a></li>
-            <li><a id="add-stars-2" href="#" onclick="CoC.ui.add.setStars(2)" data-theme="c">2 ★</a></li>
-            <li><a id="add-stars-3" href="#" onclick="CoC.ui.add.setStars(3)" data-theme="c">3 ★</a></li>
-            <li><a id="add-stars-4" href="#" onclick="CoC.ui.add.setStars(4)" data-theme="c">4 ★</a></li>
+            <li><button id="add-stars-1" onclick="CoC.ui.add.setStars(1)" data-theme="c">1 ★</button></li>
+            <li><button id="add-stars-2" onclick="CoC.ui.add.setStars(2)" data-theme="c">2 ★</button></li>
+            <li><button id="add-stars-3" onclick="CoC.ui.add.setStars(3)" data-theme="c">3 ★</button></li>
+            <li><button id="add-stars-4" onclick="CoC.ui.add.setStars(4)" data-theme="c">4 ★</button></li>
           <!--
-            <li><a id="add-stars-5" href="#" onclick="CoC.ui.add.setStars(5)" data-theme="c">5 ★</a></li>
+            <li><button id="add-stars-5" onclick="CoC.ui.add.setStars(5)" data-theme="c">5 ★</button></li>
           -->
           </ul>
         </div>
@@ -339,13 +338,13 @@
           
         </fieldset>
 
-        <a href="#" id="button-build-settings-apply"
+        <button id="button-build-settings-apply"
           data-theme="b" 
           data-role="button"
           data-icon="gear"
           data-iconpos="right">
           Build
-        </a>
+        </button>
       </div>
 
       <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
@@ -414,7 +413,7 @@
       </div>
       
       <div role="main" class="ui-content">
-        <a href="#" id="settings-advanced-preset-defaults" data-role="button">Reset to Defaults</a> 
+        <button id="settings-advanced-preset-defaults" data-role="button">Reset to Defaults</button> 
 
         <h3>Champion Weights</h3>
         
