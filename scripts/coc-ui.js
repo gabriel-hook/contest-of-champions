@@ -48,8 +48,8 @@ CoC.ui.roster=new function(){
       $("#roster-configure-stars").removeClass("awakened")
 
       
-    $(".roster-configure-guide").unbind("click").bind("click",function(event){
-    
+    $(".roster-configure-guide").unbind("click").bind("click",function(e){
+      e.preventDefault();
       $('#popup-roster-configure').one("popupafterclose", function(){
         CoC.ui.guides.open( champion.get("uid") );
       });
@@ -106,7 +106,8 @@ CoC.ui.roster=new function(){
       champion.save();
     });
     
-    $("#roster-configure-delete").unbind("click").click(function(){
+    $("#roster-configure-delete").unbind("click").click(function(e){
+      e.preventDefault();
       $("#roster .champion").removeClass("selected");
       $("#page-roster [data-position='fixed']").toolbar('show');
       $('#popup-roster-configure').one("popupafterclose", function(){
@@ -122,14 +123,19 @@ CoC.ui.roster=new function(){
     $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
     for(var i=0; i<champion.get("stars");i++)
       $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
-    $("#roster-delete-confirm-yes").unbind("click").click(function(){
+    $("#roster-delete-confirm-yes").unbind("click").click(function(e){
+      e.preventDefault();
       var uid = champion.get('uid'),
         stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
       $("#page-roster [data-position='fixed']").toolbar('show');
       champion.destroy();
       CoC.tracking.event("roster", "delete", uid + '-' + stars);
-    })
+    });
+    $("#roster-delete-confirm-no").unbind("click").click(function(e){
+      e.preventDefault();
+      $("#popup-roster-delete-confirm").popup("close");
+    });
     
     $('#popup-roster-configure').popup("open",{
       positionTo:$(element)
