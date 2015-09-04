@@ -660,14 +660,14 @@ jQuery.fn.springy = function(params) {
   }
 
   Springy.Node.prototype.setPortraitText = function() {
-    if(nodeFont.isReady() && (!this.text || this.text.font != nodeFont)){
+    if(!this.text || this.text.font != nodeFont || (!this.text.ready && this.text.ready !== nodeFont.isReady())){
       var canvas = document.createElement('canvas'),
       context = canvas.getContext('2d'),
       text = this.data.label.toUpperCase();
 
       context.font = nodeFont.font;
       var paddingX = pixelRatio * 6;
-      var paddingY = pixelRatio * 3;
+      var paddingY =  pixelRatio * 3;
       var textWidth = context.measureText(text).width;
       var textHeight = nodeFont.fontSize;
 
@@ -685,10 +685,11 @@ jQuery.fn.springy = function(params) {
       context.shadowColor = "#000";
       context.shadowOffsetX = 1 * pixelRatio;
       context.shadowOffsetY = 1 * pixelRatio;
-      context.fillText(text, paddingX >> 1, paddingY >> 3);
+      context.fillText(text, paddingX >> 1, nodeFont.isReady()?( paddingY >> 1 ): ( paddingY >> 2 ));
 
       this.text = canvas;
       this.text.font = nodeFont;
+      this.text.ready = nodeFont.isReady();
     }
   }
 
