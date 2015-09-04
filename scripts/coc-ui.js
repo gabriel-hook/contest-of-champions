@@ -29,10 +29,8 @@ CoC.ui.roster=new function(){
   this.popup=function(element, champion){
   
     $(element).addClass("selected");
-    $("#page-roster [data-position='fixed']").toolbar('hide');
     $('#popup-roster-configure').one("popupafterclose", function(){
       $(element).removeClass("selected");
-      $("#page-roster [data-position='fixed']").toolbar('show');
     });
     
     $("#roster-configure-stars").text("");
@@ -109,9 +107,7 @@ CoC.ui.roster=new function(){
     $("#roster-configure-delete").unbind("click").click(function(e){
       e.preventDefault();
       $("#roster .champion").removeClass("selected");
-      $("#page-roster [data-position='fixed']").toolbar('show');
       $('#popup-roster-configure').one("popupafterclose", function(){
-        $("#page-roster [data-position='fixed']").toolbar('show');
         $("#popup-roster-delete-confirm").popup("open",{
           positionTo:"window"
         });
@@ -128,7 +124,6 @@ CoC.ui.roster=new function(){
       var uid = champion.get('uid'),
         stars = champion.get('stars');
       $("#popup-roster-delete-confirm").popup("close");
-      $("#page-roster [data-position='fixed']").toolbar('show');
       champion.destroy();
       CoC.tracking.event("roster", "delete", uid + '-' + stars);
     });
