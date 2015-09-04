@@ -169,11 +169,12 @@ CoC.ui.add=new function(){
   
   this.render=function(){
     this.view.render();
+    $("#page-add #add-stars button").removeClass("ui-btn-active");
+    $("#page-add #add-stars button#add-stars-" + this._stars).addClass("ui-btn-active");
   }
   
   this.show=function(){
-    $("#page-add #add-stars a").removeClass("ui-btn-active");
-    $("#page-add #add-stars a#add-stars-" + this._stars).addClass("ui-btn-active");
+    //nothing to do here
   }
 }
 CoC.ui.teams=new function(){
