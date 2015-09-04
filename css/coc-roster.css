@@ -54,6 +54,7 @@
   left:16px;
   top:-12px;
   display:block;
+  z-index:1;
   text-align:center;
   vertical-align:text-bottom;
   pointer-events:none;
