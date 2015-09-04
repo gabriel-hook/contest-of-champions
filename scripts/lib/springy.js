@@ -26,80 +26,80 @@
  */
  (function (root, factory) {
  	if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(function () {
-        	return (root.returnExportsGlobal = factory());
-        });
-      } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like enviroments that support module.exports,
-        // like Node.
-        module.exports = factory();
-      } else {
-        // Browser globals
-        root.Springy = factory();
-      }
-    }(this, function() {
-    	"use strict";
+    // AMD. Register as an anonymous module.
+    define(function () {
+    	return (root.returnExportsGlobal = factory());
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals
+    root.Springy = factory();
+  }
+}(this, function() {
+	"use strict";
 
-    	var Springy = {};
+	var Springy = {};
 
-    	var Graph = Springy.Graph = function() {
-    		this.nodeSet = {};
-    		this.nodes = [];
-    		this.edges = [];
-    		this.adjacency = {};
+	var Graph = Springy.Graph = function() {
+		this.nodeSet = {};
+		this.nodes = [];
+		this.edges = [];
+		this.adjacency = {};
 
-    		this.nextNodeId = 0;
-    		this.nextEdgeId = 0;
-    		this.eventListeners = [];
-    	};
+		this.nextNodeId = 0;
+		this.nextEdgeId = 0;
+		this.eventListeners = [];
+	};
 
-    	var Node = Springy.Node = function(id, data) {
-    		this.id = id;
-    		this.data = (data !== undefined) ? data : {};
+	var Node = Springy.Node = function(id, data) {
+		this.id = id;
+		this.data = (data !== undefined) ? data : {};
 
-	// Data fields used by layout algorithm in this file:
-	// this.data.mass
-	// Data used by default renderer in springyui.js
-	// this.data.label
-};
+		// Data fields used by layout algorithm in this file:
+		// this.data.mass
+		// Data used by default renderer in springyui.js
+		// this.data.label
+	};
 
-var Edge = Springy.Edge = function(id, source, target, data) {
-	this.id = id;
-	this.source = source;
-	this.target = target;
-	this.data = (data !== undefined) ? data : {};
+	var Edge = Springy.Edge = function(id, source, target, data) {
+		this.id = id;
+		this.source = source;
+		this.target = target;
+		this.data = (data !== undefined) ? data : {};
 
-	var nodes = [this.source.id, this.target.id];
-	nodes.sort();
-	this.nodes = nodes.join('_');
+		var nodes = [this.source.id, this.target.id];
+		nodes.sort();
+		this.nodes = nodes.join('_');
 
-	// Edge data field used by layout alorithm
-	// this.data.length
-	// this.data.type
-};
+		// Edge data field used by layout alorithm
+		// this.data.length
+		// this.data.type
+	};
 
-Graph.prototype.addNode = function(node) {
-	if (!(node.id in this.nodeSet)){
-		this.nodes.push(node);
-	}
+	Graph.prototype.addNode = function(node) {
+		if (!(node.id in this.nodeSet)){
+			this.nodes.push(node);
+		}
 
-	this.nodeSet[node.id] = node;
+		this.nodeSet[node.id] = node;
 
-	this.notify();
-	return node;
-};
+		this.notify();
+		return node;
+	};
 
-Graph.prototype.addNodes = function() {
-	// accepts variable number of arguments, where each argument
-	// is a string that becomes both node identifier and label
-	for (var i = 0; i < arguments.length; i++) {
-		var name = arguments[i];
-		var node = new Node(name, {label:name});
-		this.addNode(node);
-	}
-};
+	Graph.prototype.addNodes = function() {
+		// accepts variable number of arguments, where each argument
+		// is a string that becomes both node identifier and label
+		for (var i = 0; i < arguments.length; i++) {
+			var name = arguments[i];
+			var node = new Node(name, {label:name});
+			this.addNode(node);
+		}
+	};
 
 	Graph.prototype.addEdge = function(edge) {
 		var exists = false;
