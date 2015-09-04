@@ -244,6 +244,7 @@
 }
 #guide-content .synergy span{
   cursor:pointer;
+  display:inline-block;
 }
 
 #guide-content .synergy img{
