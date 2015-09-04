@@ -150,7 +150,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
   activate:function(event, index, delay){
     if(this._init){
       this._init = false;
-      return;
+      delay = 0;
     }
 
     var that = this,
@@ -168,7 +168,7 @@ CoC.view.GuideChampionsView = Backbone.View.extend({
       that.guide.call(that, uid);
   },
   
-  guide: function(uid){      
+  guide: function(uid){
     //if we aren't even looking at guides anymore
     if(CoC.hasUrlParam("page-guide") === false)
       return;
