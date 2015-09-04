@@ -638,7 +638,7 @@
             </div>
           <% } %>
           <div class="title">
-            <span class="name"><%- name %></span>
+            <span class="name"><%- shortname ||name %></span>
           </div>
           <div class="stars">
             <% for( var i=0; i<stars; i++){ %><img class='star' src="<%= (awakened === 0)? "images/icons/star.png" : "images/icons/star-awakened.png" %>"><% } %>

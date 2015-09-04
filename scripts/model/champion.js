@@ -39,6 +39,7 @@ CoC.model = CoC.model || {};
       uid: "champion",
       stars:2,
       name: 'Champion',
+      shortname: null,
       typeId: "mutant",
       awakened: 0,
       rank: 1,
@@ -132,6 +133,7 @@ CoC.model = CoC.model || {};
       if(!other)
         return false;
       this.set("name", other.get("name"));
+      this.set("shortname", other.get("shortname"))
       this.set("typeId", other.get("typeId"));
       this.set("stars", parseInt(this.get("stars"), 10) || 1);
       this.set("rank", parseInt(this.get("rank"), 10) || 1);

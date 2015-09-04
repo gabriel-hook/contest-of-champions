@@ -13,7 +13,7 @@ CoC.view = CoC.view || {};
       json.portrait = model.portrait();
 
       var el = this.$el;
-      el.html( this.template(json) );
+      el.html(this.template( json ));
 
       //set classes and attributes
       el.addClass("champion").addClass(model.get("typeId"));

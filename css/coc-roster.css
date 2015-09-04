@@ -41,7 +41,7 @@
   text-shadow:1px 1px #fff;
   text-transform: uppercase;
   color:#000;
-  
+  display:inline-block;  
 }
 #roster-configure-type{
   height: 1.5em;
@@ -85,7 +85,8 @@
   bottom:0;
   right:0;
   width:226px;
-  padding:1em;
+  padding:0;
+  margin:1.25em;
   z-index:9999;
 }
 
