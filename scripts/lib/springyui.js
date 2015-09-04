@@ -296,15 +296,11 @@ jQuery.fn.springy = function(params) {
         selection.start = coord;
         selection.end = otherCoord;
         selection.type = selectType;
-        boxSelected(selectType);
-        updateNodesSelected();
       }
     }
     else if(selection){
       selection.end = coord;
       selection.type = selectType;
-      boxSelected(selectType);
-      updateNodesSelected();
     }
     renderer.start();
   }
