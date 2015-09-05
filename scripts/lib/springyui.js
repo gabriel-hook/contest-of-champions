@@ -935,12 +935,8 @@ jQuery.fn.springy = function(params) {
     return false;
   }
 
-  Springy.Node.prototype.containsPointRelative = function(x, y) {
-    x = (x * this.hitmask.size) | 0;
-    y = (y * this.hitmask.size) | 0;
-    if(this.hitmask.opaque[x])
-      return this.hitmask.opaque[x][y];
-    return false;
+  Springy.Node.prototype.containsPointRaw = function(x, y) {
+    return this.hitmask.opaque[x | 0][y | 0];
   }
 
   Springy.Node.prototype.overlappingBoundingBox = function(node) {
@@ -1011,28 +1007,26 @@ jQuery.fn.springy = function(params) {
   //find the nearest edge of the image, assuming end is inside of node
   Springy.Node.prototype.intersection = function(outside, inside){
     if(!this.hitmask || !this.bb)
-      return inside;
+      return null;
 
     //get position relative to hitmask
-    var check = inside.clone().subtract(this.bb.topLeft).divide(this.bb.size),
-      delta = outside.clone().subtract(inside).normalise().divide(this.bb.size),
-      last;
-    while(true){
-      check.add(delta);
-      if(check.x < 0 || check.y < 0 || check.y > 1 || check.x > 1)
-        break;
-      if(this.containsPointRelative(check.x, check.y)){
+    var last,
+      check = inside.clone().subtract(this.bb.topLeft).divide(this.bb.size).multiply(this.hitmask.size),
+      delta = outside.clone().subtract(inside).normalise().divide(this.bb.size).multiply(this.hitmask.size);
+    while(check.x >= 0 && check.y >= 0 && check.y < this.hitmask.size && check.x < this.hitmask.size){
+      if(this.containsPointRaw(check.x, check.y)){
         if(!last)
           last = check.clone();
         else
           last.copy(check);
       }
+      check.add(delta);
     }
     if(!last)
       return null;
 
     //scale and move back to relative position
-    return last.multiply(this.bb.size).add(this.bb.topLeft);
+    return last.divide(this.hitmask.size).multiply(this.bb.size).add(this.bb.topLeft);
   }
 
   renderer.start();
