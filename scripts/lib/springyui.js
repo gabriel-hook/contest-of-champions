@@ -892,16 +892,14 @@ jQuery.fn.springy = function(params) {
         //translate the entire context by .5 to get 1px width lines
         ctx.translate(0.5, 0.5);
 
-        //draw the dashed border
+        //draw the outline
         ctx.lineWidth = pixelRatio;
-        ctx.strokeStyle = "#333";
-        ctx.setLineDash([5 * pixelRatio, 5 * pixelRatio]);
+        ctx.strokeStyle = "rgb(95, 156, 255)";
         ctx.strokeRect(x, y, width, height);
 
         //draw the overlay, but not over drawn content
-        ctx.globalAlpha = 0.25;
         ctx.globalCompositeOperation = "destination-over";
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = "rgba(64, 138, 226, 0.15)";
         ctx.fillRect(x, y, width, height);
 
         ctx.restore();
