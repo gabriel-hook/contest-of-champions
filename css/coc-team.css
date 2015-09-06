@@ -39,10 +39,6 @@
   border-top-right-radius:0;
 }
 
-#teams .team .champion.unselected .portrait{
-  opacity:0.25;
-}
-
 #teams .synergies{
   background:rgba(0,0,0,0.666);
   padding-top:20px;
@@ -51,16 +47,40 @@
   border-bottom-right-radius:5px;
 }
 #teams .synergy{
-  margin:5px 10px;
+  padding:5px 10px;
+  padding-top:0;
   cursor:pointer;
 }
 #teams .synergy span{
   position:relative;
   top:-0.5em;
-  color:#f6f6f6;
+  color:#f0f0f0;
   text-shadow:1px 1px #111;
 }
+#teams .synergy img.off{
+  display:none;
+}
 
+#teams .team.selected .champion .portrait{
+  opacity:0.25;
+}
+#teams .team.selected .champion.selected .portrait{
+  opacity:1;
+}
+#teams .team.selected .synergy span{
+  color:#aaa;
+}
+#teams .team.selected .synergy.selected span{
+  color:#fff;
+}
+#teams .team.selected .synergy.selected img.on,
+#teams .team.selected .synergy img.off{
+  display:inline;
+}
+#teams .team.selected .synergy img.on,
+#teams .team.selected .synergy.selected img.off{
+  display:none;
+}
 
 /******************
      PROGRESS
@@ -107,10 +127,6 @@
   #teams .synergy span{
     font-size:0.6em;
   }
-  #teams .synergy:hover span{
-    top:-0.45em;
-    font-size:0.7em;
-  }
   #teams .synergy img{
     width:18px;
     height:18px;
@@ -119,10 +135,6 @@
 @media (max-width:800px) and (min-width:355px) {
   #teams .synergy span{
     font-size:0.8em;
-  }
-  #teams .synergy:hover span{
-    top:-0.45em;
-    font-size:0.9em;
   }
   #teams .synergy img{
     width:24px;
@@ -133,10 +145,6 @@
   #teams .synergy span{
     font-size:1em;
     line-height:1em;
-  }
-  #teams .synergy:hover span{
-    top:-0.45em;
-    font-size:1.1em;
   }
   #teams .synergy img{
     width:28px;

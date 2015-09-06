@@ -659,7 +659,8 @@
           <div class="synergies">
             <% _(team.effects).each(function(effect){ %>
               <div class="synergy" effectId="<%= effect.get("uid") %>" championIds="<%= effect.championIds().join(" ") %>">
-                <img src="<%= effect.get("image") %>">
+                <img class="on" src="<%= effect.image() %>">
+                <img class="off" src="<%= effect.imageOff() %>">
                 <span><%- effect.get("name") %> +<%- effect.get("amount") %> %</span>
               </div>
             <% }) %>
@@ -819,7 +820,7 @@
               <% synergiesFrom(uid).each(function(synergy){ %>
                 <div class="synergy">
                   <img class="champion-mini <%= synergy.to().get("typeId") %>" src="<%= synergy.to().portrait() %>" />
-                  <img class="effect" src="<%= synergy.effect().get("image") %>" />
+                  <img class="effect" src="<%= synergy.effect().image() %>" />
                   <span class="champion-title bold" uid="<%= synergy.get("toId") %>"><%- synergy.from().get("stars") %>★ <%- synergy.to().get("name") %></span>
                   <span class="effect" uid="<%= synergy.get("effectId") %>"><%- synergy.effect().get("name") %></span>
                 </div>
@@ -840,7 +841,7 @@
               <% synergiesTo(uid).each(function(synergy){ %>
                 <div class="synergy">
                   <img class="champion-mini <%= synergy.from().get("typeId") %>" src="<%= synergy.from().portrait() %>" />
-                  <img class="effect" src="<%= synergy.effect().get("image") %>" />
+                  <img class="effect" src="<%= synergy.effect().image() %>" />
                   <span class="champion-title bold" uid="<%= synergy.get("fromId") %>"><%- synergy.from().get("stars") %>★ <%- synergy.from().get("name") %></span>
                   <span class="effect" uid="<%= synergy.get("effectId") %>"><%- synergy.effect().get("name") %></span>
                 </div>

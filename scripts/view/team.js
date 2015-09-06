@@ -34,23 +34,25 @@ CoC.view.TeamView = Backbone.View.extend({
   },
 
   synergyHoverBegin:function(event){
-    var synergyElement = $(event.currentTarget),
-      championElements = synergyElement.closest(".team").find(".champion"),
-      championIds = synergyElement.attr("championIds").split(" ");
+    var synergy = $(event.currentTarget),
+      root = synergy.closest(".team"),
+      champions = root.find(".champion"),
+      ids = synergy.attr("championIds").split(" ");
 
-    championElements.each(function(i, obj){
-      var championElement = $(obj);
-      if(championIds.indexOf(championElement.attr("uid")) === -1)
-
-        championElement.addClass("unselected");
+    root.addClass("selected");
+    synergy.addClass("selected");
+    champions.each(function(i, obj){
+      var champion = $(obj);
+      if(ids.indexOf(champion.attr("uid")) !== -1)
+        champion.addClass("selected");
     });
   },
 
   synergyHoverEnd:function(event){
-    var synergyElement = $(event.currentTarget),
-      championElements = synergyElement.closest(".team").find(".champion");
-
-    championElements.removeClass("unselected");
+    var root = $(event.currentTarget).closest(".team");
+    root.removeClass("selected");
+    root.find(".champion").removeClass("selected");
+    root.find(".synergy").removeClass("selected");
   },
   
   //set team size

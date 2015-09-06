@@ -6,7 +6,16 @@ CoC.model.Effect = Backbone.Model.extend({
     uid: "effect",
 		base: 10,
     amount:0,
-    image:""
+    image:"",
+    altimage:""
+  },
+
+  image:function(){
+    return this.get("image") + ".jpg";
+  },
+
+  imageOff:function(){
+    return this.get("image") + "_off.jpg";
   },
 
   championIds:function(ids){
