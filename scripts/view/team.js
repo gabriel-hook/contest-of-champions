@@ -5,7 +5,9 @@ CoC.view.TeamView = Backbone.View.extend({
 
   events:{
     "click .champion":"championClicked",
-    "click .synergy":"synergyClicked"
+    "click .synergy":"synergyClicked",
+    "mouseover .synergy":"synergyHoverBegin",
+    "mouseout .synergy":"synergyHoverEnd"
   },
   
   championClicked:function(event){
@@ -18,8 +20,8 @@ CoC.view.TeamView = Backbone.View.extend({
     if(CoC.ui.hasSelection())
       return;
   
-    var effectElement = $(event.currentTarget),
-      uid = effectElement.attr("effectId");
+    var synergyElement = $(event.currentTarget),
+      uid = synergyElement.attr("effectId");
     if(uid === undefined)
       return;
   
@@ -28,7 +30,27 @@ CoC.view.TeamView = Backbone.View.extend({
       return;
       
     $("#popup-team-effect .ui-content").text(effect.get("description"));
-    $("#popup-team-effect").popup("open",{ positionTo:effectElement.find("span") });
+    $("#popup-team-effect").popup("open",{ positionTo:synergyElement.find("span") });
+  },
+
+  synergyHoverBegin:function(event){
+    var synergyElement = $(event.currentTarget),
+      championElements = synergyElement.closest(".team").find(".champion"),
+      championIds = synergyElement.attr("championIds").split(" ");
+
+    championElements.each(function(i, obj){
+      var championElement = $(obj);
+      if(championIds.indexOf(championElement.attr("uid")) === -1)
+
+        championElement.addClass("unselected");
+    });
+  },
+
+  synergyHoverEnd:function(event){
+    var synergyElement = $(event.currentTarget),
+      championElements = synergyElement.closest(".team").find(".champion");
+
+    championElements.removeClass("unselected");
   },
   
   //set team size
@@ -58,19 +80,22 @@ CoC.view.TeamView = Backbone.View.extend({
               synergyCount++;
               var effect = synergies[synergy.get("effectId")];
               if(effect === undefined){
-                synergies[synergy.get("effectId")]={
+                effect = synergies[synergy.get("effectId")]={
                   uid:synergy.get("effectId"),
-                  amount:synergy.get("effectAmount")
+                  amount:0,
+                  champions:{}
                 }
               }
-              else
-                effect.amount += synergy.get("effectAmount");
+              effect.amount += synergy.get("effectAmount");
+              effect.champions[synergy.get("fromId")] = true;
+              effect.champions[synergy.get("toId")] = true;
             }
           }
       effects = [];
       for(var s in synergies){
         var effect = CoC.data.effects.findWhere({ uid:synergies[s].uid }).clone();
         effect.set("amount", synergies[s].amount);
+        effect.championIds(synergies[s].champions);
         effects.push(effect);
       } 
       this._teams.push({ champions:champions, effects:effects });

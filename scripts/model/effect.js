@@ -7,5 +7,15 @@ CoC.model.Effect = Backbone.Model.extend({
 		base: 10,
     amount:0,
     image:""
+  },
+
+  championIds:function(ids){
+    if(ids){
+      this._championIds = [];
+      for(var id in ids)
+        this._championIds.push(id);
+    }
+    return this._championIds;
   }
+
 });
