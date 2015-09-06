@@ -5,7 +5,7 @@ CoC.view.TeamView = Backbone.View.extend({
 
   events:{
     "click .champion":"championClicked",
-    "click .synergy":"synergyClicked",
+    //"click .synergy":"synergyClicked",
     "mouseover .synergy":"synergyHoverBegin",
     "mouseout .synergy":"synergyHoverEnd"
   },
