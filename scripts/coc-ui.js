@@ -165,7 +165,7 @@ CoC.ui.add=new function(){
   this.render=function(){
     this.view.render();
     $("#page-add #add-stars button").removeClass("ui-btn-active");
-    $("#page-add #add-stars button#add-stars-" + this._stars).addClass("ui-btn-active");
+    $("#page-add #add-stars button[stars=" + this._stars + "]").addClass("ui-btn-active");
   }
   
   this.show=function(){
@@ -602,6 +602,15 @@ $("#page-roster").on("pagecreate",function(){
       .checkboxradio('refresh');
     })(filters[i]);
 });
+$("#page-add").on("pagecreate",function(){
+  $("#page-add #add-stars button").each(function(i, obj){
+    var button = $(obj),
+      stars = parseInt(button.attr("stars"), 10);
+    button.on("click", function(){
+      CoC.ui.add.setStars(stars);
+    });
+  });
+})
 $("#page-teams").on("pagecreate", function() {
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
