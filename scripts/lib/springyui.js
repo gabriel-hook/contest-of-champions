@@ -39,7 +39,7 @@ jQuery.fn.springy = function(params) {
 
   var nodeFont;
   var pixelRatio;
-  var canvasOffset;
+  var canvasOffset, canvasWidth, canvasHeight;
 
   //We can check to see if the font has been loaded before using.
   var ScaledNodeFont = function(){
@@ -64,6 +64,8 @@ jQuery.fn.springy = function(params) {
   function doResize(){
     pixelRatio = window.devicePixelRatio || 1;
     canvasOffset = $(canvas).offset();
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
     nodeFont = new ScaledNodeFont();
   }
   doResize();
@@ -88,12 +90,12 @@ jQuery.fn.springy = function(params) {
 	var toScreen = function(point) {
 		var size = currentBB.topright.clone().subtract(currentBB.bottomleft),
     delta = point.clone().subtract(currentBB.bottomleft);
-    return new Springy.Vector(delta.x / size.x * canvas.width, delta.y / size.y * canvas.height);
+    return new Springy.Vector(delta.x / size.x * canvasWidth, delta.y / size.y * canvasHeight);
   };
 
   var fromScreen = function(point) {
     var size = currentBB.topright.clone().subtract(currentBB.bottomleft);
-    return new Springy.Vector((point.x / canvas.width) * size.x + currentBB.bottomleft.x, (point.y / canvas.height) * size.y + currentBB.bottomleft.y);
+    return new Springy.Vector((point.x / canvasWidth) * size.x + currentBB.bottomleft.x, (point.y / canvasHeight) * size.y + currentBB.bottomleft.y);
   };
 
   var getCoordinate = function(x, y){
@@ -876,8 +878,8 @@ jQuery.fn.springy = function(params) {
       //draw the portrait text
       var width = node.text.width, height = node.text.height;
       ctx.drawImage(node.text, 
-        Math.min(Math.max(0, node.bb.center.x - (width / 2) | 0), canvas.width - width), 
-        Math.min(Math.max(0, node.bb.center.y - height - (node.bb.size / 2) | 0), canvas.height - height), 
+        Math.min(Math.max(0, node.bb.center.x - (width / 2) | 0), canvasWidth - width), 
+        Math.min(Math.max(0, node.bb.center.y - height - (node.bb.size / 2) | 0), canvasHeight - height), 
         width, height);
     },
     function drawOverlay(){
@@ -997,7 +999,7 @@ jQuery.fn.springy = function(params) {
     }
 
   Springy.Node.prototype.getSize = function() {
-    var canvasSize = Math.min(canvas.width, canvas.height),
+    var canvasSize = Math.min(canvasWidth, canvasHeight),
     size = Math.min(Math.max(16, canvasSize >> 4), 128);
     if(this.isSelected())
       size *= 1.5;
