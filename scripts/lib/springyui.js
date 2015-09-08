@@ -351,16 +351,17 @@ jQuery.fn.springy = function(params) {
     }
   });
   
-  $(canvas).on('taphold', function(e) {
-    if(clickSource !== "touch")
-      return;
-    var node = dragged && dragged.node;
-    if(moved < 10 && node && node.isSelected() && node.data.onOpen){
-      node.data.onOpen();
-      pointerEnd();
-    }
-    e.preventDefault();
-  });
+  var tapHold = {
+    handler: function handler(){
+      var node = dragged && dragged.node;
+      if(moved < 10 && node && node.isSelected() && node.data.onOpen){
+        node.data.onOpen();
+        pointerEnd();
+      }
+    },
+    timeout: 0,
+    timeoutDelay:1000
+  }
 
   $(canvas).on('dblclick', function(e) {
     if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
@@ -374,6 +375,9 @@ jQuery.fn.springy = function(params) {
   });
 
   $(canvas).on('touchstart', function(e){
+    clearTimeout(tapHold.timeout);
+    if(window.event.touches.length === 1)
+      tapHold.timeout = setTimeout(tapHold.handler, tapHold.timeoutDelay);
     clickSource = "touch";
     var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
       otherCoord;
@@ -381,6 +385,8 @@ jQuery.fn.springy = function(params) {
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerStart(coord, "toggle", otherCoord);
     e.preventDefault();
+    e.stopPropagation();
+    return false;
   });
 
   $(canvas).on('touchmove', function(e) {
@@ -391,22 +397,28 @@ jQuery.fn.springy = function(params) {
       otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
     pointerMove(coord, "toggle", otherCoord);
     e.preventDefault();
+    e.stopPropagation();
+    return false;
   });
 
   $(canvas).on('touchend',function(e) {
+    clearTimeout(tapHold.timeout);
     clickSource = "touch";
     if(window.event.touches.length === 0)
       pointerEnd(true, "toggle");
     e.preventDefault();
+    e.stopPropagation();
+    return false;
   });
 
   $(canvas).on('touchleave touchcancel',function(e) {
+    clearTimeout(tapHold.timeout);
     clickSource = "touch";
     pointerEnd(false, "toggle");
-    e.preventDefault();
   });
 
   $(window).on('touchend',function(e) {
+    clearTimeout(tapHold.timeout);
     clickSource = "touch";
     pointerEnd(false, "toggle");
   });
