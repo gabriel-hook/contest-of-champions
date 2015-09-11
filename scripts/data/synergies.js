@@ -52,6 +52,11 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ronan", fromStars:4, toId:"ironman", effectId:"critrate", effectAmount:7 },
   { fromId:"ronan", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
 
+  { fromId:"spidermanblack", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"spidermanblack", fromStars:3, toId:"electro", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"electro", effectId:"critrate", effectAmount:7 },
+
   { fromId:"superiorironman", fromStars:2, toId:"captainamerica", effectId:"critrate", effectAmount:5 },
   { fromId:"superiorironman", fromStars:2, toId:"daredevil", effectId:"critdamage", effectAmount:15 },
   { fromId:"superiorironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
@@ -87,6 +92,7 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"kang", fromStars:4, toId:"blackbolt", effectId:"armor", effectAmount:6 },
   { fromId:"kang", fromStars:4, toId:"thevision", effectId:"critrate", effectAmount:7 },
   { fromId:"kang", fromStars:4, toId:"thor", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"spidermanblack", effectId:"critrate", effectAmount:7 },
 
   { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
   { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },

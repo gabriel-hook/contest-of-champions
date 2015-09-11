@@ -20,6 +20,8 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 2 },
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 3 },
   { uid:"ronan", name:"Ronan", typeId:"cosmic", stars: 4 },
+  { uid:"spidermanblack", name:"Spider-Man Symbiote", shortname:"Spider-Man", typeId:"cosmic", stars: 3 },
+  { uid:"spidermanblack", name:"Spider-Man Symbiote", shortname:"Spider-Man", typeId:"cosmic", stars: 4 },
   { uid:"superiorironman", name:"Superior Iron Man", shortname:"Sup. Iron Man", typeId:"cosmic", stars: 2 },
   { uid:"superiorironman", name:"Superior Iron Man", shortname:"Sup. Iron Man", typeId:"cosmic", stars: 3 },
   { uid:"superiorironman", name:"Superior Iron Man", shortname:"Sup. Iron Man", typeId:"cosmic", stars: 4 },
