@@ -5,7 +5,7 @@ CoC.view.TeamView = Backbone.View.extend({
 
   events:{
     "click .champion":"championClicked",
-    //"click .synergy":"synergyClicked",
+    "click .synergy":"synergyClicked",
     "mouseover .synergy":"synergyHoverBegin",
     "mouseout .synergy":"synergyHoverEnd"
   },
@@ -17,20 +17,19 @@ CoC.view.TeamView = Backbone.View.extend({
   },
   
   synergyClicked:function(event){
-    if(CoC.ui.hasSelection())
-      return;
-  
-    var synergyElement = $(event.currentTarget),
-      uid = synergyElement.attr("effectId");
-    if(uid === undefined)
-      return;
-  
-    var effect = CoC.data.effects.findWhere({ uid:uid });
-    if(!effect)
-      return;
-      
-    $("#popup-team-effect .ui-content").text(effect.get("description"));
-    $("#popup-team-effect").popup("open",{ positionTo:synergyElement.find("span") });
+    var synergy = $(event.currentTarget),
+      root = synergy.closest(".team");
+
+    if(root.hasClass('locked')){
+      root.removeClass('locked');
+      if(!synergy.hasClass('selected')){
+        this.synergyHoverEnd.call(this, event);
+        this.synergyHoverBegin.call(this, event);
+        root.addClass('locked');
+      }
+    }
+    else
+      root.addClass('locked');
   },
 
   synergyHoverBegin:function(event){
@@ -38,6 +37,9 @@ CoC.view.TeamView = Backbone.View.extend({
       root = synergy.closest(".team"),
       champions = root.find(".champion"),
       ids = synergy.attr("championIds").split(" ");
+
+    if(root.hasClass('locked'))
+      return;
 
     root.addClass("selected");
     synergy.addClass("selected");
@@ -50,6 +52,10 @@ CoC.view.TeamView = Backbone.View.extend({
 
   synergyHoverEnd:function(event){
     var root = $(event.currentTarget).closest(".team");
+
+    if(root.hasClass('locked'))
+      return;
+
     root.removeClass("selected");
     root.find(".champion").removeClass("selected");
     root.find(".synergy").removeClass("selected");
