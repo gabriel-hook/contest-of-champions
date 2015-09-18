@@ -26,14 +26,17 @@
     <script type="text/javascript" src="scripts/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
   </head>
-  <body>
+  <body>  
+
     <div id="popup-share" 
       data-role="popup" 
-      data-tolerance="32"
+      data-tolerance="0,0"
+      data-corners="false"
       data-theme="c" 
       data-overlay-theme="a"
+      data-transition="slidedown"
       style="display:none;">
-      <ul data-role="listview" data-inset="true">
+      <ul data-role="listview">
         <li data-role="list-divider">Share to...</li>
         <li>
           <a id="share-facebook" class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/synergies" target="_blank">
@@ -62,6 +65,7 @@
         </li>
       </ul>
     </div>
+    
     <div class="page" data-role="page" data-theme="b">
       <div class="header">
         <div class="buttons">
@@ -72,12 +76,11 @@
         </div>
         <div class="ui-btn button legend"><span class="on">-</span><span class="off">+</span></div>
         <a class="ui-btn button share" href="#popup-share"
-          data-rel="popup"
-          data-transition="fade">
+          data-rel="popup">
           <span>s</span>
         </a>
       </div>
-      <canvas></canvas>
+      <canvas style="width:100%; height:100%;"></canvas>
       <div id="legend"></div>
       <div id="roster-hint">
         Use the roster manager tool to add more <span id="roster-hint-stars"></span> champions to your roster.

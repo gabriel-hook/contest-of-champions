@@ -37,11 +37,13 @@
     
     <div id="popup-share" 
       data-role="popup" 
-      data-tolerance="32"
+      data-tolerance="0,24"
+      data-corners="false"
       data-theme="c" 
       data-overlay-theme="a"
+      data-transition="slidedown"
       style="display:none;">
-      <ul data-role="listview" data-inset="true">
+      <ul data-role="listview">
         <li data-role="list-divider">Share to...</li>
         <li>
           <a id="share-facebook" class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target="_blank">
@@ -88,8 +90,7 @@
           data-role="button" 
           data-icon="action" 
           data-iconpos="notext"
-          data-rel="popup"
-          data-transition="fade">Share</a>
+          data-rel="popup">Share</a>
         <h1>Roster</h1>
       </div>
       
@@ -172,7 +173,7 @@
         data-role="popup" 
         data-tolerance="32"
         data-theme="c" 
-        data-overlay-theme="a" 
+        data-overlay-theme="a"
         data-arrow="true">
         <div id="roster-configure-stars" class="stars"></div>
         <div role="main" class="ui-content">
@@ -356,8 +357,7 @@
           data-role="button" 
           data-icon="action" 
           data-iconpos="notext"
-          data-rel="popup"
-          data-transition="fade">Share</a>
+          data-rel="popup">Share</a>
         <h1>Team</h1>
         
         <div id="team-build-progress">
@@ -543,8 +543,7 @@
           data-role="button" 
           data-icon="action" 
           data-iconpos="notext"
-          data-rel="popup"
-          data-transition="fade">Share</a>      
+          data-rel="popup">Share</a>      
         <h1>Guide</h1>
         
         <div id="guide-champions-frame" class="frame">
