@@ -784,4 +784,3 @@ $('[data-tracking=true]').on('pageshow', function(){
   if(hash !== location.hash)
     location.hash = hash;
 })();
-
