@@ -5,15 +5,27 @@ CoC.view.TeamView = Backbone.View.extend({
 
   events:{
     "click .champion":"championClicked",
+    "tap .synergy":"synergyTapped",
     "click .synergy":"synergyClicked",
-    "mouseenter .synergy":"synergyHoverBegin",
-    "mouseleave .synergy":"synergyHoverEnd"
+    "mouseover .synergy":"synergyHoverBegin",
+    "mouseout .synergy":"synergyHoverEnd"
   },
   
   championClicked:function(event){
     event.preventDefault();
     var uid = $(event.currentTarget).attr("uid");
     CoC.ui.guides.open( uid );
+  },
+
+  synergyTapped:function(event){
+    var selected = $(event.currentTarget).hasClass('selected');
+
+    this.synergyHoverEnd(event);
+    if(!selected)
+      this.synergyHoverBegin(event);
+
+    event.preventDefault();
+    return false;
   },
   
   synergyClicked:function(event){
@@ -30,6 +42,9 @@ CoC.view.TeamView = Backbone.View.extend({
     }
     else
       root.addClass('locked');
+
+    event.preventDefault();
+    return false;
   },
 
   synergyHoverBegin:function(event){
