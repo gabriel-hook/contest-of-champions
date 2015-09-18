@@ -287,12 +287,12 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"electro", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
 
   { fromId:"hulk", fromStars:2, toId:"thor", effectId:"critdamage", effectAmount:15 },
-  { fromId:"hulk", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
+  { fromId:"hulk", fromStars:3, toId:"thor", effectId:"critdamage", effectAmount:5 },
   { fromId:"hulk", fromStars:3, toId:"abomination", effectId:"critrate", effectAmount:6 },
-  { fromId:"hulk", fromStars:3, toId:"hawkeye", effectId:"critdamage", effectAmount:20 },
-  { fromId:"hulk", fromStars:4, toId:"thor", effectId:"armor", effectAmount:6 },
+  { fromId:"hulk", fromStars:3, toId:"hawkeye", effectId:"armor", effectAmount:20 },
+  { fromId:"hulk", fromStars:4, toId:"thor", effectId:"critdamage", effectAmount:6 },
   { fromId:"hulk", fromStars:4, toId:"abomination", effectId:"critrate", effectAmount:7 },
-  { fromId:"hulk", fromStars:4, toId:"hawkeye", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulk", fromStars:4, toId:"hawkeye", effectId:"armor", effectAmount:25 },
 
   { fromId:"rhino", fromStars:2, toId:"spiderman", effectId:"critrate", effectAmount:5 },
   { fromId:"rhino", fromStars:2, toId:"abomination", effectId:"armor", effectAmount:4 },
