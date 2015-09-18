@@ -173,6 +173,12 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
   { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
 
+  { fromId:"deadpoolxforce", fromStars:3, toId:"moonknight", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:3, toId:"deadpool", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"magnetomarvelnow", effectId:"armor", effectAmount:6 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"moonknight", effectId:"critdamage", effectAmount:25 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"deadpool", effectId:"critdamage", effectAmount:25 },
+
   { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
   { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
   { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
