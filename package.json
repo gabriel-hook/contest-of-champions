@@ -1,0 +1,42 @@
+{
+  "name": "contest-of-champions",
+  "version": "1.0.0",
+  "description": "Contest of Champions HTML5 tool",
+  "main": "index.html",
+  "scripts": {
+    "lint": "jshint **.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabriel-hook/contest-of-champions.git"
+  },
+  "keywords": [
+    "coc",
+    "contest",
+    "champions",
+    "synergies",
+    "team",
+    "builder"
+  ],
+  "author": "Gabriel Hook",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gabriel-hook/contest-of-champions/issues"
+  },
+  "homepage": "https://github.com/gabriel-hook/contest-of-champions#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.4.1",
+    "jshint": "^2.8.0"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone-localstorage": "^0.3.2",
+    "jquery": "^2.1.4",
+    "jquery-mobile": "^1.4.1",
+    "purl": "^1.0.4",
+    "underscore": "^1.8.3"
+  }
+}
