@@ -1,12 +1,12 @@
 'use strict';
 
+var fs = require('fs');
 var gulp = require('gulp');
 var rimraf = require('gulp-rimraf');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
-var fs = require('fs');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
 
