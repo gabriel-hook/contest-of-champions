@@ -1,0 +1,80 @@
+[{
+  "name": "app-initial",
+  "files":[
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.js"
+  ]
+},{
+  "name": "app-roster",
+  "files":[
+    "./node_modules/underscore/underscore.js",
+    "./node_modules/backbone/backbone.js",
+    "./node_modules/backbone.localstorage/backbone.localStorage.js",
+    "./scripts/lib/purl.js",
+    "./scripts/lib/sly.js",
+    "./scripts/model/type.js",
+    "./scripts/model/champion.js",
+    "./scripts/model/effect.js",
+    "./scripts/model/synergy.js",
+    "./scripts/model/crystal.js",
+    "./scripts/model/crystal-champion.js",
+    "./scripts/data/effects.js",
+    "./scripts/data/types.js",
+    "./scripts/data/champions.js",
+    "./scripts/data/synergies.js",
+    "./scripts/data/crystals.js",
+    "./scripts/data/guides.js",
+    "./scripts/view/message.js",
+    "./scripts/view/champion.js",
+    "./scripts/view/roster.js",
+    "./scripts/view/add-champions.js",
+    "./scripts/view/team.js",
+    "./scripts/view/guide.js",
+    "./scripts/view/guide-champions.js",
+    "./scripts/view/crystals.js",
+    "./scripts/coc-tracking.js",
+    "./scripts/coc-manager.js",
+    "./scripts/coc-algorithm.js",
+    "./scripts/coc-roster.js",
+    "./scripts/coc-preset.js",
+    "./scripts/coc-ui.js",
+    "./scripts/app-roster.js"
+  ]
+},{
+  "name": "app-synergies",
+  "files":[
+    "./node_modules/underscore/underscore.js",
+    "./node_modules/backbone/backbone.js",
+    "./node_modules/backbone.localstorage/backbone.localStorage.js",
+    "./scripts/springy/springy.js",
+    "./scripts/springy/springyui.js",
+    "./scripts/model/champion.js",
+    "./scripts/model/effect.js",
+    "./scripts/model/synergy.js",
+    "./scripts/model/type.js",
+    "./scripts/data/champions.js",
+    "./scripts/data/effects.js",
+    "./scripts/data/synergies.js",
+    "./scripts/data/types.js",
+    "./scripts/coc-tracking.js",
+    "./scripts/coc-synergies.js",
+    "./scripts/coc-roster.js",
+    "./scripts/app-synergies.js"
+  ]
+},{
+  "name": "worker-teams",
+  "files":[
+    "./node_modules/underscore/underscore.js",
+    "./node_modules/backbone/backbone.js",
+    "./scripts/model/champion.js", 
+    "./scripts/model/effect.js", 
+    "./scripts/model/synergy.js", 
+    "./scripts/model/type.js",
+    "./scripts/data/champions.js", 
+    "./scripts/data/effects.js", 
+    "./scripts/data/synergies.js", 
+    "./scripts/data/types.js",
+    "./scripts/coc-algorithm.js",
+    "./scripts/worker-teams.js"
+  ]
+}]

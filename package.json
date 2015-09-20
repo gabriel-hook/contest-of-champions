@@ -28,15 +28,18 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.1",
     "jshint": "^2.8.0"
   },
   "dependencies": {
     "backbone": "^1.2.3",
-    "backbone-localstorage": "^0.3.2",
+    "backbone.localstorage": "^1.1.16",
+    "underscore": "^1.8.3",
     "jquery": "^2.1.4",
     "jquery-mobile": "^1.4.1",
-    "purl": "^1.0.4",
-    "underscore": "^1.8.3"
+    "urijs": "^1.16.1"
   }
 }

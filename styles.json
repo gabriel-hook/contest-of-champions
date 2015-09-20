@@ -1,0 +1,27 @@
+[{
+  "name": "app-roster-screen",
+  "files":[
+    "./styles/fonts.css",
+    "./styles/jquery.mobile-1.4.5.css",
+    "./styles/jquery.mobile-theme-classic.css",
+    "./styles/coc.css",
+    "./styles/coc-champion.css",
+    "./styles/coc-guide.css",
+    "./styles/coc-crystal.css",
+    "./styles/coc-roster.css",
+    "./styles/coc-team.css"
+  ]
+},{
+  "name": "app-roster-print",
+  "files":[
+    "./styles/print.css"
+  ]
+},{
+  "name": "app-synergies-screen",
+  "files":[
+    "./styles/fonts.css",
+    "./styles/jquery.mobile-1.4.5.css",
+    "./styles/jquery.mobile-theme-classic.css",
+    "./styles/coc-synergies.css"
+  ]
+}]
