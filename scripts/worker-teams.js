@@ -1,13 +1,3 @@
-﻿//load backbone and underscore
-importScripts('lib/underscore-min.js', 'lib/backbone-min.js');
-
-//load models and data
-importScripts('model/champion.js', 'model/effect.js', 'model/synergy.js', 'model/type.js');
-importScripts('data/champions.js', 'data/effects.js', 'data/synergies.js', 'data/types.js');
-
-//load algorithms
-importScripts('coc-algorithm.js');
-
 onmessage = function (event){
   var algorithm = event.data.algorithm,
     rosterJSON = event.data.roster,

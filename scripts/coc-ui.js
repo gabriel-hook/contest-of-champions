@@ -1,6 +1,8 @@
 ﻿var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 
+CoC.ui.workerScriptUrl = 'js/worker-teams.min.js?1';
+
 CoC.ui.initialize=function(){
   $("#popup-share").css('display','block').enhanceWithin().popup();
   $("#share-facebook").click(function(){
@@ -201,15 +203,15 @@ CoC.ui.teams=new function(){
   this.initWorker=function(){
     if(!useWorkers)
       return;  
-    this._nextWorker = new Worker('scripts/worker-teams.js?');
+    this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
   }
   
   this.getWorker=function(){
     if(!useWorkers)
       return null;  
     this.destroyWorker();
-    this._currentWorker = this._nextWorker || new Worker('scripts/worker-teams.js?');
-    this._nextWorker = new Worker('scripts/worker-teams.js?');
+    this._currentWorker = this._nextWorker || new Worker(CoC.ui.workerScriptUrl);
+    this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
     return this._currentWorker
   }
   
