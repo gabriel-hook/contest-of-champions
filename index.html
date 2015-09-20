@@ -19,19 +19,11 @@
     <meta property="og:image" content="images/icon.png" />
     <meta property="og:url" content="http://tiny.cc/champions" />
     <meta property="og:site_name" content="Champions" />
-    <!-- all external stylesheets and scripts -->
-    <link rel="stylesheet" href="css/fonts.css" media="all">
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" media="all">
-    <link rel="stylesheet" href="css/jquery.mobile-theme-classic.css" media="all">
-    <link rel="stylesheet" href="css/coc.css" media="all">
-    <link rel="stylesheet" href="css/coc-champion.css" media="all">
-    <link rel="stylesheet" href="css/coc-guide.css" media="all">
-    <link rel="stylesheet" href="css/coc-crystal.css" media="all">
-    <link rel="stylesheet" href="css/coc-roster.css" media="all">
-    <link rel="stylesheet" href="css/coc-team.css" media="all">
-    <link rel="stylesheet" href="css/print.css" media="print">
-    <script type="text/javascript" src="scripts/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="scripts/lib/jquery.mobile-1.4.5.min.js"></script>
+    <!-- all external stylesheets -->
+    <link rel="stylesheet" href="css/app-roster-screen.min.css" media="all">
+    <link rel="stylesheet" href="css/app-roster-print.min.css" media="print">
+    <!-- initial scripts -->
+    <script type="text/javascript" src="js/app-initial.min.js"></script>
   </head>
   <body>
     
@@ -923,47 +915,7 @@
       </fieldset>
       
     </script>
-    <!-- Libraries -->
-    <script type="text/javascript" src="scripts/lib/purl.js"></script>
-    <script type="text/javascript" src="scripts/lib/sly.min.js"></script>
-    <script type="text/javascript" src="scripts/lib/underscore-min.js"></script>
-    <script type="text/javascript" src="scripts/lib/backbone-min.js"></script>
-    <script type="text/javascript" src="scripts/lib/backbone.localStorage-min.js"></script>
-    <!-- Model definitions -->
-    <script type="text/javascript" src="scripts/model/type.js"></script>
-    <script type="text/javascript" src="scripts/model/champion.js"></script>
-    <script type="text/javascript" src="scripts/model/effect.js"></script>
-    <script type="text/javascript" src="scripts/model/synergy.js"></script>
-    <script type="text/javascript" src="scripts/model/crystal.js"></script>
-    <script type="text/javascript" src="scripts/model/crystal-champion.js"></script>
-    <!-- Collections data -->
-    <script type="text/javascript" src="scripts/data/effects.js"></script>
-    <script type="text/javascript" src="scripts/data/types.js"></script>
-    <script type="text/javascript" src="scripts/data/champions.js"></script>
-    <script type="text/javascript" src="scripts/data/synergies.js"></script>
-    <script type="text/javascript" src="scripts/data/crystals.js"></script>
-    <script type="text/javascript" src="scripts/data/guides.js"></script>
-    <!-- Model views -->
-    <script type="text/javascript" src="scripts/view/message.js"></script>
-    <script type="text/javascript" src="scripts/view/champion.js"></script>
-    <script type="text/javascript" src="scripts/view/roster.js"></script>
-    <script type="text/javascript" src="scripts/view/add-champions.js"></script>
-    <script type="text/javascript" src="scripts/view/team.js"></script>
-    <script type="text/javascript" src="scripts/view/guide.js"></script>
-    <script type="text/javascript" src="scripts/view/guide-champions.js"></script>
-    <script type="text/javascript" src="scripts/view/crystals.js"></script>
-    <!-- App logic -->
-    <script type="text/javascript" src="scripts/coc-tracking.js"></script>
-    <script type="text/javascript" src="scripts/coc-manager.js"></script>
-    <script type="text/javascript" src="scripts/coc-algorithm.js"></script>
-    <script type="text/javascript" src="scripts/coc-roster.js"></script>
-    <script type="text/javascript" src="scripts/coc-preset.js"></script>
-    <script type="text/javascript" src="scripts/coc-ui.js"></script>
-    <!-- Init -->
-    <script type="text/javascript" >
-      CoC.manager.initialize();
-      CoC.roster.initialize();
-      CoC.ui.initialize();
-    </script>
+    <!-- application script -->
+    <script type="text/javascript" src="js/app-roster.min.js"></script>
   </body>
 </html>
