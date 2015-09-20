@@ -8,13 +8,13 @@
 
   Clone this repository with git.
 
-  Install NPM packages (First install [NPM](https://www.npmjs.com/)), then run
+  Install [NPM](https://www.npmjs.com/) packages, then run
 
 ```
   npm install
 ```
 
-  To build the current source into minified js and css, run with (Gulp)[http://gulpjs.com/]
+  To build the current source into minified js and css, run with [Gulp](http://gulpjs.com/)
 
 ```
   gulp build
