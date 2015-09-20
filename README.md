@@ -8,7 +8,7 @@
 
   Clone this repository with git.
 
-  Install [NPM](https://www.npmjs.com/) packages, then run
+  Install all [NPM](https://www.npmjs.com/) packages
 
 ```
   npm install
