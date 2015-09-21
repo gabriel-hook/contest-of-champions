@@ -84,7 +84,7 @@ function eachStyle(callback){
 
 function excludeNpmPaths(path){
   if(path.dirname.indexOf('node_modules') === 0){
-    path.dirname = 'scripts/';
+    path.dirname = 'scripts/lib/';
   }
 }
 
