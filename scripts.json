@@ -7,7 +7,7 @@
 },{
   "name": "app-guides",
   "json": "CoC.data.guides.raw",
-  "files": "./scripts/data/guides/*"
+  "files": "./scripts/data/guides/*.json"
 },{
   "name": "app-roster",
   "files":[
