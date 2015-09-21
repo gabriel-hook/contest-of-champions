@@ -33,7 +33,7 @@ gulp.task('build:js', function(){
         .pipe(sourcemaps.init())
           .pipe(concat(name + '.min.js'))
           .pipe(uglify())
-        .pipe(sourcemaps.write('.', { includeContent:false }))
+        .pipe(sourcemaps.write('.', { includeContent:true }))
         .pipe(gulp.dest('./js'));
   },function(name, json, files){
     //combine multiple json files into a namespaced 
@@ -53,7 +53,7 @@ gulp.task('build:css', function(){
         .pipe(sourcemaps.init())
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
-        .pipe(sourcemaps.write('.', { includeContent:false }))
+        .pipe(sourcemaps.write('.', { includeContent:true }))
         .pipe(gulp.dest('./css'));
   });
   //copy all fonts over
@@ -84,7 +84,7 @@ function eachStyle(callback){
 
 function excludeNpmPaths(path){
   if(path.dirname.indexOf('node_modules') === 0){
-    path.dirname = '/';
+    path.dirname = 'scripts/';
   }
 }
 
