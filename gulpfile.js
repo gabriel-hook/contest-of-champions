@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var gulp = require('gulp');
+var rename = require("gulp-rename");
 var rimraf = require('gulp-rimraf');
 var jsoncombine = require('gulp-jsoncombine');
 var concat = require('gulp-concat');
@@ -27,7 +28,8 @@ gulp.task('build', ['build:js', 'build:css']);
 gulp.task('build:js', function(){
   eachScript(function(name, files){
     //regular muliple javascript minification
-    gulp.src(files)
+    gulp.src(files, { base: './' })
+        .pipe(rename(excludeNpmPaths))    
         .pipe(sourcemaps.init())
           .pipe(concat(name + '.min.js'))
           .pipe(uglify())
@@ -47,7 +49,7 @@ gulp.task('build:js', function(){
 gulp.task('build:css', function(){
   eachStyle(function(name, files){
     //regular multiple css minification
-    gulp.src(files)
+    gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
@@ -57,14 +59,13 @@ gulp.task('build:css', function(){
   //copy all fonts over
   gulp
     .src('./styles/fonts/*')
-    .pipe(gulp.dest('./css/fonts'))
+    .pipe(gulp.dest('./css/fonts'));
 });
 
 gulp.task('watch', function(){
     gulp.watch('./scripts/*', ['build:js']);
     gulp.watch('./styles/*', ['build:css']);
-})
-
+});
 
 function eachScript(callback, jsonCallback){
   for(var i=0; i<scripts.length; i++){
@@ -78,6 +79,12 @@ function eachScript(callback, jsonCallback){
 function eachStyle(callback){
   for(var i=0; i<styles.length; i++){
     callback.call(null, styles[i].name, styles[i].files);
+  }
+}
+
+function excludeNpmPaths(path){
+  if(path.dirname.indexOf('node_modules') === 0){
+    path.dirname = '/';
   }
 }
 
@@ -95,7 +102,7 @@ function namespaceJSON(json, data){
       currentNamespace += '.' + namespace[i];
       string += currentNamespace+' = '+currentNamespace+" || {};\n";
     }
-    currentNamespace += '.' + namespace[i]
+    currentNamespace += '.' + namespace[i];
     string += currentNamespace+' = '+JSON.stringify(data) + ";\n";
   }
   return string;
