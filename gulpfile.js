@@ -11,7 +11,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'watch']);
 
 gulp.task('clean', ['clean:js','clean:css']);
 gulp.task('clean:js', function(){
@@ -30,7 +30,7 @@ gulp.task('build:js', function(){
         .pipe(sourcemaps.init())
           .pipe(concat(name+'.min.js'))
           .pipe(uglify())
-        .pipe(sourcemaps.write('.', {addComment: false}))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./js'));
   },function(name, json, files){
     gulp.src(files)
@@ -63,13 +63,18 @@ gulp.task('build:css', function(){
         .pipe(sourcemaps.init())
           .pipe(concat(name+'.min.css'))
           .pipe(minifyCss())
-        .pipe(sourcemaps.write('.', {addComment: false}))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./css'));
   });
   gulp
     .src('./styles/fonts/*')
     .pipe(gulp.dest('./css/fonts'))
 });
+
+gulp.task('watch', function(){
+    gulp.watch('./scripts/*', ['build:js']);
+    gulp.watch('./styles/*', ['build:css']);
+})
 
 
 function eachScript(callback, jsonCallback){
