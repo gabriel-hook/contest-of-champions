@@ -5,6 +5,10 @@
     "./node_modules/jquery-mobile/dist/jquery.mobile.js"
   ]
 },{
+  "name": "app-guides",
+  "json": "CoC.data.guides.raw",
+  "files": "./scripts/data/guides/*"
+},{
   "name": "app-roster",
   "files":[
     "./node_modules/underscore/underscore.js",

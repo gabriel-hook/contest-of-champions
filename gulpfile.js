@@ -3,6 +3,7 @@
 var fs = require('fs');
 var gulp = require('gulp');
 var rimraf = require('gulp-rimraf');
+var jsoncombine = require('gulp-jsoncombine');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
@@ -31,6 +32,29 @@ gulp.task('build:js', function(){
           .pipe(uglify())
         .pipe(sourcemaps.write('.', {addComment: false}))
         .pipe(gulp.dest('./js'));
+  },function(name, json, files){
+    gulp.src(files)
+        .pipe(jsoncombine(name+'.min.js', function(data){
+          var i = 0;
+          var string = '';
+          var namespace = json.split('.');
+          var currentNamespace = namespace[0];
+          if(namespace.length === 1){
+            string = 'var '+currentNamespace+' = '+ JSON.stringify(data) + ";\n";
+          }
+          else{
+            string = 'var '+currentNamespace+' = '+currentNamespace+" || {};\n";
+            for(i = 1; i < namespace.length - 1; i++){
+              currentNamespace += '.' + namespace[i];
+              string += currentNamespace+' = '+currentNamespace+" || {};\n";
+            }
+            currentNamespace += '.' + namespace[i]
+            string += currentNamespace+' = '+JSON.stringify(data) + ";\n";
+          }
+          return new Buffer(string, 'utf-8');
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('./js'));
   });
 });
 gulp.task('build:css', function(){
@@ -48,9 +72,12 @@ gulp.task('build:css', function(){
 });
 
 
-function eachScript(callback){
+function eachScript(callback, jsonCallback){
   for(var i=0; i<scripts.length; i++){
-    callback.call(null, scripts[i].name, scripts[i].files);
+    if(scripts[i].json)
+      jsonCallback.call(null, scripts[i].name, scripts[i].json, scripts[i].files);
+    else
+      callback.call(null, scripts[i].name, scripts[i].files);
   }
 }
 function eachStyle(callback){

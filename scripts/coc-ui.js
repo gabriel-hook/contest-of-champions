@@ -341,15 +341,14 @@ CoC.ui.guides=new function(){
   this.initialize=function(){
     if(this._initialized)
       return;
-    var that = this;
-    CoC.data.guides.onComplete(function(){
-      that.view = new CoC.view.GuideChampionsView({
-        el: $("#guide-champions")[0]
-      });
-      that.view.render();
-      if(that.shown)
-        that.show();
+
+    this.view = new CoC.view.GuideChampionsView({
+      el: $("#guide-champions")[0]
     });
+    this.view.render();
+    if(this.shown)
+      this.show();
+
     this._initialized = true;
   }
   
