@@ -6,7 +6,7 @@ CoC.view = CoC.view || {};
 
   CoC.view.ChampionView = Backbone.View.extend({
     tagName: 'div',
-    template: _.template( $('#championTemplate').html() ),
+    template: CoC.data.template.champion,
     render:function(){
       var model = this.model,
         json = model.toJSON();

@@ -1,7 +1,7 @@
 var CoC = CoC || {};
 CoC.view = CoC.view || {};
 CoC.view.TeamView = Backbone.View.extend({
-  template: _.template( $('#teamsTemplate').html() ),
+  template: CoC.data.template.teams,
 
   events:{
     "click .champion":"championClicked",

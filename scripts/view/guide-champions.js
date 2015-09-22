@@ -1,8 +1,8 @@
 var CoC = CoC || {};
 CoC.view = CoC.view || {};
 CoC.view.GuideChampionsView = Backbone.View.extend({
-  optionTemplate: _.template( $('#guideSelectOptionTemplate').html() ),
-  optgroupTemplate: _.template( $('#guideSelectOptgroupTemplate').html() ),
+  optionTemplate: CoC.data.template['guide-select-option'],
+  optgroupTemplate: CoC.data.template['guide-select-optgroup'],
   
   initialize: function(){
     var that = this;

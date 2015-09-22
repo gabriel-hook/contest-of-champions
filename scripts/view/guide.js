@@ -164,7 +164,7 @@ CoC.view.GuideViewHelpers={
 //Message View
 CoC.view.GuideView = Backbone.View.extend({
   tagName: 'div',
-  guideTemplate: _.template( $('#guideTemplate').html() ),
+  guideTemplate: CoC.data.template.guide,
   
   initialize:function(){
     this._guides = {};

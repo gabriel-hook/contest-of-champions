@@ -1,0 +1,11 @@
+﻿<img src="<%= champion.portrait() %>" class="ui-li-icon ui-corner-none champion <%= champion.get("typeId") %>">
+<%- champion.get("name") %>
+<% if(champion.get("grade")){ %>
+  <div class="grade">
+    <span class="grade-<%= champion.get("grade").substr(0,1).toLowerCase() %>"><%- champion.get("grade") %></span>
+    <% if(champion.get("gradeAwakened")){ %>
+      <span>/</span>
+      <span class="grade-<%= champion.get("gradeAwakened").substr(0,1).toLowerCase() %>"><%- champion.get("gradeAwakened") %></span>
+    <% } %>
+  </div>
+<% } %>

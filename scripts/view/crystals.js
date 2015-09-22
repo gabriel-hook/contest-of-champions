@@ -16,7 +16,7 @@ CoC.view.CrystalsViewHelpers={
 }
 
 CoC.view.CrystalsView = Backbone.View.extend({
-  template: _.template( $('#crystalsTemplate').html() ),
+  template: CoC.data.template.crystals,
   
   initialize: function(){
     var that = this;
