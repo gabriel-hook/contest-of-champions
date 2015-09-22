@@ -25,8 +25,8 @@ gulp.task('clean:css', function(){
 });
 
 gulp.task('build', ['build:js', 'build:css']);
-gulp.task('build:js', function(){
-  eachScript(function(name, files){
+gulp.task('build:js', function(complete){
+  processScripts(function(name, files, done){
     //regular muliple javascript minification
     gulp.src(files, { base: './' })
         .pipe(rename(excludeNpmPaths))    
@@ -34,8 +34,10 @@ gulp.task('build:js', function(){
           .pipe(concat(name + '.min.js'))
           .pipe(uglify())
         .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./js'));
-  },function(name, json, files){
+        .pipe(gulp.dest('./js'))
+        .on('end', done);
+  },
+  function(name, json, files, done){
     //combine multiple json files into a namespaced 
     gulp.src(files)
         .pipe(jsoncombine(name+'.min.js', function(data){
@@ -43,23 +45,30 @@ gulp.task('build:js', function(){
           return new Buffer(string, 'utf-8');
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('./js'));
-  });
+        .pipe(gulp.dest('./js'))
+        .on('end', done);
+  },
+  complete);
 });
-gulp.task('build:css', function(){
-  eachStyle(function(name, files){
+gulp.task('build:css', function(complete){
+  processStyles(function(name, files, done){
     //regular multiple css minification
     gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
         .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./css'));
-  });
-  //copy all fonts over
-  gulp
-    .src('./styles/fonts/*')
-    .pipe(gulp.dest('./css/fonts'));
+        .pipe(gulp.dest('./css'))
+        .on('end', done);
+  },
+  function(done){
+    //copy all fonts over
+    gulp
+      .src('./styles/fonts/*')
+      .pipe(gulp.dest('./css/fonts'))
+      .on('end', done);
+  },
+  complete);
 });
 
 gulp.task('watch', function(){
@@ -67,18 +76,30 @@ gulp.task('watch', function(){
     gulp.watch('./styles/*', ['build:css']);
 });
 
-function eachScript(callback, jsonCallback){
+function processScripts(scriptCallback, jsonCallback, complete){
+  var done = doneCallback(complete);
   for(var i=0; i<scripts.length; i++){
     if(scripts[i].json)
-      jsonCallback.call(null, scripts[i].name, scripts[i].json, scripts[i].files);
+      jsonCallback.call(null, scripts[i].name, scripts[i].json, scripts[i].files, done);
     else
-      callback.call(null, scripts[i].name, scripts[i].files);
+      scriptCallback.call(null, scripts[i].name, scripts[i].files, done);
   }
 }
 
-function eachStyle(callback){
+function processStyles(styleCallback, copyCallback, complete){
+  var done = doneCallback(complete);
   for(var i=0; i<styles.length; i++){
-    callback.call(null, styles[i].name, styles[i].files);
+    styleCallback.call(null, styles[i].name, styles[i].files, done);
+  }
+  copyCallback.call(null, done);
+}
+
+function doneCallback(complete){
+  var count = scripts.length;
+  return function done(){
+    count --;
+    if(count === 0)
+      complete();
   }
 }
 
