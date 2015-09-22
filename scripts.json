@@ -5,9 +5,13 @@
     "./node_modules/jquery-mobile/dist/jquery.mobile.js"
   ]
 },{
-  "name": "app-guides",
+  "name": "app-roster-guides",
   "json": "CoC.data.guides.raw",
   "files": "./scripts/data/guides/*.json"
+},{
+  "name": "app-roster-templates",
+  "template": "CoC.data.template",
+  "files": "./templates/**/*.html"
 },{
   "name": "app-roster",
   "files":[
