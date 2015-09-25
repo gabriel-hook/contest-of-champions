@@ -68,8 +68,10 @@ gulp.task('build:js', function(){
   var combined = [];
   for(var key in streams){
     var stream = eventstream.merge(streams[key])
-        .pipe(uglify({ mangle: true }))
         .pipe(concat(key + '.min.js'))
+        .pipe(uglify({ 
+          mangle: true
+        }))
         .pipe(sourcemaps.write('.', { includeContent:true }))
         .pipe(gulp.dest('./js'));
     combined.push(stream);
