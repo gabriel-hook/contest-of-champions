@@ -1,32 +1,6 @@
 # Contest of Champions
 
-  Source: [github.com/gabriel-hook/contest-of-champions](https://github.com/gabriel-hook/contest-of-champions/)
-
   These tools are meant for the community of the game Marvel/Kabam's Contest of Champions.
-
-### Usage
-
-  Clone this repository with git.
-
-  Install all [NPM](https://www.npmjs.com/) packages
-
-```
-  npm install
-```
-
-  To build the current source into minified js and css, run with [Gulp](http://gulpjs.com/)
-
-```
-  gulp build
-```
-
-  To clean the current build files
-
-```
-  gulp clean
-```
-
-# App Details
 
 ## Roster Manager
   
@@ -63,3 +37,26 @@
   This tool lets you see the synergies between all champions of a given star value.
     
   Double-clicking on a desktop browser will redirect to the Roster Manager's Guide for that champion.
+
+# Development
+
+  Clone this repository with git.
+
+  Install all [NPM](https://www.npmjs.com/) packages
+
+```
+  npm install
+  npm install gulp --global
+```
+
+  To build the current source into minified js and css, run with [Gulp](http://gulpjs.com/)
+
+```
+  gulp
+```
+
+  To build as you modify
+
+```
+  gulp watch
+```
