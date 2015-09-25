@@ -1,7 +1,11 @@
 'use strict';
 
 var fs = require('fs');
+var eventstream = require('event-stream');
 var gulp = require('gulp');
+var watch = require('gulp-watch');
+var batch = require('gulp-batch');
+var sequence = require('gulp-sequence');
 var rename = require("gulp-rename");
 var rimraf = require('gulp-rimraf');
 var wrap = require('gulp-wrap');
@@ -14,7 +18,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', sequence('clean', 'build'));
 
 gulp.task('clean', ['clean:js','clean:css']);
 gulp.task('clean:js', function(){
@@ -27,34 +31,30 @@ gulp.task('clean:css', function(){
 });
 
 gulp.task('build', ['build:js', 'build:css']);
-gulp.task('build:js', function(complete){
-  processScripts(function processScript(name, files, done){
-    //regular muliple javascript minification
-    gulp.src(files, { base: './' })
-        .pipe(rename(excludeNpmPaths))    
-        .pipe(sourcemaps.init())
-          .pipe(concat(name + '.min.js'))
-          .pipe(uglify())
-        .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./js'))
-        .on('end', done);
-  }, function processJSON(name, json, files, done){
-    //combine multiple json files into namespaced definitions
-    gulp.src(files, { base: './' })
+gulp.task('build:js', function(){
+  var streams = {};
+  for(var i=0; i<scripts.length; i++)
+    if(!streams[scripts[i].name])
+      streams[scripts[i].name] = [];
+  //get the streams
+  processScripts(function processScript(name, files){
+    streams[name].push(gulp.src(files, { base: './' })
+        .pipe(rename(excludeNpmPaths))  
+        .pipe(sourcemaps.init())  
+        .pipe(concat(name + '.js'))
+    );
+  }, function processJSON(name, json, files){
+    streams[name].push(gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
         .pipe(declare({
           root: 'window',
           namespace: json,
           noRedeclare: true
         }))
-        .pipe(concat(name + '.min.js'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./js'))
-        .on('end', done);
-  }, function processTemplate(name, template, files, done){
-    //combine multiple html files into namespaced compiled templates
-    gulp.src(files, { base: './' })
+        .pipe(concat(name + '.js'))
+    );
+  }, function processTemplate(name, template, files){
+    streams[name].push(gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
         .pipe(jst())
         .pipe(declare({
@@ -62,66 +62,61 @@ gulp.task('build:js', function(complete){
           namespace: template,
           noRedeclare: true
         }))
-        .pipe(concat(name + '.min.js'))
-        .pipe(uglify())
+    );
+  });
+  //combined keyed streams and concat
+  var combined = [];
+  for(var key in streams){
+    var stream = eventstream.merge(streams[key])
+        .pipe(uglify({ mangle: true }))
+        .pipe(concat(key + '.min.js'))
         .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./js'))
-        .on('end', done);
-
-  }, complete);
+        .pipe(gulp.dest('./js'));
+    combined.push(stream);
+  }
+  return eventstream.merge(combined);
 });
-gulp.task('build:css', function(complete){
-  processStyles(function(name, files, done){
+gulp.task('build:css', function(){
+  var streams = [];
+  streams.push(gulp.src('./styles/fonts/*')
+      .pipe(gulp.dest('./css/fonts'))
+  );
+  processStyles(function(name, files){
     //regular multiple css minification
-    gulp.src(files, { base: './' })
-        .pipe(sourcemaps.init())
+    streams.push(gulp.src(files, { base: './' })
+        .pipe(sourcemaps.init({ loadMaps: true }))
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
         .pipe(sourcemaps.write('.', { includeContent:true }))
         .pipe(gulp.dest('./css'))
-        .on('end', done);
-  },
-  function(done){
-    //copy all fonts over
-    gulp
-      .src('./styles/fonts/*')
-      .pipe(gulp.dest('./css/fonts'))
-      .on('end', done);
-  },
-  complete);
+    );
+  });
+  return eventstream.merge(streams);
 });
 
 gulp.task('watch', function(){
-    gulp.watch('./scripts/*', ['build:js']);
-    gulp.watch('./styles/*', ['build:css']);
+    watch('./scripts/**/*', batch(function(events, done){
+      sequence('clean:js','build:js', done);
+    }));
+    watch('./styles/**/*', batch(function(events, done){
+      sequence('clean:css','build:css', done);
+    }));
 });
 
-function processScripts(scriptCallback, jsonCallback, templateCallback, complete){
-  var done = doneCallback(complete);
+function processScripts(scriptCallback, jsonCallback, templateCallback){
   for(var i=0; i<scripts.length; i++){
     if(scripts[i].json)
-      jsonCallback.call(null, scripts[i].name, scripts[i].json, scripts[i].files, done);
+      jsonCallback.call(null, scripts[i].name, scripts[i].json, scripts[i].files);
     else if(scripts[i].template)
-      templateCallback.call(null, scripts[i].name, scripts[i].template, scripts[i].files, done);
+      templateCallback.call(null, scripts[i].name, scripts[i].template, scripts[i].files);
     else
-      scriptCallback.call(null, scripts[i].name, scripts[i].files, done);
+      scriptCallback.call(null, scripts[i].name, scripts[i].files);
   }
 }
 
-function processStyles(styleCallback, copyCallback, complete){
-  var done = doneCallback(complete);
+function processStyles(styleCallback){
   for(var i=0; i<styles.length; i++){
-    styleCallback.call(null, styles[i].name, styles[i].files, done);
-  }
-  copyCallback.call(null, done);
-}
-
-function doneCallback(complete){
-  var count = scripts.length;
-  return function done(){
-    count --;
-    if(count === 0)
-      complete();
+    styleCallback.call(null, styles[i].name, styles[i].files);
   }
 }
 
