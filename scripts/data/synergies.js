@@ -230,6 +230,14 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"hawkeye", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
   { fromId:"hawkeye", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
 
+  { fromId:"moonknight", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"moonknight", fromStars:3, toId:"daredevil", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"moonknight", fromStars:3, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:20 },
+  { fromId:"moonknight", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"moonknight", fromStars:4, toId:"daredevil", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"moonknight", fromStars:4, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:25 },
+  { fromId:"moonknight", fromStars:4, toId:"ironpatriot", effectId:"critrate", effectAmount:7 },
+
   { fromId:"punisher", fromStars:2, toId:"spiderman", effectId:"critdamage", effectAmount:15 },
   { fromId:"punisher", fromStars:3, toId:"spiderman", effectId:"critdamage", effectAmount:20 },
   { fromId:"punisher", fromStars:3, toId:"rhino", effectId:"perfectblock", effectAmount:4 },
@@ -259,7 +267,7 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"abomination", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:4 },
   { fromId:"abomination", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
   { fromId:"abomination", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:5 },
-  
+
   { fromId:"antman", fromStars:2, toId:"yellowjacket", effectId:"attack", effectAmount:4 },
   { fromId:"antman", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
   { fromId:"antman", fromStars:3, toId:"yellowjacket", effectId:"attack", effectAmount:5 },
