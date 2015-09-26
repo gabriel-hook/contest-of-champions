@@ -2,8 +2,8 @@
   "name": "app-roster-screen",
   "files":[
     "./styles/fonts.css",
-    "./styles/jquery.mobile-1.4.5.css",
-    "./styles/jquery.mobile-theme-classic.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./styles/coc-jquery-mobile-theme.css",
     "./styles/coc.css",
     "./styles/coc-champion.css",
     "./styles/coc-guide.css",
@@ -20,8 +20,8 @@
   "name": "app-synergies-screen",
   "files":[
     "./styles/fonts.css",
-    "./styles/jquery.mobile-1.4.5.css",
-    "./styles/jquery.mobile-theme-classic.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./styles/coc-jquery-mobile-theme.css",
     "./styles/coc-synergies.css"
   ]
 }]
