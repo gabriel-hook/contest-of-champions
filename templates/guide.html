@@ -32,7 +32,9 @@
             <%- data.gameplay.style %>
           </div>
         <% } %>
-        <p class="selectable"><%= data.gameplay.description %></p>
+        <% if (data.gameplay.description){ %>
+          <p class="selectable"><%= data.gameplay.description %></p>
+        <% } %>
         <% if (data.gameplay.strategy){ %>
           <p class="selectable">
             <b>Strategy:</b> <%= data.gameplay.strategy %>
@@ -53,7 +55,9 @@
         <div class="selectable">
           <b><%- data.signature.name %></b>
         </div>
-        <p class="selectable"><%- data.signature.description %></p>
+        <% if (data.signature.description){ %>
+          <p class="selectable"><%= data.signature.description %></p>
+        <% } %>
         <% if (data.signature.note){ %>
           <p class="selectable">
             <b>Note:</b> <%= data.signature.note %>
@@ -66,7 +70,9 @@
         <h4>
           Heavy Attack <%= ratingSpan(data.heavy.rating) %>           
         </h4>
-        <p class="selectable"><%= data.heavy.description %></p>
+        <% if (data.heavy.description){ %>
+          <p class="selectable"><%= data.heavy.description %></p>
+        <% } %>
         <% if (data.heavy.note){ %>
           <p class="selectable">
             <b>Note:</b> <%= data.heavy.note %>
@@ -78,12 +84,14 @@
   <div class="right">
     <% if(data.specials){ %>
       <% for(var number in data.specials){ 
-        var special = data.specials[number]; %>
+        var special = data.specials[number] %>
         <div data-role="collapsible" data-collapsed="false">
           <h4>
             Special <%- number %> <%= ratingSpan(special.rating) %>            
           </h4>
-          <p class="selectable"><%= special.description %></p>
+          <% if (special.description){ %>
+            <p class="selectable"><%= special.description %></p>
+          <% } %>
           <% if (special.abilities){ %>
             <div class="selectable">
               <b>Abilities:</b> <%= joinSpans(special.abilities, abilitySpan) %>
