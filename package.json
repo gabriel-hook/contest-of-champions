@@ -31,6 +31,7 @@
     "gulp-batch": "^1.0.5",
     "gulp-concat": "^2.6.0",
     "gulp-declare": "^0.3.0",
+    "gulp-jshint": "^1.11.2",
     "gulp-jst": "^0.1.1",
     "gulp-minify-css": "^1.2.1",
     "gulp-rename": "^1.2.2",

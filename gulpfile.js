@@ -3,6 +3,7 @@
 var fs = require('fs');
 var eventstream = require('event-stream');
 var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 var watch = require('gulp-watch');
 var batch = require('gulp-batch');
 var sequence = require('gulp-sequence');
@@ -43,23 +44,23 @@ gulp.task('build:js', function(){
         .pipe(sourcemaps.init())  
         .pipe(concat(name + '.js'))
     );
-  }, function processJSON(name, json, files){
+  }, function processJSON(name, namespace, files){
     streams[name].push(gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
         .pipe(declare({
           root: 'window',
-          namespace: json,
+          namespace: namespace,
           noRedeclare: true
         }))
         .pipe(concat(name + '.js'))
     );
-  }, function processTemplate(name, template, files){
+  }, function processTemplate(name, namespace, files){
     streams[name].push(gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
         .pipe(jst())
         .pipe(declare({
           root: 'window',
-          namespace: template,
+          namespace: namespace,
           noRedeclare: true
         }))
     );
@@ -103,6 +104,15 @@ gulp.task('watch', function(){
     watch('./styles/**/*', batch(function(events, done){
       sequence('clean:css','build:css', done);
     }));
+});
+
+gulp.task('lint', function(){
+  return gulp.src([
+      './scripts/**/*.js',
+      '!./scripts/**/lib/**/*.js'
+    ])
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
 });
 
 function processScripts(scriptCallback, jsonCallback, templateCallback){
