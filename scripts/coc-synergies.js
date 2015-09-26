@@ -72,7 +72,7 @@ CoC.synergies.initialize=function(stars, roster){
           var clickEvent = document.createEvent('MouseEvents');
               clickEvent.initEvent('click', true, true);
           this.dispatchEvent(clickEvent);
-        }
+        };
       }
       
       nodes[ champion.get('uid') ] = springy.graph.newNode({
@@ -174,7 +174,7 @@ CoC.synergies.initialize=function(stars, roster){
 
   //track
   CoC.tracking.pageView();
-}
+};
 
 CoC.synergies.toggleLegend = function(){
   if($('.button.legend').hasClass('active')){
@@ -184,12 +184,12 @@ CoC.synergies.toggleLegend = function(){
     $('.button.legend').addClass('active');
   }
   CoC.synergies.updateLegend();
-}
+};
 
 CoC.synergies.updateLegend = function(){
   var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
   $('#legend').css('left', isActive? 0: -legendWidth).css("opacity", isActive? 1: 0);
-}
+};
 
 CoC.synergies.canvasResize  = function(){
   var width = window.innerWidth, 
@@ -197,7 +197,7 @@ CoC.synergies.canvasResize  = function(){
     ratio = window.devicePixelRatio || 1;
   $('canvas').attr('width', width * ratio).attr('height', height * ratio).css("width", width).css("height", height);
   CoC.synergies.updateLegend();
-}
+};
 
 var delayedResizeTimeout;
 function delayedResize(){

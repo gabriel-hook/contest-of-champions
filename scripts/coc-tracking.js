@@ -22,7 +22,7 @@ CoC.tracking.event = function(){
     return;
   var array = ['send','event'];
   for(var i=0; i<arguments.length; i++)
-    array.push(arguments[i])
+    array.push(arguments[i]);
   _gaTracker.apply(_gaTracker, array);
 };
 

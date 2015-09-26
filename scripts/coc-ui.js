@@ -1,4 +1,4 @@
-﻿var CoC = CoC || {};
+var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 
 CoC.ui.workerScriptUrl = 'js/worker-teams.min.js?1';
@@ -14,7 +14,7 @@ CoC.ui.initialize=function(){
   $("#share-googleplus").click(function(){
     CoC.tracking.event("share", "googleplus");
   });
-}
+};
 
 //View logic for pages
 CoC.ui.roster=new function(){
@@ -26,7 +26,7 @@ CoC.ui.roster=new function(){
       el: $("#roster")[0]
     });
     this._initialized = true;
-  }
+  };
   
   this.popup=function(element, champion){
   
@@ -43,9 +43,9 @@ CoC.ui.roster=new function(){
       return string;
     })());
     if(champion.get("awakened") > 0)
-      $("#roster-configure-stars").addClass("awakened")
+      $("#roster-configure-stars").addClass("awakened");
     else
-      $("#roster-configure-stars").removeClass("awakened")
+      $("#roster-configure-stars").removeClass("awakened");
 
       
     $(".roster-configure-guide").unbind("click").bind("click",function(e){
@@ -79,7 +79,7 @@ CoC.ui.roster=new function(){
     for(var i = 1, ranks = champion.ranks(); i<=ranks; i++)
       $("#roster-configure-rank").append($("<option>").val(i).text(i));
     $("#roster-configure-rank").unbind("change").change(function(e){
-      var value = parseInt(e.target.value, 10)
+      var value = parseInt(e.target.value, 10);
       champion.set("rank", value);
       champion.set("level", 1);
       champion.save();
@@ -136,14 +136,14 @@ CoC.ui.roster=new function(){
     
     $('#popup-roster-configure').popup("open",{
       positionTo:$(element)
-    })
+    });
   
-  }
+  };
   
   this.render=function(){
     this.view.render();
-  }
-}
+  };
+};
 
 CoC.ui.add=new function(){
   
@@ -154,26 +154,26 @@ CoC.ui.add=new function(){
     this.view = new CoC.view.AddChampionsView({
       el: $("#add-champions")[0]
     });
-    this.view.stars(this._stars)
+    this.view.stars(this._stars);
     this._initialized = true;
-  }
+  };
 
   this.setStars=function(stars){
     this._stars = stars;
-    this.view.stars(this._stars)
+    this.view.stars(this._stars);
     this.render();
-  }
+  };
   
   this.render=function(){
     this.view.render();
     $("#page-add #add-stars button").removeClass("ui-btn-active");
     $("#page-add #add-stars button[stars=" + this._stars + "]").addClass("ui-btn-active");
-  }
+  };
   
   this.show=function(){
     //nothing to do here
-  }
-}
+  };
+};
 CoC.ui.teams=new function(){
   var useWorkers = window.Worker !== undefined && 
     !(window.location.protocol == "file:" && navigator.userAgent.toLowerCase().indexOf('chrome') > -1);
@@ -186,7 +186,7 @@ CoC.ui.teams=new function(){
       el: $("#teams")[0]
     });
     this._initialized = true;
-  }
+  };
 
   this.empty = true;
  
@@ -198,13 +198,13 @@ CoC.ui.teams=new function(){
     this.view.teams(result.teams);
     this.view.extras(result.extras);
     this.view.render();
-  }
+  };
   
   this.initWorker=function(){
     if(!useWorkers)
       return;  
     this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
-  }
+  };
   
   this.getWorker=function(){
     if(!useWorkers)
@@ -213,7 +213,7 @@ CoC.ui.teams=new function(){
     this._currentWorker = this._nextWorker || new Worker(CoC.ui.workerScriptUrl);
     this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
     return this._currentWorker
-  }
+  };
   
   this.destroyWorker=function(){
     if(!useWorkers)
@@ -222,7 +222,7 @@ CoC.ui.teams=new function(){
       this._currentWorker.terminate();
       delete this._currentWorker;
     }
-  }
+  };
   
   this.build=function(){
     $("#teams").addClass("dirty");
@@ -330,8 +330,8 @@ CoC.ui.teams=new function(){
         },0);
       },0);
     }
-  }
-}
+  };
+};
 CoC.ui.guides=new function(){
 
   this.initialized = false;
@@ -350,21 +350,21 @@ CoC.ui.guides=new function(){
       this.show();
 
     this._initialized = true;
-  }
+  };
   
   this.open=function(uid){
     this._uid = uid;
     $.mobile.changePage("#page-guide",{
       transition:"fade"
     });
-  }
+  };
 
   this.render=function(){
     if(!this.view)
       return;
       
     this.view.render();
-  }
+  };
   
   this.show=function(){
     if(!this.view){
@@ -382,14 +382,14 @@ CoC.ui.guides=new function(){
     this.view.enable();
     this.view.reload();
     this.view.select(uid);
-  }
+  };
   
   this.hide=function(){
     if(!this.view)
       return;
     this.view.disable();
-  }
-}
+  };
+};
 CoC.ui.crystals=new function(){
   
   this.initialize=function(){
@@ -399,12 +399,12 @@ CoC.ui.crystals=new function(){
       el: $("#crystals")[0]
     });
     this._initialized = true;
-  }
+  };
   
   this.render=function(){
     this.view.render();
   }
-}
+};
 
 //Load onboarding when appropriate
 $("#page-roster").on("pageshow", function() {
@@ -433,14 +433,14 @@ CoC.ui.hasSelection=function(){
       text = document.selection.createRange().text;
   }
   return text.length > 0;
-}
+};
 CoC.ui.clearSelection=function(){
   if ( document.selection ) {
     document.selection.empty();
   } else if ( window.getSelection ) {
     window.getSelection().removeAllRanges();
   }
-}
+};
 
 //Make swipes move to the next screen
 $(document).on("pagecreate", "#page-roster", function() {

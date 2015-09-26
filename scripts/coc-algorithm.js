@@ -35,7 +35,7 @@ CoC.algorithm = CoC.algorithm || {};
             return value;
           })(preselect.length? size - preselect.length: size),
           callback:options.progress
-        }
+        };
 
       if(preselect.length > 0){      
         if(preselect.length > size){
@@ -68,7 +68,7 @@ CoC.algorithm = CoC.algorithm || {};
             }
             else break;
           }
-        } while(team != null)
+        } while(team !== null);
         
         //check if we have enough
         var needed = 0;

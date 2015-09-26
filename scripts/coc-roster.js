@@ -30,7 +30,7 @@ CoC.roster.initialize = function(){
             greater = this._order[i].map[ one.get(this._order[i].field) ] > this._order[i].map[ another.get(this._order[i].field) ];
           }
           else{
-            greater = one.get(this._order[i].field) > another.get(this._order[i].field)
+            greater = one.get(this._order[i].field) > another.get(this._order[i].field);
           }
           
           if (greater) {
@@ -55,12 +55,12 @@ CoC.roster.initialize = function(){
     else
       champion.destroy();
   });
-}
+};
 
 CoC.roster.clear = function(){
   while(CoC.data.roster.length > 0)
     CoC.data.roster.first().destroy();
-}
+};
 
 CoC.roster.filtered = function(){
   var filterStars = {
@@ -73,10 +73,10 @@ CoC.roster.filtered = function(){
   return CoC.data.roster.filter(function(champion){
     return filterStars[champion.get("stars")];
   });
-}
+};
 
 CoC.roster.csvExport=function(separator, filename){
-  var separator = separator || '\n', array = []
+  var array = [];
   //add headers
   array.push([
     "Id",
@@ -95,7 +95,7 @@ CoC.roster.csvExport=function(separator, filename){
       champion.get("awakened")
     ].join(','));
   });
-  return array.join(separator);
+  return array.join(separator || '\n');
 };
   
 CoC.roster.csvImport=function(csv, filename){
