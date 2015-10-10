@@ -12,8 +12,9 @@ var rename = require("gulp-rename");
 var declare = require('gulp-declare');
 var jst = require('gulp-jst');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+var minifyJs = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
+var minifyHtml = require('gulp-htmlmin');
 var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
@@ -63,6 +64,13 @@ gulp.task('build:js', function(){
   }, function processTemplate(name, namespace, files){
     streams[name].push(gulp.src(files, { base: './' })
         .pipe(sourcemaps.init())
+        .pipe(minifyHtml({
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeAttributeQuotes: true
+        }))
         .pipe(jst())
         .pipe(declare({
           root: 'window',
@@ -76,7 +84,7 @@ gulp.task('build:js', function(){
   for(var key in streams){
     var stream = eventstream.merge(streams[key])
         .pipe(concat(key + '.js'))
-        .pipe(conditional(!DEVELOPMENT, uglify({ 
+        .pipe(conditional(!DEVELOPMENT, minifyJs({ 
           mangle: true,
           compress: true
         })))
