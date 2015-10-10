@@ -1,8 +1,8 @@
 [{
-  "name": "app-initial",
+  "name": "app-roster",
   "files":[
     "./node_modules/jquery/dist/jquery.js",
-    "./node_modules/jquery-mobile/dist/jquery.mobile.js"
+    "./node_modules/underscore/underscore.js"
   ]
 },{
   "name": "app-roster",
@@ -15,7 +15,8 @@
 },{
   "name": "app-roster",
   "files":[
-    "./node_modules/underscore/underscore.js",
+    "./scripts/app-roster-core.js",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
     "./scripts/lib/purl.js",
@@ -46,12 +47,25 @@
     "./scripts/coc-roster.js",
     "./scripts/coc-preset.js",
     "./scripts/coc-ui.js",
-    "./scripts/app-roster.js"
+    "./scripts/app-roster-init.js"
   ]
 },{
   "name": "app-synergies",
   "files":[
-    "./node_modules/underscore/underscore.js",
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/underscore/underscore.js"
+  ]
+},{
+  "name": "app-synergies",
+  "template": "CoC.data.template",
+  "files":[
+    "./templates/app-synergies.html"
+  ]
+},{
+  "name": "app-synergies",
+  "files":[
+    "./scripts/app-synergies-core.js",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
     "./scripts/springy/springy.js",
@@ -67,7 +81,7 @@
     "./scripts/coc-tracking.js",
     "./scripts/coc-synergies.js",
     "./scripts/coc-roster.js",
-    "./scripts/app-synergies.js"
+    "./scripts/app-synergies-init.js"
   ]
 },{
   "name": "worker-teams",

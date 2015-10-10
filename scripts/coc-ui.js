@@ -4,7 +4,7 @@ CoC.ui = CoC.ui || {};
 CoC.ui.workerScriptUrl = 'build/worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
 
 CoC.ui.initialize=function(){
-  $("#popup-share").css('display','block').enhanceWithin().popup();
+  $("#popup-share").enhanceWithin().popup();
   $("#share-facebook").click(function(){
     CoC.tracking.event("share", "facebook");
   });

@@ -1,0 +1,58 @@
+<div id="popup-share" 
+  data-role="popup" 
+  data-tolerance="0,0"
+  data-corners="false"
+  data-theme="c" 
+  data-overlay-theme="a"
+  data-transition="slidedown">
+  <ul data-role="listview">
+    <li data-role="list-divider">Share to...</li>
+    <li>
+      <a id="share-facebook" class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/synergies" target="_blank">
+        <img src="images/share/facebook_32.png" class="ui-li-icon ui-corner-none">
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a id="share-twitter" class="share-button" href="https://twitter.com/share?url=http://tiny.cc/synergies" target="_blank">
+        <img src="images/share/twitter_32.png" class="ui-li-icon ui-corner-none">
+        Twitter
+      </a>
+    </li>
+    <li>
+      <a id="share-googleplus" class="share-button" href="https://plus.google.com/share?url=http://tiny.cc/synergies" target="_blank">
+        <img src="images/share/googleplus_32.png" class="ui-li-icon ui-corner-none">
+        Google+
+      </a>
+    </li>
+    <li data-role="list-divider">Tools</li>
+    <li>
+      <a href="/contest-of-champions/" target="_blank">
+        <img src="images/icon.png" class="ui-li-icon ui-corner-none">
+        Roster Manager
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="page" data-role="page" data-theme="b">
+  <div class="header">
+    <div class="buttons">
+      <a class="ui-btn button stars" href="?stars=1" stars="1" data-ajax="false"><span class="narrow">1 ★</span><span class="wide">★</span></a>
+      <a class="ui-btn button stars" href="?stars=2" stars="2" data-ajax="false"><span class="narrow">2 ★</span><span class="wide">★ ★</span></a>
+      <a class="ui-btn button stars" href="?stars=3" stars="3" data-ajax="false"><span class="narrow">3 ★</span><span class="wide">★ ★ ★</span></a>
+      <a class="ui-btn button stars" href="?stars=4" stars="4" data-ajax="false"><span class="narrow">4 ★</span><span class="wide">★ ★ ★ ★</span></a>
+      <a class="ui-btn button stars" href="?stars=5" stars="5" data-ajax="false"><span class="narrow">5 ★</span><span class="wide">★ ★ ★ ★ ★</span></a>
+    </div>
+    <div class="ui-btn button legend"><span class="on">-</span><span class="off">+</span></div>
+    <a class="ui-btn button share" href="#popup-share"
+      data-rel="popup">
+      <span>s</span>
+    </a>
+  </div>
+  <canvas style="width:100%; height:100%;"></canvas>
+  <div id="legend"></div>
+  <div id="roster-hint">
+    Use the roster manager tool to add more <span id="roster-hint-stars"></span> champions to your roster.
+  </div>
+</div>

@@ -124,7 +124,7 @@ CoC.synergies.initialize=function(stars, roster){
   }
   
   //enable share popup with tracking
-  $( "#popup-share" ).css('display','block').enhanceWithin().popup();
+  $( "#popup-share" ).enhanceWithin().popup();
   $("#share-facebook").click(function(){
     CoC.tracking.event("share", "facebook");
   });
