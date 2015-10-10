@@ -7,6 +7,7 @@ CoC.synergies.initialize=function(stars, roster){
   console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
   
   var nodeSelected = function(nodes, edges){
+    var i;
     $('#legend div').removeClass('selected');
     $('#legend div span').text("");
     if(nodes.length === 0){
@@ -14,12 +15,12 @@ CoC.synergies.initialize=function(stars, roster){
     }
     else if(edges !== undefined){
       $('#legend').addClass('selected');
-      for(var i=0; i<edges.length; i++){
+      for(i=0; i<edges.length; i++){
         $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
       }
       if(nodes.length > 1){
         var amounts = {};
-        for(var i=0; i<edges.length; i++)
+        for(i=0; i<edges.length; i++)
           amounts[ edges[i].data.effect ] = edges[i].data.amount + 
             (amounts[ edges[i].data.effect ] || 0);
         for(var effect in amounts)
@@ -60,8 +61,8 @@ CoC.synergies.initialize=function(stars, roster){
     nodes = {}, effects = {};
   
   //add nodes
-  var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars });
-  for(var i=0; i<champions.length; i++)
+  var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars }), i;
+  for(i=0; i<champions.length; i++)
     (function(champion){
 
       var hasSynergies = roster || 
@@ -108,7 +109,7 @@ CoC.synergies.initialize=function(stars, roster){
     nodeTo.data.effects[effectId] = true;
   }
   var synergies = CoC.data.synergies.where({ fromStars:stars });
-  for(var i=0; i<synergies.length; i++){
+  for(i=0; i<synergies.length; i++){
     var synergy = synergies[i];
     if(nodes[ synergy.get("fromId") ] === undefined || nodes[ synergy.get("toId") ] === undefined)
       continue;

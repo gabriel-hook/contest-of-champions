@@ -31,13 +31,13 @@ CoC.view.RosterView = Backbone.View.extend({
     if(view === undefined){
       view = new CoC.view.ChampionView({
         model:champion
-      })
+      });
       view.render();
       champion.bind("change", function(){
         view.render();
       });
       champion.bind("destroy", function(){
-        delete that._championViews[fid]
+        delete that._championViews[fid];
       });
       this._championViews[fid] = view;
     }

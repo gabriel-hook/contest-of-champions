@@ -29,6 +29,7 @@ CoC.ui.roster=new function(){
   };
   
   this.popup=function(element, champion){
+    var i;
   
     $(element).addClass("selected");
     $('#popup-roster-configure').one("popupafterclose", function(){
@@ -76,7 +77,7 @@ CoC.ui.roster=new function(){
     }
     
     $("#roster-configure-rank").empty();
-    for(var i = 1, ranks = champion.ranks(); i<=ranks; i++)
+    for(i = 1, ranks = champion.ranks(); i<=ranks; i++)
       $("#roster-configure-rank").append($("<option>").val(i).text(i));
     $("#roster-configure-rank").unbind("change").change(function(e){
       var value = parseInt(e.target.value, 10);
@@ -91,7 +92,7 @@ CoC.ui.roster=new function(){
     
     $("#roster-configure-awakened").empty();
     $("#roster-configure-awakened").append($("<option>").val(0).text("None"));
-    for(var i = 1; i<=99; i++)
+    for(i = 1; i<=99; i++)
       $("#roster-configure-awakened").append($("<option>").val(i).text(i));
     $("#roster-configure-awakened").unbind("change").change(function(e){
       var value = parseInt(e.target.value, 10);
@@ -119,7 +120,7 @@ CoC.ui.roster=new function(){
     
     $("#roster-delete-confirm-name").attr("class", champion.get("typeId")).text(champion.get("name"));
     $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
-    for(var i=0; i<champion.get("stars");i++)
+    for(i=0; i<champion.get("stars");i++)
       $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
     $("#roster-delete-confirm-yes").unbind("click").click(function(e){
       e.preventDefault();
@@ -212,7 +213,7 @@ CoC.ui.teams=new function(){
     this.destroyWorker();
     this._currentWorker = this._nextWorker || new Worker(CoC.ui.workerScriptUrl);
     this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
-    return this._currentWorker
+    return this._currentWorker;
   };
   
   this.destroyWorker=function(){
@@ -253,6 +254,7 @@ CoC.ui.teams=new function(){
       
         //Setup and start the worker
         worker.onmessage=function(event){
+          var i, j;
           if(event.data.type === "progress"){
             var current = event.data.current;
             var max = event.data.max;
@@ -277,17 +279,17 @@ CoC.ui.teams=new function(){
             var result = {};
             if(event.data.result.teams !== undefined){
               result.teams=[];
-              for(var i=0; i<event.data.result.teams.length; i++){
+              for(i=0; i<event.data.result.teams.length; i++){
                 var team = [];
-                for(var j=0; j<event.data.result.teams[i].length; j++)
-                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ))
+                for(j=0; j<event.data.result.teams[i].length; j++)
+                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ));
                 result.teams.push(team);
               }
             }
             if(event.data.result.extras !== undefined){
               result.extras=[];
-              for(var i=0; i<event.data.result.extras.length; i++)
-                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ))
+              for(i=0; i<event.data.result.extras.length; i++)
+                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ));
             }
             
             $("#team-build-progress input").val(10000).slider("refresh");
@@ -313,7 +315,7 @@ CoC.ui.teams=new function(){
         workerWorking = true;
       }
       catch(e){
-        console.error(e)
+        console.error(e);
       }
     }
 
@@ -403,24 +405,24 @@ CoC.ui.crystals=new function(){
   
   this.render=function(){
     this.view.render();
-  }
+  };
 };
 
 //Load onboarding when appropriate
 $("#page-roster").on("pageshow", function() {
   if(CoC.data.roster.length === 0){
-    $("#onboarding-roster").addClass("show")
+    $("#onboarding-roster").addClass("show");
     $("#page-roster").one("click",function(){
-      $("#onboarding-roster").removeClass("show")
-    })
+      $("#onboarding-roster").removeClass("show");
+    });
   }
 });
 $("#page-teams").on("pageshow", function() {
   if(CoC.ui.teams.empty && $("#team-build-progress").hasClass("hidden")){
-    $("#onboarding-teams").addClass("show")
+    $("#onboarding-teams").addClass("show");
     $("#page-teams").one("click",function(){
-      $("#onboarding-teams").removeClass("show")
-    })
+      $("#onboarding-teams").removeClass("show");
+    });
   }
 });
 
@@ -513,9 +515,9 @@ $("#page-roster").on("pagecreate",function(){
           var result = e.target.result;
           CoC.roster.csvImport(result, file.name || undefined);
           CoC.ui.roster.render();
-        }
+        };
         reader.readAsText(file);
-        $(this).val("")
+        $(this).val("");
       }
     });
     $('#roster-import').click(function(){
@@ -532,9 +534,10 @@ $("#page-roster").on("pagecreate",function(){
   
   //csv exporter
   $('#roster-export').click(function(){
+    var csvRoster;
     console.log("exporting to csv...");
     if (isInternetExplorer()){
-      var csvRoster = CoC.roster.csvExport('\r\n');
+      csvRoster = CoC.roster.csvExport('\r\n');
       rosterExportFrame.document.open("text/html", "replace");
       rosterExportFrame.document.write('sep=,\r\n' + csvRoster);
       rosterExportFrame.document.close();
@@ -542,7 +545,7 @@ $("#page-roster").on("pagecreate",function(){
       rosterExportFrame.document.execCommand('SaveAs', true, 'champions.csv');
     }
     else{
-      var csvRoster = CoC.roster.csvExport();
+      csvRoster = CoC.roster.csvExport();
       $('#roster-export').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     }
     $('#panel-roster-options').panel("close");
@@ -581,7 +584,7 @@ $("#page-roster").on("pagecreate",function(){
       CoC.settings.setValue("roster-sort", sort);
       setAscendingDescending();
       CoC.ui.roster.render();
-    })
+    });
     element.prop("checked", (CoC.settings.getValue("roster-sort") === sort)? true: false).checkboxradio('refresh');
     setAscendingDescending();
   });
@@ -611,7 +614,7 @@ $("#page-add").on("pagecreate",function(){
       CoC.ui.add.setStars(stars);
     });
   });
-})
+});
 $("#page-teams").on("pagecreate", function() {
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
   for(var i in CoC.algorithm)
@@ -624,7 +627,9 @@ $("#page-teams").on("pagecreate", function() {
   
   var teamSettingsSize = $('input:radio[name=build-settings-size]');
   teamSettingsSize.filter('[value='+CoC.settings.getValue("build-size")+']').prop("checked", true).checkboxradio("refresh");
-  teamSettingsSize.change(function(){ CoC.settings.setValue("build-size",this.value) });
+  teamSettingsSize.change(function(){ 
+    CoC.settings.setValue("build-size",this.value); 
+  });
     
   function enableResultOptions(){
     var algorithm = CoC.settings.getValue("build-algorithm");    
@@ -656,7 +661,7 @@ $("#page-teams").on("pagecreate", function() {
   }).prop("checked", CoC.settings.getValue("build-quest-group") === true).checkboxradio('refresh');
     
   $('#build-settings-extras').change(function(){
-    CoC.settings.setValue("build-include-extras", this.checked) 
+    CoC.settings.setValue("build-include-extras", this.checked);
   }).prop("checked", CoC.settings.getValue("build-include-extras") === true).checkboxradio('refresh');
     
   var filters = [
@@ -666,14 +671,14 @@ $("#page-teams").on("pagecreate", function() {
     'build-filter-stars-4',
     'build-filter-stars-5'
   ];
-  for(var i=0; i<filters.length; i++)
+  for(var f=0; f<filters.length; f++)
     (function(filter){
       $('#'+filter).change(function(){
         CoC.settings.setValue(filter, this.checked);
       })
       .prop("checked", CoC.settings.getValue(filter)? true: false)
       .checkboxradio('refresh');
-    })(filters[i]);
+    })(filters[f]);
     
   enableResultOptions();
   
@@ -692,7 +697,7 @@ $("#page-settings-advanced").on("pagecreate", function() {
     $(id).val(value * 100).slider("refresh").change(function(){
       CoC.settings.setWeight(type, parseInt(this.value) / 100.0);
       $(presetId).val(null).selectmenu("refresh");
-    })
+    });
     sliders[type]=id;
   }
   enableSlider("synergies", "attack");
@@ -713,7 +718,7 @@ $("#page-settings-advanced").on("pagecreate", function() {
     var value = CoC.settings.getValue(type);
     $(id).prop("checked", value).checkboxradio("refresh").change(function(){
       CoC.settings.setValue(type, this.checked);
-    })
+    });
     checkboxes[type]=id;
   }
   enableCheckbox("#settings-advanced-levels","build-levels");
@@ -733,14 +738,14 @@ $("#page-settings-advanced").on("pagecreate", function() {
     CoC.settings.preset.apply("defaults", function(key, value){
       var slider = $(sliders[key]);
       if(slider.length){
-        slider.val(value * 100).slider("refresh")
+        slider.val(value * 100).slider("refresh");
         return true;
       }
       return false;
     }, function(key, value){
       var checkbox = $(checkboxes[key]);
       if(checkbox.length){
-        checkbox.prop("checked",value).checkboxradio("refresh")
+        checkbox.prop("checked",value).checkboxradio("refresh");
         return true;
       }
       return false;
@@ -752,7 +757,7 @@ $("#page-settings-advanced").on("pagecreate", function() {
     CoC.settings.preset.apply(this.value, function(key, value){
       var slider = $(sliders[key]);
       if(slider.length){
-        slider.val(value * 100).slider("refresh")
+        slider.val(value * 100).slider("refresh");
         return true;
       }
       return false;

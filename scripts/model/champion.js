@@ -32,7 +32,7 @@ CoC.model = CoC.model || {};
       ranks: 5
     }
     //TODO: 5-star values
-  }
+  };
 
   CoC.model.Champion = Backbone.Model.extend({
     defaults: {
@@ -98,14 +98,14 @@ CoC.model = CoC.model || {};
     
     portrait:function(){
       if(this._portrait === undefined){
-        this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png'
+        this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png';
       }
       return this._portrait;
     },
     
     image:function(){
       if(this._image === undefined){
-        this._image = 'images/champions/fullsize_'+this.get('uid')+'.png'
+        this._image = 'images/champions/fullsize_'+this.get('uid')+'.png';
       }
       return this._image;
     },
@@ -122,7 +122,7 @@ CoC.model = CoC.model || {};
         this._crystals = [];
         var ccs = CoC.data.crystalChampions.find({ championId:this.get("uid"), championStars:this.get("stars") });
         for(var i=0; i<ccs.length; i++)
-          this._crystals.push(ccs.crystal())
+          this._crystals.push(ccs.crystal());
       }
       return this._crystals;
     },
@@ -133,7 +133,7 @@ CoC.model = CoC.model || {};
       if(!other)
         return false;
       this.set("name", other.get("name"));
-      this.set("shortname", other.get("shortname"))
+      this.set("shortname", other.get("shortname"));
       this.set("typeId", other.get("typeId"));
       this.set("stars", parseInt(this.get("stars"), 10) || 1);
       this.set("rank", parseInt(this.get("rank"), 10) || 1);

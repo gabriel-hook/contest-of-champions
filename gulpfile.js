@@ -115,8 +115,22 @@ gulp.task('lint', function(){
       './scripts/**/*.js',
       '!./scripts/**/lib/**/*.js'
     ])
-      .pipe(jshint())
-      .pipe(jshint.reporter('default'))
+      .pipe(jshint({
+        "indent": 2,
+        "white": true,
+        "node": true,
+        "undef": true,
+        "unused": true,
+        "-W014": true,
+        "-W057": false,
+        "-W058": false,
+        "-W069": false,
+        "-W083": false,
+        "-W098": false,
+        "-W117": false,
+        "expr": true
+      }))
+      .pipe(jshint.reporter('default', { verbose: true }))
 });
 
 function processScripts(scriptCallback, jsonCallback, templateCallback){

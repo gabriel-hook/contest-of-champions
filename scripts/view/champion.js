@@ -42,5 +42,5 @@ CoC.view = CoC.view || {};
 
     image.addClass('loaded');
     placeholder.addClass('loaded');
-  }
+  };
 })();

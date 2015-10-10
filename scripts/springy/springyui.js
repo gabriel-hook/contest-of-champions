@@ -58,7 +58,7 @@ jQuery.fn.springy = function(params) {
       if(!this.loaded && context.measureText("wE arE reaDY.").width !== wrongSize)
         this.loaded = true;
       return this.loaded;
-    }
+    };
   };
 
   function doResize(){
@@ -100,7 +100,7 @@ jQuery.fn.springy = function(params) {
 
   var getCoordinate = function(x, y){
     return new Springy.Vector(x, y).multiply(pixelRatio);
-  }
+  };
 
   function graphShake(){
     layout.eachNode(function(node, point){
@@ -148,6 +148,7 @@ jQuery.fn.springy = function(params) {
       updateSelected([ node ]);
   }
   function boxSelected(selectType){
+    var i, index;
     //select the first 5 closest to the start point and inside
     var x1 = Math.min(selection.start.x, selection.end.x) | 0,
     y1 = Math.min(selection.start.y, selection.end.y) | 0,
@@ -169,20 +170,20 @@ jQuery.fn.springy = function(params) {
     array.sort(function(a, b){
       return b.distanceSquared - a.distanceSquared;
     });
-    for(var i=0; i<array.length; i++)
+    for(i=0; i<array.length; i++)
       array[i] = array[i].node;
 
     if(selectType === "add"){
-      for(var i=0; i<selection.before.length; i++){
-        var index = array.indexOf(selection.before[i]);
+      for(i=0; i<selection.before.length; i++){
+        index = array.indexOf(selection.before[i]);
         if(index !== -1)
           array.splice(index, 1);
         array.push(selection.before[i]);
       }
     }
     if(selectType === "toggle"){
-      for(var i=0; i<selection.before.length; i++){
-        var index = array.indexOf(selection.before[i]);
+      for(i=0; i<selection.before.length; i++){
+        index = array.indexOf(selection.before[i]);
         if(index !== -1)
           array.splice(index, 1);
         else
@@ -196,14 +197,16 @@ jQuery.fn.springy = function(params) {
     updateSelected([]);
   }
   function updateSelected(array){
+    var i;
+
     if(array.length > maxTeamSize)
       array = array.slice(-maxTeamSize);
 
-    for(var i=0; i<selected.length; i++)
+    for(i=0; i<selected.length; i++)
       selected[i].selected = false;
 
     selected = array;
-    for(var i=0; i<selected.length; i++){
+    for(i=0; i<selected.length; i++){
       var point = layout.point(selected[i]);
       if(point)
         point.m = activeMass;
@@ -211,18 +214,20 @@ jQuery.fn.springy = function(params) {
     }
   }
   function updateNodesSelected(){
+    var i, j, k;
+
     if (nodeSelected){
       var selectedEdges = [];
-      for(var i=0,edge; i<graph.edges.length; i++){
+      for(i=0,edge; i<graph.edges.length; i++){
         edge = graph.edges[i];
         if(selected.length > 1){
-          for(var j=0; j<selected.length; j++)
-            for(var k=0; k<selected.length; k++)
+          for(j=0; j<selected.length; j++)
+            for(k=0; k<selected.length; k++)
               if(selected[j] === edge.source && selected[k] === edge.target)
                 selectedEdges.push(edge);
         } 
         else{
-          for(var j=0; j<selected.length; j++)
+          for(j=0; j<selected.length; j++)
             if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
               selectedEdges.push(edge);
         }
@@ -310,7 +315,7 @@ jQuery.fn.springy = function(params) {
   
   function pointerEnd(clicked, selectType){
     selection = null;
-    if(dragged != null){
+    if(dragged !== null){
       if(moved < 10){
         switch(selectType){
           case "add":
@@ -361,7 +366,7 @@ jQuery.fn.springy = function(params) {
     },
     timeout: 0,
     timeoutDelay:1000
-  }
+  };
 
   $(canvas).on('dblclick', function(e) {
     if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
@@ -448,8 +453,8 @@ jQuery.fn.springy = function(params) {
   $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
     var state = '';
     if(selection)
-      state = 'selecting'
-    else if(dragged != null)
+      state = 'selecting';
+    else if(dragged !== null)
       state = 'dragging';
     else{
       if(findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top)))
@@ -497,16 +502,16 @@ jQuery.fn.springy = function(params) {
   };
   nodeImageQueue.push = function(id, callback){
     nodeImageQueue.insert(id, callback, 'push');
-  }
+  };
   nodeImageQueue.unshift = function(id, callback){
     nodeImageQueue.insert(id, callback, 'unshift');
-  }
+  };
   nodeImageQueue.insert = function(id, callback, method){
     nodeImageQueue.todo[id] = callback;
     nodeImageQueue.list[method].call(nodeImageQueue.list, id);
     if(!nodeImageQueue.timeout)
       nodeImageQueue.next();
-  }
+  };
   nodeImageQueue.next = function(){
     if(nodeImageQueue.list.length === 0)
       return;
@@ -518,7 +523,7 @@ jQuery.fn.springy = function(params) {
       todo.call(null);
       nodeImageQueue.next();
     }, 25);
-  }
+  };
 
   function addPortaitImages(src, image, color){
     //build the image 
@@ -601,19 +606,19 @@ jQuery.fn.springy = function(params) {
         context.fill();
         placeholders[size] = canvas;
       }
-      var canvas = document.createElement('canvas'),
-      context = canvas.getContext('2d'),
-      barHeight = Math.max(2, (size / 10) | 0);
+      var barHeight = Math.max(2, (size / 10) | 0);
+      canvas = document.createElement('canvas');
+      context = canvas.getContext('2d');
       canvas.height = canvas.width = size;
       context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
       context.fillStyle = color || "#000";
       context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
       placeholders[id] = canvas;
     }
-    return placeholders[id]
+    return placeholders[id];
   }
 
-  function getPortraitSizeTarget(number){
+  var getPortraitSizeTarget = function(number){
     var list = {};
     getPortraitSizeTarget = function(number){
       if(list[number] === undefined){
@@ -625,9 +630,9 @@ jQuery.fn.springy = function(params) {
         list[number] = i;
       }
       return list[number];
-    }
+    };
     return getPortraitSizeTarget(number);
-  }
+  };
 
   //we cache the best sized portrait with type bar
   Springy.Node.prototype.setPortraitImage = function(size){
@@ -666,12 +671,14 @@ jQuery.fn.springy = function(params) {
     }
     if(!portrait){
       portrait = getPlaceholder(size, color);
-      hitmask = getHitmask('portrait', function(){ return getPlaceholder(256) });
+      hitmask = getHitmask('portrait', function(){ 
+        return getPlaceholder(256); 
+      });
     }
 
     this.image = portrait;
     this.hitmask = hitmask;
-  }
+  };
 
   Springy.Node.prototype.setPortraitText = function() {
     if(!this.text || this.text.font != nodeFont || (!this.text.ready && this.text.ready !== nodeFont.isReady())){
@@ -706,7 +713,7 @@ jQuery.fn.springy = function(params) {
       this.text.font = nodeFont;
       this.text.ready = nodeFont.isReady();
     }
-  }
+  };
 
   var renderer = this.renderer = new Springy.Renderer(layout,
     function clear() {
@@ -928,7 +935,7 @@ jQuery.fn.springy = function(params) {
       center: new Springy.Vector((x + size / 2) | 0, (y + size / 2) | 0),
       size:size 
     };
-  }
+  };
 
   // return true if inside BB and not over a 0 opacity pixel
   Springy.Node.prototype.containsPoint = function(point, y) {
@@ -947,11 +954,11 @@ jQuery.fn.springy = function(params) {
         return this.hitmask.opaque[px][py];
     }
     return false;
-  }
+  };
 
   Springy.Node.prototype.containsPointRaw = function(x, y) {
     return this.hitmask.opaque[x | 0][y | 0];
-  }
+  };
 
   Springy.Node.prototype.overlappingBoundingBox = function(node) {
     return this.bb && node.bb &&
@@ -959,7 +966,7 @@ jQuery.fn.springy = function(params) {
     this.bb.bottomRight.x >= node.bb.topLeft.x &&
     this.bb.topLeft.y <= node.bb.bottomRight.y && 
     this.bb.bottomRight.y >= node.bb.topLeft.y;
-  }
+  };
 
   Springy.Node.prototype.overlapping = function(node) {
     if(this.overlappingBoundingBox(node)){
@@ -990,25 +997,25 @@ jQuery.fn.springy = function(params) {
       return true;
     }
     return false;
-  }
+  };
 
   Springy.Node.prototype.distanceSquared = function(x, y) {
     if(!this.bb)
       return null;
     var dx = this.bb.center.x - x, dy = this.bb.center.y - y;
     return dx*dx + dy*dy;
-  }
+  };
 
   Springy.Node.prototype.isSelected = function() {
     return this.selected;
-  }
+  };
 
   Springy.Node.prototype.isSelectedNeighbor = function() {
     for(var i=0; i<selected.length; i++)
       if(selected[i].data.neighbors[ this.id ])
         return true;
       return false;
-    }
+  };
 
   Springy.Node.prototype.getSize = function() {
     var canvasSize = Math.min(canvasWidth, canvasHeight),
@@ -1016,7 +1023,7 @@ jQuery.fn.springy = function(params) {
     if(this.isSelected())
       size *= 1.5;
     return size;
-  }
+  };
 
   //find the nearest edge of the image, assuming end is inside of node
   Springy.Node.prototype.intersection = function(outside, inside){
@@ -1041,10 +1048,10 @@ jQuery.fn.springy = function(params) {
 
     //scale and move back to relative position
     return last.divide(this.hitmask.size).multiply(this.bb.size).add(this.bb.topLeft);
-  }
+  };
 
   renderer.start();
   return this;
-}
+};
 
 })();

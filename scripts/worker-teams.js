@@ -7,6 +7,7 @@ onmessage = function (event){
     quest = event.data.quest,
     extras = event.data.extras,
     update = event.data.update;
+  var i, j;
   
   if(!CoC.algorithm[algorithm]){
     postMessage({ type:"failed", message:"Algorithm not found" });
@@ -20,7 +21,7 @@ onmessage = function (event){
     if(value === undefined || value === null)
       return 1;
     return value;
-  }
+  };
 
   CoC.settings.getDuplicateWeight=function(number){
     if(CoC.settings.getDuplicateWeight.keys === undefined)
@@ -29,9 +30,9 @@ onmessage = function (event){
         3:"duplicates-3",
         4:"duplicates-4",
         5:"duplicates-5"
-      }
+      };
     return CoC.settings.getWeight(CoC.settings.getDuplicateWeight.keys[number]);
-  }
+  };
   
   //Build progress function (update only every %update)
   var lastTime = (new Date()).getTime(),
@@ -50,7 +51,7 @@ onmessage = function (event){
   
   //Convert Champion JSON to models
   var roster = [];
-  for(var i=0; i<rosterJSON.length; i++)
+  for(i=0; i<rosterJSON.length; i++)
     roster.push(new CoC.model.Champion( rosterJSON[i] ));
 
   //Get result from algorithm
@@ -65,11 +66,11 @@ onmessage = function (event){
 
   //Convert Champion models to JSON
   if(result.teams)
-    for(var i=0; i<result.teams.length; i++)
-      for(var j=0; j<result.teams[i].length; j++)
+    for(i=0; i<result.teams.length; i++)
+      for(j=0; j<result.teams[i].length; j++)
         result.teams[i][j] = result.teams[i][j].toJSON();
   if(result.extras)
-    for(var i=0; i<result.extras.length; i++)
+    for(i=0; i<result.extras.length; i++)
       result.extras[i] = result.extras[i].toJSON();
   
   postMessage({ type:"complete", result:result });

@@ -8,12 +8,12 @@ CoC.view.CrystalsViewHelpers={
     //convert $CURRENCY$ strings to images
     return crystal.get("description").replace(
       /([0-9]+)\s*[$]([A-Z]+)[$]/gi, function(match, amount, currency){
-        return "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/"+currency.toLowerCase()+".png\" />"+amount+"</span>"
+        return "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/"+currency.toLowerCase()+".png\" />"+amount+"</span>";
       }
     );
   }
   
-}
+};
 
 CoC.view.CrystalsView = Backbone.View.extend({
   template: CoC.data.template.crystals,

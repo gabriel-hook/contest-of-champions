@@ -7,13 +7,13 @@ function checkStars(search, key){
   return (search === query + stars)? stars: false;
 }
 var stars;
-if(stars = checkStars(location.search, 'roster')){
+if((stars = checkStars(location.search, 'roster')) !== false){
   CoC.roster.initialize();
   $('.page').on('pageshow', function(){
       CoC.synergies.initialize(stars, true);
   });
 }
-else if(stars = checkStars(location.search, 'stars')){
+else if((stars = checkStars(location.search, 'stars')) !== false){
   $('.page').on('pageshow', function(){
       CoC.synergies.initialize(stars);
   });

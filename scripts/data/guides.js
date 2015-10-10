@@ -35,7 +35,7 @@ CoC.data.guides = CoC.data.guides || {};
     _(uids).each(function(uid){
       callback.call(CoC.data.guides, map[uid]);
     });
-  }
+  };
 
   CoC.data.guides.get = function(uid){
     return map[uid];

@@ -90,6 +90,7 @@ CoC.view.TeamView = Backbone.View.extend({
       return;
     }
   
+    var effect;
     var synergyCount = 0;
   
     this._teams = [];
@@ -98,16 +99,16 @@ CoC.view.TeamView = Backbone.View.extend({
       for(var a=0; a<champions.length; a++)
         for(var b=0; b<champions.length; b++)
           if(a !== b){
-            var synergy = CoC.data.synergies.findWhere({ fromId:champions[a].get("uid"), fromStars:champions[a].get("stars"), toId:champions[b].get("uid") })
+            var synergy = CoC.data.synergies.findWhere({ fromId:champions[a].get("uid"), fromStars:champions[a].get("stars"), toId:champions[b].get("uid") });
             if(synergy !== undefined){
               synergyCount++;
-              var effect = synergies[synergy.get("effectId")];
+              effect = synergies[synergy.get("effectId")];
               if(effect === undefined){
                 effect = synergies[synergy.get("effectId")]={
                   uid:synergy.get("effectId"),
                   amount:0,
                   champions:{}
-                }
+                };
               }
               effect.amount += synergy.get("effectAmount");
               effect.champions[synergy.get("fromId")] = true;
@@ -116,7 +117,7 @@ CoC.view.TeamView = Backbone.View.extend({
           }
       effects = [];
       for(var s in synergies){
-        var effect = CoC.data.effects.findWhere({ uid:synergies[s].uid }).clone();
+        effect = CoC.data.effects.findWhere({ uid:synergies[s].uid }).clone();
         effect.set("amount", synergies[s].amount);
         effect.championIds(synergies[s].champions);
         effects.push(effect);

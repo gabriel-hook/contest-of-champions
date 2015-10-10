@@ -137,11 +137,11 @@
 		for (var i = 0; i < arguments.length; i++) {
 			var e = arguments[i];
 			var node1 = this.nodeSet[e[0]];
-			if (node1 == undefined) {
+			if (node1 === undefined) {
 				throw new TypeError("invalid node name: " + e[0]);
 			}
 			var node2 = this.nodeSet[e[1]];
-			if (node2 == undefined) {
+			if (node2 === undefined) {
 				throw new TypeError("invalid node name: " + e[1]);
 			}
 			var attr = e[2];
@@ -196,7 +196,7 @@
 			this.addNodes.apply(this, json['nodes']);
 			this.addEdges.apply(this, json['edges']);
 		}
-	}
+	};
 
 
 	// find the edges from node1 to node2
@@ -253,7 +253,7 @@
 				}
 
 				// Clean up empty edge arrays
-				if (this.adjacency[x][y].length == 0) {
+				if (this.adjacency[x][y].length === 0) {
 					delete this.adjacency[x][y];
 				}
 			}
@@ -441,7 +441,7 @@
 						if(point.m < point.mass)
 							point.delta = -point.delta;
 					}
-					point.m -= point.delta
+					point.m -= point.delta;
 				}
 			}
 		});
@@ -584,7 +584,7 @@
 
   Layout.ForceDirected.prototype.stop = function() {
   	this._stop = true;
-  }
+  };
 
   Layout.ForceDirected.prototype.tick = function(timestep) {
   	this.decayMasses();
@@ -644,25 +644,25 @@
 
 	Vector.prototype.clone = function(){
 		return new Vector(this.x, this.y);
-	}
+	};
 
 	Vector.prototype.bound = function(minimum, maximum){
 		this.x = Math.max(minimum, Math.min(maximum, this.x));
 		this.y = Math.max(minimum, Math.min(maximum, this.y));
 		return this;
-	}
+	};
 
 	Vector.prototype.set = function(x, y){
 		this.x = x;
 		this.y = y;
 		return this;
-	}
+	};
 
 	Vector.prototype.copy = function(v2){
 		this.x = v2.x;
 		this.y = v2.y;
 		return this;
-	}
+	};
 
 	Vector.prototype.add = function(v2) {
 		this.x += v2.x;
@@ -763,11 +763,11 @@
 	 	this.onRenderStop = onRenderStop;
 	 	this.onRenderStart = onRenderStart;
 	 	this.layout.graph.addGraphListener(this);
-	 }
+	};
 
-	 Renderer.prototype.graphChanged = function(e) {
-	 	this.start();
-	 };
+	Renderer.prototype.graphChanged = function(e) {
+		this.start();
+	};
 
 	/**
 	 * Starts the simulation of the layout in use.
@@ -782,6 +782,8 @@
 	Renderer.prototype.start = function(done) {
 	 	var t = this;
 	 	this.layout.start(function render() {
+	 		var i;
+
 	 		t.clear();
 			//build arrays of functions to process
 			var opsBefore = [], opsAfter = [];
@@ -813,9 +815,9 @@
 				return a.zindex - b.zindex;
 			});
 			//process the rendering functions
-			for(var i=0; i<opsBefore.length; i++)
+			for(i=0; i<opsBefore.length; i++)
 				opsBefore[i].func.apply(t, opsBefore[i].args);
-			for(var i=0; i<opsAfter.length; i++)
+			for(i=0; i<opsAfter.length; i++)
 				opsAfter[i].func.apply(t, opsAfter[i].args);
 			t.drawOverlay();
 		}, this.onRenderStop, this.onRenderStart);
@@ -830,7 +832,7 @@ Renderer.prototype.stop = function() {
 	if ( !Array.prototype.forEach ) {
 		Array.prototype.forEach = function( callback, thisArg ) {
 			var T, k;
-			if ( this == null ) {
+			if ( this === null ) {
 				throw new TypeError( " this is null or not defined" );
 			}
 			var O = Object(this);

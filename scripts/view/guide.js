@@ -41,7 +41,7 @@ CoC.view.GuideViewHelpers={
     if(data === undefined)
       return "";
   
-    string = ""
+    string = "";
     
     for(var i=0; i<data.champions.length; i++){
       if(i > 0)
@@ -86,6 +86,7 @@ CoC.view.GuideViewHelpers={
   },
   
   crystals:function(uid){
+    var i;
     if(this._crystals === undefined)
       this._crystals = [];
     var crystals = this._crystals[uid];
@@ -93,7 +94,7 @@ CoC.view.GuideViewHelpers={
       var map = {},
         ids = [],
         ccs = CoC.data.crystalChampions.where({ championId:uid });
-      for(var i=0; i<ccs.length; i++){
+      for(i=0; i<ccs.length; i++){
         var crystal = ccs[i].crystal(),
           champion = ccs[i].champion(),
           name = crystal.get("name");
@@ -107,7 +108,7 @@ CoC.view.GuideViewHelpers={
         map[name].champions.push( champion );
       }
       crystals = [];
-      for(var i=0; i<ids.length; i++)
+      for(i=0; i<ids.length; i++)
         crystals.push(map[ids[i]]);
       this._crystals[uid] = crystals;
     }
@@ -115,19 +116,20 @@ CoC.view.GuideViewHelpers={
   },
   
   synergiesFrom:function(uid){
+    var key, old, i;
     var synergies = this._synergiesFrom[uid], from;
     if(synergies === undefined){
       synergies = CoC.data.synergies.where({ fromId:uid });
       
       from = {};
-      for(var i=0; i<synergies.length; i++){
-        var key = synergies[i].get("toId"),
-          old = from[key];
+      for(i=0; i<synergies.length; i++){
+        key = synergies[i].get("toId");
+        old = from[key];
         if(!old || old.from().get("stars") >= synergies[i].from().get("stars"))
           from[key]=synergies[i];
       }
       synergies = [];
-      for(var key in from)
+      for(key in from)
         synergies.push(from[key]);
         
       this._synergiesFrom[uid] = synergies;
@@ -137,21 +139,22 @@ CoC.view.GuideViewHelpers={
   _synergiesFrom:{},
   
   synergiesTo:function(uid){
+    var key, old, i;
     var synergies = this._synergiesTo[uid], to;
     if(synergies === undefined){
       synergies = CoC.data.synergies.where({ toId:uid });
       
       to = {};
 
-      for(var i=0; i<synergies.length; i++){
-        var key = synergies[i].get("fromId"),
-          old = to[key];
+      for(i=0; i<synergies.length; i++){
+        key = synergies[i].get("fromId");
+        old = to[key];
         if(!old || old.to().get("stars") < synergies[i].to().get("stars"))
           to[key]=synergies[i];
       }
         
       synergies = [];
-      for(var key in to)
+      for(key in to)
         synergies.push(to[key]);
         
       this._synergiesTo[uid] = synergies;

@@ -21,7 +21,7 @@ CoC.model.CrystalChampion = Backbone.Model.extend({
     
     //If we can't load this champion it probably wasn't defined.
     if(this._champion === undefined)
-      console.error(this.toJSON())
+      console.error(this.toJSON());
     
     return this._champion;
   }
