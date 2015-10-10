@@ -223,6 +223,14 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"daredevil", fromStars:4, toId:"superiorironman", effectId:"critdamage", effectAmount:25 },
   { fromId:"daredevil", fromStars:4, toId:"blackwidow", effectId:"powergain", effectAmount:5 },
 
+  { fromId:"elektra", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"elektra", fromStars:3, toId:"daredevil", effectId:"powergain", effectAmount:4 },
+  { fromId:"elektra", fromStars:3, toId:"blackwidow", effectId:"critdamage", effectAmount:20 },
+  { fromId:"elektra", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"elektra", fromStars:4, toId:"daredevil", effectId:"powergain", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"deadpool", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"blackwidow", effectId:"critdamage", effectAmount:25 },
+
   { fromId:"hawkeye", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
   { fromId:"hawkeye", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
   { fromId:"hawkeye", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
@@ -331,8 +339,11 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
 
   { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
+  { fromId:"yellowjacket", fromStars:2, toId:"ultron", effectId:"critdamage", effectAmount:15 },
   { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
+  { fromId:"yellowjacket", fromStars:3, toId:"ultron", effectId:"critdamage", effectAmount:20 },
   { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
+  { fromId:"yellowjacket", fromStars:4, toId:"ultron", effectId:"critdamage", effectAmount:25 },
   
   { fromId:"drstrange", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
   { fromId:"drstrange", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
