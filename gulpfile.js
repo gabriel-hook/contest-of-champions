@@ -20,6 +20,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
 
+console.log(minifyCss)
+
 var DEVELOPMENT = util.env.dev;
 
 gulp.task('default', sequence('clean', 'build'));
@@ -72,11 +74,14 @@ gulp.task('build:js', function(){
   var combined = [];
   for(var key in streams){
     var stream = eventstream.merge(streams[key])
-        .pipe(concat(key + '.min.js'))
+        .pipe(concat(key + '.js'))
         .pipe(conditional(!DEVELOPMENT, uglify({ 
-          mangle: true
+          mangle: true,
+          compress: true
         })))
-        .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { includeContent:true })))
+        .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
+          includeContent:true 
+        })))
         .pipe(gulp.dest('./build'));
     combined.push(stream);
   }
@@ -92,9 +97,14 @@ gulp.task('build:css', function(){
     streams.push(gulp.src(files, { base: './' })
         .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
-          .pipe(concat(name + '.min.css'))
-          .pipe(conditional(!DEVELOPMENT, minifyCss()))
-          .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { includeContent:true })))
+          .pipe(concat(name + '.css'))
+          .pipe(conditional(!DEVELOPMENT, minifyCss({
+            keepSpecialComments: 0,
+            roundingPrecision: -1
+          })))
+          .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
+            includeContent:true 
+          })))
           .pipe(gulp.dest('./build'))
     );
   });

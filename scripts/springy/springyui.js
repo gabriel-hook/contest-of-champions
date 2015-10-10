@@ -214,11 +214,11 @@ jQuery.fn.springy = function(params) {
     }
   }
   function updateNodesSelected(){
-    var i, j, k;
+    var i, j, k, edge;
 
     if (nodeSelected){
       var selectedEdges = [];
-      for(i=0,edge; i<graph.edges.length; i++){
+      for(i=0; i<graph.edges.length; i++){
         edge = graph.edges[i];
         if(selected.length > 1){
           for(j=0; j<selected.length; j++)
