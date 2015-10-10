@@ -1,7 +1,7 @@
 var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 
-CoC.ui.workerScriptUrl = 'build/worker-teams.js?1';
+CoC.ui.workerScriptUrl = 'build/worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
 
 CoC.ui.initialize=function(){
   $("#popup-share").css('display','block').enhanceWithin().popup();
