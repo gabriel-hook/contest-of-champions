@@ -1,6 +1,5 @@
 'use strict';
 
-var fs = require('fs');
 var eventstream = require('event-stream');
 var gulp = require('gulp');
 var util = require('gulp-util');
@@ -10,7 +9,6 @@ var batch = require('gulp-batch');
 var sequence = require('gulp-sequence');
 var rename = require("gulp-rename");
 var rimraf = require('gulp-rimraf');
-var wrap = require('gulp-wrap');
 var declare = require('gulp-declare');
 var jst = require('gulp-jst');
 var concat = require('gulp-concat');
@@ -19,8 +17,6 @@ var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
-
-console.log(minifyCss)
 
 var DEVELOPMENT = util.env.dev;
 
