@@ -12,7 +12,7 @@ CoC.algorithm = CoC.algorithm || {};
     this.canQuest = true;
 
     this.build=function(options){
-      var i, j, o, t, team;
+      var i, j, o, t, team, index;
       var size = parseInt(options.size, 10), teams = {}, list = [], preselect = [], typeWeights = [], progress = null;
       preProcess(options.champions, list, typeWeights, options.levels);
       
@@ -95,7 +95,7 @@ CoC.algorithm = CoC.algorithm || {};
         };
         
         //add into existing teams, using the comparison to find best partner
-        for(i=teams.length-1, index; i>=0; i--){
+        for(i=teams.length-1; i>=0; i--){
           if(teams[i].champions.length < size){
             team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, size, typeWeights, progress);
             if(team){
@@ -121,12 +121,12 @@ CoC.algorithm = CoC.algorithm || {};
     };
     
     function preProcess(champions, list, typeWeights, useLevels){
-      var i;
+      var i, champion, synergies;
 
       for(i=2; i<=5; i++)
         typeWeights[i] = CoC.settings.getDuplicateWeight(i);
         
-      for(i=0, champion, synergies; i<champions.length; i++){
+      for(i=0; i<champions.length; i++){
         champion = champions[i];
         
         synergies = {};
@@ -404,7 +404,8 @@ CoC.algorithm = CoC.algorithm || {};
               if(getTeamValue(array, i) === 0)
                 empty = i;
             if(empty !== -1){
-              for(i=0, tmp; i<size && forceExtras+i<array.length; i++){
+              var tmp;
+              for(i=0; i<size && forceExtras+i<array.length; i++){
                 tmp = array[empty+i];
                 array[empty+i] = array[forceExtras+i];
                 array[forceExtras+i] = tmp;
@@ -954,7 +955,7 @@ CoC.algorithm = CoC.algorithm || {};
       
       var svalue = 0;
       var synergies = getSynergies(champions, synergiesMap);
-      for(i=0 ;i<synergies.length; i++)
+      for(i=0; i<synergies.length; i++)
         svalue += synergies[i].value;
         
       if(svalue === 0)
