@@ -2,4 +2,6 @@
   display: block;
   position: fixed;
   top: 0 !important;
+  right: 0 !important;
+  left: inherit !important;
 }
