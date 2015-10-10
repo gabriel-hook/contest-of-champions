@@ -5,6 +5,7 @@
     "./node_modules/jquery-mobile/dist/jquery.mobile.css",
     "./styles/coc-jquery-mobile-theme.css",
     "./styles/coc.css",
+    "./styles/coc-share.css",
     "./styles/coc-champion.css",
     "./styles/coc-guide.css",
     "./styles/coc-crystal.css",
@@ -22,6 +23,7 @@
     "./styles/fonts.css",
     "./node_modules/jquery-mobile/dist/jquery.mobile.css",
     "./styles/coc-jquery-mobile-theme.css",
+    "./styles/coc-share.css",
     "./styles/coc-synergies.css"
   ]
 }]
