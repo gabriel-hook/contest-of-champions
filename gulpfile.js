@@ -3,8 +3,9 @@
 var fs = require('fs');
 var eventstream = require('event-stream');
 var gulp = require('gulp');
+var util = require('gulp-util');
+var conditional = require('gulp-if');
 var jshint = require('gulp-jshint');
-var watch = require('gulp-watch');
 var batch = require('gulp-batch');
 var sequence = require('gulp-sequence');
 var rename = require("gulp-rename");
@@ -18,6 +19,8 @@ var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var scripts = require('./scripts.json');
 var styles = require('./styles.json');
+
+var DEVELOPMENT = util.env.dev;
 
 gulp.task('default', sequence('clean', 'build'));
 
@@ -70,10 +73,10 @@ gulp.task('build:js', function(){
   for(var key in streams){
     var stream = eventstream.merge(streams[key])
         .pipe(concat(key + '.min.js'))
-        .pipe(uglify({ 
+        .pipe(conditional(!DEVELOPMENT, uglify({ 
           mangle: true
-        }))
-        .pipe(sourcemaps.write('.', { includeContent:true }))
+        })))
+        .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { includeContent:true })))
         .pipe(gulp.dest('./build'));
     combined.push(stream);
   }
@@ -90,19 +93,19 @@ gulp.task('build:css', function(){
         .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
           .pipe(concat(name + '.min.css'))
-          .pipe(minifyCss())
-        .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./build'))
+          .pipe(conditional(!DEVELOPMENT, minifyCss()))
+          .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { includeContent:true })))
+          .pipe(gulp.dest('./build'))
     );
   });
   return eventstream.merge(streams);
 });
 
 gulp.task('watch', function(){
-    watch('./scripts/**/*', batch(function(events, done){
+    gulp.watch('./scripts/**/*', batch(function(events, done){
       sequence('clean:js','build:js', done);
     }));
-    watch('./styles/**/*', batch(function(events, done){
+    gulp.watch('./styles/**/*', batch(function(events, done){
       sequence('clean:css','build:css', done);
     }));
 });

@@ -65,11 +65,17 @@ Distinct
   To build the current source into minified js and css, run with [Gulp](http://gulpjs.com/)
 
 ```
-  $ gulp
+  $ gulp build
 ```
 
-  To build as you modify
+  To build quickly without minification and sourcemaps
 
 ```
-  $ gulp watch
+  $ gulp build --dev
+```
+
+  To watch for changes and refresh in browser on code changes
+
+```
+  $ gulp watch --dev
 ```
