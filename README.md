@@ -79,3 +79,9 @@ Distinct
 ```
   $ gulp watch --dev
 ```
+
+  To check JS style and validation
+
+```
+  $ gulp lint
+```
