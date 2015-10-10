@@ -11,7 +11,15 @@
 },{
   "name": "app-roster",
   "template": "CoC.data.template",
-  "files": "./templates/**/*.html"
+  "files": [
+    "./templates/app-roster.html",
+    "./templates/champion.html",
+    "./templates/crystals.html",
+    "./templates/guide-select-optgroup.html",
+    "./templates/guide-select-option.html",
+    "./templates/guide.html",
+    "./templates/teams.html"
+  ]
 },{
   "name": "app-roster",
   "files":[
