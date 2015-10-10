@@ -63,6 +63,13 @@ CoC.synergies.initialize=function(stars, roster){
   var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars });
   for(var i=0; i<champions.length; i++)
     (function(champion){
+
+      var hasSynergies = roster || 
+        CoC.data.synergies.where({ fromId:champion.get('uid'), fromStars:stars }).length ||
+        CoC.data.synergies.where({ fromStars:stars, toId:champion.get('uid') }).length;
+      if(!hasSynergies)
+        return;
+
       var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
       $(document.body).append(link);
       
