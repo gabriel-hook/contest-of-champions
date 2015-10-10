@@ -40,7 +40,7 @@ gulp.task('build:js', function(){
   //get the streams
   processScripts(function processScript(name, files){
     streams[name].push(gulp.src(files, { base: './' })
-        .pipe(rename(excludeNpmPaths))  
+        .pipe(rename(excludeNpmPaths.bind(null, 'scripts/lib/')))  
         .pipe(sourcemaps.init())  
         .pipe(concat(name + '.js'))
     );
@@ -87,6 +87,7 @@ gulp.task('build:css', function(){
   processStyles(function(name, files){
     //regular multiple css minification
     streams.push(gulp.src(files, { base: './' })
+        .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
@@ -132,8 +133,8 @@ function processStyles(styleCallback){
   }
 }
 
-function excludeNpmPaths(path){
+function excludeNpmPaths(override, path){
   if(path.dirname.indexOf('node_modules') === 0){
-    path.dirname = 'scripts/lib/';
+    path.dirname = override;
   }
 }
