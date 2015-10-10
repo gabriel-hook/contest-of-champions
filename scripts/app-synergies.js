@@ -3,7 +3,7 @@ function checkStars(search, key){
   if(search.indexOf(query) !== 0)
     return false;
   value = parseInt(location.search.substr(query.length), 10);
-  stars = Math.min(4, Math.max(1, value)) || 2;
+  stars = Math.min(5, Math.max(1, value)) || 2;
   return (search === query + stars)? stars: false;
 }
 var stars;
