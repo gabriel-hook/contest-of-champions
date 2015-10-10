@@ -93,7 +93,6 @@ CoC.algorithm = CoC.algorithm || {};
           return l;
         }
         
-        
         //add into existing teams, using the comparison to find best partner
         for(var i=teams.length-1, index; i>=0; i--){
           var team;

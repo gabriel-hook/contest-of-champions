@@ -52,7 +52,7 @@ onmessage = function (event){
   var roster = [];
   for(var i=0; i<rosterJSON.length; i++)
     roster.push(new CoC.model.Champion( rosterJSON[i] ));
-  
+
   //Get result from algorithm
   var result = CoC.algorithm[algorithm].build({ 
     champions:roster, 
