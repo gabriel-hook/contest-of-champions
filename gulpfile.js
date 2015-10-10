@@ -23,11 +23,11 @@ gulp.task('default', sequence('clean', 'build'));
 
 gulp.task('clean', ['clean:js','clean:css']);
 gulp.task('clean:js', function(){
-  return gulp.src('./js/*', { read: false })
+  return gulp.src('./build/*', { read: false })
     .pipe(rimraf({ force: true }));
 });
 gulp.task('clean:css', function(){
-  return gulp.src('./css/*', { read: false })
+  return gulp.src('./build/*', { read: false })
     .pipe(rimraf({ force: true }));
 });
 
@@ -74,7 +74,7 @@ gulp.task('build:js', function(){
           mangle: true
         }))
         .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./js'));
+        .pipe(gulp.dest('./build'));
     combined.push(stream);
   }
   return eventstream.merge(combined);
@@ -82,7 +82,7 @@ gulp.task('build:js', function(){
 gulp.task('build:css', function(){
   var streams = [];
   streams.push(gulp.src('./styles/fonts/*')
-      .pipe(gulp.dest('./css/fonts'))
+      .pipe(gulp.dest('./build/fonts'))
   );
   processStyles(function(name, files){
     //regular multiple css minification
@@ -91,7 +91,7 @@ gulp.task('build:css', function(){
           .pipe(concat(name + '.min.css'))
           .pipe(minifyCss())
         .pipe(sourcemaps.write('.', { includeContent:true }))
-        .pipe(gulp.dest('./css'))
+        .pipe(gulp.dest('./build'))
     );
   });
   return eventstream.merge(streams);
