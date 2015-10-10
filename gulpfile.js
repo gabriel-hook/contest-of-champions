@@ -1,5 +1,6 @@
 'use strict';
 
+var del = require('del');
 var eventstream = require('event-stream');
 var gulp = require('gulp');
 var util = require('gulp-util');
@@ -8,7 +9,6 @@ var jshint = require('gulp-jshint');
 var batch = require('gulp-batch');
 var sequence = require('gulp-sequence');
 var rename = require("gulp-rename");
-var rimraf = require('gulp-rimraf');
 var declare = require('gulp-declare');
 var jst = require('gulp-jst');
 var concat = require('gulp-concat');
@@ -24,12 +24,17 @@ gulp.task('default', sequence('clean', 'build'));
 
 gulp.task('clean', ['clean:js','clean:css']);
 gulp.task('clean:js', function(){
-  return gulp.src('./build/*', { read: false })
-    .pipe(rimraf({ force: true }));
+  return del([
+    './build/*.js',
+    './build/*.js.map'
+  ]);
 });
 gulp.task('clean:css', function(){
-  return gulp.src('./build/*', { read: false })
-    .pipe(rimraf({ force: true }));
+  return del([
+    './build/*.css',
+    './build/*.css.map',
+    './build/fonts/'
+  ]);
 });
 
 gulp.task('build', ['build:js', 'build:css']);
