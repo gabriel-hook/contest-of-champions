@@ -20,10 +20,10 @@
     <meta property="og:url" content="http://tiny.cc/champions" />
     <meta property="og:site_name" content="Champions" />
     <!-- all external stylesheets -->
-    <link rel="stylesheet" href="css/app-roster-screen.min.css?1" media="all">
-    <link rel="stylesheet" href="css/app-roster-print.min.css?1" media="print">
+    <link rel="stylesheet" href="build/app-roster-screen.min.css?1" media="all">
+    <link rel="stylesheet" href="build/app-roster-print.min.css?1" media="print">
     <!-- initial scripts -->
-    <script type="text/javascript" src="js/app-initial.min.js"></script>
+    <script type="text/javascript" src="build/app-initial.min.js"></script>
   </head>
   <body>
     
@@ -136,10 +136,9 @@
         
         <fieldset data-role="controlgroup" data-mini="true">
           <h2>Filter</h2>
-        <!--
+
           <input type="checkbox" name="roster-filter-stars-5" id="roster-filter-stars-5">
           <label for="roster-filter-stars-5">★ ★ ★ ★ ★</label>
-        -->
           <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
           <label for="roster-filter-stars-4">★ ★ ★ ★</label>
           <input type="checkbox" name="roster-filter-stars-3" id="roster-filter-stars-3">
@@ -263,6 +262,7 @@
             <li><button stars="2" data-theme="c">2 ★</button></li>
             <li><button stars="3" data-theme="c">3 ★</button></li>
             <li><button stars="4" data-theme="c">4 ★</button></li>
+            <li><button stars="5" data-theme="c">5 ★</button></li>
           </ul>
         </div>
       </div>
@@ -312,10 +312,8 @@
           <label for="build-filter-stars-3">3 ★</label>
           <input type="checkbox" name="build-filter-stars-4" id="build-filter-stars-4">
           <label for="build-filter-stars-4">4 ★</label>
-        <!--
           <input type="checkbox" name="build-filter-stars-5" id="build-filter-stars-5">
           <label for="build-filter-stars-5">5 ★</label>
-        -->
         </fieldset> 
 
         <label>Algorithm</label>
@@ -595,6 +593,6 @@
     </svg>
     
     <!-- application script -->
-    <script type="text/javascript" src="js/app-roster.min.js?1"></script>
+    <script type="text/javascript" src="build/app-roster.min.js?1"></script>
   </body>
 </html>
