@@ -2,6 +2,9 @@
 CoC.view = CoC.view || {};
 
 CoC.view.GuideViewHelpers={
+
+  string: CoC.lang.string,
+  model: CoC.lang.model,
   
   gradeSpan:function(grade){
     if(grade === undefined)
@@ -63,7 +66,7 @@ CoC.view.GuideViewHelpers={
     if(availability === undefined)
       return "";
     var id = "availability-"+availability.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+availability+" Crystal</span>";
+    return "<span class=\""+id+"\">"+availability+" "+ CoC.lang.string('crystal') +"</span>";
   },
   
   joinSpans:function(list, render){

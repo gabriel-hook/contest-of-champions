@@ -48,7 +48,18 @@ CoC.model = CoC.model || {};
       gradeAwakened: 0,
       quest: false
     },
-    
+
+    constructor: function() {
+      Backbone.Model.apply(this, arguments);
+      var uid = this.get('uid');
+      var name = CoC.lang.model('champion-'+uid+'-name');
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname');
+      if(name)
+        this.set('name', name);
+      if(shortname)
+        this.set('shortname', shortname);
+    },
+
     value:function(){
       var stars = this.get("stars"), 
         rank = this.get("rank"), 
@@ -127,13 +138,11 @@ CoC.model = CoC.model || {};
       return this._crystals;
     },
     
-    //dirty way to migrate to new data model using uid/stars as given
+    //clean an import's variable types
     update:function(){
       var other = CoC.data.champions.findWhere({ uid:this.get("uid"), stars:this.get("stars") });
       if(!other)
         return false;
-      this.set("name", other.get("name"));
-      this.set("shortname", other.get("shortname"));
       this.set("typeId", other.get("typeId"));
       this.set("stars", parseInt(this.get("stars"), 10) || 1);
       this.set("rank", parseInt(this.get("rank"), 10) || 1);

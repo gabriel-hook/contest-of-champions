@@ -154,8 +154,7 @@ CoC.synergies.initialize=function(stars, roster){
   
   //enable legend
   if(roster && champions.length === 0){
-    $("#roster-hint").addClass("active");
-    $("#roster-hint-stars").text(Array(stars + 1).join("★"));
+    $("#onboarding-synergies").addClass("active");
   }
 
   if(_.isEmpty(effects))
@@ -166,19 +165,14 @@ CoC.synergies.initialize=function(stars, roster){
   }
 
   //enable stars buttons
-  $(".button[stars="+stars+"]").addClass("ui-btn-a");
-  if(!roster){
-    $(".button[stars="+stars+"]").attr('href','?roster='+stars);
-  }
-  else{    
-    $(".button[stars]").each(function(button){
-      var el = $(this), s = el.attr("stars");
-      if(stars === parseInt(s,10))
-        el.addClass("ui-btn-e");
-      else
-        el.attr('href','?roster='+s);
-    });
-  }
+  $(".button[stars="+stars+"]").addClass(roster? "ui-btn-e": "ui-btn-a");
+  $(".button[stars]").each(function(button){
+    var el = $(this), s = el.attr("stars");
+    if(stars !== parseInt(s,10))
+      el.attr('href', searchQuery(roster? 'roster': 'stars', s));
+    else
+      el.attr('href', searchQuery(roster? 'stars': 'roster', s));
+  });
 
   //track
   CoC.tracking.pageView();

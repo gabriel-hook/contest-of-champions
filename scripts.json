@@ -1,5 +1,8 @@
 [{
   "name": "app-roster",
+  "files": "./scripts/lang/*.js"
+},{
+  "name": "app-roster",
   "files":[
     "./node_modules/jquery/dist/jquery.js",
     "./node_modules/underscore/underscore.js"
@@ -59,6 +62,9 @@
   ]
 },{
   "name": "app-synergies",
+  "files": "./scripts/lang/*.js"
+},{
+  "name": "app-synergies",
   "files":[
     "./node_modules/jquery/dist/jquery.js",
     "./node_modules/underscore/underscore.js"
@@ -91,6 +97,9 @@
     "./scripts/coc-roster.js",
     "./scripts/app-synergies-init.js"
   ]
+},{
+  "name": "worker-teams",
+  "files": "./scripts/lang/*.js"
 },{
   "name": "worker-teams",
   "files":[

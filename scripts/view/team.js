@@ -125,9 +125,9 @@ CoC.view.TeamView = Backbone.View.extend({
       this._teams.push({ champions:champions, effects:effects });
     }
     
-    this._message = "Found "+this._teams.length+" "+(this._teams.length === 1?"Team":"Teams");
+    this._message = CoC.lang.string('found')+" "+this._teams.length+" "+CoC.lang.string('teams');
     if(synergyCount > 0)
-      this._message += " with "+synergyCount+" Synergies";
+      this._message += " "+CoC.lang.string('with')+" "+synergyCount+" "+CoC.lang.string('synergies');
     else
       this._message += ".";
     
@@ -140,6 +140,7 @@ CoC.view.TeamView = Backbone.View.extend({
   
   render: function(){
     this.$el.html(this.template({
+      string:CoC.lang.string,
       message:this._message,
       size:this._size,
       teams:this._teams,

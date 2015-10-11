@@ -6,30 +6,30 @@
   data-overlay-theme="a"
   data-transition="slidedown">
   <ul data-role="listview">
-    <li data-role="list-divider">Share to...</li>
+    <li data-role="list-divider"><%= string('share-to') %>...</li>
     <li>
       <a id="share-facebook" class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/synergies" target="_blank">
         <img src="images/share/facebook_32.png" class="ui-li-icon ui-corner-none">
-        Facebook
+        <%= string('facebook') %>
       </a>
     </li>
     <li>
       <a id="share-twitter" class="share-button" href="https://twitter.com/share?url=http://tiny.cc/synergies" target="_blank">
         <img src="images/share/twitter_32.png" class="ui-li-icon ui-corner-none">
-        Twitter
+        <%= string('twitter') %>
       </a>
     </li>
     <li>
       <a id="share-googleplus" class="share-button" href="https://plus.google.com/share?url=http://tiny.cc/synergies" target="_blank">
         <img src="images/share/googleplus_32.png" class="ui-li-icon ui-corner-none">
-        Google+
+        <%= string('google') %>+
       </a>
     </li>
-    <li data-role="list-divider">Tools</li>
+    <li data-role="list-divider"><%= string('tools') %></li>
     <li>
-      <a href="/contest-of-champions/" target="_blank">
+      <a href="/contest-of-champions/<%= search %>" target="_blank">
         <img src="images/icon.png" class="ui-li-icon ui-corner-none">
-        Roster Manager
+        <%= string('roster-manager') %>
       </a>
     </li>
   </ul>
@@ -52,7 +52,7 @@
   </div>
   <canvas style="width:100%; height:100%;"></canvas>
   <div id="legend"></div>
-  <div id="roster-hint">
-    Use the roster manager tool to add more <span id="roster-hint-stars"></span> champions to your roster.
+  <div id="onboarding-synergies">
+    <%= string('onboarding-synergies') %>
   </div>
 </div>

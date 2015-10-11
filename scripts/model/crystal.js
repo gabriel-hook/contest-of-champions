@@ -7,6 +7,17 @@ CoC.model.Crystal = Backbone.Model.extend({
     image:"crystal"
   },
 
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('crystal-'+uid+'-name');
+    var description = CoC.lang.model('crystal-'+uid+'-description');
+    if(name)
+      this.set('name', name);
+    if(description)
+      this.set('description', description);
+  },
+
   image:function(){
     if(this._image === undefined){
       this._image = 'images/crystals/crystal_'+this.get('image')+'.png';

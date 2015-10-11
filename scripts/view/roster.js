@@ -70,7 +70,7 @@ CoC.view.RosterView = Backbone.View.extend({
     
     //add the message view
     els.unshift(new CoC.view.MessageView({
-      model:{ message: rosterCount+" of "+CoC.data.roster.length+" Champions" }
+      model:{ message: rosterCount+" "+CoC.lang.string('of')+" "+CoC.data.roster.length+" "+ CoC.lang.string('champions') }
     }).render().el);
     
     this.$el.empty();

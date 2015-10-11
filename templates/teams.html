@@ -21,7 +21,7 @@
 <% }); %>
 <% if(extras){ %>
   <div id="extras" style="clear:both">
-    <h3>Extras</h3>
+    <h3><%= string('extras') %></h3>
     <% _(extras).each(function(champion){ %>
       <%= renderChampion(champion) %>
     <% }) %>

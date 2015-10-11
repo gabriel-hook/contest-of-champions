@@ -6,10 +6,10 @@
     </h2>
     <% if(data.grades){ %>
       <div class="selectable bold">
-        Grade:<%= ' ' + gradeSpan(data.grades.normal) %>
+        <%= string('grade') %>:<%= ' ' + gradeSpan(data.grades.normal) %>
       </div>
       <div class="selectable bold">
-        Awakened:<%= ' ' + gradeSpan(data.grades.awakened) %>
+        <%= string('awakened') %>:<%= ' ' + gradeSpan(data.grades.awakened) %>
       </div>
     <% } %>
     <% if (data.description){ %>
@@ -17,7 +17,7 @@
     <% } %>
     <% if (data.unavailable){ %>
       <p class="bold">
-        Coming Soon!
+        <%= string('coming-soon') %>
       </p>
     <% } %>
   </div>
@@ -25,7 +25,8 @@
     <% if(data.gameplay){ %>
       <div data-role="collapsible" data-collapsed="false">
         <h4>
-          Gameplay <%= ratingSpan(data.gameplay.rating) %>           
+          <%= string('gameplay') %>
+          <%= ratingSpan(data.gameplay.rating) %>           
         </h4>
         <% if (data.gameplay.style){ %>
           <div class="selectable bold">
@@ -37,12 +38,12 @@
         <% } %>
         <% if (data.gameplay.strategy){ %>
           <p class="selectable">
-            <b>Strategy:</b><%= ' ' + data.gameplay.strategy %>
+            <b><%= string('strategy') %>:</b><%= ' ' + data.gameplay.strategy %>
           </p>
         <% } %>
         <% if (data.gameplay.note){ %>
           <p class="selectable">
-            <b>Note:</b><%= ' ' + data.gameplay.note %>
+            <b><%= string('note') %>:</b><%= ' ' + data.gameplay.note %>
           </p>
         <% } %>
       </div>
@@ -50,7 +51,8 @@
     <% if(data.signature){ %>
       <div data-role="collapsible" data-collapsed="false" data-mini="true">
         <h4>
-          Signature Ability <%= ratingSpan(data.signature.rating) %>           
+          <%= string('signature') %>
+          <%= ratingSpan(data.signature.rating) %>           
         </h4>
         <div class="selectable">
           <b><%- data.signature.name %></b>
@@ -60,7 +62,7 @@
         <% } %>
         <% if (data.signature.note){ %>
           <p class="selectable">
-            <b>Note:</b><%= ' ' + data.signature.note %>
+            <b><%= string('note') %>:</b><%= ' ' + data.signature.note %>
           </p>
         <% } %>
       </div>
@@ -68,14 +70,15 @@
     <% if(data.heavy){ %>
       <div data-role="collapsible" data-collapsed="false">
         <h4>
-          Heavy Attack <%= ratingSpan(data.heavy.rating) %>           
+          <%= string('heavy-attack') %>
+          <%= ratingSpan(data.heavy.rating) %>           
         </h4>
         <% if (data.heavy.description){ %>
           <p class="selectable"><%= data.heavy.description %></p>
         <% } %>
         <% if (data.heavy.note){ %>
           <p class="selectable">
-            <b>Note:</b><%= ' ' + data.heavy.note %>
+            <b><%= string('note') %>:</b><%= ' ' + data.heavy.note %>
           </p>
         <% } %>
       </div>
@@ -87,29 +90,30 @@
         var special = data.specials[number] %>
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            Special<%- ' ' + number + ' ' %><%= ratingSpan(special.rating) %>            
+            <%= string('special') %><%- ' ' + number %>
+            <%= ratingSpan(special.rating) %>            
           </h4>
           <% if (special.description){ %>
             <p class="selectable"><%= special.description %></p>
           <% } %>
           <% if (special.abilities){ %>
             <div class="selectable">
-              <b>Abilities:</b><%= ' ' + joinSpans(special.abilities, abilitySpan) %>
+              <b><%= string('abilities') %>:</b><%= ' ' + joinSpans(special.abilities, abilitySpan) %>
             </div>
           <% } %>
           <% if (special.damagetypes){ %>
             <div class="selectable">
-              <b>Damage Type:</b><%= ' ' + joinSpans(special.damagetypes, damageTypeSpan) %>
+              <b><%= string('damage-type') %>:</b><%= ' ' + joinSpans(special.damagetypes, damageTypeSpan) %>
             </div>
           <% } %>
           <% if (special.ranges){ %>
             <div class="selectable">
-              <b>Range:</b><%= ' ' + joinSpans(special.ranges, rangeSpan) %>
+              <b><%= string('range') %>:</b><%= ' ' + joinSpans(special.ranges, rangeSpan) %>
             </div>
           <% } %>
           <% if (special.note){ %>
             <p class="selectable">
-              <b>Note:</b><%= ' ' + special.note %>
+              <b><%= string('note') %>:</b><%= ' ' + special.note %>
             </p>
           <% } %>
         </div>
@@ -120,7 +124,7 @@
   <div class="left">
     <div data-role="collapsible" data-collapsed="false">
       <h4>
-        Synergies
+        <%= string('synergies') %>
       </h4>
       <% if(synergiesFrom(uid).size() > 0){ %>
         <% synergiesFrom(uid).each(function(synergy){ %>
@@ -138,7 +142,7 @@
         <% }) %>
       <% } else { %>
         <p>
-          <i>None</i>
+          <i><%= string('none') %></i>
         </p>
       <% } %>
     </div>
@@ -146,7 +150,7 @@
   <div class="right">
     <div data-role="collapsible" data-collapsed="false">
       <h4>
-        External Synergies
+        <%= string('synergies-external') %>
       </h4>
       <% if(synergiesTo(uid).size() > 0){ %>
         <% synergiesTo(uid).each(function(synergy){ %>
@@ -164,7 +168,7 @@
         <% }) %>
       <% } else { %>
         <p>
-          <i>None</i>
+          <i><%= string('none') %></i>
         </p>
       <% } %>
     </div>
@@ -174,7 +178,7 @@
     <% if(data.abilities){ %>
       <div data-role="collapsible" data-collapsed="false">
         <h4>
-          Abilities          
+          <%= string('abilities') %>          
         </h4>
         <% _(data.abilities).each(function(ability){ %>
           <p class="selectable"><%= definition(ability, abilitySpan) %></p>
@@ -185,18 +189,18 @@
   <div class="right">
     <div data-role="collapsible" data-collapsed="false">
       <h4>
-        Availablity          
+        <%= string('crystals') %>          
       </h4>
       <% if(crystals(uid).length === 0){ %>
         <div class="crystal">
           <img src="images/crystals/hologram.png" />
-          <b><i class="selectable">None</i></b>
+          <i class="selectable"><%= string('none') %></i>
         </div>
       <% } else { %>
         <% _(crystals(uid)).each(function(data){ %>
           <div class="crystal">
             <img src="<%= data.crystal.image() %>" />
-            <b class="selectable"><%- data.crystal.get('name') + ' ' %>Crystal</b>:
+            <b class="selectable"><%- data.crystal.get('name') + ' ' %><%= string('crystal') %></b>:
             <%= ' ' + crystalStarsSpan(data) %>          
           </div>
         <% }) %>

@@ -144,7 +144,7 @@ a.hidden{
   opacity:0;
 }
 
-#roster-hint{
+#onboarding-synergies{
   position:absolute;
   opacity:0;
   box-sizing: border-box;
@@ -160,7 +160,7 @@ a.hidden{
   pointer-events:none;
   transition:left 0.333s ease, opacity 0.333s ease;
 }
-#roster-hint.active{
+#onboarding-synergies.active{
   opacity:1;
 }
 

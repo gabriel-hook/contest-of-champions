@@ -273,7 +273,7 @@ CoC.ui.teams=new function(){
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
-            console.log(algorithm.name + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
+            console.log(CoC.lang.model('algorithm-'+algorithm.uid+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
             
             //Convert the result back to Champion models post-transport
             var result = {};
@@ -328,7 +328,7 @@ CoC.ui.teams=new function(){
           CoC.ui.teams.render(result, size);
           $("#team-build-progress").addClass("hidden");
           $("#onboarding-progress").removeClass("show");
-          console.log(algorithm.name + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
+          console.log(CoC.lang.model('algorithm-'+algorithm.uid+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
         },0);
       },0);
     }
@@ -616,9 +616,10 @@ $("#page-add").on("pagecreate",function(){
   });
 });
 $("#page-teams").on("pagecreate", function() {
+  var i;
   var algorithm = CoC.settings.getValue("algorithm") || "greedy";
-  for(var i in CoC.algorithm)
-    $("#build-settings-algorithm").append($('<option>', { value:i }).text( CoC.algorithm[i].name ));
+  for(var uid in CoC.algorithm)
+    $("#build-settings-algorithm").append($('<option>', { value:uid }).text( CoC.lang.model('algorithm-'+uid+'-name') ));
 
   $("#team-build-progress").addClass("hidden");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
@@ -645,7 +646,7 @@ $("#page-teams").on("pagecreate", function() {
     if(!isQuesting)
       canExtras = true;
   
-    $('#build-settings-algorithm-description').text( CoC.algorithm[algorithm].description );
+    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
     $('#build-settings-quest').checkboxradio(canQuest? "enable": "disable").checkboxradio("refresh");
     $('#build-settings-extras').checkboxradio(canExtras? "enable": "disable").checkboxradio("refresh");
   }
@@ -689,7 +690,7 @@ $("#page-teams").on("pagecreate", function() {
 });
 $("#page-settings-advanced").on("pagecreate", function() {
   var sliders = {}, checkboxes = {};
-  
+
   function enableSlider(category, type){
     var id = "#settings-advanced-"+type,
       presetId = "#settings-advanced-preset-"+category,

@@ -6,30 +6,30 @@
   data-overlay-theme="a"
   data-transition="slidedown">
   <ul data-role="listview">
-    <li data-role="list-divider">Share to...</li>
+    <li data-role="list-divider"><%= string('share-to') %>...</li>
     <li>
       <a id="share-facebook" class="share-button" href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target="_blank">
         <img src="images/share/facebook_32.png" class="ui-li-icon ui-corner-none">
-        Facebook
+        <%= string('facebook') %>
       </a>
     </li>
     <li>
       <a id="share-twitter" class="share-button" href="https://twitter.com/share?url=http://tiny.cc/champions" target="_blank">
         <img src="images/share/twitter_32.png" class="ui-li-icon ui-corner-none">
-        Twitter
+        <%= string('twitter') %>
       </a>
     </li>
     <li>
       <a id="share-googleplus" class="share-button" href="https://plus.google.com/share?url=http://tiny.cc/champions" target="_blank">
         <img src="images/share/googleplus_32.png" class="ui-li-icon ui-corner-none">
-        Google+
+        <%= string('google') %>+
       </a>
     </li>
-    <li data-role="list-divider">Tools</li>
+    <li data-role="list-divider"><%= string('tools') %></li>
     <li>
-      <a href="/contest-of-champions/synergies.html" target="_blank">
+      <a href="/contest-of-champions/synergies.html<%= search %>" target="_blank">
         <img src="images/icon.png" class="ui-li-icon ui-corner-none">
-        Synergies Map
+        <%= string('synergy-map') %>
       </a>
     </li>
   </ul>
@@ -47,17 +47,17 @@
       data-icon="bars" 
       data-iconpos="notext"
       data-rel="panel"
-      data-transition="slide">Options</a>
+      data-transition="slide"></a>
     <a class="button-share ui-btn-right" href="#popup-share"
       data-role="button" 
       data-icon="action" 
       data-iconpos="notext"
-      data-rel="popup">Share</a>
-    <h1>Roster</h1>
+      data-rel="popup"></a>
+    <h1><%= string('roster') %></h1>
   </div>
   
   <div id="onboarding-roster" class="onboarding left">
-    <h3>Use the options menu to add new champions</h3>
+    <h3><%= string('onboarding-roster') %></h3>
   </div>
   
   <div role="main" class="ui-content">
@@ -75,37 +75,37 @@
     </div>
     
     <fieldset data-role="controlgroup" data-mini="true">
-      <h2>Manage</h2>
+      <h2><%= string('manage') %></h2>
       <a href="#page-add"
         data-role="button" 
         data-icon="search" 
         data-rel="page"
         data-direction="reverse"
-        data-transition="flip">Add a Champion</a> 
+        data-transition="flip"><%= string('add-champion') %></a> 
       <button id="roster-import"
         data-role="button" 
-        data-icon="tag">Import .csv</button>  
+        data-icon="tag"><%= string('import-csv') %></button>  
       <a id="roster-export"
         download="champions.csv"
         data-role="button" 
-        data-icon="action">Export .csv</a>
+        data-icon="action"><%= string('export-csv') %></a>
       <button id="roster-clear-all"
         data-role="button" 
-        data-icon="delete">Delete All</button> 
+        data-icon="delete"><%= string('delete-all') %></button> 
     </fieldset>
     
     <fieldset data-role="controlgroup" data-mini="true">
-      <h2>Sort</h2>
+      <h2><%= string('sort') %></h2>
       <input type="radio" name="roster-sort" id="roster-sort-stars">
-      <label for="roster-sort-stars" checked="true">Stars</label>
+      <label for="roster-sort-stars" checked="true"><%= string('stars') %></label>
       <input type="radio" name="roster-sort" id="roster-sort-type">
-      <label for="roster-sort-type">Type</label>
+      <label for="roster-sort-type"><%= string('type') %></label>
       <input type="radio" name="roster-sort" id="roster-sort-name">
-      <label for="roster-sort-name">Name</label>
+      <label for="roster-sort-name"><%= string('name') %></label>
     </fieldset>
     
     <fieldset data-role="controlgroup" data-mini="true">
-      <h2>Filter</h2>
+      <h2><%= string('filter') %></h2>
 
       <input type="checkbox" name="roster-filter-stars-5" id="roster-filter-stars-5">
       <label for="roster-filter-stars-5">★ ★ ★ ★ ★</label>
@@ -123,9 +123,9 @@
   <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="bottom">
       <ul>
-        <li><a href="#page-guide" data-icon="info" data-transition="fade">Guide</a></li>
-        <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist">Roster</a></li>
-        <li><a href="#page-teams" data-icon="gear" data-transition="fade">Team</a></li>
+        <li><a href="#page-guide" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>
       </ul>
     </div>
   </div>
@@ -139,38 +139,38 @@
     <div id="roster-configure-stars" class="stars"></div>
     <div role="main" class="ui-content">
       <h3>
-        <img id="roster-configure-type" /><span id="roster-configure-name">Name</span>
+        <img id="roster-configure-type" /><span id="roster-configure-name"><%= string('name') %></span>
       </h3>
       
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <label for="roster-configure-rank">Rank</label>
+          <label for="roster-configure-rank"><%= string('rank') %></label>
           <select name="roster-configure-rank" id="roster-configure-rank"></select>
-          <label for="roster-configure-level">Level</label>
+          <label for="roster-configure-level"><%= string('level') %></label>
           <select name="roster-configure-level" id="roster-configure-level"></select>
         </fieldset>
         
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <label class="roster-configure-awakened ui-btn" for="roster-configure-awakened">Awakened</label>
+          <label class="roster-configure-awakened ui-btn" for="roster-configure-awakened"><%= string('awakened') %></label>
           <select name="roster-configure-awakened" id="roster-configure-awakened"></select>
         </fieldset>            
         
         <fieldset data-role="controlgroup" data-mini="true">             
-          <label for="roster-configure-quest">Quest</label>
+          <label for="roster-configure-quest"><%= string('quest') %></label>
           <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
         </fieldset>
 
         <fieldset class="no-extras" data-role="controlgroup" data-mini="true">
-          <button class="roster-configure-guide" data-role="button" data-icon="info">View Guide</button>
+          <button class="roster-configure-guide" data-role="button" data-icon="info"><%= string('view-guide') %></button>
         </fieldset>
 
         <fieldset data-role="controlgroup" data-mini="true">
-          <button id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete">Delete</button>
+          <button id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete"><%= string('delete') %></button>
         </fieldset>
 
     </div>
     <div class="extras ui-mini">
       <img id="roster-configure-image" />
-      <button class="roster-configure-guide" data-role="button" data-icon="info">View Guide</button>
+      <button class="roster-configure-guide" data-role="button" data-icon="info"><%= string('view-guide') %></button>
     </div>
   </div>
   
@@ -182,16 +182,16 @@
     data-theme="a">
     <div role="main" class="ui-content">
       <h3>
-        Are you sure you want to delete
+        <%= string('ask-delete') %>
         <div style="display:inline-block">
           <span id="roster-delete-confirm-stars"></span>
           <span id="roster-delete-confirm-name"></span>
         </div>?
       </h3>
-      <p>This action cannot be undone.</p>
+      <p><%= string('cannot-undo') %></p>
       <div class="ui-mini">
-        <button id="roster-delete-confirm-yes" data-role="button" data-theme="b">Delete</button>
-        <button id="roster-delete-confirm-no" data-role="button">Cancel</button>
+        <button id="roster-delete-confirm-yes" data-role="button" data-theme="b"><%= string('delete') %></button>
+        <button id="roster-delete-confirm-no" data-role="button"><%= string('cancel') %></button>
       </div>
     </div>
   </div>
@@ -203,12 +203,12 @@
     data-theme="a">
     <div role="main" class="ui-content">
       <h3>
-        Are you sure you want to delete all of your champions?
+        <%= string('ask-delete-all') %>
       </h3>
-      <p>This action cannot be undone.</p>
+      <p><%= string('cannot-undo') %></p>
       <div class="ui-mini">
-        <button id="roster-clear-confirm-yes" data-role="button" data-theme="b">Delete</button>
-        <button id="roster-clear-confirm-no" data-role="button">Cancel</button>
+        <button id="roster-clear-confirm-yes" data-role="button" data-theme="b"><%= string('delete') %></button>
+        <button id="roster-clear-confirm-no" data-role="button"><%= string('cancel') %></button>
       </div>
     </div>
   </div>
@@ -220,12 +220,12 @@
   data-tracking="true"
   data-role="page">
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
-    <h3>Add a Champion</h3>
+    <h3><%= string('add-champion') %></h3>
     <a href="#page-roster" class="ui-btn-right"
       data-transition="flip" 
       data-role="button" 
       data-iconpos="notext"
-      data-icon="back">Back</a>
+      data-icon="back"></a>
     <div id="add-stars" data-role="navbar">
       <ul>
         <li><button stars="1" data-theme="c">1 ★</button></li>
@@ -258,9 +258,9 @@
       data-role="button" 
       data-rel="panel"
       data-direction="reverse"
-      data-transition="flip">Advanced Settings</a>
+      data-transition="flip"><%= string('advanced-settings') %></a>
       
-    <label>Size</label>
+    <label><%= string('team-size') %></label>
   
     <fieldset id="build-settings-size" data-role="controlgroup" data-type="horizontal" data-mini="true">
       <input type="radio" name="build-settings-size" id="build-settings-size-3" value="3">
@@ -271,7 +271,7 @@
       <label for="build-settings-size-5">5</label>
     </fieldset>
     
-    <label>Champions</label>
+    <label><%= string('champions') %></label>
     
     <fieldset id="build-filter-stars" data-role="controlgroup" data-type="horizontal" data-mini="true">
       <input type="checkbox" name="build-filter-stars-1" id="build-filter-stars-1">
@@ -286,7 +286,7 @@
       <label for="build-filter-stars-5">5 ★</label>
     </fieldset> 
 
-    <label>Algorithm</label>
+    <label><%= string('algorithm') %></label>
     
     <select name="build-settings-algorithm" id="build-settings-algorithm" data-mini="true"></select>
     <small id="build-settings-algorithm-description"></small>
@@ -294,7 +294,7 @@
     <fieldset data-role="controlgroup">
     
       <input type="checkbox" name="build-settings-quest" id="build-settings-quest" data-mini="true">
-      <label for="build-settings-quest">Quest Group</label>
+      <label for="build-settings-quest"><%= string('quest-group') %></label>
       
     </fieldset>
 
@@ -303,7 +303,7 @@
       data-role="button"
       data-icon="gear"
       data-iconpos="right">
-      Build
+      <%= string('build') %>
     </button>
   </div>
 
@@ -312,13 +312,13 @@
       data-role="button" 
       data-rel="panel"
       data-iconpos="notext"
-      data-icon="gear">Build</a>
+      data-icon="gear"></a>
     <a class="button-share ui-btn-right" href="#popup-share"
       data-role="button" 
       data-icon="action" 
       data-iconpos="notext"
-      data-rel="popup">Share</a>
-    <h1>Team</h1>
+      data-rel="popup"></a>
+    <h1><%= string('team') %></h1>
     
     <div id="team-build-progress">
       <input type="range" data-theme="c" data-highlight="true" min="0" max="1000" value="0">
@@ -330,7 +330,7 @@
   </div>
   
   <div id="onboarding-teams" class="onboarding left">
-    <h3>Use the Build menu create your teams!</h3>
+    <h3><%= string('onboarding-teams') %></h3>
   </div>
   
   <div role="main" class="ui-content">
@@ -341,9 +341,9 @@
   <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="bottom">
       <ul>
-        <li><a href="#page-guide" data-icon="info" data-transition="fade">Guide</a></li>
-        <li><a href="#page-roster" data-icon="grid" data-transition="fade">Roster</a></li>
-        <li><a href="#page-teams" data-icon="gear" class="ui-btn-active ui-state-persist">Team</a></li>           
+        <li><a href="#page-guide" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" class="ui-btn-active ui-state-persist"><%= string('team') %></a></li>           
       </ul>
     </div>
   </div>
@@ -366,119 +366,117 @@
       data-role="button" 
       data-transition="flip"
       data-iconpos="notext"
-      data-icon="back">Back</a>
+      data-icon="back"></a>
       
-    <h1>Advanced Settings</h1>
+    <h1><%= string('advanced-settings') %></h1>
   </div>
   
   <div role="main" class="ui-content">
-    <button id="settings-advanced-preset-defaults" data-role="button">Reset to Defaults</button> 
+    <button id="settings-advanced-preset-defaults" data-role="button"><%= string('reset-defaults') %></button> 
 
-    <h3>Champion Weights</h3>
+    <h3><%= string('champion-weights') %></h3>
     
-    <div data-role="fieldcontain">
-      <input type="checkbox" name="settings-advanced-levels" id="settings-advanced-levels" data-highlight="true"/>
-      <label for="settings-advanced-levels">Calculate using stars / ranks / levels</label>
-    </div>
+    <input type="checkbox" name="settings-advanced-levels" id="settings-advanced-levels" data-highlight="true"/>
+    <label for="settings-advanced-levels"><%= string('use-levels') %></label>
     
-    <h3>Syngergy Weights</h3>
+    <h3><%= string('synergy-weights') %></h3>
     
     <select name="settings-advanced-preset-synergies" id="settings-advanced-preset-synergies">
-      <option value="">Choose a preset...</option>
+      <option value=""><%= string('choose-preset') %></option>
     </select>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-attack">Attack</label>
+      <label for="settings-advanced-attack"><%= model('effect-attack-name') %></label>
       <input type="range" name="settings-advanced-attack" id="settings-advanced-attack" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
     
     <div data-role="fieldcontain">
-      <label for="settings-advanced-stun">Stun Chance</label>
+      <label for="settings-advanced-stun"><%= model('effect-stun-name') %></label>
       <input type="range" name="settings-advanced-stun" id="settings-advanced-stun"
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-critrate">Crit Rate</label>
+      <label for="settings-advanced-critrate"><%= model('effect-critrate-name') %></label>
       <input type="range" name="settings-advanced-critrate" id="settings-advanced-critrate"
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-critdamage">Crit Damage</label>
+      <label for="settings-advanced-critdamage"><%= model('effect-critdamage-name') %></label>
       <input type="range" name="settings-advanced-critdamage" id="settings-advanced-critdamage" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-powergain">Power Gain</label>
+      <label for="settings-advanced-powergain"><%= model('effect-powergain-name') %></label>
       <input type="range" name="settings-advanced-powergain" id="settings-advanced-powergain" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-perfectblock">Perfect Block</label>
+      <label for="settings-advanced-perfectblock"><%= model('effect-perfectblock-name') %></label>
       <input type="range" name="settings-advanced-perfectblock" id="settings-advanced-perfectblock" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-block">Block Proficiency</label>
+      <label for="settings-advanced-block"><%= model('effect-block-name') %></label>
       <input type="range" name="settings-advanced-block" id="settings-advanced-block" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-armor">Armor</label>
+      <label for="settings-advanced-armor"><%= model('effect-armor-name') %></label>
       <input type="range" name="settings-advanced-armor" id="settings-advanced-armor" 
         value="100" min="0" max="1000" 
         data-highlight="true"/>
     </div>
   
     <div data-role="fieldcontain">
-      <label for="settings-advanced-health">Health</label>
+      <label for="settings-advanced-health"><%= model('effect-health-name') %></label>
       <input type="range" name="settings-advanced-health" id="settings-advanced-health" 
         value="100" min="0" max="1000"  
         data-highlight="true"/>
     </div>
     
-    <h3>Duplicate Class Weights</h3>
+    <h3><%= string('duplicate-weights') %></h3>
     
     <select name="settings-advanced-preset-duplicates" id="settings-advanced-preset-duplicates">
-      <option value="">Choose a preset...</option>
+      <option value=""><%= string('choose-preset') %></option>
     </select>
     
     <div data-role="fieldcontain">
-      <label for="settings-advanced-duplicates-2">Double (2X)</label>
+      <label for="settings-advanced-duplicates-2"><%= string('double') %> (2X)</label>
       <input type="range" name="settings-advanced-duplicates-2" id="settings-advanced-duplicates-2" 
         value="100" min="0" max="100" 
         data-highlight="true"/>
     </div>
     
     <div data-role="fieldcontain">
-      <label for="settings-advanced-duplicates-3">Triple (3x)</label>
+      <label for="settings-advanced-duplicates-3"><%= string('triple') %> (3x)</label>
       <input type="range" name="settings-advanced-duplicates-3" id="settings-advanced-duplicates-3" 
         value="100" min="0" max="100" 
         data-highlight="true"/>
     </div>
     
     <div data-role="fieldcontain">
-      <label for="settings-advanced-duplicates-4">Quadruple (4x)</label>
+      <label for="settings-advanced-duplicates-4"><%= string('quadruple') %> (4x)</label>
       <input type="range" name="settings-advanced-duplicates-4" id="settings-advanced-duplicates-4" 
         value="100" min="0" max="100" 
         data-highlight="true"/>
     </div>
     
     <div data-role="fieldcontain">
-      <label for="settings-advanced-duplicates-5">Quintuple (5x)</label>
+      <label for="settings-advanced-duplicates-5"><%= string('quintuple') %> (5x)</label>
       <input type="range" name="settings-advanced-duplicates-5" id="settings-advanced-duplicates-5" 
         value="100" min="0" max="100" 
         data-highlight="true"/>
@@ -498,20 +496,20 @@
       data-iconpos="notext"
       data-transition="flip"
       data-rel="page"
-      data-direction="reverse">Crystals</a>
+      data-direction="reverse"></a>
     <a class="button-share ui-btn-right" href="#popup-share"
       data-role="button" 
       data-icon="action" 
       data-iconpos="notext"
-      data-rel="popup">Share</a>      
-    <h1>Guide</h1>
+      data-rel="popup"></a>      
+    <h1><%= string('guide') %></h1>
     
     <div id="guide-champions-frame" class="frame">
       <ul id="guide-champions" class="slidee"></ul>
     </div>
     
     <div id="guide-champions-selector-container" class="ui-field-contain">
-      <label for="guide-champions-selector">Choose a Guide...</label>
+      <label for="guide-champions-selector"><%= string('choose-guide') %></label>
       <select name="guide-champions-selector" id="guide-champions-selector" data-native-menu="false" data-theme="c"></select>
     </div>
   </div>
@@ -521,9 +519,9 @@
   <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="bottom">
       <ul>
-        <li><a href="#page-guide" data-icon="info" class="ui-btn-active ui-state-persist">Guide</a></li>
-        <li><a href="#page-roster" data-icon="grid" data-transition="fade">Roster</a></li>
-        <li><a href="#page-teams" data-icon="gear" data-transition="fade">Team</a></li>           
+        <li><a href="#page-guide" data-icon="info" class="ui-btn-active ui-state-persist"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>           
       </ul>
     </div>
   </div>
@@ -546,9 +544,9 @@
       data-transition="flip" 
       data-role="button" 
       data-iconpos="notext"
-      data-icon="back">Back</a>
+      data-icon="back"></a>
   
-    <h1>Crystals</h1>
+    <h1><%= string('crystals') %></h1>
   </div>
 
   <div role="main" class="ui-content" id="crystals"></div>

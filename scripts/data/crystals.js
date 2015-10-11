@@ -4,16 +4,16 @@ CoC.data = CoC.data || {};
 //Champions
 CoC.data.crystals = new Backbone.Collection([
 
-  { uid:"versus", name:"Versus", image:"versus", description:"Acquired when you win a versus match." },
-  { uid:"arena", name:"Arena", image:"battlechips", description:"Buy for 2000 $BATTLECHIPS$." },
-  { uid:"alliance", name:"Alliance", image:"alliance", description:"Buy for 1000 $LOYALTY$." },
+  { uid:"versus", image:"versus" },
+  { uid:"arena", image:"battlechips" },
+  { uid:"alliance", image:"alliance" },
   
-  { uid:"daily", name:"Daily", image:"daily", description:"Acquired once every 24 hours." },
+  { uid:"daily", image:"daily" },
   
-  { uid:"2star", name:"2-Star", image:"2star" },
-  { uid:"premium", name:"Premium", image:"premium", description:"Buy for 100 $UNITS$." },
-  { uid:"3star", name:"3-Star", image:"3star", description:"Buy for 400 $UNITS$, rare event." },
-  { uid:"4star", name:"4-Star", image:"4star", description:"Buy for 2500 $UNITS$, very rare event." },
+  { uid:"2star", image:"2star" },
+  { uid:"premium", image:"premium" },
+  { uid:"3star", image:"3star" },
+  { uid:"4star", image:"4star" },
   
 ], {
   model: CoC.model.Crystal

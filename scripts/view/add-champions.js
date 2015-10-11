@@ -60,7 +60,7 @@ CoC.view.AddChampionsView = Backbone.View.extend({
       'class':'add-all',
       'data-theme': 'b',
       'disabled':(champions.length > 0)? undefined: ""
-    }).text( "Add All" )[0]);
+    }).text( CoC.lang.string('add-all') )[0]);
     
     champions.each(function(champion){
       var view = that._championViews[champion.fid()];

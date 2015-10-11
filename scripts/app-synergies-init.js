@@ -1,22 +1,53 @@
-function checkStars(search, key){
-  var query = '?'+key+'=', value, stars;
-  if(search.indexOf(query) !== 0)
-    return false;
-  value = parseInt(location.search.substr(query.length), 10);
-  stars = Math.min(5, Math.max(1, value)) || 2;
-  return (search === query + stars)? stars: false;
-}
-var stars;
-if((stars = checkStars(location.search, 'roster')) !== false){
-  CoC.roster.initialize();
-  $('.page').on('pageshow', function(){
-      CoC.synergies.initialize(stars, true);
+(function(){
+  var query = {};
+  location.search.substr(1).split('&').map(function(str){
+    var attr = str.split('=');
+    query[attr[0]] = attr[1] && unescape(attr[1]);
   });
-}
-else if((stars = checkStars(location.search, 'stars')) !== false){
-  $('.page').on('pageshow', function(){
-      CoC.synergies.initialize(stars);
-  });
-}
-else
-  location.search = "?stars=" + (stars || 2);
+  window.searchQuery = function(key, value){
+    var q = _.clone(query);
+    if(key !== undefined && value !== undefined)
+      q[key] = value;
+    if(key === 'roster')
+      delete q['stars'];
+    if(key === 'stars')
+      delete q['roster'];
+    return '?' + _.pairs(q).map(function(value){
+      return value[0] + '=' + escape(value[1]);
+    }).join('&');
+  }
+
+  function checkStars(key){
+    if(query[key] !== undefined){
+      var old = query[key];
+      var value = Math.min(5, Math.max(1, parseInt(query[key], 10)));
+      if (typeof value === "number" && isFinite(value)){
+        query[key] = value;
+        if(value.toString() != old)
+          return false;
+      }
+      else{
+        delete query[key];
+      }
+    }
+    return query[key];
+  }
+
+  if(checkStars('roster')){
+    CoC.roster.initialize();
+    $('.page').on('pageshow', function(){
+        CoC.synergies.initialize(query['roster'], true);
+    });
+  }
+  else if(checkStars('stars')){
+    $('.page').on('pageshow', function(){
+        CoC.synergies.initialize(query['stars']);
+    });
+  }
+  else{
+    if(query['roster'] === undefined && query['stars'] === undefined)
+      query['stars'] = 2;
+    location.search = searchQuery();
+  }
+
+})();

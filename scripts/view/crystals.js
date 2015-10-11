@@ -3,6 +3,8 @@ CoC.view = CoC.view || {};
 
 
 CoC.view.CrystalsViewHelpers={
+
+  string: CoC.lang.string,
   
   parseDescription:function(crystal){
     //convert $CURRENCY$ strings to images
