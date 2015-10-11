@@ -1,10 +1,9 @@
-﻿<div id="popup-share" 
-  data-role="popup" 
-  data-tolerance="0"
-  data-corners="false"
+﻿<div id="panel-options" 
+  data-role="panel" 
+  data-display="overlay"
+  data-position="right" 
   data-theme="c" 
-  data-overlay-theme="a"
-  data-transition="slidedown">
+  data-overlay-theme="a">
   <ul data-role="listview">
     <li data-role="list-divider"><%= string('share-to') %>...</li>
     <li>
@@ -28,7 +27,7 @@
     <li data-role="list-divider"><%= string('language') %></li>
     <% _(['en', 'ru']).each(function(lang){ %>
       <li>
-        <a href="" class="share-lang" lang="<%= lang %>">
+        <a href="" class="change-lang" lang="<%= lang %>">
           <img src="images/lang/<%= lang %>.png" class="ui-li-icon ui-corner-none">
           <%= CoC.lang[lang].name %>
         </a>
@@ -53,15 +52,15 @@
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a id="button-roster-options" href="#panel-roster-options" class="ui-btn-left"
       data-role="button" 
-      data-icon="bars" 
+      data-icon="grid" 
       data-iconpos="notext"
       data-rel="panel"
       data-transition="slide"></a>
-    <a class="button-share ui-btn-right" href="#popup-share"
+    <a class="button-share ui-btn-right" href="#panel-options"
       data-role="button" 
-      data-icon="action" 
+      data-icon="bars" 
       data-iconpos="notext"
-      data-rel="popup"></a>
+      data-rel="panel"></a>
     <h1><%= string('roster') %></h1>
   </div>
   
@@ -321,11 +320,11 @@
       data-rel="panel"
       data-iconpos="notext"
       data-icon="gear"></a>
-    <a class="button-share ui-btn-right" href="#popup-share"
+    <a class="button-share ui-btn-right" href="#panel-options"
       data-role="button" 
-      data-icon="action" 
+      data-icon="bars" 
       data-iconpos="notext"
-      data-rel="popup"></a>
+      data-rel="panel"></a>
     <h1><%= string('team') %></h1>
     
     <div id="team-build-progress">
@@ -505,11 +504,11 @@
       data-transition="flip"
       data-rel="page"
       data-direction="reverse"></a>
-    <a class="button-share ui-btn-right" href="#popup-share"
+    <a class="button-share ui-btn-right" href="#panel-options"
       data-role="button" 
-      data-icon="action" 
+      data-icon="bars" 
       data-iconpos="notext"
-      data-rel="popup"></a>      
+      data-rel="panel"></a>      
     <h1><%= string('guide') %></h1>
     
     <div id="guide-champions-frame" class="frame">

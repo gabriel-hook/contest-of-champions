@@ -1,10 +1,9 @@
-<div id="popup-share" 
-  data-role="popup" 
-  data-tolerance="0,0"
-  data-corners="false"
+<div id="panel-options" 
+  data-role="panel" 
+  data-display="overlay"
+  data-position="right" 
   data-theme="c" 
-  data-overlay-theme="a"
-  data-transition="slidedown">
+  data-overlay-theme="a">
   <ul data-role="listview">
     <li data-role="list-divider"><%= string('share-to') %>...</li>
     <li>
@@ -28,7 +27,7 @@
     <li data-role="list-divider"><%= string('language') %></li>
     <% _(['en', 'ru']).each(function(lang){ %>
       <li>
-        <a href="" class="share-lang" lang="<%= lang %>">
+        <a href="" class="change-lang" lang="<%= lang %>">
           <img src="images/lang/<%= lang %>.png" class="ui-li-icon ui-corner-none">
           <%= CoC.lang[lang].name %>
         </a>
@@ -68,9 +67,12 @@
         <span class="wide">★ ★ ★ ★ ★</span>
       </a>
     </div>
-    <div class="ui-btn button legend"><span class="on">-</span><span class="off">+</span></div>
-    <a class="ui-btn button share" href="#popup-share"
-      data-rel="popup">
+    <div class="ui-btn button legend">
+      <span class="on">-</span>
+      <span class="off">+</span>
+    </div>
+    <a class="ui-btn button share" href="#panel-options"
+      data-rel="panel">
       <span>s</span>
     </a>
   </div>

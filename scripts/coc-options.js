@@ -3,7 +3,7 @@ CoC.share = {};
 
 CoC.share.initialize = function(){
 
-  $("#popup-share").enhanceWithin().popup();
+  $("#panel-options").enhanceWithin().panel();
   $("#share-facebook").click(function(){
     CoC.tracking.event("share", "facebook");
   });
@@ -13,7 +13,7 @@ CoC.share.initialize = function(){
   $("#share-googleplus").click(function(){
     CoC.tracking.event("share", "googleplus");
   });
-  $(".share-lang").click(function(){
+  $(".change-lang").click(function(){
     var lang = $(this).attr('lang');
     var query = {};
     location.search.substr(1).split('&').map(function(str){
