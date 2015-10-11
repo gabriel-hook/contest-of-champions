@@ -123,18 +123,6 @@ CoC.synergies.initialize=function(stars, roster){
     effects[synergy.get('effectId')] = true;
   }
   
-  //enable share popup with tracking
-  $( "#popup-share" ).enhanceWithin().popup();
-  $("#share-facebook").click(function(){
-    CoC.tracking.event("share", "facebook");
-  });
-  $("#share-twitter").click(function(){
-    CoC.tracking.event("share", "twitter");
-  });
-  $("#share-googleplus").click(function(){
-    CoC.tracking.event("share", "googleplus");
-  });
-  
   //add types to legend
   CoC.data.effects.each(function(effect){
     var uid = effect.get('uid'), name = effect.get('name');

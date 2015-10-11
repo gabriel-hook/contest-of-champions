@@ -58,6 +58,7 @@
     "./scripts/coc-roster.js",
     "./scripts/coc-preset.js",
     "./scripts/coc-ui.js",
+    "./scripts/coc-share.js",
     "./scripts/app-roster-init.js"
   ]
 },{
@@ -95,6 +96,7 @@
     "./scripts/coc-tracking.js",
     "./scripts/coc-synergies.js",
     "./scripts/coc-roster.js",
+    "./scripts/coc-share.js",
     "./scripts/app-synergies-init.js"
   ]
 },{

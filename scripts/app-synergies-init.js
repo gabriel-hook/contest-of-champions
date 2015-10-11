@@ -2,7 +2,8 @@
   var query = {};
   location.search.substr(1).split('&').map(function(str){
     var attr = str.split('=');
-    query[attr[0]] = attr[1] && unescape(attr[1]);
+    if(attr.length === 2)
+      query[attr[0]] = attr[1] && unescape(attr[1]);
   });
   window.searchQuery = function(key, value){
     var q = _.clone(query);
@@ -33,13 +34,17 @@
     return query[key];
   }
 
+  location.hash = '';
+
   if(checkStars('roster')){
+    CoC.share.initialize();
     CoC.roster.initialize();
     $('.page').on('pageshow', function(){
         CoC.synergies.initialize(query['roster'], true);
     });
   }
   else if(checkStars('stars')){
+    CoC.share.initialize();
     $('.page').on('pageshow', function(){
         CoC.synergies.initialize(query['stars']);
     });
