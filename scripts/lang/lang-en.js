@@ -2,7 +2,6 @@ var CoC = CoC || {};
 CoC.lang = CoC.lang || {};
 
 CoC.lang['en'] = {
-
   model:{
 
     //Champion name
@@ -139,7 +138,6 @@ CoC.lang['en'] = {
     'algorithm-shuffle-description': 'FAST. This chooses the best combinations of teams possible.',
 
   },
-
   string: {
     //Listing words
     'of': 'of',
@@ -253,5 +251,4 @@ CoC.lang['en'] = {
 
     'none': 'None',
   }
-
 };
