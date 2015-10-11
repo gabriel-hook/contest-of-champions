@@ -82,16 +82,14 @@ CoC.settings.preset.add(null, "Defaults",{
   "roster-filter-stars-2":true,
   "roster-filter-stars-1":true,
 //build settings 
-  "build-algorithm":"shuffle",
   "build-size":3,
-  "build-levels":true,
   "build-filter-stars-5":true,
   "build-filter-stars-4":true,
   "build-filter-stars-3":true,
   "build-filter-stars-2":true,
   "build-filter-stars-1":true,
-  "build-quest-group":false,
-  "build-include-extras":true
+  "build-type":"shuffle",
+  "build-levels":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{
   "attack":6,

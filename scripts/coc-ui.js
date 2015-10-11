@@ -233,7 +233,7 @@ CoC.ui.teams=new function(){
       size = 3;
     
     var roster = CoC.roster.filtered();
-    var algorithm = CoC.algorithm[CoC.settings.getValue("build-algorithm")] || CoC.algorithm["shuffle"];
+    var algorithm = CoC.algorithm[CoC.settings.getValue("build-type")] || CoC.algorithm["shuffle"];
     var quest = algorithm.quest;
     var extras = algorithm.extras;
     var levels = CoC.settings.getValue("build-levels")===true;
@@ -645,29 +645,18 @@ $("#page-teams").on("pagecreate", function() {
       .checkboxradio('refresh');
     })(filters[f]);
 
-  var algorithm = $('input:radio[name=build-settings-algorithm]');
-  algorithm.filter('[value='+CoC.settings.getValue("build-algorithm")+']').prop("checked", true).checkboxradio("refresh");
+  var algorithm = $('input:radio[name=build-settings-type]');
+  algorithm.filter('[value='+CoC.settings.getValue("build-type")+']').prop("checked", true).checkboxradio("refresh");
   algorithm.change(function(){ 
-    CoC.settings.setValue("build-algorithm",this.value); 
+    CoC.settings.setValue("build-type",this.value); 
     updateAlgorithmDescription();
   });
 
   function updateAlgorithmDescription(){
-    algorithm = CoC.settings.getValue("build-algorithm");
-    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
+    algorithm = CoC.settings.getValue("build-type");
+    $('#build-settings-type-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
   }
   updateAlgorithmDescription();
-
-  $("#build-settings-algorithm-greedy").change(function(){
-    if(this.checked)
-      CoC.settings.setValue("build-algorithm", "greedy");
-  }).prop("checked", CoC.settings.getValue("build-algorithm") === "greedy").checkboxradio("refresh");  
-
-  $("#build-settings-algorithm-shuffle").change(function(){
-    if(this.checked)
-      CoC.settings.setValue("build-algorithm", "shuffle");
-    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-shuffle-description') );
-  }).prop("checked", CoC.settings.getValue("build-algorithm") === "shuffle").checkboxradio("refresh");  
 
   
   $("#button-build-settings-apply").click(function(){

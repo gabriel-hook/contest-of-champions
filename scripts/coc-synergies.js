@@ -1,7 +1,7 @@
 ﻿var CoC = CoC || {};
 CoC.synergies = CoC.synergies || {};
 
-CoC.synergies.version = "1.5.0";
+CoC.synergies.version = "1.5.5";
 
 CoC.synergies.initialize=function(stars, roster){
   console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
