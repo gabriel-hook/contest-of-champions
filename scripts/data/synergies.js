@@ -220,8 +220,10 @@ CoC.data.synergies = new Backbone.Collection([
 
   { fromId:"daredevil", fromStars:3, toId:"superiorironman", effectId:"critdamage", effectAmount:20 },
   { fromId:"daredevil", fromStars:3, toId:"blackwidow", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:3, toId:"elektra", effectId:"powergain", effectAmount:4 },
   { fromId:"daredevil", fromStars:4, toId:"superiorironman", effectId:"critdamage", effectAmount:25 },
   { fromId:"daredevil", fromStars:4, toId:"blackwidow", effectId:"powergain", effectAmount:5 },
+  { fromId:"daredevil", fromStars:4, toId:"elektra", effectId:"powergain", effectAmount:5 },
 
   { fromId:"elektra", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
   { fromId:"elektra", fromStars:3, toId:"daredevil", effectId:"powergain", effectAmount:4 },
