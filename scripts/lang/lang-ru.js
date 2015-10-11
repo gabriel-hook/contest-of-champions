@@ -183,17 +183,17 @@ CoC.lang['ru'] = {
     
     'ask-delete': 'Вы уверены, что хотите удалить?',
     'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
-    'cannot-undo': 'This action cannot be undone.',
+    'cannot-undo': 'Это действие не может быть отменено.',
     
     //Team Panel 
     'advanced-settings': 'Advanced Settings',
-    'team-size': 'Team Size',
+    'team-size': 'Размер команды',
     'algorithm': 'Algorithm',
     'quest-group': 'Quest Group',
     'build': 'Build',
     
     //Add Champion Page 
-    'add-all': 'Add All',
+    'add-all': 'Добавить всех',
     
     //Advanced Settings Page 
     'reset-defaults': 'Reset to Defaults',
@@ -217,13 +217,14 @@ CoC.lang['ru'] = {
     'facebook': 'Facebook',
     'twitter': 'Twitter',
     'google': 'Google',
+    'language': 'язык',
     'tools': 'Tools',
     'synergy-map': 'Synergy Map',
     'roster-manager': 'Roster Manager',
     
     //Onboarding Messages 
     'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
-    'onboarding-roster': 'Use the options menu to add new champions',
+    'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
     'onboarding-teams': 'Use the Build menu create your teams!',
     
     //Guide 
