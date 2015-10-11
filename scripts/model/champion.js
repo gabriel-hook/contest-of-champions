@@ -53,7 +53,7 @@ CoC.model = CoC.model || {};
       Backbone.Model.apply(this, arguments);
       var uid = this.get('uid');
       var name = CoC.lang.model('champion-'+uid+'-name');
-      var shortname = CoC.lang.model('champion-'+uid+'-shortname');
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname', true);
       if(name)
         this.set('name', name);
       if(shortname)

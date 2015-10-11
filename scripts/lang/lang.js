@@ -15,9 +15,9 @@ CoC.lang = CoC.lang || {};
     console.warn('Language set to "' + currentLang + '"');
   }
 
-  CoC.lang.model = function(key){
+  CoC.lang.model = function(key, noDefault){
     var value = CoC.lang[currentLang].model[key];
-    if(value === undefined)
+    if(value === undefined && noDefault === undefined)
       value = CoC.lang[defaultLang].model[key];
     return value;
   };
