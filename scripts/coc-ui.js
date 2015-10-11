@@ -24,6 +24,7 @@ CoC.ui.roster=new function(){
     $(element).addClass("selected");
     $('#popup-roster-configure').one("popupafterclose", function(){
       $(element).removeClass("selected");
+      $("#roster-configure-image").prop("src", "");
     });
     
     $("#roster-configure-stars").text("");
