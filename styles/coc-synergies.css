@@ -137,11 +137,17 @@ body.ui-mobile-viewport,
     display:inherit;
   }
 }
+
+.button.ui-btn{
+  border-right:none;
+}
+
 a.hidden{
   position:absolute;
   top:-1000px;
   left:-1000px;
   opacity:0;
+  pointer-events:none;
 }
 
 #onboarding-synergies{

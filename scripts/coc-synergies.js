@@ -71,7 +71,7 @@ CoC.synergies.initialize=function(stars, roster){
       if(!hasSynergies)
         return;
 
-      var link = $('<a>', { href: baseURL+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
+      var link = $('<a>', { href: baseURL+CoC.lang.search+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
       $(document.body).append(link);
       
       //windows safari is stupid and doesn't give dom elements a click method
