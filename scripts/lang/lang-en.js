@@ -133,12 +133,10 @@ CoC.lang['en'] = {
     //Algorithm name
     'algorithm-greedy-name': 'Greedy',
     'algorithm-shuffle-name': 'Shuffle',
-    'algorithm-distinct-name': 'Distinct',
 
     //Algorithm description
-    'algorithm-greedy-description': 'Slow & Consistent. Finds the best possible team and then does the same with remainders.',
-    'algorithm-shuffle-description': 'Fast & Varied. Does iterated scans and swaps, balancing teams as best as possible.',
-    'algorithm-distinct-description': 'Fast & Consistent. Gets available synergy connections and then splits distinct groups into teams.',
+    'algorithm-greedy-description': 'This finds the best single team possible. Results will no change on re-builds.',
+    'algorithm-shuffle-description': 'This finds the best combination of teams possible. Re-build for varied results.',
 
   },
 
@@ -199,7 +197,7 @@ CoC.lang['en'] = {
     'advanced-settings': 'Advanced Settings',
     'team-size': 'Team Size',
     'algorithm': 'Algorithm',
-    'quest-group': 'Quest Group',
+    'arena': 'Arena',
     'build': 'Build',
 
     //Add Champion Page

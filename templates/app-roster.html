@@ -286,17 +286,16 @@
       <label for="build-filter-stars-5">5 ★</label>
     </fieldset> 
 
-    <label><%= string('algorithm') %></label>
+    <label><%= string('type') %></label>
     
-    <select name="build-settings-algorithm" id="build-settings-algorithm" data-mini="true"></select>
-    <small id="build-settings-algorithm-description"></small>
-    
-    <fieldset data-role="controlgroup">
-    
-      <input type="checkbox" name="build-settings-quest" id="build-settings-quest" data-mini="true">
-      <label for="build-settings-quest"><%= string('quest-group') %></label>
-      
+    <fieldset id="build-settings-algorithm" data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <input type="radio" name="build-settings-algorithm" id="build-settings-algorithm-greedy" value="greedy">
+      <label for="build-settings-algorithm-greedy"><%= string('quest') %></label>
+      <input type="radio" name="build-settings-algorithm" id="build-settings-algorithm-shuffle" value="shuffle">
+      <label for="build-settings-algorithm-shuffle"><%= string('arena') %></label>
     </fieldset>
+    
+    <small id="build-settings-algorithm-description"></small>
 
     <button id="button-build-settings-apply"
       data-theme="b" 

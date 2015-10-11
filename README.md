@@ -33,9 +33,6 @@ Shuffle
 > 
 > USE THIS FOR YOUR MULTIPLE ARENA TEAMS.
 
-Distinct
-> I built an experimental algorithm that dissects the graph of synergies to pick teams. I still need to work on it to make it better but it is the fastest of the 3. It should almost pick teams comparable to shuffle, but it will always get the same result. Use this is you want to possibly see alternatives to the shuffle results.
-
 ### Guide Page
 
   These pages give details on each champion: abilities, styles, synergies and availablity in crystals.

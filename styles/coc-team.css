@@ -127,6 +127,9 @@
 #panel-team-settings #build-filter-stars .ui-checkbox{
   width:20%;
 }
+#panel-team-settings #build-settings-algorithm .ui-radio{
+  width:50%;
+}
 #panel-team-settings .ui-radio label,
 #panel-team-settings .ui-checkbox label{
   padding-left:0;

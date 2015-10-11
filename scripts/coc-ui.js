@@ -234,8 +234,8 @@ CoC.ui.teams=new function(){
     
     var roster = CoC.roster.filtered();
     var algorithm = CoC.algorithm[CoC.settings.getValue("build-algorithm")] || CoC.algorithm["shuffle"];
-    var quest = CoC.settings.getValue("build-quest-group")===true;
-    var extras = CoC.settings.getValue("build-quest-group")===false || !algorithm.canQuest;
+    var quest = algorithm.quest;
+    var extras = algorithm.extras;
     var levels = CoC.settings.getValue("build-levels")===true;
 
     $("#team-build-progress input").val(0).slider("refresh");
@@ -617,9 +617,6 @@ $("#page-add").on("pagecreate",function(){
 });
 $("#page-teams").on("pagecreate", function() {
   var i;
-  var algorithm = CoC.settings.getValue("algorithm") || "greedy";
-  for(var uid in CoC.algorithm)
-    $("#build-settings-algorithm").append($('<option>', { value:uid }).text( CoC.lang.model('algorithm-'+uid+'-name') ));
 
   $("#team-build-progress").addClass("hidden");
   $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
@@ -631,39 +628,6 @@ $("#page-teams").on("pagecreate", function() {
   teamSettingsSize.change(function(){ 
     CoC.settings.setValue("build-size",this.value); 
   });
-    
-  function enableResultOptions(){
-    var algorithm = CoC.settings.getValue("build-algorithm");    
-    var isQuesting = CoC.settings.getValue("build-quest-group");
-    
-    var canQuest = true;
-    if(!CoC.algorithm[algorithm].canQuest){
-      isQuesting = false;
-      canQuest = false;
-    }
-
-    var canExtras = false;
-    if(!isQuesting)
-      canExtras = true;
-  
-    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
-    $('#build-settings-quest').checkboxradio(canQuest? "enable": "disable").checkboxradio("refresh");
-    $('#build-settings-extras').checkboxradio(canExtras? "enable": "disable").checkboxradio("refresh");
-  }
-    
-  $("#build-settings-algorithm").change(function(){
-    CoC.settings.setValue("build-algorithm", this.value);
-    enableResultOptions();
-  }).val(CoC.settings.getValue("build-algorithm") || "greedy").selectmenu("refresh");  
-    
-  $('#build-settings-quest').change(function(){
-    CoC.settings.setValue("build-quest-group", this.checked);
-    enableResultOptions();
-  }).prop("checked", CoC.settings.getValue("build-quest-group") === true).checkboxradio('refresh');
-    
-  $('#build-settings-extras').change(function(){
-    CoC.settings.setValue("build-include-extras", this.checked);
-  }).prop("checked", CoC.settings.getValue("build-include-extras") === true).checkboxradio('refresh');
     
   var filters = [
     'build-filter-stars-1',
@@ -680,8 +644,31 @@ $("#page-teams").on("pagecreate", function() {
       .prop("checked", CoC.settings.getValue(filter)? true: false)
       .checkboxradio('refresh');
     })(filters[f]);
-    
-  enableResultOptions();
+
+  var algorithm = $('input:radio[name=build-settings-algorithm]');
+  algorithm.filter('[value='+CoC.settings.getValue("build-algorithm")+']').prop("checked", true).checkboxradio("refresh");
+  algorithm.change(function(){ 
+    CoC.settings.setValue("build-algorithm",this.value); 
+    updateAlgorithmDescription();
+  });
+
+  function updateAlgorithmDescription(){
+    algorithm = CoC.settings.getValue("build-algorithm");
+    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
+  }
+  updateAlgorithmDescription();
+
+  $("#build-settings-algorithm-greedy").change(function(){
+    if(this.checked)
+      CoC.settings.setValue("build-algorithm", "greedy");
+  }).prop("checked", CoC.settings.getValue("build-algorithm") === "greedy").checkboxradio("refresh");  
+
+  $("#build-settings-algorithm-shuffle").change(function(){
+    if(this.checked)
+      CoC.settings.setValue("build-algorithm", "shuffle");
+    $('#build-settings-algorithm-description').text( CoC.lang.model('algorithm-shuffle-description') );
+  }).prop("checked", CoC.settings.getValue("build-algorithm") === "shuffle").checkboxradio("refresh");  
+
   
   $("#button-build-settings-apply").click(function(){
     $("#panel-team-settings").panel("close");
