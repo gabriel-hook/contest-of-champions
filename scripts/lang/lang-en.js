@@ -135,8 +135,8 @@ CoC.lang['en'] = {
     'algorithm-shuffle-name': 'Shuffle',
 
     //Algorithm description
-    'algorithm-greedy-description': 'This finds the best single team possible. Results will no change on re-builds.',
-    'algorithm-shuffle-description': 'This finds the best combination of teams possible. Re-build for varied results.',
+    'algorithm-greedy-description': 'This picks the best team mathematically given all parameters.',
+    'algorithm-shuffle-description': 'This chooses the best combinations of teams possible.',
 
   },
 

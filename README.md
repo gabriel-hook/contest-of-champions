@@ -20,18 +20,6 @@
   This is where your teams will be displayed (with extras if the option is selected) once they are built.
 
   From the build settings panel you can go to the advanced settings page or build a set of teams.
-    
-#### Algorithms
-
-Greedy
-> This picks the best team mathematically given all parameters. It is the slowest but best if you want to choose 1 team. When you pick multiple teams it will choose the best team and then do the same on the remainders until you use up all of the champions. It does it pretty well at first, but the teams get worse as the list goes on. 
->
-> USE THIS FOR YOUR SINGLE QUEST TEAM.
-
-Shuffle
-> This sets up random teams initially, and then swaps champions on teams until swaps won't improve the overall scores of teams (scores being the internal ratings I give them). This is very fast and creates the best assortment of balanced teams with large numbers of champions. 
-> 
-> USE THIS FOR YOUR MULTIPLE ARENA TEAMS.
 
 ### Guide Page
 
