@@ -133,10 +133,12 @@
   opacity:0; 
 }
 
+/*
 #roster .champion.selected .container{
   z-index:1100;
   pointer-events:none;
 }
+*/
 
 /*
 #roster .champion .container:active,
