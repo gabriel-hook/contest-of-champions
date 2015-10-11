@@ -2,6 +2,7 @@ var CoC = CoC || {};
 CoC.lang = CoC.lang || {};
 
 CoC.lang['en'] = {
+  name:'English',
   model:{
 
     //Champion name
@@ -224,6 +225,7 @@ CoC.lang['en'] = {
     'twitter': 'Twitter',
     'google': 'Google',
     'tools': 'Tools',
+    'language': 'Language',
     'synergy-map': 'Synergy Map',    
     'roster-manager': 'Roster Manager',  
 

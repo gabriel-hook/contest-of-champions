@@ -2,6 +2,7 @@ var CoC = CoC || {};
 CoC.lang = CoC.lang || {};
 
 CoC.lang['ru'] = {
+  name:'Русский',
   model: { 
   
     //Champion name 
