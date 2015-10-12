@@ -103,7 +103,7 @@
 }
 
 #popup-roster-configure .extras .roster-configure-guide{
-  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(200,200,200,0.75) /*{c-bup-background-end}*/);
+  background:linear-gradient(rgba(255,255,255,0.75) , rgba(200,200,200,0.75));
 }
 
 #roster-configure-image{

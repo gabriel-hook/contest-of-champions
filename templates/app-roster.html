@@ -184,7 +184,7 @@
   data-role="page">
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <h3><%= string('add-champion') %></h3>
-    <a href="#page-roster" class="ui-btn-right"
+    <a href="#page-roster" class="ui-btn-left"
       data-transition="flip" 
       data-role="button" 
       data-iconpos="notext"
@@ -324,7 +324,7 @@
   data-tracking="true"
   data-role="page">
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
-    <a href="#page-teams" class="ui-btn-right"
+    <a href="#page-teams" class="ui-btn-left"
       data-role="button" 
       data-transition="flip"
       data-iconpos="notext"
@@ -338,8 +338,10 @@
 
     <h3><%= string('champion-weights') %></h3>
     
-    <input type="checkbox" name="settings-advanced-levels" id="settings-advanced-levels" data-highlight="true"/>
-    <label for="settings-advanced-levels"><%= string('use-levels') %></label>
+    <div data-role="fieldcontain">
+      <label for="settings-advanced-levels"><%= string('use-levels') %></label>
+      <input type="checkbox" name="settings-advanced-levels" id="settings-advanced-levels" data-highlight="true"/>
+    </div>
     
     <h3><%= string('synergy-weights') %></h3>
     
@@ -502,7 +504,7 @@
   data-tracking="true"
   data-role="page">
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
-    <a href="#page-guide" class="ui-btn-right"
+    <a href="#page-guide" class="ui-btn-left"
       data-transition="flip" 
       data-role="button" 
       data-iconpos="notext"
