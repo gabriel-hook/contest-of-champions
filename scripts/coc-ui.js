@@ -491,6 +491,7 @@ $("#page-crystals").on("pagebeforeshow",function(){
 
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
+
   function isInternetExplorer() {
     return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
       !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
@@ -526,6 +527,7 @@ $("#page-roster").on("pagecreate",function(){
   //csv exporter
   $('#roster-export').click(function(){
     var csvRoster;
+    var csvRosterName = 'champions.csv';
     console.log("exporting to csv...");
     if (isInternetExplorer()){
       csvRoster = CoC.roster.csvExport('\r\n');
@@ -533,11 +535,13 @@ $("#page-roster").on("pagecreate",function(){
       rosterExportFrame.document.write('sep=,\r\n' + csvRoster);
       rosterExportFrame.document.close();
       rosterExportFrame.focus();
-      rosterExportFrame.document.execCommand('SaveAs', true, 'champions.csv');
+      rosterExportFrame.document.execCommand('SaveAs', true, csvRosterName);
     }
     else{
       csvRoster = CoC.roster.csvExport();
-      $('#roster-export').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+      $('#roster-export')
+        .attr('download', csvRosterName)
+        .attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
     }
     $('#panel-roster-options').panel("close");
     CoC.tracking.event("roster", "export");
