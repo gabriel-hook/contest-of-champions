@@ -53,7 +53,7 @@ CoC.model = CoC.model || {};
       Backbone.Model.apply(this, arguments);
       var uid = this.get('uid');
       var name = CoC.lang.model('champion-'+uid+'-name');
-      var shortname = CoC.lang.model('champion-'+uid+'-shortname', true);
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname', null);
       if(name)
         this.set('name', name);
       if(shortname)
@@ -140,11 +140,16 @@ CoC.model = CoC.model || {};
     
     //clean an import's variable types
     update:function(){
-      var other = CoC.data.champions.findWhere({ uid:this.get("uid"), stars:this.get("stars") });
+      var uid = this.get('uid');
+      var stars = this.get('stars');
+      var other = CoC.data.champions.findWhere({ uid:uid, stars:stars });
       if(!other)
         return false;
+
+      this.set("name", CoC.lang.model('champion-'+uid+'-name'));
+      this.set("shortname", CoC.lang.model('champion-'+uid+'-shortname', null));
       this.set("typeId", other.get("typeId"));
-      this.set("stars", parseInt(this.get("stars"), 10) || 1);
+      this.set("stars", parseInt(stars, 10) || 1);
       this.set("rank", parseInt(this.get("rank"), 10) || 1);
       this.set("level", parseInt(this.get("level"), 10) || 1);
       this.set("awakened", parseInt(this.get("awakened"), 10) || 0);

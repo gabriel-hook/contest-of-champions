@@ -16,6 +16,7 @@
   "template": "CoC.data.template",
   "files": [
     "./templates/app-roster.html",
+    "./templates/options.html",
     "./templates/champion.html",
     "./templates/crystals.html",
     "./templates/guide-select-optgroup.html",
@@ -74,7 +75,8 @@
   "name": "app-synergies",
   "template": "CoC.data.template",
   "files":[
-    "./templates/app-synergies.html"
+    "./templates/app-synergies.html",
+    "./templates/options.html"
   ]
 },{
   "name": "app-synergies",
