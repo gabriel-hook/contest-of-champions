@@ -158,8 +158,8 @@ CoC.ui.add=new function(){
   
   this.render=function(){
     this.view.render();
-    $("#page-add #add-stars button").removeClass("ui-btn-active");
-    $("#page-add #add-stars button[stars=" + this._stars + "]").addClass("ui-btn-active");
+    $("#page-add #add-stars a").removeClass("ui-btn-active");
+    $("#page-add #add-stars a[stars=" + this._stars + "]").addClass("ui-btn-active");
   };
   
   this.show=function(){
@@ -598,11 +598,12 @@ $("#page-roster").on("pagecreate",function(){
     })(filters[i]);
 });
 $("#page-add").on("pagecreate",function(){
-  $("#page-add #add-stars button").each(function(i, obj){
+  $("#page-add #add-stars a").each(function(i, obj){
     var button = $(obj),
       stars = parseInt(button.attr("stars"), 10);
     button.on("click", function(){
       CoC.ui.add.setStars(stars);
+      return false;
     });
   });
 });
