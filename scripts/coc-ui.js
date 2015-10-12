@@ -82,7 +82,7 @@ CoC.ui.roster=new function(){
     setupRankLevel();
     
     $("#roster-configure-awakened").empty();
-    $("#roster-configure-awakened").append($("<option>").val(0).text("None"));
+    $("#roster-configure-awakened").append($("<option>").val(0).text(CoC.lang.string('none')));
     for(i = 1; i<=99; i++)
       $("#roster-configure-awakened").append($("<option>").val(i).text(i));
     $("#roster-configure-awakened").unbind("change").change(function(e){
