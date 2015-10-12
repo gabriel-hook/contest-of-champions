@@ -62,6 +62,10 @@ body.ui-mobile-viewport{
   line-height:1.0em;
 }
 
+#footer a::after{
+  background-color: rgba(0,0,0,0);
+}
+
 #roster .message,
 #teams .message{
   color:#f6f6f6;
