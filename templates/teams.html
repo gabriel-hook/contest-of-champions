@@ -13,7 +13,7 @@
         <div class="synergy" effectId="<%= effect.get('uid') %>" championIds="<%= effect.championIds().join(' ') %>">
           <img class="on" src="<%= effect.image() %>">
           <img class="off" src="<%= effect.imageOff() %>">
-          <span><%- effect.get('name') %> +<%- effect.get('amount') %> %</span>
+          <span><%- effect.get('name') + ' +' + effect.get('amount') + '%' %></span>
         </div>
       <% }) %>
     </div>
