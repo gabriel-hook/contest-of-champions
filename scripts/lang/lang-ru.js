@@ -292,3 +292,4 @@ CoC.lang['ru'] = {
     'none': 'Отсутствует',
   }
 };
+//http://collabedit.com/uuf57
