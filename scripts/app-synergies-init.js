@@ -37,14 +37,14 @@
   location.hash = '';
 
   if(checkStars('roster')){
-    CoC.share.initialize();
+    CoC.options.initialize('app-synergies');
     CoC.roster.initialize();
     $('.page').on('pageshow', function(){
         CoC.synergies.initialize(query['roster'], true);
     });
   }
   else if(checkStars('stars')){
-    CoC.share.initialize();
+    CoC.options.initialize('app-synergies');
     $('.page').on('pageshow', function(){
         CoC.synergies.initialize(query['stars']);
     });

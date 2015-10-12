@@ -1,4 +1,4 @@
 CoC.manager.initialize();
 CoC.roster.initialize();
-CoC.share.initialize();
+CoC.options.initialize('app-roster');
 CoC.ui.initialize();

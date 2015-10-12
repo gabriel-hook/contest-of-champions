@@ -1,7 +1,15 @@
 var CoC = CoC || {};
-CoC.share = {};
+CoC.options = {};
 
-CoC.share.initialize = function(){
+CoC.options.initialize = function(current){
+
+  var html = CoC.data.template['options']({
+    model: CoC.lang.model,
+    string: CoC.lang.string,
+    search: CoC.lang.search,
+    current: current
+  });
+  $(document.body).append(html);
 
   $("#panel-options").enhanceWithin().panel();
   $("#share-facebook").click(function(){
