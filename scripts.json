@@ -27,6 +27,7 @@
 },{
   "name": "app-roster",
   "files":[
+    "./scripts/language.js",
     "./scripts/app-roster-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
@@ -81,6 +82,7 @@
 },{
   "name": "app-synergies",
   "files":[
+    "./scripts/language.js",
     "./scripts/app-synergies-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
@@ -107,6 +109,7 @@
 },{
   "name": "worker-teams",
   "files":[
+    "./scripts/language.js",
     "./node_modules/underscore/underscore.js",
     "./node_modules/backbone/backbone.js",
     "./scripts/model/champion.js", 
