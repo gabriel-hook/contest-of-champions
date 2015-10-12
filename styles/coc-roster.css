@@ -108,7 +108,7 @@
 
 #roster-configure-image{
   position:absolute;
-  bottom: 1em;
+  bottom: 0;
   margin-bottom: 8px;
   width:256px;
   z-index:-1;
