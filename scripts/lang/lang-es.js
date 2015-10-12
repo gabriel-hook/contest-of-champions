@@ -219,7 +219,8 @@ CoC.lang['es'] = {
     //Guide Page
     'choose-guide': 'Choose a guide',
 
-    //Sharing
+    //Options
+    'options': 'Options',
     'share-to': 'Share to',
     'facebook': 'Facebook',
     'twitter': 'Twitter',
@@ -254,4 +255,4 @@ CoC.lang['es'] = {
     'none': 'None',
   }
 };
-//http://collabedit.com/pwxck
+// http://collabedit.com/pwxck

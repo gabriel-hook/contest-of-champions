@@ -219,7 +219,8 @@ CoC.lang['en'] = {
     //Guide Page
     'choose-guide': 'Choose a guide',
 
-    //Sharing
+    //Options
+    'options': 'Options',
     'share-to': 'Share to',
     'facebook': 'Facebook',
     'twitter': 'Twitter',

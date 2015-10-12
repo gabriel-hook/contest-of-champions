@@ -257,7 +257,8 @@ CoC.lang['ru'] = {
     //Guide Page 
     'choose-guide': 'Выберите руководство',
     
-    //Sharing 
+    //Options
+    'options': 'Опции',
     'share-to': 'Поделиться',
     'facebook': 'Facebook',
     'twitter': 'Twitter',
@@ -292,4 +293,4 @@ CoC.lang['ru'] = {
     'none': 'Отсутствует',
   }
 };
-//http://collabedit.com/uuf57
+// http://collabedit.com/uuf57

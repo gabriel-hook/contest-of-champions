@@ -27,6 +27,14 @@ body.ui-mobile-viewport{
   box-sizing: border-box;
 }
 
+.ui-panel-inner {
+  padding: 0 1em;
+}
+
+.ui-panel-inner > .ui-listview {
+  margin: 0 -1em;
+}
+
 .ui-page { 
   backface-visibility: hidden; 
   -webkit-backface-visibility: hidden; 
