@@ -22,6 +22,11 @@ body.ui-mobile-viewport,
   background-attachment: fixed;
 }
 
+.ui-page,
+.ui-panel{
+  box-sizing: border-box;
+}
+
 @media screen and (orientation: portrait){
   .ui-mobile .ui-page {
     min-height: 100%;
