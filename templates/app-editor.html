@@ -124,11 +124,20 @@
             class="select2 js-example-basic-multiple" multiple="multiple" 
             data-role="none" style="width: 100%">
             <% _([
-              'Cauterize',
               'Stun',
+              'Fatigue',
               'Power Drain',
-              'Blink',
-              'Teach'
+              'Power Burn',
+              'Bleed',
+              'Cauterize',
+              'Armor Break',
+              'Fury',
+              'Extra Damage',
+              'Critical Strike',
+              'Regeneration',
+              'Unstoppable',
+              'Poison',
+              'Armour Up'
             ]).each(function(ability){ %>
               <option value="<%= ability %>"><%= ability %></option>
             <% }) %>
