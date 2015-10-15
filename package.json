@@ -41,8 +41,7 @@
     "gulp-sequence": "^0.4.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.1",
-    "gulp-util": "^3.0.6",
-    "select2": "^4.0.0"
+    "gulp-util": "^3.0.6"
   },
   "dependencies": {
     "backbone": "^1.2.3",
@@ -50,6 +49,7 @@
     "underscore": "^1.8.3",
     "jquery": "^2.1.4",
     "jquery-mobile": "^1.4.1",
+    "select2": "^4.0.0",
     "urijs": "^1.16.1"
   }
 }
