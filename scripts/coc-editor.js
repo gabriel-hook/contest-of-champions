@@ -25,13 +25,7 @@ CoC.editor.initialize = function(){
 
   //init
   $(document).on('pagebeforeshow', '#page-guide', function(){ 
-
-    //remove '&ui-state=dialog' from url hash when loading
-    (function(){
-      var hash = location.hash.replace(/([&][u][i][-][s][t][a][t][e][=][d][i][a][l][o][g])/g, '');
-      if(hash !== location.hash)
-        location.hash = hash;
-    })();
+    location.hash = '';
 
     $('.select2').select2({
       tags: true,
@@ -157,22 +151,22 @@ CoC.editor.reset = function(champion){
       });
 
       $('#editor-import').removeClass("ui-disabled");
-      $('#editor-export').removeClass("ui-disabled");
     }
     //windows safari and other bullshit browsers that dont support FileReader
     else{
       $('#editor-import').addClass("ui-disabled");
-      $('#editor-export').addClass("ui-disabled");
     } 
+    $('#editor-export').removeClass("ui-disabled");
 
     CoC.editor.view.render(champion, true);
-    $('.editor-section').collapsible('enable');
+    $('.editor-section').collapsible('enable').removeClass("ui-disabled");
     $($('.editor-section')[0]).collapsible('expand');
   }
   else{
     CoC.editor.view.$el.empty();
-    $('.editor-section').collapsible('collapse').collapsible('disable');
+    $('.editor-section').collapsible('collapse').collapsible('disable').addClass("ui-disabled");
     $('#editor-import').addClass("ui-disabled");
+    $('#editor-export').addClass("ui-disabled");
   }
 
   function hasKeys(object){
@@ -221,6 +215,7 @@ CoC.editor.reset = function(champion){
     el.bind(binds, function(e){
       updateChampion(function(guideData){
         var i;
+        var data;
         var value;
         var object;
         var ordered;
@@ -228,8 +223,10 @@ CoC.editor.reset = function(champion){
           value = el.val();
           el.select2('destroy').select2();
         }
-        else
+        else{
           value = e.target.value;
+          el[type]('refresh');
+        }
         if(!value){
           object = guideData;
           ordered = [];
