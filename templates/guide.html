@@ -15,7 +15,7 @@
     <% if (data.description){ %>
       <p class="selectable"><%- data.description %></p>
     <% } %>
-    <% if (data.unavailable){ %>
+    <% if (data.unavailable || (!data.description && !data.grades)){ %>
       <p class="bold">
         <%= string('coming-soon') %>
       </p>

@@ -41,7 +41,8 @@
     "gulp-sequence": "^0.4.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.1",
-    "gulp-util": "^3.0.6"
+    "gulp-util": "^3.0.6",
+    "select2": "^4.0.0"
   },
   "dependencies": {
     "backbone": "^1.2.3",

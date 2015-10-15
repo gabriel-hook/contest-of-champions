@@ -255,4 +255,4 @@ CoC.lang['tr'] = {
     'none': 'None',
   }
 };
-//http://collabedit.com/jtfjm
+// http://collabedit.com/jtfjm

@@ -6,7 +6,21 @@ CoC.data.guides = CoC.data.guides || {};
   var map = {};
   var uids = _.uniq( CoC.data.champions.pluck("uid") );
 
-  _(uids).each(function(uid){
+  CoC.data.guides.each = function(callback){
+    _(uids).each(function(uid){
+      callback.call(CoC.data.guides, map[uid]);
+    });
+  };
+
+  CoC.data.guides.get = function(uid){
+    return map[uid];
+  };
+
+  CoC.data.guides.set = function(uid, guide){
+    map[uid] = guide;
+  };
+
+  CoC.data.guides.init = function(uid){
     //set initial guide state
     var value = map[uid] = {
       uid: uid,
@@ -29,15 +43,10 @@ CoC.data.guides = CoC.data.guides || {};
           value.champion.set("gradeAwakened", value.data.grades.awakened);  
       }
     }
+  };
+
+  _(uids).each(function(uid){
+    CoC.data.guides.init(uid);
   });
 
-  CoC.data.guides.each = function(callback){
-    _(uids).each(function(uid){
-      callback.call(CoC.data.guides, map[uid]);
-    });
-  };
-
-  CoC.data.guides.get = function(uid){
-    return map[uid];
-  };
 })();

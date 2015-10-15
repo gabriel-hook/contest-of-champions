@@ -59,7 +59,7 @@
     "./scripts/coc-algorithm.js",
     "./scripts/coc-roster.js",
     "./scripts/coc-preset.js",
-    "./scripts/coc-ui.js",
+    "./scripts/coc-roster-ui.js",
     "./scripts/coc-options.js",
     "./scripts/app-roster-init.js"
   ]
@@ -122,5 +122,53 @@
     "./scripts/data/types.js",
     "./scripts/coc-algorithm.js",
     "./scripts/worker-teams.js"
+  ]
+},{
+  "name": "app-editor",
+  "files": "./scripts/lang/*.js"
+},{
+  "name": "app-editor",
+  "files":[
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/underscore/underscore.js"
+  ]
+},{
+  "name": "app-editor",
+  "json": "CoC.data.guides.raw",
+  "files": "./scripts/data/guides/*.json"
+},{
+  "name": "app-editor",
+  "template": "CoC.data.template",
+  "files": [
+    "./templates/app-editor.html",
+    "./templates/options.html",
+    "./templates/guide.html"
+  ]
+},{
+  "name": "app-editor",
+  "files":[
+    "./scripts/language.js",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.js",
+    "./node_modules/backbone/backbone.js",
+    "./node_modules/backbone.localstorage/backbone.localStorage.js",
+    "./node_modules/select2/dist/js/select2.js",
+    "./scripts/model/type.js",
+    "./scripts/model/champion.js",
+    "./scripts/model/effect.js",
+    "./scripts/model/synergy.js",
+    "./scripts/model/crystal.js",
+    "./scripts/model/crystal-champion.js",
+    "./scripts/data/effects.js",
+    "./scripts/data/types.js",
+    "./scripts/data/champions.js",
+    "./scripts/data/synergies.js",
+    "./scripts/data/crystals.js",
+    "./scripts/data/guides.js",
+    "./scripts/app-editor-core.js",
+    "./scripts/view/guide.js",
+    "./scripts/coc-tracking.js",
+    "./scripts/coc-options.js",
+    "./scripts/coc-editor.js",
+    "./scripts/app-editor-init.js"
   ]
 }]

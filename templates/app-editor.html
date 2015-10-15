@@ -1,0 +1,209 @@
+﻿<div class="page" id="page-guide"
+  data-title="<%= string('champions') %> - <%= string('guide') %>"
+  data-theme="c"
+  data-role="page">
+  <div class="popup" id="popup-editor" 
+    data-transition="slideup"
+    data-position-to="window"
+    data-role="popup"
+    data-theme="b">
+
+    <select id="editor-champion" name="editor-champion">
+      <option value=""><%= CoC.lang.string('choose-guide') %>...</option>
+      <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(champion){ %>
+        <option value="<%= champion %>"><%= CoC.lang.model('champion-'+champion+'-name') %>...</option>
+      <% }) %>
+    </select>
+    <div data-role="collapsibleset" data-mini="true">
+      <div class="editor-section" data-role="collapsible" data-collapsed="false">
+        <h3 class="ui-mini">
+          <%= string('champion') %>      
+        </h3>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <label for="editor-grade"><%= string('grade') %></label>
+            <select id="editor-grade" name="editor-grade">
+              <% _(['', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F']).each(function(grade){ %>
+                <option value="<%= grade %>"><%= grade %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="ui-block-b">
+            <label for="editor-grade-awakened"><%= string('awakened') %></label>
+            <select id="editor-grade-awakened" name="editor-grade-awakened">
+              <% _(['', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F']).each(function(grade){ %>
+                <option value="<%= grade %>"><%= grade %></option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+        <label for="editor-description"><%= string('description') %></label>
+        <textarea id="editor-description" name="description" height=10></textarea>
+      </div>
+
+      <div class="editor-section" data-role="collapsible">
+        <h3 class="ui-mini">
+          <%= string('gameplay') %>      
+        </h3>
+        <label for="editor-gameplay-rating"><%= string('rating') %></label>
+        <fieldset id="editor-gameplay-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <input type="radio" name="editor-gameplay-rating" id="editor-gameplay-rating-none" value="">
+          <label for="editor-gameplay-rating-none"><%= string('none') %></label>
+          <% _([1,2,3,4,5]).each(function(number){ %>
+            <input type="radio" name="editor-gameplay-rating" id="editor-gameplay-rating-<%= number %>" value="<%= number %>">
+            <label for="editor-gameplay-rating-<%= number %>"><%= number %></label>
+          <% }) %>
+        </fieldset>
+        <label for="editor-gameplay-style"><%= string('style') %></label>
+        <input type="text" id="editor-gameplay-style" name="editor-gameplay-style"></textarea>
+        <label for="editor-gameplay-description"><%= string('description') %></label>
+        <textarea id="editor-gameplay-description" name="editor-gameplay-description"></textarea>
+        <label for="editor-gameplay-note"><%= string('note') %></label>
+        <input type="text" id="editor-gameplay-note" name="editor-gameplay-note"></textarea>
+      </div>
+
+      <div class="editor-section" data-role="collapsible">
+        <h3 class="ui-mini">
+          <%= string('signature') %>      
+        </h3>
+        <label for="editor-signature-rating"><%= string('rating') %></label>
+        <fieldset id="editor-signature-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <input type="radio" name="editor-signature-rating" id="editor-signature-rating-none" value="">
+          <label for="editor-signature-rating-none"><%= string('none') %></label>
+          <% _([1,2,3,4,5]).each(function(number){ %>
+            <input type="radio" name="editor-signature-rating" id="editor-signature-rating-<%= number %>" value="<%= number %>">
+            <label for="editor-signature-rating-<%= number %>"><%= number %></label>
+          <% }) %>
+        </fieldset>
+        <label for="editor-signature-name"><%= string('name') %></label>
+        <input type="text" id="editor-signature-name" name="editor-signature-name"></textarea>
+        <label for="editor-signature-description"><%= string('description') %></label>
+        <textarea id="editor-signature-description" name="editor-signature-description"></textarea>
+        <label for="editor-signature-note"><%= string('note') %></label>
+        <input type="text" id="editor-signature-note" name="editor-signature-note"></textarea>
+      </div>
+
+      <div class="editor-section" data-role="collapsible">
+        <h3 class="ui-mini">
+          <%= string('heavy-attack') %>      
+        </h3>
+        <label for="editor-heavy-rating"><%= string('rating') %></label>
+        <fieldset id="editor-heavy-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <input type="radio" name="editor-heavy-rating" id="editor-heavy-rating-none" value="">
+          <label for="editor-heavy-rating-none"><%= string('none') %></label>
+          <% _([1,2,3,4,5]).each(function(number){ %>
+            <input type="radio" name="editor-heavy-rating" id="editor-heavy-rating-<%= number %>" value="<%= number %>">
+            <label for="editor-heavy-rating-<%= number %>"><%= number %></label>
+          <% }) %>
+        </fieldset>
+        <label for="editor-heavy-description"><%= string('description') %></label>
+        <textarea id="editor-heavy-description" name="editor-heavy-description"></textarea>
+        <label for="editor-heavy-note"><%= string('note') %></label>
+        <input type="text" id="editor-heavy-note" name="editor-heavy-note"></textarea>
+      </div>
+
+      <% _([1, 2, 3]).each(function(index){ %>
+        <div class="editor-section" data-role="collapsible">
+          <h3 class="ui-mini">
+            <%= string('special') + ' ' + index %>
+          </h3>
+          <label for="editor-special-<%= index %>-rating"><%= string('rating') %></label>
+          <fieldset id="editor-special-<%= index %>-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <input type="radio" name="editor-special-<%= index %>-rating" id="editor-special-<%= index %>-rating-none" value="">
+            <label for="editor-special-<%= index %>-rating-none"><%= string('none') %></label>
+            <% _([1,2,3,4,5]).each(function(number){ %>
+              <input type="radio" name="editor-special-<%= index %>-rating" id="editor-special-<%= index %>-rating-<%= number %>" value="<%= number %>">
+              <label for="editor-special-<%= index %>-rating-<%= number %>"><%= number %></label>
+            <% }) %>
+          </fieldset>
+          <label for="editor-special-<%= index %>-description"><%= string('description') %></label>
+          <textarea id="editor-special-<%= index %>-description" name="editor-special-<%= index %>-description"></textarea>
+
+          <label for="editor-special-<%= index %>-abilities"><%= string('abilities') %></label>
+          <select id="editor-special-<%= index %>-abilities" name="editor-special-<%= index %>-abilities" 
+            class="select2 js-example-basic-multiple" multiple="multiple" 
+            data-role="none" style="width: 100%">
+            <% _([
+              'Cauterize',
+              'Stun',
+              'Power Drain',
+              'Blink',
+              'Teach'
+            ]).each(function(ability){ %>
+              <option value="<%= ability %>"><%= ability %></option>
+            <% }) %>
+          </select>
+
+          <label for="editor-special-<%= index %>-damagetypes"><%= string('damage-type') %></label>
+          <select id="editor-special-<%= index %>-damagetypes" name="editor-special-<%= index %>-damagetypes" 
+            class="select2 js-example-basic-multiple" multiple="multiple" 
+            data-role="none" style="width: 100%">
+            <% _([
+              'Physical',
+              'Energy'
+            ]).each(function(damagetype){ %>
+              <option value="<%= damagetype %>"><%= damagetype %></option>
+            <% }) %>
+          </select>
+
+          <% if(index !== 3){ %>
+            <label for="editor-special-<%= index %>-ranges"><%= string('range') %></label>
+            <select id="editor-special-<%= index %>-ranges" name="editor-special-<%= index %>-ranges" 
+              class="select2 js-example-basic-multiple" multiple="multiple" 
+              data-role="none" style="width: 100%">
+              <% _([
+                'Melee',
+                'Short',
+                'Medium',
+                'Long'
+              ]).each(function(range){ %>
+                <option value="<%= range %>"><%= range %></option>
+              <% }) %>
+            </select>
+          <% } %>
+
+          <label for="editor-special-<%= index %>-note"><%= string('note') %></label>
+          <input type="text" id="editor-special-<%= index %>-note" name="editor-special-<%= index %>-note"></textarea>
+        </div>
+      <% }) %>
+    </div>
+ 
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <button class="ui-btn" id="editor-import">Import</button>
+      </div>
+      <div class="ui-block-b">
+        <a class="ui-btn" id="editor-export">Export</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+    <a href="#popup-editor" class="ui-btn-left"
+      data-role="button" 
+      data-icon="edit" 
+      data-iconpos="notext"
+      data-rel="popup"></a>
+    <a class="button-share ui-btn-right" href="#panel-options"
+      data-role="button" 
+      data-icon="bars" 
+      data-iconpos="notext"
+      data-rel="panel"></a>      
+    <h1><%= string('guide') %></h1>
+  </div>
+    
+  <div role="main" class="ui-content" id="guide-content"></div>
+
+  <div id="popup-guide-effect" 
+    data-role="popup" 
+    data-arrow="true"
+    data-theme="a">
+    <div role="main" class="ui-content"></div>
+  </div>
+</div>
+
+<div id="editor-io-container">
+  <input id="editor-import-input" type="file" accept=".json">
+  <iframe id="editorExportFrame" style="display:none"></iframe>
+</div>

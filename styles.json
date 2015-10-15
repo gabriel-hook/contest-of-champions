@@ -24,4 +24,15 @@
     "./styles/coc-jquery-mobile-theme.css",
     "./styles/coc-synergies.css"
   ]
+},{
+  "name": "app-editor-screen",
+  "files":[
+    "./styles/fonts.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./styles/coc-jquery-mobile-theme.css",
+    "./node_modules/select2/dist/css/select2.css",
+    "./styles/coc.css",
+    "./styles/coc-guide.css",
+    "./styles/coc-editor.css"
+  ]
 }]

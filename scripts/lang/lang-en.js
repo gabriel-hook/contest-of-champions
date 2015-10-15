@@ -237,14 +237,17 @@ CoC.lang['en'] = {
 
     //Guide
     'coming-soon': 'Coming Soon...',
+    'description': 'Description',
     'gameplay': 'Gameplay',
     'special': 'Special',
     'signature': 'Signature Ability',
     'heavy-attack': 'Heavy Attack',
     'abilities': 'Abilities',
 
+    'rating': 'Rating',
     'grade': 'Grade',
     'strategy': 'Strategy',
+    'style': 'Style',
 
     'damage-type': 'Damage Type',
     'range': 'Range',

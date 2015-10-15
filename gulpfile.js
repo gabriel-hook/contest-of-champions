@@ -121,7 +121,10 @@ gulp.task('build:css', function(){
 });
 
 gulp.task('watch', function(){
-    gulp.watch('./scripts/**/*', batch(function(events, done){
+    gulp.watch([
+      './scripts/**/*',
+      './templates/**/*'
+    ], batch(function(events, done){
       sequence('clean:js','build:js', done);
     }));
     gulp.watch('./styles/**/*', batch(function(events, done){

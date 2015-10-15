@@ -1,0 +1,34 @@
+#popup-editor{
+  padding:1em;
+  background: rgba(200,200,200, 0.5);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#popup-editor-popup{
+  position: fixed;
+  width: 85%;
+  max-width:1024px;
+  min-width:17em;
+  top: initial !important;
+  bottom: 0 !important;
+}
+#popup-editor textarea{
+  min-height: 150px;
+  max-height: 500px;
+}
+
+#guide-content .background {
+  bottom: 0;
+}
+
+.select2-container{
+  z-index: 9999999;
+}
+
+#editor-csv-io-container{
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:-10000px;
+  left:-10000px;
+}
