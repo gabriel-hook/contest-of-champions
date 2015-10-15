@@ -213,7 +213,7 @@ CoC.lang['ru'] = {
     'filter': 'Фильтр',
     
     //Roster Config 
-    'stars': 'Каегория',
+    'stars': 'Категория',
     'type': 'Класс',
     'name': 'Имя',
     
