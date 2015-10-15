@@ -38,7 +38,7 @@ CoC.editor.initialize = function(){
       tokenSeparators: [',', ' ']
     });
 
-    var first = $('#editor-champion option')[20];
+    var first = $('#editor-champion option')[0];
     $(first).attr('selected', 'selected');
     $('#editor-champion').selectmenu('refresh')
     CoC.editor.reset(first.value);
