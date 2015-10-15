@@ -157,10 +157,12 @@ CoC.editor.reset = function(champion){
       });
 
       $('#editor-import').removeClass("ui-disabled");
+      $('#editor-export').removeClass("ui-disabled");
     }
     //windows safari and other bullshit browsers that dont support FileReader
     else{
       $('#editor-import').addClass("ui-disabled");
+      $('#editor-export').addClass("ui-disabled");
     } 
 
     CoC.editor.view.render(champion, true);
