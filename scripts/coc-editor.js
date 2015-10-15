@@ -83,7 +83,7 @@ CoC.editor.reset = function(champion){
   initMultiSelect('#editor-special-1-ranges', ['specials', '1', 'ranges']);
   initText('#editor-special-1-note', ['specials', '1', 'note']);
 
-  initRadio('[name=editor-special-2-rating]', ['specials', '21', 'rating']);
+  initRadio('[name=editor-special-2-rating]', ['specials', '2', 'rating']);
   initText('#editor-special-2-description', ['specials', '2', 'description']);
   initMultiSelect('#editor-special-2-abilities', ['specials', '2', 'abilities']);
   initMultiSelect('#editor-special-2-damagetypes', ['specials', '2', 'damagetypes']);
