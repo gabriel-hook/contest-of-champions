@@ -44,8 +44,11 @@ CoC.editor.initialize = function(){
   everyFrame(function onDraw(){
     var popup = $('#popup-editor-popup');
     var popupHeight = popup.height() || 0;
+    var guideContent = $('#guide-content');
+    var contentBottomMargin = 0;
     if(popup.length){
-      var viewportHeight = window.innerHeight - $('#header').height();
+      var headerHeight = $('#header').height();
+      var viewportHeight = window.innerHeight - headerHeight;
       var scrollY = window.scrollY;
       var marginBottom = 0;
       deltaScrollY += scrollY - lastScrollY;
@@ -54,8 +57,9 @@ CoC.editor.initialize = function(){
         marginBottom = deltaScrollY = Math.min(0, Math.max(viewportHeight - popupHeight, deltaScrollY));
       }
       popup.css('margin-bottom', marginBottom);
+      contentBottomMargin = Math.max(0, popupHeight - guideContent.height() - headerHeight);
     }
-    $('#guide-content').css('margin-bottom', popupHeight);
+    guideContent.css('margin-bottom', contentBottomMargin);
   });
   //reset to bottom when we close
   $('#popup-editor-popup').on('afterclose', function(){
