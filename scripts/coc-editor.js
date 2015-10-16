@@ -38,15 +38,24 @@ CoC.editor.initialize = function(){
     CoC.editor.reset(first.value);
   });
 
-  //make sure we can scroll down to see entire doc...
-  setInterval(function(){
-    spacing = 0;
-    var popup = $('#popup-editor-popup');
-    if(popup.length)
-      spacing = popup.height();
+  var queueRender = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60) };
+  queueRender(function onDraw(){
 
-    $('#guide-content').css('margin-bottom', spacing);
-  }, 100);
+    //make sure we have enough padding below to scroll all the way down
+    var popup = $('#popup-editor-popup');
+    var popupHeight = popup.height() || 0;
+    if(popup.length){
+      var spacing = (window.innerWidth > 500)? 32: 0;
+      var viewportHeight = $('.ui-mobile-viewport').height() - $('#header').height() - spacing;
+      var scrollY = window.scrollY;
+      var marginBottom = 0;
+      if(viewportHeight < popupHeight)
+        marginBottom = Math.min(0, viewportHeight - popupHeight + window.scrollY);
+      popup.css('margin-bottom', marginBottom);   
+    }
+    $('#guide-content').css('margin-bottom', popupHeight);
+    queueRender(onDraw);
+  });
 };
 
 CoC.editor.reset = function(champion){

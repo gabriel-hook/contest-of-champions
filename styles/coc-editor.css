@@ -1,22 +1,3 @@
-#popup-editor{
-  padding:1em;
-  background: rgba(200,200,200, 0.5);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-#popup-editor-popup{
-  position: fixed;
-  width: 85%;
-  max-width:1024px;
-  min-width:17em;
-  top: initial !important;
-  bottom: 0 !important;
-}
-#popup-editor textarea{
-  min-height: 150px;
-  max-height: 500px;
-}
-
 #guide-content .background {
   bottom: 0;
 }
@@ -31,4 +12,39 @@
   position:absolute;
   top:-10000px;
   left:-10000px;
+}
+
+#popup-editor{
+  padding:1em;
+  background: rgba(200,200,200, 0.5);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#popup-editor textarea{
+  min-height: 150px;
+  max-height: 500px;
+}
+
+#popup-editor-popup{
+  box-sizing: border-box;
+  position: fixed;
+  width: 85%;
+  max-width:1024px;
+  min-width:500px;
+  top: initial !important;
+  bottom: 0 !important;
+}
+
+@media (max-width:500px){
+  #popup-editor-popup{
+    left:0 !important;
+    width: 100% !important;
+    min-width: inherit !important;
+    max-width: inherit !important;
+  }
+  #popup-editor{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }
