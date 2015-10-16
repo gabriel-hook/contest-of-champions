@@ -1,3 +1,5 @@
+/*
+
 var CoC = CoC || {};
 CoC.lang = CoC.lang || {};
 
@@ -255,4 +257,7 @@ CoC.lang['tr'] = {
     'none': 'None',
   }
 };
+
+*/
+
 // http://collabedit.com/jtfjm
