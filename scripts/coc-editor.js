@@ -127,8 +127,12 @@ CoC.editor.reset = function(champion){
       }
     }); 
 
+    if(isMobileIOS()){
+      $('#editor-import').addClass("ui-disabled");
+      $('#editor-export').addClass("ui-disabled");
+    }
     //json importer
-    if(window.FileReader){
+    else if(window.FileReader){
       $('#editor-import-input').unbind('change').change(function(e){
         if (this.files && this.files[0]) {
           var reader = new FileReader();
@@ -160,12 +164,13 @@ CoC.editor.reset = function(champion){
       });
 
       $('#editor-import').removeClass("ui-disabled");
+      $('#editor-export').removeClass("ui-disabled");
     }
     //windows safari and other bullshit browsers that dont support FileReader
     else{
       $('#editor-import').addClass("ui-disabled");
+      $('#editor-export').removeClass("ui-disabled");
     } 
-    $('#editor-export').removeClass("ui-disabled");
 
     CoC.editor.view.render(champion, true);
     $('.editor-section').collapsible('enable').removeClass("ui-disabled");
@@ -266,6 +271,10 @@ CoC.editor.reset = function(champion){
         }
       });
     });
+  }
+
+  function isMobileIOS(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   }
 
   function isInternetExplorer() {
