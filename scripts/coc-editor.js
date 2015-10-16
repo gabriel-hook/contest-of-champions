@@ -34,28 +34,48 @@ CoC.editor.initialize = function(){
 
     var first = $('#editor-champion option')[0];
     $(first).attr('selected', 'selected');
-    $('#editor-champion').selectmenu('refresh')
+    $('#editor-champion').selectmenu('refresh');
     CoC.editor.reset(first.value);
   });
 
-  var queueRender = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60) };
-  queueRender(function onDraw(){
-
-    //make sure we have enough padding below to scroll all the way down
+  //make sure we have enough padding below to scroll all the way down
+  var deltaScrollY = 0;
+  var lastScrollY = 99999999999999;
+  everyFrame(function onDraw(){
     var popup = $('#popup-editor-popup');
     var popupHeight = popup.height() || 0;
     if(popup.length){
-      var spacing = (window.innerWidth > 500)? 32: 0;
-      var viewportHeight = $('.ui-mobile-viewport').height() - $('#header').height() - spacing;
+      var viewportHeight = window.innerHeight - $('#header').height();
       var scrollY = window.scrollY;
       var marginBottom = 0;
-      if(viewportHeight < popupHeight)
-        marginBottom = Math.min(0, viewportHeight - popupHeight + window.scrollY);
-      popup.css('margin-bottom', marginBottom);   
+      deltaScrollY += scrollY - lastScrollY;
+      lastScrollY = scrollY;
+      if(viewportHeight < popupHeight){
+        marginBottom = deltaScrollY = Math.min(0, Math.max(viewportHeight - popupHeight, deltaScrollY));
+      }
+      popup.css('margin-bottom', marginBottom);
     }
     $('#guide-content').css('margin-bottom', popupHeight);
-    queueRender(onDraw);
   });
+  //reset to bottom when we close
+  $('#popup-editor-popup').on('afterclose', function(){
+    lastScrollY = 99999999999999;
+  });
+
+  function everyFrame(callback){
+    var raf = window.requestAnimationFrame || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame || 
+      window.msRequestAnimationFrame || 
+      window.oRequestAnimationFrame || 
+      function(callback){ 
+        window.setTimeout(callback, 1000/60);
+      };
+    raf(function action(){
+      callback();
+      raf(action);
+    });
+  }
 };
 
 CoC.editor.reset = function(champion){
@@ -110,9 +130,6 @@ CoC.editor.reset = function(champion){
     $('#editor-export').click(function(){
       var guide = CoC.data.guides.get(champion);
       var guideJson = JSON.stringify(guide.data, null, '\t');
-
-      console.log(guideJson)
-
       var guideJsonName = champion + ".json";
       if (isInternetExplorer()){
         rosterExportFrame.document.open("application/json", "replace");
@@ -245,7 +262,7 @@ CoC.editor.reset = function(champion){
           object = guideData;
           ordered = [];
           for(i=0; object[namespace[i]] && i < namespace.length; i++){
-            ordered.push(object)
+            ordered.push(object);
             if(i < namespace.length - 1)
               object = object[namespace[i]];
           }
@@ -281,4 +298,4 @@ CoC.editor.reset = function(champion){
     return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
       !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
   }
-}
+};
