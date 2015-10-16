@@ -21,7 +21,7 @@ CoC.lang = CoC.lang || {};
   CoC.lang.model = function(key, notFoundValue){
     var value = CoC.lang[currentLang].model[key];
     if(value === undefined)
-      value = (notFoundValue !== undefined)? notFoundValue: CoC.lang[defaultLang].model[key]
+      value = (notFoundValue !== undefined)? notFoundValue: CoC.lang[defaultLang].model[key];
     return value;
   };
 

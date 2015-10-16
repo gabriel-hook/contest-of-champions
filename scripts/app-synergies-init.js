@@ -5,6 +5,7 @@
     if(attr.length === 2)
       query[attr[0]] = attr[1] && unescape(attr[1]);
   });
+  
   window.searchQuery = function(key, value){
     var q = _.clone(query);
     if(key !== undefined && value !== undefined)
@@ -16,7 +17,7 @@
     return '?' + _.pairs(q).map(function(value){
       return value[0] + '=' + escape(value[1]);
     }).join('&');
-  }
+  };
 
   function checkStars(key){
     if(query[key] !== undefined){
