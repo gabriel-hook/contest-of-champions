@@ -34,10 +34,12 @@ CoC.model = CoC.model || {};
     //TODO: 5-star values
   };
 
+  var starStrings = ["", "★", "★★", "★★★", "★★★★", "★★★★★"];
+
   CoC.model.Champion = Backbone.Model.extend({
     defaults: {
       uid: "champion",
-      stars:2,
+      stars: 2,
       name: 'Champion',
       shortname: null,
       typeId: "mutant",
@@ -95,16 +97,13 @@ CoC.model = CoC.model || {};
     
     stars:function(){
       if(this._stars === undefined){
-        this._stars = ["", "★", "★★", "★★★", "★★★★", "★★★★★"][this.get("stars")];
+        this._stars = starStrings[this.get("stars")];
       }
       return this._stars;
     },
     
     fid:function(){
-      if(this._fid === undefined){
-        this._fid = this.get("uid")+"_"+this.get("stars");
-      }
-      return this._fid;
+      return [this.get("uid"), this.get("stars"), this.get('quest')].join('_');
     },
     
     portrait:function(){

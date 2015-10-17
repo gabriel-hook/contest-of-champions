@@ -224,6 +224,10 @@ CoC.ui.teams=new function(){
       size = 3;
     
     var roster = CoC.roster.filtered();
+    var champions = [];
+    for(var i=0; i<roster.length; i++)
+      champions.push(roster[i].fid());
+
     var algorithm = CoC.algorithm[CoC.settings.getValue("build-type")] || CoC.algorithm["shuffle"];
     var quest = algorithm.quest;
     var extras = algorithm.extras;
@@ -236,12 +240,7 @@ CoC.ui.teams=new function(){
       workerWorking = false,
       worker = CoC.ui.teams.getWorker();
     if (worker){
-  
       try{
-        //Convert Champion models to JSON for message transport
-        var rosterJSON = [];
-        for(var i=0; i<roster.length; i++)
-          rosterJSON.push(roster[i].toJSON());
       
         //Setup and start the worker
         worker.onmessage=function(event){
@@ -267,20 +266,28 @@ CoC.ui.teams=new function(){
             console.log(CoC.lang.model('algorithm-'+algorithm.uid+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
             
             //Convert the result back to Champion models post-transport
-            var result = {};
+            var result = {}, fid, champion;
             if(event.data.result.teams !== undefined){
               result.teams=[];
               for(i=0; i<event.data.result.teams.length; i++){
                 var team = [];
-                for(j=0; j<event.data.result.teams[i].length; j++)
-                  team.push(new CoC.model.Champion( event.data.result.teams[i][j] ));
+                for(j=0; j<event.data.result.teams[i].length; j++){
+                  fid = event.data.result.teams[i][j].split('_');
+                  champion = CoC.data.roster.findWhere({ uid:fid[0], stars:parseInt(fid[1], 10) });
+                  if(champion)
+                    team.push(champion);
+                }
                 result.teams.push(team);
               }
             }
             if(event.data.result.extras !== undefined){
               result.extras=[];
-              for(i=0; i<event.data.result.extras.length; i++)
-                result.extras.push(new CoC.model.Champion( event.data.result.extras[i] ));
+              for(i=0; i<event.data.result.extras.length; i++){
+                fid = event.data.result.extras[i].split('_');
+                champion = CoC.data.roster.findWhere({ uid:fid[0], stars:parseInt(fid[1], 10) });
+                if(champion)
+                  result.extras.push(champion);
+              }
             }
             
             $("#team-build-progress input").val(10000).slider("refresh");
@@ -294,7 +301,7 @@ CoC.ui.teams=new function(){
         };
         worker.postMessage({
           algorithm:algorithm.uid,
-          roster:rosterJSON, 
+          champions:champions, 
           size:size, 
           levels:levels,
           quest:quest, 
@@ -313,7 +320,7 @@ CoC.ui.teams=new function(){
     if(!workerWorking){
       setTimeout(function(){
         var lastTime = (new Date()).getTime();
-        var result = algorithm.build({ champions:roster, size:size, levels:levels, quest:quest, extras:extras });
+        var result = algorithm.build({ champions:champions, size:size, levels:levels, quest:quest, extras:extras });
         $("#team-build-progress input").val(10000).slider("refresh");
         setTimeout(function(){
           CoC.ui.teams.render(result, size);

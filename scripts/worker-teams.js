@@ -1,6 +1,6 @@
 onmessage = function (event){
   var algorithm = event.data.algorithm,
-    rosterJSON = event.data.roster,
+    champions = event.data.champions,
     size = event.data.size,
     levels = event.data.levels,
     weights = event.data.weights,
@@ -48,15 +48,10 @@ onmessage = function (event){
         description:description        
       });
     };
-  
-  //Convert Champion JSON to models
-  var roster = [];
-  for(i=0; i<rosterJSON.length; i++)
-    roster.push(new CoC.model.Champion( rosterJSON[i] ));
 
   //Get result from algorithm
   var result = CoC.algorithm[algorithm].build({ 
-    champions:roster, 
+    champions:champions, 
     size:size, 
     levels:levels,
     extras:extras, 
@@ -64,14 +59,5 @@ onmessage = function (event){
     progress:progress 
   });
 
-  //Convert Champion models to JSON
-  if(result.teams)
-    for(i=0; i<result.teams.length; i++)
-      for(j=0; j<result.teams[i].length; j++)
-        result.teams[i][j] = result.teams[i][j].toJSON();
-  if(result.extras)
-    for(i=0; i<result.extras.length; i++)
-      result.extras[i] = result.extras[i].toJSON();
-  
   postMessage({ type:"complete", result:result });
 };
