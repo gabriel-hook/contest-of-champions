@@ -1,0 +1,56 @@
+{
+	"grades": {
+		"normal": "A",
+		"awakened": "A+"
+	},
+	"description": "Spider-Man Symbiote is great for dishing out fast, high damage. His 80 second stacking armor break can take down just about any champion in the game, and he's probably the best to use against heavily armored tech champions such as the Iron Men and Ultron. With a fantastic critical rate and damage, he can tear through just about anyone within a matter of seconds. His only downside is his slightly lower health, which isn't even that bad to begin with.",
+	"gameplay": {
+		"style": "Offensive",
+		"rating": "5",
+		"description": "Spider-Man is entirely Offensive, coupling frequent Critical hits with Precision and Weakness both caused by Critical hits. He is fast and powerful, having one of the highest attack stats in the game. His second special, which requires precise timing to land, has 100% critical rate, ensuring that he can take down anybody with it alone. His heavy attacks have a guaranteed chance to cause 80 second armor break, which stacks. \n",
+		"note": "One of the best Masteries for Spider-Man would be Parry, to ensure that he can dish out uninterrupted heavy attacks."
+	},
+	"signature": {
+		"rating": "3",
+		"name": "Spider Sense",
+		"description": "Increased agility coupled with small stature and a sixth sense for imminent danger make Spider-Man x% more elusive.",
+		"note": "While this ability is stronger than the red and blue Spider-Man's, it only triggers for a certain amount of time on special attacks."
+	},
+	"heavy": {
+		"rating": "5",
+		"description": "Each Heavy Attack has a guaranteed chance to inflict Armor Break, dealing 7-9% Armor Reduction for 80 seconds. This effect stacks, and can be quite useful against heavily armored champions. It works nicely for removing the armor of characters such as Ultron and Colossus.",
+		"note": "Timing is key. While his heavy gives a powerful debut, it can be easily interrupted (though it is a rather fast attack)."
+	},
+	"specials": {
+		"1": {
+			"rating": "3",
+			"description": "This is one of his weaker attacks, as it does not give any detrimental abilities like the regular Spider-Man's does. When Precision is active, it can be good for dealing high damage, though.",
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Long"
+			]
+		},
+		"2": {
+			"rating": "5",
+			"description": "This is Spider-Man's most deadly attack. It has a guaranteed chance to be a critical hit, taking off large amounts of health from any champion. It deals fantastic, fast damage and can even be useful if blocked.",
+			"abilities": [
+				"Critical Strike"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Medium"
+			],
+			"note": "Much like with the Heavy Attack, timing is key. The best time to use this special is when an enemy is charging towards you to ensure it won't be blocked."
+		},
+		"3": {
+			"damagetypes": [
+				"Physical"
+			],
+			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America."
+		}
+	}
+}
