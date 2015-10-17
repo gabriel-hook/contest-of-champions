@@ -499,11 +499,6 @@ $("#page-crystals").on("pagebeforeshow",function(){
 //Initialize inputs
 $("#page-roster").on("pagecreate",function(){
 
-  function isInternetExplorer() {
-    return (window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
-      !!navigator.userAgent.match(/Trident.*rv\:11\./))? true: false;
-  }
-
   //csv importer
   if(window.FileReader){
     $('#roster-import-input').change(function(e){
@@ -763,6 +758,14 @@ $('[data-tracking=true]').on('pageshow', function(){
     path += location.hash;
   CoC.tracking.pageView(path);
 });
+
+function isInternetExplorer() {
+  return (
+    window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
+    window.navigator.userAgent.indexOf("Edge ") !== -1 || 
+    !!navigator.userAgent.match(/Trident.*rv\:11\./)
+  )? true: false;
+}
 
 //remove '&ui-state=dialog' from url hash when loading
 (function(){
