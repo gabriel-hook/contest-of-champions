@@ -54,8 +54,8 @@
           <%= string('signature') %>
           <%= ratingSpan(data.signature.rating) %>           
         </h4>
-        <div class="selectable">
-          <b><%- data.signature.name %></b>
+        <div class="selectable bold">
+          <%- data.signature.name %>
         </div>
         <% if (data.signature.description){ %>
           <p class="selectable"><%= data.signature.description %></p>
@@ -90,9 +90,14 @@
         var special = data.specials[number] %>
         <div data-role="collapsible" data-collapsed="false">
           <h4>
-            <%= string('special') %><%- ' ' + number %>
+            <%= string('special') + ' ' + number %>
             <%= ratingSpan(special.rating) %>            
           </h4>
+          <% if (special.name){ %>
+            <div class="selectable bold">
+              <%- special.name %>
+            </div>
+          <% } %>
           <% if (special.description){ %>
             <p class="selectable"><%= special.description %></p>
           <% } %>

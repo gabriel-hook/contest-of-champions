@@ -34,7 +34,8 @@
 				"Long"
 			],
 			"description": "This is a three hit attack, with two of them having a high chance to trigger strong, not so long lasting bleed. Additionally, this attack is a guaranteed chance to be critical against Bleeding opponents. If your opponent is already bleeding, all hits will be critical, if the bleed is triggered from the first sai throw, the second sai throw will be critical. ",
-			"note": "This attack is easy to connect, making it great for taking out opponents quickly."
+			"note": "This attack is easy to connect, making it great for taking out opponents quickly.",
+			"name": "Shuriken Jutsu"
 		},
 		"2": {
 			"rating": "3",
@@ -47,7 +48,8 @@
 			],
 			"ranges": [
 				"Medium"
-			]
+			],
+			"name": "Sai Assault"
 		},
 		"3": {
 			"rating": "4",
@@ -57,7 +59,8 @@
 			"description": "While fun to watch, this attack also triggers powerful, long bleed and is a good damage dealer. Perhaps it is not better than her first special, but is better to use than her second if you miss her first.",
 			"damagetypes": [
 				"Physical"
-			]
+			],
+			"name": "Strikes of the Shinobi"
 		}
 	}
 }

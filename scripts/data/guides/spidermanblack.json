@@ -30,7 +30,8 @@
 			],
 			"ranges": [
 				"Long"
-			]
+			],
+			"name": "Web-Slinger"
 		},
 		"2": {
 			"rating": "5",
@@ -44,13 +45,15 @@
 			"ranges": [
 				"Medium"
 			],
-			"note": "Much like with the Heavy Attack, timing is key. The best time to use this special is when an enemy is charging towards you to ensure it won't be blocked."
+			"note": "Much like with the Heavy Attack, timing is key. The best time to use this special is when an enemy is charging towards you to ensure it won't be blocked.",
+			"name": "Swingin'"
 		},
 		"3": {
 			"damagetypes": [
 				"Physical"
 			],
-			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America."
+			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America.",
+			"name": "Thwip, Thwip, Pow!"
 		}
 	}
 }

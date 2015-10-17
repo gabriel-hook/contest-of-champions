@@ -28,14 +28,15 @@
 			"ranges": [
 				"Long"
 			],
-			"description": "The true ability of Black bolt, this L1 (Particle Beam) is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
+			"description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
 			"abilities": [
 				"Stun"
 			],
-			"note": "Also applies Direct Damage"
+			"note": "Also applies Direct Damage",
+			"name": "Particle Beam"
 		},
 		"2": {
-			"description": "Although Black Bolts L2, Corkscrew, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
+			"description": "Although Black Bolts L2, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
 			"rating": "4",
 			"abilities": [
 				"Stun"
@@ -45,7 +46,8 @@
 			],
 			"ranges": [
 				"Medium"
-			]
+			],
+			"name": "Corkscrew"
 		},
 		"3": {
 			"rating": "3",
@@ -55,7 +57,8 @@
 			],
 			"damagetypes": [
 				"Energy"
-			]
+			],
+			"name": "Hypersonic Whisper"
 		}
 	}
 }
