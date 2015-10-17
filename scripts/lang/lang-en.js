@@ -259,7 +259,7 @@ CoC.lang['en'] = {
     'profile': 'Profile',
     'profile-reddit': 'Reddit /u/',
     'profile-kabam': 'Kabam Forums',
-    'author-credit': 'This guide was brought to you by',
+    'author-credit': 'This guide was written by',
 
     'email': 'E-mail',
     

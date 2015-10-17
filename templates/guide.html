@@ -214,7 +214,7 @@
   </div>
   <div style="clear:both;"></div>
   <% if(data.author && data.author.name){ %>
-    <div class="author-credit">
+    <div class="author-credit ui-collapsible-content ui-body-inherit ui-corner-all">
       <b><%= string('author-credit') + ' ' %></b>
       <% if(data.author.profile && data.author.profile.type && data.author.profile.name){ %>
         <% if(data.author.profile.type === 'reddit'){ %>
