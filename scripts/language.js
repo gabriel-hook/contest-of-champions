@@ -34,6 +34,8 @@ CoC.lang = CoC.lang || {};
 
   CoC.lang.search = (defaultLang === currentLang)? '': '?lang='+currentLang;
 
+  CoC.lang.current = currentLang;
+
   if(currentLang === defaultLang && query['lang'] === undefined){
     var languages = [], updateLang;
     if(navigator && navigator.language)
