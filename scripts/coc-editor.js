@@ -185,7 +185,6 @@ CoC.editor.reset = function(champion){
   //json importer
   else if(window.FileReader){
     $('#editor-import-input').unbind('change').change(function(e){
-      var name = champion;
       if (this.files && this.files[0]) {
         var reader = new FileReader();
         var file = this.files[0];
