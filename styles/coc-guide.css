@@ -297,7 +297,7 @@
   text-align:center;
 }
 
-@media (max-width:350px), (max-height:400px) {
+@media (max-width:450px), (max-height:450px) {
   #guide-content{
     padding:0;
     font-size:0.8em;
@@ -346,7 +346,7 @@
   }
 }
 
-@media (min-width:1101px) {
+@media (max-width:1600px) and (min-width:1101px){
   #guide-content .box{
     float:left;
     width: 33%;
@@ -355,6 +355,34 @@
     margin-left: .5%;
   }
   #guide-content .box:nth-child(3n+1){  
+    clear: both;
+    margin-left: 0;
+  }
+}
+
+@media (max-width:2000px) and (min-width:1601px){
+  #guide-content .box{
+    float:left;
+    width: 24.5%;
+    margin: 0;
+    margin-bottom: .5em;
+    margin-left: .66%;
+  }
+  #guide-content .box:nth-child(4n+1){  
+    clear: both;
+    margin-left: 0;
+  }
+}
+
+@media (min-width:2001px){
+  #guide-content .box{
+    float:left;
+    width: 19.5%;
+    margin: 0;
+    margin-bottom: .5em;
+    margin-left:.625%;
+  }
+  #guide-content .box:nth-child(5n+1){  
     clear: both;
     margin-left: 0;
   }
