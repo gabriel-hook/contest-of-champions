@@ -26,6 +26,19 @@
   max-height: 500px;
 }
 
+#popup-editor .editor-author-profile .ui-select{
+  margin-bottom: 0;
+}
+#popup-editor .editor-author-profile .ui-select .ui-btn{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#popup-editor .editor-author-profile .ui-input-text{
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 #popup-editor-popup{
   box-sizing: border-box;
   position: fixed;

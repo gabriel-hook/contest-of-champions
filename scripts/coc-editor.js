@@ -134,6 +134,10 @@ CoC.editor.reset = function(champion){
   initMultiSelect('#editor-special-3-damagetypes', ['specials', '3', 'damagetypes']);
   initText('#editor-special-3-note', ['specials', '3', 'note']);
 
+  initText('#editor-author-name', ['author', 'name']);
+  initSelect('#editor-author-profile-type', ['author', 'profile', 'type']);
+  initText('#editor-author-profile-name', ['author', 'profile', 'name']);
+
   if(hasChampion){
 
     //Exporting
@@ -243,11 +247,18 @@ CoC.editor.reset = function(champion){
   function updateChampion(callback){
     if(!hasChampion)
       return;
+
+    var lastScroll = window.scrollY;
+
     var guide = CoC.data.guides.get(champion);
     delete guide.data.unavailable;
     callback.call(null, guide.data);
     CoC.data.guides.set(champion, guide);
     CoC.editor.view.render(champion, true);
+
+    setTimeout(function(){
+      $.mobile.silentScroll( lastScroll );
+    });
   }
 
   function initInput(type, binds, query, namespace){

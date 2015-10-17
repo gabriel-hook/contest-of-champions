@@ -55,11 +55,11 @@
           <% }) %>
         </fieldset>
         <label for="editor-gameplay-style"><%= string('style') %></label>
-        <input type="text" id="editor-gameplay-style" name="editor-gameplay-style"></textarea>
+        <input type="text" id="editor-gameplay-style" name="editor-gameplay-style" />
         <label for="editor-gameplay-description"><%= string('description') %></label>
         <textarea id="editor-gameplay-description" name="editor-gameplay-description"></textarea>
         <label for="editor-gameplay-note"><%= string('note') %></label>
-        <input type="text" id="editor-gameplay-note" name="editor-gameplay-note"></textarea>
+        <input type="text" id="editor-gameplay-note" name="editor-gameplay-note" />
       </div>
 
       <div class="editor-section" data-role="collapsible">
@@ -76,11 +76,11 @@
           <% }) %>
         </fieldset>
         <label for="editor-signature-name"><%= string('name') %></label>
-        <input type="text" id="editor-signature-name" name="editor-signature-name"></textarea>
+        <input type="text" id="editor-signature-name" name="editor-signature-name" />
         <label for="editor-signature-description"><%= string('description') %></label>
         <textarea id="editor-signature-description" name="editor-signature-description"></textarea>
         <label for="editor-signature-note"><%= string('note') %></label>
-        <input type="text" id="editor-signature-note" name="editor-signature-note"></textarea>
+        <input type="text" id="editor-signature-note" name="editor-signature-note" />
       </div>
 
       <div class="editor-section" data-role="collapsible">
@@ -99,7 +99,7 @@
         <label for="editor-heavy-description"><%= string('description') %></label>
         <textarea id="editor-heavy-description" name="editor-heavy-description"></textarea>
         <label for="editor-heavy-note"><%= string('note') %></label>
-        <input type="text" id="editor-heavy-note" name="editor-heavy-note"></textarea>
+        <input type="text" id="editor-heavy-note" name="editor-heavy-note" />
       </div>
 
       <% _([1, 2, 3]).each(function(index){ %>
@@ -117,7 +117,7 @@
             <% }) %>
           </fieldset>
           <label for="editor-special-<%= index %>-name"><%= string('name') %></label>
-          <input type="text" id="editor-special-<%= index %>-name" name="editor-special-<%= index %>-name"></textarea>
+          <input type="text" id="editor-special-<%= index %>-name" name="editor-special-<%= index %>-name" />
           <label for="editor-special-<%= index %>-description"><%= string('description') %></label>
           <textarea id="editor-special-<%= index %>-description" name="editor-special-<%= index %>-description"></textarea>
 
@@ -174,9 +174,30 @@
           <% } %>
 
           <label for="editor-special-<%= index %>-note"><%= string('note') %></label>
-          <input type="text" id="editor-special-<%= index %>-note" name="editor-special-<%= index %>-note"></textarea>
+          <input type="text" id="editor-special-<%= index %>-note" name="editor-special-<%= index %>-note" />
         </div>
       <% }) %>
+
+      <div class="editor-section" data-role="collapsible">
+        <h3 class="ui-mini">
+          <%= string('author') %>      
+        </h3>
+
+        <label for="editor-author-name"><%= string('name') %></label>
+        <input type="text" id="editor-author-name" name="editor-author-name" />
+
+        <label for="editor-author-profile-name"><%= string('profile') %></label>
+        <div class="editor-author-profile">
+            <select id="editor-author-profile-type" name="editor-author-profile-type">
+                <option value=""><%= string('none') %></option>
+                <option value="reddit"><%= string('profile-reddit') %></option>
+                <option value="kabam"><%= string('profile-kabam') %></option>
+                <option value="email"><%= string('email') %></option>
+            </select>
+            <input type="text" id="editor-author-profile-name" name="editor-author-profile-name" />
+        </div>
+
+      </div>
     </div>
  
     <div class="ui-grid-a">

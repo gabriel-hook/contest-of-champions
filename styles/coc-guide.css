@@ -289,6 +289,10 @@
   height:24px;
 }
 
+#guide-content .author-credit{
+  margin: 32px;
+}
+
 @media (max-width:350px), (max-height:400px) {
   #guide-content{
     padding:0;

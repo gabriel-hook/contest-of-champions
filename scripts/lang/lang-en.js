@@ -255,6 +255,14 @@ CoC.lang['en'] = {
 
     'synergies-external': 'External Synergies',
 
+    'author': 'Author',
+    'profile': 'Profile',
+    'profile-reddit': 'Reddit /u/',
+    'profile-kabam': 'Kabam Forums',
+    'author-credit': 'This guide was brought to you by',
+
+    'email': 'E-mail',
+    
     'none': 'None',
   }
 };

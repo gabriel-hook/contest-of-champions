@@ -213,4 +213,22 @@
     </div>
   </div>
   <div style="clear:both;"></div>
+  <% if(data.author && data.author.name){ %>
+    <div class="author-credit">
+      <b><%= string('author-credit') + ' ' %></b>
+      <% if(data.author.profile && data.author.profile.type && data.author.profile.name){ %>
+        <% if(data.author.profile.type === 'reddit'){ %>
+          <a class="bold" href="http://reddit.com/u/<%= data.author.profile.name %>" target="_blank"><%- data.author.name %></a>
+        <% } %>
+        <% if(data.author.profile.type === 'kabam'){ %>
+          <a class="bold" href="http://community.kabam.com/forums/member.php?<%= data.author.profile.name %>" target="_blank"><%- data.author.name %></a>
+        <% } %>
+        <% if(data.author.profile.type === 'email'){ %>
+          <a class="bold" href="mailto:<%= data.author.profile.name %>"><%- data.author.name %></a>
+        <% } %>
+      <% } else { %>
+          <i class="bold selectable"><%- data.author.name %></i>
+      <% } %>
+    </div>
+  <% } %>
 </div>
