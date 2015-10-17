@@ -132,6 +132,8 @@ CoC.editor.reset = function(champion){
   initText('#editor-special-3-note', ['specials', '3', 'note']);
 
   if(hasChampion){
+
+    //Exporting
     $('#editor-export').click(function(){
       var guide = CoC.data.guides.get(champion);
       var guideJson = JSON.stringify(guide.data, null, '\t');
@@ -169,7 +171,7 @@ CoC.editor.reset = function(champion){
     $('#editor-export').addClass("ui-disabled");
   }
 
-
+  //Importing
   if(isMobileIOS()){
     $('#editor-import').addClass("ui-disabled");
   }

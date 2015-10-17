@@ -1,0 +1,63 @@
+{
+	"grades": {
+		"normal": "B+",
+		"awakened": "A+"
+	},
+	"description": "Elektra is a great champion for frequent critical hits and powerful, long lasting bleed, but she increases a lot with her signature ability. She has the same health and damage as Black Widow, and is definitely an offensive character.",
+	"gameplay": {
+		"rating": "3",
+		"style": "Offensive",
+		"description": "Elektra relies mainly on her bleed and critical hits, both of which are frequent and powerful. All three of her specials can give off high damage bleed, her first two having multiple triggers. She has relatively good stats, and good synergies.",
+		"note": "Though her best ability is Bleed, Elektra's frequent Critical Hits can still be used on Bleed Immune characters."
+	},
+	"signature": {
+		"rating": "5",
+		"name": "No Loose Ends",
+		"description": "\"Elektra takes care of opponents below 20% Health with 100% Critical Rate and x% Critical Damage, leaving no one to tell the tale.\" \nThis ability can be amazing for both bosses and high health tanks, but you'll notice it doesn't have much pull against opponents who are much weaker than Elektra. Once at 20% health, there's no reason for the guaranteed critical hits since her opponent should be dead after a few more hits form her. However, when going up against a bleed immune champion or anyone with high health, this can be very helpful as you'll find it will be a good way to take down their health as fast as you can, even if they are armored."
+	},
+	"heavy": {
+		"rating": "2",
+		"description": "The same four kick spin as every other female champion, the lack of variety is highly disappointing. "
+	},
+	"specials": {
+		"1": {
+			"rating": "4",
+			"abilities": [
+				"Bleed",
+				"Critical Strike"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Melee",
+				"Long"
+			],
+			"description": "This is a three hit attack, with two of them having a high chance to trigger strong, not so long lasting bleed. Additionally, this attack is a guaranteed chance to be critical against Bleeding opponents. If your opponent is already bleeding, all hits will be critical, if the bleed is triggered from the first sai throw, the second sai throw will be critical. ",
+			"note": "This attack is easy to connect, making it great for taking out opponents quickly."
+		},
+		"2": {
+			"rating": "3",
+			"description": "This attack has three potential bleed triggers, all of which last longer than the first special's but are weaker. This attack is also easy to connect, but suffers to a smaller chance of bleed. However, when critical hits occur, this attack can be deadly.",
+			"abilities": [
+				"Bleed"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Medium"
+			]
+		},
+		"3": {
+			"rating": "4",
+			"abilities": [
+				"Bleed"
+			],
+			"description": "While fun to watch, this attack also triggers powerful, long bleed and is a good damage dealer. Perhaps it is not better than her first special, but is better to use than her second if you miss her first.",
+			"damagetypes": [
+				"Physical"
+			]
+		}
+	}
+}
