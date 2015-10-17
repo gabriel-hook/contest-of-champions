@@ -97,6 +97,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"deadpoolxforce", typeId:"mutant", stars: 3 },
   { uid:"deadpoolxforce", typeId:"mutant", stars: 4 },
 
+  { uid:"magneto", typeId:"mutant", stars: 2 },
   { uid:"magneto", typeId:"mutant", stars: 3 },
   { uid:"magneto", typeId:"mutant", stars: 4 },
 
