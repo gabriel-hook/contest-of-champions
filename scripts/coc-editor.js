@@ -112,6 +112,7 @@ CoC.editor.reset = function(champion){
   initText('#editor-heavy-note', ['heavy', 'note']);
 
   initRadio('[name=editor-special-1-rating]', ['specials', '1', 'rating']);
+  initText('#editor-special-1-name', ['specials', '1', 'name']);
   initText('#editor-special-1-description', ['specials', '1', 'description']);
   initMultiSelect('#editor-special-1-abilities', ['specials', '1', 'abilities']);
   initMultiSelect('#editor-special-1-damagetypes', ['specials', '1', 'damagetypes']);
@@ -119,6 +120,7 @@ CoC.editor.reset = function(champion){
   initText('#editor-special-1-note', ['specials', '1', 'note']);
 
   initRadio('[name=editor-special-2-rating]', ['specials', '2', 'rating']);
+  initText('#editor-special-2-name', ['specials', '2', 'name']);
   initText('#editor-special-2-description', ['specials', '2', 'description']);
   initMultiSelect('#editor-special-2-abilities', ['specials', '2', 'abilities']);
   initMultiSelect('#editor-special-2-damagetypes', ['specials', '2', 'damagetypes']);
@@ -126,6 +128,7 @@ CoC.editor.reset = function(champion){
   initText('#editor-special-2-note', ['specials', '2', 'note']);
 
   initRadio('[name=editor-special-3-rating]', ['specials', '3', 'rating']);
+  initText('#editor-special-3-name', ['specials', '3', 'name']);
   initText('#editor-special-3-description', ['specials', '3', 'description']);
   initMultiSelect('#editor-special-3-abilities', ['specials', '3', 'abilities']);
   initMultiSelect('#editor-special-3-damagetypes', ['specials', '3', 'damagetypes']);
