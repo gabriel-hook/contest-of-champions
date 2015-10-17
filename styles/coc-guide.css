@@ -326,24 +326,36 @@
   }
 }
 
-@media (max-width:700px) {
+@media (max-width:800px) {
   #guide-content .box{
     width: 100%;
   }
 }
 
-@media (max-width:1024px) and (min-width:701px){
+@media (max-width:1100px) and (min-width:801px){
   #guide-content .box{
+    float:left;
     width: 49.5%;
     margin: 0;
     margin-bottom: .5em;
+    margin-left: 1%;
+  }
+  #guide-content .box:nth-child(2n+1){  
+    clear: both;
+    margin-left: 0;
   }
 }
 
-@media (min-width:1025px) {
+@media (min-width:1101px) {
   #guide-content .box{
+    float:left;
     width: 33%;
     margin: 0;
     margin-bottom: .5em;
+    margin-left: .5%;
+  }
+  #guide-content .box:nth-child(3n+1){  
+    clear: both;
+    margin-left: 0;
   }
 }

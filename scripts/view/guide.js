@@ -177,10 +177,6 @@ CoC.view.GuideView = Backbone.View.extend({
 
     this._guides = {};
     this._guideChampionsView = this.model;
-
-    $(window).bind("resize", function(){
-      that.boxLayout.call(that);
-    });
   },
   
   events:{
@@ -213,29 +209,6 @@ CoC.view.GuideView = Backbone.View.extend({
     $("#popup-guide-effect .ui-content").text(effect.get("description"));
     $("#popup-guide-effect").popup("open",{ positionTo:effectElement });
   },
-
-  boxLayout:function(){
-    var container = this.$el && this.$el.find('.boxes');
-    if(!container.is(':visible'))
-      return;
-
-    var box = container.find('.box');
-    var width = container.width();
-    var columnWidth = box.width();
-
-    var columns = Math.floor(width / columnWidth);
-    var gutter = (columns > 1)? (width - columnWidth * columns) / (columns - 1): 0;
-
-    console.log(columns, columnWidth, gutter);
-
-    container.masonry({
-      itemSelector: '.box',
-      columnWidth: columnWidth,
-      gutter: gutter,
-      isResizeBound: false,
-      transitionDuration: 0
-    });
-  },
   
   render:function(uid, forceRefresh){
     if(uid === undefined)
@@ -256,8 +229,6 @@ CoC.view.GuideView = Backbone.View.extend({
     this.$el.append( html );
     this.$el.trigger("create");
     this.$el.removeClass("dirty");
-
-    setTimeout(this.boxLayout.bind(this), 50);
     
     return this;
   }
