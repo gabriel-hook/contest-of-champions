@@ -4,6 +4,9 @@ CoC.editor = {};
 CoC.editor.version = "1.5.5";
 
 CoC.editor.initialize = function(){
+
+  location.hash = '';
+
   console.log("Contest of Champions - Guide Editor Tool v"+CoC.editor.version);
 
   CoC.editor.view = new CoC.view.GuideView({
@@ -17,25 +20,24 @@ CoC.editor.initialize = function(){
   var editorChampion = $('#editor-champion');
   editorChampion.empty();
   editorChampion.append($('<option>').val('').text(CoC.lang.string('choose-guide')+'...'));
-  for(i=0; i<championIds.length; i++)
+  for(i=0; i<championIds.length; i++){
     editorChampion.append($('<option>').val(championIds[i]).text(CoC.lang.model('champion-'+championIds[i]+'-name')));
+  }
   editorChampion.change(function(e){
     CoC.editor.reset(e.target.value);
   });
 
   //init
   $(document).on('pagebeforeshow', '#page-guide', function(){ 
-    location.hash = '';
-
     $('.select2').select2({
       tags: true,
       tokenSeparators: [',', ' ']
     });
 
-    var first = $('#editor-champion option')[0];
-    $(first).attr('selected', 'selected');
+    var option = $('#editor-champion option')[0];
+    $(option).attr('selected', 'selected');
     $('#editor-champion').selectmenu('refresh');
-    CoC.editor.reset(first.value);
+    CoC.editor.reset(option.value);
   });
 
   //make sure we have enough padding below to scroll all the way down
@@ -130,7 +132,6 @@ CoC.editor.reset = function(champion){
   initText('#editor-special-3-note', ['specials', '3', 'note']);
 
   if(hasChampion){
-
     $('#editor-export').click(function(){
       var guide = CoC.data.guides.get(champion);
       var guideJson = JSON.stringify(guide.data, null, '\t');
@@ -147,52 +148,17 @@ CoC.editor.reset = function(champion){
           .attr('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(guideJson));
       }
     }); 
-
     if(isMobileIOS()){
-      $('#editor-import').addClass("ui-disabled");
       $('#editor-export').addClass("ui-disabled");
     }
     //json importer
     else if(window.FileReader){
-      $('#editor-import-input').unbind('change').change(function(e){
-        if (this.files && this.files[0]) {
-          var reader = new FileReader();
-          var file = this.files[0];
-          reader.onload = function (e) {
-            var json;
-            try{
-              json = JSON.parse(e.target.result);
-            } 
-            catch(e){
-              console.error(e);
-            }
-            if(json) try{
-              CoC.data.guides.raw[champion] = json;
-              CoC.data.guides.init(champion);
-              CoC.editor.reset(champion);
-            } 
-            catch(e){
-              console.error(e);
-            }
-          };
-          reader.readAsText(file);
-          $(this).val("");
-        }
-      });
-      $('#editor-import').unbind('click').click(function(){
-        console.log("importing json...");
-        $('#editor-import-input').click();
-      });
-
-      $('#editor-import').removeClass("ui-disabled");
       $('#editor-export').removeClass("ui-disabled");
     }
     //windows safari and other bullshit browsers that dont support FileReader
     else{
-      $('#editor-import').addClass("ui-disabled");
       $('#editor-export').removeClass("ui-disabled");
     } 
-
     CoC.editor.view.render(champion, true);
     $('.editor-section').collapsible('enable').removeClass("ui-disabled");
     $($('.editor-section')[0]).collapsible('expand');
@@ -200,8 +166,67 @@ CoC.editor.reset = function(champion){
   else{
     CoC.editor.view.$el.empty();
     $('.editor-section').collapsible('collapse').collapsible('disable').addClass("ui-disabled");
-    $('#editor-import').addClass("ui-disabled");
     $('#editor-export').addClass("ui-disabled");
+  }
+
+
+  if(isMobileIOS()){
+    $('#editor-import').addClass("ui-disabled");
+  }
+  //json importer
+  else if(window.FileReader){
+    $('#editor-import-input').unbind('change').change(function(e){
+      var name = champion;
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        var file = this.files[0];
+        var name = championFromFilename(file.name) || champion;
+        reader.onload = function (e) {
+          var json;
+          try{
+            json = JSON.parse(e.target.result);
+          } 
+          catch(e){
+            console.error(e);
+          }
+          if(json) try{
+            if(name === ''){
+              console.error('Cannot find a champion for file "'+file.name+'"');
+              return;
+            }
+
+            CoC.data.guides.raw[name] = json;
+            CoC.data.guides.init(name);
+            CoC.editor.reset(name);
+
+            if(champion !== name){
+              $('#editor-champion option[value='+name+']').attr('selected', 'selected');
+              $('#editor-champion').selectmenu('refresh');
+            }
+          } 
+          catch(e){
+            console.error(e);
+          }
+        };
+        reader.readAsText(file);
+        $(this).val("");
+      }
+    });
+    $('#editor-import').unbind('click').click(function(){
+      console.log("importing json...");
+      $('#editor-import-input').click();
+    });
+
+    $('#editor-import').removeClass("ui-disabled");
+  }
+  //windows safari and other bullshit browsers that dont support FileReader
+  else{
+    $('#editor-import').addClass("ui-disabled");
+  } 
+
+  function championFromFilename(filename){
+    var uid = filename.split(/\.|\(|[ ]/)[0];
+    return (CoC.data.champions.where({ uid:uid }).length > 0)? uid: null;
   }
 
   function hasKeys(object){
