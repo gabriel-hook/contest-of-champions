@@ -21,9 +21,10 @@
       </p>
     <% } %>
   </div>
-  <div class="left">
+  <div class="boxes">
+
     <% if(data.gameplay){ %>
-      <div data-role="collapsible" data-collapsed="false">
+      <div class="box" data-role="collapsible" data-collapsed="false">
         <h4>
           <%= string('gameplay') %>
           <%= ratingSpan(data.gameplay.rating) %>           
@@ -48,8 +49,9 @@
         <% } %>
       </div>
     <% } %>
+
     <% if(data.signature){ %>
-      <div data-role="collapsible" data-collapsed="false" data-mini="true">
+      <div class="box" data-role="collapsible" data-collapsed="false" data-mini="true">
         <h4>
           <%= string('signature') %>
           <%= ratingSpan(data.signature.rating) %>           
@@ -67,8 +69,9 @@
         <% } %>
       </div>
     <% } %>
+
     <% if(data.heavy){ %>
-      <div data-role="collapsible" data-collapsed="false">
+      <div class="box" data-role="collapsible" data-collapsed="false">
         <h4>
           <%= string('heavy-attack') %>
           <%= ratingSpan(data.heavy.rating) %>           
@@ -83,12 +86,11 @@
         <% } %>
       </div>
     <% } %>
-  </div>
-  <div class="right">
+
     <% if(data.specials){ %>
       <% for(var number in data.specials){ 
         var special = data.specials[number] %>
-        <div data-role="collapsible" data-collapsed="false">
+        <div class="box" data-role="collapsible" data-collapsed="false">
           <h4>
             <%= string('special') + ' ' + number %>
             <%= ratingSpan(special.rating) %>            
@@ -124,10 +126,8 @@
         </div>
       <% }%>
     <% } %>
-  </div>
-  <div style="clear:both;"></div>
-  <div class="left">
-    <div data-role="collapsible" data-collapsed="false">
+
+    <div class="box" data-role="collapsible" data-collapsed="false">
       <h4>
         <%= string('synergies') %>
       </h4>
@@ -151,9 +151,8 @@
         </p>
       <% } %>
     </div>
-  </div>
-  <div class="right">
-    <div data-role="collapsible" data-collapsed="false">
+
+    <div class="box" data-role="collapsible" data-collapsed="false">
       <h4>
         <%= string('synergies-external') %>
       </h4>
@@ -177,11 +176,9 @@
         </p>
       <% } %>
     </div>
-  </div>
-  <div style="clear:both;"></div>
-  <div class="left">
+
     <% if(data.abilities){ %>
-      <div data-role="collapsible" data-collapsed="false">
+      <div class="box" data-role="collapsible" data-collapsed="false">
         <h4>
           <%= string('abilities') %>          
         </h4>
@@ -190,9 +187,8 @@
         <% }) %>
       </div>
     <% } %>
-  </div>
-  <div class="right">
-    <div data-role="collapsible" data-collapsed="false">
+
+    <div class="box" data-role="collapsible" data-collapsed="false">
       <h4>
         <%= string('crystals') %>          
       </h4>
@@ -211,8 +207,10 @@
         <% }) %>
       <% } %>
     </div>
+
   </div>
   <div style="clear:both;"></div>
+
   <% if(data.author && data.author.name){ %>
     <div class="author-credit ui-collapsible-content ui-body-inherit ui-corner-all">
       <b><%= string('author-credit') + ' ' %></b>

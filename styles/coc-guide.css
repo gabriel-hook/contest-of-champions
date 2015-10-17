@@ -320,19 +320,30 @@
   }
 }
 
-@media (max-width:800px) and (min-width:351px) {
+@media (max-width:700px) and (min-width:351px) {
   #guide-content{
     font-size:0.9em;
   }
 }
 
-@media (min-width:801px) {
-  #guide-content  .left,
-  #guide-content  .right{
-    float:left;
-    width:49.5%;
+@media (max-width:700px) {
+  #guide-content .box{
+    width: 100%;
   }
-  #guide-content  .left{
-    margin-right:1%;
+}
+
+@media (max-width:1024px) and (min-width:701px){
+  #guide-content .box{
+    width: 49.5%;
+    margin: 0;
+    margin-bottom: .5em;
+  }
+}
+
+@media (min-width:1025px) {
+  #guide-content .box{
+    width: 33%;
+    margin: 0;
+    margin-bottom: .5em;
   }
 }
