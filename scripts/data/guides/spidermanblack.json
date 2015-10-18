@@ -37,7 +37,7 @@
 			"rating": "5",
 			"description": "This is Spider-Man's most deadly attack. It has a guaranteed chance to be a critical hit, taking off large amounts of health from any champion. It deals fantastic, fast damage and can even be useful if blocked.",
 			"abilities": [
-				"Critical Strike"
+				"pluscritrate"
 			],
 			"damagetypes": [
 				"Physical"
@@ -55,5 +55,12 @@
 			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America.",
 			"name": "Thwip, Thwip, Pow!"
 		}
+	},
+	"attack": {
+		"heavy": "Each Heavy Attack has a guaranteed chance to inflict Armor Break, dealing 7-9% Armor Reduction for 80 seconds. This effect stacks, and can be quite useful against heavily armored champions. It works nicely for removing the armor of characters such as Ultron and Colossus.",
+		"note": "Timing is key. While his heavy gives a powerful debut, it can be easily interrupted (though it is a rather fast attack).",
+		"abilities": [
+			"pluscritrate"
+		]
 	}
 }

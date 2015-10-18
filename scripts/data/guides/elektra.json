@@ -23,8 +23,8 @@
 		"1": {
 			"rating": "4",
 			"abilities": [
-				"Bleed",
-				"Critical Strike"
+				"bleed",
+				"pluscritrate"
 			],
 			"damagetypes": [
 				"Physical"
@@ -41,7 +41,7 @@
 			"rating": "3",
 			"description": "This attack has three potential bleed triggers, all of which last longer than the first special's but are weaker. This attack is also easy to connect, but suffers to a smaller chance of bleed. However, when critical hits occur, this attack can be deadly.",
 			"abilities": [
-				"Bleed"
+				"bleed"
 			],
 			"damagetypes": [
 				"Physical"
@@ -54,7 +54,7 @@
 		"3": {
 			"rating": "4",
 			"abilities": [
-				"Bleed"
+				"bleed"
 			],
 			"description": "While fun to watch, this attack also triggers powerful, long bleed and is a good damage dealer. Perhaps it is not better than her first special, but is better to use than her second if you miss her first.",
 			"damagetypes": [
@@ -62,5 +62,9 @@
 			],
 			"name": "Strikes of the Shinobi"
 		}
+	},
+	"attack": {
+		"heavy": "The same four kick spin as every other female champion, the lack of variety is highly disappointing.",
+		"rating": "2"
 	}
 }

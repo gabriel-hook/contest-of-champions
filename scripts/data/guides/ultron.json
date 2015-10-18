@@ -7,7 +7,14 @@
 	"gameplay": {
 		"rating": 5,
 		"style": "Offensive + Defensive",
-		"strategy": "Wait for a bleed and drop your L1 for critical + cauterize damage!"
+		"description": "Wait for a bleed and drop your L1 for critical + cauterize damage!\n\n",
+		"abilities": [
+			"regeneration",
+			"armorup",
+			"poisonimmunity",
+			"bleedimmunity"
+		],
+		"note": "Regeneration happens automatically at 25% and 50% health."
 	},
 	"heavy": {
 		"rating": 5,
@@ -19,8 +26,8 @@
 			"rating": 4,
 			"description": "Ultra rapid and quick unleash, making it challenging to block if used at the end of a combo. Does light damage.",
 			"abilities": [
-				"Cauterize",
-				"Stun"
+				"stun",
+				"cauterize"
 			],
 			"damagetypes": [
 				"Energy"
@@ -34,8 +41,8 @@
 			"rating": 3,
 			"description": "Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
 			"abilities": [
-				"Cauterize",
-				"Stun"
+				"stun",
+				"cauterize"
 			],
 			"damagetypes": [
 				"Energy",
@@ -51,8 +58,8 @@
 			"rating": 3,
 			"description": "Surprisingly doesn't do a ton of damage, but looks badass and gives you a few seconds of rest.",
 			"abilities": [
-				"Cauterize",
-				"Stun"
+				"stun",
+				"cauterize"
 			],
 			"damagetypes": [
 				"Energy"
@@ -72,12 +79,6 @@
 			"Bleed": "14% chance, 20% damage, 5.5 seconds."
 		},
 		{
-			"Cauterize": "Specials deal 50% damage for each bleed on the target."
-		},
-		{
-			"Stun": "40% chance for 3 seconds on every special attack"
-		},
-		{
 			"Armor Up": "26% chance, 5% reduction, 15 seconds."
 		},
 		{
@@ -93,5 +94,11 @@
 			"name": "dat_frisson",
 			"type": "reddit"
 		}
+	},
+	"attack": {
+		"heavy": "Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
+		"abilities": [
+			"bleed"
+		]
 	}
 }

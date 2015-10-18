@@ -30,7 +30,7 @@
 			],
 			"description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
 			"abilities": [
-				"Stun"
+				"stun"
 			],
 			"note": "Also applies Direct Damage",
 			"name": "Particle Beam"
@@ -39,7 +39,7 @@
 			"description": "Although Black Bolts L2, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
 			"rating": "4",
 			"abilities": [
-				"Stun"
+				"stun"
 			],
 			"damagetypes": [
 				"Physical"
@@ -53,7 +53,7 @@
 			"rating": "3",
 			"description": "Hypersonic Whisper has an extremely high chance to stun so if you ever felt the stun wasn’t long enough on his other specials, then you will want to use this. However, this special only has stun with regular L3 damage so you are much better off focusing on your L1 and L2. It is by no means a bad special, but rather his first two will benefit you more in fights.",
 			"abilities": [
-				"Stun"
+				"stun"
 			],
 			"damagetypes": [
 				"Energy"
@@ -67,5 +67,9 @@
 			"type": "reddit"
 		},
 		"name": "Verreaux"
+	},
+	"attack": {
+		"heavy": "Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself.",
+		"rating": "3"
 	}
 }
