@@ -9,8 +9,8 @@ CoC.view.GuideViewHelpers={
   gradeSpan:function(grade){
     if(grade === undefined)
       return "";
-    var id = "grade-"+grade.toLowerCase().replace("-","").replace("+","").replace(" ","-");
-    return "<span class=\""+id+"\">"+grade+"</span>";
+    var id = grade.toLowerCase().replace("-","").replace("+","").replace(" ","-");
+    return "<span class=\"grade-"+id+"\">"+grade+"</span>";
   },
 
   ratingSpan:function(rating){
@@ -22,22 +22,21 @@ CoC.view.GuideViewHelpers={
   damageTypeSpan:function(damage){
     if(damage === undefined)
       return "";
-    var id = "damage-"+damage.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+damage+"</span>";
+    var id = damage.toLowerCase().replace(" ","-");
+    return "<span class=\"damage-"+id+"\">"+damage+"</span>";
   },
   
   abilitySpan:function(ability){
     if(ability === undefined)
       return "";
-    var id = "ability-"+ability.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+ability+"</span>";
+    return "<span class=\"ability-"+ability+"\">"+CoC.lang.model('ability-'+ability+'-name')+"</span>";
   },
   
   rangeSpan:function(range){
     if(range === undefined)
       return "";
-    var id = "range-"+range.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+range+"</span>";
+    var id = range.toLowerCase().replace(" ","-");
+    return "<span class=\"range-"+id+"\">"+range+"</span>";
   },
   
   crystalStarsSpan:function(data){
@@ -65,8 +64,8 @@ CoC.view.GuideViewHelpers={
   availabilitySpan:function(availability){
     if(availability === undefined)
       return "";
-    var id = "availability-"+availability.toLowerCase().replace(" ","-");
-    return "<span class=\""+id+"\">"+availability+" "+ CoC.lang.string('crystal') +"</span>";
+    var id = availability.toLowerCase().replace(" ","-");
+    return "<span class=\"availability-"+id+"\">"+availability+" "+ CoC.lang.string('crystal') +"</span>";
   },
   
   joinSpans:function(list, render){

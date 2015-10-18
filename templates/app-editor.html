@@ -9,9 +9,9 @@
     data-theme="b">
 
     <select id="editor-champion" name="editor-champion">
-      <option value=""><%= CoC.lang.string('choose-guide') %>...</option>
+      <option value=""><%= string('choose-guide') %>...</option>
       <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(champion){ %>
-        <option value="<%= champion %>"><%= CoC.lang.model('champion-'+champion+'-name') %>...</option>
+        <option value="<%= champion %>"><%= model('champion-'+champion+'-name') %>...</option>
       <% }) %>
     </select>
     <div data-role="collapsibleset" data-mini="true">
@@ -58,8 +58,45 @@
         <input type="text" id="editor-gameplay-style" name="editor-gameplay-style" />
         <label for="editor-gameplay-description"><%= string('description') %></label>
         <textarea id="editor-gameplay-description" name="editor-gameplay-description"></textarea>
+        <label for="editor-gameplay-abilities"><%= string('passive-abilities') %></label>
+        <select id="editor-gameplay-abilities" name="editor-gameplay-abilities" 
+          class="select2 js-example-basic-multiple" multiple="multiple" 
+          data-role="none" style="width: 100%">
+          <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
+            <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
+          <% }) %>
+        </select>
         <label for="editor-gameplay-note"><%= string('note') %></label>
         <input type="text" id="editor-gameplay-note" name="editor-gameplay-note" />
+      </div>
+
+      <div class="editor-section" data-role="collapsible">
+        <h3 class="ui-mini">
+          <%= string('attack') %>      
+        </h3>
+        <label for="editor-attack-rating"><%= string('rating') %></label>
+        <fieldset id="editor-attack-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <input type="radio" name="editor-attack-rating" id="editor-attack-rating-none" value="">
+          <label for="editor-attack-rating-none"><%= string('none') %></label>
+          <% _([1,2,3,4,5]).each(function(number){ %>
+            <input type="radio" name="editor-attack-rating" id="editor-attack-rating-<%= number %>" value="<%= number %>">
+            <label for="editor-attack-rating-<%= number %>"><%= number %></label>
+          <% }) %>
+        </fieldset>
+        <label for="editor-attack-description"><%= string('description') %></label>
+        <textarea id="editor-attack-description" name="editor-attack-description"></textarea>
+        <label for="editor-attack-heavy"><%= string('heavy-attack') %></label>
+        <input type="text" id="editor-attack-heavy" name="editor-attack-heavy" />
+        <label for="editor-attack-abilities"><%= string('abilities') %></label>
+        <select id="editor-attack-abilities" name="editor-attack-abilities" 
+          class="select2 js-example-basic-multiple" multiple="multiple" 
+          data-role="none" style="width: 100%">
+          <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
+            <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
+          <% }) %>
+        </select>
+        <label for="editor-attack-note"><%= string('note') %></label>
+        <input type="text" id="editor-attack-note" name="editor-attack-note" />
       </div>
 
       <div class="editor-section" data-role="collapsible">
@@ -81,25 +118,6 @@
         <textarea id="editor-signature-description" name="editor-signature-description"></textarea>
         <label for="editor-signature-note"><%= string('note') %></label>
         <input type="text" id="editor-signature-note" name="editor-signature-note" />
-      </div>
-
-      <div class="editor-section" data-role="collapsible">
-        <h3 class="ui-mini">
-          <%= string('heavy-attack') %>      
-        </h3>
-        <label for="editor-heavy-rating"><%= string('rating') %></label>
-        <fieldset id="editor-heavy-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <input type="radio" name="editor-heavy-rating" id="editor-heavy-rating-none" value="">
-          <label for="editor-heavy-rating-none"><%= string('none') %></label>
-          <% _([1,2,3,4,5]).each(function(number){ %>
-            <input type="radio" name="editor-heavy-rating" id="editor-heavy-rating-<%= number %>" value="<%= number %>">
-            <label for="editor-heavy-rating-<%= number %>"><%= number %></label>
-          <% }) %>
-        </fieldset>
-        <label for="editor-heavy-description"><%= string('description') %></label>
-        <textarea id="editor-heavy-description" name="editor-heavy-description"></textarea>
-        <label for="editor-heavy-note"><%= string('note') %></label>
-        <input type="text" id="editor-heavy-note" name="editor-heavy-note" />
       </div>
 
       <% _([1, 2, 3]).each(function(index){ %>
@@ -125,23 +143,8 @@
           <select id="editor-special-<%= index %>-abilities" name="editor-special-<%= index %>-abilities" 
             class="select2 js-example-basic-multiple" multiple="multiple" 
             data-role="none" style="width: 100%">
-            <% _([
-              'Stun',
-              'Fatigue',
-              'Power Drain',
-              'Power Burn',
-              'Bleed',
-              'Cauterize',
-              'Armor Break',
-              'Fury',
-              'Extra Damage',
-              'Critical Strike',
-              'Regeneration',
-              'Unstoppable',
-              'Poison',
-              'Armour Up'
-            ]).each(function(ability){ %>
-              <option value="<%= ability %>"><%= ability %></option>
+            <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
+              <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
             <% }) %>
           </select>
 

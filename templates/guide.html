@@ -42,9 +42,41 @@
             <b><%= string('strategy') %>:</b><%= ' ' + data.gameplay.strategy %>
           </p>
         <% } %>
+        <% if (data.gameplay.abilities){ %>
+          <div class="selectable">
+            <b><%= string('passive-abilities') %>:</b><%= ' ' + joinSpans(data.gameplay.abilities, abilitySpan) %>
+          </div>
+        <% } %>
         <% if (data.gameplay.note){ %>
           <p class="selectable">
             <b><%= string('note') %>:</b><%= ' ' + data.gameplay.note %>
+          </p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <% if(data.attack){ %>
+      <div class="box" data-role="collapsible" data-collapsed="false">
+        <h4>
+          <%= string('attack') %>
+          <%= ratingSpan(data.attack.rating) %>           
+        </h4>
+        <% if (data.attack.description){ %>
+          <p class="selectable"><%= data.attack.description %></p>
+        <% } %>
+        <% if (data.attack.heavy){ %>
+          <p class="selectable">
+            <b><%= string('heavy-attack') %>:</b><%= ' ' + data.attack.heavy %>
+          </p>
+        <% } %>
+        <% if (data.attack.abilities){ %>
+          <div class="selectable">
+            <b><%= string('abilities') %>:</b><%= ' ' + joinSpans(data.attack.abilities, abilitySpan) %>
+          </div>
+        <% } %>
+        <% if (data.attack.note){ %>
+          <p class="selectable">
+            <b><%= string('note') %>:</b><%= ' ' + data.attack.note %>
           </p>
         <% } %>
       </div>
@@ -65,23 +97,6 @@
         <% if (data.signature.note){ %>
           <p class="selectable">
             <b><%= string('note') %>:</b><%= ' ' + data.signature.note %>
-          </p>
-        <% } %>
-      </div>
-    <% } %>
-
-    <% if(data.heavy){ %>
-      <div class="box" data-role="collapsible" data-collapsed="false">
-        <h4>
-          <%= string('heavy-attack') %>
-          <%= ratingSpan(data.heavy.rating) %>           
-        </h4>
-        <% if (data.heavy.description){ %>
-          <p class="selectable"><%= data.heavy.description %></p>
-        <% } %>
-        <% if (data.heavy.note){ %>
-          <p class="selectable">
-            <b><%= string('note') %>:</b><%= ' ' + data.heavy.note %>
           </p>
         <% } %>
       </div>
@@ -176,17 +191,6 @@
         </p>
       <% } %>
     </div>
-
-    <% if(data.abilities){ %>
-      <div class="box" data-role="collapsible" data-collapsed="false">
-        <h4>
-          <%= string('abilities') %>          
-        </h4>
-        <% _(data.abilities).each(function(ability){ %>
-          <p class="selectable"><%= definition(ability, abilitySpan) %></p>
-        <% }) %>
-      </div>
-    <% } %>
 
     <div class="box" data-role="collapsible" data-collapsed="false">
       <h4>

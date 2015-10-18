@@ -100,16 +100,19 @@ CoC.editor.reset = function(champion){
   initText('#editor-gameplay-style', ['gameplay', 'style']);
   initText('#editor-gameplay-description', ['gameplay', 'description']);
   initText('#editor-gameplay-strategy', ['gameplay', 'strategy']);
+  initMultiSelect('#editor-gameplay-abilities', ['gameplay', 'abilities']);
   initText('#editor-gameplay-note', ['gameplay', 'note']);
+
+  initRadio('[name=editor-attack-rating]', ['attack', 'rating']);
+  initText('#editor-attack-description', ['attack', 'description']);
+  initText('#editor-attack-heavy', ['attack', 'heavy']);
+  initMultiSelect('#editor-attack-abilities', ['attack', 'abilities']);
+  initText('#editor-attack-note', ['attack', 'note']);
 
   initRadio('[name=editor-signature-rating]', ['signature', 'rating']);
   initText('#editor-signature-name', ['signature', 'name']);
   initText('#editor-signature-description', ['signature', 'description']);
   initText('#editor-signature-note', ['signature', 'note']);
-
-  initRadio('[name=editor-heavy-rating]', ['heavy', 'rating']);
-  initText('#editor-heavy-description', ['heavy', 'description']);
-  initText('#editor-heavy-note', ['heavy', 'note']);
 
   initRadio('[name=editor-special-1-rating]', ['specials', '1', 'rating']);
   initText('#editor-special-1-name', ['specials', '1', 'name']);
@@ -254,7 +257,6 @@ CoC.editor.reset = function(champion){
     callback.call(null, guide.data);
     CoC.data.guides.set(champion, guide);
     CoC.editor.view.render(champion, true);
-
     setTimeout(function(){
       $.mobile.silentScroll( lastScroll );
     });
