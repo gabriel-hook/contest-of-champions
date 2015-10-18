@@ -217,7 +217,7 @@ body.ui-mobile-viewport{
     RESPONSIVE
 ******************/
 
-@media (max-height:400px) {
+@media (max-height:500px), (max-width: 450px) {
   #header h1{
     font-size:1.0em;
   }
