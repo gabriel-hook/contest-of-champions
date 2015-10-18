@@ -139,9 +139,13 @@ body.ui-mobile-viewport{
 .ui-panel-display-overlay{
   z-index:1002;
 }
+.onboarding-container{
+  position:relative;
+  width: 100%;
+}
 .onboarding{
-  position:fixed;
-  top:-100px;
+  position:absolute;
+  top:-150px;
   left:0;
   width:100%;
   transition:top 1s;
@@ -172,10 +176,7 @@ body.ui-mobile-viewport{
 
 }
 .onboarding.show{
-  top:44px;
-}
-#onboarding-progress.onboarding.show{
-  top:90px;
+  top:0;
 }
 
 /******************

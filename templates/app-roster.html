@@ -19,8 +19,10 @@
     <h1><%= string('roster') %></h1>
   </div>
   
-  <div id="onboarding-roster" class="onboarding left">
-    <h3><%= string('onboarding-roster') %></h3>
+  <div class="onboarding-container">
+    <div id="onboarding-roster" class="onboarding left">
+      <h3><%= string('onboarding-roster') %></h3>
+    </div>
   </div>
   
   <div role="main" class="ui-content">
@@ -78,6 +80,8 @@
       <input type="checkbox" name="roster-filter-stars-1" id="roster-filter-stars-1">
       <label for="roster-filter-stars-1">★</label>
     </fieldset> 
+
+    <br>
   </div>
   
   <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false" data-hide-during-focus="">
@@ -264,6 +268,8 @@
       data-iconpos="right">
       <%= string('build') %>
     </button>
+
+    <br/>
   </div>
 
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
@@ -284,12 +290,13 @@
     </div>
   </div>
   
-  <div id="onboarding-progress" class="onboarding">
-    <p class="text"></p>
-  </div>
-  
-  <div id="onboarding-teams" class="onboarding left">
-    <h3><%= string('onboarding-teams') %></h3>
+  <div class="onboarding-container">
+    <div id="onboarding-progress" class="onboarding">
+      <p class="text"></p>
+    </div>  
+    <div id="onboarding-teams" class="onboarding left">
+      <h3><%= string('onboarding-teams') %></h3>
+    </div>
   </div>
   
   <div role="main" class="ui-content">
