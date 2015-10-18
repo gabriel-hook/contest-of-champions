@@ -35,4 +35,61 @@ CoC.options.initialize = function(current){
       return value[0] + '=' + escape(value[1]);
     }).join('&');
   });
+
+  everyFrame(function(){
+    var panel = $('.ui-panel-open');
+    if(panel.length === 1)
+      resizePanel($(panel));
+  });
+
+  function resizePanel(panel){
+    var page = $('.ui-page-active');
+    var header = page.find('#header');
+    var footer = page.find('#footer');
+    var dismiss = $('.ui-panel-dismiss[data-panelid='+panel[0].id+']');
+
+    var headerHeight = header.height() + 2;
+    var footerHeight = footer.length && footer.height();
+    var panelHeight = window.innerHeight - headerHeight;
+
+    page.css({
+      'min-height': panelHeight - footerHeight,
+      'padding-bottom': footerHeight - 1
+    });
+    panel.css({
+      'height': panelHeight,
+      'top': headerHeight,
+      'position': 'fixed',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'overflow-y': 'auto',
+      'z-index': 1500
+    });
+    dismiss.css({
+      'position': 'fixed',
+      'height': panelHeight,
+      'top': headerHeight,
+      'left': 0,
+      'right': 'initial',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'background': 'rgba(0,0,0,0.333)',
+      'width': '100%'
+    });
+  }
+
+  function everyFrame(callback){
+    var raf = window.requestAnimationFrame || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame || 
+      window.msRequestAnimationFrame || 
+      window.oRequestAnimationFrame || 
+      function(callback){ 
+        window.setTimeout(callback, 1000/60);
+      };
+    raf(function action(){
+      callback();
+      raf(action);
+    });
+  }
 };
