@@ -37,7 +37,7 @@ body.ui-mobile-viewport,
   }
 }
 
-.header{
+#header{
   position:absolute;
   box-sizing: border-box;
   top:0;
