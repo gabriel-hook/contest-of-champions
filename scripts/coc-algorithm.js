@@ -4,36 +4,24 @@ CoC.algorithm = CoC.algorithm || {};
 (function(){
   "use strict";
 
-  CoC.algorithm["greedy"]=new function(){
-    this.uid = 'greedy';
-    this.quest = true;
-    this.extras = false;
-
+  CoC.algorithm['quest']=new function(){
     this.build=function(options){
-      var i, j, o, t, team, index;
-      var size = parseInt(options.size, 10), teams = {}, list = [], preselect = [], typeWeights = [], progress = null;
+      var size = parseInt(options.size, 10), list = [], preselect = [], typeWeights = [], progress = null, team;
       preProcess(options.champions, list, typeWeights, options.levels);
       
-      if(options.quest)
-        for(i=list.length-1;i>=0;i--)
-          if(list[i].quest){
-            preselect.push(list[i]);
-            list.splice(i,1);
-          }
-          
+      _.filter(list, function(champion){
+        if(champion.quest){
+          preselect.push(champion);
+          return false;
+        }
+        return true;
+      });
+
       if(options.progress)
         progress={
-          current:0,
-          max:(function(r){
-            var value = 0;
-            for(var n = list.length; n > r; n-=r){
-              value += combination(n, r);
-              if(options.quest)
-                break;
-            }
-            return value;
-          })(preselect.length? size - preselect.length: size),
-          callback:options.progress
+          current: 0,
+          max: combination(list.length, preselect.length? size - preselect.length: size),
+          callback: options.progress
         };
 
       if(preselect.length > 0){      
@@ -41,85 +29,18 @@ CoC.algorithm = CoC.algorithm || {};
           team = getTopPartner(preselect, 0, size, typeWeights, progress);
         }
         else{
-          var synergies = [], types = getTypes(preselect);
-          team = getNextPartner(list, preselect, synergies, types, 0, size, typeWeights, progress);
+          team = getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progress);
         }
-        if(team && team.value > 0)
-          teams[0]=team;
       }
       else{
-        
-        var team_index = 0;
-        do {
-          team = getTopPartner(list, 0, size, typeWeights, progress);
-          if(team){          
-            if (team.value){
-              if(!options.quest)
-                team = getSynergyCulledTeam(team, typeWeights);
-              
-              teams[team_index]=team;
-              teams.length=++team_index;
-              for(o in team.champions)
-                list.splice(list.indexOf(team.champions[o]),1);
-                
-              if(options.quest)
-                break;
-            }
-            else break;
-          }
-        } while(team !== null);
-        
-        //check if we have enough
-        var needed = 0;
-        for(i in teams)
-          if(i !== 'length')
-            needed += size - teams[i].champions.length;
-          
-        //break up teams if we dont have enough
-        while(list.length < needed){
-          i = teams.length - 1;
-          for(t in teams[i].champions){
-            list.push(teams[i].champions[t]);
-            needed--;
-          }
-          delete teams[i];
-          teams.length--;
-        }
-        
-        var appendToTeam = function appendToTeam(list, object){
-          var l = list.slice();
-          l.push(object);
-          return l;
-        };
-        
-        //add into existing teams, using the comparison to find best partner
-        for(i=teams.length-1; i>=0; i--){
-          if(teams[i].champions.length < size){
-            team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, size, typeWeights, progress);
-            if(team){
-              for(o in team.champions){
-                index = list.indexOf(team.champions[o]);
-                if(index != -1)
-                  list.splice(index,1);
-              }
-              teams[i] = team;
-            }
-            else{
-              for(o in teams[i].champions)
-                list.push(teams[i].champions[o]);
-              delete teams[i];
-            }
-          }
-        }
-        
-        delete teams.length;
+        team = getTopPartner(list, 0, size, typeWeights, progress);
       }
         
-      return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
+      return postProcess(team.champions);
     };
     
     function preProcess(champions, list, typeWeights, useLevels){
-      var i, fid, _fid, champion, uid, stars, quest, synergies;
+      var i, fid, champion, uid, stars, quest, synergies;
 
       for(i=2; i<=5; i++)
         typeWeights[i] = CoC.settings.getDuplicateWeight(i);
@@ -156,23 +77,15 @@ CoC.algorithm = CoC.algorithm || {};
       }  
     }
     
-    function postProcess(teams, extras){
-      var i, o, 
-        result = {
-          teams:[],
-          extras:[]
-        };
-      for(i in teams){
-        var team = [];    
-        for(o in teams[i].champions)
-          team.push(teams[i].champions[o].fid);
-        result.teams.push(team);
-      }
-      if(extras !== undefined){
-        for(o in extras)
-          result.extras.push(extras[o].fid);
-      }
-      return result;
+    function postProcess(champions){
+      return {
+        teams:[
+          champions.map(function(champion){
+            return champion.fid;
+          })
+        ],
+        extras:[]
+      };
     }
 
     function getTopPartner(list, index, depth, typeWeights, progress){
@@ -270,321 +183,9 @@ CoC.algorithm = CoC.algorithm || {};
         return 1;
       return a.value - b.value;
     }
-    
-    function getSynergyCulledTeam(team, typeWeights){
-      var types = [0,0,0,0,0,0], culled = {
-        champions:[],
-        synergies:team.synergies,
-        value:0
-      }, i, s, cull;
-      for(i=0;i<team.champions.length;i++ ){
-        cull = true;
-        synergies: for(s=0;s<team.synergies.length;s++){
-        
-          var from = team.synergies[s].fromId === team.champions[i].id && team.synergies[s].fromStars === team.champions[i].stars;
-          var to = team.synergies[s].id === team.champions[i].id;
-          if(to || from){
-            addPartnerType(types, team.champions[i]);
-            culled.champions.push(team.champions[i]);
-            break synergies;
-          }
-        }
-      }
-      culled.value = getTeamValue(culled.champions, culled.synergies, types, typeWeights);
-      return culled;
-    }
   };
 
-  CoC.algorithm["xgreedy"]=new function(){
-    this.uid = 'xgreedy';
-    this.quest = true;
-    this.extras = false;
-
-    this.build=function(options){
-      var i, j, o, t, team, index;
-      var size = parseInt(options.size, 10), teams = {}, list = [], preselect = [], typeWeights = [], progress = null;
-      preProcess(options.champions, list, typeWeights, options.levels);
-      
-      if(options.quest)
-        for(i=list.length-1;i>=0;i--)
-          if(list[i].quest){
-            preselect.push(list[i]);
-            list.splice(i,1);
-          }
-          
-      if(options.progress)
-        progress={
-          current:0,
-          max:(function(r){
-            var value = 0;
-            for(var n = list.length; n > r; n-=r){
-              value += combination(n, r);
-              if(options.quest)
-                break;
-            }
-            return value;
-          })(preselect.length? size - preselect.length: size),
-          callback:options.progress
-        };
-
-      if(preselect.length > 0){      
-        if(preselect.length > size){
-          team = getTopPartner(preselect, 0, size, typeWeights, progress);
-        }
-        else{
-          var synergies = [], types = getTypes(preselect);
-          team = getNextPartner(list, preselect, synergies, types, 0, size, typeWeights, progress);
-        }
-        if(team && team.value > 0)
-          teams[0]=team;
-      }
-      else{
-        
-        var team_index = 0;
-        do {
-          team = getTopPartner(list, 0, size, typeWeights, progress);
-          if(team){          
-            if (team.value){
-              if(!options.quest)
-                team = getSynergyCulledTeam(team, typeWeights);
-              
-              teams[team_index]=team;
-              teams.length=++team_index;
-              for(o in team.champions)
-                list.splice(list.indexOf(team.champions[o]),1);
-                
-              if(options.quest)
-                break;
-            }
-            else break;
-          }
-        } while(team !== null);
-        
-        //check if we have enough
-        var needed = 0;
-        for(i in teams)
-          if(i !== 'length')
-            needed += size - teams[i].champions.length;
-          
-        //break up teams if we dont have enough
-        while(list.length < needed){
-          i = teams.length - 1;
-          for(t in teams[i].champions){
-            list.push(teams[i].champions[t]);
-            needed--;
-          }
-          delete teams[i];
-          teams.length--;
-        }
-        
-        var appendToTeam = function appendToTeam(list, object){
-          var l = list.slice();
-          l.push(object);
-          return l;
-        };
-        
-        //add into existing teams, using the comparison to find best partner
-        for(i=teams.length-1; i>=0; i--){
-          if(teams[i].champions.length < size){
-            team = getNextPartner(list, teams[i].champions, teams[i].synergies, getTypes(teams[i].champions), 0, size, typeWeights, progress);
-            if(team){
-              for(o in team.champions){
-                index = list.indexOf(team.champions[o]);
-                if(index != -1)
-                  list.splice(index,1);
-              }
-              teams[i] = team;
-            }
-            else{
-              for(o in teams[i].champions)
-                list.push(teams[i].champions[o]);
-              delete teams[i];
-            }
-          }
-        }
-        
-        delete teams.length;
-      }
-        
-      return postProcess(teams, (options.extras && options.quest !== true)? list: undefined);
-    };
-    
-    function preProcess(champions, list, typeWeights, useLevels){
-      var i, champion, synergies;
-
-      for(i=2; i<=5; i++)
-        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
-        
-      for(i=0; i<champions.length; i++){
-        champion = champions[i];
-        
-        synergies = {};
-        _(CoC.data.synergies.where({ fromId:champion.get("uid"), fromStars:champion.get("stars") })).each(function(synergy){
-          var effect = synergy.effect();
-          synergies[synergy.get("toId")]={
-            id:synergy.get("toId"),
-            fromId:synergy.get("fromId"),
-            fromStars:synergy.get("fromStars"),
-            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
-          };
-        });
-        
-        list.push({
-          id:champion.get("uid"),
-          stars:champion.get("stars"),
-          quest:champion.get("quest"),
-          data:champion,
-          type:CoC.data.types.indexOf(champion.type()),
-          synergies:synergies,
-          value:(useLevels? champion.value(): 1)
-        });
-      }  
-    }
-    
-    function postProcess(teams, extras){
-      var i, o, 
-        result = {
-          teams:[],
-          extras:[]
-        };
-      for(i in teams){
-        var team = [];    
-        for(o in teams[i].champions)
-          team.push(teams[i].champions[o].data);
-        result.teams.push(team);
-      }
-      if(extras !== undefined){
-        for(o in extras)
-          result.extras.push(extras[o].data);
-      }
-      return result;
-    }
-
-    function getTopPartner(list, index, depth, typeWeights, progress){
-      if(index >= list.length)
-        return null;
-      var current = getNextPartner(list, addPartnerHero([], list[index]), [], getTypes([ list[index] ]), index+1, depth, typeWeights, progress);
-      if(current === null)
-        return null;
-      var next = getTopPartner(list,index+1,depth, typeWeights, progress);
-      return (compareTeams(current,next) >= 0)? current: next;
-    }
-    
-    function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progress){
-      if(champions.length == depth){
-        if(progress)
-          progress.callback(++progress.current, progress.max);
-        return {
-          champions:champions,
-          synergies:synergies,
-          value:getTeamValue(champions, synergies, types, typeWeights)
-        };
-      }
-      if(index == list.length)
-        return null;
-      var current = getNextPartner(list, 
-        addPartnerHero(champions, list[index]), 
-        addPartnerSynergies(synergies, champions, list[index]), 
-        addPartnerType(types, list[index]), 
-        index+1, depth, typeWeights, progress
-      );
-      var next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progress);
-
-      return (compareTeams(current,next) >= 0)? current: next;
-    }
-    
-    function addPartnerHero(list, hero){
-      var champions = list.slice();
-      champions.push(hero);
-      return champions;
-    }
-    
-    function addPartnerType(list, hero){
-      var types = list.slice();
-      types[hero.type]++;
-      return types;
-    }
-
-    function getTypes(champions){
-      var types=[0,0,0,0,0,0], i;
-      if(champions !== undefined)
-        for(i=0; i<champions.length; i++)
-          types[champions[i].type]++;
-      return types;
-    }
-    
-    function addPartnerSynergies(oldSynergies, list, next){
-      var synergies = oldSynergies.slice(), i;    
-      for(i=0; i<list.length; i++){
-        if(list[i].synergies[next.id] !== undefined)
-          synergies.push(list[i].synergies[next.id]);
-        if(next.synergies[list[i].id] !== undefined)
-          synergies.push(next.synergies[list[i].id]);
-      }
-      return synergies;
-    }
-    
-    function getSynergies(list){
-      if(list.length < 2)
-        return [];
-    
-      var champions = [], synergies = [], remaining = champions.slice();
-      while(remaining.length > 0){
-        var hero = remaining[0];
-        remaining.splice(0,1);
-        synergies = addPartnerSynergies(synergies, champions, hero);
-        champions.push(hero);
-      }
-      return synergies;
-    }
-      
-    function getTeamValue(champions, synergies, types, typeWeights){
-      var vsynergies = 0, vchampions = 0, vtypes = 1, i;
-      for(i in synergies)
-        vsynergies += synergies[i].value;
-      for(i in champions)
-        vchampions += champions[i].value;
-      for(i in types)
-        if(types[i] > 1)
-          vtypes *= typeWeights[types[i]];
-      return vsynergies * vchampions * vtypes;
-    }
-    
-    function compareTeams(a, b){
-      if(b === null)
-        return 1;
-      return a.value - b.value;
-    }
-    
-    function getSynergyCulledTeam(team, typeWeights){
-      var types = [0,0,0,0,0,0], culled = {
-        champions:[],
-        synergies:team.synergies,
-        value:0
-      }, i, s, cull;
-      for(i=0;i<team.champions.length;i++ ){
-        cull = true;
-        synergies: for(s=0;s<team.synergies.length;s++){
-        
-          var from = team.synergies[s].fromId === team.champions[i].id && team.synergies[s].fromStars === team.champions[i].stars;
-          var to = team.synergies[s].id === team.champions[i].id;
-          if(to || from){
-            addPartnerType(types, team.champions[i]);
-            culled.champions.push(team.champions[i]);
-            break synergies;
-          }
-        }
-      }
-      culled.value = getTeamValue(culled.champions, culled.synergies, types, typeWeights);
-      return culled;
-    }
-  };
-
-  CoC.algorithm["shuffle"]=new function(){
-    this.uid = 'shuffle';
-    this.quest = false;
-    this.extras = true;
-    
+  CoC.algorithm['arena']=new function(){
     this.build=function(options){
       var i, j;
       var size = parseInt(options.size, 10), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
@@ -722,7 +323,7 @@ CoC.algorithm = CoC.algorithm || {};
         }
       }
     
-      return postprocess(best.array, size, options.extras, function(array, i){ 
+      return postprocess(best.array, size, function(array, i){ 
         return getTeamValue(array, i);
       });
     };
@@ -760,7 +361,7 @@ CoC.algorithm = CoC.algorithm || {};
       }
     }
     
-    function postprocess(array, size, extras, getValue){
+    function postprocess(array, size, getValue){
       var result = { teams:[], extras:[] }, teams = [], i, j;
 
       for(i=0; i<array.length; i+=size){
@@ -774,7 +375,7 @@ CoC.algorithm = CoC.algorithm || {};
           team.sort();
           teams.push({ team:team, value:value });
         }
-        else if(extras)
+        else
           for(j=0; j<size && i+j<array.length; j++)
             result.extras.push(array[i+j].fid);
       }

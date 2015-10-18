@@ -88,7 +88,7 @@ CoC.settings.preset.add(null, "Defaults",{
   "build-filter-stars-3":true,
   "build-filter-stars-2":true,
   "build-filter-stars-1":true,
-  "build-type":"shuffle",
+  "build-type":"arena",
   "build-levels":true
 });
 CoC.settings.preset.add("Synergies", "Offensive",{

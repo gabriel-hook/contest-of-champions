@@ -150,12 +150,12 @@ CoC.lang['en'] = {
     'crystal-4star-description': 'Buy for 2500 $UNITS$, very rare event.',
 
     //Algorithm name
-    'algorithm-greedy-name': 'Greedy',
-    'algorithm-shuffle-name': 'Shuffle',
+    'algorithm-quest-name': 'Quest',
+    'algorithm-arena-name': 'Arena',
 
     //Algorithm description
-    'algorithm-greedy-description': 'SLOW. This picks the best team mathematically given all parameters.',
-    'algorithm-shuffle-description': 'FAST. This chooses the best combinations of teams possible.',
+    'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
+    'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
 
   },
   string: {

@@ -215,55 +215,58 @@ CoC.ui.teams=new function(){
       delete this._currentWorker;
     }
   };
-  
-  this.build=function(){
+
+  this.progress = function(progress){
+    if(progress.description){
+      $("#onboarding-progress .text").text(progress.description);
+      $("#onboarding-progress").addClass("show");
+    }
+    else
+      $("#onboarding-progress").removeClass("show");
+    $("#team-build-progress input").val(Math.min(1000 * (progress.current / progress.max), 1000)).slider("refresh");
+  };
+
+  this.progress.show = function(){
+    $("#team-build-progress input").val(0).slider("refresh");
+    $("#team-build-progress").removeClass("hidden");
+  };
+
+  this.progress.hide = function(){
+    $("#team-build-progress input").val(10000).slider("refresh");
+    $("#team-build-progress").addClass("hidden");
+    $("#onboarding-progress").removeClass("show");
+  };
+
+  this.build = function(){
     $("#teams").addClass("dirty");
     
-    var size = CoC.settings.getValue("build-size");
-    if(size === undefined)
-      size = 3;
-    
+    var size = CoC.settings.getValue("build-size") || 3;
     var roster = CoC.roster.filtered();
+    var algorithm = CoC.settings.getValue("build-type");
+    var levels = CoC.settings.getValue("build-levels") === true;
     var champions = [];
     for(var i=0; i<roster.length; i++)
       champions.push(roster[i].fid());
 
-    var algorithm = CoC.algorithm[CoC.settings.getValue("build-type")] || CoC.algorithm["shuffle"];
-    var quest = algorithm.quest;
-    var extras = algorithm.extras;
-    var levels = CoC.settings.getValue("build-levels")===true;
-
-    $("#team-build-progress input").val(0).slider("refresh");
-    $("#team-build-progress").removeClass("hidden");
+    CoC.ui.teams.progress.show();
     
-    var startTime = new Date(), 
-      workerWorking = false,
-      worker = CoC.ui.teams.getWorker();
+    var startTime = new Date();
+    var worker = CoC.ui.teams.getWorker();
     if (worker){
       try{
-      
         //Setup and start the worker
         worker.onmessage=function(event){
           var i, j;
           if(event.data.type === "progress"){
-            var current = event.data.current;
-            var max = event.data.max;
-            var description = event.data.description;
-            if(description){
-              $("#onboarding-progress .text").text(description);
-              $("#onboarding-progress").addClass("show");
-            }
-            $("#team-build-progress input").val(Math.min(1000 * (current / max), 1000)).slider("refresh");
+            CoC.ui.teams.progress(event.data.progress);
           }
           if(event.data.type === "failed"){
-            $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").addClass("hidden");
-            $("#onboarding-progress").removeClass("show");
+            CoC.ui.teams.progress.hide();
             CoC.ui.teams.render(event.data.result, size);
             console.log(event.data.message);
           }
           if(event.data.type === "complete"){
-            console.log(CoC.lang.model('algorithm-'+algorithm.uid+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
+            console.log(CoC.lang.model('algorithm-'+algorithm+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
             
             //Convert the result back to Champion models post-transport
             var result = {}, fid, champion;
@@ -290,48 +293,31 @@ CoC.ui.teams=new function(){
               }
             }
             
-            $("#team-build-progress input").val(10000).slider("refresh");
-            $("#team-build-progress").addClass("hidden");
-            $("#onboarding-progress").removeClass("show");
-              
             //update the UI
             CoC.ui.teams.render(result, size);
-            CoC.tracking.event("teams", "build", algorithm.uid + '-' + size);
+            CoC.ui.teams.progress.hide();
+            CoC.tracking.event("teams", "build", algorithm + '-' + size);
           }
         };
         worker.postMessage({
-          algorithm:algorithm.uid,
-          champions:champions, 
-          size:size, 
-          levels:levels,
-          quest:quest, 
-          extras:extras,
-          weights:CoC.settings.weights, 
-          update:250
+          type: 'build',
+          options:{
+            algorithm: algorithm,
+            champions: champions, 
+            size: size, 
+            levels: levels,
+            weights: CoC.settings.weights
+          }
         });
-        
-        workerWorking = true;
       }
       catch(e){
+        CoC.ui.teams.progress.hide();
         console.error(e);
       }
     }
-
-    if(!workerWorking){
-      setTimeout(function(){
-        var lastTime = (new Date()).getTime();
-        var result = algorithm.build({ champions:champions, size:size, levels:levels, quest:quest, extras:extras });
-        $("#team-build-progress input").val(10000).slider("refresh");
-        setTimeout(function(){
-          CoC.ui.teams.render(result, size);
-          $("#team-build-progress").addClass("hidden");
-          $("#onboarding-progress").removeClass("show");
-          console.log(CoC.lang.model('algorithm-'+algorithm.uid+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds. (worker failed)");
-        },0);
-      },0);
-    }
   };
 };
+
 CoC.ui.guides=new function(){
 
   this.initialized = false;
