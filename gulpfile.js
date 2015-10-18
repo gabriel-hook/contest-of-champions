@@ -4,10 +4,9 @@ var del = require('del');
 var eventstream = require('event-stream');
 var gulp = require('gulp');
 var util = require('gulp-util');
+var plumber = require('gulp-plumber');
 var conditional = require('gulp-if');
 var jshint = require('gulp-jshint');
-var batch = require('gulp-batch');
-var sequence = require('gulp-sequence');
 var rename = require("gulp-rename");
 var declare = require('gulp-declare');
 var jst = require('gulp-jst');
@@ -21,25 +20,30 @@ var styles = require('./styles.json');
 
 var DEVELOPMENT = util.env.dev;
 
-gulp.task('default', sequence('clean', 'build'));
+gulp.task('default', ['build']);
 
 gulp.task('clean', ['clean:js','clean:css']);
 gulp.task('clean:js', function(){
   return del([
     './build/*.js',
     './build/*.js.map'
-  ]);
+  ],{
+    force: true
+  });
 });
 gulp.task('clean:css', function(){
   return del([
     './build/*.css',
     './build/*.css.map',
     './build/fonts/'
-  ]);
+  ],{
+    force: true
+  });
 });
 
 gulp.task('build', ['build:js', 'build:css']);
-gulp.task('build:js', function(){
+
+gulp.task('build:js', ['clean:js'], function(){
   var streams = {};
   for(var i=0; i<scripts.length; i++)
     if(!streams[scripts[i].name])
@@ -47,12 +51,14 @@ gulp.task('build:js', function(){
   //get the streams
   processScripts(function processScript(name, files){
     streams[name].push(gulp.src(files, { base: './' })
+        .pipe(plumber())
         .pipe(rename(excludeNpmPaths.bind(null, 'scripts/lib/')))  
         .pipe(sourcemaps.init())  
         .pipe(concat(name + '.js'))
     );
   }, function processJSON(name, namespace, files){
     streams[name].push(gulp.src(files, { base: './' })
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(declare({
           root: 'window',
@@ -63,6 +69,7 @@ gulp.task('build:js', function(){
     );
   }, function processTemplate(name, namespace, files){
     streams[name].push(gulp.src(files, { base: './' })
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(minifyHtml({
           collapseWhitespace: true,
@@ -96,44 +103,40 @@ gulp.task('build:js', function(){
   }
   return eventstream.merge(combined);
 });
-gulp.task('build:css', function(){
+gulp.task('build:css', ['clean:css'], function(){
   var streams = [];
   streams.push(gulp.src('./styles/fonts/*')
+      .pipe(plumber())
       .pipe(gulp.dest('./build/fonts'))
   );
   processStyles(function(name, files){
     //regular multiple css minification
     streams.push(gulp.src(files, { base: './' })
+        .pipe(plumber())
         .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
-          .pipe(concat(name + '.css'))
-          .pipe(conditional(!DEVELOPMENT, minifyCss({
-            keepSpecialComments: 0,
-            roundingPrecision: -1
-          })))
-          .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
-            includeContent:true 
-          })))
-          .pipe(gulp.dest('./build'))
+            .pipe(concat(name + '.css'))
+            .pipe(conditional(!DEVELOPMENT, minifyCss({
+              keepSpecialComments: 0,
+              roundingPrecision: -1
+            })))
+            .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
+              includeContent:true 
+            })))
+            .pipe(gulp.dest('./build'))
     );
   });
   return eventstream.merge(streams);
 });
 
 gulp.task('watch', function(){
-    gulp.watch([
-      './scripts/**/*',
-      './templates/**/*'
-    ], batch(function(events, done){
-      sequence('clean:js','build:js', done);
-    }));
-    gulp.watch('./styles/**/*', batch(function(events, done){
-      sequence('clean:css','build:css', done);
-    }));
+  gulp.watch([ './scripts/**/*', './templates/**/*' ], [ 'build:js' ]);
+  gulp.watch('./styles/**/*', [ 'build:css' ]);
 });
 
 gulp.task('lint', function(){
   return gulp.src([
+      './gulpfile.js',
       './scripts/**/*.js',
       '!./scripts/**/lib/**/*.js'
     ])
@@ -152,7 +155,7 @@ gulp.task('lint', function(){
         "-W117": false,
         "expr": true
       }))
-      .pipe(jshint.reporter('default', { verbose: true }))
+      .pipe(jshint.reporter('default', { verbose: true }));
 });
 
 function processScripts(scriptCallback, jsonCallback, templateCallback){
