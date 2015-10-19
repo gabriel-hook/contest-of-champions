@@ -63,10 +63,15 @@ CoC.editor.initialize = function(){
     }
     guideContent.css('margin-bottom', contentBottomMargin);
   });
+
   //reset to bottom when we close
-  $('#popup-editor-popup').on('afterclose', function(){
+  $('#popup-editor').on('popupafterclose', function(){
     lastScrollY = 99999999999999;
   });
+  $('#popup-editor').on('popupafteropen', function(){
+    $('.ui-panel-open').panel('close');
+  });
+
 
   function everyFrame(callback){
     var raf = window.requestAnimationFrame || 
@@ -178,8 +183,6 @@ CoC.editor.reset = function(champion){
   }
   else{
     CoC.editor.view.$el.empty();
-
-    //$('.editor-tabs-navbar').navbar('disable').addClass("ui-disabled");
 
     $('.editor-tabs').addClass("ui-disabled");
     $('#editor-export').addClass("ui-disabled");
