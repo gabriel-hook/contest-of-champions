@@ -18,26 +18,16 @@ CoC.editor.initialize = function(){
 
   var championIds = _(CoC.data.champions.pluck('uid')).uniq();
   var editorChampion = $('#editor-champion');
-  editorChampion.empty();
-  editorChampion.append($('<option>').val('').text(CoC.lang.string('choose-guide')+'...'));
-  for(i=0; i<championIds.length; i++){
-    editorChampion.append($('<option>').val(championIds[i]).text(CoC.lang.model('champion-'+championIds[i]+'-name')));
-  }
   editorChampion.change(function(e){
     CoC.editor.reset(e.target.value);
   });
 
-  //init
   $(document).on('pagebeforeshow', '#page-guide', function(){ 
     $('.select2').select2({
       tags: true,
       tokenSeparators: [',', ' ']
     });
-
-    var option = $('#editor-champion option')[0];
-    $(option).attr('selected', 'selected');
-    $('#editor-champion').selectmenu('refresh');
-    CoC.editor.reset(option.value);
+    CoC.editor.reset();
   });
 
   //make sure we have enough padding below to scroll all the way down
@@ -71,8 +61,7 @@ CoC.editor.initialize = function(){
   $('#popup-editor').on('popupafteropen', function(){
     $('.ui-panel-open').panel('close');
   });
-
-
+  
   function everyFrame(callback){
     var raf = window.requestAnimationFrame || 
       window.webkitRequestAnimationFrame || 
