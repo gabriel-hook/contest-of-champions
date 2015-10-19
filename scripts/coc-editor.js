@@ -1,7 +1,7 @@
 var CoC = CoC || {};
 CoC.editor = {};
 
-CoC.editor.version = "1.5.5";
+CoC.editor.version = "1.5.9";
 
 CoC.editor.initialize = function(){
 

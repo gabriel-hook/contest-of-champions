@@ -43,7 +43,7 @@
   Install all [NPM](https://www.npmjs.com/) packages
 
 ```
-  $ npm install gulp --global
+  $ npm install gulp -g
   $ npm install
 ```
 

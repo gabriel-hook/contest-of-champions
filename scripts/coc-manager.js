@@ -1,6 +1,6 @@
 var CoC=CoC || {};
 CoC.manager = CoC.manager || {};
-CoC.manager.version = "1.5.5";
+CoC.manager.version = "1.5.9";
 
 CoC.manager.initialize = function(){
   console.log("Contest of Champions - Roster Manager v"+CoC.manager.version);
