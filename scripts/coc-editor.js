@@ -172,12 +172,16 @@ CoC.editor.reset = function(champion){
       $('#editor-export').removeClass("ui-disabled");
     } 
     CoC.editor.view.render(champion, true);
-    $('.editor-section').collapsible('enable').removeClass("ui-disabled");
-    $($('.editor-section')[0]).collapsible('expand');
+
+
+    $('.editor-tabs').removeClass("ui-disabled");
   }
   else{
     CoC.editor.view.$el.empty();
-    $('.editor-section').collapsible('collapse').collapsible('disable').addClass("ui-disabled");
+
+    //$('.editor-tabs-navbar').navbar('disable').addClass("ui-disabled");
+
+    $('.editor-tabs').addClass("ui-disabled");
     $('#editor-export').addClass("ui-disabled");
   }
 

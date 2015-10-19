@@ -8,17 +8,18 @@
     data-role="popup"
     data-theme="b">
 
-    <select id="editor-champion" name="editor-champion">
-      <option value=""><%= string('choose-guide') %>...</option>
-      <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(champion){ %>
-        <option value="<%= champion %>"><%= model('champion-'+champion+'-name') %>...</option>
-      <% }) %>
-    </select>
-    <div data-role="collapsibleset" data-mini="true">
-      <div class="editor-section" data-role="collapsible" data-collapsed="false">
-        <h3 class="ui-mini">
-          <%= string('champion') %>      
-        </h3>
+    <div class="editor-champion-selector">
+      <select id="editor-champion" name="editor-champion">
+        <option value=""><%= string('choose-guide') %>...</option>
+        <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(champion){ %>
+          <option value="<%= champion %>"><%= model('champion-'+champion+'-name') %>...</option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div data-role="tabs" class="editor-tabs" data-mini="true" data-theme="a">
+      <div id="tab-champion" class="ui-content ui-mini">
+
         <div class="ui-grid-a">
           <div class="ui-block-a">
             <label for="editor-grade"><%= string('grade') %></label>
@@ -28,6 +29,7 @@
               <% }) %>
             </select>
           </div>
+
           <div class="ui-block-b">
             <label for="editor-grade-awakened"><%= string('awakened') %></label>
             <select id="editor-grade-awakened" name="editor-grade-awakened">
@@ -37,14 +39,13 @@
             </select>
           </div>
         </div>
+
         <label for="editor-description"><%= string('description') %></label>
         <textarea id="editor-description" name="description" height=10></textarea>
-      </div>
 
-      <div class="editor-section" data-role="collapsible">
-        <h3 class="ui-mini">
-          <%= string('gameplay') %>      
-        </h3>
+      </div>
+      <div id="tab-gameplay" class="ui-content ui-mini">
+
         <label for="editor-gameplay-rating"><%= string('rating') %></label>
         <fieldset id="editor-gameplay-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
           <input type="radio" name="editor-gameplay-rating" id="editor-gameplay-rating-none" value="">
@@ -54,10 +55,13 @@
             <label for="editor-gameplay-rating-<%= number %>"><%= number %></label>
           <% }) %>
         </fieldset>
+
         <label for="editor-gameplay-style"><%= string('style') %></label>
         <input type="text" id="editor-gameplay-style" name="editor-gameplay-style" />
+
         <label for="editor-gameplay-description"><%= string('description') %></label>
         <textarea id="editor-gameplay-description" name="editor-gameplay-description"></textarea>
+
         <label for="editor-gameplay-abilities"><%= string('passive-abilities') %></label>
         <select id="editor-gameplay-abilities" name="editor-gameplay-abilities" 
           class="select2 js-example-basic-multiple" multiple="multiple" 
@@ -66,14 +70,13 @@
             <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
           <% }) %>
         </select>
+
         <label for="editor-gameplay-note"><%= string('note') %></label>
         <input type="text" id="editor-gameplay-note" name="editor-gameplay-note" />
-      </div>
 
-      <div class="editor-section" data-role="collapsible">
-        <h3 class="ui-mini">
-          <%= string('attack') %>      
-        </h3>
+      </div>
+      <div id="tab-attack" class="ui-content ui-mini">
+
         <label for="editor-attack-rating"><%= string('rating') %></label>
         <fieldset id="editor-attack-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
           <input type="radio" name="editor-attack-rating" id="editor-attack-rating-none" value="">
@@ -83,10 +86,13 @@
             <label for="editor-attack-rating-<%= number %>"><%= number %></label>
           <% }) %>
         </fieldset>
+
         <label for="editor-attack-description"><%= string('description') %></label>
         <textarea id="editor-attack-description" name="editor-attack-description"></textarea>
+
         <label for="editor-attack-heavy"><%= string('heavy-attack') %></label>
         <input type="text" id="editor-attack-heavy" name="editor-attack-heavy" />
+
         <label for="editor-attack-abilities"><%= string('abilities') %></label>
         <select id="editor-attack-abilities" name="editor-attack-abilities" 
           class="select2 js-example-basic-multiple" multiple="multiple" 
@@ -95,14 +101,13 @@
             <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
           <% }) %>
         </select>
+
         <label for="editor-attack-note"><%= string('note') %></label>
         <input type="text" id="editor-attack-note" name="editor-attack-note" />
-      </div>
 
-      <div class="editor-section" data-role="collapsible">
-        <h3 class="ui-mini">
-          <%= string('signature') %>      
-        </h3>
+      </div>
+      <div id="tab-signature" class="ui-content ui-mini">
+
         <label for="editor-signature-rating"><%= string('rating') %></label>
         <fieldset id="editor-signature-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
           <input type="radio" name="editor-signature-rating" id="editor-signature-rating-none" value="">
@@ -112,19 +117,21 @@
             <label for="editor-signature-rating-<%= number %>"><%= number %></label>
           <% }) %>
         </fieldset>
+
         <label for="editor-signature-name"><%= string('name') %></label>
         <input type="text" id="editor-signature-name" name="editor-signature-name" />
+
         <label for="editor-signature-description"><%= string('description') %></label>
         <textarea id="editor-signature-description" name="editor-signature-description"></textarea>
+
         <label for="editor-signature-note"><%= string('note') %></label>
         <input type="text" id="editor-signature-note" name="editor-signature-note" />
+
       </div>
 
       <% _([1, 2, 3]).each(function(index){ %>
-        <div class="editor-section" data-role="collapsible">
-          <h3 class="ui-mini">
-            <%= string('special') + ' ' + index %>
-          </h3>
+        <div id="tab-special-<%= index %>" class="ui-content ui-mini">
+
           <label for="editor-special-<%= index %>-rating"><%= string('rating') %></label>
           <fieldset id="editor-special-<%= index %>-rating" data-role="controlgroup" data-type="horizontal" data-mini="true">
             <input type="radio" name="editor-special-<%= index %>-rating" id="editor-special-<%= index %>-rating-none" value="">
@@ -181,10 +188,7 @@
         </div>
       <% }) %>
 
-      <div class="editor-section" data-role="collapsible">
-        <h3 class="ui-mini">
-          <%= string('author') %>      
-        </h3>
+      <div id="tab-author" class="ui-content ui-mini">
 
         <label for="editor-author-name"><%= string('name') %></label>
         <input type="text" id="editor-author-name" name="editor-author-name" />
@@ -201,17 +205,48 @@
         </div>
 
       </div>
-    </div>
- 
-    <div class="ui-grid-a">
-      <div class="ui-block-a">
-        <button class="ui-btn" id="editor-import">Import</button>
-      </div>
-      <div class="ui-block-b">
-        <a class="ui-btn" id="editor-export">Export</a>
-      </div>
-    </div>
+      <div class="editor-tabs-navbar" data-role="navbar" data-grid="c">
+        <ul>
+          <li><a href="#tab-champion" data-ajax="false">
+            <%= string('champion') %>  
+          </a></li>
+          <li><a href="#tab-gameplay" data-ajax="false">
+            <%= string('gameplay') %>  
+          </a></li>
+          <li><a href="#tab-attack" data-ajax="false">
+            <%= string('attack') %>  
+          </a></li>
+          <li><a href="#tab-signature" data-ajax="false">
+            <%= string('signature') %>  
+          </a></li>
 
+          <li><a href="#tab-special-1" data-ajax="false">
+            <%= string('special') + ' ' + 1 %>  
+          </a></li>
+          <li><a href="#tab-special-2" data-ajax="false">
+            <%= string('special') + ' ' + 2 %>  
+          </a></li>
+          <li><a href="#tab-special-3" data-ajax="false">
+            <%= string('special') + ' ' + 3 %>  
+          </a></li>
+          <li><a href="#tab-author" data-ajax="false">
+            <%= string('author') %>  
+          </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="editor-import-export">
+      <div data-role="navbar" data-grid="a">
+        <ul>
+          <li>
+            <a class="ui-btn" id="editor-import">Import</a>
+          </li>
+          <li>
+            <a class="ui-btn" id="editor-export">Export</a>
+          </li>
+        </ul>
+      </div>
+      </div>
   </div>
 
   <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
