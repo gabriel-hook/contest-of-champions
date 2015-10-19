@@ -10,6 +10,7 @@ CoC.data.champions = new Backbone.Collection([
 
   { uid:"captainmarvel", typeId:"cosmic", stars: 3 },
   { uid:"captainmarvel", typeId:"cosmic", stars: 4 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 5 },
 
   { uid:"drax", typeId:"cosmic", stars: 2 },
   { uid:"drax", typeId:"cosmic", stars: 3 },
@@ -26,6 +27,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"ronan", typeId:"cosmic", stars: 2 },
   { uid:"ronan", typeId:"cosmic", stars: 3 },
   { uid:"ronan", typeId:"cosmic", stars: 4 },
+  { uid:"ronan", typeId:"cosmic", stars: 5 },
 
   { uid:"spidermanblack", typeId:"cosmic", stars: 3 },
   { uid:"spidermanblack", typeId:"cosmic", stars: 4 },
@@ -48,6 +50,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"ironman", typeId:"tech", stars: 2 },
   { uid:"ironman", typeId:"tech", stars: 3 },
   { uid:"ironman", typeId:"tech", stars: 4 },
+  { uid:"ironman", typeId:"tech", stars: 5 },
 
   { uid:"ironpatriot", typeId:"tech", stars: 3 },
   { uid:"ironpatriot", typeId:"tech", stars: 4 },
@@ -64,6 +67,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"starlord", typeId:"tech", stars: 2 },
   { uid:"starlord", typeId:"tech", stars: 3 },
   { uid:"starlord", typeId:"tech", stars: 4 },
+  { uid:"starlord", typeId:"tech", stars: 5 },
 
   { uid:"vision", typeId:"tech", stars: 1 },
   { uid:"vision", typeId:"tech", stars: 2 },
@@ -89,6 +93,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"cyclops", typeId:"mutant", stars: 2 },
   { uid:"cyclops", typeId:"mutant", stars: 3 },
   { uid:"cyclops", typeId:"mutant", stars: 4 },
+  { uid:"cyclops", typeId:"mutant", stars: 5 },
 
   { uid:"deadpool", typeId:"mutant", stars: 2 },
   { uid:"deadpool", typeId:"mutant", stars: 3 },
@@ -107,6 +112,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"storm", typeId:"mutant", stars: 2 },
   { uid:"storm", typeId:"mutant", stars: 3 },
   { uid:"storm", typeId:"mutant", stars: 4 },
+  { uid:"storm", typeId:"mutant", stars: 5 },
 
   { uid:"wolverine", typeId:"mutant", stars: 1 },
   { uid:"wolverine", typeId:"mutant", stars: 2 },
@@ -117,6 +123,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"blackpanther", typeId:"skill", stars: 2 },
   { uid:"blackpanther", typeId:"skill", stars: 3 },
   { uid:"blackpanther", typeId:"skill", stars: 4 },
+  { uid:"blackpanther", typeId:"skill", stars: 5 },
 
   { uid:"blackwidow", typeId:"skill", stars: 2 },
   { uid:"blackwidow", typeId:"skill", stars: 3 },
@@ -146,6 +153,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"wintersoldier", typeId:"skill", stars: 2 },
   { uid:"wintersoldier", typeId:"skill", stars: 3 },
   { uid:"wintersoldier", typeId:"skill", stars: 4 },
+  { uid:"wintersoldier", typeId:"skill", stars: 5 },
 
   { uid:"abomination", typeId:"science", stars: 2 },
   { uid:"abomination", typeId:"science", stars: 3 },
@@ -176,6 +184,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"rhino", typeId:"science", stars: 2 },
   { uid:"rhino", typeId:"science", stars: 3 },
   { uid:"rhino", typeId:"science", stars: 4 },
+  { uid:"rhino", typeId:"science", stars: 5 },
 
   { uid:"spidergwen", typeId:"science", stars: 3 },
   { uid:"spidergwen", typeId:"science", stars: 4 },
@@ -184,6 +193,7 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"spiderman", typeId:"science", stars: 2 },
   { uid:"spiderman", typeId:"science", stars: 3 },
   { uid:"spiderman", typeId:"science", stars: 4 },
+  { uid:"spiderman", typeId:"science", stars: 5 },
 
   { uid:"spidermanmorales", typeId:"science", stars: 3 },
   { uid:"spidermanmorales", typeId:"science", stars: 4 },
@@ -203,10 +213,12 @@ CoC.data.champions = new Backbone.Collection([
   { uid:"juggernaut", typeId:"mystic", stars: 2 },
   { uid:"juggernaut", typeId:"mystic", stars: 3 },
   { uid:"juggernaut", typeId:"mystic", stars: 4 },
+  { uid:"juggernaut", typeId:"mystic", stars: 5 },
 
   { uid:"magik", typeId:"mystic", stars: 2 },
   { uid:"magik", typeId:"mystic", stars: 3 },
   { uid:"magik", typeId:"mystic", stars: 4 },
+  { uid:"magik", typeId:"mystic", stars: 5 },
 
   { uid:"scarletwitch", typeId:"mystic", stars: 1 },
   { uid:"scarletwitch", typeId:"mystic", stars: 2 },

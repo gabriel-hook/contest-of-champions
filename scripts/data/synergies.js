@@ -21,6 +21,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"captainmarvel", fromStars: 4, toId: "gamora", effectId:"armor", effectAmount:6 },
   { fromId:"captainmarvel", fromStars: 4, toId: "ironman", effectId:"armor", effectAmount:6 },
   { fromId:"captainmarvel", fromStars: 4, toId: "wolverine", effectId:"powergain", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "captainamerica", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "gamora", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "ironman", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "wolverine", effectId:"powergain", effectAmount:6 },
 
   { fromId:"drax", fromStars:2, toId:"starlord", effectId:"perfectblock", effectAmount:3 },
   { fromId:"drax", fromStars:2, toId:"gamora", effectId:"critdamage", effectAmount:15 },
@@ -51,6 +55,9 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ronan", fromStars:4, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
   { fromId:"ronan", fromStars:4, toId:"ironman", effectId:"critrate", effectAmount:7 },
   { fromId:"ronan", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"blackbolt", effectId:"critdamage", effectAmount:30 },
+  { fromId:"ronan", fromStars:5, toId:"ironman", effectId:"critrate", effectAmount:8 },
+  { fromId:"ronan", fromStars:5, toId:"gamora", effectId:"critdamage", effectAmount:30 },
 
   { fromId:"spidermanblack", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
   { fromId:"spidermanblack", fromStars:3, toId:"electro", effectId:"critrate", effectAmount:6 },
@@ -81,6 +88,8 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
   { fromId:"ironman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
   { fromId:"ironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"ironman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:7 },
+  { fromId:"ironman", fromStars:5, toId:"thor", effectId:"perfectblock", effectAmount:6 },
   
   { fromId:"ironpatriot", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
   { fromId:"ironpatriot", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
@@ -119,6 +128,9 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"starlord", fromStars:4, toId:"rocket", effectId:"armor", effectAmount:6 },
   { fromId:"starlord", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
   { fromId:"starlord", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"rocket", effectId:"armor", effectAmount:7 },
+  { fromId:"starlord", fromStars:5, toId:"drax", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"starlord", fromStars:5, toId:"gamora", effectId:"perfectblock", effectAmount:6 },
 
   { fromId:"vision", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
   { fromId:"vision", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
@@ -164,6 +176,8 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"cyclops", fromStars:3, toId:"magneto", effectId:"attack", effectAmount:4 },
   { fromId:"cyclops", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
   { fromId:"cyclops", fromStars:4, toId:"magneto", effectId:"attack", effectAmount:5 },
+  { fromId:"cyclops", fromStars:5, toId:"wolverine", effectId:"critdamage", effectAmount:30 },
+  { fromId:"cyclops", fromStars:5, toId:"magneto", effectId:"attack", effectAmount:6 },
 
   { fromId:"deadpool", fromStars:2, toId:"punisher", effectId:"perfectblock", effectAmount:3 },
   { fromId:"deadpool", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
@@ -204,6 +218,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"storm", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
   { fromId:"storm", fromStars:4, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
   { fromId:"storm", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"magik", effectId:"armor", effectAmount:8 },
+  { fromId:"storm", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"storm", fromStars:5, toId:"blackpanther", effectId:"powergain", effectAmount:6 },
+  { fromId:"storm", fromStars:5, toId:"magneto", effectId:"critrate", effectAmount:8 },
 
   { fromId:"wolverine", fromStars:2, toId:"cyclops", effectId:"critdamage", effectAmount:15 },
   { fromId:"wolverine", fromStars:3, toId:"cyclops", effectId:"critdamage", effectAmount:20 },
@@ -220,6 +238,9 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"blackpanther", fromStars:4, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
   { fromId:"blackpanther", fromStars:4, toId:"storm", effectId:"powergain", effectAmount:5 },
   { fromId:"blackpanther", fromStars:4, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+  { fromId:"blackpanther", fromStars:5, toId:"ironfist", effectId:"critdamage", effectAmount:30 },
+  { fromId:"blackpanther", fromStars:5, toId:"storm", effectId:"powergain", effectAmount:6 },
+  { fromId:"blackpanther", fromStars:5, toId:"deadpool", effectId:"critrate", effectAmount:8 },
 
   { fromId:"daredevil", fromStars:3, toId:"superiorironman", effectId:"critdamage", effectAmount:20 },
   { fromId:"daredevil", fromStars:3, toId:"blackwidow", effectId:"powergain", effectAmount:4 },
@@ -263,6 +284,8 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"wintersoldier", fromStars:3, toId:"captainamerica", effectId:"perfectblock", effectAmount:4 },
   { fromId:"wintersoldier", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
   { fromId:"wintersoldier", fromStars:4, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:5, toId:"wolverine", effectId:"armor", effectAmount:7 },
+  { fromId:"wintersoldier", fromStars:5, toId:"captainamerica", effectId:"perfectblock", effectAmount:6 },
 
   { fromId:"blackwidow", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
   { fromId:"blackwidow", fromStars:2, toId:"wintersoldier", effectId:"powergain", effectAmount:3 },
@@ -337,6 +360,9 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"rhino", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
   { fromId:"rhino", fromStars:4, toId:"abomination", effectId:"armor", effectAmount:6 },
   { fromId:"rhino", fromStars:4, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rhino", fromStars:5, toId:"spiderman", effectId:"critrate", effectAmount:8 },
+  { fromId:"rhino", fromStars:5, toId:"abomination", effectId:"armor", effectAmount:7 },
+  { fromId:"rhino", fromStars:5, toId:"electro", effectId:"perfectblock", effectAmount:6 },
 
   { fromId:"spiderman", fromStars:1, toId:"wolverine", effectId:"health", effectAmount:5 },
   { fromId:"spiderman", fromStars:1, toId:"hawkeye", effectId:"attack", effectAmount:5 },
@@ -350,6 +376,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"spiderman", fromStars:4, toId:"hawkeye", effectId:"attack", effectAmount:6 },
   { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
   { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"wolverine", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:5, toId:"hawkeye", effectId:"attack", effectAmount:7 },
+  { fromId:"spiderman", fromStars:5, toId:"electro", effectId:"health", effectAmount:8 },
+  { fromId:"spiderman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:7 },
 
   { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
   { fromId:"yellowjacket", fromStars:2, toId:"ultron", effectId:"critdamage", effectAmount:15 },
@@ -381,6 +411,9 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"juggernaut", fromStars:4, toId:"drstrange", effectId:"attack", effectAmount:5 },
   { fromId:"juggernaut", fromStars:4, toId:"colossus", effectId:"critrate", effectAmount:7 },
   { fromId:"juggernaut", fromStars:4, toId:"hulk", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"drstrange", effectId:"attack", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:5, toId:"colossus", effectId:"critrate", effectAmount:8 },
+  { fromId:"juggernaut", fromStars:5, toId:"hulk", effectId:"critrate", effectAmount:8 },
 
   { fromId:"magik", fromStars:2, toId:"colossus", effectId:"health", effectAmount:4 },
   { fromId:"magik", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
@@ -390,6 +423,10 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"magik", fromStars:4, toId:"colossus", effectId:"health", effectAmount:6 },
   { fromId:"magik", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
   { fromId:"magik", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"storm", effectId:"armor", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"colossus", effectId:"health", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"juggernaut", effectId:"critrate", effectAmount:8 },
 
   { fromId:"scarletwitch", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
   { fromId:"scarletwitch", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },

@@ -30,8 +30,15 @@ CoC.model = CoC.model || {};
       4:{ levels: 40, min:2000, max:2800 }, 
       5:{ levels: 50, min:2800, max:3500 },
       ranks: 5
+    },
+    5:{
+      1:{ levels: 25, min:1500, max:2500 }, 
+      2:{ levels: 35, min:2500, max:3500 }, 
+      3:{ levels: 45, min:3500, max:4500 }, 
+      4:{ levels: 55, min:4500, max:5500 }, 
+      5:{ levels: 65, min:5500, max:6500 },
+      ranks: 5
     }
-    //TODO: 5-star values
   };
 
   var starStrings = ["", "★", "★★", "★★★", "★★★★", "★★★★★"];
