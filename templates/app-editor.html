@@ -10,10 +10,19 @@
 
     <div class="editor-champion-selector">
       <select id="editor-champion" name="editor-champion">
-        <option value=""><%= string('choose-guide') %>...</option>
-        <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(champion){ %>
-          <option value="<%= champion %>"><%= model('champion-'+champion+'-name') %>...</option>
+        <option value="" selected="selected"><%= string('choose-guide') + '...' %></option>
+        <% var currentTypeId %>
+        <% _(_(CoC.data.champions.pluck('uid')).uniq()).each(function(uid){ %>
+          <% var typeId = CoC.data.champions.findWhere({ uid:uid }).get('typeId') %>
+          <% if (typeId !== currentTypeId){ %>
+            <% currentTypeId = typeId %>
+            <optgroup label="<%= CoC.data.types.findWhere({ uid:typeId }).get('name') %>">
+          <% } %>
+          <option value="<%= uid %>">
+            <%= model('champion-'+uid+'-name') %>
+          </option>
         <% }) %>
+        </optgroup>
       </select>
     </div>
 
