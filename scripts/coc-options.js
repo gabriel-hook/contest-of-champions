@@ -3,6 +3,9 @@ CoC.options = {};
 
 CoC.options.initialize = function(current){
 
+  if(window.self !== window.top)
+    $('body').addClass('iframe');
+
   var html = CoC.data.template['options']({
     model: CoC.lang.model,
     string: CoC.lang.string,
