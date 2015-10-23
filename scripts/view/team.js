@@ -90,38 +90,56 @@ CoC.view.TeamView = Backbone.View.extend({
       return;
     }
   
-    var effect;
-    var synergyCount = 0;
+    var champions, championIds = {};
+    var effectMap, effects, effect, effectId;
+    var synergy, synergies, synergyCount = 0;
+
+    function synergiesFromChampion(champion, championIds){
+      var filtered = [];
+      var synergies = CoC.data.synergies.where({ 
+        fromId: champion.get("uid"), 
+        fromStars: champion.get("stars") 
+      });
+      for(var i=0; i<synergies.length; i++)
+        if(championIds[synergies[i].get('toId')])
+          filtered.push(synergies[i]);
+      return filtered;
+    }
   
     this._teams = [];
-    for(var i=0; i<teams.length; i++){
-      var champions = teams[i], synergies = {}, effects = [];
-      for(var a=0; a<champions.length; a++)
-        for(var b=0; b<champions.length; b++)
-          if(a !== b){
-            var synergy = CoC.data.synergies.findWhere({ fromId:champions[a].get("uid"), fromStars:champions[a].get("stars"), toId:champions[b].get("uid") });
-            if(synergy !== undefined){
-              synergyCount++;
-              effect = synergies[synergy.get("effectId")];
-              if(effect === undefined){
-                effect = synergies[synergy.get("effectId")]={
-                  uid:synergy.get("effectId"),
-                  amount:0,
-                  champions:{}
-                };
-              }
-              effect.amount += synergy.get("effectAmount");
-              effect.champions[synergy.get("fromId")] = true;
-              effect.champions[synergy.get("toId")] = true;
-            }
+    for(var c, s, i=0; i<teams.length; i++){
+      champions = teams[i];
+      championIds = {};
+      synergies = [];
+      for(c=0; c<champions.length; c++)
+        championIds[champions[c].get('uid')] = true;
+      //Get all valid synergies
+      for(c=0; c<champions.length; c++)
+        synergies = synergies.concat(synergiesFromChampion(champions[c], championIds));
+      synergyCount += synergies.length;
+      //Reduce to Effects
+      effectMap = {};
+      for(s=0; s<synergies.length; s++){
+        synergy = synergies[s];
+        effectId = synergy.get('effectId');
+        if(effectMap[effectId] === undefined){
+          effectMap[effectId] = {
+            amount: 0,
+            champions: {},
+            effect: synergy.effect()
           }
+        }
+        effectMap[effectId].champions[synergy.get('fromId')] = true;
+        effectMap[effectId].champions[synergy.get('toId')] = true;
+        effectMap[effectId].amount += synergy.get('effectAmount');
+      }
       effects = [];
-      for(var s in synergies){
-        effect = CoC.data.effects.findWhere({ uid:synergies[s].uid }).clone();
-        effect.set("amount", synergies[s].amount);
-        effect.championIds(synergies[s].champions);
+      for(var effectId in effectMap){
+        effect = effectMap[effectId].effect.clone();
+        effect.set('amount', effectMap[effectId].amount);
+        effect.championIds(effectMap[effectId].champions);
         effects.push(effect);
-      } 
+      }
       this._teams.push({ champions:champions, effects:effects });
     }
     
@@ -130,7 +148,6 @@ CoC.view.TeamView = Backbone.View.extend({
       this._message += " "+CoC.lang.string('with')+" "+synergyCount+" "+CoC.lang.string('synergies');
     else
       this._message += ".";
-    
   },
   
   //add extras
