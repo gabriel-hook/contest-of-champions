@@ -404,6 +404,17 @@ CoC.data.synergies = new Backbone.Collection([
   { fromId:"ironfist", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
   { fromId:"ironfist", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
 
+  { fromId:"guillotine", fromStars:2, toId:"venom", effectId:"attack", effectAmount:4 },
+  { fromId:"guillotine", fromStars:2, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"guillotine", fromStars:2, toId:"magik", effectId:"critdamage", effectAmount:15 },
+  { fromId:"guillotine", fromStars:3, toId:"venom", effectId:"attack", effectAmount:5 },
+  { fromId:"guillotine", fromStars:3, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"guillotine", fromStars:3, toId:"magik", effectId:"critdamage", effectAmount:20 },
+  { fromId:"guillotine", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"venom", effectId:"attack", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"guillotine", fromStars:4, toId:"magik", effectId:"critdamage", effectAmount:25 },
+
   { fromId:"juggernaut", fromStars:2, toId:"colossus", effectId:"critrate", effectAmount:5 },
   { fromId:"juggernaut", fromStars:3, toId:"drstrange", effectId:"attack", effectAmount:4 },
   { fromId:"juggernaut", fromStars:3, toId:"colossus", effectId:"critrate", effectAmount:6 },
