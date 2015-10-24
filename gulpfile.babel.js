@@ -127,10 +127,10 @@ gulp.task('build:css', ['clean:css'], () => {
       .pipe(renamePaths('styles', { force: true }))
       .pipe(sourcemaps.init({ loadMaps: false }))
         .pipe(concat(name + '.css'))
-        .pipe(conditional(!DEVELOPMENT, autoprefixer({
+        .pipe(autoprefixer({
           browsers: 'last 10 versions',
           cascade: false
-        })))
+        }))
         .pipe(conditional(!DEVELOPMENT, minifyCss({
           keepSpecialComments: false,
           roundingPrecision: -1
