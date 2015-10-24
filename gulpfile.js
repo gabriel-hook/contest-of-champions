@@ -117,11 +117,12 @@ gulp.task('build:css', ['clean:css'], function(){
         .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
             .pipe(autoprefixer({
+              browsers: 'last 10 versions',
               cascade: false
             }))
             .pipe(concat(name + '.css'))
             .pipe(conditional(!DEVELOPMENT, minifyCss({
-              keepSpecialComments: 0,
+              keepSpecialComments: false,
               roundingPrecision: -1
             })))
             .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
