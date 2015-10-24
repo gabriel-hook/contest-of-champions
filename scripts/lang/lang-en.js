@@ -58,6 +58,7 @@ CoC.lang['en'] = {
     'champion-yellowjacket-name': 'YellowJacket',
     'champion-drstrange-name': 'Doctor Strange',
     'champion-ironfist-name': 'Iron Fist',
+    'champion-guillotine-name': 'Guillotine',
     'champion-juggernaut-name': 'Juggernaut',
     'champion-magik-name': 'Magik',
     'champion-scarletwitch-name': 'Scarlet Witch',
