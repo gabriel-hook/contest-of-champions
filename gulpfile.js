@@ -91,15 +91,15 @@ gulp.task('build:js', ['clean:js'], function(){
   var combined = [];
   for(var key in streams){
     var stream = eventstream.merge(streams[key])
-        .pipe(concat(key + '.js'))
-        .pipe(conditional(!DEVELOPMENT, minifyJs({ 
-          mangle: true,
-          compress: true
-        })))
-        .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
-          includeContent:true 
-        })))
-        .pipe(gulp.dest('./build'));
+      .pipe(concat(key + '.js'))
+      .pipe(conditional(!DEVELOPMENT, minifyJs({ 
+        mangle: true,
+        compress: true
+      })))
+      .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
+        includeContent:true 
+      })))
+      .pipe(gulp.dest('./build'));
     combined.push(stream);
   }
   return eventstream.merge(combined);
@@ -107,28 +107,28 @@ gulp.task('build:js', ['clean:js'], function(){
 gulp.task('build:css', ['clean:css'], function(){
   var streams = [];
   streams.push(gulp.src('./styles/fonts/*')
-      .pipe(plumber())
-      .pipe(gulp.dest('./build/fonts'))
+    .pipe(plumber())
+    .pipe(gulp.dest('./build/fonts'))
   );
   processStyles(function(name, files){
     //regular multiple css minification
     streams.push(gulp.src(files, { base: './' })
-        .pipe(plumber())
-        .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
-        .pipe(sourcemaps.init({ loadMaps: true }))
-            .pipe(autoprefixer({
-              browsers: 'last 10 versions',
-              cascade: false
-            }))
-            .pipe(concat(name + '.css'))
-            .pipe(conditional(!DEVELOPMENT, minifyCss({
-              keepSpecialComments: false,
-              roundingPrecision: -1
-            })))
-            .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
-              includeContent:true 
-            })))
-            .pipe(gulp.dest('./build'))
+      .pipe(plumber())
+      .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
+      .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(autoprefixer({
+          browsers: 'last 10 versions',
+          cascade: false
+        }))
+        .pipe(concat(name + '.css'))
+        .pipe(conditional(!DEVELOPMENT, minifyCss({
+          keepSpecialComments: false,
+          roundingPrecision: -1
+        })))
+        .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
+          includeContent:true 
+        })))
+        .pipe(gulp.dest('./build'))
     );
   });
   return eventstream.merge(streams);
@@ -145,22 +145,23 @@ gulp.task('lint', function(){
       './scripts/**/*.js',
       '!./scripts/**/lib/**/*.js'
     ])
-      .pipe(jshint({
-        "indent": 2,
-        "white": true,
-        "node": true,
-        "undef": true,
-        "unused": true,
-        "-W014": true,
-        "-W057": false,
-        "-W058": false,
-        "-W069": false,
-        "-W083": false,
-        "-W098": false,
-        "-W117": false,
-        "expr": true
-      }))
-      .pipe(jshint.reporter('default', { verbose: true }));
+    .pipe(plumber())
+    .pipe(jshint({
+      "indent": 2,
+      "white": true,
+      "node": true,
+      "undef": true,
+      "unused": true,
+      "-W014": true,
+      "-W057": false,
+      "-W058": false,
+      "-W069": false,
+      "-W083": false,
+      "-W098": false,
+      "-W117": false,
+      "expr": true
+    }))
+    .pipe(jshint.reporter('default', { verbose: true }));
 });
 
 function processScripts(scriptCallback, jsonCallback, templateCallback){
