@@ -24,24 +24,20 @@ gulp.task('default', ['build']);
 
 gulp.task('clean', ['clean:js','clean:css']);
 
-gulp.task('clean:js', () => {
-  return del([
-    './build/*.js',
-    './build/*.js.map'
-  ],{
-    force: true
-  });
-});
+gulp.task('clean:js', () => del([
+  './build/*.js',
+  './build/*.js.map'
+],{
+  force: true
+}));
 
-gulp.task('clean:css', () => {
-  return del([
-    './build/*.css',
-    './build/*.css.map',
-    './build/fonts/'
-  ],{
-    force: true
-  });
-});
+gulp.task('clean:css', () => del([
+  './build/*.css',
+  './build/*.css.map',
+  './build/fonts/'
+],{
+  force: true
+}));
 
 gulp.task('build', ['build:js', 'build:css']);
 
@@ -54,6 +50,7 @@ gulp.task('build:js', ['clean:js'], () => {
 
   //get the streams
   for(let {name, files, json, template} of scripts){
+    //if its JSON, store it to a variable
     if(json){
       streams[name].push(gulp.src(files, { base: './' })
           .pipe(plumber())
@@ -67,6 +64,7 @@ gulp.task('build:js', ['clean:js'], () => {
           .pipe(concat(name + '.js'))
       );
     }
+    //if its a template, underscore compile it and save to a variable
     else if(template){
       streams[name].push(gulp.src(files, { base: './' })
           .pipe(plumber())
@@ -87,6 +85,7 @@ gulp.task('build:js', ['clean:js'], () => {
           }))
       );
     }
+    //process scripts normally
     else{
       streams[name].push(gulp.src(files, { base: './' })
           .pipe(plumber())
@@ -150,33 +149,32 @@ gulp.task('watch', () => {
   gulp.watch('./styles/**/*', [ 'build:css' ]);
 });
 
-gulp.task('lint', () => {
-  return gulp.src([
-      './gulpfile.js',
-      './scripts/**/*.js',
-      '!./scripts/**/lib/**/*.js'
-    ])
-    .pipe(plumber())
-    .pipe(jshint({
-      "indent": 2,
-      "white": true,
-      "node": true,
-      "undef": true,
-      "unused": true,
-      "-W014": true,
-      "-W057": false,
-      "-W058": false,
-      "-W069": false,
-      "-W083": false,
-      "-W098": false,
-      "-W117": false,
-      "expr": true
-    }))
-    .pipe(jshint.reporter('default', { verbose: true }));
-});
+gulp.task('lint', () => gulp.src([
+    './gulpfile.js',
+    './scripts/**/*.js',
+    '!./scripts/**/lib/**/*.js'
+  ])
+  .pipe(plumber())
+  .pipe(jshint({
+    "indent": 2,
+    "white": true,
+    "node": true,
+    "undef": true,
+    "unused": true,
+    "-W014": true,
+    "-W057": false,
+    "-W058": false,
+    "-W069": false,
+    "-W083": false,
+    "-W098": false,
+    "-W117": false,
+    "expr": true
+  }))
+  .pipe(jshint.reporter('default', { verbose: true }))
+);
 
 function renamePaths(override){
-  return rename(function(path){
+  return rename(path => {
     //override with a default if we have one and its a node include
     if(override && path.dirname.indexOf('node_modules') === 0){
       path.dirname = override;
