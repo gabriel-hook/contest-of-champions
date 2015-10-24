@@ -1,11 +1,15 @@
 ﻿var CoC = CoC || {};
 CoC.synergies = CoC.synergies || {};
 
-CoC.synergies.version = "1.5.9";
-
 CoC.synergies.initialize=function(stars, roster){
-  console.log("Contest of Champions - Synergies Tool v"+CoC.synergies.version);
-  
+  CoC.utils.info({
+    style: 'initialize',
+    value: "Contest of Champions - Synergies Tool v"+CoC.version+" -"
+  },{
+    style: 'link',
+    value: "https://github.com/gabriel-hook/contest-of-champions"
+  });
+
   var nodeSelected = function(nodes, edges){
     var i;
     $('#legend div').removeClass('selected');

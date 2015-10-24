@@ -4,6 +4,7 @@ CoC.ui = CoC.ui || {};
 CoC.ui.workerScriptUrl = 'build/worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
 
 CoC.ui.initialize=function(){
+  //nothing
 };
 
 //View logic for pages
@@ -263,11 +264,14 @@ CoC.ui.teams=new function(){
           if(event.data.type === "failed"){
             CoC.ui.teams.progress.hide();
             CoC.ui.teams.render(event.data.result, size);
-            console.log(event.data.message);
+            CoC.utils.error(event.data.message);
           }
           if(event.data.type === "complete"){
-            console.log(CoC.lang.model('algorithm-'+algorithm+'-name') + " search completed in "+((new Date() - startTime) / 1000)+" seconds.");
-            
+            CoC.utils.log({
+              style: 'search',
+              value: CoC.lang.model('algorithm-'+algorithm+'-name') + " search completed in "+((new Date() - startTime) / 1000)+"s"
+            });
+
             //Convert the result back to Champion models post-transport
             var result = {}, fid, champion;
             if(event.data.result.teams !== undefined){
@@ -491,6 +495,7 @@ $("#page-roster").on("pagecreate",function(){
       if (this.files && this.files[0]) {
         var reader = new FileReader();
         var file = this.files[0];
+        CoC.utils.log({ style: 'io', value: "Importing champions..." },{ style: 'filename', value: file.name });
         reader.onload = function (e) {
           var result = e.target.result;
           CoC.roster.csvImport(result, file.name || undefined);
@@ -501,7 +506,6 @@ $("#page-roster").on("pagecreate",function(){
       }
     });
     $('#roster-import').click(function(){
-      console.log("importing csv...");
       $('#roster-import-input').click();
       $('#panel-roster-options').panel("close");
       CoC.tracking.event("roster", "import");
@@ -516,7 +520,7 @@ $("#page-roster").on("pagecreate",function(){
   $('#roster-export').click(function(){
     var csvRoster;
     var csvRosterName = 'champions.csv';
-    console.log("exporting to csv...");
+    CoC.utils.log({ style: 'io', value: "Exporting champions..." },{ style: 'filename', value: csvRosterName });
     if (isInternetExplorer()){
       csvRoster = CoC.roster.csvExport('\r\n');
       rosterExportFrame.document.open("text/html", "replace");

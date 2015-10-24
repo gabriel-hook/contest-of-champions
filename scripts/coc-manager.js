@@ -1,15 +1,20 @@
 var CoC=CoC || {};
 CoC.manager = CoC.manager || {};
-CoC.manager.version = "1.5.9";
 
 CoC.manager.initialize = function(){
-  console.log("Contest of Champions - Roster Manager v"+CoC.manager.version);
+  CoC.utils.info({
+    style: 'initialize',
+    value: "Contest of Champions - Roster Manager v"+CoC.version+" -"
+  },{
+    style: 'link',
+    value: "https://github.com/gabriel-hook/contest-of-champions"
+  });
 
   //reset settings if we are a new version!
-  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.manager.version){
+  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.version){
     CoC.settings.preset.apply("defaults", true, true);
     CoC.settings.setValue("hasDefaults", true);
-    CoC.settings.setValue("version", CoC.manager.version);
+    CoC.settings.setValue("version", CoC.version);
   }
 };
 

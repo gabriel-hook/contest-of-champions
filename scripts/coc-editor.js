@@ -1,21 +1,22 @@
 var CoC = CoC || {};
 CoC.editor = {};
 
-CoC.editor.version = "1.5.9";
-
 CoC.editor.initialize = function(){
-
-  location.hash = '';
-
-  console.log("Contest of Champions - Guide Editor Tool v"+CoC.editor.version);
+  CoC.utils.info({
+    style: 'initialize',
+    value: "Contest of Champions - Guide Editor Tool v"+CoC.version+" -"
+  },{
+    style: 'link',
+    value: "https://github.com/gabriel-hook/contest-of-champions"
+  });
 
   CoC.editor.view = new CoC.view.GuideView({
     model: null,
     el: $("#guide-content")[0]
   });
 
+  location.hash = '';
   var i;
-
   var championIds = _(CoC.data.champions.pluck('uid')).uniq();
   var editorChampion = $('#editor-champion');
   editorChampion.change(function(e){
@@ -142,6 +143,7 @@ CoC.editor.reset = function(champion){
       var guide = CoC.data.guides.get(champion);
       var guideJson = JSON.stringify(guide.data, null, '\t');
       var guideJsonName = champion + ".json";
+      CoC.utils.log({ style: 'io', value: "Exporting guide..." },{ style: 'filename', value: guideJsonName });
       if (isInternetExplorer()){
         rosterExportFrame.document.open("application/json", "replace");
         rosterExportFrame.document.close();
@@ -188,6 +190,7 @@ CoC.editor.reset = function(champion){
         var reader = new FileReader();
         var file = this.files[0];
         var name = championFromFilename(file.name) || champion;
+        CoC.utils.log({ style: 'io', value: "Importing guide..." },{ style: 'filename', value: file.name });
         reader.onload = function (e) {
           var json;
           try{
@@ -220,7 +223,6 @@ CoC.editor.reset = function(champion){
       }
     });
     $('#editor-import').unbind('click').click(function(){
-      console.log("importing json...");
       $('#editor-import-input').click();
     });
 

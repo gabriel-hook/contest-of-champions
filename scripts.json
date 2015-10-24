@@ -28,6 +28,7 @@
   "name": "app-roster",
   "files":[
     "./scripts/language.js",
+    "./scripts/coc-utils.js",
     "./scripts/app-roster-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
@@ -85,6 +86,7 @@
   "name": "app-synergies",
   "files":[
     "./scripts/language.js",
+    "./scripts/coc-utils.js",
     "./scripts/app-synergies-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
@@ -112,6 +114,7 @@
   "name": "worker-teams",
   "files":[
     "./scripts/language.js",
+    "./scripts/coc-utils.js",
     "./node_modules/underscore/underscore.js",
     "./node_modules/backbone/backbone.js",
     "./scripts/model/champion.js", 
@@ -150,6 +153,7 @@
   "name": "app-editor",
   "files":[
     "./scripts/language.js",
+    "./scripts/coc-utils.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
