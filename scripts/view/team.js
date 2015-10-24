@@ -127,14 +127,14 @@ CoC.view.TeamView = Backbone.View.extend({
             amount: 0,
             champions: {},
             effect: synergy.effect()
-          }
+          };
         }
         effectMap[effectId].champions[synergy.get('fromId')] = true;
         effectMap[effectId].champions[synergy.get('toId')] = true;
         effectMap[effectId].amount += synergy.get('effectAmount');
       }
       effects = [];
-      for(var effectId in effectMap){
+      for(effectId in effectMap){
         effect = effectMap[effectId].effect.clone();
         effect.set('amount', effectMap[effectId].amount);
         effect.championIds(effectMap[effectId].champions);
