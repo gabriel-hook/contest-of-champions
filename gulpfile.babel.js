@@ -124,13 +124,13 @@ gulp.task('build:css', ['clean:css'], () => {
   for(let {name, files} of styles){
     streams.push(gulp.src(files, { base: './' })
       .pipe(plumber())
-      .pipe(renamePaths('styles'))
-      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(renamePaths('styles', { force: true }))
+      .pipe(sourcemaps.init({ loadMaps: false }))
+        .pipe(concat(name + '.css'))
         .pipe(conditional(!DEVELOPMENT, autoprefixer({
           browsers: 'last 10 versions',
           cascade: false
         })))
-        .pipe(concat(name + '.css'))
         .pipe(conditional(!DEVELOPMENT, minifyCss({
           keepSpecialComments: false,
           roundingPrecision: -1
@@ -173,10 +173,11 @@ gulp.task('lint', () => gulp.src([
   .pipe(jshint.reporter('default', { verbose: true }))
 );
 
-function renamePaths(override){
+function renamePaths(override, options = {}){
+  const { force } = options;
   return rename(path => {
     //override with a default if we have one and its a node include
-    if(override && path.dirname.indexOf('node_modules') === 0){
+    if(force || (override && path.dirname.indexOf('node_modules') === 0)){
       path.dirname = override;
     }
     //fix backslash paths if coming from windows
