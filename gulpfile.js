@@ -10,6 +10,7 @@ var jshint = require('gulp-jshint');
 var rename = require("gulp-rename");
 var declare = require('gulp-declare');
 var jst = require('gulp-jst');
+var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var minifyJs = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
@@ -115,6 +116,9 @@ gulp.task('build:css', ['clean:css'], function(){
         .pipe(plumber())
         .pipe(rename(excludeNpmPaths.bind(null, 'styles/')))
         .pipe(sourcemaps.init({ loadMaps: true }))
+            .pipe(autoprefixer({
+              cascade: false
+            }))
             .pipe(concat(name + '.css'))
             .pipe(conditional(!DEVELOPMENT, minifyCss({
               keepSpecialComments: 0,

@@ -53,7 +53,7 @@
 } 
 
 #crystals .ui-collapsible-heading-toggle{
-  background:linear-gradient( rgba(255,255,255,0.75) /*{c-bup-background-start}*/, rgba(220,220,220,0.75) /*{c-bup-background-end}*/);
+  background:linear-gradient( rgba(255,255,255,0.75), rgba(220,220,220,0.75));
 }
 #crystals .ui-collapsible-content{
   background:rgba(255,255,255,0.75);
@@ -72,27 +72,19 @@
 }
 #crystals .ui-controlgroup .ui-controlgroup-controls > div{
   border-bottom-width:0;
-  -webkit-border-top-right-radius: 0;
   border-top-right-radius: 0;
-  -webkit-border-top-left-radius: 0;
   border-top-left-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
   border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 #crystals .ui-controlgroup .ui-controlgroup-controls > div:first-child{
   border-bottom-width:0;
-  -webkit-border-top-right-radius: inherit;
   border-top-right-radius: inherit;
-  -webkit-border-top-left-radius: inherit;
   border-top-left-radius: inherit;
 }
 #crystals .ui-controlgroup .ui-controlgroup-controls > div:last-child{
   border-bottom-width:0;
-  -webkit-border-bottom-right-radius: inherit;
   border-bottom-right-radius: inherit;
-  -webkit-border-bottom-left-radius: inherit;
   border-bottom-left-radius: inherit;
 }
 #crystals .ui-controlgroup .ui-controlgroup-controls .ui-collapsible .ui-collapsible-content{
@@ -102,9 +94,7 @@
 }
 #crystals .ui-controlgroup .ui-controlgroup-controls .ui-collapsible:last-child .ui-collapsible-content{
   border-bottom-width:1px;
-  -webkit-border-bottom-right-radius: inherit;
   border-bottom-right-radius: inherit;
-  -webkit-border-bottom-left-radius: inherit;
   border-bottom-left-radius: inherit;
 }
 
@@ -120,7 +110,6 @@
   }
   #crystals .ui-controlgroup .ui-controlgroup-controls > div:first-child,
   #crystals .ui-controlgroup .ui-controlgroup-controls > div:last-child{
-    -webkit-border-radius: 0;
     border-radius: 0;
   }
   
