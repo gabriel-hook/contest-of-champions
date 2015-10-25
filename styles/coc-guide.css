@@ -176,28 +176,28 @@
 #guide-content .grade-a,
 #guide-content .rating-5{
   color:#0c0;
-  text-shadow: 0 1px 1px #000;
+  text-shadow: 0 1px 1px #666;
 } 
 #guide-content .grade-b,
 #guide-content .rating-4{
   color:#6c0;
-  text-shadow: 0 1px 1px #000;
+  text-shadow: 0 1px 1px #666;
 } 
 #guide-content .grade-c,
 #guide-content .rating-3{
   color:#990;
-  text-shadow: 0 1px 1px #000;
+  text-shadow: 0 1px 1px #666;
 } 
 #guide-content .grade-d,
 #guide-content .rating-2{
   color:#c60;
-  text-shadow: 0 1px 1px #000;
+  text-shadow: 0 1px 1px #666;
 } 
 #guide-content .grade-e,
 #guide-content .grade-f,
 #guide-content .rating-1{
   color:#c00;
-  text-shadow: 0 1px 1px #000;
+  text-shadow: 0 1px 1px #666;
 } 
 
 #guide-content .range-melee{
@@ -205,19 +205,19 @@
 } 
 #guide-content .range-short{
   color:#c00;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .range-medium{
   color:#990;
 } 
 #guide-content .range-long{
   color:#0c0;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 
 #guide-content .damage-energy{
   color:#06c;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 
 #guide-content .ability-stun{
@@ -228,15 +228,15 @@
 } 
 #guide-content .ability-powerdrain{
   color:#60c;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-powerburn{
   color:#c06;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-bleed{
   color:#c00;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-cauterize{
   color:#600;
@@ -246,34 +246,34 @@
 } 
 #guide-content .ability-fury{
   color:#c60;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-regeneration{
   color:#0c0;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-unstoppable{
   color:#c0c;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-poison{
   color:#060;
 } 
 #guide-content .ability-armorup{
   color:#66c;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-plusdamage{
   color:#c00;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-pluscritrate{
   color:#c90;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-pluscritdamage{
   color:#c90;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .ability-poisonimmunity{
   color:#444;
