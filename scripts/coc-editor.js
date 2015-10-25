@@ -25,6 +25,7 @@ CoC.editor.initialize = function(){
 
   $(document).on('pagebeforeshow', '#page-guide', function(){ 
     $('.select2').select2({
+      minimumResultsForSearch: -1,
       tags: true,
       tokenSeparators: [',', ' ']
     });

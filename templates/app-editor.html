@@ -73,8 +73,7 @@
 
         <label for="editor-gameplay-abilities"><%= string('passive-abilities') %></label>
         <select id="editor-gameplay-abilities" name="editor-gameplay-abilities" 
-          class="select2 js-example-basic-multiple" multiple="multiple" 
-          data-role="none" style="width: 100%">
+          class="select2" multiple="multiple" data-role="none">
           <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
             <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
           <% }) %>
@@ -104,8 +103,7 @@
 
         <label for="editor-attack-abilities"><%= string('abilities') %></label>
         <select id="editor-attack-abilities" name="editor-attack-abilities" 
-          class="select2 js-example-basic-multiple" multiple="multiple" 
-          data-role="none" style="width: 100%">
+          class="select2" multiple="multiple" data-role="none">
           <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
             <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
           <% }) %>
@@ -157,8 +155,7 @@
 
           <label for="editor-special-<%= index %>-abilities"><%= string('abilities') %></label>
           <select id="editor-special-<%= index %>-abilities" name="editor-special-<%= index %>-abilities" 
-            class="select2 js-example-basic-multiple" multiple="multiple" 
-            data-role="none" style="width: 100%">
+            class="select2" multiple="multiple" data-role="none">
             <% _(_(CoC.data.abilities.pluck('uid')).uniq()).each(function(ability){ %>
               <option value="<%= ability %>"><%= model('ability-'+ability+'-name') %></option>
             <% }) %>
@@ -166,8 +163,7 @@
 
           <label for="editor-special-<%= index %>-damagetypes"><%= string('damage-type') %></label>
           <select id="editor-special-<%= index %>-damagetypes" name="editor-special-<%= index %>-damagetypes" 
-            class="select2 js-example-basic-multiple" multiple="multiple" 
-            data-role="none" style="width: 100%">
+            class="select2" multiple="multiple" data-role="none">
             <% _([
               'Physical',
               'Energy'
@@ -179,8 +175,7 @@
           <% if(index !== 3){ %>
             <label for="editor-special-<%= index %>-ranges"><%= string('range') %></label>
             <select id="editor-special-<%= index %>-ranges" name="editor-special-<%= index %>-ranges" 
-              class="select2 js-example-basic-multiple" multiple="multiple" 
-              data-role="none" style="width: 100%">
+              class="select2" multiple="multiple" data-role="none">
               <% _([
                 'Melee',
                 'Short',

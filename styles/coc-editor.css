@@ -40,20 +40,29 @@
   border-top-right-radius: 0;
 }
 
+#popup-editor .select2{
+  width: 100% !important;
+}
+#popup-editor .select2-search{
+  display: none;
+}
+#popup-editor .select2-selection{
+  padding-right: 24px;
+  cursor: default;
+  cursor: context-menu;
+}
 #popup-editor .select2-container::after{
   content: '▼';
   position: absolute;
-  padding: 8px 5px 0 2px;
+  padding: 10px 8px 0 2px;
   top: 0;
   right: 0;
-  border-left: solid 1px #aaa;
   height: 100%;
   color: #aaa;
   box-sizing: border-box;
 }
 #popup-editor .select2-container--focus::after{
   color: #000;
-  border-color: #000;
 }
 
 #popup-editor .editor-champion-selector{

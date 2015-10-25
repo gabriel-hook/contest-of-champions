@@ -176,28 +176,28 @@
 #guide-content .grade-a,
 #guide-content .rating-5{
   color:#0c0;
-  text-shadow: 0 1px 1px #666;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .grade-b,
 #guide-content .rating-4{
   color:#6c0;
-  text-shadow: 0 1px 1px #666;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .grade-c,
 #guide-content .rating-3{
   color:#990;
-  text-shadow: 0 1px 1px #666;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .grade-d,
 #guide-content .rating-2{
   color:#c60;
-  text-shadow: 0 1px 1px #666;
+  text-shadow: 0 1px 0 #666;
 } 
 #guide-content .grade-e,
 #guide-content .grade-f,
 #guide-content .rating-1{
   color:#c00;
-  text-shadow: 0 1px 1px #666;
+  text-shadow: 0 1px 0 #666;
 } 
 
 #guide-content .range-melee{
@@ -274,7 +274,7 @@
 #guide-content .ability-pluscritdamage{
   color:#c90;
   text-shadow: 0 1px 0 #666;
-} 
+}  
 #guide-content .ability-poisonimmunity{
   color:#444;
 } 
