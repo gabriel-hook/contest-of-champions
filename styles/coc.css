@@ -38,6 +38,12 @@ body.ui-mobile-viewport.iframe{
   background: rgba(0,0,0,0);
 }
 
+.ui-footer,
+.ui-header{
+  border:none;
+  box-shadow: 0 0 8px rgba(0,0,0, 0.5);  
+}
+
 #header h1,
 #footer a,
 .bold,

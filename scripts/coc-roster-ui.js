@@ -540,6 +540,7 @@ $("#page-roster").on("pagecreate",function(){
   }); 
   
   $('#roster-clear-all').click(function(){
+    $('#panel-roster-options').panel("close");
     $("#popup-roster-clear-confirm").popup("open",{
       positionTo:"window"
     });

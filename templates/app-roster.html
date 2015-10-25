@@ -4,7 +4,7 @@
   data-tracking="true"
   data-role="page">
 
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a id="button-roster-options" href="#panel-roster-options" class="ui-btn-left"
       data-role="button" 
       data-icon="grid" 
@@ -33,7 +33,7 @@
     data-role="panel"
     data-position="left" 
     data-display="overlay"
-    data-theme="b">
+    data-theme="c">
     <div id="roster-csv-io-container">
       <input id="roster-import-input" type="file" accept=".csv">
       <iframe id="rosterExportFrame" style="display:none"></iframe>
@@ -66,9 +66,8 @@
       <label for="roster-sort-name"><%= string('name') %></label>
     </fieldset>
     
-    <fieldset data-role="controlgroup" data-mini="true">
+    <fieldset data-role="controlgroup" data-mini="true" class="ui-alt-icon">
       <h2><%= string('filter') %></h2>
-
       <input type="checkbox" name="roster-filter-stars-5" id="roster-filter-stars-5">
       <label for="roster-filter-stars-5">★ ★ ★ ★ ★</label>
       <input type="checkbox" name="roster-filter-stars-4" id="roster-filter-stars-4">
@@ -87,9 +86,9 @@
   <div id="footer" data-id="myfooter" data-role="footer" data-position="fixed" data-theme="c" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="top">
       <ul>
-        <li><a href="#page-guide" class="ui-alt-icon" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
-        <li><a href="#page-roster" data-icon="grid" class="ui-btn-active ui-state-persist"><%= string('roster') %></a></li>
-        <li><a href="#page-teams" class="ui-alt-icon" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>
+        <li><a href="#page-guide" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" class="ui-alt-icon ui-btn-active ui-state-persist"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>
       </ul>
     </div>
   </div>
@@ -97,39 +96,42 @@
   <div id="popup-roster-configure" 
     data-role="popup" 
     data-tolerance="32"
-    data-theme="c" 
-    data-overlay-theme="a"
+    data-theme="a" 
+    data-overlay-theme="b"
     data-arrow="true">
     <div id="roster-configure-stars" class="stars"></div>
-    <div role="main" class="ui-content">
-      <h3>
-        <img id="roster-configure-type" /><span id="roster-configure-name"><%= string('name') %></span>
-      </h3>
+    <div role="main" class="ui-content ui-mini">
+      <h2>
+        <img id="roster-configure-type" />
+        <span id="roster-configure-name">
+          <%= ' ' + string('name') %>
+        </span>
+      </h2>
       
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <label for="roster-configure-rank"><%= string('rank') %></label>
-          <select name="roster-configure-rank" id="roster-configure-rank"></select>
-          <label for="roster-configure-level"><%= string('level') %></label>
-          <select name="roster-configure-level" id="roster-configure-level"></select>
-        </fieldset>
-        
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <label class="roster-configure-awakened ui-btn" for="roster-configure-awakened"><%= string('awakened') %></label>
-          <select name="roster-configure-awakened" id="roster-configure-awakened"></select>
-        </fieldset>            
-        
-        <fieldset data-role="controlgroup" data-mini="true">             
-          <label for="roster-configure-quest"><%= string('quest') %></label>
-          <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
-        </fieldset>
+      <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+        <label for="roster-configure-rank"><%= string('rank') %></label>
+        <select name="roster-configure-rank" id="roster-configure-rank"></select>
+        <label for="roster-configure-level"><%= string('level') %></label>
+        <select name="roster-configure-level" id="roster-configure-level"></select>
+      </fieldset>
 
-        <fieldset class="no-extras" data-role="controlgroup" data-mini="true">
-          <button class="roster-configure-guide" data-role="button" data-icon="info"><%= string('view-guide') %></button>
-        </fieldset>
+      <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+        <label class="roster-configure-awakened ui-btn" for="roster-configure-awakened"><%= string('awakened') %></label>
+        <select name="roster-configure-awakened" id="roster-configure-awakened"></select>
+      </fieldset>            
 
-        <fieldset data-role="controlgroup" data-mini="true">
-          <button id="roster-configure-delete" data-role="button" data-theme="b" data-icon="delete"><%= string('delete') %></button>
-        </fieldset>
+      <fieldset data-role="controlgroup" data-mini="true">             
+        <label for="roster-configure-quest"><%= string('quest') %></label>
+        <input type="checkbox" name="roster-configure-quest" id="roster-configure-quest">              
+      </fieldset>
+
+      <fieldset class="no-extras" data-role="controlgroup" data-mini="true">
+        <button class="roster-configure-guide" data-role="button" data-icon="info"><%= string('view-guide') %></button>
+      </fieldset>
+
+      <button id="roster-configure-delete" data-role="button" data-theme="c" data-icon="delete" class="ui-mini">
+        <%= string('delete') %>
+      </button>
 
     </div>
     <div class="extras ui-mini">
@@ -142,8 +144,8 @@
     data-role="popup" 
     data-tolerance="32"
     data-position-to="window"
-    data-overlay-theme="a" 
-    data-theme="a">
+    data-overlay-theme="b" 
+    data-theme="b">
     <div role="main" class="ui-content">
       <h3>
         <%= string('ask-delete') %>
@@ -154,7 +156,7 @@
       </h3>
       <p><%= string('cannot-undo') %></p>
       <div class="ui-mini">
-        <button id="roster-delete-confirm-yes" data-role="button" data-theme="b"><%= string('delete') %></button>
+        <button id="roster-delete-confirm-yes" data-role="button" data-theme="c"><%= string('delete') %></button>
         <button id="roster-delete-confirm-no" data-role="button"><%= string('cancel') %></button>
       </div>
     </div>
@@ -163,15 +165,15 @@
   <div id="popup-roster-clear-confirm" 
     data-role="popup" 
     data-tolerance="32"
-    data-overlay-theme="a" 
-    data-theme="a">
+    data-overlay-theme="b" 
+    data-theme="b">
     <div role="main" class="ui-content">
       <h3>
         <%= string('ask-delete-all') %>
       </h3>
       <p><%= string('cannot-undo') %></p>
       <div class="ui-mini">
-        <button id="roster-clear-confirm-yes" data-role="button" data-theme="b"><%= string('delete') %></button>
+        <button id="roster-clear-confirm-yes" data-role="button" data-theme="c"><%= string('delete') %></button>
         <button id="roster-clear-confirm-no" data-role="button"><%= string('cancel') %></button>
       </div>
     </div>
@@ -183,7 +185,7 @@
   data-theme="c"
   data-tracking="true"
   data-role="page">
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <h3><%= string('add-champion') %></h3>
     <a href="#page-roster" class="ui-btn-left"
       data-transition="flip" 
@@ -192,11 +194,11 @@
       data-icon="back"></a>
     <div id="add-stars" data-role="navbar">
       <ul>
-        <li><a href="#" stars="1" data-theme="c">1 ★</a></li>
-        <li><a href="#" stars="2" data-theme="c">2 ★</a></li>
-        <li><a href="#" stars="3" data-theme="c">3 ★</a></li>
-        <li><a href="#" stars="4" data-theme="c">4 ★</a></li>
-        <li><a href="#" stars="5" data-theme="c">5 ★</a></li>
+        <li><a href="#" stars="1" data-theme="a">1 ★</a></li>
+        <li><a href="#" stars="2" data-theme="a">2 ★</a></li>
+        <li><a href="#" stars="3" data-theme="a">3 ★</a></li>
+        <li><a href="#" stars="4" data-theme="a">4 ★</a></li>
+        <li><a href="#" stars="5" data-theme="a">5 ★</a></li>
       </ul>
     </div>
   </div>
@@ -216,7 +218,7 @@
     data-role="panel"
     data-position="left" 
     data-display="overlay"
-    data-theme="a">
+    data-theme="b">
     
     <a href="#page-settings-advanced"
       data-role="button" 
@@ -272,7 +274,7 @@
     <br/>
   </div>
 
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a id="button-team-build" href="#panel-team-settings" class="ui-btn-left"
       data-role="button" 
       data-rel="panel"
@@ -286,7 +288,7 @@
     <h1><%= string('team') %></h1>
     
     <div id="team-build-progress">
-      <input type="range" data-theme="c" data-highlight="true" min="0" max="1000" value="0">
+      <input type="range" data-theme="b" data-highlight="true" min="0" max="1000" value="0">
     </div>
   </div>
   
@@ -307,9 +309,9 @@
   <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="top">
       <ul>
-        <li><a href="#page-guide" class="ui-alt-icon" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
-        <li><a href="#page-roster" class="ui-alt-icon" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
-        <li><a href="#page-teams" data-icon="gear" class="ui-btn-active ui-state-persist"><%= string('team') %></a></li>           
+        <li><a href="#page-guide" data-icon="info" data-transition="fade"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" class="ui-alt-icon ui-btn-active ui-state-persist"><%= string('team') %></a></li>           
       </ul>
     </div>
   </div>
@@ -324,10 +326,10 @@
 
 <div class="page" id="page-settings-advanced"
   data-title="<%= string('champions') %> - <%= string('team') %>"
-  data-theme="a"
+  data-theme="b"
   data-tracking="true"
   data-role="page">
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a href="#page-teams" class="ui-btn-left"
       data-role="button" 
       data-transition="flip"
@@ -455,9 +457,9 @@
 
 <div class="page" id="page-guide"
   data-title="<%= string('champions') %> - <%= string('guide') %>"
-  data-theme="c"
+  data-theme="a"
   data-role="page">
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a id="button-page-crystals" href="#page-crystals" class="ui-btn-left"
       data-role="button" 
       data-icon="crystal" 
@@ -487,9 +489,9 @@
   <div id="footer" data-role="footer" data-theme="c" data-id="myfooter" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <div data-role="navbar" data-iconpos="top">
       <ul>
-        <li><a href="#page-guide" data-icon="info" class="ui-btn-active ui-state-persist"><%= string('guide') %></a></li>
-        <li><a href="#page-roster" class="ui-alt-icon" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
-        <li><a href="#page-teams" class="ui-alt-icon" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>           
+        <li><a href="#page-guide" data-icon="info" class="ui-alt-icon ui-btn-active ui-state-persist"><%= string('guide') %></a></li>
+        <li><a href="#page-roster" data-icon="grid" data-transition="fade"><%= string('roster') %></a></li>
+        <li><a href="#page-teams" data-icon="gear" data-transition="fade"><%= string('team') %></a></li>           
       </ul>
     </div>
   </div>
@@ -504,10 +506,10 @@
 
 <div class="page" id="page-crystals"
   data-title="<%= string('champions') %> - <%= string('guide') %>"
-  data-theme="c"
+  data-theme="a"
   data-tracking="true"
   data-role="page">
-  <div id="header" data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+  <div id="header" data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
     <a href="#page-guide" class="ui-btn-left"
       data-transition="flip" 
       data-role="button" 

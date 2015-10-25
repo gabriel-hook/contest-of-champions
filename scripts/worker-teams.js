@@ -11,7 +11,7 @@ function build(options){
   var levels = options.levels;
   var weights = options.weights;
 
-  var delay = 250;
+  var delay = 50;
   var lastTime;
   function progress(current, max, description){
     var now = new Date().getTime();

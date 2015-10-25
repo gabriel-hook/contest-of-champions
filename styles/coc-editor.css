@@ -40,6 +40,22 @@
   border-top-right-radius: 0;
 }
 
+#popup-editor .select2-container::after{
+  content: '▼';
+  position: absolute;
+  padding: 8px 5px 0 2px;
+  top: 0;
+  right: 0;
+  border-left: solid 1px #aaa;
+  height: 100%;
+  color: #aaa;
+  box-sizing: border-box;
+}
+#popup-editor .select2-container--focus::after{
+  color: #000;
+  border-color: #000;
+}
+
 #popup-editor .editor-champion-selector{
   padding: 0;
 }
@@ -55,15 +71,12 @@
   border-radius: 0;
 }
 #popup-editor .editor-tabs .ui-tabs-panel{
-  border: solid #044062;
-  border-width: 0 1px 0 1px;
   background: rgba(255,255,255,0.66);
 }
 
 #popup-editor .editor-tabs .ui-navbar,
 #popup-editor .editor-import-export .ui-navbar {
   overflow: hidden;
-  border-right: solid 1px;
   box-sizing: border-box;
 }
 

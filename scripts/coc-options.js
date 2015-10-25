@@ -51,7 +51,7 @@ CoC.options.initialize = function(current){
     var footer = page.find('#footer');
     var dismiss = $('.ui-panel-dismiss[data-panelid='+panel[0].id+']');
 
-    var headerHeight = header.height() + 2;
+    var headerHeight = header.height();
     var footerHeight = footer.length && footer.height();
     var panelHeight = window.innerHeight - headerHeight;
 

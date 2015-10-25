@@ -157,7 +157,7 @@ CoC.synergies.initialize=function(stars, roster){
   }
 
   //enable stars buttons
-  $(".button[stars="+stars+"]").addClass(roster? "ui-btn-e": "ui-btn-a");
+  $(".button[stars="+stars+"]").addClass(roster? "ui-btn-b": "ui-btn-active");
   $(".button[stars]").each(function(button){
     var el = $(this), s = el.attr("stars");
     if(stars !== parseInt(s,10))

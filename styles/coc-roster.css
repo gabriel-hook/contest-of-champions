@@ -86,7 +86,7 @@
   right:0;
   width:226px;
   padding:0;
-  margin:1.25em;
+  margin:12px;
   z-index:9999;
 }
 
@@ -103,13 +103,13 @@
 }
 
 #popup-roster-configure .extras .roster-configure-guide{
-  background:linear-gradient(rgba(255,255,255,0.75) , rgba(200,200,200,0.75));
+  background:rgba(246,246,246, 0.5);
 }
 
 #roster-configure-image{
   position:absolute;
   bottom: 0;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   width:256px;
   z-index:-1;
   pointer-events:none;
