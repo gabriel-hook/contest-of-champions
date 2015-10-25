@@ -170,3 +170,15 @@
     height:28px;
   }
 }
+
+@keyframes spin { 
+  100% { 
+    transform:rotate(360deg); 
+  } 
+}
+#button-team-build.active{
+  animation: spin 5s linear infinite;
+}
+#button-build-settings-apply::after{
+  animation: spin 5s linear infinite;
+}
