@@ -132,6 +132,18 @@ body.ui-mobile-viewport.iframe{
 .button.active .off{
   display:none;
 }
+
+.ui-btn.button {
+  border-top: none;
+  border-bottom:none;
+}
+.ui-btn.button.ui-btn-active {
+  background-color: #ffffff;
+  border: none;
+  color: #3388cc;
+  text-shadow: 0 1px 0 #000000;
+}
+
 @media (min-width:800px){
   .button .narrow{
     display:none;

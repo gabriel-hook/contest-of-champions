@@ -115,6 +115,7 @@
 
 #guide-champions-selector-dialog .grade{
   float:right;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.75);
 }
 
 #guide-champions-selector-dialog .ui-dialog-contain {
