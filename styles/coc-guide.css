@@ -160,6 +160,12 @@
   opacity:0.5;
   filter: blur(4px);
 }
+@media (max-height: 500px), (max-width: 450px){
+  #guide-content .background{
+    bottom: 48px;
+  }
+}
+
 #guide-content .container{
   z-index:10;
   position:relative;
