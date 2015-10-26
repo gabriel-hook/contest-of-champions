@@ -132,6 +132,11 @@
     padding-right: 236px;
   }
 }
+
 #roster-configure-class{
   font-weight:bold;
+}
+
+#add-stars .ui-btn-active{
+  border: none;
 }
