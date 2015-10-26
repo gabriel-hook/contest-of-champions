@@ -230,14 +230,14 @@ CoC.ui.teams=new function(){
   this.progress.show = function(){
     $("#team-build-progress input").val(0).slider("refresh");
     $("#team-build-progress").removeClass("hidden");
-    $('#button-team-build').addClass('active');
+    $('body').addClass('building');
   };
 
   this.progress.hide = function(){
     $("#team-build-progress input").val(10000).slider("refresh");
     $("#team-build-progress").addClass("hidden");
     $("#onboarding-progress").removeClass("show");
-    $('#button-team-build').removeClass('active');
+    $('body').removeClass('building');
   };
 
   this.build = function(){

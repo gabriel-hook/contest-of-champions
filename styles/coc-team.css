@@ -176,9 +176,6 @@
     transform:rotate(360deg); 
   } 
 }
-#button-team-build.active{
-  animation: spin 5s linear infinite;
-}
-#button-build-settings-apply::after{
+body.building .ui-icon-gear::after{
   animation: spin 5s linear infinite;
 }
