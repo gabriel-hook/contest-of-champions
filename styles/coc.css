@@ -221,6 +221,9 @@ body.ui-mobile-viewport.iframe{
   #header h1{
     font-size:1.0em;
   }
+  #header .ui-btn{
+    top: -2px;
+  }
   #footer a{
     font-size:0.75em;
     line-height:0.75em;
