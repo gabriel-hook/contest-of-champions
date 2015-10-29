@@ -519,17 +519,40 @@
 		return energy;
 	};
 
-  //requestAnimFrame function from Paul Irish
-  var requestNextFrame = (function(){
-  	return window.requestAnimationFrame || 
-  	window.webkitRequestAnimationFrame || 
-  	window.mozRequestAnimationFrame || 
-  	window.oRequestAnimationFrame || 
-  	window.msRequestAnimationFrame || 
-  	function( callback ){
-  		setTimeout(callback, 16);
-  	};
-  })();
+	//requestAnimFrame function from Paul Irish
+	var requestNextFrame = (function(){
+	  	return window.requestAnimationFrame || 
+		  	window.webkitRequestAnimationFrame || 
+		  	window.mozRequestAnimationFrame || 
+		  	window.oRequestAnimationFrame || 
+		  	window.msRequestAnimationFrame;
+	})();
+	var cancelNextFrame = (function(){
+		return window.cancelAnimationFrame || 
+			window.webkitCancelAnimationFrame || 
+			window.mozCancelAnimationFrame || 
+			window.oCancelAnimationFrame || 
+			window.msCancelAnimationFrame;
+	})();
+	function requestRender(callback){
+		if(requestNextFrame === undefined || cancelNextFrame === undefined)
+			setTimeout(callback, 16);
+		else{
+			var start = new Date().getTime();
+			var requestId, timeoutId;
+			if(document.hasFocus()){
+				requestId = requestNextFrame(function(){
+					clearTimeout(timeoutId);
+					callback.call(null);
+				});
+			}
+			timeoutId = setTimeout(function(){
+				cancelNextFrame(requestId);
+				callback.call(null);
+			}, 16);
+		}
+	}
+
 
 	/**
 	 * Start simulation if it's not running already.
@@ -558,10 +581,8 @@
 
 		//do physics ticks on a timer
 		setTimeout(function tickLoop(){
-			if(document.hasFocus()){
-				t.tick(tickDelta);
-				totalEnergy = t.totalEnergy();
-			}
+			t.tick(tickDelta);
+			totalEnergy = t.totalEnergy();
 			if (t._stop)
 				rendering = false;
 			if(rendering)
@@ -569,9 +590,9 @@
 		}, milliseconds);
 
     //do renders every animation frame
-    requestNextFrame(function animationLoop() {
+    requestRender(function animationLoop() {
     	if(rendering){
-    		requestNextFrame(animationLoop);
+    		requestRender(animationLoop);
     		if (render !== undefined && totalEnergy > t.minEnergyThreshold) {
     			render();
     		}
