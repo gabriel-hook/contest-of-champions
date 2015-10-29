@@ -140,8 +140,8 @@ body.ui-mobile-viewport.iframe{
 .ui-btn.button.ui-btn-active {
   background-color: #ffffff;
   border: none;
-  color: #3388cc;
-  text-shadow: 0 1px 0 #000000;
+  color: #000000;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 }
 
 @media (min-width:800px){
