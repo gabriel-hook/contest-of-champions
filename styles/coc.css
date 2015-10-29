@@ -6,15 +6,16 @@ html, body, div, img {
 }
 
 body.ui-mobile-viewport{
-  background: #f0f0f0;
-  background: radial-gradient(#fff, #eee, #aaa);   
+  background: #f0f0f0; 
   background-attachment: fixed;
 }
-
 body.ui-mobile-viewport.iframe{
-  background: rgba(0, 0, 0, 0.25);
-  background: radial-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));   
+  background: rgba(220,220,220,0.25);
   background-attachment: fixed;
+}
+.ui-page-theme-c,
+.ui-page-theme-c .ui-panel-wrapper{  
+  background: rgba(0,0,0,0);
 }
 
 .ui-panel{
@@ -33,10 +34,6 @@ body.ui-mobile-viewport.iframe{
   backface-visibility: hidden; 
 }
 
-.ui-page-theme-c,
-.ui-page-theme-c .ui-panel-wrapper{  
-  background: rgba(0,0,0,0);
-}
 
 .ui-footer,
 .ui-header{
