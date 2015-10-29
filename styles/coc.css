@@ -63,12 +63,14 @@ body.ui-mobile-viewport.iframe{
   font-size:1.2em;
   line-height:1.0em;
 }
-#footer a{
+#footer .ui-btn{
   font-size:1.0em;
   line-height:1.0em;
 }
-
-#footer a::after{
+#footer .ui-btn-active{
+  border:none;
+}
+#footer .ui-btn::after{
   background-color: rgba(0,0,0,0);
 }
 

@@ -732,6 +732,13 @@ $("#page-settings-advanced").on("pagecreate", function() {
     });
   });
 });
+
+$("#page-guide").on("pagecreate",function(){
+  $("#button-select-guide").on("tap click", function(){
+    $("#guide-champions-selector").selectmenu("open");
+    return false;
+  });
+});
     
 //close dialogs when we click outside of them or click escape
 $.mobile.document.on("tap click", "[data-role=dialog]", function(event, ui){

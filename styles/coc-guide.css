@@ -527,3 +527,17 @@
     border-top-width:1px;
   }
 }
+
+#header #button-select-guide{
+  right: 50px;
+  display: none;
+}
+
+@media (max-height:500px){
+  #header #button-select-guide{
+    display: block;
+  }
+  #guide-champions-frame{
+    display: none;
+  }
+}
