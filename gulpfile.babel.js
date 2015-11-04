@@ -44,12 +44,12 @@ gulp.task('build', ['build:js', 'build:css']);
 gulp.task('build:js', ['clean:js'], () => {
   //set up empty arrays for 
   let streams = {};
-  for(let {name} of scripts)
+  for(const {name} of scripts)
     if(!streams[name])
       streams[name] = [];
 
   //get the streams
-  for(let {name, files, json, template} of scripts){
+  for(const {name, files, json, template} of scripts){
     //if its JSON, store it to a variable
     if(json){
       streams[name].push(gulp.src(files, { base: './' })
@@ -98,8 +98,8 @@ gulp.task('build:js', ['clean:js'], () => {
 
   //combined keyed streams and concat
   let combined = [];
-  for(let key in streams){
-    let stream = eventstream.merge(streams[key])
+  for(const key in streams){
+    const stream = eventstream.merge(streams[key])
       .pipe(concat(key + '.js'))
       .pipe(conditional(!DEVELOPMENT, minifyJs({ 
         mangle: true,
@@ -121,7 +121,7 @@ gulp.task('build:css', ['clean:css'], () => {
     .pipe(gulp.dest('./build/fonts'))
   );
   //regular multiple css minification
-  for(let {name, files} of styles){
+  for(const {name, files} of styles){
     streams.push(gulp.src(files, { base: './' })
       .pipe(plumber())
       .pipe(renamePaths('styles', { force: true }))
