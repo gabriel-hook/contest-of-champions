@@ -65,6 +65,7 @@
   "dependencies": {
     "backbone": "^1.2.3",
     "backbone.localstorage": "^1.1.16",
+    "director": "^1.2.8",
     "jquery": "^2.1.4",
     "jquery-mobile": "^1.4.1",
     "react": "^0.14.2",

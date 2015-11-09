@@ -1,44 +1,40 @@
+import './index.scss';
 import Roster from './view/Roster.jsx';
 import m from 'mithril';
+import router from './service/router.js';
 
-let lastScroll = document.body.scrollTop;
-
-var requestNextFrame = (function(){
-  	return requestAnimationFrame || 
-	  	webkitRequestAnimationFrame || 
-	  	mozRequestAnimationFrame || 
-	  	oRequestAnimationFrame || 
-	  	msRequestAnimationFrame ||
-	  	setTimeout;
-})();
-
+const app = {
+	page: 'roster',
+	champion: null,
+};
 const App = {
-	controller(){
-		requestNextFrame(() => {
-			document.body.scrollTop = lastScroll;
-		});
-        return {
-            onunload: function() {
-                lastScroll = document.body.scrollTop;
-            },
-        	id: m.route.param('id'),
-        };
-	},
-	view(ctrl){
-		const selected = ctrl.id;
+	view(){
+		const page = app.page;
+		const selected = app.champion;
 		return (
 			<Roster selected={ selected } />
 		);
 	}
 };
 
-m.route.mode = 'hash';
-m.route(document.body, '/roster', {
-    '/roster/:id': <App />,
-    '/roster': <App />,
-});
+m.mount(document.body, (
+	<App />
+));
 
 document.addEventListener('hotreload', function(){
-  console.log('got hot reload event!');
-  m.redraw();
+	console.log('got hot reload event!');
+	m.redraw();
 });
+
+router.on('/roster', () => {
+	app.page = 'roster';
+	app.champion = null;
+  	m.redraw();
+});
+router.on('/roster/:champion', (champion) => {
+	app.page = 'roster';
+	app.champion = champion;
+  	m.redraw();
+});
+
+router.init('/roster');

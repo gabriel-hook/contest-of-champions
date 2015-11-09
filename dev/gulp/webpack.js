@@ -18,6 +18,7 @@ gulp.task('webpack', (callback) => {
 		for(const key in devConfig.module.loaders)
 			devConfig.module.loaders[key].loaders.unshift('simple-hot');
 		devConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
+		devConfig.devtool = 'eval';
 		const compiler = webpack(devConfig);
 	    const server = new WebpackDevServer(compiler, {
 	    	hot: true,
@@ -40,6 +41,7 @@ gulp.task('webpack', (callback) => {
 			new webpack.optimize.DedupePlugin(),
 			new webpack.optimize.UglifyJsPlugin()
 		);
+		buildConfig.devtool = '#sourcemaps';
 		webpack(buildConfig, (err, stats) => {
 	        if(err) throw new gutil.PluginError('webpack', err);
 	        gutil.log('[webpack]', stats.toString());
