@@ -1,0 +1,12 @@
+.roster{
+
+	&.editing{
+		.champion{
+			opacity: 0.25;
+		}
+		.champion.editing{
+			opacity: 1;
+		}
+	}
+	
+}
