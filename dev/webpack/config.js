@@ -15,16 +15,26 @@ function config(){
 			loaders: [
 				// javascript and jsx
 				{ 
-					test: /\.jsx?$/,
+					test: /\.jsx?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 					loaders: [ 'babel' ],
 					exclude: /node_modules/,
 				},
 				// scss
 				{ 
-					test: /\.scss$/,
+					test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 					loaders: [ 'style', 'css', 'sass' ],
 					exclude: /node_modules/,
 				},
+				// woff
+				{ 
+					test: /\.woff[2]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+					loaders: [ 'url-loader?limit=10000&mimetype=application/font-woff' ],
+				},
+				// fonts & svg
+				{ 
+					test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+					loaders: [ 'file-loader' ],
+				},				
 			]
 		},
 		plugins: [

@@ -1,7 +1,6 @@
-import List from '../util/List';
 import Type from '../model/Type';
 
-const types = new List([
+const types = [
 
 	{ uid:'cosmic' },
 	{ uid:'tech' },
@@ -10,6 +9,6 @@ const types = new List([
 	{ uid:'science' },
 	{ uid:'mystic' },
   
-], Type);
+].map((type) => new Type(type));
 
 export default types;

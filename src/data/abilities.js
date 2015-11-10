@@ -1,7 +1,6 @@
-import List from '../util/List';
 import Ability from '../model/Ability';
 
-const abilities = new List([
+const abilities = [
 
     { uid:'stun' },
     { uid:'fatigue' },
@@ -21,6 +20,6 @@ const abilities = new List([
     { uid:'poisonimmunity' },
     { uid:'bleedimmunity' },
 
-], Ability);
+].map((ability) => new Ability(ability));
 
 export default abilities;

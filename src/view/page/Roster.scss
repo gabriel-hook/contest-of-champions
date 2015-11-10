@@ -1,5 +1,5 @@
 .roster{
-	padding: 32px;
+	padding: 24px;
 
 	&.editing{
 		.champion{
@@ -23,5 +23,9 @@
 		border-radius: 5px;
 		padding: 16px;
 		font-size: 18px;
+	}
+
+	.clear{
+		clear:both;
 	}
 }

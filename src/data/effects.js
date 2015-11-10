@@ -1,7 +1,6 @@
-import List from '../util/List';
 import Effect from '../model/Effect';
 
-const effects = new List([
+const effects = [
 
     { uid: 'attack', base:5 },
     { uid: 'stun', base:15 },
@@ -15,6 +14,6 @@ const effects = new List([
     { uid: 'health', base:4 },
     { uid: 'healthsteal', base:4 },
 
-], Effect);
+].map((effect) => new Effect(effect));
 
 export default effects;

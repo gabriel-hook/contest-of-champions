@@ -1,0 +1,56 @@
+.navigation{
+	.navigation-tab{
+		font-size: 1.2em;
+		padding: .5em 0;
+		border: 0;
+		background: #f6f6f6; 
+		color: #000;
+		text-shadow: 0 1px 0 #fff;
+		text-transform: uppercase;
+		font-family: Hanzel, Verdana, Geneva, sans-serif;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background 0.25s, color 0.25s, text-shadow 0.25s;
+	}
+	.navigation-tab:hover{
+		background: #eee; 
+	}
+
+	.navigation-tab--current,
+	.navigation-tab--current:hover{
+		background: #38c;
+		color: #fff;
+		text-shadow: 0 1px 0 #000;
+		cursor: default;
+	}
+	
+	&.navigation--count-1{
+		.navigation-tab{
+			width: 100%;
+		}
+	}
+	
+	&.navigation--count-2{
+		.navigation-tab{
+			width: 50%;
+		}
+	}
+	
+	&.navigation--count-3{
+		.navigation-tab{
+			width: 33.334%;
+		}
+	}
+	
+	&.navigation--count-4{
+		.navigation-tab{
+			width: 25%;
+		}
+	}
+	
+	&.navigation--count-5{
+		.navigation-tab{
+			width: 20%;
+		}
+	}
+}

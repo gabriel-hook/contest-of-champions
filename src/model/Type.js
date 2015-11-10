@@ -1,4 +1,4 @@
-import Model from '../util/Model';
+import Model from './Model.js';
 
 class Type extends Model {
   constructor({ uid }){

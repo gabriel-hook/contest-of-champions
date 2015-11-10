@@ -10,18 +10,18 @@ const Champion = {
 		const starImages = [];
 		for(let i=0; i<stars; i++)
 			starImages.push(
-	        	<img className="star" src="images/icons/star.png" />
+	        	<img class="star" src="images/icons/star.png" />
 			);
 		const name = uid;
 		return (
-			<div className={ `champion champion--${ typeId } ${ isEditing && 'editing' }` }>
-				<div className="container">
-				  <div className={ `inner ${ hasClick && 'clickable' }` } onclick={ args.onClick }>
-				    <img className="portrait" src={ `images/champions/portrait_${ uid }.png` } />
-				    <div className="title">
-				      <span className="name">{ name }</span>
+			<div class={ `champion champion--${ typeId } ${ isEditing && 'editing' }` }>
+				<div class="container">
+				  <div class={ `inner ${ hasClick && 'clickable' }` } onclick={ args.onClick }>
+				    <img class="portrait" src={ `images/champions/portrait_${ uid }.png` } />
+				    <div class="title">
+				      <span class="name">{ name }</span>
 				    </div>
-				    <div className="stars">
+				    <div class="stars">
 				    	{ starImages }
 				    </div>
 				  </div>

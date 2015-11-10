@@ -1,9 +1,9 @@
-import champions from '../data/champions';
+import champions, { uids } from '../data/champions';
 
-const all = champions.where();
+console.log(uids)
 
 export default {
 	all(){
-		return all;
+		return champions.slice();
 	}
 };

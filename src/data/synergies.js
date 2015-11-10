@@ -1,7 +1,6 @@
-import List from '../util/List';
 import Synergy from '../model/Synergy';
 
-const synergies = new List([
+const synergies = [
 
     { fromId:'blackbolt', fromStars: 2, toId: 'cyclops', effectId:'block', effectAmount:10 },
     { fromId:'blackbolt', fromStars: 3, toId: 'cyclops', effectId:'block', effectAmount:15 },
@@ -464,6 +463,6 @@ const synergies = new List([
     { fromId:'unstoppablecolossus', fromStars:4, toId:'cyclops', effectId:'perfectblock', effectAmount:5 },
     { fromId:'unstoppablecolossus', fromStars:4, toId:'juggernaut', effectId:'critdamage', effectAmount:25 },
   
-], Synergy);
+].map((synergy) => new Synergy(synergy));
 
 export default synergies;

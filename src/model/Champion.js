@@ -1,4 +1,4 @@
-import Model from '../util/Model.js';
+import Model from './Model.js';
 
 class Champion extends Model {
 	constructor({ uid, stars, typeId, pi }){
@@ -16,7 +16,7 @@ class Champion extends Model {
 	}
 
 	id(){
-		return `${ this.attr.uid }_${ this.attr.stars }`;
+		return `${ this.attr.uid }-${ this.attr.stars }`;
 	}
 }
 

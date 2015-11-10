@@ -1,4 +1,3 @@
-
 class Model  {
 	constructor(defaults = {}, definition){
 		this.attr = { ...defaults, ...definition };

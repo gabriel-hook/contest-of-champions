@@ -1,7 +1,6 @@
-import List from '../util/List';
 import Champion from '../model/Champion';
 
-const champions = new List([
+const champions = [
 
 	{ uid:'blackbolt', typeId:'cosmic', stars: 2 },
 	{ uid:'blackbolt', typeId:'cosmic', stars: 3 },
@@ -233,6 +232,9 @@ const champions = new List([
 	{ uid:'unstoppablecolossus', typeId:'mystic', stars: 3 },
 	{ uid:'unstoppablecolossus', typeId:'mystic', stars: 4 },
   
-], Champion);
+].map((champion) => new Champion(champion));
+
+const uids = [ ...new Set(champions.map((champion) => champion.attr.uid)) ];
 
 export default champions;
+export { uids };

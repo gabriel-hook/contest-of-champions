@@ -1,4 +1,4 @@
-import Model from '../util/Model';
+import Model from './Model.js';
 
 class Effect extends Model {
   constructor({ uid, base, amount }){
