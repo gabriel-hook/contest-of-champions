@@ -1,20 +1,33 @@
 .app{
-
 	.pages{
-		padding-bottom: 50px;
-
-		.page{
-			position:absolute;
+		position:fixed;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		padding-bottom: 54px;
+		box-sizing: border-box;
+		.wrapper{
+			position: relative;
 			width: 100%;
 			height: 100%;
-			opacity: 0.001;
-			pointer-events:none;
-			transition: opacity 0.25s;
-		}
 
-		.page--current{
-			opacity: 1;
-			pointer-events:auto;
+			.page{
+				position:absolute;
+				top:0;
+				left:0;
+				width: 100%;
+				height: 100%;
+				opacity: 0.001;
+				overflow-y: auto;
+				pointer-events:none;
+				transition: opacity 0.25s;
+
+				&.page--current{
+					opacity: 1;
+					pointer-events:auto;
+				}
+			}
 		}
 	}
 

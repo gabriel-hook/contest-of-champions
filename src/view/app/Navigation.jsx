@@ -1,6 +1,7 @@
 import './Navigation.scss';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
+import lang from '../../service/lang.js';
 import m from 'mithril';
 
 const Navigation = {
@@ -20,7 +21,7 @@ const Navigation = {
 			return (
 				<button class={ className } onclick={ handleClick }>
 					{ icon }
-					{ tab.title }
+					{ lang.get(tab.title) }
 				</button>
 			);
 		});

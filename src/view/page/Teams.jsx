@@ -2,6 +2,7 @@ import './Teams.scss';
 import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
+import lang from '../../service/lang.js';
 import m from 'mithril';
 
 const Roster = {
@@ -18,7 +19,7 @@ const Roster = {
 		);
 		return (
 			<div class="teams">
-				<div class="teams-header">{ `${ 0 } Teams.` }</div>
+				<div class="teams-header">{ `${ 0 } ${ lang.get('teams') }` }</div>
 				<div class="clear"></div>
 			</div>
 		);

@@ -7,7 +7,7 @@ function config(){
 			app: ['./src/index.js'],
 		},
 		output: {
-			path: path.resolve('./build'),
+			path: path.resolve('./build/'),
 			publicPath: '/build/',
 			filename: '[name].js',
 		},
@@ -28,12 +28,12 @@ function config(){
 				// woff
 				{ 
 					test: /\.woff[2]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-					loaders: [ 'url-loader?limit=10000&mimetype=application/font-woff' ],
+					loaders: [ 'url-loader?name=fonts/[name].[ext]&limit=0&mimetype=application/font-woff' ],
 				},
 				// fonts & svg
 				{ 
 					test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-					loaders: [ 'file-loader' ],
+					loaders: [ 'file-loader?name=fonts/[name].[ext]&limit=0' ],
 				},				
 			]
 		},

@@ -1,0 +1,39 @@
+.roster-add{
+	padding: 24px;
+
+	.add-all{
+		cursor: pointer;
+		display: block;
+		margin: .0 auto 1em;
+		padding: 16px;
+		border: none;
+		border-radius: none;
+		width: 500px;
+		max-width: 90%;
+		text-align: center;
+		font-family: Hanzel, Verdana, Geneva, sans-serif;
+		font-size: 18px;
+		background: #eee;
+		color: #000;
+		text-shadow: 0 1px 1 #fff;
+		box-shadow: 0 0 16px rgba(0,0,0, 0.25);
+		transition: background 0.25s, color 0.25s, text-shadow 0.25s;
+
+		&:hover{
+			background: #38c;
+			color: #fff;
+			text-shadow: 0 1px 0 #000;
+		}
+
+		&.disabled{
+			cursor: default;
+			background: #ccc;
+			color: #999;
+			text-shadow: 0 1px 0 #fff;
+		}
+	}
+
+	.clear{
+		clear:both;
+	}
+}
