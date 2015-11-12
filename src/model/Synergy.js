@@ -6,7 +6,7 @@ class Synergy extends Model {
       fromId: 'from-champion-uid',
       fromStars: 1,
       toId: 'to-champion-uid',
-      effectId: 'effect-uid'
+      effectId: 'effect-uid',
       effectAmount: 0,
     }, {
       fromId, 

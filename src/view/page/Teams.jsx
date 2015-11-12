@@ -5,6 +5,16 @@ import router from '../../service/router.js';
 import lang from '../../service/lang.js';
 import m from 'mithril';
 
+const tab = {
+	id: 'teams',
+	icon: 'cog',
+	title: 'teams',
+};
+
+const menu = {
+
+};
+
 const Roster = {
 	view(ctrl, args) {
 		const champions = roster.all();
@@ -26,4 +36,5 @@ const Roster = {
 	}
 }
 
+export { tab, menu };
 export default Roster;

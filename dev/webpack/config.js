@@ -28,13 +28,18 @@ function config(){
 				// woff
 				{ 
 					test: /\.woff[2]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-					loaders: [ 'url-loader?name=fonts/[name].[ext]&limit=0&mimetype=application/font-woff' ],
+					loaders: [ 'url?name=fonts/[name].[ext]&limit=0&mimetype=application/font-woff' ],
 				},
 				// fonts & svg
 				{ 
 					test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-					loaders: [ 'file-loader?name=fonts/[name].[ext]&limit=0' ],
-				},				
+					loaders: [ 'file?name=fonts/[name].[ext]&limit=0' ],
+				},		
+				// fonts & svg
+				{ 
+					test: /\.json$/,
+					loaders: [ 'json' ],
+				},			
 			]
 		},
 		plugins: [

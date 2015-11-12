@@ -18,6 +18,8 @@ import styles from '../bundles/styles.json';
 
 const DEVELOPMENT = gutil.env.dev;
 
+const distPath = './build/legacy/';
+
 function renamePaths(override, options = {}){
   const { force } = options;
   return rename((path) => {
@@ -97,7 +99,7 @@ gulp.task('build:js', ['clean:js'], () => {
       .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
         includeContent:true 
       })))
-      .pipe(gulp.dest('./build'));
+      .pipe(gulp.dest(distPath));
     combined.push(stream);
   }
   return eventstream.merge(combined);
@@ -105,9 +107,9 @@ gulp.task('build:js', ['clean:js'], () => {
 
 gulp.task('build:css', ['clean:css'], () => {
   let streams = [];
-  streams.push(gulp.src('./styles/fonts/*')
+  streams.push(gulp.src('./legacy/styles/fonts/*')
     .pipe(plumber())
-    .pipe(gulp.dest('./build/fonts'))
+    .pipe(gulp.dest(`./build/fonts`))
   );
   //regular multiple css minification
   for(const {name, files} of styles){
@@ -127,7 +129,7 @@ gulp.task('build:css', ['clean:css'], () => {
         .pipe(conditional(!DEVELOPMENT, sourcemaps.write('.', { 
           includeContent:true 
         })))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest(distPath))
     );
   };
   return eventstream.merge(streams);

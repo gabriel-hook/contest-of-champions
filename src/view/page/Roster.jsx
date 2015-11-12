@@ -5,6 +5,42 @@ import router from '../../service/router.js';
 import lang from '../../service/lang.js';
 import m from 'mithril';
 
+const tab = {
+	id: 'roster',
+	icon: 'th',
+	title: 'roster',
+};
+
+const menu = {
+	header:{
+		title: 'roster',
+		icon: 'th',
+	},
+	options:[
+		{
+			title: 'add-champion',
+			icon: 'user-plus',
+			onclick: () => router.setRoute('/roster/add/2'),
+		},
+		{
+			title: 'import-csv',
+			icon: 'clipboard',
+		},
+		{
+			title: 'export-csv',
+			icon: 'floppy-o',
+		},
+		{
+			title: 'delete-all',
+			icon: 'user-times',
+			onclick: () => {
+				roster.clear();
+					m.redraw();
+			},
+		},
+	],
+};
+
 const Roster = {
 	view(ctrl, args) {
 		const total = roster.all().length;
@@ -14,11 +50,14 @@ const Roster = {
 		const { selected } = args;
 		const handleSelect = ({ uid, stars}, event) => {
 			event.stopPropagation();
-			router.setRoute(`/roster/${ uid }/${ stars }`);
+			if(selected && selected.uid === uid && selected.stars === stars)
+				router.setRoute('/roster');
+			else
+				router.setRoute(`/roster/${ uid }/${ stars }`);
 		};
 		const handleDeselect = (event) => {
 			event.stopPropagation();
-			router.setRoute('/roster')
+			router.setRoute('/roster');
 		};
 		const isEditing = (selected, champion) => (selected && champion
 			&& selected.uid === champion.attr.uid
@@ -46,4 +85,5 @@ const Roster = {
 	}
 }
 
+export { tab, menu };
 export default Roster;
