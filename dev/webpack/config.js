@@ -8,7 +8,7 @@ function config(){
 		},
 		output: {
 			path: path.resolve('./build/'),
-			publicPath: '/build/',
+			publicPath: 'build/',
 			filename: '[name].js',
 		},
 		module: {
@@ -25,14 +25,9 @@ function config(){
 					loaders: [ 'style', 'css', 'sass' ],
 					exclude: /node_modules/,
 				},
-				// woff
-				{ 
-					test: /\.woff[2]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-					loaders: [ 'url?name=fonts/[name].[ext]&limit=0&mimetype=application/font-woff' ],
-				},
 				// fonts & svg
 				{ 
-					test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+					test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 					loaders: [ 'file?name=fonts/[name].[ext]&limit=0' ],
 				},		
 				// fonts & svg
@@ -43,7 +38,7 @@ function config(){
 			]
 		},
 		plugins: [
-
+			//fill these in programmatically
 		],
 	};
 }
