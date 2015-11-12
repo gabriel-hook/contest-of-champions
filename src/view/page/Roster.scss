@@ -1,0 +1,31 @@
+.roster{
+	padding: 24px;
+
+	&.editing{
+		.champion{
+			opacity: 0.25;
+		}
+		.champion.editing{
+			opacity: 1;
+		}
+	}
+
+	.champion{
+		transition: opacity 0.25s;
+	}
+	
+	.roster-header{
+		margin: auto;
+		max-width: 250px;
+		background: rgba(0,0,0, 0.5);
+		color: #fff;
+		text-align: center;
+		border-radius: 5px;
+		padding: 16px;
+		font-size: 18px;
+	}
+
+	.clear{
+		clear:both;
+	}
+}
