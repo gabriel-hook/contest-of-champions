@@ -1,8 +1,43 @@
 import './RosterAdd.scss';
 import roster from '../../service/roster.js';
+import router from '../../service/router.js';
 import lang from '../../service/lang.js';
 import Champion from '../Champion.jsx';
 import m from 'mithril';
+
+const menu = {
+	header:{
+		title: 'add-champion',
+		icon: 'user-plus',
+	},
+	options:[
+		{
+			title: '★',
+			selected: (stars) => stars === '1',
+			onclick: () => router.setRoute('/roster/add/1'),
+		},
+		{
+			title: '★★',
+			selected: (stars) => stars === '2',
+			onclick: () => router.setRoute('/roster/add/2'),
+		},
+		{
+			title: '★★★',
+			selected: (stars) => stars === '3',
+			onclick: () => router.setRoute('/roster/add/3'),
+		},
+		{
+			title: '★★★★',
+			selected: (stars) => stars === '4',
+			onclick: () => router.setRoute('/roster/add/4'),
+		},
+		{
+			title: '★★★★★',
+			selected: (stars) => stars === '5',
+			onclick: () => router.setRoute('/roster/add/5'),
+		},
+	],
+};
 
 const RosterAdd = {
 	view(ctrl, args) {
@@ -30,4 +65,5 @@ const RosterAdd = {
 	}
 };
 
+export { menu };
 export default RosterAdd;

@@ -1,6 +1,6 @@
 [{
   "name": "app-roster",
-  "files": "./scripts/lang/*.js"
+  "files": "./legacy/scripts/lang/*.js"
 },{
   "name": "app-roster",
   "files":[
@@ -10,65 +10,65 @@
 },{
   "name": "app-roster",
   "json": "CoC.data.guides.raw",
-  "files": "./scripts/data/guides/*.json"
+  "files": "./legacy/scripts/data/guides/*.json"
 },{
   "name": "app-roster",
   "template": "CoC.data.template",
   "files": [
-    "./templates/app-roster.html",
-    "./templates/options.html",
-    "./templates/champion.html",
-    "./templates/crystals.html",
-    "./templates/guide-select-optgroup.html",
-    "./templates/guide-select-option.html",
-    "./templates/guide.html",
-    "./templates/teams.html"
+    "./legacy/templates/app-roster.html",
+    "./legacy/templates/options.html",
+    "./legacy/templates/champion.html",
+    "./legacy/templates/crystals.html",
+    "./legacy/templates/guide-select-optgroup.html",
+    "./legacy/templates/guide-select-option.html",
+    "./legacy/templates/guide.html",
+    "./legacy/templates/teams.html"
   ]
 },{
   "name": "app-roster",
   "files":[
-    "./scripts/language.js",
-    "./scripts/coc-utils.js",
-    "./scripts/app-roster-core.js",
+    "./legacy/scripts/language.js",
+    "./legacy/scripts/coc-utils.js",
+    "./legacy/scripts/app-roster-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
-    "./scripts/lib/purl.js",
-    "./scripts/lib/sly.js",
-    "./scripts/model/ability.js",
-    "./scripts/model/type.js",
-    "./scripts/model/champion.js",
-    "./scripts/model/effect.js",
-    "./scripts/model/synergy.js",
-    "./scripts/model/crystal.js",
-    "./scripts/model/crystal-champion.js",
-    "./scripts/data/abilities.js",
-    "./scripts/data/effects.js",
-    "./scripts/data/types.js",
-    "./scripts/data/champions.js",
-    "./scripts/data/synergies.js",
-    "./scripts/data/crystals.js",
-    "./scripts/data/guides.js",
-    "./scripts/view/message.js",
-    "./scripts/view/champion.js",
-    "./scripts/view/roster.js",
-    "./scripts/view/add-champions.js",
-    "./scripts/view/team.js",
-    "./scripts/view/guide.js",
-    "./scripts/view/guide-champions.js",
-    "./scripts/view/crystals.js",
-    "./scripts/coc-tracking.js",
-    "./scripts/coc-manager.js",
-    "./scripts/coc-algorithm.js",
-    "./scripts/coc-roster.js",
-    "./scripts/coc-preset.js",
-    "./scripts/coc-roster-ui.js",
-    "./scripts/coc-options.js",
-    "./scripts/app-roster-init.js"
+    "./legacy/scripts/lib/purl.js",
+    "./legacy/scripts/lib/sly.js",
+    "./legacy/scripts/model/ability.js",
+    "./legacy/scripts/model/type.js",
+    "./legacy/scripts/model/champion.js",
+    "./legacy/scripts/model/effect.js",
+    "./legacy/scripts/model/synergy.js",
+    "./legacy/scripts/model/crystal.js",
+    "./legacy/scripts/model/crystal-champion.js",
+    "./legacy/scripts/data/abilities.js",
+    "./legacy/scripts/data/effects.js",
+    "./legacy/scripts/data/types.js",
+    "./legacy/scripts/data/champions.js",
+    "./legacy/scripts/data/synergies.js",
+    "./legacy/scripts/data/crystals.js",
+    "./legacy/scripts/data/guides.js",
+    "./legacy/scripts/view/message.js",
+    "./legacy/scripts/view/champion.js",
+    "./legacy/scripts/view/roster.js",
+    "./legacy/scripts/view/add-champions.js",
+    "./legacy/scripts/view/team.js",
+    "./legacy/scripts/view/guide.js",
+    "./legacy/scripts/view/guide-champions.js",
+    "./legacy/scripts/view/crystals.js",
+    "./legacy/scripts/coc-tracking.js",
+    "./legacy/scripts/coc-manager.js",
+    "./legacy/scripts/coc-algorithm.js",
+    "./legacy/scripts/coc-roster.js",
+    "./legacy/scripts/coc-preset.js",
+    "./legacy/scripts/coc-roster-ui.js",
+    "./legacy/scripts/coc-options.js",
+    "./legacy/scripts/app-roster-init.js"
   ]
 },{
   "name": "app-synergies",
-  "files": "./scripts/lang/*.js"
+  "files": "./legacy/scripts/lang/*.js"
 },{
   "name": "app-synergies",
   "files":[
@@ -79,58 +79,58 @@
   "name": "app-synergies",
   "template": "CoC.data.template",
   "files":[
-    "./templates/app-synergies.html",
-    "./templates/options.html"
+    "./legacy/templates/app-synergies.html",
+    "./legacy/templates/options.html"
   ]
 },{
   "name": "app-synergies",
   "files":[
-    "./scripts/language.js",
-    "./scripts/coc-utils.js",
-    "./scripts/app-synergies-core.js",
+    "./legacy/scripts/language.js",
+    "./legacy/scripts/coc-utils.js",
+    "./legacy/scripts/app-synergies-core.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
-    "./scripts/springy/springy.js",
-    "./scripts/springy/springyui.js",
-    "./scripts/model/champion.js",
-    "./scripts/model/effect.js",
-    "./scripts/model/synergy.js",
-    "./scripts/model/type.js",
-    "./scripts/data/champions.js",
-    "./scripts/data/effects.js",
-    "./scripts/data/synergies.js",
-    "./scripts/data/types.js",
-    "./scripts/coc-tracking.js",
-    "./scripts/coc-synergies.js",
-    "./scripts/coc-roster.js",
-    "./scripts/coc-options.js",
-    "./scripts/app-synergies-init.js"
+    "./legacy/scripts/springy/springy.js",
+    "./legacy/scripts/springy/springyui.js",
+    "./legacy/scripts/model/champion.js",
+    "./legacy/scripts/model/effect.js",
+    "./legacy/scripts/model/synergy.js",
+    "./legacy/scripts/model/type.js",
+    "./legacy/scripts/data/champions.js",
+    "./legacy/scripts/data/effects.js",
+    "./legacy/scripts/data/synergies.js",
+    "./legacy/scripts/data/types.js",
+    "./legacy/scripts/coc-tracking.js",
+    "./legacy/scripts/coc-synergies.js",
+    "./legacy/scripts/coc-roster.js",
+    "./legacy/scripts/coc-options.js",
+    "./legacy/scripts/app-synergies-init.js"
   ]
 },{
   "name": "worker-teams",
-  "files": "./scripts/lang/*.js"
+  "files": "./legacy/scripts/lang/*.js"
 },{
   "name": "worker-teams",
   "files":[
-    "./scripts/language.js",
-    "./scripts/coc-utils.js",
+    "./legacy/scripts/language.js",
+    "./legacy/scripts/coc-utils.js",
     "./node_modules/underscore/underscore.js",
     "./node_modules/backbone/backbone.js",
-    "./scripts/model/champion.js", 
-    "./scripts/model/effect.js", 
-    "./scripts/model/synergy.js", 
-    "./scripts/model/type.js",
-    "./scripts/data/champions.js", 
-    "./scripts/data/effects.js", 
-    "./scripts/data/synergies.js", 
-    "./scripts/data/types.js",
-    "./scripts/coc-algorithm.js",
-    "./scripts/worker-teams.js"
+    "./legacy/scripts/model/champion.js", 
+    "./legacy/scripts/model/effect.js", 
+    "./legacy/scripts/model/synergy.js", 
+    "./legacy/scripts/model/type.js",
+    "./legacy/scripts/data/champions.js", 
+    "./legacy/scripts/data/effects.js", 
+    "./legacy/scripts/data/synergies.js", 
+    "./legacy/scripts/data/types.js",
+    "./legacy/scripts/coc-algorithm.js",
+    "./legacy/scripts/worker-teams.js"
   ]
 },{
   "name": "app-editor",
-  "files": "./scripts/lang/*.js"
+  "files": "./legacy/scripts/lang/*.js"
 },{
   "name": "app-editor",
   "files":[
@@ -140,43 +140,43 @@
 },{
   "name": "app-editor",
   "json": "CoC.data.guides.raw",
-  "files": "./scripts/data/guides/*.json"
+  "files": "./legacy/scripts/data/guides/*.json"
 },{
   "name": "app-editor",
   "template": "CoC.data.template",
   "files": [
-    "./templates/app-editor.html",
-    "./templates/options.html",
-    "./templates/guide.html"
+    "./legacy/templates/app-editor.html",
+    "./legacy/templates/options.html",
+    "./legacy/templates/guide.html"
   ]
 },{
   "name": "app-editor",
   "files":[
-    "./scripts/language.js",
-    "./scripts/coc-utils.js",
+    "./legacy/scripts/language.js",
+    "./legacy/scripts/coc-utils.js",
     "./node_modules/jquery-mobile/dist/jquery.mobile.js",
     "./node_modules/backbone/backbone.js",
     "./node_modules/backbone.localstorage/backbone.localStorage.js",
     "./node_modules/select2/dist/js/select2.js",
-    "./scripts/model/ability.js",
-    "./scripts/model/type.js",
-    "./scripts/model/champion.js",
-    "./scripts/model/effect.js",
-    "./scripts/model/synergy.js",
-    "./scripts/model/crystal.js",
-    "./scripts/model/crystal-champion.js",
-    "./scripts/data/abilities.js",
-    "./scripts/data/effects.js",
-    "./scripts/data/types.js",
-    "./scripts/data/champions.js",
-    "./scripts/data/synergies.js",
-    "./scripts/data/crystals.js",
-    "./scripts/data/guides.js",
-    "./scripts/app-editor-core.js",
-    "./scripts/view/guide.js",
-    "./scripts/coc-tracking.js",
-    "./scripts/coc-options.js",
-    "./scripts/coc-editor.js",
-    "./scripts/app-editor-init.js"
+    "./legacy/scripts/model/ability.js",
+    "./legacy/scripts/model/type.js",
+    "./legacy/scripts/model/champion.js",
+    "./legacy/scripts/model/effect.js",
+    "./legacy/scripts/model/synergy.js",
+    "./legacy/scripts/model/crystal.js",
+    "./legacy/scripts/model/crystal-champion.js",
+    "./legacy/scripts/data/abilities.js",
+    "./legacy/scripts/data/effects.js",
+    "./legacy/scripts/data/types.js",
+    "./legacy/scripts/data/champions.js",
+    "./legacy/scripts/data/synergies.js",
+    "./legacy/scripts/data/crystals.js",
+    "./legacy/scripts/data/guides.js",
+    "./legacy/scripts/app-editor-core.js",
+    "./legacy/scripts/view/guide.js",
+    "./legacy/scripts/coc-tracking.js",
+    "./legacy/scripts/coc-options.js",
+    "./legacy/scripts/coc-editor.js",
+    "./legacy/scripts/app-editor-init.js"
   ]
 }]

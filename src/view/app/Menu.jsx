@@ -21,49 +21,54 @@ const Menu = {
 	view(ctrl, args) {
 		const isOpen = ctrl.open;
 		const options = [];
-		const { menu } = args;
-
+		const { menu, menuKey } = args;
 		// header
 		options.push(
 			<li class="option--header">
 				{ lang.get('options') }
 			</li>
 		);
-
 		if(menu){
 			if(menu.header){
 				const icon = menu.header.icon && (
 					<i class={ `fa fa-${ menu.header.icon }` }></i>
 				);
+				const image = menu.header.image && (
+					<img class="icon" src={ menu.header.image } />
+				);
 				options.push(
 					<li class="option--section">
 						{ icon }
+						{ image }
 						{ lang.get(menu.header.title) }
 					</li>
 				);
 			}
 			if(menu.options && menu.options.length){
 				for(const option of menu.options){
+					const selected = menuKey && option.selected && option.selected(menuKey);
 					const icon = option.icon && (
 						<i class={ `fa fa-${ option.icon }` }></i>
+					);
+					const image = option.image && (
+						<img class="icon" src={ option.image } />
 					);
 					const onClick = option.onclick &&
 						both(ctrl.toggle, option.onclick) ||
 						null;
 					options.push(
 						<li 
-							class={ `option ${ option.selected? 'option--selected': '' }` }
+							class={ `option ${ selected? 'option--selected': '' }` }
 							onclick={ onClick }
 						>
 							{ icon }
+							{ image }
 							{ lang.get(option.title) }
 						</li>
 					);
 				}
 			}
 		}
-
-
 		// languages
 		options.push(
 			<li class="option--section">
@@ -83,7 +88,6 @@ const Menu = {
 				</li>
 			);
 		}
-
 		// share
 		options.push(
 			<li class="option--section">
@@ -96,8 +100,6 @@ const Menu = {
 					{ lang.get(id) }
 				</li>
 			);
-
-
 		return (
 			<div class={ `menu ${ isOpen? 'menu--open': '' }` }>
 				<div class="menu--background" onclick={ ctrl.toggle }></div>

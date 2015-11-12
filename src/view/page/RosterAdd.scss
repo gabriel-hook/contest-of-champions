@@ -16,7 +16,7 @@
 		background: #eee;
 		color: #000;
 		text-shadow: 0 1px 1 #fff;
-		box-shadow: 0 0 16px rgba(0,0,0, 0.25);
+		box-shadow: 0 0 16px rgba(0,0,0, 0.5);
 		transition: background 0.25s, color 0.25s, text-shadow 0.25s;
 
 		&:hover{
@@ -26,10 +26,12 @@
 		}
 
 		&.disabled{
+			pointer-events: none;
 			cursor: default;
-			background: #ccc;
-			color: #999;
+			background: #eee;
+			color: #ccc;
 			text-shadow: 0 1px 0 #fff;
+			box-shadow: 0 0 16px rgba(0,0,0, 0.25);
 		}
 	}
 
