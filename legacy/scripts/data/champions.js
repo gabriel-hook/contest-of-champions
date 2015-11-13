@@ -189,6 +189,7 @@ CoC.data.champions = new Backbone.Collection([
 
   { uid:"spidergwen", typeId:"science", stars: 3 },
   { uid:"spidergwen", typeId:"science", stars: 4 },
+  { uid:"spidergwen", typeId:"science", stars: 5 },
 
   { uid:"spiderman", typeId:"science", stars: 1 },
   { uid:"spiderman", typeId:"science", stars: 2 },

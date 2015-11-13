@@ -124,7 +124,7 @@ body.ui-mobile-viewport.iframe{
 
 
 .ui-icon-crystal:after{
-  background-image:url(../images/icons/crystal.png);
+  background-image:url(../../images/icons/crystal.png);
 }
 
 /******************
@@ -194,22 +194,22 @@ body.ui-mobile-viewport.iframe{
   margin-top: -16px;
 }
 .ui-icon-cosmic:after{
-  background-image:url(../images/icons/cosmic.png);
+  background-image:url(../../images/icons/cosmic.png);
 }
 .ui-icon-tech:after{
-  background-image:url(../images/icons/tech.png);
+  background-image:url(../../images/icons/tech.png);
 }
 .ui-icon-mutant:after{
-  background-image:url(../images/icons/mutant.png);
+  background-image:url(../../images/icons/mutant.png);
 }
 .ui-icon-skill:after{
-  background-image:url(../images/icons/skill.png);
+  background-image:url(../../images/icons/skill.png);
 }
 .ui-icon-science:after{
-  background-image:url(../images/icons/science.png);
+  background-image:url(../../images/icons/science.png);
 }
 .ui-icon-mystic:after{
-  background-image:url(../images/icons/mystic.png);
+  background-image:url(../../images/icons/mystic.png);
 }
 
 /******************
