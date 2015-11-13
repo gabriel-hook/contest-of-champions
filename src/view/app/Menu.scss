@@ -177,22 +177,3 @@
 		}
 	}
 }
-
-.menu--back {
-	pointer-events: auto;
-	cursor: pointer;
-	position: fixed;
-	top:0;
-	left: 0;
-	padding: 8px 16px;
-	background: #f6f6f6;
-	color: #000;
-	font-size: 1.5em;
-	text-shadow: 0 1px 0 #fff;
-	box-shadow: 0 0 16px rgba(0,0,0, 0.5);
-	transition: color 0.25s, text-shadow 0.25s, box-shadow 0.25s, background 0.25s;
-
-	&:hover{
-		background: #eee;
-	}
-}
