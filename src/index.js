@@ -2,9 +2,11 @@ import 'font-awesome-webpack';
 import './index.scss';
 import { uids } from './data/champions.js';
 import app from './service/app.js';
+import teams from './service/teams.js';
 import roster from './service/roster.js';
 import router from './service/router.js';
 import App from './view/app/App.jsx';
+import Card from './view/Card.jsx';
 import Guide, { tab as guideTab, menu as guideMenu } from './view/page/Guide.jsx';
 import Roster, { tab as rosterTab, menu as rosterMenu } from './view/page/Roster.jsx';
 import RosterAdd, { menu as rosterAddMenu } from './view/page/RosterAdd.jsx';
@@ -28,8 +30,15 @@ router.on('/guide/:uid', (uid) => {
 
 router.on('/roster', () => {
 	app.tab = 'roster';
-	app.pages['roster'] = (
+	app.pages['roster-main'] = (
 		<Roster />
+	);
+	app.pages['roster'] = (
+		<Card 
+			front={ app.pages['roster-main'] }
+			back={ app.pages['roster-add'] }
+			flipped={ false }
+		/>
 	);
 	app.menu = rosterMenu;
 	app.menuKey = null;
@@ -38,8 +47,15 @@ router.on('/roster', () => {
 
 router.on('/roster/add/:stars', (stars)=> {
 	app.tab = 'roster';
-	app.pages['roster'] = (
+	app.pages['roster-add'] = (
 		<RosterAdd stars={ parseInt(stars, 10) } />
+	);
+	app.pages['roster'] = (
+		<Card 
+			front={ app.pages['roster-main'] }
+			back={ app.pages['roster-add'] }
+			flipped={ true }
+		/>
 	);
 	app.menu = rosterAddMenu;
 	app.menuKey = stars;
@@ -48,8 +64,15 @@ router.on('/roster/add/:stars', (stars)=> {
 
 router.on('/roster/:uid/:stars', (uid, stars)=> {
 	app.tab = 'roster';
-	app.pages['roster'] = (
+	app.pages['roster-main'] = (
 		<Roster selected={ { uid, stars: parseInt(stars, 10) } } />
+	);
+	app.pages['roster'] = (
+		<Card 
+			front={ app.pages['roster-main'] }
+			back={ app.pages['roster-add'] }
+			flipped={ false }
+		/>
 	);
 	app.menu = rosterMenu;
 	app.menuKey = null;
@@ -62,7 +85,7 @@ router.on('/teams', () => {
 		<Teams />
 	);
 	app.menu = teamsMenu;
-	app.menuKey = null;
+	app.menuKey = teams;
   	m.redraw();
 });
 

@@ -86,13 +86,46 @@
 			color: #fff;
 			padding: .5em .5em .5em 1.5em; 
 			text-shadow: 0 1px 0 #000;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 
-			&:hover,
+			&:hover{
+				background: #ddd;
+				color: #000;
+				text-shadow: 0 1px 0 #fff;
+			}
 			&.option--selected {
-
 				background: #eee;
 				color: #000;
 				text-shadow: 0 1px 0 #fff;
+			}
+
+			&.option--split-2,
+			&.option--split-3,
+			&.option--split-4,
+			&.option--split-5,
+			&.option--split-6 {
+				display: inline-block;
+				display: inline-table;
+				box-sizing: border-box;
+				text-align: center;
+				padding: .5em .5em .5em .5em; 
+			}
+			&.option--split-2 {
+				width: 50%;
+			}
+			&.option--split-3 {
+				width: 33.333%;
+			}
+			&.option--split-4 {
+				width: 25%;
+			}
+			&.option--split-5 {
+				width: 20%;
+			}
+			&.option--split-6 {
+				width: 16.664%;
 			}
 		}
 
@@ -142,5 +175,24 @@
 			pointer-events: auto;
 			background: rgba(0,0,0, 0.5);
 		}
+	}
+}
+
+.menu--back {
+	pointer-events: auto;
+	cursor: pointer;
+	position: fixed;
+	top:0;
+	left: 0;
+	padding: 8px 16px;
+	background: #f6f6f6;
+	color: #000;
+	font-size: 1.5em;
+	text-shadow: 0 1px 0 #fff;
+	box-shadow: 0 0 16px rgba(0,0,0, 0.5);
+	transition: color 0.25s, text-shadow 0.25s, box-shadow 0.25s, background 0.25s;
+
+	&:hover{
+		background: #eee;
 	}
 }

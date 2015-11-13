@@ -45,6 +45,11 @@ const RosterAdd = {
 		const champions = roster.available(stars);
 		return (
 			<div class="roster-add">
+				<div class="menu--back" onclick={
+					() => router.setRoute('/roster')
+				}>
+					<i class="fa fa-hand-o-left"/>
+				</div>
 				<button 
 					class={ `add-all ${ champions.length === 0? 'disabled': '' }` }
 					onclick={ () => roster.addAll(stars) }

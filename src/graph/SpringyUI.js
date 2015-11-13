@@ -7,7 +7,6 @@ import Vector from './Vector.js';
 import Point from './Point.js';
 import Spring from './Spring.js';
 import Node from './Node.js';
-import $ from 'jquery';
 
 export default function({
     stiffness = 400.0,
@@ -21,7 +20,6 @@ export default function({
 }) {
     const canvas = this.canvas = document.createElement('canvas');
     const ctx = canvas.getContext("2d");
-
 
     //We can check to see if the font has been loaded before using.
     var ScaledNodeFont = function(){
@@ -48,10 +46,14 @@ export default function({
     let canvasState;
     this.resize = function() {
         pixelRatio = window.devicePixelRatio || 1;
-        canvasState = canvas.getBoundingClientRect();
-        canvas.width = canvasState.width;
-        canvas.height = canvasState.height;
         nodeFont = new ScaledNodeFont();
+
+        const parentNode = canvas.parentNode;
+        if(parentNode) {
+            canvas.width = parentNode.offsetWidth;
+            canvas.height = parentNode.offsetHeight;
+        }
+        canvasState = canvas.getBoundingClientRect();
     }
     this.resize();
 
@@ -66,15 +68,19 @@ export default function({
         this.graph = graph;
 
         clearSelected();
-        this.resize();
+        renderer.start();
     };
 
+    function addEventListeners(element, types, listener) {
+        types.split(' ').forEach((type) => element.addEventListener(type, listener, true));
+    }
+
     let resizeTimeout;
-    window.addEventListener('resize', (e) => {
+    addEventListeners(window, 'resize', (e) => {
         if(resizeTimeout)
             clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(this.resize, 25);
-    }, true);
+    });
 
     this.graph = graph;
     this.layout = new ForceDirectedLayout(graph, stiffness, repulsion, damping, minEnergyThreshold);
@@ -335,7 +341,7 @@ export default function({
     return (event.shiftKey)? "add": (event.ctrlKey)? "toggle": "replace";
   }
 
-  $('body').on('keyup', function(e){
+  addEventListeners(document.body, 'keyup', (e) => {
     if(e.which === 27){ // escape
       e.preventDefault();
       clearSelected();
@@ -361,7 +367,7 @@ export default function({
     timeoutDelay:1000
   };
 
-  $(canvas).on('dblclick', function(e) {
+  addEventListeners(canvas, 'dblclick', (e) => {
     if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
       return;
     var node = findNodeAt(getCoordinate(e.pageX - canvasState.left, e.pageY - canvasState.top));
@@ -372,7 +378,7 @@ export default function({
     e.preventDefault();
   });
 
-  $(canvas).on('touchstart', function(e){
+  addEventListeners(canvas, 'touchstart', (e) => {
     clearTimeout(tapHold.timeout);
     if(window.event.touches.length === 1)
       tapHold.timeout = setTimeout(tapHold.handler, tapHold.timeoutDelay);
@@ -387,7 +393,7 @@ export default function({
     return false;
   });
 
-  $(canvas).on('touchmove', function(e) {
+  addEventListeners(canvas, 'touchmove', (e) => {
     clickSource = "touch";
     var coord = getCoordinate(window.event.touches[0].pageX - canvasState.left, window.event.touches[0].pageY - canvasState.top),
       otherCoord;
@@ -399,7 +405,7 @@ export default function({
     return false;
   });
 
-  $(canvas).on('touchend',function(e) {
+  addEventListeners(canvas, 'touchend', (e) => {
     clearTimeout(tapHold.timeout);
     clickSource = "touch";
     if(window.event.touches.length === 0)
@@ -409,19 +415,19 @@ export default function({
     return false;
   });
 
-  $(canvas).on('touchleave touchcancel',function(e) {
+  addEventListeners(canvas, 'touchleave touchcancel', (e) => {
     clearTimeout(tapHold.timeout);
     clickSource = "touch";
     pointerEnd(false, "toggle");
   });
 
-  $(window).on('touchend',function(e) {
+  addEventListeners(window, 'touchend', (e) => {
     clearTimeout(tapHold.timeout);
     clickSource = "touch";
     pointerEnd(false, "toggle");
   });
 
-  $(canvas).on('mousedown', function(e) {
+  addEventListeners(canvas, 'mousedown', (e) => {
     if(e.button === 2)
       return;
     clickSource = "mouse";
@@ -429,13 +435,13 @@ export default function({
     e.preventDefault();
   });
 
-  $(window).on('mousemove', function(e) {
+  addEventListeners(window, 'mousemove', (e) => {
     clickSource = "mouse";
     pointerMove(getCoordinate(e.pageX - canvasState.left, e.pageY - canvasState.top), selectType(e));
     e.preventDefault();
   });
 
-  $(window).on('mouseup',function(e) {
+  addEventListeners(window, 'mouseup', (e) => {
     if(e.target !== canvas && !dragged && !selection)
       return;
     clickSource = "mouse";
@@ -443,7 +449,7 @@ export default function({
     e.preventDefault();
   });
 
-  $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
+  addEventListeners(canvas, 'mousedown mousemove mouseenter mouseleave', (e) => {
     var state = '';
     if(selection)
       state = 'selecting';
@@ -1051,7 +1057,5 @@ export default function({
     //scale and move back to relative position
     return last.divide(this.hitmask.size).multiply(this.bb.size).add(this.bb.topLeft);
   };
-
-  renderer.start();
   return this;
 };

@@ -22,10 +22,12 @@
 				overflow-y: auto;
 				pointer-events:none;
 				transition: opacity 0.25s;
+				background: #ccc;
 
 				&.page--current{
 					opacity: 1;
 					pointer-events:auto;
+					perspective: 1600px;
 				}
 			}
 		}

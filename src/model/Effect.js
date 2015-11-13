@@ -9,7 +9,7 @@ class Effect extends Model {
     }, {
       uid,
       base,
-      amount,
+      amount
     });
   }
 }
