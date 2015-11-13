@@ -236,5 +236,19 @@ const champions = [
 
 const uids = [ ...new Set(champions.map((champion) => champion.attr.uid)) ];
 
+const uidsByType = [];
+champions.forEach((champion) => {
+	const { uid, typeId } = champion.attr;
+	const currentTypeId = uidsByType.length && uidsByType[uidsByType.length - 1].typeId;
+	if(currentTypeId != typeId)
+		uidsByType.push({
+			typeId,
+			uids: [],
+		});
+	const uids = uidsByType[uidsByType.length - 1].uids;
+	if(uids[uids.length - 1] !== uid)
+		uids.push(uid);
+});
+
 export default champions;
-export { uids };
+export { uids, uidsByType };

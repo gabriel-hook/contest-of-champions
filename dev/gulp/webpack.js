@@ -37,6 +37,7 @@ gulp.task('webpack', (callback) => {
 	else {
 
 		const buildConfig = config();
+		buildConfig.output.publicPath = buildConfig.output.publicPath.substr(1);
 		buildConfig.plugins.unshift(
 			new webpack.optimize.DedupePlugin(),
 			new webpack.optimize.UglifyJsPlugin()

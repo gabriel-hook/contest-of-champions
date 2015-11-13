@@ -13,16 +13,16 @@
 		text-align: center;
 		font-family: Hanzel, Verdana, Geneva, sans-serif;
 		font-size: 18px;
-		background: #eee;
-		color: #000;
-		text-shadow: 0 1px 1 #fff;
+		background: #38c;
+		color: #fff;
+		text-shadow: 0 1px 0 #000;
 		box-shadow: 0 0 16px rgba(0,0,0, 0.5);
 		transition: background 0.25s, color 0.25s, text-shadow 0.25s;
 
 		&:hover{
-			background: #38c;
-			color: #fff;
-			text-shadow: 0 1px 0 #000;
+			background: #eee;
+			color: #000;
+			text-shadow: 0 1px 0 #fff;
 		}
 
 		&.disabled{

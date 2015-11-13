@@ -34,7 +34,9 @@ const Menu = {
 					<i class={ `fa fa-${ menu.header.icon }` }></i>
 				);
 				const image = menu.header.image && (
-					<img class="icon" src={ menu.header.image } />
+					<i class="icon">
+						<img src={ menu.header.image } />
+					</i>
 				);
 				options.push(
 					<li class="option--section">
@@ -47,18 +49,21 @@ const Menu = {
 			if(menu.options && menu.options.length){
 				for(const option of menu.options){
 					const selected = menuKey && option.selected && option.selected(menuKey);
+					const header = option.header;
 					const icon = option.icon && (
 						<i class={ `fa fa-${ option.icon }` }></i>
 					);
 					const image = option.image && (
-						<img class="icon" src={ option.image } />
+						<i class="icon">
+							<img src={ option.image } />
+						</i>
 					);
 					const onClick = option.onclick &&
 						both(ctrl.toggle, option.onclick) ||
 						null;
 					options.push(
 						<li 
-							class={ `option ${ selected? 'option--selected': '' }` }
+							class={ header? 'option--section': `option ${ selected? 'option--selected': '' }` }
 							onclick={ onClick }
 						>
 							{ icon }
@@ -83,7 +88,9 @@ const Menu = {
 					class={ `option ${ lang.current === id? 'option--selected': '' }` }
 					onclick={ selectLanguage }
 				>
-					<img class="icon" src={ `images/lang/${ id }.png` } />
+					<i class="icon">
+						<img src={ `images/lang/${ id }.png` } />
+					</i>
 					{ lang.messages[id].lang }
 				</li>
 			);

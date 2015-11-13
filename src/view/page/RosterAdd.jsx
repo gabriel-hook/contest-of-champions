@@ -1,8 +1,8 @@
 import './RosterAdd.scss';
+import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
 import lang from '../../service/lang.js';
-import Champion from '../Champion.jsx';
 import m from 'mithril';
 
 const menu = {

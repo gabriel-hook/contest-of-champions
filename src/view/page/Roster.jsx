@@ -1,4 +1,5 @@
 import './Roster.scss';
+import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
@@ -68,9 +69,7 @@ const Roster = {
 				class={ `roster ${ selected ? 'editing': '' }` }
 				onclick={ handleDeselect.bind(this) }
 			>
-				<div class="roster-header">
-					{ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
-				</div>
+				<Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
 				{ champions.map((champion) => (
 					<Champion 
 						key={ champion.id() } 

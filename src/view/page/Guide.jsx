@@ -1,5 +1,7 @@
 import './Guide.scss';
-import { uids } from '../../data/champions.js';
+import Message from '../Message.jsx';
+import Champion from '../Champion.jsx';
+import { uidsByType } from '../../data/champions.js';
 import guides from '../../data/guides.js';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
@@ -14,16 +16,24 @@ const tab = {
 
 const menu = {
 	header:{
-		title: 'guide',
+		title: 'guides',
 		icon: 'user',
 	},
-	options: uids.map((uid) => ({
+	options: [],
+};
+uidsByType.forEach(({ typeId, uids}) => {
+	menu.options.push({
+		header: true,
+		title: `type-${ typeId }-name`,
+	});
+	menu.options = menu.options.concat(uids.map((uid) => ({
 		title: `champion-${ uid }-name`,
 		image: `images/champions/portrait_${ uid }.png`,
 		selected: (currentUid) => currentUid === uid,
 		onclick: () => router.setRoute(`/guide/${ uid }`),
-	})),
-};
+	})));
+});
+
 
 const Guide = {
 	view(ctrl, args) {
@@ -32,7 +42,7 @@ const Guide = {
 
 		return (
 			<div class="guide">
-				{ uid }
+				<Message value={ uid }/>
 			</div>
 		);
 	}

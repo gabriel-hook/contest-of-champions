@@ -1,6 +1,7 @@
 import './Teams.scss';
+import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
-import roster from '../../service/roster.js';
+import teams from '../../service/teams.js';
 import router from '../../service/router.js';
 import lang from '../../service/lang.js';
 import m from 'mithril';
@@ -15,21 +16,12 @@ const menu = {
 
 };
 
-const Roster = {
+const Teams = {
 	view(ctrl, args) {
-		const champions = roster.all();
-		const { selected } = args;
-		const onSelect = ({ uid, stars}) => {
-			const path = `/roster/${ uid }/${ stars }`;
-			router.setRoute(path);
-		};
-		const isEditing = (selected, champion) => (selected && champion
-			&& selected.uid === champion.attr.uid
-			&& selected.stars === champion.attr.stars
-		);
+
 		return (
 			<div class="teams">
-				<div class="teams-header">{ `${ 0 } ${ lang.get('teams') }` }</div>
+				<Message value={ `${ 0 } ${ lang.get('teams') }` } />
 				<div class="clear"></div>
 			</div>
 		);
@@ -37,4 +29,4 @@ const Roster = {
 }
 
 export { tab, menu };
-export default Roster;
+export default Teams;

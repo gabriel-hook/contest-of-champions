@@ -8,7 +8,7 @@ function config(){
 		},
 		output: {
 			path: path.resolve('./build/'),
-			publicPath: 'build/',
+			publicPath: '/build/',
 			filename: '[name].js',
 		},
 		module: {
