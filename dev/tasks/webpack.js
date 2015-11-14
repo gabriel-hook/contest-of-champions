@@ -1,0 +1,47 @@
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import symlink from 'gulp-symlink';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import { config } from '../v2/webpack-config.js';
+
+gulp.task('webpack-dev', (callback) => {
+    const domain = 'localhost';
+    const port = 8080;
+    const devConfig = config();
+    for (const key in devConfig.entry)
+        devConfig.entry[key].unshift(`webpack-dev-server/client?http://${ domain }:${ port }`, 'webpack/hot/only-dev-server');
+    for (const key in devConfig.module.loaders)
+        devConfig.module.loaders[key].loaders.unshift('simple-hot');
+    devConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
+    devConfig.devtool = 'eval';
+    const compiler = webpack(devConfig);
+    const server = new WebpackDevServer(compiler, {
+        hot: true,
+        inline: true,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        historyApiFallback: true,
+    });
+    server.listen(port, domain, function (err) {
+        if (err)
+            throw new gutil.PluginError('webpack-dev-server', err);
+        gutil.log('[webpack-dev-server]', `http://${ domain }:${ port }/webpack-dev-server/index.html`);
+        callback();
+    });
+});
+
+gulp.task('webpack', (callback) => {
+    const buildConfig = config();
+    buildConfig.plugins.unshift(
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin()
+    );
+    buildConfig.devtool = '#sourcemaps';
+    webpack(buildConfig, (err) => {
+        if(err)
+            throw new gutil.PluginError('webpack', err);
+        gulp.src('./build/images')
+            .pipe(symlink('./build/v2/images'));
+        callback();
+    });
+});
