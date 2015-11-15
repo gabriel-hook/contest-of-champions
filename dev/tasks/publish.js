@@ -7,7 +7,10 @@ import commit from 'gulp-gh-pages';
 const DEVELOPMENT = gutil.env.dev;
 
 gulp.task('publish:commit', () => {
-    return gulp.src('./.build/**/*')
+    return gulp.src([
+        './.build/**/*',
+        './gh-pages/**/*',
+    ])
         .pipe(plumber())
         .pipe(commit({
             push: DEVELOPMENT,

@@ -135,11 +135,6 @@ gulp.task('build:css', ['clean:css'], () => {
   return eventstream.merge(streams);
 });
 
-gulp.task('watch', () => {
-  gulp.watch([ './scripts/**/*', './templates/**/*' ], [ 'build:js' ]);
-  gulp.watch('./styles/**/*', [ 'build:css' ]);
-});
-
 gulp.task('build', ['build:js', 'build:css'], () => {
     let streams = [];
     streams.push(gulp.src([

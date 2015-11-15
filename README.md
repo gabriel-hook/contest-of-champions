@@ -1,72 +1,62 @@
-# Contest of Champions Tools
-
-  These tools are meant for the community of the game Marvel/Kabam's Contest of Champions.
-
-## Roster Manager
-  
-  Webapp: [gabriel-hook.github.io/contest-of-champions](http://gabriel-hook.github.io/contest-of-champions/)
-  Tiny: [tiny.cc/champions](http://tiny.cc/champions)
-
-### Roster Page
-
-  This is the default view where you can view and modify your roster.
-    
-  Use the side panel to open an Add Champion subpage as well as filter and sort your champions.
-    
-  Selecting a champion here lets you update their rank, level and other attributes.
-
-### Team Page
-
-  This is where your teams will be displayed (with extras if the option is selected) once they are built.
-
-  From the build settings panel you can go to the advanced settings page or build a set of teams.
-
-### Guide Page
-
-  These pages give details on each champion: abilities, styles, synergies and availablity in crystals.
-    
-## Synergy Tool
-  
-  Webapp: [gabriel-hook.github.io/contest-of-champions/synergies.html](http://gabriel-hook.github.io/contest-of-champions/synergies.html)
-  Tiny: [tiny.cc/synergies](http://tiny.cc/synergies)
-
-### Synergies Page
-
-  This tool lets you see the synergies between all champions of a given star value.
-    
-  Double-clicking on a desktop browser will redirect to the Roster Manager's Guide for that champion.
-
 # Development
 
   Clone this repository with git.
 
-  Install all [NPM](https://www.npmjs.com/) packages
+### Install Packages
+
+  Install all [NPM](https://www.npmjs.com/) packages and update packages that need it.
 
 ```
   $ npm install gulp -g
   $ npm install
 ```
 
-  To build the current source into minified js and css, run with [Gulp](http://gulpjs.com/)
-
+  Update experimental packages
+    
 ```
-  $ gulp build
+  $ cd node_modules/babel-plugin-mjsx
+  $ npm install babel-cli -g
+  $ npm install
+  $ babel src --out-dir lib
 ```
-
-  To build quickly without minification and sourcemaps
-
+    
 ```
-  $ gulp build --dev
-```
-
-  To watch for changes and refresh in browser on code changes
-
-```
-  $ gulp watch --dev
+  $ cd node_modules/simple-hot-loader
+  $ npm install
 ```
 
-  To check JS style and validation
+### Publishing
+
+  Build v1 and v2 and publish to gh-pages branch.
 
 ```
-  $ gulp lint
+  gulp publish
+```
+
+### Testing v1
+
+  Install http-server if you want to test changes locally.
+
+```
+  $ npm install http-server -g
+```
+
+  Build scripts and stylesheets. The --dev option skips minification and is faster.
+  
+```
+  $ gulp build [--dev]
+```
+
+  Run a local server to test local changes and view at [localhost:9090](http://localhost:9090).
+  
+```
+  $ http-server ./.build -p9090
+```
+
+### Testing v2
+
+  Run a webpack-dev-server for v2 and navigate to [localhost:8080](http://localhost:8080) test changes. 
+
+```
+  gulp webpack-dev
 ```
