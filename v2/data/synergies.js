@@ -474,7 +474,7 @@ const synergies = [
     { fromId:'unstoppablecolossus', fromStars:4, toId:'magik', effectId:'health', effectAmount:6 },
     { fromId:'unstoppablecolossus', fromStars:4, toId:'cyclops', effectId:'perfectblock', effectAmount:5 },
     { fromId:'unstoppablecolossus', fromStars:4, toId:'juggernaut', effectId:'critdamage', effectAmount:25 },
-  
+
 ].map((synergy) => new Synergy(synergy));
 
 export default synergies;

@@ -1,10 +1,10 @@
 import './Teams.scss';
 import Message from '../Message.jsx';
-import Champion from '../Champion.jsx';
 import teams from '../../service/teams.js';
-import router from '../../service/router.js';
 import lang from '../../service/lang.js';
+/* eslint-disable no-unused-vars */
 import m from 'mithril';
+/* eslint-enable no-unused-vars */
 
 const tab = {
     id: 'teams',
@@ -29,41 +29,41 @@ const menu = {
         },
         {
             title: '1★',
-            selected: ({ stars }) => stars[1],
+            selected: ({ stars }) => stars[ 1 ],
             onclick: () => {
-                teams.stars[1] = !teams.stars[1];
+                teams.stars[ 1 ] = !teams.stars[ 1 ];
             },
             split: 5,
         },
         {
             title: '2★',
-            selected: ({ stars }) => stars[2],
+            selected: ({ stars }) => stars[ 2 ],
             onclick: () => {
-                teams.stars[2] = !teams.stars[2];
+                teams.stars[ 2 ] = !teams.stars[ 2 ];
             },
             split: 5,
         },
         {
             title: '3★',
-            selected: ({ stars }) => stars[3],
+            selected: ({ stars }) => stars[ 3 ],
             onclick: () => {
-                teams.stars[3] = !teams.stars[3];
+                teams.stars[ 3 ] = !teams.stars[ 3 ];
             },
             split: 5,
         },
         {
             title: '4★',
-            selected: ({ stars }) => stars[4],
+            selected: ({ stars }) => stars[ 4 ],
             onclick: () => {
-                teams.stars[4] = !teams.stars[4];
+                teams.stars[ 4 ] = !teams.stars[ 4 ];
             },
             split: 5,
         },
         {
             title: '5★',
-            selected: ({ stars }) => stars[5],
+            selected: ({ stars }) => stars[ 5 ],
             onclick: () => {
-                teams.stars[5] = !teams.stars[5];
+                teams.stars[ 5 ] = !teams.stars[ 5 ];
             },
             split: 5,
         },
@@ -115,11 +115,11 @@ const menu = {
             },
             split: 2,
         },
-    ]
+    ],
 };
 
 const Teams = {
-    view(ctrl, args) {
+    view(/* ctrl, args */) {
 
         return (
             <div class="teams">
@@ -127,8 +127,8 @@ const Teams = {
                 <div class="clear"></div>
             </div>
         );
-    }
-}
+    },
+};
 
 export { tab, menu };
 export default Teams;

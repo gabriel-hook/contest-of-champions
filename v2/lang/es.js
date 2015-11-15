@@ -220,8 +220,8 @@ export default {
     'google': 'Google',
     'tools': 'Herramientas',
     'language': 'Idioma',
-    'synergy-map': 'Mapa de Sinergias',    
-    'roster-manager': 'Administrador de Repertorio',  
+    'synergy-map': 'Mapa de Sinergias',
+    'roster-manager': 'Administrador de Repertorio',
 
     //Onboarding Messages
     'onboarding-synergies': 'Usa la herramienta Administrador de Repertorio para añadir más luchadores a tu repertorio.',

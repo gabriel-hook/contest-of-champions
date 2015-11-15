@@ -1,7 +1,7 @@
 export default {
-    lang:'Русский',
-  
-    //Champion name 
+    lang: 'Русский',
+
+    //Champion name
     'champion-blackbolt-name': 'Черный Гром',
     'champion-captainmarvel-name': 'Капитан Марвел',
     'champion-drax-name': 'Дракс',
@@ -58,7 +58,7 @@ export default {
     'champion-magik-name': 'Мэджик',
     'champion-scarletwitch-name': 'Алая Ведьма',
     'champion-unstoppablecolossus-name': 'Неудержимый Колосс',
-    
+
     //Champion shortnames
     'champion-blackbolt-shortname': 'Гром',
     'champion-captainmarvel-shortname': 'Кэп Марвел',
@@ -116,8 +116,8 @@ export default {
     'champion-magik-shortname': 'Мэджик',
     'champion-scarletwitch-shortname': 'Ведьма',
     'champion-unstoppablecolossus-shortname': 'Неуд',
-    
-    //Effect name 
+
+    //Effect name
     'effect-attack-name': 'Атака',
     'effect-stun-name': 'Оглушение',
     'effect-critrate-name': 'Вероятность крит. урона',
@@ -129,8 +129,8 @@ export default {
     'effect-armor-name': 'Броня',
     'effect-health-name': 'Здоровье',
     'effect-healthsteal-name': 'Кража здоровья',
-    
-    //Effect description 
+
+    //Effect description
     'effect-attack-description': 'Увеличение урона на все атаки.',
     'effect-stun-description': 'Шанс оглушения при спец. атаках.',
     'effect-critrate-description': 'Увеличение вероятности крит. урона.',
@@ -142,16 +142,16 @@ export default {
     'effect-armor-description': 'Увеличение брони, тем самым уменьшая получаемый урон.',
     'effect-health-description': 'Увеличение здоровья чемпиона.',
     'effect-healthsteal-description': 'Восполнение здоровья при атаке.',
-    
-    //Type name 
+
+    //Type name
     'type-cosmic-name': 'Космос',
     'type-tech-name': 'Технологии',
     'type-mutant-name': 'Мутации',
     'type-skill-name': 'Способности',
     'type-science-name': 'Наука',
     'type-mystic-name': 'Мистика',
-    
-    //Crystal name 
+
+    //Crystal name
     'crystal-versus-name': 'Кристалл за битвы',
     'crystal-arena-name': 'Кристалл Арены',
     'crystal-alliance-name': 'Кристалл союза',
@@ -160,8 +160,8 @@ export default {
     'crystal-premium-name': 'Усиленный кристалл героя',
     'crystal-3star-name': 'Кристалл героя с 3-мя звездами',
     'crystal-4star-name': 'Кристалл героя с 4-мя звездами',
-    
-    //Crystal description (keep $CURRENCY$ tokens for image replacement) 
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
     'crystal-versus-description': 'Даётся за победу на арене 1vs1.',
     'crystal-arena-description': 'Покупается за 2000 $BATTLECHIPS$.',
     'crystal-alliance-description': 'Покупается за 1000 $LOYALTY$.',
@@ -178,13 +178,13 @@ export default {
     'algorithm-greedy-description': 'МЕДЛЕННЫЙ. Выбирает команды, используя математический просчет на основе введенных апраметров.',
     'algorithm-shuffle-description': 'БЫСТРЫЙ. Выбирает лучшую возможную комбинацию команды.',
 
-    //Listing words 
+    //Listing words
     'of': 'из',
     'with': 'с',
     'found': 'Найден',
     'extras': 'Экстра',
-    
-    //Common words/sections 
+
+    //Common words/sections
     'team': 'Команда',
     'teams': 'Команды',
     'guide': 'Руководство',
@@ -196,8 +196,8 @@ export default {
     'crystal': 'Кристалл',
     'crystals': 'Кристаллы',
     'roster': 'Список',
-    
-    //Roster Panel 
+
+    //Roster Panel
     'manage': 'Управление',
     'add-champion': 'Добавить чемпиона',
     'import-csv': 'Импорт .csv',
@@ -205,52 +205,52 @@ export default {
     'delete-all': 'Удалить всех',
     'sort': 'Сортировать',
     'filter': 'Фильтр',
-    
-    //Roster Config 
+
+    //Roster Config
     'stars': 'Категория',
     'type': 'Класс',
     'name': 'Имя',
-    
+
     'rank': 'Ранг',
     'level': 'Уровень',
     'awakened': 'Дубль',
     'quest': 'Задание',
     'view-guide': 'Посмотреть руководство',
-    
+
     'delete': 'Удалить',
     'cancel': 'Отмена',
-    
+
     'ask-delete': 'Вы уверены, что хотите удалить?',
     'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
     'cannot-undo': 'Это действие не может быть отменено.',
-    
-    //Team Panel 
+
+    //Team Panel
     'advanced-settings': 'Дополнительные настройки',
     'team-size': 'Размер команды',
     'algorithm': 'Алгоритм',
     'quest-group': 'Группа задания',
     'build': 'Построить',
-    
+
     //Add Champion Page
     'add-all': 'Добавить всех',
-   
+
     //Advanced Settings Page
     'reset-defaults': 'Восстановить стандартные настройки',
-    'champion-weights':'Уровни чемпионов',
+    'champion-weights': 'Уровни чемпионов',
     'synergy-weights': 'Уровни синергии',
     'duplicate-weights': 'Уровни дублей',
     'choose-preset': 'Выберите предустановку...',
     'use-levels': 'Просчитать используя звезды / ранги / уровни',
-    
-    //Tuples 
+
+    //Tuples
     'double': 'Двойной',
     'triple': 'Тройной',
     'quadruple': 'Четверной',
     'quintuple': 'Пятерной',
-    
-    //Guide Page 
+
+    //Guide Page
     'choose-guide': 'Выберите руководство',
-    
+
     //Options
     'options': 'Опции',
     'share-to': 'Поделиться',
@@ -261,29 +261,29 @@ export default {
     'tools': 'Опции',
     'synergy-map': 'Карта синергии',
     'roster-manager': 'Манеджер списка',
-    
-    //Onboarding Messages 
+
+    //Onboarding Messages
     'onboarding-synergies': 'Используейте меню настройки списка, чтобы добавить еще чемпионов.',
     'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
     'onboarding-teams': 'Используйте меню строителя, чтобы создать свою команду!',
-    
-    //Guide 
+
+    //Guide
     'coming-soon': 'Скоро обновление...',
     'gameplay': 'Геймплей',
     'special': 'Специальные атаки',
     'signature': 'Коронная способность',
     'heavy-attack': 'Тяжелая атака',
     'abilities': 'Способности',
-    
+
     'grade': 'Оценка',
     'strategy': 'Стратегия',
-    
+
     'damage-type': 'Тип урона',
     'range': 'Дальний',
     'note': 'Заметка',
-    
+
     'synergies-external': 'Синергия от других чемпионов',
-    
+
     'none': 'Отсутствует',
 };
 // http://collabedit.com/uuf57

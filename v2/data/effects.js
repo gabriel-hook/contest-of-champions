@@ -32,8 +32,8 @@ const imageMap = {
 
 function effectImage(uid, isAlternate) {
     return `../images/effects/${
-        imageMap[uid] 
-    }${ 
+        imageMap[ uid ]
+    }${
         isAlternate? '_off': ''
     }.jpg`;
 }

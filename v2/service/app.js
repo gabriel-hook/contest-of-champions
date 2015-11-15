@@ -1,6 +1,6 @@
 
 const app = {
-	pages: {},
+    pages: {},
 };
 
 export default app;

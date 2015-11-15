@@ -1,16 +1,16 @@
 import './Menu.scss';
-import roster from '../../service/roster.js';
-import router from '../../service/router.js';
 import lang from '../../service/lang.js';
+/* eslint-disable no-unused-vars */
 import m from 'mithril';
+/* eslint-enable no-unused-vars */
 
-function clickAndClose(click, close){
+function clickAndClose(click, close) {
     return () => click() && close();
 }
 
 function $icon(icon) {
     return icon && (
-        <i class={ `fa fa-${ icon }` }></i>
+        <i class={ `fa fa-${ icon }` } />
     );
 }
 function $image(src) {
@@ -22,7 +22,7 @@ function $image(src) {
 }
 
 const Menu = {
-    controller(args){
+    controller(/* args */) {
         this.open = false;
         this.toggle = () => {
             this.open = !this.open;
@@ -38,8 +38,8 @@ const Menu = {
                 { lang.get('options') }
             </li>
         );
-        if(menu){
-            if(menu.header){
+        if(menu) {
+            if(menu.header) {
                 const icon = $icon(menu.header.icon);
                 const image = $image(menu.header.image);
                 options.push(
@@ -50,8 +50,8 @@ const Menu = {
                     </li>
                 );
             }
-            if(menu.options && menu.options.length){
-                menu.options.forEach((option, index, array) => {
+            if(menu.options && menu.options.length) {
+                menu.options.forEach((option) => {
                     const header = option.header;
                     const icon = $icon(option.icon);
                     const image = $image(option.image);
@@ -71,14 +71,14 @@ const Menu = {
                         clickAndClose(option.onclick, ctrl.toggle) ||
                         null;
                     options.push(
-                        <li 
-                            class={ header? 
-                                'option--section': 
-                                `option ${ 
-                                    selected? 'option--selected': '' 
-                                } ${ 
-                                    split? `option--split-${ split }`: '' 
-                                }` 
+                        <li
+                            class={ header?
+                                'option--section':
+                                `option ${
+                                    selected? 'option--selected': ''
+                                } ${
+                                    split? `option--split-${ split }`: ''
+                                }`
                             }
                             onclick={ onClick }
                         >
@@ -101,16 +101,16 @@ const Menu = {
         for(const id in lang.messages) {
             const selectLanguage = lang.change.bind(lang, id);
             options.push(
-                <li 
-                    class={ 
-                        `option ${ 
-                            lang.current === id? 'option--selected': '' 
-                        }` 
+                <li
+                    class={
+                        `option ${
+                            lang.current === id? 'option--selected': ''
+                        }`
                     }
                     onclick={ selectLanguage }
                 >
                     { $image(`../images/lang/${ id }.png`) }
-                    { lang.messages[id].lang }
+                    { lang.messages[ id ].lang }
                 </li>
             );
         }
@@ -120,15 +120,15 @@ const Menu = {
                 { lang.get('share-to') }
             </li>
         );
-        for(const { id, icon } of [ 
+        for(const { id, icon } of [
             {
                 id: 'google',
                 icon: 'google',
 
             },
             {
-                id: 'facebook', 
-                icon: 'facebook', 
+                id: 'facebook',
+                icon: 'facebook',
             },
             {
                 id: 'twitter',
@@ -155,7 +155,7 @@ const Menu = {
                 </div>
             </div>
         );
-    }
-}
+    },
+};
 
 export default Menu;

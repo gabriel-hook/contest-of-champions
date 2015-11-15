@@ -241,8 +241,8 @@ export default {
     'google': 'Google',
     'tools': 'Tools',
     'language': 'Language',
-    'synergy-map': 'Synergy Map',    
-    'roster-manager': 'Roster Manager',  
+    'synergy-map': 'Synergy Map',
+    'roster-manager': 'Roster Manager',
 
     //Onboarding Messages
     'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
@@ -278,6 +278,6 @@ export default {
     'author-credit': 'This guide was written by',
 
     'email': 'E-mail',
-    
+
     'none': 'None',
 };
