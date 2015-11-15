@@ -1,3 +1,21 @@
+window["CoC"] = window["CoC"] || {};
+window["CoC"]["data"] = window["CoC"]["data"] || {};
+window["CoC"]["data"]["template"] = window["CoC"]["data"]["template"] || {};
+window["CoC"]["data"]["template"]["app-synergies"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=page data-theme=c data-role=page data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('synergies') )) == null ? '' : __t) +
+'"><div id=header><div class=buttons><a class="ui-btn button stars" href=# stars=1 data-ajax=false><span class=narrow>1 ★</span> <span class=wide>★</span></a> <a class="ui-btn button stars" href=# stars=2 data-ajax=false><span class=narrow>2 ★</span> <span class=wide>★ ★</span></a> <a class="ui-btn button stars" href=# stars=3 data-ajax=false><span class=narrow>3 ★</span> <span class=wide>★ ★ ★</span></a> <a class="ui-btn button stars" href=# stars=4 data-ajax=false><span class=narrow>4 ★</span> <span class=wide>★ ★ ★ ★</span></a> <a class="ui-btn button stars" href=# stars=5 data-ajax=false><span class=narrow>5 ★</span> <span class=wide>★ ★ ★ ★ ★</span></a></div><div class="ui-btn button legend"><span class=on>-</span> <span class=off>+</span></div><a class="ui-btn button share" href=#panel-options data-rel=panel><span>s</span></a></div><canvas style="width:100%; height:100%"></canvas><div id=legend></div><div id=onboarding-synergies>' +
+((__t = ( string('onboarding-synergies') )) == null ? '' : __t) +
+'</div></div>';
+
+}
+return __p
+};
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -10757,6 +10775,1039 @@ return jQuery;
     });
   }
 }.call(this));
+
+window["CoC"]["data"]["template"]["options"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div id=panel-options data-role=panel data-display=overlay data-position=right data-theme=a data-overlay-theme=b><h3>' +
+((__t = ( string('options') )) == null ? '' : __t) +
+'</h3><ul data-role=listview><li data-role=list-divider>' +
+((__t = ( string('share-to') )) == null ? '' : __t) +
+'</li><li><a id=share-facebook class=share-button href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target=_blank><img src=images/share/facebook_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('facebook') )) == null ? '' : __t) +
+'</a></li><li><a id=share-twitter class=share-button href="https://twitter.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/twitter_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('twitter') )) == null ? '' : __t) +
+'</a></li><li><a id=share-googleplus class=share-button href="https://plus.google.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/googleplus_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('google') )) == null ? '' : __t) +
+'+</a></li><li data-role=list-divider>' +
+((__t = ( string('language') )) == null ? '' : __t) +
+'</li>';
+ _(['en', 'es', 'ru']).each(function(lang){ ;
+__p += '<li><a href="" class=change-lang lang="' +
+((__t = ( lang )) == null ? '' : __t) +
+'"><img src="images/lang/' +
+((__t = ( lang )) == null ? '' : __t) +
+'.png" class="ui-li-icon ui-corner-none">' +
+((__t = ( CoC.lang[lang].name )) == null ? '' : __t) +
+'</a></li>';
+ }) ;
+__p += '<li data-role=list-divider>' +
+((__t = ( string('tools') )) == null ? '' : __t) +
+'</li>';
+ if(current !== 'app-roster'){ ;
+__p += '<li><a href="/contest-of-champions/' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('roster-manager') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+
+ if(current !== 'app-synergies'){ ;
+__p += '<li><a href="/contest-of-champions/synergies.html' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('synergy-map') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+__p += '</ul></div>';
+
+}
+return __p
+};
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['en'] = {
+  name:'English',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Black Bolt',
+    'champion-captainmarvel-name': 'Captain Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Symbiote',
+    'champion-superiorironman-name': 'Superior Iron Man',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket Raccoon',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Vision',
+    'champion-thevision-name': 'The Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'War Machine',
+    'champion-colossus-name': 'Colossus',
+    'champion-cyclops-name': 'Cyclops',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Storm',
+    'champion-wolverine-name': 'Wolverine',
+    'champion-blackpanther-name': 'Black Panther',
+    'champion-blackwidow-name': 'Black Widow',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Hawkeye',
+    'champion-moonknight-name': 'Moon Knight',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Winter Soldier',
+    'champion-abomination-name': 'Abomination',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Captain America',
+    'champion-captainamericawwii-name': 'Captain America WWII',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Doctor Strange',
+    'champion-ironfist-name': 'Iron Fist',
+    'champion-guillotine-name': 'Guillotine',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Scarlet Witch',
+    'champion-unstoppablecolossus-name': 'Unstoppable Colossus',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Sup. Iron Man',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-drstrange-shortname': 'Dr. Strange',
+    'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
+
+    //Ability name
+    'ability-stun-name': 'Stun',
+    'ability-fatigue-name': 'Fatigue',
+    'ability-powerdrain-name': 'Power Drain',
+    'ability-powerburn-name': 'Power Burn',
+    'ability-bleed-name': 'Bleed',
+    'ability-cauterize-name': 'Cauterize',
+    'ability-armorbreak-name': 'Armor Break',
+    'ability-fury-name': 'Fury',
+    'ability-regeneration-name': 'Regeneration',
+    'ability-unstoppable-name': 'Unstoppable',
+    'ability-poison-name': 'Poison',
+    'ability-armorup-name': 'Armor Up',
+    'ability-plusdamage-name': 'Increased Damage',
+    'ability-pluscritrate-name': 'Increased Critical Rate',
+    'ability-pluscritdamage-name': 'Increased Critical Damage',
+    'ability-poisonimmunity-name': 'Poison Immunity',
+    'ability-bleedimmunity-name': 'Bleed Immunity',
+
+    //Effect name
+    'effect-attack-name': 'Attack',
+    'effect-stun-name': 'Stun',
+    'effect-critrate-name': 'Critical Rate',
+    'effect-critdamage-name': 'Critical Damage',
+    'effect-powergain-name': 'Power Gain',
+    'effect-powersteal-name': 'Power Steal',
+    'effect-perfectblock-name': 'Perfect Block',
+    'effect-block-name': 'Block Proficiency',
+    'effect-armor-name': 'Armor',
+    'effect-health-name': 'Health',
+    'effect-healthsteal-name': 'Health Steal',
+
+    //Effect description
+    'effect-attack-description': 'Increases damage on all attacks.',
+    'effect-stun-description': 'Chance to Stun on special attacks.',
+    'effect-critrate-description': 'Increases the chance for Critical hit.',
+    'effect-critdamage-description': 'Increases damage multiplier for Critical hits.',
+    'effect-powergain-description': 'Gain additional Power (used to trigger a special) whenever Power is gained.',
+    'effect-powersteal-description': 'Gain Power (used to trigger a special) when attacking.',
+    'effect-perfectblock-description': 'Increased chance to Perfect Block for 0 damage.',
+    'effect-block-description': 'Increases Block effectiveness for less damage taken.',
+    'effect-armor-description': 'Increases Armor so that all damage taken is decreased.',
+    'effect-health-description': 'Increases champion Health.',
+    'effect-healthsteal-description': 'Gain Health when attacking.',
+
+    //Type name
+    'type-cosmic-name': 'Cosmic',
+    'type-tech-name': 'Tech',
+    'type-mutant-name': 'Mutant',
+    'type-skill-name': 'Skill',
+    'type-science-name': 'Science',
+    'type-mystic-name': 'Mystic',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alliance',
+    'crystal-daily-name': 'Daily',
+    'crystal-2star-name': '2-Star',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3-Star',
+    'crystal-4star-name': '4-Star',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Acquired when you win a versus match.',
+    'crystal-arena-description': 'Buy for 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Buy for 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Acquired once every 24 hours.',
+    'crystal-premium-description': 'Buy for 100 $UNITS$.',
+    'crystal-3star-description': 'Buy for 400 $UNITS$, rare event.',
+    'crystal-4star-description': 'Buy for 2500 $UNITS$, very rare event.',
+
+    //Algorithm name
+    'algorithm-quest-name': 'Quest',
+    'algorithm-arena-name': 'Arena',
+
+    //Algorithm description
+    'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
+    'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'of',
+    'with': 'with',
+    'found': 'Found',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Team',
+    'teams': 'Teams',
+
+    'guide': 'Guide',
+    'guides': 'Guides',
+
+    'champion': 'Champion',
+    'champions': 'Champions',
+
+    'synergy': 'Synergy',
+    'synergies': 'Synergies',
+
+    'crystal': 'Crystal',
+    'crystals': 'Crystals',
+
+    'roster': 'Roster',
+
+    //Roster Panel
+    'manage': 'Manage',
+    'add-champion': 'Add a Champion',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Delete All',
+
+    'sort': 'Sort',
+    'filter': 'Filter',
+
+    //Roster Config
+    'stars': 'Stars',
+    'type': 'Type',
+    'name': 'Name',
+
+    'rank': 'Rank',
+    'level': 'Level',
+    'awakened': 'Awakened',
+    'quest': 'Quest',
+    'view-guide': 'View Guide',
+
+    'delete': 'Delete',
+    'cancel': 'Cancel',
+
+    'ask-delete': 'Are you sure you want to delete',
+    'ask-delete-all': 'Are you sure you want to delete all of your champions?',
+    'cannot-undo': 'This action cannot be undone.',
+
+    //Team Panel
+    'advanced-settings': 'Advanced Settings',
+    'team-size': 'Team Size',
+    'algorithm': 'Algorithm',
+    'arena': 'Arena',
+    'build': 'Build',
+
+    //Add Champion Page
+    'add-all': 'Add All',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reset to Defaults',
+    'champion-weights': 'Champion Weights',
+    'synergy-weights': 'Synergy Weights',
+    'duplicate-weights': 'Duplicate Class Weights',
+    'choose-preset': 'Choose a preset...',
+    'use-levels': 'Calculate using stars / ranks / levels',
+
+    //Tuples
+    'double': 'Double',
+    'triple': 'Triple',
+    'quadruple': 'Quadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Choose a guide',
+
+    //Options
+    'options': 'Options',
+    'share-to': 'Share to',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Tools',
+    'language': 'Language',
+    'synergy-map': 'Synergy Map',    
+    'roster-manager': 'Roster Manager',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
+    'onboarding-roster': 'Use the options menu to add new champions',
+    'onboarding-teams': 'Use the Build menu create your teams!',
+
+    //Guide
+    'coming-soon': 'Coming Soon...',
+    'description': 'Description',
+    'gameplay': 'Gameplay',
+    'special': 'Special',
+    'signature': 'Signature Ability',
+    'attack': 'Attack',
+    'heavy-attack': 'Heavy Attack',
+    'abilities': 'Abilities',
+    'passive-abilities': 'Passive Abilities',
+
+    'rating': 'Rating',
+    'grade': 'Grade',
+    'strategy': 'Strategy',
+    'style': 'Style',
+
+    'damage-type': 'Damage Type',
+    'range': 'Range',
+    'note': 'Note',
+
+    'synergies-external': 'External Synergies',
+
+    'author': 'Author',
+    'profile': 'Profile',
+    'profile-reddit': 'Reddit /u/',
+    'profile-kabam': 'Kabam Forums',
+    'author-credit': 'This guide was written by',
+
+    'email': 'E-mail',
+    
+    'none': 'None',
+  }
+};
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['es'] = {
+  name:'Español',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Rayo Negro',
+    'champion-captainmarvel-name': 'Capitana Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Simbionte',
+    'champion-superiorironman-name': 'Iron Man Superior',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket el Mapache',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Visión',
+    'champion-thevision-name': 'La Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'Máquina de Guerra',
+    'champion-colossus-name': 'Coloso',
+    'champion-cyclops-name': 'Cíclope',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Tormenta',
+    'champion-wolverine-name': 'Lobezno',
+    'champion-blackpanther-name': 'Pantera Negra',
+    'champion-blackwidow-name': 'Viuda Negra',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Ojo de Halcon',
+    'champion-moonknight-name': 'Caballero Luna',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Soldado del Invierno',
+    'champion-abomination-name': 'Abominación',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Capitán América',
+    'champion-captainamericawwii-name': 'Capitán América 2º GM',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Dr. Extraño',
+    'champion-ironfist-name': 'Puño de Hierro',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Bruja Escarlata',
+    'champion-unstoppablecolossus-name': 'Coloso Imparable',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Iron Man Sup.',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-unstoppablecolossus-shortname': 'Coloso Imp.',
+
+    //Effect name
+    'effect-attack-name': 'Ataque',
+    'effect-stun-name': 'Aturdir',
+    'effect-critrate-name': 'Prob. de Golpe Crítico',
+    'effect-critdamage-name': 'Daño de Golpe Crítico',
+    'effect-powergain-name': 'Acopio de Poder',
+    'effect-powersteal-name': 'Robapoderes',
+    'effect-perfectblock-name': 'Bloqueo Impecable',
+    'effect-block-name': 'Bloqueo Maestro',
+    'effect-armor-name': 'Robustez',
+    'effect-health-name': 'Curación',
+    'effect-healthsteal-name': 'Parásito',
+
+    //Effect description
+    'effect-attack-description': 'Incrementa el daño de todos los ataques.',
+    'effect-stun-description': 'Probabilidad de aturdir con ataques especiales.',
+    'effect-critrate-description': 'Incrementa la probabilidad para golpes críticos.',
+    'effect-critdamage-description': 'Incrementa el daño para golpes críticos.',
+    'effect-powergain-description': 'Gana poder adicional (usado para activar un especial) cada vez que se gana poder.',
+    'effect-powersteal-description': 'Gana poder adicional (usado para activar un especial) cuando atacas.',
+    'effect-perfectblock-description': 'Probabilidad adicional de hacer un bloqueo perfecto con 0 daño.',
+    'effect-block-description': 'Incrementa la efectividad del bloqueo para reducir el daño recibido.',
+    'effect-armor-description': 'Incrementa la armadura para reducir todo el daño recibido.',
+    'effect-health-description': 'Incrementa la salúd del luchador.',
+    'effect-healthsteal-description': 'Incrementa la salúd al atacar.',
+
+    //Type name
+    'type-cosmic-name': 'Cósmico',
+    'type-tech-name': 'Tecnológico',
+    'type-mutant-name': 'Mutante',
+    'type-skill-name': 'Habilidad',
+    'type-science-name': 'Científico',
+    'type-mystic-name': 'Místico',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alianza',
+    'crystal-daily-name': 'Diario',
+    'crystal-2star-name': '2 Estrellas',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3 Estrellas',
+    'crystal-4star-name': '4 Estrellas',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Obtenido al ganar una pelea versus.',
+    'crystal-arena-description': 'Cómpralo por 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Cómpralo por 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Adquirido una vez cada 24 horas.',
+    'crystal-premium-description': 'Cómpralo por 100 $UNITS$.',
+    'crystal-3star-description': 'Cómpralo por 400 $UNITS$, poco común.',
+    'crystal-4star-description': 'Cómpralo por 2500 $UNITS$, muy poco común.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Egoísta',
+    'algorithm-shuffle-name': 'Mixto',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'LENTO. Elige el mejor equipo matemáticamente tomando en cuenta todos los parámetros.',
+    'algorithm-shuffle-description': 'RÁPIDO. Elige las mejores combinaciones posibles de equipos.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'de',
+    'with': 'con',
+    'found': 'Encontrado',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Equipo',
+    'teams': 'Equipos',
+
+    'guide': 'Guía',
+    'guides': 'Guías',
+
+    'champion': 'Luchador',
+    'champions': 'Luchadores',
+
+    'synergy': 'Sinergia',
+    'synergies': 'Sinergias',
+
+    'crystal': 'Cristal',
+    'crystals': 'Cristales',
+
+    'roster': 'Repertorio',
+
+    //Roster Panel
+    'manage': 'Administra',
+    'add-champion': 'Añade un Luchador',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Borra todo',
+
+    'sort': 'Clasificar',
+    'filter': 'Filtrar',
+
+    //Roster Config
+    'stars': 'Estrellas',
+    'type': 'Tipo',
+    'name': 'Name',
+
+    'rank': 'Rango',
+    'level': 'Nivel',
+    'awakened': 'Despertado',
+    'quest': 'Gesta',
+    'view-guide': 'Ver Guía',
+
+    'delete': 'Borrar',
+    'cancel': 'Cancelar',
+
+    'ask-delete': '¿Estas seguro que quieres borrar?',
+    'ask-delete-all': '¿Estás seguro que quieres borrar a todos tus luchadores?',
+    'cannot-undo': 'Esta acción no puede ser deshecha.',
+
+    //Team Panel
+    'advanced-settings': 'Configuración Avanzada',
+    'team-size': 'Tamaño del Equipo',
+    'algorithm': 'Algoritmo',
+    'arena': 'Arena',
+    'build': 'Armar',
+
+    //Add Champion Page
+    'add-all': 'Añadir Todo',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reiniciar a default',
+    'champion-weights': 'Importancia de Luchadores',
+    'synergy-weights': 'Importancia de Sinergías',
+    'duplicate-weights': 'Importancia de Duplicación',
+    'choose-preset': 'Elige un parámetro...',
+    'use-levels': 'Calcula usando Estrellas / Rangos / Niveles',
+
+    //Tuples
+    'double': 'Doble',
+    'triple': 'Triple',
+    'quadruple': 'Cuadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Elige una guía',
+
+    //Options
+    'options': 'Opciones',
+    'share-to': 'Compartir',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Herramientas',
+    'language': 'Idioma',
+    'synergy-map': 'Mapa de Sinergias',    
+    'roster-manager': 'Administrador de Repertorio',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Usa la herramienta Administrador de Repertorio para añadir más luchadores a tu repertorio.',
+    'onboarding-roster': 'Usa el menú de opciones para añadir nuevos luchadores',
+    'onboarding-teams': '¡Usa el menú Armar para crear tus equipos!',
+
+    //Guide
+    'coming-soon': 'Pronto...',
+    'gameplay': 'Gameplay',
+    'special': 'Especial',
+    'signature': 'Habilidad Especial',
+    'heavy-attack': 'Ataque Pesado',
+    'abilities': 'Abilidades',
+
+    'grade': 'Calificación',
+    'strategy': 'Estrategia',
+
+    'damage-type': 'Tipo de daño',
+    'range': 'Rango',
+    'note': 'Nota',
+
+    'synergies-external': 'Sinergias Externas',
+
+    'none': 'Ninguno',
+  }
+};
+// http://collabedit.com/pwxck
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['ru'] = {
+  name:'Русский',
+  model: { 
+  
+    //Champion name 
+    'champion-blackbolt-name': 'Черный Гром',
+    'champion-captainmarvel-name': 'Капитан Марвел',
+    'champion-drax-name': 'Дракс',
+    'champion-gamora-name': 'Гамора',
+    'champion-msmarvel-name': 'Мисс Марвел',
+    'champion-ronan-name': 'Ронан',
+    'champion-spidermanblack-name': 'Черный Человек-Паук',
+    'champion-superiorironman-name': 'Высший Железный Человек',
+    'champion-thor-name': 'Тор',
+    'champion-thorjanefoster-name': 'Джейн Фостер',
+    'champion-venom-name': 'Веном',
+    'champion-ironman-name': 'Железный Человек',
+    'champion-ironpatriot-name': 'Железный Патриот',
+    'champion-hulkbuster-name': 'Халкбастер',
+    'champion-kang-name': 'Канг',
+    'champion-rocket-name': 'Реактивный Енот',
+    'champion-starlord-name': 'Звездный Лорд',
+    'champion-vision-name': 'Вижн',
+    'champion-thevision-name': 'Вижн Кино',
+    'champion-ultron-name': 'Альтрон Прайм',
+    'champion-warmachine-name': 'Воитель',
+    'champion-colossus-name': 'Колосс',
+    'champion-cyclops-name': 'Циклоп',
+    'champion-deadpool-name': 'Дедпул',
+    'champion-deadpoolxforce-name': 'Дедпул X-Force',
+    'champion-magneto-name': 'Магнето',
+    'champion-magnetomarvelnow-name': 'Белый Магнето',
+    'champion-storm-name': 'Шторм',
+    'champion-wolverine-name': 'Росомаха',
+    'champion-blackpanther-name': 'Черная Пантера',
+    'champion-blackwidow-name': 'Черная Вдова',
+    'champion-daredevil-name': 'Сорвиголова',
+    'champion-daredevilnetflix-name': 'Сорвиголова Netflix',
+    'champion-elektra-name': 'Электра',
+    'champion-hawkeye-name': 'Соколиный Глаз',
+    'champion-moonknight-name': 'Лунный Рыцарь',
+    'champion-punisher-name': 'Каратель',
+    'champion-wintersoldier-name': 'Зимний Солдат',
+    'champion-abomination-name': 'Мерзость',
+    'champion-antman-name': 'Человек Муравей',
+    'champion-captainamerica-name': 'Капитан Америка',
+    'champion-captainamericawwii-name': 'Капитан Америка WWII',
+    'champion-electro-name': 'Электро',
+    'champion-hulk-name': 'Халк',
+    'champion-joefixit-name': 'Джо Фиксит',
+    'champion-rhino-name': 'Носорог',
+    'champion-spidergwen-name': 'Спайдер Гвен',
+    'champion-spiderman-name': 'Человек-Паук',
+    'champion-spidermanmorales-name': 'Человек-Паук Моралес',
+    'champion-yellowjacket-name': 'Желтый Шершень',
+    'champion-drstrange-name': 'Доктор Стрэндж',
+    'champion-ironfist-name': 'Железный Кулак',
+    'champion-juggernaut-name': 'Джаггернаут',
+    'champion-magik-name': 'Мэджик',
+    'champion-scarletwitch-name': 'Алая Ведьма',
+    'champion-unstoppablecolossus-name': 'Неудержимый Колосс',
+    
+    //Champion shortnames
+    'champion-blackbolt-shortname': 'Гром',
+    'champion-captainmarvel-shortname': 'Кэп Марвел',
+    'champion-drax-shortname': 'Дракс',
+    'champion-gamora-shortname': 'Гамора',
+    'champion-msmarvel-shortname': 'Мисс',
+    'champion-ronan-shortname': 'Ронан',
+    'champion-spidermanblack-shortname': 'Черный Паук',
+    'champion-superiorironman-shortname': 'СЖЧ',
+    'champion-thor-shortname': 'Тор',
+    'champion-thorjanefoster-shortname': 'Джейн Фостер',
+    'champion-venom-shortname': 'Веном',
+    'champion-ironman-shortname': 'ЖЧ',
+    'champion-ironpatriot-shortname': 'ЖП',
+    'champion-hulkbuster-shortname': 'ХБ',
+    'champion-kang-shortname': 'Канг',
+    'champion-rocket-shortname': 'Енот',
+    'champion-starlord-shortname': 'Лорд',
+    'champion-vision-shortname': 'Вижн',
+    'champion-thevision-shortname': 'Вижн Кино',
+    'champion-ultron-shortname': 'Альтрон',
+    'champion-warmachine-shortname': 'Воитель',
+    'champion-colossus-shortname': 'Колосс',
+    'champion-cyclops-shortname': 'Циклоп',
+    'champion-deadpool-shortname': 'Дед',
+    'champion-deadpoolxforce-shortname': 'Дед седой',
+    'champion-magneto-shortname': 'Магнит',
+    'champion-magnetomarvelnow-shortname': 'Белый Магнит',
+    'champion-storm-shortname': 'Шторм',
+    'champion-wolverine-shortname': 'Рося',
+    'champion-blackpanther-shortname': 'Пантера',
+    'champion-blackwidow-shortname': 'Вдова',
+    'champion-daredevil-shortname': 'Сорвиголова',
+    'champion-daredevilnetflix-shortname': 'Сорвиголова Netflix',
+    'champion-elektra-shortname': 'Электра',
+    'champion-hawkeye-shortname': 'Сокол',
+    'champion-moonknight-shortname': 'Лунатик',
+    'champion-punisher-shortname': 'Кара',
+    'champion-wintersoldier-shortname': 'Зимний',
+    'champion-abomination-shortname': 'Мерзость',
+    'champion-antman-shortname': 'Муравей',
+    'champion-captaishortnamerica-shortname': 'Кэп',
+    'champion-captaishortnamericawwii-shortname': 'Кэп ВМВ',
+    'champion-electro-shortname': 'Электрик',
+    'champion-hulk-shortname': 'Халк',
+    'champion-joefixit-shortname': 'Фиксит',
+    'champion-rhino-shortname': 'Носорог',
+    'champion-spidergwen-shortname': 'Гвен',
+    'champion-spiderman-shortname': 'Паук',
+    'champion-spidermanmorales-shortname': 'Моралес',
+    'champion-yellowjacket-shortname': 'Шершень',
+    'champion-drstrange-shortname': 'Док',
+    'champion-ironfist-shortname': 'Кулак',
+    'champion-juggernaut-shortname': 'Джаг',
+    'champion-magik-shortname': 'Мэджик',
+    'champion-scarletwitch-shortname': 'Ведьма',
+    'champion-unstoppablecolossus-shortname': 'Неуд',
+    
+    //Effect name 
+    'effect-attack-name': 'Атака',
+    'effect-stun-name': 'Оглушение',
+    'effect-critrate-name': 'Вероятность крит. урона',
+    'effect-critdamage-name': 'Крит. Урон',
+    'effect-powergain-name': 'Увеличение Энергии',
+    'effect-powersteal-name': 'Кража Энергии',
+    'effect-perfectblock-name': 'Идеальный Блок',
+    'effect-block-name': 'Вероятность ид. блока',
+    'effect-armor-name': 'Броня',
+    'effect-health-name': 'Здоровье',
+    'effect-healthsteal-name': 'Кража здоровья',
+    
+    //Effect description 
+    'effect-attack-description': 'Увеличение урона на все атаки.',
+    'effect-stun-description': 'Шанс оглушения при спец. атаках.',
+    'effect-critrate-description': 'Увеличение вероятности крит. урона.',
+    'effect-critdamage-description': 'Увеличение критического урона.',
+    'effect-powergain-description': 'Увеличечние энергии (от спец. атак) независимо от атаки.',
+    'effect-powersteal-description': 'Кража энергии (от спец. атак) за счет атаки.',
+    'effect-perfectblock-description': 'Увеличение шанса идеального блока - 0 урона в блоке.',
+    'effect-block-description': 'Увеличение эффективности блокирования - уменьшение урона в блоке.',
+    'effect-armor-description': 'Увеличение брони, тем самым уменьшая получаемый урон.',
+    'effect-health-description': 'Увеличение здоровья чемпиона.',
+    'effect-healthsteal-description': 'Восполнение здоровья при атаке.',
+    
+    //Type name 
+    'type-cosmic-name': 'Космос',
+    'type-tech-name': 'Технологии',
+    'type-mutant-name': 'Мутации',
+    'type-skill-name': 'Способности',
+    'type-science-name': 'Наука',
+    'type-mystic-name': 'Мистика',
+    
+    //Crystal name 
+    'crystal-versus-name': 'Кристалл за битвы',
+    'crystal-arena-name': 'Кристалл Арены',
+    'crystal-alliance-name': 'Кристалл союза',
+    'crystal-daily-name': 'Ежедневный кристалл',
+    'crystal-2star-name': 'Кристалл героя с 2-мя звездами',
+    'crystal-premium-name': 'Усиленный кристалл героя',
+    'crystal-3star-name': 'Кристалл героя с 3-мя звездами',
+    'crystal-4star-name': 'Кристалл героя с 4-мя звездами',
+    
+    //Crystal description (keep $CURRENCY$ tokens for image replacement) 
+    'crystal-versus-description': 'Даётся за победу на арене 1vs1.',
+    'crystal-arena-description': 'Покупается за 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Покупается за 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Появляется каждые 24 часа.',
+    'crystal-premium-description': 'Покупается за 100 $UNITS$.',
+    'crystal-3star-description': 'Покупается за 400 $UNITS$, редкая акция.',
+    'crystal-4star-description': 'Покупается за 2500 $UNITS$, очень редкая акция.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Greedy',
+    'algorithm-shuffle-name': 'Смешанный',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'МЕДЛЕННЫЙ. Выбирает команды, используя математический просчет на основе введенных апраметров.',
+    'algorithm-shuffle-description': 'БЫСТРЫЙ. Выбирает лучшую возможную комбинацию команды.',
+  },
+  string: { 
+  
+      //Listing words 
+    'of': 'из',
+    'with': 'с',
+    'found': 'Найден',
+    'extras': 'Экстра',
+    
+    //Common words/sections 
+    'team': 'Команда',
+    'teams': 'Команды',
+    'guide': 'Руководство',
+    'guides': 'Руководства',
+    'champion': 'Чемпион',
+    'champions': 'Чемпионы',
+    'synergy': 'Синергия',
+    'synergies': 'Синергии',
+    'crystal': 'Кристалл',
+    'crystals': 'Кристаллы',
+    'roster': 'Список',
+    
+    //Roster Panel 
+    'manage': 'Управление',
+    'add-champion': 'Добавить чемпиона',
+    'import-csv': 'Импорт .csv',
+    'export-csv': 'Экспорт .csv',
+    'delete-all': 'Удалить всех',
+    'sort': 'Сортировать',
+    'filter': 'Фильтр',
+    
+    //Roster Config 
+    'stars': 'Категория',
+    'type': 'Класс',
+    'name': 'Имя',
+    
+    'rank': 'Ранг',
+    'level': 'Уровень',
+    'awakened': 'Дубль',
+    'quest': 'Задание',
+    'view-guide': 'Посмотреть руководство',
+    
+    'delete': 'Удалить',
+    'cancel': 'Отмена',
+    
+    'ask-delete': 'Вы уверены, что хотите удалить?',
+    'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
+    'cannot-undo': 'Это действие не может быть отменено.',
+    
+    //Team Panel 
+    'advanced-settings': 'Дополнительные настройки',
+    'team-size': 'Размер команды',
+    'algorithm': 'Алгоритм',
+    'quest-group': 'Группа задания',
+    'build': 'Построить',
+    
+    //Add Champion Page
+    'add-all': 'Добавить всех',
+   
+    //Advanced Settings Page
+    'reset-defaults': 'Восстановить стандартные настройки',
+    'champion-weights':'Уровни чемпионов',
+    'synergy-weights': 'Уровни синергии',
+    'duplicate-weights': 'Уровни дублей',
+    'choose-preset': 'Выберите предустановку...',
+    'use-levels': 'Просчитать используя звезды / ранги / уровни',
+    
+    //Tuples 
+    'double': 'Двойной',
+    'triple': 'Тройной',
+    'quadruple': 'Четверной',
+    'quintuple': 'Пятерной',
+    
+    //Guide Page 
+    'choose-guide': 'Выберите руководство',
+    
+    //Options
+    'options': 'Опции',
+    'share-to': 'Поделиться',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'language': 'Язык',
+    'tools': 'Опции',
+    'synergy-map': 'Карта синергии',
+    'roster-manager': 'Манеджер списка',
+    
+    //Onboarding Messages 
+    'onboarding-synergies': 'Используейте меню настройки списка, чтобы добавить еще чемпионов.',
+    'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
+    'onboarding-teams': 'Используйте меню строителя, чтобы создать свою команду!',
+    
+    //Guide 
+    'coming-soon': 'Скоро обновление...',
+    'gameplay': 'Геймплей',
+    'special': 'Специальные атаки',
+    'signature': 'Коронная способность',
+    'heavy-attack': 'Тяжелая атака',
+    'abilities': 'Способности',
+    
+    'grade': 'Оценка',
+    'strategy': 'Стратегия',
+    
+    'damage-type': 'Тип урона',
+    'range': 'Дальний',
+    'note': 'Заметка',
+    
+    'synergies-external': 'Синергия от других чемпионов',
+    
+    'none': 'Отсутствует',
+  }
+};
+// http://collabedit.com/uuf57
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+(function(){
+  var defaultLang = 'en';
+  var currentLang = 'en';
+
+  var query = {};
+  location.search.substr(1).split('&').map(function(str){
+    var attr = str.split('=');
+    if(attr.length === 2)
+      query[attr[0]] = attr[1] && unescape(attr[1]);
+  });
+  if(query['lang']){
+    if(CoC.lang[query['lang']]){
+      currentLang = query['lang'];
+      console.warn('Language set to "' + currentLang + '"');
+    }
+  }
+
+  CoC.lang.model = function(key, notFoundValue){
+    var value = CoC.lang[currentLang].model[key];
+    if(value === undefined)
+      value = (notFoundValue !== undefined)? notFoundValue: CoC.lang[defaultLang].model[key];
+    return value;
+  };
+
+  CoC.lang.string = function(key){
+    var value = CoC.lang[currentLang].string[key];
+    if(value === undefined)
+      value = CoC.lang[defaultLang].string[key];
+    return value;
+  };
+
+  CoC.lang.search = (defaultLang === currentLang)? '': '?lang='+currentLang;
+
+  CoC.lang.current = currentLang;
+
+  if(currentLang === defaultLang && query['lang'] === undefined){
+    var languages = [], updateLang;
+    if(navigator && navigator.language)
+      languages.push(navigator.language);
+    if(navigator && navigator.languages)
+      languages.concat(navigator.languages);
+    for(var i=0; i<languages.length; i++){
+      var lang = navigator.language.split('-')[0];
+      if(currentLang !== lang || CoC.lang[lang]){
+        updateLang = lang;
+        break;
+      }
+    }
+    if(updateLang && updateLang !== defaultLang){
+      query.lang = updateLang;
+      location.search = '?' + _.pairs(query).map(function(value){
+        return value[0] + '=' + escape(value[1]);
+      }).join('&');
+    }
+  }
+
+})();
+
+var CoC=CoC || {};
+CoC.utils = CoC.utils || {};
+
+CoC.version = '1.6.0';
+
+CoC.utils.typeOfs = {
+  'string': 's',
+  'object': 'o',
+  'function': 'o',
+  'number': 'i'
+};
+
+CoC.utils.styles = {
+  'initialize': 'color:#55f; font-size:14px;',
+  'link': 'color:#00c; font-size:14px;',
+  'search': 'color:#000; text-shadow:1px 1px #ccc; font-size: 16px;',
+  'io': 'color:#060; font-size:14px;',
+  'filename': 'color:#000; text-shadow:1px 1px #ccc; font-size:14px;'
+};
+
+CoC.utils.applyArgumentsEffect = function(args){
+  var array = [], argument, i, prefix = [];
+  for(i = 0; i<args.length; i++){
+    argument = args[i];
+    if(argument && argument.value && argument.style){
+      prefix.push('%c%'+CoC.utils.typeOfs[typeof argument.value]);
+      array.push(CoC.utils.styles[argument.style]);
+      array.push(argument.value);
+    }
+    else{
+      prefix.push('%'+CoC.utils.typeOfs[typeof argument]);
+      array.push(argument);
+    }
+  }
+  array.unshift(prefix.join(' '));
+  return array;
+};
+
+CoC.utils.log = function(){
+  if (console && console.log)
+    console.log.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+};
+
+CoC.utils.info = function(){
+  if(console && console.info){
+    console.info.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.warn = function(){
+  if(console && console.warn){
+    console.warn.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.error = function(){
+  if(console && console.error){
+    console.error.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+(function(){
+  var html = CoC.data.template['app-synergies']({
+    model: CoC.lang.model,
+    string: CoC.lang.string,
+    search: CoC.lang.search
+  });
+  $(document.body).append(html);
+})();
 
 /*!
 * jQuery Mobile 1.4.1
@@ -27843,3 +28894,3526 @@ Backbone.sync = function(method, model, options) {
 
 return Backbone.LocalStorage;
 }));
+
+/**
+ * Springy v2.7.1
+ *
+ * Copyright (c) 2010-2013 Dennis Hotson
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+ (function (root, factory) {
+ 	if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(function () {
+    	return (root.returnExportsGlobal = factory());
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals
+    root.Springy = factory();
+  }
+}(this, function() {
+	"use strict";
+
+	var Springy = {};
+
+	var Graph = Springy.Graph = function() {
+		this.nodeSet = {};
+		this.nodes = [];
+		this.edges = [];
+		this.adjacency = {};
+
+		this.nextNodeId = 0;
+		this.nextEdgeId = 0;
+		this.eventListeners = [];
+	};
+
+	var Node = Springy.Node = function(id, data) {
+		this.id = id;
+		this.data = (data !== undefined) ? data : {};
+
+		// Data fields used by layout algorithm in this file:
+		// this.data.mass
+		// Data used by default renderer in springyui.js
+		// this.data.label
+	};
+
+	var Edge = Springy.Edge = function(id, source, target, data) {
+		this.id = id;
+		this.source = source;
+		this.target = target;
+		this.data = (data !== undefined) ? data : {};
+
+		var nodes = [this.source.id, this.target.id];
+		nodes.sort();
+		this.nodes = nodes.join('_');
+
+		// Edge data field used by layout alorithm
+		// this.data.length
+		// this.data.type
+	};
+
+	Graph.prototype.addNode = function(node) {
+		if (!(node.id in this.nodeSet)){
+			this.nodes.push(node);
+		}
+
+		this.nodeSet[node.id] = node;
+
+		this.notify();
+		return node;
+	};
+
+	Graph.prototype.addNodes = function() {
+		// accepts variable number of arguments, where each argument
+		// is a string that becomes both node identifier and label
+		for (var i = 0; i < arguments.length; i++) {
+			var name = arguments[i];
+			var node = new Node(name, {label:name});
+			this.addNode(node);
+		}
+	};
+
+	Graph.prototype.addEdge = function(edge) {
+		var exists = false;
+		this.edges.forEach(function(e) {
+			if (edge.id === e.id) { exists = true; }
+		});
+
+		if (!exists) {
+			this.edges.push(edge);
+		}
+
+		if (!(edge.source.id in this.adjacency)) {
+			this.adjacency[edge.source.id] = {};
+		}
+		if (!(edge.target.id in this.adjacency[edge.source.id])) {
+			this.adjacency[edge.source.id][edge.target.id] = [];
+		}
+
+		exists = false;
+		this.adjacency[edge.source.id][edge.target.id].forEach(function(e) {
+			if (edge.id === e.id) { exists = true; }
+		});
+
+		if (!exists) {
+			this.adjacency[edge.source.id][edge.target.id].push(edge);
+		}
+
+		this.notify();
+		return edge;
+	};
+
+	Graph.prototype.addEdges = function() {
+		// accepts variable number of arguments, where each argument
+		// is a triple [nodeid1, nodeid2, attributes]
+		for (var i = 0; i < arguments.length; i++) {
+			var e = arguments[i];
+			var node1 = this.nodeSet[e[0]];
+			if (node1 === undefined) {
+				throw new TypeError("invalid node name: " + e[0]);
+			}
+			var node2 = this.nodeSet[e[1]];
+			if (node2 === undefined) {
+				throw new TypeError("invalid node name: " + e[1]);
+			}
+			var attr = e[2];
+
+			this.newEdge(node1, node2, attr);
+		}
+	};
+
+	Graph.prototype.newNode = function(data) {
+		var node = new Node(this.nextNodeId++, data);
+		this.addNode(node);
+		return node;
+	};
+
+	Graph.prototype.newEdge = function(source, target, data) {
+		var edge = new Edge(this.nextEdgeId++, source, target, data);
+		this.addEdge(edge);
+		return edge;
+	};
+
+
+	// add nodes and edges from JSON object
+	Graph.prototype.loadJSON = function(json) {
+	/**
+	Springy's simple JSON format for graphs.
+
+	historically, Springy uses separate lists
+	of nodes and edges:
+
+		{
+			"nodes": [
+				"center",
+				"left",
+				"right",
+				"up",
+				"satellite"
+			],
+			"edges": [
+				["center", "left"],
+				["center", "right"],
+				["center", "up"]
+			]
+		}
+
+		**/
+		// parse if a string is passed (EC5+ browsers)
+		if (typeof json == 'string' || json instanceof String) {
+			json = JSON.parse( json );
+		}
+
+		if ('nodes' in json || 'edges' in json) {
+			this.addNodes.apply(this, json['nodes']);
+			this.addEdges.apply(this, json['edges']);
+		}
+	};
+
+
+	// find the edges from node1 to node2
+	Graph.prototype.getEdges = function(node1, node2) {
+		if (node1.id in this.adjacency && node2.id in this.adjacency[node1.id]) {
+			return this.adjacency[node1.id][node2.id];
+		}
+		return [];
+	};
+
+	// remove a node and it's associated edges from the graph
+	Graph.prototype.removeNode = function(node) {
+		if (node.id in this.nodeSet) {
+			delete this.nodeSet[node.id];
+		}
+
+		for (var i = this.nodes.length - 1; i >= 0; i--) {
+			if (this.nodes[i].id === node.id) {
+				this.nodes.splice(i, 1);
+			}
+		}
+
+		this.detachNode(node);
+	};
+
+	// removes edges associated with a given node
+	Graph.prototype.detachNode = function(node) {
+		var tmpEdges = this.edges.slice();
+		tmpEdges.forEach(function(e) {
+			if (e.source.id === node.id || e.target.id === node.id) {
+				this.removeEdge(e);
+			}
+		}, this);
+
+		this.notify();
+	};
+
+	// remove a node and it's associated edges from the graph
+	Graph.prototype.removeEdge = function(edge) {
+		for (var i = this.edges.length - 1; i >= 0; i--) {
+			if (this.edges[i].id === edge.id) {
+				this.edges.splice(i, 1);
+			}
+		}
+
+		for (var x in this.adjacency) {
+			for (var y in this.adjacency[x]) {
+				var edges = this.adjacency[x][y];
+
+				for (var j=edges.length - 1; j>=0; j--) {
+					if (this.adjacency[x][y][j].id === edge.id) {
+						this.adjacency[x][y].splice(j, 1);
+					}
+				}
+
+				// Clean up empty edge arrays
+				if (this.adjacency[x][y].length === 0) {
+					delete this.adjacency[x][y];
+				}
+			}
+
+			// Clean up empty objects
+			if (isEmpty(this.adjacency[x])) {
+				delete this.adjacency[x];
+			}
+		}
+
+		this.notify();
+	};
+
+	/* Merge a list of nodes and edges into the current graph. eg.
+	var o = {
+		nodes: [
+			{id: 123, data: {type: 'user', userid: 123, displayname: 'aaa'}},
+			{id: 234, data: {type: 'user', userid: 234, displayname: 'bbb'}}
+		],
+		edges: [
+			{from: 0, to: 1, type: 'submitted_design', directed: true, data: {weight: }}
+		]
+	}
+	*/
+	Graph.prototype.merge = function(data) {
+		var nodes = [];
+		data.nodes.forEach(function(n) {
+			nodes.push(this.addNode(new Node(n.id, n.data)));
+		}, this);
+
+		data.edges.forEach(function(e) {
+			var from = nodes[e.from];
+			var to = nodes[e.to];
+
+			var id = (e.directed)
+			? (id = e.type + "-" + from.id + "-" + to.id)
+				: (from.id < to.id) // normalise id for non-directed edges
+				? e.type + "-" + from.id + "-" + to.id
+				: e.type + "-" + to.id + "-" + from.id;
+
+				var edge = this.addEdge(new Edge(id, from, to, e.data));
+				edge.data.type = e.type;
+			}, this);
+	};
+
+	Graph.prototype.filterNodes = function(fn) {
+		var tmpNodes = this.nodes.slice();
+		tmpNodes.forEach(function(n) {
+			if (!fn(n)) {
+				this.removeNode(n);
+			}
+		}, this);
+	};
+
+	Graph.prototype.filterEdges = function(fn) {
+		var tmpEdges = this.edges.slice();
+		tmpEdges.forEach(function(e) {
+			if (!fn(e)) {
+				this.removeEdge(e);
+			}
+		}, this);
+	};
+
+
+	Graph.prototype.addGraphListener = function(obj) {
+		this.eventListeners.push(obj);
+	};
+
+	Graph.prototype.notify = function() {
+		this.eventListeners.forEach(function(obj){
+			obj.graphChanged();
+		});
+	};
+
+	// -----------
+	var Layout = Springy.Layout = {};
+	Layout.ForceDirected = function(graph, stiffness, repulsion, damping, minEnergyThreshold) {
+		this.graph = graph;
+		this.stiffness = stiffness; // spring stiffness constant
+		this.repulsion = repulsion; // repulsion constant
+		this.damping = damping; // velocity damping factor
+		this.minEnergyThreshold = minEnergyThreshold || 0.01; //threshold used to determine render stop
+
+		this.nodePoints = {}; // keep track of points associated with nodes
+		this.edgeSprings = {}; // keep track of springs associated with edges
+	};
+
+	Layout.ForceDirected.prototype.point = function(node) {
+		if (!(node.id in this.nodePoints)) {
+			var mass = (node.data.mass !== undefined) ? node.data.mass : 1.0;
+			this.nodePoints[node.id] = new Layout.ForceDirected.Point(Vector.random(), mass);
+		}
+
+		return this.nodePoints[node.id];
+	};
+
+	Layout.ForceDirected.prototype.spring = function(edge) {
+		if (!(edge.id in this.edgeSprings)) {
+			var length = (edge.data.length !== undefined) ? edge.data.length : 1.0;
+
+			var existingSpring = false;
+
+			var from = this.graph.getEdges(edge.source, edge.target);
+			from.forEach(function(e) {
+				if (existingSpring === false && e.id in this.edgeSprings) {
+					existingSpring = this.edgeSprings[e.id];
+				}
+			}, this);
+
+			if (existingSpring !== false) {
+				return new Layout.ForceDirected.Spring(existingSpring.point1, existingSpring.point2, 0.0, 0.0);
+			}
+
+			var to = this.graph.getEdges(edge.target, edge.source);
+			from.forEach(function(e){
+				if (existingSpring === false && e.id in this.edgeSprings) {
+					existingSpring = this.edgeSprings[e.id];
+				}
+			}, this);
+
+			if (existingSpring !== false) {
+				return new Layout.ForceDirected.Spring(existingSpring.point2, existingSpring.point1, 0.0, 0.0);
+			}
+
+			this.edgeSprings[edge.id] = new Layout.ForceDirected.Spring(
+				this.point(edge.source), this.point(edge.target), length, this.stiffness
+				);
+		}
+
+		return this.edgeSprings[edge.id];
+	};
+
+	// callback should accept two arguments: Node, Point
+	Layout.ForceDirected.prototype.eachNode = function(callback) {
+		var t = this;
+		this.graph.nodes.forEach(function(n){
+			callback.call(t, n, t.point(n));
+		});
+	};
+
+	// callback should accept two arguments: Edge, Spring
+	Layout.ForceDirected.prototype.eachEdge = function(callback) {
+		var t = this;
+		this.graph.edges.forEach(function(e){
+			callback.call(t, e, t.spring(e));
+		});
+	};
+
+	// callback should accept one argument: Spring
+	Layout.ForceDirected.prototype.eachSpring = function(callback) {
+		var t = this;
+		this.graph.edges.forEach(function(e){
+			callback.call(t, t.spring(e));
+		});
+	};
+
+	// callback should accept one argument: Spring
+	Layout.ForceDirected.prototype.eachUniqueSpring = function(callback) {
+		var t = this;
+
+		var ids = {};
+		this.graph.edges.forEach(function(e){
+			if(ids[e.nodes])
+				return;
+			ids[e.nodes] = true;
+
+			callback.call(t, t.spring(e));
+		});
+	};
+
+	// Physics stuff
+	Layout.ForceDirected.prototype.decayMasses = function() {
+		this.eachNode(function(node, point) {
+			if(point.active || node.selected)
+				return;
+			if(point.m !== point.mass){
+				var difference = Math.abs(point.mass - point.m);
+				if(difference < 1){
+					point.m = point.mass;
+					point.delta = undefined;
+				}
+				else{
+					if(point.delta === undefined){
+						point.delta = Math.max(1, difference / 100);
+						if(point.m < point.mass)
+							point.delta = -point.delta;
+					}
+					point.m -= point.delta;
+				}
+			}
+		});
+	};
+
+	// Physics stuff
+	Layout.ForceDirected.prototype.applyCoulombsLaw = function() {
+		var between = {}, id;
+
+		this.eachNode(function(n1, point1){
+			this.eachNode(function(n2, point2){
+				if (n1.id === n2.id)
+					return;
+
+				var d = point1.p.clone().subtract(point2.p),
+					distanceSquared = Math.max(0.1, d.lengthSquared()), // avoid massive forces at small distances (and divide by zero)
+					direction = d.normalise(),
+					repulsion = this.repulsion,
+					strong1 = n1.selected || point1.active,
+					strong2 = n2.selected || point2.active;
+
+				if(strong1 || strong2)
+						repulsion *= Math.max(1, Math.min(Math.max(point1.m, point2.m) / 10, (strong1 && strong2)? 10: 5));
+
+				// apply force to each end point
+				point1.applyForce(direction.multiply(repulsion).divide(0.5 * distanceSquared));
+				point2.applyForce(direction.multiply(-1));
+			});
+		});
+	};
+
+	Layout.ForceDirected.prototype.applyHookesLaw = function() {
+		this.eachUniqueSpring(function(spring){
+			var d = spring.point2.p.clone().subtract(spring.point1.p); // the direction of the spring
+			var displacement = spring.length - d.length();
+			var direction = d.normalise();
+			var k = spring.k;
+
+			// apply force to each end point
+			spring.point1.applyForce(direction.multiply(-0.5 * k * displacement));
+			spring.point2.applyForce(direction.multiply(-1));
+		});
+	};
+
+	Layout.ForceDirected.prototype.attractToCentre = function() {
+		this.eachNode(function(node, point) {
+			var direction = point.p.clone().multiply(-1.0),
+			repulsion = this.repulsion;
+			point.applyForce(direction.multiply(repulsion / 50.0));
+		});
+	};
+
+
+	Layout.ForceDirected.prototype.updateVelocity = function(timestep) {
+		this.eachNode(function(node, point) {
+			point.v.add(point.a.multiply(timestep)).multiply(this.damping);
+			point.a = new Vector(0,0);
+		});
+	};
+
+	Layout.ForceDirected.prototype.updatePosition = function(timestep) {
+		this.eachNode(function(node, point) {
+			point.p.add(point.v.clone().multiply(timestep));
+		});
+	};
+
+	// Calculate the total kinetic energy of the system
+	Layout.ForceDirected.prototype.totalEnergy = function(timestep) {
+		var energy = 0.0;
+		this.eachNode(function(node, point) {
+			var speedSquared = point.v.lengthSquared();
+			energy += 0.5 * point.m * speedSquared;
+		});
+
+		return energy;
+	};
+
+	//requestAnimFrame function from Paul Irish
+	var requestNextFrame = (function(){
+	  	return window.requestAnimationFrame || 
+		  	window.webkitRequestAnimationFrame || 
+		  	window.mozRequestAnimationFrame || 
+		  	window.oRequestAnimationFrame || 
+		  	window.msRequestAnimationFrame;
+	})();
+	var cancelNextFrame = (function(){
+		return window.cancelAnimationFrame || 
+			window.webkitCancelAnimationFrame || 
+			window.mozCancelAnimationFrame || 
+			window.oCancelAnimationFrame || 
+			window.msCancelAnimationFrame;
+	})();
+	function requestRender(callback){
+		if(requestNextFrame === undefined || cancelNextFrame === undefined)
+			setTimeout(callback, 16);
+		else{
+			var start = new Date().getTime();
+			var requestId, timeoutId;
+			if(document.hasFocus()){
+				requestId = requestNextFrame(function(){
+					clearTimeout(timeoutId);
+					callback.call(null);
+				});
+			}
+			timeoutId = setTimeout(function(){
+				cancelNextFrame(requestId);
+				callback.call(null);
+			}, 16);
+		}
+	}
+
+
+	/**
+	 * Start simulation if it's not running already.
+	 * In case it's running then the call is ignored, and none of the callbacks passed is ever executed.
+	 */
+	Layout.ForceDirected.prototype.start = function(render, onRenderStop, onRenderStart) {
+	 	var t = this;
+
+	 	if (this._started) return;
+	 	this._started = true;
+	 	this._stop = false;
+
+	 	if (onRenderStart !== undefined) {
+	 		onRenderStart(); 
+	 	}
+
+	 	var rendering = true, tickDelta = 0.01, milliseconds = 25, totalEnergy = 500;
+
+		//force initial render in case we start out of focus
+		setTimeout(function(){
+			t.tick(tickDelta);
+			if (render !== undefined) {
+				render();
+			}
+		}, 0);
+
+		//do physics ticks on a timer
+		setTimeout(function tickLoop(){
+			t.tick(tickDelta);
+			totalEnergy = t.totalEnergy();
+			if (t._stop)
+				rendering = false;
+			if(rendering)
+				setTimeout(tickLoop, milliseconds);
+		}, milliseconds);
+
+    //do renders every animation frame
+    requestRender(function animationLoop() {
+    	if(rendering){
+    		requestRender(animationLoop);
+    		if (render !== undefined && totalEnergy > t.minEnergyThreshold) {
+    			render();
+    		}
+    	}
+    	else if (onRenderStop !== undefined){ 
+    		onRenderStop(); 
+    	}
+    });
+  };
+
+  Layout.ForceDirected.prototype.stop = function() {
+  	this._stop = true;
+  };
+
+  Layout.ForceDirected.prototype.tick = function(timestep) {
+  	this.decayMasses();
+  	this.applyCoulombsLaw();
+  	this.applyHookesLaw();
+  	this.attractToCentre();
+  	this.updateVelocity(timestep);
+  	this.updatePosition(timestep);
+  };
+
+	// Find the nearest point to a particular position
+	Layout.ForceDirected.prototype.nearest = function(pos) {
+		var min = {node: null, point: null, distance: null};
+		var t = this;
+		this.graph.nodes.forEach(function(n){
+			var point = t.point(n);
+			var distance = point.p.clone().subtract(pos).length();
+			if (min.distance === null || distance < min.distance) {
+				min = {node: n, point: point, distance: distance};
+			}
+		});
+
+		return min;
+	};
+
+
+	// returns [bottomleft, topright]
+	Layout.ForceDirected.prototype.getBoundingBox = function() {
+		var bottomleft = new Vector(-2,-2);
+		var topright = new Vector(2,2);
+		var minimum = -50;
+		var maximum = 50;
+
+		this.eachNode(function(n, point) {
+			// Bound the node
+			point.p.bound(minimum, maximum);
+			// Resize the BBox if needed
+			bottomleft.set(Math.min(bottomleft.x, point.p.x), Math.min(bottomleft.y, point.p.y));
+			topright.set(Math.max(topright.x, point.p.x), Math.max(topright.y, point.p.y));
+		});
+		var padding = topright.clone().subtract(bottomleft).multiply(0.07); // ~5% padding
+		return {bottomleft: bottomleft.subtract(padding), topright: topright.add(padding)};
+	};
+
+	var mathSqrt = Math.sqrt, 
+	mathAbs = Math.abs;
+
+	// Vector
+	var Vector = Springy.Vector = function(x, y) {
+		this.x = x;
+		this.y = y;
+	};
+
+	Vector.random = function() {
+		return new Vector(5.0 * (Math.random() - 0.5), 5.0 * (Math.random() - 0.5));
+	};
+
+	Vector.prototype.clone = function(){
+		return new Vector(this.x, this.y);
+	};
+
+	Vector.prototype.bound = function(minimum, maximum){
+		this.x = Math.max(minimum, Math.min(maximum, this.x));
+		this.y = Math.max(minimum, Math.min(maximum, this.y));
+		return this;
+	};
+
+	Vector.prototype.set = function(x, y){
+		this.x = x;
+		this.y = y;
+		return this;
+	};
+
+	Vector.prototype.copy = function(v2){
+		this.x = v2.x;
+		this.y = v2.y;
+		return this;
+	};
+
+	Vector.prototype.add = function(v2) {
+		this.x += v2.x;
+		this.y += v2.y;
+		return this;
+	};
+
+	Vector.prototype.subtract = function(v2) {
+		this.x -= v2.x;
+		this.y -= v2.y;
+		return this;
+	};
+
+	Vector.prototype.multiply = function(n) {
+		this.x *= n;
+		this.y *= n;
+		return this;
+	};
+
+	Vector.prototype.divide = function(n) {
+		this.x = (this.x / n) || 0;
+		this.y = (this.y / n) || 0;
+		return this;
+	};
+
+	Vector.prototype.dot = function(v2) {
+		return this.x * v2.x + this.y * v2.y;
+	};
+
+	Vector.prototype.lengthSquared = function() {
+		return this.x*this.x + this.y*this.y;
+	};
+
+	Vector.prototype.length = function() {
+		return mathSqrt(this.x*this.x + this.y*this.y);
+	};
+
+	Vector.prototype.normal = function() {
+		var tmp = this.x;
+		this.x = -this.y;
+		this.y = tmp;
+		return this;
+	};
+
+	Vector.prototype.normalise = function() {
+		this.divide(this.length());
+		return this;
+	};
+
+	var omega = 0.0000001;
+	Vector.prototype.equals = function(v2) {
+		return mathAbs(this.x - v2.x) < omega && mathAbs(this.y - v2.y) < omega;
+	};
+
+	// Point
+	Layout.ForceDirected.Point = function(position, mass) {
+		this.p = position; // position
+		this.mass = this.m = mass; // mass
+		this.v = new Vector(0, 0); // velocity
+		this.a = new Vector(0, 0); // acceleration
+	};
+
+	Layout.ForceDirected.Point.prototype.applyForce = function(force) {
+		this.a.x += force.x / this.m;
+		this.a.y += force.y / this.m;
+	};
+
+	// Spring
+	Layout.ForceDirected.Spring = function(point1, point2, length, k) {
+		this.point1 = point1;
+		this.point2 = point2;
+		this.length = length; // spring length at rest
+		this.k = k; // spring constant (See Hooke's law) .. how stiff the spring is
+	};
+
+	// Layout.ForceDirected.Spring.prototype.distanceToPoint = function(point)
+	// {
+	// 	// hardcore vector arithmetic.. ohh yeah!
+	// 	// .. see http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment/865080#865080
+	// 	var n = this.point2.p.subtract(this.point1.p).normalise().normal();
+	// 	var ac = point.p.subtract(this.point1.p);
+	// 	return Math.abs(ac.x * n.x + ac.y * n.y);
+	// };
+
+	/**
+	 * Renderer handles the layout rendering loop
+	 * @param onRenderStop optional callback function that gets executed whenever rendering stops.
+	 * @param onRenderStart optional callback function that gets executed whenever rendering starts.
+	 */
+	var Renderer = Springy.Renderer = function(layout, clear, processNode, drawEdge, drawNode, drawNodeOverlay, drawOverlay, onRenderStop, onRenderStart) {
+	 	this.layout = layout;
+	 	this.clear = clear;
+	 	this.processNode = processNode;
+	 	this.drawEdge = drawEdge;
+	 	this.drawNode = drawNode;
+	 	this.drawNodeOverlay = drawNodeOverlay;
+	 	this.drawOverlay = drawOverlay;
+	 	this.onRenderStop = onRenderStop;
+	 	this.onRenderStart = onRenderStart;
+	 	this.layout.graph.addGraphListener(this);
+	};
+
+	Renderer.prototype.graphChanged = function(e) {
+		this.start();
+	};
+
+	/**
+	 * Starts the simulation of the layout in use.
+	 *
+	 * Note that in case the algorithm is still or already running then the layout that's in use
+	 * might silently ignore the call, and your optional <code>done</code> callback is never executed.
+	 * At least the built-in ForceDirected layout behaves in this way.
+	 *
+	 * @param done An optional callback function that gets executed when the springy algorithm stops,
+	 * either because it ended or because stop() was called.
+	 */
+	Renderer.prototype.start = function(done) {
+	 	var t = this;
+	 	this.layout.start(function render() {
+	 		var i;
+
+	 		t.clear();
+			//build arrays of functions to process
+			var opsBefore = [], opsAfter = [];
+			t.layout.eachNode(function(node, point) {
+				t.processNode(node, point.p);
+				opsBefore.push({ 
+					args:[node, point.p], 
+					func:t.drawNode, 
+					zindex:point.p.y
+				});
+				opsAfter.push({ 
+					args:[node, point.p], 
+					func:t.drawNodeOverlay, 
+					zindex:point.p.y
+				});
+			});
+			t.layout.eachEdge(function(edge, spring) {
+				opsBefore.push({ 
+					args:[edge, spring.point1.p, spring.point2.p], 
+					func:t.drawEdge, 
+					zindex:(spring.point1.p.y + spring.point2.p.y + Math.max(spring.point1.p.y, spring.point2.p.y)) / 3
+				});
+			});
+			//sort by z-index
+			opsBefore.sort(function(a, b){
+				return a.zindex - b.zindex;
+			});
+			opsAfter.sort(function(a, b){
+				return a.zindex - b.zindex;
+			});
+			//process the rendering functions
+			for(i=0; i<opsBefore.length; i++)
+				opsBefore[i].func.apply(t, opsBefore[i].args);
+			for(i=0; i<opsAfter.length; i++)
+				opsAfter[i].func.apply(t, opsAfter[i].args);
+			t.drawOverlay();
+		}, this.onRenderStop, this.onRenderStart);
+};
+
+Renderer.prototype.stop = function() {
+	this.layout.stop();
+};
+
+	// Array.forEach implementation for IE support..
+	//https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
+	if ( !Array.prototype.forEach ) {
+		Array.prototype.forEach = function( callback, thisArg ) {
+			var T, k;
+			if ( this === null ) {
+				throw new TypeError( " this is null or not defined" );
+			}
+			var O = Object(this);
+			var len = O.length >>> 0; // Hack to convert O.length to a UInt32
+			if ( {}.toString.call(callback) != "[object Function]" ) {
+				throw new TypeError( callback + " is not a function" );
+			}
+			if ( thisArg ) {
+				T = thisArg;
+			}
+			k = 0;
+			while( k < len ) {
+				var kValue;
+				if ( k in O ) {
+					kValue = O[ k ];
+					callback.call( T, kValue, k, O );
+				}
+				k++;
+			}
+		};
+	}
+
+	var isEmpty = function(obj) {
+		for (var k in obj) {
+			if (obj.hasOwnProperty(k)) {
+				return false;
+			}
+		}
+		return true;
+	};
+
+	return Springy;
+}));
+
+/**
+Copyright (c) 2010 Dennis Hotson
+
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ */
+(function() {
+  "use strict";
+
+jQuery.fn.springy = function(params) {
+  var stiffness = params.stiffness || 400.0;
+  var repulsion = params.repulsion || 400.0;
+  var damping = params.damping || 0.5;
+  var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
+  var nodeSelected = params.nodeSelected || null;
+  var maxTeamSize = params.maxTeamSize || 5;
+  var activeMass = params.activeMass || 500;
+
+  var canvas = this[0];
+  var ctx = canvas.getContext("2d");
+
+  var nodeFont;
+  var pixelRatio;
+  var canvasOffset, canvasWidth, canvasHeight;
+
+  //We can check to see if the font has been loaded before using.
+  var ScaledNodeFont = function(){
+    this.fontSize = 16 * pixelRatio;
+    this.font = this.fontSize + "px Hanzel, sans-serif";
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+
+    context.font = this.fontSize + "px sans-serif";
+    var wrongSize = context.measureText("wE arE reaDY.").width;
+
+    context.font = this.font;
+
+    this.isReady = function(){
+      if(!this.loaded && context.measureText("wE arE reaDY.").width !== wrongSize)
+        this.loaded = true;
+      return this.loaded;
+    };
+  };
+
+  function doResize(){
+    pixelRatio = window.devicePixelRatio || 1;
+    canvasOffset = $(canvas).offset();
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
+    nodeFont = new ScaledNodeFont();
+  }
+  doResize();
+
+  var resizeTimeout;
+  $(window).on("resize", function(e){
+    if(resizeTimeout)
+      clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function(){
+      doResize();
+      resizeTimeout = null;
+    }, 50);
+  });
+
+  var graph = this.graph = params.graph || new Springy.Graph();
+  var layout = this.layout = new Springy.Layout.ForceDirected(graph, stiffness, repulsion, damping, minEnergyThreshold);
+
+	// calculate bounding box of graph layout.. with ease-in
+	var currentBB = layout.getBoundingBox();
+
+	// convert to/from screen coordinates
+	var toScreen = function(point) {
+		var size = currentBB.topright.clone().subtract(currentBB.bottomleft),
+    delta = point.clone().subtract(currentBB.bottomleft);
+    return new Springy.Vector(delta.x / size.x * canvasWidth, delta.y / size.y * canvasHeight);
+  };
+
+  var fromScreen = function(point) {
+    var size = currentBB.topright.clone().subtract(currentBB.bottomleft);
+    return new Springy.Vector((point.x / canvasWidth) * size.x + currentBB.bottomleft.x, (point.y / canvasHeight) * size.y + currentBB.bottomleft.y);
+  };
+
+  var getCoordinate = function(x, y){
+    return new Springy.Vector(x, y).multiply(pixelRatio);
+  };
+
+  function graphShake(){
+    layout.eachNode(function(node, point){
+      point.p = Springy.Vector.random();
+    });
+  }
+
+	// half-assed drag and drop
+	var selected = [];
+  var edgeSelected = null;
+  var dragged = null;
+  var moved = 0;
+  var selection = null;
+  var clicks = 0;
+  var clickSource;
+
+  this.selectEdgeType=function(type){
+    clearSelected();
+    edgeSelected = type;
+    if(dragged)
+      dragged.point.active = false;
+    dragged = null;
+    renderer.start();
+  };
+
+  //Selection Modifications
+  function addSelected(node){
+    var array = selected.slice(), index = array.indexOf(node);
+    if(index !== -1)
+      array.splice(index, 1);
+    array.push(node);
+    updateSelected(array);
+  }
+  function toggleSelected(node){
+    var array = selected.slice(), index = array.indexOf(node);
+    if(index !== -1)
+      array.splice(index, 1);
+    else
+      array.push(node);
+    updateSelected(array);
+  }
+  function replaceSelected(node){
+    var index = selected.indexOf(node);
+    if(index === -1)
+      updateSelected([ node ]);
+  }
+  function boxSelected(selectType){
+    var i, index;
+    //select the first 5 closest to the start point and inside
+    var x1 = Math.min(selection.start.x, selection.end.x) | 0,
+    y1 = Math.min(selection.start.y, selection.end.y) | 0,
+    x2 = x1 + Math.abs(selection.start.x - selection.end.x) | 0,
+    y2 = y1 + Math.abs(selection.start.y - selection.end.y) | 0;
+
+    var array = [];
+    graph.nodes.forEach(function(node){
+      if(!node.bb)
+        return;
+      if(array.indexOf(node) !== -1)
+        return;
+      if(node.bb.center.x > x1 && node.bb.center.x < x2 && node.bb.center.y > y1 && node.bb.center.y < y2){
+        var dx = Math.abs(selection.start.x + selection.end.x) / 2 - node.bb.center.x, 
+          dy = Math.abs(selection.start.y + selection.end.y) / 2 - node.bb.center.y;
+        array.push({ distanceSquared: dx*dx + dy*dy, node: node });
+      }
+    });
+    array.sort(function(a, b){
+      return b.distanceSquared - a.distanceSquared;
+    });
+    for(i=0; i<array.length; i++)
+      array[i] = array[i].node;
+
+    if(selectType === "add"){
+      for(i=0; i<selection.before.length; i++){
+        index = array.indexOf(selection.before[i]);
+        if(index !== -1)
+          array.splice(index, 1);
+        array.push(selection.before[i]);
+      }
+    }
+    if(selectType === "toggle"){
+      for(i=0; i<selection.before.length; i++){
+        index = array.indexOf(selection.before[i]);
+        if(index !== -1)
+          array.splice(index, 1);
+        else
+          array.push(selection.before[i]);
+      }
+    }
+
+    updateSelected(array);
+  }
+  function clearSelected(){
+    updateSelected([]);
+  }
+  function updateSelected(array){
+    var i;
+
+    if(array.length > maxTeamSize)
+      array = array.slice(-maxTeamSize);
+
+    for(i=0; i<selected.length; i++)
+      selected[i].selected = false;
+
+    selected = array;
+    for(i=0; i<selected.length; i++){
+      var point = layout.point(selected[i]);
+      if(point)
+        point.m = activeMass;
+      selected[i].selected = true;
+    }
+  }
+  function updateNodesSelected(){
+    var i, j, k, edge;
+
+    if (nodeSelected){
+      var selectedEdges = [];
+      for(i=0; i<graph.edges.length; i++){
+        edge = graph.edges[i];
+        if(selected.length > 1){
+          for(j=0; j<selected.length; j++)
+            for(k=0; k<selected.length; k++)
+              if(selected[j] === edge.source && selected[k] === edge.target)
+                selectedEdges.push(edge);
+        } 
+        else{
+          for(j=0; j<selected.length; j++)
+            if(selected[j] === edge.source || selected[j] === edge.target || (selected[j].data.neighbors[ edge.source.id ] && selected[j].data.neighbors[ edge.target.id ]) )
+              selectedEdges.push(edge);
+        }
+      }
+      nodeSelected(selected, selectedEdges);
+    }  
+  }
+
+  function findNodeAt(coord){
+    var nearest = {};
+    graph.nodes.forEach(function(node){
+      var distance = node.distanceSquared(coord.x, coord.y);
+      if(nearest.distance === undefined || distance < nearest.distance){
+        var found;
+        if(clickSource === "touch"){
+          var radius = Math.max(32, node.bb.size);
+          found = (node.bb)? distance < radius * radius : false;
+        }
+        else
+          found = node.containsPoint(coord);
+        if(found){
+          nearest.node = node,
+          nearest.distance = distance;
+        }
+      }
+    });
+    return nearest.node;
+  }
+
+  //Pointer actions
+  function pointerStart(coord, selectType, otherCoord){
+    if(dragged)
+      dragged.point.active = false;
+    var node = findNodeAt(coord);
+    if(!node){
+      if(selectType === "replace" || clickSource === "touch"){
+        clearSelected();
+        updateNodesSelected();
+      }
+      if(clickSource === "touch"){
+        if(coord && otherCoord){
+          selection = { start: coord, end: otherCoord, before:selected, type:selectType };
+        }
+      }
+      else if(selectType)
+        selection = { start: coord, before:selected, type:selectType };
+      clicks = 0;
+    }
+    else{
+      if(node.isSelected())
+        clicks++;
+      var point = fromScreen(coord);
+      dragged = { node:node, point:layout.point(node) };
+      dragged.offset = new Springy.Vector(dragged.point.p.x - point.x, dragged.point.p.y - point.y);
+      dragged.coord = coord;
+      dragged.point.active = true;
+      dragged.point.m = activeMass;
+    }
+    moved = 0;
+    renderer.start();
+  }
+  
+  function pointerMove(coord, selectType, otherCoord){
+    var point = fromScreen(coord);
+    if (dragged !== null) {
+      moved += coord.clone().subtract(dragged.coord).length();
+      dragged.coord = coord;
+      dragged.point.p = point.add(dragged.offset);
+      dragged.point.m = activeMass;
+      dragged.point.active = true;
+    }
+    else if(clickSource === "touch"){
+      if(coord && otherCoord){
+        selection.start = coord;
+        selection.end = otherCoord;
+        selection.type = selectType;
+      }
+    }
+    else if(selection){
+      selection.end = coord;
+      selection.type = selectType;
+    }
+    renderer.start();
+  }
+  
+  function pointerEnd(clicked, selectType){
+    selection = null;
+    if(dragged !== null){
+      if(moved < 10){
+        switch(selectType){
+          case "add":
+            addSelected( dragged.node );
+            break;
+          case "toggle":
+            toggleSelected( dragged.node );
+            break;
+          case "replace":
+            replaceSelected( dragged.node );
+            break;
+        }
+        updateNodesSelected();
+        edgeSelected = null;
+      }
+      dragged.point.active = false;
+      dragged = null;
+    }
+    else if(clicked)
+      edgeSelected = null;
+  }
+
+  function selectType(event){
+    return (event.shiftKey)? "add": (event.ctrlKey)? "toggle": "replace";
+  }
+
+  $('body').on('keyup', function(e){
+    if(e.which === 27){ // escape
+      e.preventDefault();
+      clearSelected();
+      if(nodeSelected){
+        nodeSelected(selected);
+      }
+    }
+    else if(e.which === 32){ // space bar
+      e.preventDefault();
+      graphShake();
+    }
+  });
+  
+  var tapHold = {
+    handler: function handler(){
+      var node = dragged && dragged.node;
+      if(moved < 10 && node && node.isSelected() && node.data.onOpen){
+        node.data.onOpen();
+        pointerEnd();
+      }
+    },
+    timeout: 0,
+    timeoutDelay:1000
+  };
+
+  $(canvas).on('dblclick', function(e) {
+    if(clickSource !== "mouse" || clicks < 2 || e.shiftKey || e.ctrlKey)
+      return;
+    var node = findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top));
+    if(moved < 10 && node && node.isSelected() && node.data.onOpen){
+      node.data.onOpen();
+      pointerEnd();
+    }
+    e.preventDefault();
+  });
+
+  $(canvas).on('touchstart', function(e){
+    clearTimeout(tapHold.timeout);
+    if(window.event.touches.length === 1)
+      tapHold.timeout = setTimeout(tapHold.handler, tapHold.timeoutDelay);
+    clickSource = "touch";
+    var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
+      otherCoord;
+    if(window.event.touches.length > 1)
+      otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
+    pointerStart(coord, "toggle", otherCoord);
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+
+  $(canvas).on('touchmove', function(e) {
+    clickSource = "touch";
+    var coord = getCoordinate(window.event.touches[0].pageX - canvasOffset.left, window.event.touches[0].pageY - canvasOffset.top),
+      otherCoord;
+    if(window.event.touches.length > 1)
+      otherCoord = getCoordinate(window.event.touches[1].pageX - canvasOffset.left, window.event.touches[1].pageY - canvasOffset.top);
+    pointerMove(coord, "toggle", otherCoord);
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+
+  $(canvas).on('touchend',function(e) {
+    clearTimeout(tapHold.timeout);
+    clickSource = "touch";
+    if(window.event.touches.length === 0)
+      pointerEnd(true, "toggle");
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+
+  $(canvas).on('touchleave touchcancel',function(e) {
+    clearTimeout(tapHold.timeout);
+    clickSource = "touch";
+    pointerEnd(false, "toggle");
+  });
+
+  $(window).on('touchend',function(e) {
+    clearTimeout(tapHold.timeout);
+    clickSource = "touch";
+    pointerEnd(false, "toggle");
+  });
+
+  $(canvas).on('mousedown', function(e) {
+    if(e.button === 2)
+      return;
+    clickSource = "mouse";
+    pointerStart(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
+    e.preventDefault();
+  });
+
+  $(window).on('mousemove', function(e) {
+    clickSource = "mouse";
+    pointerMove(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top), selectType(e));
+    e.preventDefault();
+  });
+
+  $(window).on('mouseup',function(e) {
+    if(e.target !== canvas && !dragged && !selection)
+      return;
+    clickSource = "mouse";
+    pointerEnd(true, selectType(e));
+    e.preventDefault();
+  });
+
+  $(canvas).on('mousedown mousemove mouseenter mouseleave',function(e) {
+    var state = '';
+    if(selection)
+      state = 'selecting';
+    else if(dragged !== null)
+      state = 'dragging';
+    else{
+      if(findNodeAt(getCoordinate(e.pageX - canvasOffset.left, e.pageY - canvasOffset.top)))
+        state = 'hover';
+    }
+    switch(state){
+      case 'selecting':
+      $(canvas)[0].className="selecting";
+      break;
+      case 'dragging':
+      $(canvas)[0].className="dragging";
+      break;
+      case 'hover':
+      $(canvas)[0].className="hover";
+      break;
+      default:
+      $(canvas)[0].className="";
+    }
+  });
+
+  var nodeHitmasks = {};
+  function getHitmask(src, image){
+    if(!nodeHitmasks[src]){
+      if(typeof image === "function")
+        image = image();
+      var x, y,
+        size = image.width, 
+        imageData = image.getContext('2d').getImageData(0, 0, size, size), 
+        data = imageData.data, 
+        opaque = {};
+      for(x=0; x<size; x++){
+        opaque[x] = {};
+        for(y=0; y<size; y++)
+          opaque[x][y] = (data[(y*size*4) + x*4 + 3] > 127)? true: undefined;
+      }
+      nodeHitmasks[src] = { size:size, opaque:opaque };
+    }
+    return nodeHitmasks[src];
+  }
+
+  var nodeImages = {};
+  var nodeImageQueue = {
+    list:[],
+    todo:{}
+  };
+  nodeImageQueue.push = function(id, callback){
+    nodeImageQueue.insert(id, callback, 'push');
+  };
+  nodeImageQueue.unshift = function(id, callback){
+    nodeImageQueue.insert(id, callback, 'unshift');
+  };
+  nodeImageQueue.insert = function(id, callback, method){
+    nodeImageQueue.todo[id] = callback;
+    nodeImageQueue.list[method].call(nodeImageQueue.list, id);
+    if(!nodeImageQueue.timeout)
+      nodeImageQueue.next();
+  };
+  nodeImageQueue.next = function(){
+    if(nodeImageQueue.list.length === 0)
+      return;
+    var id = nodeImageQueue.list.shift();
+    var todo = nodeImageQueue.todo[id];
+    delete nodeImageQueue.todo[id];
+    nodeImageQueue.timeout = setTimeout(function(){
+      delete nodeImageQueue.timeout;
+      todo.call(null);
+      nodeImageQueue.next();
+    }, 25);
+  };
+
+  function addPortaitImages(src, image, color){
+    //build the image 
+    var canvas = document.createElement('canvas'),
+    context = canvas.getContext('2d'),
+    barHeight = Math.max(2, (image.width/10) | 0);
+    canvas.width = canvas.height = image.width;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    context.fillStyle = color;
+    context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+
+    if(nodeImages[src].portraits === undefined)
+      nodeImages[src].portraits = [];
+    nodeImages[src].portraits.push(canvas);
+
+    var resize = image.width >> 1;
+    if(resize >= 16){
+      var resizeCanvas = document.createElement('canvas'),
+      resizeContext = resizeCanvas.getContext('2d');
+      resizeCanvas.width = resizeCanvas.height = resize;
+      resizeContext.drawImage(image, 0, 0, resize, resize);
+      nodeImageQueue.unshift(src, function(){
+        addPortaitImages(src, resizeCanvas, color);
+      }, 'unshift');
+    }
+    else{
+      nodeImages[src].loaded = true;
+    }
+  }
+
+  var placeholders={};
+  var placeholderCoords = [
+    //Used the svg path from here and just filled the path with bezier curves.
+    //The original size of the svg path was 220x220 so scale to new size.
+    //https://upload.wikimedia.org/wikipedia/en/b/b9/No_free_portrait.svg
+    3.5709275,215.81378,
+    3.7352275,204.03019,3.8497975,199.05392,3.5005675,183.77748,
+    11.214111,174.15409,38.3674,169.74066,45.785393,167.0981,
+    55.358378,159.98075,66.203698,153.92378,75.552667,148.56151,
+    80.7154,145.60034,80.782546,135.45005,80.404668,128.63362,
+    78.689369,118.98009,77.782686,110.65561,70.86354,103.56735,
+    70.47649,101.54341,69.346365,96.899211,65.948685,90.832271,
+    63.662168,80.636072,54.650066,68.010083,56.914311,61.532735,
+    62.944238,44.282973,57.676043,37.272904,61.378834,35.798494,
+    69.823479,32.435953,72.10706,25.082426,79.841538,17.698566,
+    102.43887,13.411138,98.965362,1.9932189,115.84961,4.1987589,
+    136.77696,6.9324259,125.2515,10.014792,139.60507,17.279644,
+    157.23926,26.204921,146.73196,27.108963,162.83032,50.739759,
+    172.38972,64.771999,153.76819,65.728581,158.59298,78.146165,
+    163.04993,89.617072,152.54354,91.572613,147.24294,104.12579,
+    142.15767,116.16899,138.96668,119.70997,144.82195,135.58386,
+    150.25927,150.32462,159.28667,143.58938,179.677,165.66778,
+    184.85448,171.27389,203.45549,164.48784,216.26305,180.85898,
+    216.25506,189.25148,216.44185,198.19473,216.49943,216.08121,
+    159.09474,215.87646,3.5709275,215.81378,3.5709275,215.81378
+    ];
+
+  function getPlaceholder(size, color){
+    var id = size + '_' + (color || '');
+    if(!placeholders[id]){
+      var canvas, context;
+      if(!placeholders[size]){
+        var ratio = size / 220;
+        canvas = document.createElement('canvas');
+        context = canvas.getContext('2d');
+        canvas.height = canvas.width = size;
+        context.beginPath();
+        context.moveTo(placeholderCoords[0] * ratio, placeholderCoords[1] * ratio);
+        for(var i=2; i<placeholderCoords.length; i+=6)
+          context.bezierCurveTo(
+            placeholderCoords[i]*ratio, placeholderCoords[i+1]*ratio,
+            placeholderCoords[i+2]*ratio, placeholderCoords[i+3]*ratio,
+            placeholderCoords[i+4]*ratio, placeholderCoords[i+5]*ratio
+          );
+        context.closePath();
+        context.lineWidth = 3;
+        context.strokeStyle = "#868686";
+        context.stroke();
+        context.fillStyle = "#909090";
+        context.fill();
+        placeholders[size] = canvas;
+      }
+      var barHeight = Math.max(2, (size / 10) | 0);
+      canvas = document.createElement('canvas');
+      context = canvas.getContext('2d');
+      canvas.height = canvas.width = size;
+      context.drawImage(placeholders[size], 0, 0, canvas.width, canvas.height);
+      context.fillStyle = color || "#000";
+      context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
+      placeholders[id] = canvas;
+    }
+    return placeholders[id];
+  }
+
+  var getPortraitSizeTarget = function(number){
+    var list = {};
+    getPortraitSizeTarget = function(number){
+      if(list[number] === undefined){
+        var i = 1, last = 0;
+        while(i != number && i + (i-last)>>1 < number){
+          last = i;
+          i = i << 1;
+        }
+        list[number] = i;
+      }
+      return list[number];
+    };
+    return getPortraitSizeTarget(number);
+  };
+
+  //we cache the best sized portrait with type bar
+  Springy.Node.prototype.setPortraitImage = function(size){
+    var portrait,
+      hitmask,
+      img = this.data.image, 
+      color = this.data.color || "#111111", 
+      node = this;
+    if(img){
+      var src = img.src;
+      if (src in nodeImages) {
+        if (nodeImages[src].loaded) {
+          //sample down for better antialiasing
+          var portraits = nodeImages[src].portraits, 
+          target = getPortraitSizeTarget(size);
+          for(var i=0; i < portraits.length && portraits[i].width >= target; i++)
+            portrait = portraits[i];
+
+          //get hitmask from largest image
+          hitmask = getHitmask(src, portraits[0]);
+        }
+      }
+      else{
+        nodeImages[src] = {  
+          loaded: false,
+          portraits:[]
+        };
+        var image = new Image();
+        image.addEventListener("load", function (){
+          nodeImageQueue.push(src, function(){
+            addPortaitImages(src, image, color);
+          });
+        });
+        image.src = src;
+      }
+    }
+    if(!portrait){
+      portrait = getPlaceholder(size, color);
+      hitmask = getHitmask('portrait', function(){ 
+        return getPlaceholder(256); 
+      });
+    }
+
+    this.image = portrait;
+    this.hitmask = hitmask;
+  };
+
+  Springy.Node.prototype.setPortraitText = function() {
+    if(!this.text || this.text.font != nodeFont || (!this.text.ready && this.text.ready !== nodeFont.isReady())){
+      var canvas = document.createElement('canvas'),
+      context = canvas.getContext('2d'),
+      text = this.data.label.toUpperCase();
+
+      context.font = nodeFont.font;
+      var paddingX = pixelRatio * (nodeFont.isReady()? 6: 3);
+      var paddingTop = pixelRatio * (nodeFont.isReady()? 4: 3);
+      var paddingBottom = pixelRatio * 3;
+      var textWidth = context.measureText(text).width;
+      var textHeight = nodeFont.fontSize;
+
+      canvas.width = (textWidth + paddingX * 2) | 0;
+      canvas.height = (textHeight + paddingTop + paddingBottom) | 0;
+
+      //draw the text background
+      context.fillStyle = "rgba(0, 0, 0, 0.5)";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      //draw the name
+      context.font = nodeFont.font;
+      context.fillStyle = "#ffffff";
+      context.textAlign = "left";
+      context.textBaseline = "top";
+      context.shadowColor = "#000";
+      context.shadowOffsetX = 1 * pixelRatio;
+      context.shadowOffsetY = 1 * pixelRatio;
+      context.fillText(text, paddingX, paddingTop);
+
+      this.text = canvas;
+      this.text.font = nodeFont;
+      this.text.ready = nodeFont.isReady();
+    }
+  };
+
+  var renderer = this.renderer = new Springy.Renderer(layout,
+    function clear() {
+      currentBB = layout.getBoundingBox();
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      if(selection && selection.start && selection.end){
+        boxSelected(selection.type);
+        updateNodesSelected();
+      }
+      if(dragged){
+        var point = fromScreen(dragged.coord);
+        dragged.point.p = point.add(dragged.offset);
+        dragged.point.m = activeMass;
+      }
+    },
+    function processNode(node, point) {
+      var s = toScreen(point), 
+      x = (s.x | 0), 
+      y = (s.y | 0), 
+      fullSize = node.getSize() | 0, 
+      halfSize = fullSize >> 1;
+      //set images/bounds
+      node.setPortraitText();
+      node.setPortraitImage(fullSize);
+      node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
+    },
+    function drawEdge(edge, pointStart, pointEnd) {
+      var p1 = toScreen(pointStart), p2 = toScreen(pointEnd);
+      var isSelected = 0;
+      if(edgeSelected){
+        if(edge.data.effect === edgeSelected)
+          isSelected = 1;
+      }
+      else if (selected.length === maxTeamSize){
+        if(edge.source.isSelected() && edge.target.isSelected())
+          isSelected = 1;
+      }
+      else if(selected.length > 1){
+        var sourceSelected = edge.source.isSelected(), targetSelected = edge.target.isSelected();
+        if(sourceSelected && targetSelected)
+          isSelected = 1;
+        else if(sourceSelected || targetSelected)
+          isSelected = 0.5;
+        else if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
+          isSelected = 0.5;
+      }
+      else if(selected.length){
+        if(edge.source.isSelected() || edge.target.isSelected())
+          isSelected = 1;
+        if(edge.target.isSelectedNeighbor() && edge.source.isSelectedNeighbor())
+          isSelected = 0.5;
+      }
+      else
+        isSelected = 1;
+      
+      var normal = p2.clone().subtract(p1).normal().normalise();
+      var from = graph.getEdges(edge.source, edge.target);
+      var to = graph.getEdges(edge.target, edge.source);
+      var total = from.length + to.length;
+
+			// Figure out edge's position in relation to other edges between the same nodes
+			var n = 0;
+			for (var i=0; i<from.length; i++) {
+				if (from[i].id === edge.id) {
+					n = i;
+				}
+			}
+
+			//change default to  10.0 to allow text fit between edges
+			var spacing = Math.min(Math.max(4, Math.min(window.innerWidth, window.innerHeight)/50), 12) * pixelRatio;
+
+			// Figure out how far off center the line should be drawn
+			var offset = normal.multiply(-((total - 1) * spacing)/2.0 + (n * spacing));
+			var s1 = p1.clone().add(offset);
+			var s2 = p2.clone().add(offset);
+      var sdelta = s2.clone().subtract(s1).normalise();
+      var weight = (selected.length > 1 && isSelected === 1)? 2: 1.0;
+      var width = Math.max(weight *  1.5, 0.1) * pixelRatio;
+      var arrowWidth = 1 + width;
+      var arrowLength = arrowWidth * 4;
+      var overlapping = edge.target.overlapping(edge.source);
+      var lineStart, lineEnd, lineDelta, lineDiff;
+      var halfArrow = sdelta.clone().multiply( arrowLength * 0.75 );
+      var sourceAbove = s1.y < s2.y;
+
+      //get best line start/end
+      if(overlapping){
+        if(sourceAbove){
+          lineStart = s1.clone();
+          lineEnd = edge.target.intersection(s1, s2);
+        }
+        else{
+          lineStart = edge.source.intersection(s2, s1);
+          lineEnd = s2.clone();
+        }
+      }
+      else{
+        lineStart = edge.source.intersection(s2, s1);
+        lineEnd = edge.target.intersection(s1, s2);
+
+        //adjust if we have too short or long direction
+        if(!lineStart || !lineEnd ||
+          (lineDiff = lineEnd.clone().subtract(lineStart)).lengthSquared() < arrowLength*arrowLength || 
+          lineDiff.normalise().dot(sdelta) < 0){
+          if(sourceAbove){
+            lineStart = s1.clone();
+            lineEnd = edge.target.intersection(s1, s2);
+          }
+          else{
+            lineStart = edge.source.intersection(s2, s1);
+            lineEnd = s2.clone();
+          }
+        }
+      }
+      lineStart = lineStart || s1.clone();
+      lineEnd = lineEnd || s2.clone();
+      lineEnd.subtract(halfArrow);
+      var ldelta = lineEnd.clone().subtract(lineStart).normalise();
+
+      var arrowStart = lineEnd.clone().add(halfArrow);
+      var stroke = edge.data.color || '#000000';
+      var alpha = (isSelected === 0)? 0.1: (isSelected === 0.5)? 0.5: 1.0;
+
+      ctx.save();
+
+      //settings
+      ctx.lineWidth = width;
+      ctx.lineCap = overlapping? "round": "butt";
+      ctx.strokeStyle = stroke;
+      ctx.fillStyle = stroke;
+      ctx.globalAlpha = alpha;
+
+      //line
+
+      if(ldelta.dot(sdelta) > 0){
+        ctx.beginPath();
+        ctx.moveTo(lineStart.x, lineStart.y);
+        ctx.lineTo(lineEnd.x, lineEnd.y);
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+			// arrow
+			ctx.translate(arrowStart.x, arrowStart.y);
+			ctx.rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x));
+			ctx.beginPath();
+			ctx.moveTo(-arrowLength, arrowWidth);
+			ctx.lineTo(0, 0);
+			ctx.lineTo(-arrowLength, -arrowWidth);
+			ctx.lineTo(-arrowLength * 0.8, -0);
+			ctx.closePath();
+			ctx.fill();
+
+      ctx.restore();
+    },
+    function drawNode(node, point) {    
+      var size = node.bb.size;
+
+      if (node.isSelected())
+        ctx.globalAlpha = 1.0;
+      else if(edgeSelected)
+        ctx.globalAlpha = (node.data.effects[edgeSelected])? 1.0: 0.25;
+      else if(selected.length === maxTeamSize)
+        ctx.globalAlpha = 0.25;
+      else if(selected.length > 1)
+        ctx.globalAlpha = (node.isSelectedNeighbor())? 0.75: 0.25;
+      else if(selected.length)
+        ctx.globalAlpha = (node.isSelectedNeighbor())? 1.0: 0.25;
+      else
+        ctx.globalAlpha = 1.0;
+
+      //draw the portrait
+      ctx.drawImage(node.image, node.bb.topLeft.x, node.bb.topLeft.y, size, size);
+    },
+    function drawNodeOverlay(node, point) {
+      if (!node.isSelected() || !node.text)
+        return;
+
+      ctx.globalAlpha = 1.0;
+
+      //draw the portrait text
+      var width = node.text.width, height = node.text.height;
+      ctx.drawImage(node.text, 
+        Math.min(Math.max(0, node.bb.center.x - (width / 2) | 0), canvasWidth - width), 
+        Math.min(Math.max(0, node.bb.center.y - height - (node.bb.size / 2) | 0), canvasHeight - height), 
+        width, height);
+    },
+    function drawOverlay(){
+      if(selection && selection.start && selection.end){
+        var x = -0.5 + Math.min(selection.start.x, selection.end.x) | 0,
+        y = -0.5 + Math.min(selection.start.y, selection.end.y) | 0,
+        width = 0.5 + Math.abs(selection.start.x - selection.end.x) | 0,
+        height = 0.5 + Math.abs(selection.start.y - selection.end.y) | 0;
+
+        ctx.save();
+
+        //translate the entire context by .5 to get 1px width lines
+        ctx.translate(0.5, 0.5);
+
+        //draw the outline
+        ctx.lineWidth = pixelRatio;
+        ctx.strokeStyle = "rgb(95, 156, 255)";
+        ctx.strokeRect(x, y, width, height);
+
+        //draw the overlay, but not over drawn content
+        ctx.globalCompositeOperation = "destination-over";
+        ctx.fillStyle = "rgba(64, 138, 226, 0.15)";
+        ctx.fillRect(x, y, width, height);
+
+        ctx.restore();
+      }
+    }
+  );
+
+  Springy.Node.prototype.setBoundingBox = function(x, y, size) {
+    this.bb = { 
+      topLeft: new Springy.Vector(x, y),
+      bottomRight: new Springy.Vector(x + size, y + size),
+      center: new Springy.Vector((x + size / 2) | 0, (y + size / 2) | 0),
+      size:size 
+    };
+  };
+
+  // return true if inside BB and not over a 0 opacity pixel
+  Springy.Node.prototype.containsPoint = function(point, y) {
+    var x, px, py;
+    if(y === undefined){
+      y = point.y;
+      x = point.x;
+    }
+    else
+      x = point;
+
+    if(this.bb && this.hitmask){
+      px = ((x - this.bb.topLeft.x) / this.bb.size * this.hitmask.size) | 0;
+      py = ((y - this.bb.topLeft.y) / this.bb.size * this.hitmask.size) | 0;
+      if(this.hitmask.opaque[px])
+        return this.hitmask.opaque[px][py];
+    }
+    return false;
+  };
+
+  Springy.Node.prototype.containsPointRaw = function(x, y) {
+    return this.hitmask.opaque[x | 0][y | 0];
+  };
+
+  Springy.Node.prototype.overlappingBoundingBox = function(node) {
+    return this.bb && node.bb &&
+    this.bb.topLeft.x <= node.bb.bottomRight.x && 
+    this.bb.bottomRight.x >= node.bb.topLeft.x &&
+    this.bb.topLeft.y <= node.bb.bottomRight.y && 
+    this.bb.bottomRight.y >= node.bb.topLeft.y;
+  };
+
+  Springy.Node.prototype.overlapping = function(node) {
+    if(this.overlappingBoundingBox(node)){
+      if(this.hitmask && node.hitmask){
+        var tlx, tly, brx, bry;
+        if(this.bb.bottomRight.y < node.bb.bottomRight.y){
+          tly = node.bb.topLeft.y | 0;
+          bry = this.bb.bottomRight.y | 0;
+        }
+        else{
+          tly = this.bb.topLeft.y | 0;
+          bry = node.bb.bottomRight.y | 0;
+        }
+        if(this.bb.topLeft.x < node.bb.topLeft.x){
+          tlx = node.bb.topLeft.x | 0;
+          brx = this.bb.bottomRight.x | 0;
+        }
+        else{
+          tlx = this.bb.topLeft.x | 0;
+          brx = node.bb.bottomRight.x | 0;
+        }
+        for(var x=tlx; x<brx; x++)
+          for(var y=tly; y<bry; y++)
+            if(this.containsPoint(x,y) && node.containsPoint(x,y))
+              return true;
+            return false;
+      }
+      return true;
+    }
+    return false;
+  };
+
+  Springy.Node.prototype.distanceSquared = function(x, y) {
+    if(!this.bb)
+      return null;
+    var dx = this.bb.center.x - x, dy = this.bb.center.y - y;
+    return dx*dx + dy*dy;
+  };
+
+  Springy.Node.prototype.isSelected = function() {
+    return this.selected;
+  };
+
+  Springy.Node.prototype.isSelectedNeighbor = function() {
+    for(var i=0; i<selected.length; i++)
+      if(selected[i].data.neighbors[ this.id ])
+        return true;
+      return false;
+  };
+
+  Springy.Node.prototype.getSize = function() {
+    var canvasSize = Math.min(canvasWidth, canvasHeight),
+    size = Math.min(Math.max(16, canvasSize >> 4), 128);
+    if(this.isSelected())
+      size *= 1.5;
+    return size;
+  };
+
+  //find the nearest edge of the image, assuming end is inside of node
+  Springy.Node.prototype.intersection = function(outside, inside){
+    if(!this.hitmask || !this.bb)
+      return null;
+
+    //get position relative to hitmask
+    var last,
+      check = inside.clone().subtract(this.bb.topLeft).divide(this.bb.size).multiply(this.hitmask.size),
+      delta = outside.clone().subtract(inside).normalise().divide(this.bb.size).multiply(this.hitmask.size);
+    while(check.x >= 0 && check.y >= 0 && check.y < this.hitmask.size && check.x < this.hitmask.size){
+      if(this.containsPointRaw(check.x, check.y)){
+        if(!last)
+          last = check.clone();
+        else
+          last.copy(check);
+      }
+      check.add(delta);
+    }
+    if(!last)
+      return null;
+
+    //scale and move back to relative position
+    return last.divide(this.hitmask.size).multiply(this.bb.size).add(this.bb.topLeft);
+  };
+
+  renderer.start();
+  return this;
+};
+
+})();
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+
+(function(){
+
+  //championStarRankValue[stars][rank]
+  var championStarRankLevels={
+    1:{
+      1:{ levels: 10, min:100, max:175 }, 
+      2:{ levels: 20, min:175, max:250 },
+      ranks: 2
+    },
+    2:{
+      1:{ levels: 10, min:150, max:250 }, 
+      2:{ levels: 20, min:250, max:400 }, 
+      3:{ levels: 30, min:400, max:600 },
+      ranks: 3
+    },
+    3:{
+      1:{ levels: 10, min:300, max:500 }, 
+      2:{ levels: 20, min:500, max:900 }, 
+      3:{ levels: 30, min:900, max:1200 }, 
+      4:{ levels: 40, min:1200, max:1500 },
+      ranks: 4
+    },
+    4:{
+      1:{ levels: 10, min:600, max:1000 }, 
+      2:{ levels: 20, min:1000, max:1500 }, 
+      3:{ levels: 30, min:1500, max:2000 }, 
+      4:{ levels: 40, min:2000, max:2800 }, 
+      5:{ levels: 50, min:2800, max:3500 },
+      ranks: 5
+    },
+    5:{
+      1:{ levels: 25, min:1500, max:2500 }, 
+      2:{ levels: 35, min:2500, max:3500 }, 
+      3:{ levels: 45, min:3500, max:4500 }, 
+      4:{ levels: 55, min:4500, max:5500 }, 
+      5:{ levels: 65, min:5500, max:6500 },
+      ranks: 5
+    }
+  };
+
+  var starStrings = ["", "★", "★★", "★★★", "★★★★", "★★★★★"];
+
+  CoC.model.Champion = Backbone.Model.extend({
+    defaults: {
+      uid: "champion",
+      stars: 2,
+      name: 'Champion',
+      shortname: null,
+      typeId: "mutant",
+      awakened: 0,
+      rank: 1,
+      level: 1,
+      grade: 0,
+      gradeAwakened: 0,
+      quest: false
+    },
+
+    constructor: function() {
+      Backbone.Model.apply(this, arguments);
+      var uid = this.get('uid');
+      var name = CoC.lang.model('champion-'+uid+'-name');
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname', null);
+      if(name)
+        this.set('name', name);
+      if(shortname)
+        this.set('shortname', shortname);
+    },
+
+    value:function(){
+      var stars = this.get("stars"), 
+        rank = this.get("rank"), 
+        level = this.get("level"), 
+        awakened = this.get("awakened");
+      if(level < 1 || championStarRankLevels[stars] === undefined)
+        return 0;
+      var range = championStarRankLevels[stars][rank];
+      if(range === undefined || level > range.levels )
+        return 0;
+      var value = range.min + (level / range.levels) * (range.max - range.min);
+      if(awakened > 0)
+        value *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+      return value;
+    },
+    
+    ranks:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      return stars.ranks;
+    },
+    
+    levels:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      var rank = stars[this.get("rank")];
+      if(rank === undefined)
+        return null;
+      return rank.levels;
+    },
+    
+    stars:function(){
+      if(this._stars === undefined){
+        this._stars = starStrings[this.get("stars")];
+      }
+      return this._stars;
+    },
+    
+    fid:function(){
+      return [this.get("uid"), this.get("stars"), this.get('quest')].join('_');
+    },
+    
+    portrait:function(){
+      if(this._portrait === undefined){
+        this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png';
+      }
+      return this._portrait;
+    },
+    
+    image:function(){
+      if(this._image === undefined){
+        this._image = 'images/champions/fullsize_'+this.get('uid')+'.png';
+      }
+      return this._image;
+    },
+    
+    type:function(){
+      if(this._type === undefined){
+        this._type = CoC.data.types.findWhere({ uid:this.get("typeId") });
+      }
+      return this._type;
+    },
+    
+    crystals:function(){
+      if(this._crystals === undefined){
+        this._crystals = [];
+        var ccs = CoC.data.crystalChampions.find({ championId:this.get("uid"), championStars:this.get("stars") });
+        for(var i=0; i<ccs.length; i++)
+          this._crystals.push(ccs.crystal());
+      }
+      return this._crystals;
+    },
+    
+    //clean an import's variable types
+    update:function(){
+      var uid = this.get('uid');
+      var stars = this.get('stars');
+      var other = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+      if(!other)
+        return false;
+
+      this.set("name", CoC.lang.model('champion-'+uid+'-name'));
+      this.set("shortname", CoC.lang.model('champion-'+uid+'-shortname', null));
+      this.set("typeId", other.get("typeId"));
+      this.set("stars", parseInt(stars, 10) || 1);
+      this.set("rank", parseInt(this.get("rank"), 10) || 1);
+      this.set("level", parseInt(this.get("level"), 10) || 1);
+      this.set("awakened", parseInt(this.get("awakened"), 10) || 0);
+      return true;
+    }
+  });
+  
+})();
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Effect = Backbone.Model.extend({
+	defaults: {
+    name: "Effect",
+    uid: "effect",
+		base: 10,
+    amount:0,
+    image:"",
+    altimage:""
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('effect-'+uid+'-name');
+    var description = CoC.lang.model('effect-'+uid+'-description');
+    if(name)
+      this.set('name', name);
+    if(description)
+      this.set('description', description);
+  },
+
+  image:function(){
+    return this.get("image") + ".jpg";
+  },
+
+  imageOff:function(){
+    return this.get("image") + "_off.jpg";
+  },
+
+  championIds:function(ids){
+    if(ids){
+      this._championIds = [];
+      for(var id in ids)
+        this._championIds.push(id);
+    }
+    return this._championIds;
+  }
+
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Synergy = Backbone.Model.extend({
+	defaults: {
+    fromId: "champion",
+    fromStars: 1,
+		toId: 'champion',
+		effectId: "effect",
+    effectAmount: 20
+  },
+  
+  to:function(){
+    if(this._to === undefined){
+      this._to = CoC.data.champions.findWhere({ uid:this.get("toId") });
+    }
+    return this._to;
+  },
+  
+  from:function(){
+    if(this._from === undefined){
+      this._from = CoC.data.champions.findWhere({ uid:this.get("fromId"), stars:this.get("fromStars") });
+    }
+    return this._from;
+  },
+  
+  effect: function(){
+    if(this._effect === undefined){
+      this._effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    }
+    return this._effect;
+  }
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Type = Backbone.Model.extend({
+	defaults: {
+    name: "Type",
+    uid: "type",
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('type-'+uid+'-name');
+    if(name)
+      this.set('name', name);
+  },
+
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champions
+CoC.data.champions = new Backbone.Collection([
+
+  { uid:"blackbolt", typeId:"cosmic", stars: 2 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 3 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 4 },
+
+  { uid:"captainmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 4 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 5 },
+
+  { uid:"drax", typeId:"cosmic", stars: 2 },
+  { uid:"drax", typeId:"cosmic", stars: 3 },
+  { uid:"drax", typeId:"cosmic", stars: 4 },
+
+  { uid:"gamora", typeId:"cosmic", stars: 1 },
+  { uid:"gamora", typeId:"cosmic", stars: 2 },
+  { uid:"gamora", typeId:"cosmic", stars: 3 },
+  { uid:"gamora", typeId:"cosmic", stars: 4 },
+
+  { uid:"msmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"msmarvel", typeId:"cosmic", stars: 4 },
+
+  { uid:"ronan", typeId:"cosmic", stars: 2 },
+  { uid:"ronan", typeId:"cosmic", stars: 3 },
+  { uid:"ronan", typeId:"cosmic", stars: 4 },
+  { uid:"ronan", typeId:"cosmic", stars: 5 },
+
+  { uid:"spidermanblack", typeId:"cosmic", stars: 3 },
+  { uid:"spidermanblack", typeId:"cosmic", stars: 4 },
+
+  { uid:"superiorironman", typeId:"cosmic", stars: 2 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 3 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 4 },
+
+  { uid:"thor", typeId:"cosmic", stars: 2 },
+  { uid:"thor", typeId:"cosmic", stars: 3 },
+  { uid:"thor", typeId:"cosmic", stars: 4 },
+
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 3 },
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 4 },
+
+  { uid:"venom", typeId:"cosmic", stars: 3 },
+  { uid:"venom", typeId:"cosmic", stars: 4 },
+  { uid:"venom", typeId:"cosmic", stars: 5 },
+
+  { uid:"ironman", typeId:"tech", stars: 1 },
+  { uid:"ironman", typeId:"tech", stars: 2 },
+  { uid:"ironman", typeId:"tech", stars: 3 },
+  { uid:"ironman", typeId:"tech", stars: 4 },
+  { uid:"ironman", typeId:"tech", stars: 5 },
+
+  { uid:"ironpatriot", typeId:"tech", stars: 3 },
+  { uid:"ironpatriot", typeId:"tech", stars: 4 },
+
+  { uid:"hulkbuster", typeId:"tech", stars: 2 },
+  { uid:"hulkbuster", typeId:"tech", stars: 3 },
+  { uid:"hulkbuster", typeId:"tech", stars: 4 },
+
+  { uid:"kang", typeId:"tech", stars: 4 },
+
+  { uid:"rocket", typeId:"tech", stars: 3 },
+  { uid:"rocket", typeId:"tech", stars: 4 },
+
+  { uid:"starlord", typeId:"tech", stars: 2 },
+  { uid:"starlord", typeId:"tech", stars: 3 },
+  { uid:"starlord", typeId:"tech", stars: 4 },
+  { uid:"starlord", typeId:"tech", stars: 5 },
+
+  { uid:"vision", typeId:"tech", stars: 1 },
+  { uid:"vision", typeId:"tech", stars: 2 },
+  { uid:"vision", typeId:"tech", stars: 3 },
+  { uid:"vision", typeId:"tech", stars: 4 },
+
+  { uid:"thevision", typeId:"tech", stars: 2 },
+  { uid:"thevision", typeId:"tech", stars: 3 },
+  { uid:"thevision", typeId:"tech", stars: 4 },
+
+  { uid:"ultron", typeId:"tech", stars: 2 },
+  { uid:"ultron", typeId:"tech", stars: 3 },
+  { uid:"ultron", typeId:"tech", stars: 4 },
+
+  { uid:"warmachine", typeId:"tech", stars: 3 },
+  { uid:"warmachine", typeId:"tech", stars: 4 },
+
+  { uid:"colossus", typeId:"mutant", stars: 1 },
+  { uid:"colossus", typeId:"mutant", stars: 2 },
+  { uid:"colossus", typeId:"mutant", stars: 3 },
+  { uid:"colossus", typeId:"mutant", stars: 4 },
+
+  { uid:"cyclops", typeId:"mutant", stars: 2 },
+  { uid:"cyclops", typeId:"mutant", stars: 3 },
+  { uid:"cyclops", typeId:"mutant", stars: 4 },
+  { uid:"cyclops", typeId:"mutant", stars: 5 },
+
+  { uid:"deadpool", typeId:"mutant", stars: 2 },
+  { uid:"deadpool", typeId:"mutant", stars: 3 },
+  { uid:"deadpool", typeId:"mutant", stars: 4 },
+
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 3 },
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 4 },
+
+  { uid:"magneto", typeId:"mutant", stars: 2 },
+  { uid:"magneto", typeId:"mutant", stars: 3 },
+  { uid:"magneto", typeId:"mutant", stars: 4 },
+
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 3 },
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 4 },
+
+  { uid:"storm", typeId:"mutant", stars: 2 },
+  { uid:"storm", typeId:"mutant", stars: 3 },
+  { uid:"storm", typeId:"mutant", stars: 4 },
+  { uid:"storm", typeId:"mutant", stars: 5 },
+
+  { uid:"wolverine", typeId:"mutant", stars: 1 },
+  { uid:"wolverine", typeId:"mutant", stars: 2 },
+  { uid:"wolverine", typeId:"mutant", stars: 3 },
+  { uid:"wolverine", typeId:"mutant", stars: 4 },
+
+  { uid:"blackpanther", typeId:"skill", stars: 1 },
+  { uid:"blackpanther", typeId:"skill", stars: 2 },
+  { uid:"blackpanther", typeId:"skill", stars: 3 },
+  { uid:"blackpanther", typeId:"skill", stars: 4 },
+  { uid:"blackpanther", typeId:"skill", stars: 5 },
+
+  { uid:"blackwidow", typeId:"skill", stars: 2 },
+  { uid:"blackwidow", typeId:"skill", stars: 3 },
+  { uid:"blackwidow", typeId:"skill", stars: 4 },
+
+  { uid:"daredevil", typeId:"skill", stars: 3 },
+  { uid:"daredevil", typeId:"skill", stars: 4 },
+
+  { uid:"daredevilnetflix", typeId:"skill", stars: 3 },
+  { uid:"daredevilnetflix", typeId:"skill", stars: 4 },
+
+  { uid:"elektra", typeId:"skill", stars: 3 },
+  { uid:"elektra", typeId:"skill", stars: 4 },
+
+  { uid:"hawkeye", typeId:"skill", stars: 1 },
+  { uid:"hawkeye", typeId:"skill", stars: 2 },
+  { uid:"hawkeye", typeId:"skill", stars: 3 },
+  { uid:"hawkeye", typeId:"skill", stars: 4 },
+
+  { uid:"moonknight", typeId:"skill", stars: 3 },
+  { uid:"moonknight", typeId:"skill", stars: 4 },
+
+  { uid:"punisher", typeId:"skill", stars: 2 },
+  { uid:"punisher", typeId:"skill", stars: 3 },
+  { uid:"punisher", typeId:"skill", stars: 4 },
+
+  { uid:"wintersoldier", typeId:"skill", stars: 2 },
+  { uid:"wintersoldier", typeId:"skill", stars: 3 },
+  { uid:"wintersoldier", typeId:"skill", stars: 4 },
+  { uid:"wintersoldier", typeId:"skill", stars: 5 },
+
+  { uid:"abomination", typeId:"science", stars: 2 },
+  { uid:"abomination", typeId:"science", stars: 3 },
+  { uid:"abomination", typeId:"science", stars: 4 },
+
+  { uid:"antman", typeId:"science", stars: 2 },
+  { uid:"antman", typeId:"science", stars: 3 },
+  { uid:"antman", typeId:"science", stars: 4 },
+
+  { uid:"captainamerica", typeId:"science", stars: 2 },
+  { uid:"captainamerica", typeId:"science", stars: 3 },
+  { uid:"captainamerica", typeId:"science", stars: 4 },
+
+  { uid:"captainamericawwii", typeId:"science", stars: 3 },
+  { uid:"captainamericawwii", typeId:"science", stars: 4 },
+
+  { uid:"electro", typeId:"science", stars: 3 },
+  { uid:"electro", typeId:"science", stars: 4 },
+
+  { uid:"hulk", typeId:"science", stars: 1 },
+  { uid:"hulk", typeId:"science", stars: 2 },
+  { uid:"hulk", typeId:"science", stars: 3 },
+  { uid:"hulk", typeId:"science", stars: 4 },
+
+  { uid:"joefixit", typeId:"science", stars: 3 },
+  { uid:"joefixit", typeId:"science", stars: 4 },
+
+  { uid:"rhino", typeId:"science", stars: 2 },
+  { uid:"rhino", typeId:"science", stars: 3 },
+  { uid:"rhino", typeId:"science", stars: 4 },
+  { uid:"rhino", typeId:"science", stars: 5 },
+
+  { uid:"spidergwen", typeId:"science", stars: 3 },
+  { uid:"spidergwen", typeId:"science", stars: 4 },
+  { uid:"spidergwen", typeId:"science", stars: 5 },
+
+  { uid:"spiderman", typeId:"science", stars: 1 },
+  { uid:"spiderman", typeId:"science", stars: 2 },
+  { uid:"spiderman", typeId:"science", stars: 3 },
+  { uid:"spiderman", typeId:"science", stars: 4 },
+  { uid:"spiderman", typeId:"science", stars: 5 },
+
+  { uid:"spidermanmorales", typeId:"science", stars: 3 },
+  { uid:"spidermanmorales", typeId:"science", stars: 4 },
+
+  { uid:"yellowjacket", typeId:"science", stars: 2 },
+  { uid:"yellowjacket", typeId:"science", stars: 3 },
+  { uid:"yellowjacket", typeId:"science", stars: 4 },
+
+  { uid:"drstrange", typeId:"mystic", stars: 3 },
+  { uid:"drstrange", typeId:"mystic", stars: 4 },
+
+  { uid:"guillotine", typeId:"mystic", stars: 2 },
+  { uid:"guillotine", typeId:"mystic", stars: 3 },
+  { uid:"guillotine", typeId:"mystic", stars: 4 },
+
+  { uid:"ironfist", typeId:"mystic", stars: 2 },
+  { uid:"ironfist", typeId:"mystic", stars: 3 },
+  { uid:"ironfist", typeId:"mystic", stars: 4 },
+
+  { uid:"juggernaut", typeId:"mystic", stars: 1 },
+  { uid:"juggernaut", typeId:"mystic", stars: 2 },
+  { uid:"juggernaut", typeId:"mystic", stars: 3 },
+  { uid:"juggernaut", typeId:"mystic", stars: 4 },
+  { uid:"juggernaut", typeId:"mystic", stars: 5 },
+
+  { uid:"magik", typeId:"mystic", stars: 2 },
+  { uid:"magik", typeId:"mystic", stars: 3 },
+  { uid:"magik", typeId:"mystic", stars: 4 },
+  { uid:"magik", typeId:"mystic", stars: 5 },
+
+  { uid:"scarletwitch", typeId:"mystic", stars: 1 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 2 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 3 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 4 },
+
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 2 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 3 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 4 }
+  
+], {
+  model: CoC.model.Champion
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Effects
+CoC.data.effects = new Backbone.Collection([
+
+  { uid: "attack", image:"images/effects/attack", base:5 },
+  { uid: "stun", image:"images/effects/stun", base:15 },
+  { uid: "critrate", image:"images/effects/critical", base:5 },
+  { uid: "critdamage", image:"images/effects/critical", base:15 },
+  { uid: "powergain", image:"images/effects/mana", base:3 },
+  { uid: "powersteal", image:"images/effects/mana_steal", base:3 },
+  { uid: "perfectblock", image:"images/effects/block", base:3 },
+  { uid: "block", image:"images/effects/block", base:10 },
+  { uid: "armor", image:"images/effects/armor", base:4 },
+  { uid: "health", image:"images/effects/health", base:4 },
+  { uid: "healthsteal", image:"images/effects/health_steal", base:4 }
+
+], {
+  model: CoC.model.Effect
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Synergies
+CoC.data.synergies = new Backbone.Collection([
+
+  { fromId:"blackbolt", fromStars: 2, toId: "cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"blackbolt", fromStars: 3, toId: "cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"blackbolt", fromStars: 3, toId: "spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 3, toId: "ronan", effectId:"attack", effectAmount:4 },
+  { fromId:"blackbolt", fromStars: 3, toId: "hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"blackbolt", fromStars: 4, toId: "ronan", effectId:"attack", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 4, toId: "hulk", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"captainmarvel", fromStars: 3, toId: "captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "gamora", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "gamora", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "wolverine", effectId:"powergain", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "captainamerica", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "gamora", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "ironman", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "wolverine", effectId:"powergain", effectAmount:6 },
+
+  { fromId:"drax", fromStars:2, toId:"starlord", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"drax", fromStars:2, toId:"gamora", effectId:"critdamage", effectAmount:15 },
+  { fromId:"drax", fromStars:3, toId:"starlord", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drax", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"drax", fromStars:4, toId:"starlord", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"drax", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"gamora", fromStars:2, toId:"starlord", effectId:"armor", effectAmount:4 },
+  { fromId:"gamora", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"gamora", fromStars:3, toId:"drax", effectId:"critdamage", effectAmount:20 },
+  { fromId:"gamora", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"gamora", fromStars:4, toId:"drax", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"msmarvel", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"hulk", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"msmarvel", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"hulk", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ronan", fromStars:2, toId:"blackbolt", effectId:"critdamage", effectAmount:15 },
+  { fromId:"ronan", fromStars:3, toId:"blackbolt", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:3, toId:"ironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ronan", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:4, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:4, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:5, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"spidermanblack", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"spidermanblack", fromStars:3, toId:"electro", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"electro", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"superiorironman", fromStars:2, toId:"captainamerica", effectId:"critrate", effectAmount:5 },
+  { fromId:"superiorironman", fromStars:2, toId:"daredevil", effectId:"critdamage", effectAmount:15 },
+  { fromId:"superiorironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"superiorironman", fromStars:3, toId:"captainamerica", effectId:"critrate", effectAmount:6 },
+  { fromId:"superiorironman", fromStars:3, toId:"daredevil", effectId:"critdamage", effectAmount:20 },
+  { fromId:"superiorironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"superiorironman", fromStars:4, toId:"captainamerica", effectId:"critrate", effectAmount:7 },
+  { fromId:"superiorironman", fromStars:4, toId:"daredevil", effectId:"critdamage", effectAmount:25 },
+  { fromId:"superiorironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+
+  { fromId:"thor", fromStars:2, toId:"drstrange", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"juggernaut", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"juggernaut", effectId:"armor", effectAmount:7 },
+
+  { fromId:"venom", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"venom", fromStars:3, toId:"spidermanblack", effectId:"health", effectAmount:4 },
+  { fromId:"venom", fromStars:3, toId:"electro", effectId:"critdamage", effectAmount:20 },
+  { fromId:"venom", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:4, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:4, toId:"electro", effectId:"critdamage", effectAmount:25 },
+  { fromId:"venom", fromStars:5, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:5, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:5, toId:"electro", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"ironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"ironman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"ironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"ironman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"ironman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:5, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"ironpatriot", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"ironpatriot", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:3, toId:"captainamerica", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ironpatriot", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ironpatriot", fromStars:4, toId:"captainamerica", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"kang", fromStars:4, toId:"blackbolt", effectId:"armor", effectAmount:6 },
+  { fromId:"kang", fromStars:4, toId:"thevision", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"thor", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"spidermanblack", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulkbuster", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:3, toId:"superiorironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:4, toId:"hulk", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulkbuster", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"hulkbuster", fromStars:4, toId:"superiorironman", effectId:"perfectblock", effectAmount:6 },
+
+  { fromId:"rocket", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"rocket", fromStars:3, toId:"ronan", effectId:"critrate", effectAmount:6 },
+  { fromId:"rocket", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"rocket", fromStars:4, toId:"ronan", effectId:"critrate", effectAmount:7 },
+  { fromId:"rocket", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rocket", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"starlord", fromStars:2, toId:"rocket", effectId:"armor", effectAmount:4 },
+  { fromId:"starlord", fromStars:2, toId:"drax", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"starlord", fromStars:3, toId:"rocket", effectId:"armor", effectAmount:5 },
+  { fromId:"starlord", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:4, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:5, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"vision", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"vision", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"vision", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"vision", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"vision", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"vision", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"thevision", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"thevision", fromStars:2, toId:"scarletwitch", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"thevision", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"thevision", fromStars:3, toId:"scarletwitch", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"thevision", fromStars:3, toId:"ultron", effectId:"attack", effectAmount:4 },
+  { fromId:"thevision", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"thevision", fromStars:4, toId:"scarletwitch", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"thevision", fromStars:4, toId:"ultron", effectId:"attack", effectAmount:5 },
+
+  { fromId:"ultron", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"ultron", fromStars:2, toId:"scarletwitch", effectId:"armor", effectAmount:4 },
+  { fromId:"ultron", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"ultron", fromStars:3, toId:"scarletwitch", effectId:"armor", effectAmount:5 },
+  { fromId:"ultron", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"ultron", fromStars:4, toId:"scarletwitch", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"warmachine", fromStars:3, toId:"hulkbuster", effectId:"armor", effectAmount:5 },
+  { fromId:"warmachine", fromStars:3, toId:"hawkeye", effectId:"block", effectAmount:15 },
+  { fromId:"warmachine", fromStars:3, toId:"blackwidow", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"warmachine", fromStars:4, toId:"hulkbuster", effectId:"armor", effectAmount:6 },
+  { fromId:"warmachine", fromStars:4, toId:"blackpanther", effectId:"critrate", effectAmount:7 },
+  { fromId:"warmachine", fromStars:4, toId:"hawkeye", effectId:"block", effectAmount:20 },
+  { fromId:"warmachine", fromStars:4, toId:"blackwidow", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"colossus", fromStars:2, toId:"juggernaut", effectId:"critrate", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"juggernaut", effectId:"critrate", effectAmount:6 },
+  { fromId:"colossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"colossus", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"colossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"colossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:5 },
+
+  { fromId:"cyclops", fromStars:2, toId:"wolverine", effectId:"critdamage", effectAmount:15 },
+  { fromId:"cyclops", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"cyclops", fromStars:3, toId:"magneto", effectId:"attack", effectAmount:4 },
+  { fromId:"cyclops", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:4, toId:"magneto", effectId:"attack", effectAmount:5 },
+  { fromId:"cyclops", fromStars:5, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:5, toId:"magneto", effectId:"attack", effectAmount:5 },
+
+  { fromId:"deadpool", fromStars:2, toId:"punisher", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"deadpool", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"deadpool", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:4 },
+  { fromId:"deadpool", fromStars:3, toId:"punisher", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"deadpool", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"deadpoolxforce", fromStars:3, toId:"moonknight", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:3, toId:"deadpool", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"magnetomarvelnow", effectId:"armor", effectAmount:6 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"moonknight", effectId:"critdamage", effectAmount:25 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"deadpool", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magneto", fromStars:2, toId:"wolverine", effectId:"critrate", effectAmount:5 },
+  { fromId:"magneto", fromStars:2, toId:"cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"magneto", fromStars:2, toId:"storm", effectId:"critdamage", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
+  { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"wolverine", effectId:"critrate", effectAmount:7 },
+  { fromId:"magneto", fromStars:4, toId:"cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"storm", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"magik", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"magik", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"storm", fromStars:2, toId:"blackpanther", effectId:"powergain", effectAmount:3 },
+  { fromId:"storm", fromStars:3, toId:"magik", effectId:"armor", effectAmount:6 },
+  { fromId:"storm", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"storm", fromStars:3, toId:"blackpanther", effectId:"powergain", effectAmount:4 },
+  { fromId:"storm", fromStars:4, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"wolverine", fromStars:2, toId:"cyclops", effectId:"critdamage", effectAmount:15 },
+  { fromId:"wolverine", fromStars:3, toId:"cyclops", effectId:"critdamage", effectAmount:20 },
+  { fromId:"wolverine", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"wolverine", fromStars:3, toId:"magneto", effectId:"critrate", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"cyclops", effectId:"critdamage", effectAmount:25 },
+  { fromId:"wolverine", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"blackpanther", fromStars:2, toId:"ironfist", effectId:"critdamage", effectAmount:15 },
+  { fromId:"blackpanther", fromStars:3, toId:"ironfist", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackpanther", fromStars:3, toId:"storm", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackpanther", fromStars:3, toId:"deadpool", effectId:"critrate", effectAmount:6 },
+  { fromId:"blackpanther", fromStars:4, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:4, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:4, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+  { fromId:"blackpanther", fromStars:5, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:5, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:5, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"daredevil", fromStars:3, toId:"superiorironman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"daredevil", fromStars:3, toId:"blackwidow", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:3, toId:"elektra", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:4, toId:"superiorironman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"daredevil", fromStars:4, toId:"blackwidow", effectId:"powergain", effectAmount:5 },
+  { fromId:"daredevil", fromStars:4, toId:"elektra", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"elektra", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"elektra", fromStars:3, toId:"daredevil", effectId:"powergain", effectAmount:4 },
+  { fromId:"elektra", fromStars:3, toId:"blackwidow", effectId:"critdamage", effectAmount:20 },
+  { fromId:"elektra", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"elektra", fromStars:4, toId:"daredevil", effectId:"powergain", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"deadpool", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"blackwidow", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"hawkeye", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"hawkeye", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"hawkeye", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"hawkeye", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+
+  { fromId:"moonknight", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"moonknight", fromStars:3, toId:"daredevil", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"moonknight", fromStars:3, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:20 },
+  { fromId:"moonknight", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"moonknight", fromStars:4, toId:"daredevil", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"moonknight", fromStars:4, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:25 },
+  { fromId:"moonknight", fromStars:4, toId:"ironpatriot", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"punisher", fromStars:2, toId:"spiderman", effectId:"critdamage", effectAmount:15 },
+  { fromId:"punisher", fromStars:3, toId:"spiderman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"punisher", fromStars:3, toId:"rhino", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"punisher", fromStars:4, toId:"spiderman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"punisher", fromStars:4, toId:"rhino", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"wintersoldier", fromStars:2, toId:"wolverine", effectId:"armor", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:2, toId:"captainamerica", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"wintersoldier", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:3, toId:"captainamerica", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:4, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:5, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:5, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"blackwidow", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:2, toId:"wintersoldier", effectId:"powergain", effectAmount:3 },
+  { fromId:"blackwidow", fromStars:3, toId:"hulk", effectId:"stun", effectAmount:20 },
+  { fromId:"blackwidow", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:3, toId:"wintersoldier", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:3, toId:"hawkeye", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:4, toId:"hulk", effectId:"stun", effectAmount:25 },
+  { fromId:"blackwidow", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"blackwidow", fromStars:4, toId:"wintersoldier", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:4, toId:"hawkeye", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"abomination", fromStars:2, toId:"rhino", effectId:"armor", effectAmount:4 },
+  { fromId:"abomination", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"abomination", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:4 },
+  { fromId:"abomination", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+  { fromId:"abomination", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:5 },
+
+  { fromId:"antman", fromStars:2, toId:"yellowjacket", effectId:"attack", effectAmount:4 },
+  { fromId:"antman", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"antman", fromStars:3, toId:"yellowjacket", effectId:"attack", effectAmount:5 },
+  { fromId:"antman", fromStars:3, toId:"spiderman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"yellowjacket", effectId:"attack", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"spiderman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"antman", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"captainamerica", fromStars:2, toId:"spiderman", effectId:"armor", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:2, toId:"superiorironman", effectId:"critrate", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:3 },
+  { fromId:"captainamerica", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"superiorironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"superiorironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"captainamerica", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"captainamericawwii", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"electro", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:4 },
+  { fromId:"electro", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+
+  { fromId:"hulk", fromStars:2, toId:"thor", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulk", fromStars:3, toId:"thor", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulk", fromStars:3, toId:"abomination", effectId:"critrate", effectAmount:6 },
+  { fromId:"hulk", fromStars:3, toId:"hawkeye", effectId:"armor", effectAmount:5 },
+  { fromId:"hulk", fromStars:4, toId:"thor", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulk", fromStars:4, toId:"abomination", effectId:"critrate", effectAmount:7 },
+  { fromId:"hulk", fromStars:4, toId:"hawkeye", effectId:"armor", effectAmount:6 },
+
+  { fromId:"joefixit", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"joefixit", fromStars:3, toId:"moonknight", effectId:"critrate", effectAmount:6 },
+  { fromId:"joefixit", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:5 },
+  { fromId:"joefixit", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"joefixit", fromStars:4, toId:"moonknight", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"msmarvel", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:6 },
+
+  { fromId:"rhino", fromStars:2, toId:"spiderman", effectId:"critrate", effectAmount:5 },
+  { fromId:"rhino", fromStars:2, toId:"abomination", effectId:"armor", effectAmount:4 },
+  { fromId:"rhino", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"rhino", fromStars:3, toId:"abomination", effectId:"armor", effectAmount:5 },
+  { fromId:"rhino", fromStars:3, toId:"electro", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rhino", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:4, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:4, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rhino", fromStars:5, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:5, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:5, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"spiderman", fromStars:1, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:1, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"electro", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"spiderman", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+
+  { fromId:"spidergwen", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"daredevil", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"spiderman", effectId:"powergain", effectAmount:4 },
+  { fromId:"spidergwen", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:4, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+  { fromId:"spidergwen", fromStars:5, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:5, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
+  { fromId:"yellowjacket", fromStars:2, toId:"ultron", effectId:"critdamage", effectAmount:15 },
+  { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
+  { fromId:"yellowjacket", fromStars:3, toId:"ultron", effectId:"critdamage", effectAmount:20 },
+  { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
+  { fromId:"yellowjacket", fromStars:4, toId:"ultron", effectId:"critdamage", effectAmount:25 },
+  
+  { fromId:"drstrange", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"scarletwitch", effectId:"block", effectAmount:15 },
+  { fromId:"drstrange", fromStars:3, toId:"blackbolt", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drstrange", fromStars:4, toId:"thor", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"scarletwitch", effectId:"block", effectAmount:20 },
+  { fromId:"drstrange", fromStars:4, toId:"blackbolt", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ironfist", fromStars:2, toId:"blackpanther", effectId:"armor", effectAmount:4 },
+  { fromId:"ironfist", fromStars:3, toId:"blackpanther", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+
+  { fromId:"guillotine", fromStars:2, toId:"venom", effectId:"attack", effectAmount:4 },
+  { fromId:"guillotine", fromStars:2, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"guillotine", fromStars:3, toId:"venom", effectId:"attack", effectAmount:5 },
+  { fromId:"guillotine", fromStars:3, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"guillotine", fromStars:3, toId:"magik", effectId:"critdamage", effectAmount:20 },
+  { fromId:"guillotine", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"venom", effectId:"attack", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"guillotine", fromStars:4, toId:"magik", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"juggernaut", fromStars:2, toId:"colossus", effectId:"critrate", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:3, toId:"drstrange", effectId:"attack", effectAmount:4 },
+  { fromId:"juggernaut", fromStars:3, toId:"colossus", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:3, toId:"hulk", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:4, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:4, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:4, toId:"hulk", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:5, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"hulk", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"magik", fromStars:2, toId:"colossus", effectId:"health", effectAmount:4 },
+  { fromId:"magik", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"colossus", effectId:"health", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magik", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:5, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"scarletwitch", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"scarletwitch", fromStars:3, toId:"vision", effectId:"powergain", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"scarletwitch", fromStars:4, toId:"vision", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"juggernaut", effectId:"critdamage", effectAmount:15 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"juggernaut", effectId:"critdamage", effectAmount:20 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"juggernaut", effectId:"critdamage", effectAmount:25 }
+  
+], {
+  model: CoC.model.Synergy
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champion Types
+CoC.data.types = new Backbone.Collection([
+
+  { uid:"cosmic", image:"images/icons/cosmic.png" },
+  { uid:"tech", image:"images/icons/tech.png" },
+  { uid:"mutant", image:"images/icons/mutant.png" },
+  { uid:"skill", image:"images/icons/skill.png" },
+  { uid:"science", image:"images/icons/science.png" },
+  { uid:"mystic", image:"images/icons/mystic.png" }
+  
+], {
+  model: CoC.model.Type
+});
+
+var CoC=CoC || {};
+CoC.tracking = CoC.tracking || {};
+
+//Google Analytics Init: make GA and create
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments);},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+})(window,document,'script','//www.google-analytics.com/analytics.js','_gaTracker');
+_gaTracker('create', 'UA-64735733-1', 'auto');
+
+CoC.tracking.pageView = function(){
+  if(location.hostname === "localhost")
+    return;
+  var array = ['send', 'pageview'];
+  for(var i=0; i<arguments.length; i++)
+    array.push(arguments[i]);
+  _gaTracker.apply(_gaTracker, array);
+};
+
+CoC.tracking.event = function(){
+  if(location.hostname === "localhost")
+    return;
+  var array = ['send','event'];
+  for(var i=0; i<arguments.length; i++)
+    array.push(arguments[i]);
+  _gaTracker.apply(_gaTracker, array);
+};
+
+window.onerror = function(description, file, line){
+  if(location.hostname === "localhost")
+    return;
+  //Send (description text...\t filename:line) exception message for size 155 bytes
+  var _location = "\t"+((file.lastIndexOf('/') !== -1)? file.substr(file.lastIndexOf('/')+1): file)+":"+line,
+    bytes = 155 - unescape(encodeURIComponent(_location)).length;
+  while(unescape(encodeURIComponent(description)).length > bytes)
+    description = description.substr(0, description.length - 1);
+  _gaTracker('send', 'exception', {
+    'exDescription': description + _location,
+    'exFatal': true
+  });
+};
+
+var CoC = CoC || {};
+CoC.synergies = CoC.synergies || {};
+
+CoC.synergies.initialize=function(stars, roster){
+  CoC.utils.info({
+    style: 'initialize',
+    value: "Contest of Champions - Synergies Tool v"+CoC.version+" -"
+  },{
+    style: 'link',
+    value: "https://github.com/gabriel-hook/contest-of-champions"
+  });
+
+  var nodeSelected = function(nodes, edges){
+    var i;
+    $('#legend div').removeClass('selected');
+    $('#legend div span').text("");
+    if(nodes.length === 0){
+      $('#legend').removeClass('selected');
+    }
+    else if(edges !== undefined){
+      $('#legend').addClass('selected');
+      for(i=0; i<edges.length; i++){
+        $('#legend div[effectId='+edges[i].data.effect+']').addClass('selected');
+      }
+      if(nodes.length > 1){
+        var amounts = {};
+        for(i=0; i<edges.length; i++)
+          amounts[ edges[i].data.effect ] = edges[i].data.amount + 
+            (amounts[ edges[i].data.effect ] || 0);
+        for(var effect in amounts)
+          $('#legend div[effectId='+effect+'] span').text(" - " + amounts[effect] + "%");
+      }
+    }
+    CoC.synergies.updateLegend();
+  };
+
+  var baseURL = location.href.substr(0, location.href.lastIndexOf('/')+1),
+    typeColors = {
+      cosmic:"#3af",
+      tech:"#23f",
+      mutant:"#fa0",
+      skill:"#f30",
+      science:"#0a0",
+      mystic:"#90f"
+    },
+    effectColors = {
+      attack:"#f00",
+      stun:"#f60",
+      critrate:"#fa0",
+      critdamage:"#a60",
+      powergain:"#a0f",
+      powersteal:"#a6f",
+      perfectblock:"#00a",
+      block:"#66f",
+      armor:"#0af",
+      health:"#0f0",
+      healthsteal:"#af0"
+    },
+    springy = $('canvas').springy({
+      stiffness: 800,
+      repulsion: 1600,
+      damping: 0.5,
+      nodeSelected:nodeSelected
+    }),
+    nodes = {}, effects = {};
+  
+  //add nodes
+  var champions = roster? CoC.data.roster.where({ stars:stars }): CoC.data.champions.where({ stars:stars }), i;
+  for(i=0; i<champions.length; i++)
+    (function(champion){
+
+      var hasSynergies = roster || 
+        CoC.data.synergies.where({ fromId:champion.get('uid'), fromStars:stars }).length ||
+        CoC.data.synergies.where({ fromStars:stars, toId:champion.get('uid') }).length;
+      if(!hasSynergies)
+        return;
+
+      var link = $('<a>', { href: baseURL+CoC.lang.search+"#page-guide?guide="+champion.get('uid'), class:'hidden', target:'_blank' });
+      $(document.body).append(link);
+      
+      //windows safari is stupid and doesn't give dom elements a click method
+      if(link[0].click === undefined && document.createEvent){
+        link[0].click = function(){
+          var clickEvent = document.createEvent('MouseEvents');
+              clickEvent.initEvent('click', true, true);
+          this.dispatchEvent(clickEvent);
+        };
+      }
+      
+      nodes[ champion.get('uid') ] = springy.graph.newNode({
+        label: champion.get('name'),
+        image: (function(src){
+          var image = new Image();
+          image.src = src;
+          return image;
+        })( champion.portrait() ),
+        type: champion.get('typeId'),
+        color: typeColors[ champion.get('typeId') ],
+        neighbors: {},
+        effects:{},
+        onOpen:function(){
+          link[0].click();
+        }
+      });
+    })(champions[i]);
+    
+  //add edges
+  function addNeighbors(fromId, toId, effectId){
+    var nodeFrom = nodes[fromId], nodeTo = nodes[toId];
+    nodeFrom.data.neighbors[nodeTo.id] = true;
+    nodeFrom.data.effects[effectId] = true;
+    nodeTo.data.neighbors[nodeFrom.id] = true; 
+    nodeTo.data.effects[effectId] = true;
+  }
+  var synergies = CoC.data.synergies.where({ fromStars:stars });
+  for(i=0; i<synergies.length; i++){
+    var synergy = synergies[i];
+    if(nodes[ synergy.get("fromId") ] === undefined || nodes[ synergy.get("toId") ] === undefined)
+      continue;
+    addNeighbors(synergy.get("fromId"), synergy.get("toId"), synergy.get('effectId'));
+    springy.graph.newEdge(nodes[ synergy.get("fromId") ], nodes[ synergy.get("toId") ],{
+      label: synergy.effect().get('name'),
+      effect: synergy.get('effectId'),
+      amount: synergy.get('effectAmount'),
+      color: effectColors[ synergy.get('effectId') ]
+    });
+    effects[synergy.get('effectId')] = true;
+  }
+  
+  //add types to legend
+  CoC.data.effects.each(function(effect){
+    var uid = effect.get('uid'), name = effect.get('name');
+    if(!effects[uid])
+      return;
+    $('#legend').append( $('<div>', {
+      effectId:uid,
+      style:'border-color:'+(effectColors[uid] || '#000')+';'
+    }).text(name).append('<span>').click(function(){
+      $('#legend').addClass('selected');
+      $('#legend div').removeClass('selected');
+      $('#legend div[effectId='+uid+']').addClass('selected');
+      $('#legend div span').empty();
+      springy.selectEdgeType(uid);
+    }));
+  });
+  
+  //enable legend
+  if(roster && champions.length === 0){
+    $("#onboarding-synergies").addClass("active");
+  }
+
+  if(_.isEmpty(effects))
+    $("#legend").css("display", "none");
+  else{
+    $('.button.legend').click(CoC.synergies.toggleLegend);
+    CoC.synergies.toggleLegend();
+  }
+
+  //enable stars buttons
+  $(".button[stars="+stars+"]").addClass(roster? "ui-btn-b": "ui-btn-active");
+  $(".button[stars]").each(function(button){
+    var el = $(this), s = el.attr("stars");
+    if(stars !== parseInt(s,10))
+      el.attr('href', searchQuery(roster? 'roster': 'stars', s));
+    else
+      el.attr('href', searchQuery(roster? 'stars': 'roster', s));
+  });
+
+  //track
+  CoC.tracking.pageView();
+};
+
+CoC.synergies.toggleLegend = function(){
+  if($('.button.legend').hasClass('active')){
+    $('.button.legend').removeClass('active');
+  }
+  else{
+    $('.button.legend').addClass('active');
+  }
+  CoC.synergies.updateLegend();
+};
+
+CoC.synergies.updateLegend = function(){
+  var isActive = $('.button.legend').hasClass('active'), legendWidth = $('#legend').outerWidth();
+  $('#legend').css('left', isActive? 0: -legendWidth).css("opacity", isActive? 1: 0);
+};
+
+CoC.synergies.canvasResize  = function(){
+  var width = window.innerWidth, 
+    height = window.innerHeight - 33,
+    ratio = window.devicePixelRatio || 1;
+  $('canvas').attr('width', width * ratio).attr('height', height * ratio).css("width", width).css("height", height);
+  CoC.synergies.updateLegend();
+};
+
+var delayedResizeTimeout;
+function delayedResize(){
+  if(delayedResizeTimeout)
+    clearTimeout(delayedResizeTimeout);
+  delayedResizeTimeout = setTimeout(function(){
+    CoC.synergies.canvasResize();
+
+    delayedResizeTimeout = null;
+  }, 10);
+}
+
+$(window).on('resize', delayedResize);
+$(document).on('ready', delayedResize);
+CoC.synergies.canvasResize();
+
+var CoC = CoC || {};
+CoC.roster = {};
+
+CoC.roster.initialize = function(){
+
+  var typeIds = {};
+  CoC.data.types.each(function(type, i){
+    typeIds[ type.get("uid") ] = i;
+  });
+
+  var Roster = Backbone.Collection.extend({
+    model: CoC.model.Champion,
+    localStorage: new Backbone.LocalStorage("coc-roster"),
+    sortBy: function(key, direction){
+      this._order = (key === "name")? [
+        { field: "name", order: (direction? "asc": "desc") }, { field: "stars", order: "desc" }
+      ]: (key === "type")? [ 
+        { field: "typeId", order: (direction? "asc": "desc"), map:typeIds }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
+      ]: (key === "stars")? [ 
+        { field: "stars", order: (direction? "desc": "asc") }, { field: "typeId", order: "asc", map:typeIds }, { field: "name", order: "asc" }
+      ]: undefined;
+      this.sort();
+    },
+    comparator: function(one, another) {
+      if (this._order) {
+        for (var i = 0; i < this._order.length; i++) {
+          var greater;
+        
+          if(this._order[i].map){
+            greater = this._order[i].map[ one.get(this._order[i].field) ] > this._order[i].map[ another.get(this._order[i].field) ];
+          }
+          else{
+            greater = one.get(this._order[i].field) > another.get(this._order[i].field);
+          }
+          
+          if (greater) {
+            return ("desc" !== this._order[i].order) ? 1 : -1;
+          } else if (one.get(this._order[i].field) === another.get(this._order[i].field)) {
+            // do nothing but let the loop move further for next layer comparison
+          } else {
+            return ("desc" !== this._order[i].order) ? -1 : 1;
+          }
+        }
+      }
+      return 0;
+    }
+  });
+  CoC.data.roster = new Roster();
+  CoC.data.roster.sortBy("stars");
+  CoC.data.roster.fetch();
+  CoC.data.roster.each(function(champion){
+    var updated = champion.update();
+    if(updated)
+      champion.save();
+    else
+      champion.destroy();
+  });
+};
+
+CoC.roster.clear = function(){
+  while(CoC.data.roster.length > 0)
+    CoC.data.roster.first().destroy();
+};
+
+CoC.roster.filtered = function(){
+  var filterStars = {
+    1: CoC.settings.getValue("build-filter-stars-1"),
+    2: CoC.settings.getValue("build-filter-stars-2"),
+    3: CoC.settings.getValue("build-filter-stars-3"),
+    4: CoC.settings.getValue("build-filter-stars-4"),
+    5: CoC.settings.getValue("build-filter-stars-5")
+  };
+  return CoC.data.roster.filter(function(champion){
+    return filterStars[champion.get("stars")];
+  });
+};
+
+CoC.roster.csvExport=function(separator, filename){
+  var array = [];
+  //add headers
+  array.push([
+    "Id",
+    "Stars",
+    "Rank",
+    "Level",
+    "Awakened"
+  ].join(','));
+  //add champions
+  CoC.data.roster.each(function(champion){
+    array.push([
+      '"' + champion.get("uid") + '"',
+      champion.get("stars"),
+      champion.get("rank"),
+      champion.get("level"),
+      champion.get("awakened")
+    ].join(','));
+  });
+  return array.join(separator || '\n');
+};
+  
+CoC.roster.csvImport=function(csv, filename){
+  var name = filename || "csv", lines = csv.match(/[^\r\n]+/g);
+  for(var i=0;i<lines.length;i++){
+    //skip first line if its headings
+    if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
+      continue;
+  
+    var values = lines[i].split(",");
+    if(values.length != 5)
+      throw "Invalid roster CSV";
+      
+    var uid = values[0].replace(/["]/g,'').toLowerCase(),
+      stars = parseInt(values[1].replace(/["]/g,''), 10),
+      rank = parseInt(values[2].replace(/["]/g,''), 10),
+      level = parseInt(values[3].replace(/["]/g,''), 10),
+      awakened = parseInt(values[4].replace(/["]/g,''), 10);
+
+    //throw a useful error
+    if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
+      console.error("Invalid line in "+filename+":"+(i+1));
+      continue;
+    }
+    
+    var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    if(champion === undefined){
+      champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+      CoC.data.roster.add(champion);
+    }
+    
+    if(champion === undefined){
+      console.error("Champion not found \""+ uid + "\" in "+filename+":"+(i+1));
+      continue;
+    }
+      
+    champion.set("rank", rank);
+    champion.set("level", level);
+    champion.set("awakened", awakened);
+    champion.save();
+  }
+};
+
+var CoC = CoC || {};
+CoC.options = {};
+
+CoC.options.initialize = function(current){
+
+  if(window.self !== window.top)
+    $('body').addClass('iframe');
+
+  var html = CoC.data.template['options']({
+    model: CoC.lang.model,
+    string: CoC.lang.string,
+    search: CoC.lang.search,
+    current: current
+  });
+  $(document.body).append(html);
+
+  $("#panel-options").enhanceWithin().panel();
+  $("#share-facebook").click(function(){
+    CoC.tracking.event("share", "facebook");
+  });
+  $("#share-twitter").click(function(){
+    CoC.tracking.event("share", "twitter");
+  });
+  $("#share-googleplus").click(function(){
+    CoC.tracking.event("share", "googleplus");
+  });
+  $(".change-lang").click(function(){
+    var lang = $(this).attr('lang');
+    var query = {};
+    location.search.substr(1).split('&').map(function(str){
+      var attr = str.split('=');
+      if(attr.length === 2)
+        query[attr[0]] = attr[1] && unescape(attr[1]);
+    });
+    query.lang = lang;
+
+    location.search = '?' + _.pairs(query).map(function(value){
+      return value[0] + '=' + escape(value[1]);
+    }).join('&');
+  });
+
+  everyFrame(function(){
+    var panel = $('.ui-panel-open');
+    if(panel.length === 1)
+      resizePanel($(panel));
+  });
+
+  function resizePanel(panel){
+    var page = $('.ui-page-active');
+    var header = page.find('#header');
+    var footer = page.find('#footer');
+    var dismiss = $('.ui-panel-dismiss[data-panelid='+panel[0].id+']');
+
+    var headerHeight = header.height();
+    var footerHeight = footer.length && footer.height();
+    var panelHeight = window.innerHeight - headerHeight;
+
+    page.css({
+      'min-height': panelHeight - footerHeight,
+      'padding-bottom': footerHeight - 1
+    });
+    panel.css({
+      'height': panelHeight,
+      'top': headerHeight,
+      'position': 'fixed',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'overflow-y': 'auto',
+      'z-index': 1500
+    });
+    dismiss.css({
+      'position': 'fixed',
+      'height': panelHeight,
+      'top': headerHeight,
+      'left': 0,
+      'right': 'initial',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'background': 'rgba(0,0,0,0.333)',
+      'width': '100%'
+    });
+  }
+
+  function everyFrame(callback){
+    var raf = window.requestAnimationFrame || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame || 
+      window.msRequestAnimationFrame || 
+      window.oRequestAnimationFrame || 
+      function(callback){ 
+        window.setTimeout(callback, 1000/60);
+      };
+    raf(function action(){
+      callback();
+      raf(action);
+    });
+  }
+};
+
+(function(){
+  var query = {};
+  location.search.substr(1).split('&').map(function(str){
+    var attr = str.split('=');
+    if(attr.length === 2)
+      query[attr[0]] = attr[1] && unescape(attr[1]);
+  });
+  
+  window.searchQuery = function(key, value){
+    var q = _.clone(query);
+    if(key !== undefined && value !== undefined)
+      q[key] = value;
+    if(key === 'roster')
+      delete q['stars'];
+    if(key === 'stars')
+      delete q['roster'];
+    return '?' + _.pairs(q).map(function(value){
+      return value[0] + '=' + escape(value[1]);
+    }).join('&');
+  };
+
+  function checkStars(key){
+    if(query[key] !== undefined){
+      var old = query[key];
+      var value = Math.min(5, Math.max(1, parseInt(query[key], 10)));
+      if (typeof value === "number" && isFinite(value)){
+        query[key] = value;
+        if(value.toString() != old)
+          return false;
+      }
+      else{
+        delete query[key];
+      }
+    }
+    return query[key];
+  }
+
+  location.hash = '';
+
+  if(checkStars('roster')){
+    CoC.options.initialize('app-synergies');
+    CoC.roster.initialize();
+    $('.page').on('pageshow', function(){
+        CoC.synergies.initialize(query['roster'], true);
+    });
+  }
+  else if(checkStars('stars')){
+    CoC.options.initialize('app-synergies');
+    $('.page').on('pageshow', function(){
+        CoC.synergies.initialize(query['stars']);
+    });
+  }
+  else{
+    if(query['roster'] === undefined && query['stars'] === undefined)
+      query['stars'] = 2;
+    location.search = searchQuery();
+  }
+
+})();

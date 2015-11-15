@@ -1,3 +1,181 @@
+window["CoC"] = window["CoC"] || {};
+window["CoC"]["data"] = window["CoC"]["data"] || {};
+window["CoC"]["data"]["template"] = window["CoC"]["data"]["template"] || {};
+window["CoC"]["data"]["template"]["app-roster"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=page id=page-roster data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'" data-theme=c data-tracking=true data-role=page><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><a id=button-roster-options href=#panel-roster-options class=ui-btn-left data-role=button data-icon=grid data-iconpos=notext data-rel=panel data-transition=slide></a> <a class="button-share ui-btn-right" href=#panel-options data-role=button data-icon=bars data-iconpos=notext data-rel=panel></a><h1>' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'</h1></div><div class=onboarding-container><div id=onboarding-roster class="onboarding left"><h3>' +
+((__t = ( string('onboarding-roster') )) == null ? '' : __t) +
+'</h3></div></div><div role=main class=ui-content><div id=roster></div></div><div class=panel id=panel-roster-options data-role=panel data-position=left data-display=overlay data-theme=c><div id=roster-csv-io-container><input id=roster-import-input type=file accept=.csv><iframe id=rosterExportFrame style=display:none></iframe></div><fieldset data-role=controlgroup data-mini=true><h2>' +
+((__t = ( string('manage') )) == null ? '' : __t) +
+'</h2><a href=#page-add data-role=button data-icon=plus data-rel=page data-direction=reverse data-transition=flip>' +
+((__t = ( string('add-champion') )) == null ? '' : __t) +
+'</a> <button id=roster-import data-role=button>' +
+((__t = ( string('import-csv') )) == null ? '' : __t) +
+'</button> <a id=roster-export data-role=button>' +
+((__t = ( string('export-csv') )) == null ? '' : __t) +
+'</a> <button id=roster-clear-all data-role=button data-icon=delete>' +
+((__t = ( string('delete-all') )) == null ? '' : __t) +
+'</button></fieldset><fieldset data-role=controlgroup data-mini=true><h2>' +
+((__t = ( string('sort') )) == null ? '' : __t) +
+'</h2><input type=radio name=roster-sort id=roster-sort-stars><label for=roster-sort-stars checked>' +
+((__t = ( string('stars') )) == null ? '' : __t) +
+'</label><input type=radio name=roster-sort id=roster-sort-type><label for=roster-sort-type>' +
+((__t = ( string('type') )) == null ? '' : __t) +
+'</label><input type=radio name=roster-sort id=roster-sort-name><label for=roster-sort-name>' +
+((__t = ( string('name') )) == null ? '' : __t) +
+'</label></fieldset><fieldset data-role=controlgroup data-mini=true class=ui-alt-icon><h2>' +
+((__t = ( string('filter') )) == null ? '' : __t) +
+'</h2><input type=checkbox name=roster-filter-stars-5 id=roster-filter-stars-5><label for=roster-filter-stars-5>★ ★ ★ ★ ★</label><input type=checkbox name=roster-filter-stars-4 id=roster-filter-stars-4><label for=roster-filter-stars-4>★ ★ ★ ★</label><input type=checkbox name=roster-filter-stars-3 id=roster-filter-stars-3><label for=roster-filter-stars-3>★ ★ ★</label><input type=checkbox name=roster-filter-stars-2 id=roster-filter-stars-2><label for=roster-filter-stars-2>★ ★</label><input type=checkbox name=roster-filter-stars-1 id=roster-filter-stars-1><label for=roster-filter-stars-1>★</label></fieldset><br></div><div id=footer data-role=footer data-position=fixed data-theme=a data-tap-toggle=false data-hide-during-focus=""><div data-role=navbar data-iconpos=top><ul><li><a href=#page-guide data-icon=info class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-roster data-icon=grid class="ui-btn-active ui-state-persist">' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-teams data-icon=gear class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'</a></li></ul></div></div><div id=popup-roster-configure data-role=popup data-tolerance=32 data-theme=a data-overlay-theme=b data-arrow=true><div id=roster-configure-stars class=stars></div><div role=main class="ui-content ui-mini"><h2><img id="roster-configure-type"> <span id=roster-configure-name>' +
+((__t = ( ' ' + string('name') )) == null ? '' : __t) +
+'</span></h2><fieldset data-role=controlgroup data-type=horizontal data-mini=true><label for=roster-configure-rank>' +
+((__t = ( string('rank') )) == null ? '' : __t) +
+'</label><select name=roster-configure-rank id=roster-configure-rank></select><label for=roster-configure-level>' +
+((__t = ( string('level') )) == null ? '' : __t) +
+'</label><select name=roster-configure-level id=roster-configure-level></select></fieldset><fieldset data-role=controlgroup data-type=horizontal data-mini=true><label class="roster-configure-awakened ui-btn" for=roster-configure-awakened>' +
+((__t = ( string('awakened') )) == null ? '' : __t) +
+'</label><select name=roster-configure-awakened id=roster-configure-awakened></select></fieldset><fieldset data-role=controlgroup data-mini=true><label for=roster-configure-quest>' +
+((__t = ( string('quest') )) == null ? '' : __t) +
+'</label><input type=checkbox name=roster-configure-quest id=roster-configure-quest></fieldset><fieldset class=no-extras data-role=controlgroup data-mini=true><button class=roster-configure-guide data-role=button data-icon=info>' +
+((__t = ( string('view-guide') )) == null ? '' : __t) +
+'</button></fieldset><button id=roster-configure-delete data-role=button data-theme=c data-icon=delete class=ui-mini>' +
+((__t = ( string('delete') )) == null ? '' : __t) +
+'</button></div><div class="extras ui-mini"><img id="roster-configure-image"> <button class=roster-configure-guide data-role=button data-icon=info>' +
+((__t = ( string('view-guide') )) == null ? '' : __t) +
+'</button></div></div><div id=popup-roster-delete-confirm data-role=popup data-tolerance=32 data-position-to=window data-overlay-theme=b data-theme=b><div role=main class=ui-content><h3>' +
+((__t = ( string('ask-delete') )) == null ? '' : __t) +
+'<div style=display:inline-block><span id=roster-delete-confirm-stars></span> <span id=roster-delete-confirm-name></span></div>?</h3><p>' +
+((__t = ( string('cannot-undo') )) == null ? '' : __t) +
+'</p><div class=ui-mini><button id=roster-delete-confirm-yes data-role=button data-theme=c>' +
+((__t = ( string('delete') )) == null ? '' : __t) +
+'</button> <button id=roster-delete-confirm-no data-role=button>' +
+((__t = ( string('cancel') )) == null ? '' : __t) +
+'</button></div></div></div><div id=popup-roster-clear-confirm data-role=popup data-tolerance=32 data-overlay-theme=b data-theme=b><div role=main class=ui-content><h3>' +
+((__t = ( string('ask-delete-all') )) == null ? '' : __t) +
+'</h3><p>' +
+((__t = ( string('cannot-undo') )) == null ? '' : __t) +
+'</p><div class=ui-mini><button id=roster-clear-confirm-yes data-role=button data-theme=c>' +
+((__t = ( string('delete') )) == null ? '' : __t) +
+'</button> <button id=roster-clear-confirm-no data-role=button>' +
+((__t = ( string('cancel') )) == null ? '' : __t) +
+'</button></div></div></div></div><div class=page id=page-add data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'" data-theme=c data-tracking=true data-role=page><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><h3>' +
+((__t = ( string('add-champion') )) == null ? '' : __t) +
+'</h3><a href=#page-roster class=ui-btn-left data-transition=flip data-role=button data-iconpos=notext data-icon=back></a><div id=add-stars data-role=navbar><ul><li><a href=# stars=1 data-theme=a>1 ★</a></li><li><a href=# stars=2 data-theme=a>2 ★</a></li><li><a href=# stars=3 data-theme=a>3 ★</a></li><li><a href=# stars=4 data-theme=a>4 ★</a></li><li><a href=# stars=5 data-theme=a>5 ★</a></li></ul></div></div><div role=main class=ui-content><div id=add-champions></div><br></div></div><div class=page id=page-teams data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'" data-theme=c data-tracking=true data-role=page><div class=panel id=panel-team-settings data-role=panel data-position=left data-display=overlay data-theme=b><a href=#page-settings-advanced data-role=button data-rel=panel data-direction=reverse data-transition=flip>' +
+((__t = ( string('advanced-settings') )) == null ? '' : __t) +
+'</a><label>' +
+((__t = ( string('team-size') )) == null ? '' : __t) +
+'</label><fieldset id=build-settings-size data-role=controlgroup data-type=horizontal data-mini=true><input type=radio name=build-settings-size id=build-settings-size-3 value=3><label for=build-settings-size-3>3</label><input type=radio name=build-settings-size id=build-settings-size-4 value=4><label for=build-settings-size-4>4</label><input type=radio name=build-settings-size id=build-settings-size-5 value=5><label for=build-settings-size-5>5</label></fieldset><label>' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+'</label><fieldset id=build-filter-stars data-role=controlgroup data-type=horizontal data-mini=true><input type=checkbox name=build-filter-stars-1 id=build-filter-stars-1><label for=build-filter-stars-1>1 ★</label><input type=checkbox name=build-filter-stars-2 id=build-filter-stars-2><label for=build-filter-stars-2>2 ★</label><input type=checkbox name=build-filter-stars-3 id=build-filter-stars-3><label for=build-filter-stars-3>3 ★</label><input type=checkbox name=build-filter-stars-4 id=build-filter-stars-4><label for=build-filter-stars-4>4 ★</label><input type=checkbox name=build-filter-stars-5 id=build-filter-stars-5><label for=build-filter-stars-5>5 ★</label></fieldset><label>' +
+((__t = ( string('type') )) == null ? '' : __t) +
+'</label><fieldset id=build-settings-type data-role=controlgroup data-type=horizontal data-mini=true><input type=radio name=build-settings-type id=build-settings-type-quest value=quest><label for=build-settings-type-quest>' +
+((__t = ( string('quest') )) == null ? '' : __t) +
+'</label><input type=radio name=build-settings-type id=build-settings-type-arena value=arena><label for=build-settings-type-arena>' +
+((__t = ( string('arena') )) == null ? '' : __t) +
+'</label></fieldset><small id=build-settings-type-description></small> <button id=button-build-settings-apply data-theme=b data-role=button data-icon=gear data-iconpos=right>' +
+((__t = ( string('build') )) == null ? '' : __t) +
+'</button><br></div><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><a id=button-team-build href=#panel-team-settings class=ui-btn-left data-role=button data-rel=panel data-iconpos=notext data-icon=gear></a> <a class="button-share ui-btn-right" href=#panel-options data-role=button data-icon=bars data-iconpos=notext data-rel=panel></a><h1>' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'</h1><div id=team-build-progress><input type=range data-theme=b data-highlight=true min=0 max=1000 value=0></div></div><div class=onboarding-container><div id=onboarding-progress class=onboarding><p class=text></p></div><div id=onboarding-teams class="onboarding left"><h3>' +
+((__t = ( string('onboarding-teams') )) == null ? '' : __t) +
+'</h3></div></div><div role=main class=ui-content><div id=teams></div><br></div><div id=footer data-role=footer data-theme=a data-id=myfooter data-position=fixed data-tap-toggle=false data-hide-during-focus=""><div data-role=navbar data-iconpos=top><ul><li><a href=#page-guide data-icon=info class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-roster data-icon=grid class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-teams data-icon=gear class="ui-btn-active ui-state-persist">' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'</a></li></ul></div></div><div id=popup-team-effect data-role=popup data-arrow=true data-theme=c><div role=main class=ui-content></div></div></div><div class=page id=page-settings-advanced data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'" data-theme=b data-tracking=true data-role=page><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><a href=#page-teams class=ui-btn-left data-role=button data-transition=flip data-iconpos=notext data-icon=back></a><h1>' +
+((__t = ( string('advanced-settings') )) == null ? '' : __t) +
+'</h1></div><div role=main class=ui-content><button id=settings-advanced-preset-defaults data-role=button>' +
+((__t = ( string('reset-defaults') )) == null ? '' : __t) +
+'</button><h3>' +
+((__t = ( string('champion-weights') )) == null ? '' : __t) +
+'</h3><div data-role=fieldcontain><label for=settings-advanced-levels>' +
+((__t = ( string('use-levels') )) == null ? '' : __t) +
+'</label><input type=checkbox name=settings-advanced-levels id=settings-advanced-levels data-highlight="true"></div><h3>' +
+((__t = ( string('synergy-weights') )) == null ? '' : __t) +
+'</h3><select name=settings-advanced-preset-synergies id=settings-advanced-preset-synergies><option value="">' +
+((__t = ( string('choose-preset') )) == null ? '' : __t) +
+'</option></select><div data-role=fieldcontain><label for=settings-advanced-attack>' +
+((__t = ( model('effect-attack-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-attack id=settings-advanced-attack value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-stun>' +
+((__t = ( model('effect-stun-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-stun id=settings-advanced-stun value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-critrate>' +
+((__t = ( model('effect-critrate-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-critrate id=settings-advanced-critrate value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-critdamage>' +
+((__t = ( model('effect-critdamage-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-critdamage id=settings-advanced-critdamage value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-powergain>' +
+((__t = ( model('effect-powergain-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-powergain id=settings-advanced-powergain value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-perfectblock>' +
+((__t = ( model('effect-perfectblock-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-perfectblock id=settings-advanced-perfectblock value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-block>' +
+((__t = ( model('effect-block-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-block id=settings-advanced-block value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-armor>' +
+((__t = ( model('effect-armor-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-armor id=settings-advanced-armor value=100 min=0 max=1000 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-health>' +
+((__t = ( model('effect-health-name') )) == null ? '' : __t) +
+'</label><input type=range name=settings-advanced-health id=settings-advanced-health value=100 min=0 max=1000 data-highlight="true"></div><h3>' +
+((__t = ( string('duplicate-weights') )) == null ? '' : __t) +
+'</h3><select name=settings-advanced-preset-duplicates id=settings-advanced-preset-duplicates><option value="">' +
+((__t = ( string('choose-preset') )) == null ? '' : __t) +
+'</option></select><div data-role=fieldcontain><label for=settings-advanced-duplicates-2>' +
+((__t = ( string('double') )) == null ? '' : __t) +
+'(2X)</label><input type=range name=settings-advanced-duplicates-2 id=settings-advanced-duplicates-2 value=100 min=0 max=100 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-duplicates-3>' +
+((__t = ( string('triple') )) == null ? '' : __t) +
+'(3x)</label><input type=range name=settings-advanced-duplicates-3 id=settings-advanced-duplicates-3 value=100 min=0 max=100 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-duplicates-4>' +
+((__t = ( string('quadruple') )) == null ? '' : __t) +
+'(4x)</label><input type=range name=settings-advanced-duplicates-4 id=settings-advanced-duplicates-4 value=100 min=0 max=100 data-highlight="true"></div><div data-role=fieldcontain><label for=settings-advanced-duplicates-5>' +
+((__t = ( string('quintuple') )) == null ? '' : __t) +
+'(5x)</label><input type=range name=settings-advanced-duplicates-5 id=settings-advanced-duplicates-5 value=100 min=0 max=100 data-highlight="true"></div></div></div><div class=page id=page-guide data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'" data-theme=a data-role=page><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><a id=button-page-crystals href=#page-crystals class=ui-btn-left data-role=button data-icon=crystal data-iconpos=notext data-transition=flip data-rel=page data-direction=reverse></a> <a id=button-select-guide href=# class="button-share ui-btn-right" data-role=button data-icon=info data-iconpos=notext></a> <a class="button-share ui-btn-right" href=#panel-options data-role=button data-icon=bars data-iconpos=notext data-rel=panel></a><h1>' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'</h1><div id=guide-champions-frame class=frame><ul id=guide-champions class=slidee></ul></div><div id=guide-champions-selector-container class=ui-field-contain><label for=guide-champions-selector>' +
+((__t = ( string('choose-guide') )) == null ? '' : __t) +
+'</label><select name=guide-champions-selector id=guide-champions-selector data-native-menu=false data-theme=a></select></div></div><div role=main class=ui-content id=guide-content></div><div id=footer data-role=footer data-theme=a data-id=myfooter data-position=fixed data-tap-toggle=false data-hide-during-focus=""><div data-role=navbar data-iconpos=top><ul><li><a href=#page-guide data-icon=info class="ui-btn-active ui-state-persist">' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-roster data-icon=grid class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('roster') )) == null ? '' : __t) +
+'</a></li><li><a href=#page-teams data-icon=gear class=ui-alt-icon data-transition=fade>' +
+((__t = ( string('team') )) == null ? '' : __t) +
+'</a></li></ul></div></div><div id=popup-guide-effect data-role=popup data-arrow=true data-theme=a><div role=main class=ui-content></div></div></div><div class=page id=page-crystals data-title="' +
+((__t = ( string('champions') )) == null ? '' : __t) +
+' - ' +
+((__t = ( string('guide') )) == null ? '' : __t) +
+'" data-theme=a data-tracking=true data-role=page><div id=header data-role=header data-theme=c data-position=fixed data-tap-toggle=false data-hide-during-focus=""><a href=#page-guide class=ui-btn-left data-transition=flip data-role=button data-iconpos=notext data-icon=back></a><h1>' +
+((__t = ( string('crystals') )) == null ? '' : __t) +
+'</h1></div><div role=main class=ui-content id=crystals></div></div><svg xmlns:svg=http://www.w3.org/2000/svg xmlns=http://www.w3.org/2000/svg><symbol id=portrait-placeholder><path fill=#909090 d="M 3.5709275,215.81378 C 3.7352275,204.03019 3.8497975,199.05392 3.5005675,183.77748 C 11.214111,174.15409 38.3674,169.74066 45.785393,167.0981 C 55.358378,159.98075 66.203698,153.92378 75.552667,148.56151 C 80.7154,145.60034 80.782546,135.45005 80.404668,128.63362 C 78.689369,118.98009 77.782686,110.65561 70.86354,103.56735 C 70.47649,101.54341 69.346365,96.899211 65.948685,90.832271 C 63.662168,80.636072 54.650066,68.010083 56.914311,61.532735 C 62.944238,44.282973 57.676043,37.272904 61.378834,35.798494 C 69.823479,32.435953 72.10706,25.082426 79.841538,17.698566 C 102.43887,13.411138 98.965362,1.9932189 115.84961,4.1987589 C 136.77696,6.9324259 125.2515,10.014792 139.60507,17.279644 C 157.23926,26.204921 146.73196,27.108963 162.83032,50.739759 C 172.38972,64.771999 153.76819,65.728581 158.59298,78.146165 C 163.04993,89.617072 152.54354,91.572613 147.24294,104.12579 C 142.15767,116.16899 138.96668,119.70997 144.82195,135.58386 C 150.25927,150.32462 159.28667,143.58938 179.677,165.66778 C 184.85448,171.27389 203.45549,164.48784 216.26305,180.85898 C 216.25506,189.25148 216.44185,198.19473 216.49943,216.08121 C 159.09474,215.87646 3.5709275,215.81378 3.5709275,215.81378 z "/></symbol></svg>';
+
+}
+return __p
+};
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -10757,6 +10935,2010 @@ return jQuery;
     });
   }
 }.call(this));
+
+window["CoC"]["data"]["template"]["options"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div id=panel-options data-role=panel data-display=overlay data-position=right data-theme=a data-overlay-theme=b><h3>' +
+((__t = ( string('options') )) == null ? '' : __t) +
+'</h3><ul data-role=listview><li data-role=list-divider>' +
+((__t = ( string('share-to') )) == null ? '' : __t) +
+'</li><li><a id=share-facebook class=share-button href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target=_blank><img src=images/share/facebook_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('facebook') )) == null ? '' : __t) +
+'</a></li><li><a id=share-twitter class=share-button href="https://twitter.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/twitter_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('twitter') )) == null ? '' : __t) +
+'</a></li><li><a id=share-googleplus class=share-button href="https://plus.google.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/googleplus_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('google') )) == null ? '' : __t) +
+'+</a></li><li data-role=list-divider>' +
+((__t = ( string('language') )) == null ? '' : __t) +
+'</li>';
+ _(['en', 'es', 'ru']).each(function(lang){ ;
+__p += '<li><a href="" class=change-lang lang="' +
+((__t = ( lang )) == null ? '' : __t) +
+'"><img src="images/lang/' +
+((__t = ( lang )) == null ? '' : __t) +
+'.png" class="ui-li-icon ui-corner-none">' +
+((__t = ( CoC.lang[lang].name )) == null ? '' : __t) +
+'</a></li>';
+ }) ;
+__p += '<li data-role=list-divider>' +
+((__t = ( string('tools') )) == null ? '' : __t) +
+'</li>';
+ if(current !== 'app-roster'){ ;
+__p += '<li><a href="/contest-of-champions/' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('roster-manager') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+
+ if(current !== 'app-synergies'){ ;
+__p += '<li><a href="/contest-of-champions/synergies.html' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('synergy-map') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+__p += '</ul></div>';
+
+}
+return __p
+};
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['en'] = {
+  name:'English',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Black Bolt',
+    'champion-captainmarvel-name': 'Captain Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Symbiote',
+    'champion-superiorironman-name': 'Superior Iron Man',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket Raccoon',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Vision',
+    'champion-thevision-name': 'The Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'War Machine',
+    'champion-colossus-name': 'Colossus',
+    'champion-cyclops-name': 'Cyclops',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Storm',
+    'champion-wolverine-name': 'Wolverine',
+    'champion-blackpanther-name': 'Black Panther',
+    'champion-blackwidow-name': 'Black Widow',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Hawkeye',
+    'champion-moonknight-name': 'Moon Knight',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Winter Soldier',
+    'champion-abomination-name': 'Abomination',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Captain America',
+    'champion-captainamericawwii-name': 'Captain America WWII',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Doctor Strange',
+    'champion-ironfist-name': 'Iron Fist',
+    'champion-guillotine-name': 'Guillotine',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Scarlet Witch',
+    'champion-unstoppablecolossus-name': 'Unstoppable Colossus',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Sup. Iron Man',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-drstrange-shortname': 'Dr. Strange',
+    'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
+
+    //Ability name
+    'ability-stun-name': 'Stun',
+    'ability-fatigue-name': 'Fatigue',
+    'ability-powerdrain-name': 'Power Drain',
+    'ability-powerburn-name': 'Power Burn',
+    'ability-bleed-name': 'Bleed',
+    'ability-cauterize-name': 'Cauterize',
+    'ability-armorbreak-name': 'Armor Break',
+    'ability-fury-name': 'Fury',
+    'ability-regeneration-name': 'Regeneration',
+    'ability-unstoppable-name': 'Unstoppable',
+    'ability-poison-name': 'Poison',
+    'ability-armorup-name': 'Armor Up',
+    'ability-plusdamage-name': 'Increased Damage',
+    'ability-pluscritrate-name': 'Increased Critical Rate',
+    'ability-pluscritdamage-name': 'Increased Critical Damage',
+    'ability-poisonimmunity-name': 'Poison Immunity',
+    'ability-bleedimmunity-name': 'Bleed Immunity',
+
+    //Effect name
+    'effect-attack-name': 'Attack',
+    'effect-stun-name': 'Stun',
+    'effect-critrate-name': 'Critical Rate',
+    'effect-critdamage-name': 'Critical Damage',
+    'effect-powergain-name': 'Power Gain',
+    'effect-powersteal-name': 'Power Steal',
+    'effect-perfectblock-name': 'Perfect Block',
+    'effect-block-name': 'Block Proficiency',
+    'effect-armor-name': 'Armor',
+    'effect-health-name': 'Health',
+    'effect-healthsteal-name': 'Health Steal',
+
+    //Effect description
+    'effect-attack-description': 'Increases damage on all attacks.',
+    'effect-stun-description': 'Chance to Stun on special attacks.',
+    'effect-critrate-description': 'Increases the chance for Critical hit.',
+    'effect-critdamage-description': 'Increases damage multiplier for Critical hits.',
+    'effect-powergain-description': 'Gain additional Power (used to trigger a special) whenever Power is gained.',
+    'effect-powersteal-description': 'Gain Power (used to trigger a special) when attacking.',
+    'effect-perfectblock-description': 'Increased chance to Perfect Block for 0 damage.',
+    'effect-block-description': 'Increases Block effectiveness for less damage taken.',
+    'effect-armor-description': 'Increases Armor so that all damage taken is decreased.',
+    'effect-health-description': 'Increases champion Health.',
+    'effect-healthsteal-description': 'Gain Health when attacking.',
+
+    //Type name
+    'type-cosmic-name': 'Cosmic',
+    'type-tech-name': 'Tech',
+    'type-mutant-name': 'Mutant',
+    'type-skill-name': 'Skill',
+    'type-science-name': 'Science',
+    'type-mystic-name': 'Mystic',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alliance',
+    'crystal-daily-name': 'Daily',
+    'crystal-2star-name': '2-Star',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3-Star',
+    'crystal-4star-name': '4-Star',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Acquired when you win a versus match.',
+    'crystal-arena-description': 'Buy for 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Buy for 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Acquired once every 24 hours.',
+    'crystal-premium-description': 'Buy for 100 $UNITS$.',
+    'crystal-3star-description': 'Buy for 400 $UNITS$, rare event.',
+    'crystal-4star-description': 'Buy for 2500 $UNITS$, very rare event.',
+
+    //Algorithm name
+    'algorithm-quest-name': 'Quest',
+    'algorithm-arena-name': 'Arena',
+
+    //Algorithm description
+    'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
+    'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'of',
+    'with': 'with',
+    'found': 'Found',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Team',
+    'teams': 'Teams',
+
+    'guide': 'Guide',
+    'guides': 'Guides',
+
+    'champion': 'Champion',
+    'champions': 'Champions',
+
+    'synergy': 'Synergy',
+    'synergies': 'Synergies',
+
+    'crystal': 'Crystal',
+    'crystals': 'Crystals',
+
+    'roster': 'Roster',
+
+    //Roster Panel
+    'manage': 'Manage',
+    'add-champion': 'Add a Champion',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Delete All',
+
+    'sort': 'Sort',
+    'filter': 'Filter',
+
+    //Roster Config
+    'stars': 'Stars',
+    'type': 'Type',
+    'name': 'Name',
+
+    'rank': 'Rank',
+    'level': 'Level',
+    'awakened': 'Awakened',
+    'quest': 'Quest',
+    'view-guide': 'View Guide',
+
+    'delete': 'Delete',
+    'cancel': 'Cancel',
+
+    'ask-delete': 'Are you sure you want to delete',
+    'ask-delete-all': 'Are you sure you want to delete all of your champions?',
+    'cannot-undo': 'This action cannot be undone.',
+
+    //Team Panel
+    'advanced-settings': 'Advanced Settings',
+    'team-size': 'Team Size',
+    'algorithm': 'Algorithm',
+    'arena': 'Arena',
+    'build': 'Build',
+
+    //Add Champion Page
+    'add-all': 'Add All',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reset to Defaults',
+    'champion-weights': 'Champion Weights',
+    'synergy-weights': 'Synergy Weights',
+    'duplicate-weights': 'Duplicate Class Weights',
+    'choose-preset': 'Choose a preset...',
+    'use-levels': 'Calculate using stars / ranks / levels',
+
+    //Tuples
+    'double': 'Double',
+    'triple': 'Triple',
+    'quadruple': 'Quadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Choose a guide',
+
+    //Options
+    'options': 'Options',
+    'share-to': 'Share to',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Tools',
+    'language': 'Language',
+    'synergy-map': 'Synergy Map',    
+    'roster-manager': 'Roster Manager',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
+    'onboarding-roster': 'Use the options menu to add new champions',
+    'onboarding-teams': 'Use the Build menu create your teams!',
+
+    //Guide
+    'coming-soon': 'Coming Soon...',
+    'description': 'Description',
+    'gameplay': 'Gameplay',
+    'special': 'Special',
+    'signature': 'Signature Ability',
+    'attack': 'Attack',
+    'heavy-attack': 'Heavy Attack',
+    'abilities': 'Abilities',
+    'passive-abilities': 'Passive Abilities',
+
+    'rating': 'Rating',
+    'grade': 'Grade',
+    'strategy': 'Strategy',
+    'style': 'Style',
+
+    'damage-type': 'Damage Type',
+    'range': 'Range',
+    'note': 'Note',
+
+    'synergies-external': 'External Synergies',
+
+    'author': 'Author',
+    'profile': 'Profile',
+    'profile-reddit': 'Reddit /u/',
+    'profile-kabam': 'Kabam Forums',
+    'author-credit': 'This guide was written by',
+
+    'email': 'E-mail',
+    
+    'none': 'None',
+  }
+};
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['es'] = {
+  name:'Español',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Rayo Negro',
+    'champion-captainmarvel-name': 'Capitana Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Simbionte',
+    'champion-superiorironman-name': 'Iron Man Superior',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket el Mapache',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Visión',
+    'champion-thevision-name': 'La Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'Máquina de Guerra',
+    'champion-colossus-name': 'Coloso',
+    'champion-cyclops-name': 'Cíclope',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Tormenta',
+    'champion-wolverine-name': 'Lobezno',
+    'champion-blackpanther-name': 'Pantera Negra',
+    'champion-blackwidow-name': 'Viuda Negra',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Ojo de Halcon',
+    'champion-moonknight-name': 'Caballero Luna',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Soldado del Invierno',
+    'champion-abomination-name': 'Abominación',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Capitán América',
+    'champion-captainamericawwii-name': 'Capitán América 2º GM',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Dr. Extraño',
+    'champion-ironfist-name': 'Puño de Hierro',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Bruja Escarlata',
+    'champion-unstoppablecolossus-name': 'Coloso Imparable',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Iron Man Sup.',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-unstoppablecolossus-shortname': 'Coloso Imp.',
+
+    //Effect name
+    'effect-attack-name': 'Ataque',
+    'effect-stun-name': 'Aturdir',
+    'effect-critrate-name': 'Prob. de Golpe Crítico',
+    'effect-critdamage-name': 'Daño de Golpe Crítico',
+    'effect-powergain-name': 'Acopio de Poder',
+    'effect-powersteal-name': 'Robapoderes',
+    'effect-perfectblock-name': 'Bloqueo Impecable',
+    'effect-block-name': 'Bloqueo Maestro',
+    'effect-armor-name': 'Robustez',
+    'effect-health-name': 'Curación',
+    'effect-healthsteal-name': 'Parásito',
+
+    //Effect description
+    'effect-attack-description': 'Incrementa el daño de todos los ataques.',
+    'effect-stun-description': 'Probabilidad de aturdir con ataques especiales.',
+    'effect-critrate-description': 'Incrementa la probabilidad para golpes críticos.',
+    'effect-critdamage-description': 'Incrementa el daño para golpes críticos.',
+    'effect-powergain-description': 'Gana poder adicional (usado para activar un especial) cada vez que se gana poder.',
+    'effect-powersteal-description': 'Gana poder adicional (usado para activar un especial) cuando atacas.',
+    'effect-perfectblock-description': 'Probabilidad adicional de hacer un bloqueo perfecto con 0 daño.',
+    'effect-block-description': 'Incrementa la efectividad del bloqueo para reducir el daño recibido.',
+    'effect-armor-description': 'Incrementa la armadura para reducir todo el daño recibido.',
+    'effect-health-description': 'Incrementa la salúd del luchador.',
+    'effect-healthsteal-description': 'Incrementa la salúd al atacar.',
+
+    //Type name
+    'type-cosmic-name': 'Cósmico',
+    'type-tech-name': 'Tecnológico',
+    'type-mutant-name': 'Mutante',
+    'type-skill-name': 'Habilidad',
+    'type-science-name': 'Científico',
+    'type-mystic-name': 'Místico',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alianza',
+    'crystal-daily-name': 'Diario',
+    'crystal-2star-name': '2 Estrellas',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3 Estrellas',
+    'crystal-4star-name': '4 Estrellas',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Obtenido al ganar una pelea versus.',
+    'crystal-arena-description': 'Cómpralo por 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Cómpralo por 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Adquirido una vez cada 24 horas.',
+    'crystal-premium-description': 'Cómpralo por 100 $UNITS$.',
+    'crystal-3star-description': 'Cómpralo por 400 $UNITS$, poco común.',
+    'crystal-4star-description': 'Cómpralo por 2500 $UNITS$, muy poco común.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Egoísta',
+    'algorithm-shuffle-name': 'Mixto',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'LENTO. Elige el mejor equipo matemáticamente tomando en cuenta todos los parámetros.',
+    'algorithm-shuffle-description': 'RÁPIDO. Elige las mejores combinaciones posibles de equipos.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'de',
+    'with': 'con',
+    'found': 'Encontrado',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Equipo',
+    'teams': 'Equipos',
+
+    'guide': 'Guía',
+    'guides': 'Guías',
+
+    'champion': 'Luchador',
+    'champions': 'Luchadores',
+
+    'synergy': 'Sinergia',
+    'synergies': 'Sinergias',
+
+    'crystal': 'Cristal',
+    'crystals': 'Cristales',
+
+    'roster': 'Repertorio',
+
+    //Roster Panel
+    'manage': 'Administra',
+    'add-champion': 'Añade un Luchador',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Borra todo',
+
+    'sort': 'Clasificar',
+    'filter': 'Filtrar',
+
+    //Roster Config
+    'stars': 'Estrellas',
+    'type': 'Tipo',
+    'name': 'Name',
+
+    'rank': 'Rango',
+    'level': 'Nivel',
+    'awakened': 'Despertado',
+    'quest': 'Gesta',
+    'view-guide': 'Ver Guía',
+
+    'delete': 'Borrar',
+    'cancel': 'Cancelar',
+
+    'ask-delete': '¿Estas seguro que quieres borrar?',
+    'ask-delete-all': '¿Estás seguro que quieres borrar a todos tus luchadores?',
+    'cannot-undo': 'Esta acción no puede ser deshecha.',
+
+    //Team Panel
+    'advanced-settings': 'Configuración Avanzada',
+    'team-size': 'Tamaño del Equipo',
+    'algorithm': 'Algoritmo',
+    'arena': 'Arena',
+    'build': 'Armar',
+
+    //Add Champion Page
+    'add-all': 'Añadir Todo',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reiniciar a default',
+    'champion-weights': 'Importancia de Luchadores',
+    'synergy-weights': 'Importancia de Sinergías',
+    'duplicate-weights': 'Importancia de Duplicación',
+    'choose-preset': 'Elige un parámetro...',
+    'use-levels': 'Calcula usando Estrellas / Rangos / Niveles',
+
+    //Tuples
+    'double': 'Doble',
+    'triple': 'Triple',
+    'quadruple': 'Cuadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Elige una guía',
+
+    //Options
+    'options': 'Opciones',
+    'share-to': 'Compartir',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Herramientas',
+    'language': 'Idioma',
+    'synergy-map': 'Mapa de Sinergias',    
+    'roster-manager': 'Administrador de Repertorio',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Usa la herramienta Administrador de Repertorio para añadir más luchadores a tu repertorio.',
+    'onboarding-roster': 'Usa el menú de opciones para añadir nuevos luchadores',
+    'onboarding-teams': '¡Usa el menú Armar para crear tus equipos!',
+
+    //Guide
+    'coming-soon': 'Pronto...',
+    'gameplay': 'Gameplay',
+    'special': 'Especial',
+    'signature': 'Habilidad Especial',
+    'heavy-attack': 'Ataque Pesado',
+    'abilities': 'Abilidades',
+
+    'grade': 'Calificación',
+    'strategy': 'Estrategia',
+
+    'damage-type': 'Tipo de daño',
+    'range': 'Rango',
+    'note': 'Nota',
+
+    'synergies-external': 'Sinergias Externas',
+
+    'none': 'Ninguno',
+  }
+};
+// http://collabedit.com/pwxck
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['ru'] = {
+  name:'Русский',
+  model: { 
+  
+    //Champion name 
+    'champion-blackbolt-name': 'Черный Гром',
+    'champion-captainmarvel-name': 'Капитан Марвел',
+    'champion-drax-name': 'Дракс',
+    'champion-gamora-name': 'Гамора',
+    'champion-msmarvel-name': 'Мисс Марвел',
+    'champion-ronan-name': 'Ронан',
+    'champion-spidermanblack-name': 'Черный Человек-Паук',
+    'champion-superiorironman-name': 'Высший Железный Человек',
+    'champion-thor-name': 'Тор',
+    'champion-thorjanefoster-name': 'Джейн Фостер',
+    'champion-venom-name': 'Веном',
+    'champion-ironman-name': 'Железный Человек',
+    'champion-ironpatriot-name': 'Железный Патриот',
+    'champion-hulkbuster-name': 'Халкбастер',
+    'champion-kang-name': 'Канг',
+    'champion-rocket-name': 'Реактивный Енот',
+    'champion-starlord-name': 'Звездный Лорд',
+    'champion-vision-name': 'Вижн',
+    'champion-thevision-name': 'Вижн Кино',
+    'champion-ultron-name': 'Альтрон Прайм',
+    'champion-warmachine-name': 'Воитель',
+    'champion-colossus-name': 'Колосс',
+    'champion-cyclops-name': 'Циклоп',
+    'champion-deadpool-name': 'Дедпул',
+    'champion-deadpoolxforce-name': 'Дедпул X-Force',
+    'champion-magneto-name': 'Магнето',
+    'champion-magnetomarvelnow-name': 'Белый Магнето',
+    'champion-storm-name': 'Шторм',
+    'champion-wolverine-name': 'Росомаха',
+    'champion-blackpanther-name': 'Черная Пантера',
+    'champion-blackwidow-name': 'Черная Вдова',
+    'champion-daredevil-name': 'Сорвиголова',
+    'champion-daredevilnetflix-name': 'Сорвиголова Netflix',
+    'champion-elektra-name': 'Электра',
+    'champion-hawkeye-name': 'Соколиный Глаз',
+    'champion-moonknight-name': 'Лунный Рыцарь',
+    'champion-punisher-name': 'Каратель',
+    'champion-wintersoldier-name': 'Зимний Солдат',
+    'champion-abomination-name': 'Мерзость',
+    'champion-antman-name': 'Человек Муравей',
+    'champion-captainamerica-name': 'Капитан Америка',
+    'champion-captainamericawwii-name': 'Капитан Америка WWII',
+    'champion-electro-name': 'Электро',
+    'champion-hulk-name': 'Халк',
+    'champion-joefixit-name': 'Джо Фиксит',
+    'champion-rhino-name': 'Носорог',
+    'champion-spidergwen-name': 'Спайдер Гвен',
+    'champion-spiderman-name': 'Человек-Паук',
+    'champion-spidermanmorales-name': 'Человек-Паук Моралес',
+    'champion-yellowjacket-name': 'Желтый Шершень',
+    'champion-drstrange-name': 'Доктор Стрэндж',
+    'champion-ironfist-name': 'Железный Кулак',
+    'champion-juggernaut-name': 'Джаггернаут',
+    'champion-magik-name': 'Мэджик',
+    'champion-scarletwitch-name': 'Алая Ведьма',
+    'champion-unstoppablecolossus-name': 'Неудержимый Колосс',
+    
+    //Champion shortnames
+    'champion-blackbolt-shortname': 'Гром',
+    'champion-captainmarvel-shortname': 'Кэп Марвел',
+    'champion-drax-shortname': 'Дракс',
+    'champion-gamora-shortname': 'Гамора',
+    'champion-msmarvel-shortname': 'Мисс',
+    'champion-ronan-shortname': 'Ронан',
+    'champion-spidermanblack-shortname': 'Черный Паук',
+    'champion-superiorironman-shortname': 'СЖЧ',
+    'champion-thor-shortname': 'Тор',
+    'champion-thorjanefoster-shortname': 'Джейн Фостер',
+    'champion-venom-shortname': 'Веном',
+    'champion-ironman-shortname': 'ЖЧ',
+    'champion-ironpatriot-shortname': 'ЖП',
+    'champion-hulkbuster-shortname': 'ХБ',
+    'champion-kang-shortname': 'Канг',
+    'champion-rocket-shortname': 'Енот',
+    'champion-starlord-shortname': 'Лорд',
+    'champion-vision-shortname': 'Вижн',
+    'champion-thevision-shortname': 'Вижн Кино',
+    'champion-ultron-shortname': 'Альтрон',
+    'champion-warmachine-shortname': 'Воитель',
+    'champion-colossus-shortname': 'Колосс',
+    'champion-cyclops-shortname': 'Циклоп',
+    'champion-deadpool-shortname': 'Дед',
+    'champion-deadpoolxforce-shortname': 'Дед седой',
+    'champion-magneto-shortname': 'Магнит',
+    'champion-magnetomarvelnow-shortname': 'Белый Магнит',
+    'champion-storm-shortname': 'Шторм',
+    'champion-wolverine-shortname': 'Рося',
+    'champion-blackpanther-shortname': 'Пантера',
+    'champion-blackwidow-shortname': 'Вдова',
+    'champion-daredevil-shortname': 'Сорвиголова',
+    'champion-daredevilnetflix-shortname': 'Сорвиголова Netflix',
+    'champion-elektra-shortname': 'Электра',
+    'champion-hawkeye-shortname': 'Сокол',
+    'champion-moonknight-shortname': 'Лунатик',
+    'champion-punisher-shortname': 'Кара',
+    'champion-wintersoldier-shortname': 'Зимний',
+    'champion-abomination-shortname': 'Мерзость',
+    'champion-antman-shortname': 'Муравей',
+    'champion-captaishortnamerica-shortname': 'Кэп',
+    'champion-captaishortnamericawwii-shortname': 'Кэп ВМВ',
+    'champion-electro-shortname': 'Электрик',
+    'champion-hulk-shortname': 'Халк',
+    'champion-joefixit-shortname': 'Фиксит',
+    'champion-rhino-shortname': 'Носорог',
+    'champion-spidergwen-shortname': 'Гвен',
+    'champion-spiderman-shortname': 'Паук',
+    'champion-spidermanmorales-shortname': 'Моралес',
+    'champion-yellowjacket-shortname': 'Шершень',
+    'champion-drstrange-shortname': 'Док',
+    'champion-ironfist-shortname': 'Кулак',
+    'champion-juggernaut-shortname': 'Джаг',
+    'champion-magik-shortname': 'Мэджик',
+    'champion-scarletwitch-shortname': 'Ведьма',
+    'champion-unstoppablecolossus-shortname': 'Неуд',
+    
+    //Effect name 
+    'effect-attack-name': 'Атака',
+    'effect-stun-name': 'Оглушение',
+    'effect-critrate-name': 'Вероятность крит. урона',
+    'effect-critdamage-name': 'Крит. Урон',
+    'effect-powergain-name': 'Увеличение Энергии',
+    'effect-powersteal-name': 'Кража Энергии',
+    'effect-perfectblock-name': 'Идеальный Блок',
+    'effect-block-name': 'Вероятность ид. блока',
+    'effect-armor-name': 'Броня',
+    'effect-health-name': 'Здоровье',
+    'effect-healthsteal-name': 'Кража здоровья',
+    
+    //Effect description 
+    'effect-attack-description': 'Увеличение урона на все атаки.',
+    'effect-stun-description': 'Шанс оглушения при спец. атаках.',
+    'effect-critrate-description': 'Увеличение вероятности крит. урона.',
+    'effect-critdamage-description': 'Увеличение критического урона.',
+    'effect-powergain-description': 'Увеличечние энергии (от спец. атак) независимо от атаки.',
+    'effect-powersteal-description': 'Кража энергии (от спец. атак) за счет атаки.',
+    'effect-perfectblock-description': 'Увеличение шанса идеального блока - 0 урона в блоке.',
+    'effect-block-description': 'Увеличение эффективности блокирования - уменьшение урона в блоке.',
+    'effect-armor-description': 'Увеличение брони, тем самым уменьшая получаемый урон.',
+    'effect-health-description': 'Увеличение здоровья чемпиона.',
+    'effect-healthsteal-description': 'Восполнение здоровья при атаке.',
+    
+    //Type name 
+    'type-cosmic-name': 'Космос',
+    'type-tech-name': 'Технологии',
+    'type-mutant-name': 'Мутации',
+    'type-skill-name': 'Способности',
+    'type-science-name': 'Наука',
+    'type-mystic-name': 'Мистика',
+    
+    //Crystal name 
+    'crystal-versus-name': 'Кристалл за битвы',
+    'crystal-arena-name': 'Кристалл Арены',
+    'crystal-alliance-name': 'Кристалл союза',
+    'crystal-daily-name': 'Ежедневный кристалл',
+    'crystal-2star-name': 'Кристалл героя с 2-мя звездами',
+    'crystal-premium-name': 'Усиленный кристалл героя',
+    'crystal-3star-name': 'Кристалл героя с 3-мя звездами',
+    'crystal-4star-name': 'Кристалл героя с 4-мя звездами',
+    
+    //Crystal description (keep $CURRENCY$ tokens for image replacement) 
+    'crystal-versus-description': 'Даётся за победу на арене 1vs1.',
+    'crystal-arena-description': 'Покупается за 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Покупается за 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Появляется каждые 24 часа.',
+    'crystal-premium-description': 'Покупается за 100 $UNITS$.',
+    'crystal-3star-description': 'Покупается за 400 $UNITS$, редкая акция.',
+    'crystal-4star-description': 'Покупается за 2500 $UNITS$, очень редкая акция.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Greedy',
+    'algorithm-shuffle-name': 'Смешанный',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'МЕДЛЕННЫЙ. Выбирает команды, используя математический просчет на основе введенных апраметров.',
+    'algorithm-shuffle-description': 'БЫСТРЫЙ. Выбирает лучшую возможную комбинацию команды.',
+  },
+  string: { 
+  
+      //Listing words 
+    'of': 'из',
+    'with': 'с',
+    'found': 'Найден',
+    'extras': 'Экстра',
+    
+    //Common words/sections 
+    'team': 'Команда',
+    'teams': 'Команды',
+    'guide': 'Руководство',
+    'guides': 'Руководства',
+    'champion': 'Чемпион',
+    'champions': 'Чемпионы',
+    'synergy': 'Синергия',
+    'synergies': 'Синергии',
+    'crystal': 'Кристалл',
+    'crystals': 'Кристаллы',
+    'roster': 'Список',
+    
+    //Roster Panel 
+    'manage': 'Управление',
+    'add-champion': 'Добавить чемпиона',
+    'import-csv': 'Импорт .csv',
+    'export-csv': 'Экспорт .csv',
+    'delete-all': 'Удалить всех',
+    'sort': 'Сортировать',
+    'filter': 'Фильтр',
+    
+    //Roster Config 
+    'stars': 'Категория',
+    'type': 'Класс',
+    'name': 'Имя',
+    
+    'rank': 'Ранг',
+    'level': 'Уровень',
+    'awakened': 'Дубль',
+    'quest': 'Задание',
+    'view-guide': 'Посмотреть руководство',
+    
+    'delete': 'Удалить',
+    'cancel': 'Отмена',
+    
+    'ask-delete': 'Вы уверены, что хотите удалить?',
+    'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
+    'cannot-undo': 'Это действие не может быть отменено.',
+    
+    //Team Panel 
+    'advanced-settings': 'Дополнительные настройки',
+    'team-size': 'Размер команды',
+    'algorithm': 'Алгоритм',
+    'quest-group': 'Группа задания',
+    'build': 'Построить',
+    
+    //Add Champion Page
+    'add-all': 'Добавить всех',
+   
+    //Advanced Settings Page
+    'reset-defaults': 'Восстановить стандартные настройки',
+    'champion-weights':'Уровни чемпионов',
+    'synergy-weights': 'Уровни синергии',
+    'duplicate-weights': 'Уровни дублей',
+    'choose-preset': 'Выберите предустановку...',
+    'use-levels': 'Просчитать используя звезды / ранги / уровни',
+    
+    //Tuples 
+    'double': 'Двойной',
+    'triple': 'Тройной',
+    'quadruple': 'Четверной',
+    'quintuple': 'Пятерной',
+    
+    //Guide Page 
+    'choose-guide': 'Выберите руководство',
+    
+    //Options
+    'options': 'Опции',
+    'share-to': 'Поделиться',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'language': 'Язык',
+    'tools': 'Опции',
+    'synergy-map': 'Карта синергии',
+    'roster-manager': 'Манеджер списка',
+    
+    //Onboarding Messages 
+    'onboarding-synergies': 'Используейте меню настройки списка, чтобы добавить еще чемпионов.',
+    'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
+    'onboarding-teams': 'Используйте меню строителя, чтобы создать свою команду!',
+    
+    //Guide 
+    'coming-soon': 'Скоро обновление...',
+    'gameplay': 'Геймплей',
+    'special': 'Специальные атаки',
+    'signature': 'Коронная способность',
+    'heavy-attack': 'Тяжелая атака',
+    'abilities': 'Способности',
+    
+    'grade': 'Оценка',
+    'strategy': 'Стратегия',
+    
+    'damage-type': 'Тип урона',
+    'range': 'Дальний',
+    'note': 'Заметка',
+    
+    'synergies-external': 'Синергия от других чемпионов',
+    
+    'none': 'Отсутствует',
+  }
+};
+// http://collabedit.com/uuf57
+
+window["CoC"]["data"]["template"]["champion"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div class=container title="' +
+((__t = ( name )) == null ? '' : __t) +
+'"><div class=inner><div class=portrait-placeholder><svg viewBox="0 0 220 220"><use xlink:href=#portrait-placeholder></use></svg></div><img class="portrait hidden" src="' +
+((__t = ( portrait )) == null ? '' : __t) +
+'" onload=CoC.view.championPortraitLoaded(this)>';
+ if( quest ){ ;
+__p += ' <img class=quest src="images/icons/quest.png">';
+ } ;
+
+ if( grade ){ ;
+__p += '<div class=grade><span class="grade-' +
+__e( grade.substr(0,1).toLowerCase() ) +
+'">' +
+__e( grade ) +
+'</span> <span>/</span>';
+ if( gradeAwakened ){ ;
+__p += ' <span class="grade-' +
+__e( gradeAwakened.substr(0,1).toLowerCase() ) +
+'">' +
+__e( gradeAwakened ) +
+'</span>';
+ } ;
+__p += '</div>';
+ } ;
+__p += '<div class=title><span class=name>' +
+__e( shortname || name ) +
+'</span></div><div class=stars>';
+ for( var i=0; i<stars; i++){ ;
+__p += '<img class=star src="' +
+((__t = ( (awakened === 0)? 'images/icons/star.png' : 'images/icons/star-awakened.png' )) == null ? '' : __t) +
+'">';
+ } ;
+__p += '</div></div></div>';
+
+}
+return __p
+};
+window["CoC"]["data"]["template"]["crystals"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<h3 class=bold><img class=icon src="' +
+__e( crystal.image() ) +
+'"> <span>' +
+__e( crystal.get('name') + ' ' + string('crystal') ) +
+'</span></h3><fieldset data-role=controlgroup data-mini=true>';
+ if(crystal.get('description')){ ;
+__p += '<div class="ui-collapsible-content ui-body-inherit description" aria-hidden=false><p class=selectable>' +
+((__t = ( parseDescription(crystal) )) == null ? '' : __t) +
+'</p></div>';
+ } ;
+
+ _.each([1,2,3,4], function(stars){ ;
+
+ if (crystal.champions(stars).size() > 0){ ;
+__p += '<div data-role=collapsible><h4>' +
+__e( ['', '★','★★','★★★','★★★★','★★★★★'][stars] ) +
+'</h4>';
+ crystal.champions(stars).each(function(champion){ ;
+__p += '<div class=crystal-champion><img class="champion ' +
+((__t = ( champion.get('typeId') )) == null ? '' : __t) +
+'" src="' +
+((__t = ( champion.portrait() )) == null ? '' : __t) +
+'"> <span class="name bold">' +
+__e( champion.get('name') ) +
+'</span></div>';
+ }) ;
+__p += '</div>';
+ } ;
+
+ }) ;
+__p += '</fieldset>';
+
+}
+return __p
+};
+window["CoC"]["data"]["template"]["guide-select-optgroup"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<img src="' +
+((__t = ( type.get('image') )) == null ? '' : __t) +
+'" class="ui-li-icon ui-corner-none"> <span class="' +
+((__t = ( type.get('uid') )) == null ? '' : __t) +
+'">' +
+__e( type.get('name') ) +
+'</span>';
+
+}
+return __p
+};
+window["CoC"] = window["CoC"] || {};
+window["CoC"]["data"] = window["CoC"]["data"] || {};
+window["CoC"]["data"]["guides"] = window["CoC"]["data"]["guides"] || {};
+window["CoC"]["data"]["guides"]["raw"] = window["CoC"]["data"]["guides"]["raw"] || {};
+window["CoC"]["data"]["guides"]["raw"]["blackbolt"] = {
+	"grades": {
+		"normal": "A",
+		"awakened": "A"
+	},
+	"description": "Black Bolt is an often overlooked champion, but his fast fluid attacks, along with powerful specials and having stun on all his specials make him a formidable champion among the cosmic class. ",
+	"gameplay": {
+		"style": "OFFENSIVE",
+		"description": "You will want to often spam your L1 (Particle Beam) as the true damage and stun it can deal is the highlight of Black Bolt’s power. With consistent hits, you can exploit the power of his Particle Beam by locking them down and dealing huge amounts of damage. Be mindful of their energy bars, however, as it is easy to forget while comboing that your attacks will fill up their bar quite fast and the enemy may land an L3 against you ",
+		"note": "This is not to say the L2 and L3 shouldn't be used, but especially for champions with armor or physical resistances the L1 is reccomended."
+	},
+	"signature": {
+		"rating": "3",
+		"name": "Provocation",
+		"description": "Being struck by critical hits will give Black Bolt either Attack or Crit Damage (random which is given)  that increases the stat by a certain percentage (12.9% at level 8) for the rest of the fight. ",
+		"note": " This ability is designed more of a carry for longer fights where you will be getting hit a lot and hence gaining power as you do so, but most fights don’t last this long and if you are skilled enough, you won’t be getting hit much and it will only trigger if that hit is a critical. It is nice to have, but by no means a game changing dupe."
+	},
+	"heavy": {
+		"rating": "3",
+		"description": " Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself."
+	},
+	"specials": {
+		"1": {
+			"rating": "5",
+			"damagetypes": [
+				"Energy"
+			],
+			"ranges": [
+				"Long"
+			],
+			"description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
+			"abilities": [
+				"stun"
+			],
+			"note": "Also applies Direct Damage",
+			"name": "Particle Beam"
+		},
+		"2": {
+			"description": "Although Black Bolts L2, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
+			"rating": "4",
+			"abilities": [
+				"stun"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Medium"
+			],
+			"name": "Corkscrew"
+		},
+		"3": {
+			"rating": "3",
+			"description": "Hypersonic Whisper has an extremely high chance to stun so if you ever felt the stun wasn’t long enough on his other specials, then you will want to use this. However, this special only has stun with regular L3 damage so you are much better off focusing on your L1 and L2. It is by no means a bad special, but rather his first two will benefit you more in fights.",
+			"abilities": [
+				"stun"
+			],
+			"damagetypes": [
+				"Energy"
+			],
+			"name": "Hypersonic Whisper"
+		}
+	},
+	"author": {
+		"profile": {
+			"name": "Sifakaster",
+			"type": "reddit"
+		},
+		"name": "Verreaux"
+	},
+	"attack": {
+		"heavy": "Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself.",
+		"rating": "3"
+	}
+};
+window["CoC"]["data"]["guides"]["raw"]["elektra"] = {
+	"grades": {
+		"normal": "B+",
+		"awakened": "A+"
+	},
+	"description": "Elektra is a great champion for frequent critical hits and powerful, long lasting bleed, but she increases a lot with her signature ability. She has the same health and damage as Black Widow, and is definitely an offensive character.",
+	"gameplay": {
+		"rating": "3",
+		"style": "Offensive",
+		"description": "Elektra relies mainly on her bleed and critical hits, both of which are frequent and powerful. All three of her specials can give off high damage bleed, her first two having multiple triggers. She has relatively good stats, and good synergies.",
+		"note": "Though her best ability is Bleed, Elektra's frequent Critical Hits can still be used on Bleed Immune characters."
+	},
+	"signature": {
+		"rating": "5",
+		"name": "No Loose Ends",
+		"description": "\"Elektra takes care of opponents below 20% Health with 100% Critical Rate and x% Critical Damage, leaving no one to tell the tale.\" \nThis ability can be amazing for both bosses and high health tanks, but you'll notice it doesn't have much pull against opponents who are much weaker than Elektra. Once at 20% health, there's no reason for the guaranteed critical hits since her opponent should be dead after a few more hits form her. However, when going up against a bleed immune champion or anyone with high health, this can be very helpful as you'll find it will be a good way to take down their health as fast as you can, even if they are armored."
+	},
+	"heavy": {
+		"rating": "2",
+		"description": "The same four kick spin as every other female champion, the lack of variety is highly disappointing. "
+	},
+	"specials": {
+		"1": {
+			"rating": "4",
+			"abilities": [
+				"bleed",
+				"pluscritrate"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Melee",
+				"Long"
+			],
+			"description": "This is a three hit attack, with two of them having a high chance to trigger strong, not so long lasting bleed. Additionally, this attack is a guaranteed chance to be critical against Bleeding opponents. If your opponent is already bleeding, all hits will be critical, if the bleed is triggered from the first sai throw, the second sai throw will be critical. ",
+			"note": "This attack is easy to connect, making it great for taking out opponents quickly.",
+			"name": "Shuriken Jutsu"
+		},
+		"2": {
+			"rating": "3",
+			"description": "This attack has three potential bleed triggers, all of which last longer than the first special's but are weaker. This attack is also easy to connect, but suffers to a smaller chance of bleed. However, when critical hits occur, this attack can be deadly.",
+			"abilities": [
+				"bleed"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Medium"
+			],
+			"name": "Sai Assault"
+		},
+		"3": {
+			"rating": "4",
+			"abilities": [
+				"bleed"
+			],
+			"description": "While fun to watch, this attack also triggers powerful, long bleed and is a good damage dealer. Perhaps it is not better than her first special, but is better to use than her second if you miss her first.",
+			"damagetypes": [
+				"Physical"
+			],
+			"name": "Strikes of the Shinobi"
+		}
+	},
+	"attack": {
+		"heavy": "The same four kick spin as every other female champion, the lack of variety is highly disappointing.",
+		"rating": "2"
+	}
+};
+window["CoC"]["data"]["guides"]["raw"]["spidermanblack"] = {
+	"grades": {
+		"normal": "A",
+		"awakened": "A+"
+	},
+	"description": "Spider-Man Symbiote is great for dishing out fast, high damage. His 80 second stacking armor break can take down just about any champion in the game, and he's probably the best to use against heavily armored tech champions such as the Iron Men and Ultron. With a fantastic critical rate and damage, he can tear through just about anyone within a matter of seconds. His only downside is his slightly lower health, which isn't even that bad to begin with.",
+	"gameplay": {
+		"style": "Offensive",
+		"rating": "5",
+		"description": "Spider-Man is entirely Offensive, coupling frequent Critical hits with Precision and Weakness both caused by Critical hits. He is fast and powerful, having one of the highest attack stats in the game. His second special, which requires precise timing to land, has 100% critical rate, ensuring that he can take down anybody with it alone. His heavy attacks have a guaranteed chance to cause 80 second armor break, which stacks. \n",
+		"note": "One of the best Masteries for Spider-Man would be Parry, to ensure that he can dish out uninterrupted heavy attacks."
+	},
+	"signature": {
+		"rating": "3",
+		"name": "Spider Sense",
+		"description": "Increased agility coupled with small stature and a sixth sense for imminent danger make Spider-Man x% more elusive.",
+		"note": "While this ability is stronger than the red and blue Spider-Man's, it only triggers for a certain amount of time on special attacks."
+	},
+	"heavy": {
+		"rating": "5",
+		"description": "Each Heavy Attack has a guaranteed chance to inflict Armor Break, dealing 7-9% Armor Reduction for 80 seconds. This effect stacks, and can be quite useful against heavily armored champions. It works nicely for removing the armor of characters such as Ultron and Colossus.",
+		"note": "Timing is key. While his heavy gives a powerful debut, it can be easily interrupted (though it is a rather fast attack)."
+	},
+	"specials": {
+		"1": {
+			"rating": "3",
+			"description": "This is one of his weaker attacks, as it does not give any detrimental abilities like the regular Spider-Man's does. When Precision is active, it can be good for dealing high damage, though.",
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Long"
+			],
+			"name": "Web-Slinger"
+		},
+		"2": {
+			"rating": "5",
+			"description": "This is Spider-Man's most deadly attack. It has a guaranteed chance to be a critical hit, taking off large amounts of health from any champion. It deals fantastic, fast damage and can even be useful if blocked.",
+			"abilities": [
+				"pluscritrate"
+			],
+			"damagetypes": [
+				"Physical"
+			],
+			"ranges": [
+				"Medium"
+			],
+			"note": "Much like with the Heavy Attack, timing is key. The best time to use this special is when an enemy is charging towards you to ensure it won't be blocked.",
+			"name": "Swingin'"
+		},
+		"3": {
+			"damagetypes": [
+				"Physical"
+			],
+			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America.",
+			"name": "Thwip, Thwip, Pow!"
+		}
+	},
+	"attack": {
+		"heavy": "Each Heavy Attack has a guaranteed chance to inflict Armor Break, dealing 7-9% Armor Reduction for 80 seconds. This effect stacks, and can be quite useful against heavily armored champions. It works nicely for removing the armor of characters such as Ultron and Colossus.",
+		"note": "Timing is key. While his heavy gives a powerful debut, it can be easily interrupted (though it is a rather fast attack).",
+		"abilities": [
+			"pluscritrate"
+		]
+	}
+};
+window["CoC"]["data"]["guides"]["raw"]["thevision"] = {
+	"description": "The Vision has few flaws, and you'll be extremely hard pressed to find a player that won't throw him atop the ranks and argue with the fact that he's one of the best champions in the game. He's a blazing fast fighter with quick reflexes and response time. This allows rapid attacks, blocks and smooth combos that seamlessly link up and swiftly make moves on your opponent.",
+	"grades": {
+		"normal": "A",
+		"awakened": "A+"
+	},
+	"gameplay": {
+		"rating": 5,
+		"style": "Offensive",
+		"description": "Get to love dropping that L1. You're going to want to ensure the opponent can't build up energy and furthermore prevent them from using that energy against you. By locking them down and preventing your opponent from dropping an L3 on you, you have the ability to defeat stronger players with as much as twice the PI!",
+		"abilities": [
+			"poisonimmunity",
+			"bleedimmunity"
+		]
+	},
+	"attack": {
+		"rating": 4,
+		"heavy": "The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
+		"range": "Short"
+	},
+	"specials": {
+		"1": {
+			"rating": 5,
+			"description": "This special is, well, special. It can be used to control the fight by preventing powerful opponents from using their specials. Although predictable and easy to block, it's a challenge to dodge due to its long range. Used properly within or at the end of a combo, you can execute and connect a majority of the time. Effectiveness dependent on opponents energy",
+			"damagetypes": [
+				"Energy"
+			],
+			"ranges": [
+				"Long"
+			],
+			"name": "Microwave Radiation",
+			"abilities": [
+				"powerburn"
+			]
+		},
+		"2": {
+			"rating": 5,
+			"description": "Who doesn't love this special? Not only is it extremely quick and beastly powerful, but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
+			"damagetypes": [
+				"Energy",
+				"Physical"
+			],
+			"ranges": [
+				"Short"
+			],
+			"name": "Power Punch",
+			"abilities": [
+				"powerburn"
+			]
+		},
+		"3": {
+			"rating": 3,
+			"description": "Although it looks pretty awesome, you're better off and more effective using your L2 followed by dropping an L1.",
+			"damagetypes": [
+				"Physical"
+			],
+			"name": "Physical Disruption"
+		}
+	},
+	"signature": {
+		"rating": 3,
+		"name": "Power Steal",
+		"description": "Special attacks steals 20% of your opponents power!"
+	},
+	"author": {
+		"name": "/u/dat_frisson",
+		"profile": {
+			"name": "dat_frisson",
+			"type": "reddit"
+		}
+	}
+};
+window["CoC"]["data"]["guides"]["raw"]["ultron"] = {
+	"description": "Ultron is an absolute monster and will likely soon be known as the #1 champ in the game. He has every perk in the book, including two instances of regeneration and does't bleed or get poisoned. He is also very quick/agile, can dodge well, and has a pretty solid combo set.",
+	"grades": {
+		"normal": "A",
+		"awakened": "A+"
+	},
+	"gameplay": {
+		"rating": 5,
+		"style": "Offensive + Defensive",
+		"description": "Wait for a bleed and drop your L1 for critical + cauterize damage!\n\n",
+		"abilities": [
+			"regeneration",
+			"armorup",
+			"poisonimmunity",
+			"bleedimmunity"
+		],
+		"note": "Regeneration happens automatically at 25% and 50% health."
+	},
+	"heavy": {
+		"rating": 5,
+		"description": "Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
+		"range": "Long"
+	},
+	"specials": {
+		"1": {
+			"rating": 4,
+			"description": "Ultra rapid and quick unleash, making it challenging to block if used at the end of a combo. Does light damage.",
+			"abilities": [
+				"stun",
+				"cauterize"
+			],
+			"damagetypes": [
+				"Energy"
+			],
+			"ranges": [
+				"Long"
+			],
+			"name": "Encaphalo-Ray"
+		},
+		"2": {
+			"rating": 3,
+			"description": "Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
+			"abilities": [
+				"stun",
+				"cauterize"
+			],
+			"damagetypes": [
+				"Energy",
+				"Physical"
+			],
+			"ranges": [
+				"Long",
+				"Short"
+			],
+			"name": "Attack Routine 11010100"
+		},
+		"3": {
+			"rating": 3,
+			"description": "Surprisingly doesn't do a ton of damage, but looks badass and gives you a few seconds of rest.",
+			"abilities": [
+				"stun",
+				"cauterize"
+			],
+			"damagetypes": [
+				"Energy"
+			],
+			"name": "Eradication"
+		}
+	},
+	"signature": {
+		"rating": 4,
+		"name": "Absorption",
+		"description": "40.8% of energy attack damage is converted into power and health. Also adds armor up!"
+	},
+	"abilities": [
+		"Bleed Immunity",
+		"Poison Immunity",
+		{
+			"Bleed": "14% chance, 20% damage, 5.5 seconds."
+		},
+		{
+			"Armor Up": "26% chance, 5% reduction, 15 seconds."
+		},
+		{
+			"Evade": "Every 7 seconds"
+		},
+		{
+			"Regeneration": "Recovers 25% over 10 seconds at both 50% health and 25% health."
+		}
+	],
+	"author": {
+		"name": "/u/dat_frisson",
+		"profile": {
+			"name": "dat_frisson",
+			"type": "reddit"
+		}
+	},
+	"attack": {
+		"heavy": "Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
+		"abilities": [
+			"bleed"
+		]
+	}
+};
+window["CoC"]["data"]["guides"]["raw"]["vision"] = {
+	"description": "The Vision has few flaws, and you'll be extremely hard pressed to find a player that won't throw him atop the ranks and argue with the fact that he's one of the best champions in the game. He's a blazing fast fighter with quick reflexes and response time. This allows rapid attacks, blocks and smooth combos that seamlessly link up and swiftly make moves on your opponent.",
+	"grades": {
+		"normal": "A",
+		"awakened": "A+"
+	},
+	"gameplay": {
+		"rating": 5,
+		"style": "Offensive",
+		"description": "Get to love dropping that L1. You're going to want to ensure the opponent can't build up energy and furthermore prevent them from using that energy against you. By locking them down and preventing your opponent from dropping an L3 on you, you have the ability to defeat stronger players with as much as twice the PI!",
+		"abilities": [
+			"poisonimmunity",
+			"bleedimmunity"
+		]
+	},
+	"heavy": {
+		"rating": 5,
+		"description": "The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
+		"range": "Short"
+	},
+	"specials": {
+		"1": {
+			"rating": 5,
+			"description": "This special is, well, special. It can be used to control the fight by preventing powerful opponents from using their specials. Although predictable and easy to block, it's a challenge to dodge due to its long range. Used properly within or at the end of a combo, you can execute and connect a majority of the time. Effectiveness dependent on opponents energy",
+			"abilities": [
+				"powerburn"
+			],
+			"damagetypes": [
+				"Energy"
+			],
+			"ranges": [
+				"Long"
+			],
+			"name": "Infrared Beam"
+		},
+		"2": {
+			"rating": 5,
+			"description": "Who doesn't love this special? Not only is it extremely quick and beastly powerful, but it drains the opponents energy too! Also a challenge to block if executed properly within or when ending a combo. Effectiveness dependent on opponents energy.",
+			"abilities": [
+				"powerburn"
+			],
+			"damagetypes": [
+				"Energy",
+				"Physical"
+			],
+			"ranges": [
+				"Short"
+			],
+			"name": "Power Crush"
+		},
+		"3": {
+			"rating": 3,
+			"description": "Although it looks pretty awesome, you're better off and more effective using your L2 followed by dropping an L1.",
+			"damagetypes": [
+				"Physical"
+			],
+			"name": "Physical Disruption",
+			"abilities": [
+				"powerburn"
+			]
+		}
+	},
+	"signature": {
+		"rating": 4,
+		"name": "Synthesis",
+		"description": "The Vision is will synthesize 200 power periodically during battle."
+	},
+	"abilities": [
+		"Bleed Immunity",
+		"Poison Immunity"
+	],
+	"author": {
+		"name": "/u/dat_frisson",
+		"profile": {
+			"name": "dat_frisson",
+			"type": "reddit"
+		}
+	},
+	"attack": {
+		"heavy": "The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
+		"rating": "4"
+	}
+};
+window["CoC"]["data"]["template"]["guide-select-option"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<img src="' +
+((__t = ( champion.portrait() )) == null ? '' : __t) +
+'" class="ui-li-icon ui-corner-none champion ' +
+((__t = ( champion.get('typeId') )) == null ? '' : __t) +
+'">' +
+__e( champion.get('name') );
+ if(champion.get('grade')){ ;
+__p += '<div class=grade><span class="grade-' +
+((__t = ( champion.get('grade').substr(0,1).toLowerCase() )) == null ? '' : __t) +
+'">' +
+__e( champion.get('grade') ) +
+'</span>';
+ if(champion.get('gradeAwakened')){ ;
+__p += ' <span>/</span> <span class="grade-' +
+((__t = ( champion.get('gradeAwakened').substr(0,1).toLowerCase() )) == null ? '' : __t) +
+'">' +
+__e( champion.get('gradeAwakened') ) +
+'</span>';
+ } ;
+__p += '</div>';
+ } ;
+
+
+}
+return __p
+};
+window["CoC"]["data"]["template"]["guide"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<img class=background src="' +
+((__t = ( champion.image() )) == null ? '' : __t) +
+'"><div class=container><div data-role=collapsible data-disabled=true data-collapsed=false data-expanded-icon="' +
+((__t = ( champion.get('typeId') )) == null ? '' : __t) +
+'"><h2 class=ui-collapsible-heading-toggle>' +
+__e( champion.get('name') ) +
+'</h2>';
+ if(data.grades){ ;
+__p += '<div class="selectable bold">' +
+((__t = ( string('grade') )) == null ? '' : __t) +
+':' +
+((__t = ( ' ' + gradeSpan(data.grades.normal) )) == null ? '' : __t) +
+'</div><div class="selectable bold">' +
+((__t = ( string('awakened') )) == null ? '' : __t) +
+':' +
+((__t = ( ' ' + gradeSpan(data.grades.awakened) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (data.description){ ;
+__p += '<p class=selectable>' +
+__e( data.description ) +
+'</p>';
+ } ;
+
+ if (data.unavailable || (!data.description && !data.grades)){ ;
+__p += '<p class=bold>' +
+((__t = ( string('coming-soon') )) == null ? '' : __t) +
+'</p>';
+ } ;
+__p += '</div><div class=boxes>';
+ if(data.gameplay){ ;
+__p += '<div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('gameplay') )) == null ? '' : __t) +
+'' +
+((__t = ( ratingSpan(data.gameplay.rating) )) == null ? '' : __t) +
+'</h4>';
+ if (data.gameplay.style){ ;
+__p += '<div class="selectable bold">' +
+__e( data.gameplay.style ) +
+'</div>';
+ } ;
+
+ if (data.gameplay.description){ ;
+__p += '<p class=selectable>' +
+((__t = ( data.gameplay.description )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (data.gameplay.strategy){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('strategy') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + data.gameplay.strategy )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (data.gameplay.abilities){ ;
+__p += '<div class=selectable><b>' +
+((__t = ( string('passive-abilities') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + joinSpans(data.gameplay.abilities, abilitySpan) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (data.gameplay.note){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('note') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + data.gameplay.note )) == null ? '' : __t) +
+'</p>';
+ } ;
+__p += '</div>';
+ } ;
+
+ if(data.attack){ ;
+__p += '<div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('attack') )) == null ? '' : __t) +
+'' +
+((__t = ( ratingSpan(data.attack.rating) )) == null ? '' : __t) +
+'</h4>';
+ if (data.attack.description){ ;
+__p += '<p class=selectable>' +
+((__t = ( data.attack.description )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (data.attack.heavy){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('heavy-attack') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + data.attack.heavy )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (data.attack.abilities){ ;
+__p += '<div class=selectable><b>' +
+((__t = ( string('abilities') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + joinSpans(data.attack.abilities, abilitySpan) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (data.attack.note){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('note') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + data.attack.note )) == null ? '' : __t) +
+'</p>';
+ } ;
+__p += '</div>';
+ } ;
+
+ if(data.signature){ ;
+__p += '<div class=box data-role=collapsible data-collapsed=false data-mini=true><h4>' +
+((__t = ( string('signature') )) == null ? '' : __t) +
+'' +
+((__t = ( ratingSpan(data.signature.rating) )) == null ? '' : __t) +
+'</h4><div class="selectable bold">' +
+__e( data.signature.name ) +
+'</div>';
+ if (data.signature.description){ ;
+__p += '<p class=selectable>' +
+((__t = ( data.signature.description )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (data.signature.note){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('note') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + data.signature.note )) == null ? '' : __t) +
+'</p>';
+ } ;
+__p += '</div>';
+ } ;
+
+ if(data.specials){ ;
+
+ for(var number in data.specials){ var special = data.specials[number] ;
+__p += '<div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('special') + ' ' + number )) == null ? '' : __t) +
+'' +
+((__t = ( ratingSpan(special.rating) )) == null ? '' : __t) +
+'</h4>';
+ if (special.name){ ;
+__p += '<div class="selectable bold">' +
+__e( special.name ) +
+'</div>';
+ } ;
+
+ if (special.description){ ;
+__p += '<p class=selectable>' +
+((__t = ( special.description )) == null ? '' : __t) +
+'</p>';
+ } ;
+
+ if (special.abilities){ ;
+__p += '<div class=selectable><b>' +
+((__t = ( string('abilities') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + joinSpans(special.abilities, abilitySpan) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (special.damagetypes){ ;
+__p += '<div class=selectable><b>' +
+((__t = ( string('damage-type') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + joinSpans(special.damagetypes, damageTypeSpan) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (special.ranges){ ;
+__p += '<div class=selectable><b>' +
+((__t = ( string('range') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + joinSpans(special.ranges, rangeSpan) )) == null ? '' : __t) +
+'</div>';
+ } ;
+
+ if (special.note){ ;
+__p += '<p class=selectable><b>' +
+((__t = ( string('note') )) == null ? '' : __t) +
+':</b>' +
+((__t = ( ' ' + special.note )) == null ? '' : __t) +
+'</p>';
+ } ;
+__p += '</div>';
+ };
+
+ } ;
+__p += '<div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('synergies') )) == null ? '' : __t) +
+'</h4>';
+ if(synergiesFrom(uid).size() > 0){ ;
+
+ synergiesFrom(uid).each(function(synergy){ ;
+__p += '<div class=synergy><img class="champion-mini ' +
+((__t = ( synergy.to().get('typeId') )) == null ? '' : __t) +
+'" src="' +
+((__t = ( synergy.to().portrait() )) == null ? '' : __t) +
+'"> <img class=effect src="' +
+((__t = ( synergy.effect().image() )) == null ? '' : __t) +
+'"> <span class="champion-title bold" uid="' +
+((__t = ( synergy.get('toId') )) == null ? '' : __t) +
+'">' +
+__e( synergy.from().get('stars') ) +
+'★' +
+__e( ' ' + synergy.to().get('name') ) +
+'</span> <span class=effect uid="' +
+((__t = ( synergy.get('effectId') )) == null ? '' : __t) +
+'">' +
+__e( synergy.effect().get('name') ) +
+'</span></div>';
+ }) ;
+
+ } else { ;
+__p += '<p><i>' +
+((__t = ( string('none') )) == null ? '' : __t) +
+'</i></p>';
+ } ;
+__p += '</div><div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('synergies-external') )) == null ? '' : __t) +
+'</h4>';
+ if(synergiesTo(uid).size() > 0){ ;
+
+ synergiesTo(uid).each(function(synergy){ ;
+__p += '<div class=synergy><img class="champion-mini ' +
+((__t = ( synergy.from().get('typeId') )) == null ? '' : __t) +
+'" src="' +
+((__t = ( synergy.from().portrait() )) == null ? '' : __t) +
+'"> <img class=effect src="' +
+((__t = ( synergy.effect().image() )) == null ? '' : __t) +
+'"> <span class="champion-title bold" uid="' +
+((__t = ( synergy.get('fromId') )) == null ? '' : __t) +
+'">' +
+__e( synergy.from().get('stars') ) +
+'★' +
+__e( ' ' + synergy.from().get('name') ) +
+'</span> <span class=effect uid="' +
+((__t = ( synergy.get('effectId') )) == null ? '' : __t) +
+'">' +
+__e( synergy.effect().get('name') ) +
+'</span></div>';
+ }) ;
+
+ } else { ;
+__p += '<p><i>' +
+((__t = ( string('none') )) == null ? '' : __t) +
+'</i></p>';
+ } ;
+__p += '</div><div class=box data-role=collapsible data-collapsed=false><h4>' +
+((__t = ( string('crystals') )) == null ? '' : __t) +
+'</h4>';
+ if(crystals(uid).length === 0){ ;
+__p += '<div class=crystal><img src="images/crystals/hologram.png"> <i class=selectable>' +
+((__t = ( string('none') )) == null ? '' : __t) +
+'</i></div>';
+ } else { ;
+
+ _(crystals(uid)).each(function(data){ ;
+__p += '<div class=crystal><img src="' +
+((__t = ( data.crystal.image() )) == null ? '' : __t) +
+'"> <b class=selectable>' +
+__e( data.crystal.get('name') + ' ' ) +
+'' +
+((__t = ( string('crystal') )) == null ? '' : __t) +
+'</b>:' +
+((__t = ( ' ' + crystalStarsSpan(data) )) == null ? '' : __t) +
+'</div>';
+ }) ;
+
+ } ;
+__p += '</div></div><div style=clear:both></div>';
+ if(data.author && data.author.name){ ;
+__p += '<div class="author-credit ui-collapsible-content ui-body-inherit ui-corner-all"><b>' +
+((__t = ( string('author-credit') + ' ' )) == null ? '' : __t) +
+'</b>';
+ if(data.author.profile && data.author.profile.type && data.author.profile.name){ ;
+
+ if(data.author.profile.type === 'reddit'){ ;
+__p += ' <a class=bold href="http://reddit.com/u/' +
+((__t = ( data.author.profile.name )) == null ? '' : __t) +
+'" target=_blank>' +
+__e( data.author.name ) +
+'</a>';
+ } ;
+
+ if(data.author.profile.type === 'kabam'){ ;
+__p += ' <a class=bold href="http://community.kabam.com/forums/member.php?' +
+((__t = ( data.author.profile.name )) == null ? '' : __t) +
+'" target=_blank>' +
+__e( data.author.name ) +
+'</a>';
+ } ;
+
+ if(data.author.profile.type === 'email'){ ;
+__p += ' <a class=bold href="mailto:' +
+((__t = ( data.author.profile.name )) == null ? '' : __t) +
+'">' +
+__e( data.author.name ) +
+'</a>';
+ } ;
+
+ } else { ;
+__p += ' <i class="bold selectable">' +
+__e( data.author.name ) +
+'</i>';
+ } ;
+__p += '</div>';
+ } ;
+__p += '</div>';
+
+}
+return __p
+};
+window["CoC"]["data"]["template"]["teams"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p +=
+((__t = ( renderMessage(message) )) == null ? '' : __t);
+ _(teams).each(function(team){ ;
+__p += '<div class="team ' +
+((__t = ( (size==3)? 'three': (size==4)? 'four': (size==5)? 'five': 'unknown' )) == null ? '' : __t) +
+'"><div class=champions>';
+ _(team.champions).each(function(champion){ ;
+__p +=
+((__t = ( renderChampion(champion) )) == null ? '' : __t);
+ }) ;
+__p += '</div><br style=clear:both><div class=synergies>';
+ _(team.effects).each(function(effect){ ;
+__p += '<div class=synergy effectid="' +
+((__t = ( effect.get('uid') )) == null ? '' : __t) +
+'" championids="' +
+((__t = ( effect.championIds().join(' ') )) == null ? '' : __t) +
+'"><img class=on src="' +
+((__t = ( effect.image() )) == null ? '' : __t) +
+'"> <img class=off src="' +
+((__t = ( effect.imageOff() )) == null ? '' : __t) +
+'"> <span>' +
+__e( effect.get('name') + ' +' + effect.get('amount') + '%' ) +
+'</span></div>';
+ }) ;
+__p += '</div></div>';
+ }); ;
+
+ if(extras){ ;
+__p += '<div id=extras style=clear:both><h3>' +
+((__t = ( string('extras') )) == null ? '' : __t) +
+'</h3>';
+ _(extras).each(function(champion){ ;
+__p +=
+((__t = ( renderChampion(champion) )) == null ? '' : __t);
+ }) ;
+__p += '</div>';
+ } ;
+
+
+}
+return __p
+};
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+(function(){
+  var defaultLang = 'en';
+  var currentLang = 'en';
+
+  var query = {};
+  location.search.substr(1).split('&').map(function(str){
+    var attr = str.split('=');
+    if(attr.length === 2)
+      query[attr[0]] = attr[1] && unescape(attr[1]);
+  });
+  if(query['lang']){
+    if(CoC.lang[query['lang']]){
+      currentLang = query['lang'];
+      console.warn('Language set to "' + currentLang + '"');
+    }
+  }
+
+  CoC.lang.model = function(key, notFoundValue){
+    var value = CoC.lang[currentLang].model[key];
+    if(value === undefined)
+      value = (notFoundValue !== undefined)? notFoundValue: CoC.lang[defaultLang].model[key];
+    return value;
+  };
+
+  CoC.lang.string = function(key){
+    var value = CoC.lang[currentLang].string[key];
+    if(value === undefined)
+      value = CoC.lang[defaultLang].string[key];
+    return value;
+  };
+
+  CoC.lang.search = (defaultLang === currentLang)? '': '?lang='+currentLang;
+
+  CoC.lang.current = currentLang;
+
+  if(currentLang === defaultLang && query['lang'] === undefined){
+    var languages = [], updateLang;
+    if(navigator && navigator.language)
+      languages.push(navigator.language);
+    if(navigator && navigator.languages)
+      languages.concat(navigator.languages);
+    for(var i=0; i<languages.length; i++){
+      var lang = navigator.language.split('-')[0];
+      if(currentLang !== lang || CoC.lang[lang]){
+        updateLang = lang;
+        break;
+      }
+    }
+    if(updateLang && updateLang !== defaultLang){
+      query.lang = updateLang;
+      location.search = '?' + _.pairs(query).map(function(value){
+        return value[0] + '=' + escape(value[1]);
+      }).join('&');
+    }
+  }
+
+})();
+
+var CoC=CoC || {};
+CoC.utils = CoC.utils || {};
+
+CoC.version = '1.6.0';
+
+CoC.utils.typeOfs = {
+  'string': 's',
+  'object': 'o',
+  'function': 'o',
+  'number': 'i'
+};
+
+CoC.utils.styles = {
+  'initialize': 'color:#55f; font-size:14px;',
+  'link': 'color:#00c; font-size:14px;',
+  'search': 'color:#000; text-shadow:1px 1px #ccc; font-size: 16px;',
+  'io': 'color:#060; font-size:14px;',
+  'filename': 'color:#000; text-shadow:1px 1px #ccc; font-size:14px;'
+};
+
+CoC.utils.applyArgumentsEffect = function(args){
+  var array = [], argument, i, prefix = [];
+  for(i = 0; i<args.length; i++){
+    argument = args[i];
+    if(argument && argument.value && argument.style){
+      prefix.push('%c%'+CoC.utils.typeOfs[typeof argument.value]);
+      array.push(CoC.utils.styles[argument.style]);
+      array.push(argument.value);
+    }
+    else{
+      prefix.push('%'+CoC.utils.typeOfs[typeof argument]);
+      array.push(argument);
+    }
+  }
+  array.unshift(prefix.join(' '));
+  return array;
+};
+
+CoC.utils.log = function(){
+  if (console && console.log)
+    console.log.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+};
+
+CoC.utils.info = function(){
+  if(console && console.info){
+    console.info.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.warn = function(){
+  if(console && console.warn){
+    console.warn.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.error = function(){
+  if(console && console.error){
+    console.error.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+(function(){
+  var html = CoC.data.template['app-roster']({
+    model: CoC.lang.model,
+    string: CoC.lang.string,
+    search: CoC.lang.search
+  });
+  $(document.body).append(html);
+})();
 
 /*!
 * jQuery Mobile 1.4.1
@@ -27843,3 +30025,6650 @@ Backbone.sync = function(method, model, options) {
 
 return Backbone.LocalStorage;
 }));
+
+/*
+ * Purl (A JavaScript URL parser) v2.3.1
+ * Developed and maintanined by Mark Perkins, mark@allmarkedup.com
+ * Source repository: https://github.com/allmarkedup/jQuery-URL-Parser
+ * Licensed under an MIT-style license. See https://github.com/allmarkedup/jQuery-URL-Parser/blob/master/LICENSE for details.
+ */
+
+;(function(factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else {
+        window.purl = factory();
+    }
+})(function() {
+
+    var tag2attr = {
+            a       : 'href',
+            img     : 'src',
+            form    : 'action',
+            base    : 'href',
+            script  : 'src',
+            iframe  : 'src',
+            link    : 'href',
+            embed   : 'src',
+            object  : 'data'
+        },
+
+        key = ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'fragment'], // keys available to query
+
+        aliases = { 'anchor' : 'fragment' }, // aliases for backwards compatability
+
+        parser = {
+            strict : /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,  //less intuitive, more accurate to the specs
+            loose :  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // more intuitive, fails on relative paths and deviates from specs
+        },
+
+        isint = /^[0-9]+$/;
+
+    function parseUri( url, strictMode ) {
+        var str = decodeURI( url ),
+        res   = parser[ strictMode || false ? 'strict' : 'loose' ].exec( str ),
+        uri = { attr : {}, param : {}, seg : {} },
+        i   = 14;
+
+        while ( i-- ) {
+            uri.attr[ key[i] ] = res[i] || '';
+        }
+
+        // build query and fragment parameters
+        uri.param['query'] = parseString(uri.attr['query']);
+        uri.param['fragment'] = parseString(uri.attr['fragment']);
+
+        // split path and fragement into segments
+        uri.seg['path'] = uri.attr.path.replace(/^\/+|\/+$/g,'').split('/');
+        uri.seg['fragment'] = uri.attr.fragment.replace(/^\/+|\/+$/g,'').split('/');
+
+        // compile a 'base' domain attribute
+        uri.attr['base'] = uri.attr.host ? (uri.attr.protocol ?  uri.attr.protocol+'://'+uri.attr.host : uri.attr.host) + (uri.attr.port ? ':'+uri.attr.port : '') : '';
+
+        return uri;
+    }
+
+    function getAttrName( elm ) {
+        var tn = elm.tagName;
+        if ( typeof tn !== 'undefined' ) return tag2attr[tn.toLowerCase()];
+        return tn;
+    }
+
+    function promote(parent, key) {
+        if (parent[key].length === 0) return parent[key] = {};
+        var t = {};
+        for (var i in parent[key]) t[i] = parent[key][i];
+        parent[key] = t;
+        return t;
+    }
+
+    function parse(parts, parent, key, val) {
+        var part = parts.shift();
+        if (!part) {
+            if (isArray(parent[key])) {
+                parent[key].push(val);
+            } else if ('object' == typeof parent[key]) {
+                parent[key] = val;
+            } else if ('undefined' == typeof parent[key]) {
+                parent[key] = val;
+            } else {
+                parent[key] = [parent[key], val];
+            }
+        } else {
+            var obj = parent[key] = parent[key] || [];
+            if (']' == part) {
+                if (isArray(obj)) {
+                    if ('' !== val) obj.push(val);
+                } else if ('object' == typeof obj) {
+                    obj[keys(obj).length] = val;
+                } else {
+                    obj = parent[key] = [parent[key], val];
+                }
+            } else if (~part.indexOf(']')) {
+                part = part.substr(0, part.length - 1);
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+                // key
+            } else {
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+            }
+        }
+    }
+
+    function merge(parent, key, val) {
+        if (~key.indexOf(']')) {
+            var parts = key.split('[');
+            parse(parts, parent, 'base', val);
+        } else {
+            if (!isint.test(key) && isArray(parent.base)) {
+                var t = {};
+                for (var k in parent.base) t[k] = parent.base[k];
+                parent.base = t;
+            }
+            if (key !== '') {
+                set(parent.base, key, val);
+            }
+        }
+        return parent;
+    }
+
+    function parseString(str) {
+        return reduce(String(str).split(/&|;/), function(ret, pair) {
+            try {
+                pair = decodeURIComponent(pair.replace(/\+/g, ' '));
+            } catch(e) {
+                // ignore
+            }
+            var eql = pair.indexOf('='),
+                brace = lastBraceInKey(pair),
+                key = pair.substr(0, brace || eql),
+                val = pair.substr(brace || eql, pair.length);
+
+            val = val.substr(val.indexOf('=') + 1, val.length);
+
+            if (key === '') {
+                key = pair;
+                val = '';
+            }
+
+            return merge(ret, key, val);
+        }, { base: {} }).base;
+    }
+
+    function set(obj, key, val) {
+        var v = obj[key];
+        if (typeof v === 'undefined') {
+            obj[key] = val;
+        } else if (isArray(v)) {
+            v.push(val);
+        } else {
+            obj[key] = [v, val];
+        }
+    }
+
+    function lastBraceInKey(str) {
+        var len = str.length,
+            brace,
+            c;
+        for (var i = 0; i < len; ++i) {
+            c = str[i];
+            if (']' == c) brace = false;
+            if ('[' == c) brace = true;
+            if ('=' == c && !brace) return i;
+        }
+    }
+
+    function reduce(obj, accumulator){
+        var i = 0,
+            l = obj.length >> 0,
+            curr = arguments[2];
+        while (i < l) {
+            if (i in obj) curr = accumulator.call(undefined, curr, obj[i], i, obj);
+            ++i;
+        }
+        return curr;
+    }
+
+    function isArray(vArg) {
+        return Object.prototype.toString.call(vArg) === "[object Array]";
+    }
+
+    function keys(obj) {
+        var key_array = [];
+        for ( var prop in obj ) {
+            if ( obj.hasOwnProperty(prop) ) key_array.push(prop);
+        }
+        return key_array;
+    }
+
+    function purl( url, strictMode ) {
+        if ( arguments.length === 1 && url === true ) {
+            strictMode = true;
+            url = undefined;
+        }
+        strictMode = strictMode || false;
+        url = url || window.location.toString();
+
+        return {
+
+            data : parseUri(url, strictMode),
+
+            // get various attributes from the URI
+            attr : function( attr ) {
+                attr = aliases[attr] || attr;
+                return typeof attr !== 'undefined' ? this.data.attr[attr] : this.data.attr;
+            },
+
+            // return query string parameters
+            param : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.query[param] : this.data.param.query;
+            },
+
+            // return fragment parameters
+            fparam : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.fragment[param] : this.data.param.fragment;
+            },
+
+            // return path segments
+            segment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.path;
+                } else {
+                    seg = seg < 0 ? this.data.seg.path.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.path[seg];
+                }
+            },
+
+            // return fragment segments
+            fsegment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.fragment;
+                } else {
+                    seg = seg < 0 ? this.data.seg.fragment.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.fragment[seg];
+                }
+            }
+
+        };
+
+    }
+    
+    purl.jQuery = function($){
+        if ($ != null) {
+            $.fn.url = function( strictMode ) {
+                var url = '';
+                if ( this.length ) {
+                    url = $(this).attr( getAttrName(this[0]) ) || '';
+                }
+                return purl( url, strictMode );
+            };
+
+            $.url = purl;
+        }
+    };
+
+    purl.jQuery(window.jQuery);
+
+    return purl;
+
+});
+
+/*!
+ * sly 1.6.1 - 8th Aug 2015
+ * https://github.com/darsain/sly
+ *
+ * Licensed under the MIT license.
+ * http://opensource.org/licenses/MIT
+ */
+
+;(function ($, w, undefined) {
+	'use strict';
+
+	var pluginName = 'sly';
+	var className  = 'Sly';
+	var namespace  = pluginName;
+
+	// Local WindowAnimationTiming interface
+	var cAF = w.cancelAnimationFrame || w.cancelRequestAnimationFrame;
+	var rAF = w.requestAnimationFrame;
+
+	// Support indicators
+	var transform, gpuAcceleration;
+
+	// Other global values
+	var $doc = $(document);
+	var dragInitEvents = 'touchstart.' + namespace + ' mousedown.' + namespace;
+	var dragMouseEvents = 'mousemove.' + namespace + ' mouseup.' + namespace;
+	var dragTouchEvents = 'touchmove.' + namespace + ' touchend.' + namespace;
+	var wheelEvent = (document.implementation.hasFeature('Event.wheel', '3.0') ? 'wheel.' : 'mousewheel.') + namespace;
+	var clickEvent = 'click.' + namespace;
+	var mouseDownEvent = 'mousedown.' + namespace;
+	var interactiveElements = ['INPUT', 'SELECT', 'BUTTON', 'TEXTAREA'];
+	var tmpArray = [];
+	var time;
+
+	// Math shorthands
+	var abs = Math.abs;
+	var sqrt = Math.sqrt;
+	var pow = Math.pow;
+	var round = Math.round;
+	var max = Math.max;
+	var min = Math.min;
+
+	// Keep track of last fired global wheel event
+	var lastGlobalWheel = 0;
+	$doc.on(wheelEvent, function (event) {
+		var sly = event.originalEvent[namespace];
+		var time = +new Date();
+		// Update last global wheel time, but only when event didn't originate
+		// in Sly frame, or the origin was less than scrollHijack time ago
+		if (!sly || sly.options.scrollHijack < time - lastGlobalWheel) lastGlobalWheel = time;
+	});
+
+	/**
+	 * Sly.
+	 *
+	 * @class
+	 *
+	 * @param {Element} frame       DOM element of sly container.
+	 * @param {Object}  options     Object with options.
+	 * @param {Object}  callbackMap Callbacks map.
+	 */
+	function Sly(frame, options, callbackMap) {
+		if (!(this instanceof Sly)) return new Sly(frame, options, callbackMap);
+
+		// Extend options
+		var o = $.extend({}, Sly.defaults, options);
+
+		// Private variables
+		var self = this;
+		var parallax = isNumber(frame);
+
+		// Frame
+		var $frame = $(frame);
+		var $slidee = o.slidee ? $(o.slidee).eq(0) : $frame.children().eq(0);
+		var frameSize = 0;
+		var slideeSize = 0;
+		var pos = {
+			start: 0,
+			center: 0,
+			end: 0,
+			cur: 0,
+			dest: 0
+		};
+
+		// Scrollbar
+		var $sb = $(o.scrollBar).eq(0);
+		var $handle = $sb.children().eq(0);
+		var sbSize = 0;
+		var handleSize = 0;
+		var hPos = {
+			start: 0,
+			end: 0,
+			cur: 0
+		};
+
+		// Pagesbar
+		var $pb = $(o.pagesBar);
+		var $pages = 0;
+		var pages = [];
+
+		// Items
+		var $items = 0;
+		var items = [];
+		var rel = {
+			firstItem: 0,
+			lastItem: 0,
+			centerItem: 0,
+			activeItem: null,
+			activePage: 0
+		};
+
+		// Styles
+		var frameStyles = new StyleRestorer($frame[0]);
+		var slideeStyles = new StyleRestorer($slidee[0]);
+		var sbStyles = new StyleRestorer($sb[0]);
+		var handleStyles = new StyleRestorer($handle[0]);
+
+		// Navigation type booleans
+		var basicNav = o.itemNav === 'basic';
+		var forceCenteredNav = o.itemNav === 'forceCentered';
+		var centeredNav = o.itemNav === 'centered' || forceCenteredNav;
+		var itemNav = !parallax && (basicNav || centeredNav || forceCenteredNav);
+
+		// Miscellaneous
+		var $scrollSource = o.scrollSource ? $(o.scrollSource) : $frame;
+		var $dragSource = o.dragSource ? $(o.dragSource) : $frame;
+		var $forwardButton = $(o.forward);
+		var $backwardButton = $(o.backward);
+		var $prevButton = $(o.prev);
+		var $nextButton = $(o.next);
+		var $prevPageButton = $(o.prevPage);
+		var $nextPageButton = $(o.nextPage);
+		var callbacks = {};
+		var last = {};
+		var animation = {};
+		var move = {};
+		var dragging = {
+			released: 1
+		};
+		var scrolling = {
+			last: 0,
+			delta: 0,
+			resetTime: 200
+		};
+		var renderID = 0;
+		var historyID = 0;
+		var cycleID = 0;
+		var continuousID = 0;
+		var i, l;
+
+		// Normalizing frame
+		if (!parallax) {
+			frame = $frame[0];
+		}
+
+		// Expose properties
+		self.initialized = 0;
+		self.frame = frame;
+		self.slidee = $slidee[0];
+		self.pos = pos;
+		self.rel = rel;
+		self.items = items;
+		self.pages = pages;
+		self.isPaused = 0;
+		self.options = o;
+		self.dragging = dragging;
+
+		/**
+		 * Loading function.
+		 *
+		 * Populate arrays, set sizes, bind events, ...
+		 *
+		 * @param {Boolean} [isInit] Whether load is called from within self.init().
+		 * @return {Void}
+		 */
+		function load(isInit) {
+			// Local variables
+			var lastItemsCount = 0;
+			var lastPagesCount = pages.length;
+
+			// Save old position
+			pos.old = $.extend({}, pos);
+
+			// Reset global variables
+			frameSize = parallax ? 0 : $frame[o.horizontal ? 'width' : 'height']();
+			sbSize = $sb[o.horizontal ? 'width' : 'height']();
+			slideeSize = parallax ? frame : $slidee[o.horizontal ? 'outerWidth' : 'outerHeight']();
+			pages.length = 0;
+
+			// Set position limits & relatives
+			pos.start = 0;
+			pos.end = max(slideeSize - frameSize, 0);
+
+			// Sizes & offsets for item based navigations
+			if (itemNav) {
+				// Save the number of current items
+				lastItemsCount = items.length;
+
+				// Reset itemNav related variables
+				$items = $slidee.children(o.itemSelector);
+				items.length = 0;
+
+				// Needed variables
+				var paddingStart = getPx($slidee, o.horizontal ? 'paddingLeft' : 'paddingTop');
+				var paddingEnd = getPx($slidee, o.horizontal ? 'paddingRight' : 'paddingBottom');
+				var borderBox = $($items).css('boxSizing') === 'border-box';
+				var areFloated = $items.css('float') !== 'none';
+				var ignoredMargin = 0;
+				var lastItemIndex = $items.length - 1;
+				var lastItem;
+
+				// Reset slideeSize
+				slideeSize = 0;
+
+				// Iterate through items
+				$items.each(function (i, element) {
+					// Item
+					var $item = $(element);
+					var rect = element.getBoundingClientRect();
+					var itemSize = round(o.horizontal ? rect.width || rect.right - rect.left : rect.height || rect.bottom - rect.top);
+					var itemMarginStart = getPx($item, o.horizontal ? 'marginLeft' : 'marginTop');
+					var itemMarginEnd = getPx($item, o.horizontal ? 'marginRight' : 'marginBottom');
+					var itemSizeFull = itemSize + itemMarginStart + itemMarginEnd;
+					var singleSpaced = !itemMarginStart || !itemMarginEnd;
+					var item = {};
+					item.el = element;
+					item.size = singleSpaced ? itemSize : itemSizeFull;
+					item.half = item.size / 2;
+					item.start = slideeSize + (singleSpaced ? itemMarginStart : 0);
+					item.center = item.start - round(frameSize / 2 - item.size / 2);
+					item.end = item.start - frameSize + item.size;
+
+					// Account for slidee padding
+					if (!i) {
+						slideeSize += paddingStart;
+					}
+
+					// Increment slidee size for size of the active element
+					slideeSize += itemSizeFull;
+
+					// Try to account for vertical margin collapsing in vertical mode
+					// It's not bulletproof, but should work in 99% of cases
+					if (!o.horizontal && !areFloated) {
+						// Subtract smaller margin, but only when top margin is not 0, and this is not the first element
+						if (itemMarginEnd && itemMarginStart && i > 0) {
+							slideeSize -= min(itemMarginStart, itemMarginEnd);
+						}
+					}
+
+					// Things to be done on last item
+					if (i === lastItemIndex) {
+						item.end += paddingEnd;
+						slideeSize += paddingEnd;
+						ignoredMargin = singleSpaced ? itemMarginEnd : 0;
+					}
+
+					// Add item object to items array
+					items.push(item);
+					lastItem = item;
+				});
+
+				// Resize SLIDEE to fit all items
+				$slidee[0].style[o.horizontal ? 'width' : 'height'] = (borderBox ? slideeSize: slideeSize - paddingStart - paddingEnd) + 'px';
+
+				// Adjust internal SLIDEE size for last margin
+				slideeSize -= ignoredMargin;
+
+				// Set limits
+				if (items.length) {
+					pos.start =  items[0][forceCenteredNav ? 'center' : 'start'];
+					pos.end = forceCenteredNav ? lastItem.center : frameSize < slideeSize ? lastItem.end : pos.start;
+				} else {
+					pos.start = pos.end = 0;
+				}
+			}
+
+			// Calculate SLIDEE center position
+			pos.center = round(pos.end / 2 + pos.start / 2);
+
+			// Update relative positions
+			updateRelatives();
+
+			// Scrollbar
+			if ($handle.length && sbSize > 0) {
+				// Stretch scrollbar handle to represent the visible area
+				if (o.dynamicHandle) {
+					handleSize = pos.start === pos.end ? sbSize : round(sbSize * frameSize / slideeSize);
+					handleSize = within(handleSize, o.minHandleSize, sbSize);
+					$handle[0].style[o.horizontal ? 'width' : 'height'] = handleSize + 'px';
+				} else {
+					handleSize = $handle[o.horizontal ? 'outerWidth' : 'outerHeight']();
+				}
+
+				hPos.end = sbSize - handleSize;
+
+				if (!renderID) {
+					syncScrollbar();
+				}
+			}
+
+			// Pages
+			if (!parallax && frameSize > 0) {
+				var tempPagePos = pos.start;
+				var pagesHtml = '';
+
+				// Populate pages array
+				if (itemNav) {
+					$.each(items, function (i, item) {
+						if (forceCenteredNav) {
+							pages.push(item.center);
+						} else if (item.start + item.size > tempPagePos && tempPagePos <= pos.end) {
+							tempPagePos = item.start;
+							pages.push(tempPagePos);
+							tempPagePos += frameSize;
+							if (tempPagePos > pos.end && tempPagePos < pos.end + frameSize) {
+								pages.push(pos.end);
+							}
+						}
+					});
+				} else {
+					while (tempPagePos - frameSize < pos.end) {
+						pages.push(tempPagePos);
+						tempPagePos += frameSize;
+					}
+				}
+
+				// Pages bar
+				if ($pb[0] && lastPagesCount !== pages.length) {
+					for (var i = 0; i < pages.length; i++) {
+						pagesHtml += o.pageBuilder.call(self, i);
+					}
+					$pages = $pb.html(pagesHtml).children();
+					$pages.eq(rel.activePage).addClass(o.activeClass);
+				}
+			}
+
+			// Extend relative variables object with some useful info
+			rel.slideeSize = slideeSize;
+			rel.frameSize = frameSize;
+			rel.sbSize = sbSize;
+			rel.handleSize = handleSize;
+
+			// Activate requested position
+			if (itemNav) {
+				if (isInit && o.startAt != null) {
+					activate(o.startAt);
+					self[centeredNav ? 'toCenter' : 'toStart'](o.startAt);
+				}
+				// Fix possible overflowing
+				var activeItem = items[rel.activeItem];
+				slideTo(centeredNav && activeItem ? activeItem.center : within(pos.dest, pos.start, pos.end));
+			} else {
+				if (isInit) {
+					if (o.startAt != null) slideTo(o.startAt, 1);
+				} else {
+					// Fix possible overflowing
+					slideTo(within(pos.dest, pos.start, pos.end));
+				}
+			}
+
+			// Trigger load event
+			trigger('load');
+		}
+		self.reload = function () { load(); };
+
+		/**
+		 * Animate to a position.
+		 *
+		 * @param {Int}  newPos    New position.
+		 * @param {Bool} immediate Reposition immediately without an animation.
+		 * @param {Bool} dontAlign Do not align items, use the raw position passed in first argument.
+		 *
+		 * @return {Void}
+		 */
+		function slideTo(newPos, immediate, dontAlign) {
+			// Align items
+			if (itemNav && dragging.released && !dontAlign) {
+				var tempRel = getRelatives(newPos);
+				var isNotBordering = newPos > pos.start && newPos < pos.end;
+
+				if (centeredNav) {
+					if (isNotBordering) {
+						newPos = items[tempRel.centerItem].center;
+					}
+					if (forceCenteredNav && o.activateMiddle) {
+						activate(tempRel.centerItem);
+					}
+				} else if (isNotBordering) {
+					newPos = items[tempRel.firstItem].start;
+				}
+			}
+
+			// Handle overflowing position limits
+			if (dragging.init && dragging.slidee && o.elasticBounds) {
+				if (newPos > pos.end) {
+					newPos = pos.end + (newPos - pos.end) / 6;
+				} else if (newPos < pos.start) {
+					newPos = pos.start + (newPos - pos.start) / 6;
+				}
+			} else {
+				newPos = within(newPos, pos.start, pos.end);
+			}
+
+			// Update the animation object
+			animation.start = +new Date();
+			animation.time = 0;
+			animation.from = pos.cur;
+			animation.to = newPos;
+			animation.delta = newPos - pos.cur;
+			animation.tweesing = dragging.tweese || dragging.init && !dragging.slidee;
+			animation.immediate = !animation.tweesing && (immediate || dragging.init && dragging.slidee || !o.speed);
+
+			// Reset dragging tweesing request
+			dragging.tweese = 0;
+
+			// Start animation rendering
+			if (newPos !== pos.dest) {
+				pos.dest = newPos;
+				trigger('change');
+				if (!renderID) {
+					render();
+				}
+			}
+
+			// Reset next cycle timeout
+			resetCycle();
+
+			// Synchronize states
+			updateRelatives();
+			updateButtonsState();
+			syncPagesbar();
+		}
+
+		/**
+		 * Render animation frame.
+		 *
+		 * @return {Void}
+		 */
+		function render() {
+			if (!self.initialized) {
+				return;
+			}
+
+			// If first render call, wait for next animationFrame
+			if (!renderID) {
+				renderID = rAF(render);
+				if (dragging.released) {
+					trigger('moveStart');
+				}
+				return;
+			}
+
+			// If immediate repositioning is requested, don't animate.
+			if (animation.immediate) {
+				pos.cur = animation.to;
+			}
+			// Use tweesing for animations without known end point
+			else if (animation.tweesing) {
+				animation.tweeseDelta = animation.to - pos.cur;
+				// Fuck Zeno's paradox
+				if (abs(animation.tweeseDelta) < 0.1) {
+					pos.cur = animation.to;
+				} else {
+					pos.cur += animation.tweeseDelta * (dragging.released ? o.swingSpeed : o.syncSpeed);
+				}
+			}
+			// Use tweening for basic animations with known end point
+			else {
+				animation.time = min(+new Date() - animation.start, o.speed);
+				pos.cur = animation.from + animation.delta * $.easing[o.easing](animation.time/o.speed, animation.time, 0, 1, o.speed);
+			}
+
+			// If there is nothing more to render break the rendering loop, otherwise request new animation frame.
+			if (animation.to === pos.cur) {
+				pos.cur = animation.to;
+				dragging.tweese = renderID = 0;
+			} else {
+				renderID = rAF(render);
+			}
+
+			trigger('move');
+
+			// Update SLIDEE position
+			if (!parallax) {
+				if (transform) {
+					$slidee[0].style[transform] = gpuAcceleration + (o.horizontal ? 'translateX' : 'translateY') + '(' + (-pos.cur) + 'px)';
+				} else {
+					$slidee[0].style[o.horizontal ? 'left' : 'top'] = -round(pos.cur) + 'px';
+				}
+			}
+
+			// When animation reached the end, and dragging is not active, trigger moveEnd
+			if (!renderID && dragging.released) {
+				trigger('moveEnd');
+			}
+
+			syncScrollbar();
+		}
+
+		/**
+		 * Synchronizes scrollbar with the SLIDEE.
+		 *
+		 * @return {Void}
+		 */
+		function syncScrollbar() {
+			if ($handle.length) {
+				hPos.cur = pos.start === pos.end ? 0 : (((dragging.init && !dragging.slidee) ? pos.dest : pos.cur) - pos.start) / (pos.end - pos.start) * hPos.end;
+				hPos.cur = within(round(hPos.cur), hPos.start, hPos.end);
+				if (last.hPos !== hPos.cur) {
+					last.hPos = hPos.cur;
+					if (transform) {
+						$handle[0].style[transform] = gpuAcceleration + (o.horizontal ? 'translateX' : 'translateY') + '(' + hPos.cur + 'px)';
+					} else {
+						$handle[0].style[o.horizontal ? 'left' : 'top'] = hPos.cur + 'px';
+					}
+				}
+			}
+		}
+
+		/**
+		 * Synchronizes pagesbar with SLIDEE.
+		 *
+		 * @return {Void}
+		 */
+		function syncPagesbar() {
+			if ($pages[0] && last.page !== rel.activePage) {
+				last.page = rel.activePage;
+				$pages.removeClass(o.activeClass).eq(rel.activePage).addClass(o.activeClass);
+				trigger('activePage', last.page);
+			}
+		}
+
+		/**
+		 * Returns the position object.
+		 *
+		 * @param {Mixed} item
+		 *
+		 * @return {Object}
+		 */
+		self.getPos = function (item) {
+			if (itemNav) {
+				var index = getIndex(item);
+				return index !== -1 ? items[index] : false;
+			} else {
+				var $item = $slidee.find(item).eq(0);
+
+				if ($item[0]) {
+					var offset = o.horizontal ? $item.offset().left - $slidee.offset().left : $item.offset().top - $slidee.offset().top;
+					var size = $item[o.horizontal ? 'outerWidth' : 'outerHeight']();
+
+					return {
+						start: offset,
+						center: offset - frameSize / 2 + size / 2,
+						end: offset - frameSize + size,
+						size: size
+					};
+				} else {
+					return false;
+				}
+			}
+		};
+
+		/**
+		 * Continuous move in a specified direction.
+		 *
+		 * @param  {Bool} forward True for forward movement, otherwise it'll go backwards.
+		 * @param  {Int}  speed   Movement speed in pixels per frame. Overrides options.moveBy value.
+		 *
+		 * @return {Void}
+		 */
+		self.moveBy = function (speed) {
+			move.speed = speed;
+			// If already initiated, or there is nowhere to move, abort
+			if (dragging.init || !move.speed || pos.cur === (move.speed > 0 ? pos.end : pos.start)) {
+				return;
+			}
+			// Initiate move object
+			move.lastTime = +new Date();
+			move.startPos = pos.cur;
+			// Set dragging as initiated
+			continuousInit('button');
+			dragging.init = 1;
+			// Start movement
+			trigger('moveStart');
+			cAF(continuousID);
+			moveLoop();
+		};
+
+		/**
+		 * Continuous movement loop.
+		 *
+		 * @return {Void}
+		 */
+		function moveLoop() {
+			// If there is nowhere to move anymore, stop
+			if (!move.speed || pos.cur === (move.speed > 0 ? pos.end : pos.start)) {
+				self.stop();
+			}
+			// Request new move loop if it hasn't been stopped
+			continuousID = dragging.init ? rAF(moveLoop) : 0;
+			// Update move object
+			move.now = +new Date();
+			move.pos = pos.cur + (move.now - move.lastTime) / 1000 * move.speed;
+			// Slide
+			slideTo(dragging.init ? move.pos : round(move.pos));
+			// Normally, this is triggered in render(), but if there
+			// is nothing to render, we have to do it manually here.
+			if (!dragging.init && pos.cur === pos.dest) {
+				trigger('moveEnd');
+			}
+			// Update times for future iteration
+			move.lastTime = move.now;
+		}
+
+		/**
+		 * Stops continuous movement.
+		 *
+		 * @return {Void}
+		 */
+		self.stop = function () {
+			if (dragging.source === 'button') {
+				dragging.init = 0;
+				dragging.released = 1;
+			}
+		};
+
+		/**
+		 * Activate previous item.
+		 *
+		 * @return {Void}
+		 */
+		self.prev = function () {
+			self.activate(rel.activeItem == null ? 0 : rel.activeItem - 1);
+		};
+
+		/**
+		 * Activate next item.
+		 *
+		 * @return {Void}
+		 */
+		self.next = function () {
+			self.activate(rel.activeItem == null ? 0 : rel.activeItem + 1);
+		};
+
+		/**
+		 * Activate previous page.
+		 *
+		 * @return {Void}
+		 */
+		self.prevPage = function () {
+			self.activatePage(rel.activePage - 1);
+		};
+
+		/**
+		 * Activate next page.
+		 *
+		 * @return {Void}
+		 */
+		self.nextPage = function () {
+			self.activatePage(rel.activePage + 1);
+		};
+
+		/**
+		 * Slide SLIDEE by amount of pixels.
+		 *
+		 * @param {Int}  delta     Pixels/Items. Positive means forward, negative means backward.
+		 * @param {Bool} immediate Reposition immediately without an animation.
+		 *
+		 * @return {Void}
+		 */
+		self.slideBy = function (delta, immediate) {
+			if (!delta) {
+				return;
+			}
+			if (itemNav) {
+				self[centeredNav ? 'toCenter' : 'toStart'](
+					within((centeredNav ? rel.centerItem : rel.firstItem) + o.scrollBy * delta, 0, items.length)
+				);
+			} else {
+				slideTo(pos.dest + delta, immediate);
+			}
+		};
+
+		/**
+		 * Animate SLIDEE to a specific position.
+		 *
+		 * @param {Int}  pos       New position.
+		 * @param {Bool} immediate Reposition immediately without an animation.
+		 *
+		 * @return {Void}
+		 */
+		self.slideTo = function (pos, immediate) {
+			slideTo(pos, immediate);
+		};
+
+		/**
+		 * Core method for handling `toLocation` methods.
+		 *
+		 * @param  {String} location
+		 * @param  {Mixed}  item
+		 * @param  {Bool}   immediate
+		 *
+		 * @return {Void}
+		 */
+		function to(location, item, immediate) {
+			// Optional arguments logic
+			if (type(item) === 'boolean') {
+				immediate = item;
+				item = undefined;
+			}
+
+			if (item === undefined) {
+				slideTo(pos[location], immediate);
+			} else {
+				// You can't align items to sides of the frame
+				// when centered navigation type is enabled
+				if (centeredNav && location !== 'center') {
+					return;
+				}
+
+				var itemPos = self.getPos(item);
+				if (itemPos) {
+					slideTo(itemPos[location], immediate, !centeredNav);
+				}
+			}
+		}
+
+		/**
+		 * Animate element or the whole SLIDEE to the start of the frame.
+		 *
+		 * @param {Mixed} item      Item DOM element, or index starting at 0. Omitting will animate SLIDEE.
+		 * @param {Bool}  immediate Reposition immediately without an animation.
+		 *
+		 * @return {Void}
+		 */
+		self.toStart = function (item, immediate) {
+			to('start', item, immediate);
+		};
+
+		/**
+		 * Animate element or the whole SLIDEE to the end of the frame.
+		 *
+		 * @param {Mixed} item      Item DOM element, or index starting at 0. Omitting will animate SLIDEE.
+		 * @param {Bool}  immediate Reposition immediately without an animation.
+		 *
+		 * @return {Void}
+		 */
+		self.toEnd = function (item, immediate) {
+			to('end', item, immediate);
+		};
+
+		/**
+		 * Animate element or the whole SLIDEE to the center of the frame.
+		 *
+		 * @param {Mixed} item      Item DOM element, or index starting at 0. Omitting will animate SLIDEE.
+		 * @param {Bool}  immediate Reposition immediately without an animation.
+		 *
+		 * @return {Void}
+		 */
+		self.toCenter = function (item, immediate) {
+			to('center', item, immediate);
+		};
+
+		/**
+		 * Get the index of an item in SLIDEE.
+		 *
+		 * @param {Mixed} item     Item DOM element.
+		 *
+		 * @return {Int}  Item index, or -1 if not found.
+		 */
+		function getIndex(item) {
+			return item != null ?
+					isNumber(item) ?
+						item >= 0 && item < items.length ? item : -1 :
+						$items.index(item) :
+					-1;
+		}
+		// Expose getIndex without lowering the compressibility of it,
+		// as it is used quite often throughout Sly.
+		self.getIndex = getIndex;
+
+		/**
+		 * Get index of an item in SLIDEE based on a variety of input types.
+		 *
+		 * @param  {Mixed} item DOM element, positive or negative integer.
+		 *
+		 * @return {Int}   Item index, or -1 if not found.
+		 */
+		function getRelativeIndex(item) {
+			return getIndex(isNumber(item) && item < 0 ? item + items.length : item);
+		}
+
+		/**
+		 * Activates an item.
+		 *
+		 * @param  {Mixed} item Item DOM element, or index starting at 0.
+		 *
+		 * @return {Mixed} Activated item index or false on fail.
+		 */
+		function activate(item, force) {
+			var index = getIndex(item);
+
+			if (!itemNav || index < 0) {
+				return false;
+			}
+
+			// Update classes, last active index, and trigger active event only when there
+			// has been a change. Otherwise just return the current active index.
+			if (last.active !== index || force) {
+				// Update classes
+				$items.eq(rel.activeItem).removeClass(o.activeClass);
+				$items.eq(index).addClass(o.activeClass);
+
+				last.active = rel.activeItem = index;
+
+				updateButtonsState();
+				trigger('active', index);
+			}
+
+			return index;
+		}
+
+		/**
+		 * Activates an item and helps with further navigation when o.smart is enabled.
+		 *
+		 * @param {Mixed} item      Item DOM element, or index starting at 0.
+		 * @param {Bool}  immediate Whether to reposition immediately in smart navigation.
+		 *
+		 * @return {Void}
+		 */
+		self.activate = function (item, immediate) {
+			var index = activate(item);
+
+			// Smart navigation
+			if (o.smart && index !== false) {
+				// When centeredNav is enabled, center the element.
+				// Otherwise, determine where to position the element based on its current position.
+				// If the element is currently on the far end side of the frame, assume that user is
+				// moving forward and animate it to the start of the visible frame, and vice versa.
+				if (centeredNav) {
+					self.toCenter(index, immediate);
+				} else if (index >= rel.lastItem) {
+					self.toStart(index, immediate);
+				} else if (index <= rel.firstItem) {
+					self.toEnd(index, immediate);
+				} else {
+					resetCycle();
+				}
+			}
+		};
+
+		/**
+		 * Activates a page.
+		 *
+		 * @param {Int}  index     Page index, starting from 0.
+		 * @param {Bool} immediate Whether to reposition immediately without animation.
+		 *
+		 * @return {Void}
+		 */
+		self.activatePage = function (index, immediate) {
+			if (isNumber(index)) {
+				slideTo(pages[within(index, 0, pages.length - 1)], immediate);
+			}
+		};
+
+		/**
+		 * Return relative positions of items based on their visibility within FRAME.
+		 *
+		 * @param {Int} slideePos Position of SLIDEE.
+		 *
+		 * @return {Void}
+		 */
+		function getRelatives(slideePos) {
+			slideePos = within(isNumber(slideePos) ? slideePos : pos.dest, pos.start, pos.end);
+
+			var relatives = {};
+			var centerOffset = forceCenteredNav ? 0 : frameSize / 2;
+
+			// Determine active page
+			if (!parallax) {
+				for (var p = 0, pl = pages.length; p < pl; p++) {
+					if (slideePos >= pos.end || p === pages.length - 1) {
+						relatives.activePage = pages.length - 1;
+						break;
+					}
+
+					if (slideePos <= pages[p] + centerOffset) {
+						relatives.activePage = p;
+						break;
+					}
+				}
+			}
+
+			// Relative item indexes
+			if (itemNav) {
+				var first = false;
+				var last = false;
+				var center = false;
+
+				// From start
+				for (var i = 0, il = items.length; i < il; i++) {
+					// First item
+					if (first === false && slideePos <= items[i].start + items[i].half) {
+						first = i;
+					}
+
+					// Center item
+					if (center === false && slideePos <= items[i].center + items[i].half) {
+						center = i;
+					}
+
+					// Last item
+					if (i === il - 1 || slideePos <= items[i].end + items[i].half) {
+						last = i;
+						break;
+					}
+				}
+
+				// Safe assignment, just to be sure the false won't be returned
+				relatives.firstItem = isNumber(first) ? first : 0;
+				relatives.centerItem = isNumber(center) ? center : relatives.firstItem;
+				relatives.lastItem = isNumber(last) ? last : relatives.centerItem;
+			}
+
+			return relatives;
+		}
+
+		/**
+		 * Update object with relative positions.
+		 *
+		 * @param {Int} newPos
+		 *
+		 * @return {Void}
+		 */
+		function updateRelatives(newPos) {
+			$.extend(rel, getRelatives(newPos));
+		}
+
+		/**
+		 * Disable navigation buttons when needed.
+		 *
+		 * Adds disabledClass, and when the button is <button> or <input>, activates :disabled state.
+		 *
+		 * @return {Void}
+		 */
+		function updateButtonsState() {
+			var isStart = pos.dest <= pos.start;
+			var isEnd = pos.dest >= pos.end;
+			var slideePosState = (isStart ? 1 : 0) | (isEnd ? 2 : 0);
+
+			// Update paging buttons only if there has been a change in SLIDEE position
+			if (last.slideePosState !== slideePosState) {
+				last.slideePosState = slideePosState;
+
+				if ($prevPageButton.is('button,input')) {
+					$prevPageButton.prop('disabled', isStart);
+				}
+
+				if ($nextPageButton.is('button,input')) {
+					$nextPageButton.prop('disabled', isEnd);
+				}
+
+				$prevPageButton.add($backwardButton)[isStart ? 'addClass' : 'removeClass'](o.disabledClass);
+				$nextPageButton.add($forwardButton)[isEnd ? 'addClass' : 'removeClass'](o.disabledClass);
+			}
+
+			// Forward & Backward buttons need a separate state caching because we cannot "property disable"
+			// them while they are being used, as disabled buttons stop emitting mouse events.
+			if (last.fwdbwdState !== slideePosState && dragging.released) {
+				last.fwdbwdState = slideePosState;
+
+				if ($backwardButton.is('button,input')) {
+					$backwardButton.prop('disabled', isStart);
+				}
+
+				if ($forwardButton.is('button,input')) {
+					$forwardButton.prop('disabled', isEnd);
+				}
+			}
+
+			// Item navigation
+			if (itemNav && rel.activeItem != null) {
+				var isFirst = rel.activeItem === 0;
+				var isLast = rel.activeItem >= items.length - 1;
+				var itemsButtonState = (isFirst ? 1 : 0) | (isLast ? 2 : 0);
+
+				if (last.itemsButtonState !== itemsButtonState) {
+					last.itemsButtonState = itemsButtonState;
+
+					if ($prevButton.is('button,input')) {
+						$prevButton.prop('disabled', isFirst);
+					}
+
+					if ($nextButton.is('button,input')) {
+						$nextButton.prop('disabled', isLast);
+					}
+
+					$prevButton[isFirst ? 'addClass' : 'removeClass'](o.disabledClass);
+					$nextButton[isLast ? 'addClass' : 'removeClass'](o.disabledClass);
+				}
+			}
+		}
+
+		/**
+		 * Resume cycling.
+		 *
+		 * @param {Int} priority Resume pause with priority lower or equal than this. Used internally for pauseOnHover.
+		 *
+		 * @return {Void}
+		 */
+		self.resume = function (priority) {
+			if (!o.cycleBy || !o.cycleInterval || o.cycleBy === 'items' && (!items[0] || rel.activeItem == null) || priority < self.isPaused) {
+				return;
+			}
+
+			self.isPaused = 0;
+
+			if (cycleID) {
+				cycleID = clearTimeout(cycleID);
+			} else {
+				trigger('resume');
+			}
+
+			cycleID = setTimeout(function () {
+				trigger('cycle');
+				switch (o.cycleBy) {
+					case 'items':
+						self.activate(rel.activeItem >= items.length - 1 ? 0 : rel.activeItem + 1);
+						break;
+
+					case 'pages':
+						self.activatePage(rel.activePage >= pages.length - 1 ? 0 : rel.activePage + 1);
+						break;
+				}
+			}, o.cycleInterval);
+		};
+
+		/**
+		 * Pause cycling.
+		 *
+		 * @param {Int} priority Pause priority. 100 is default. Used internally for pauseOnHover.
+		 *
+		 * @return {Void}
+		 */
+		self.pause = function (priority) {
+			if (priority < self.isPaused) {
+				return;
+			}
+
+			self.isPaused = priority || 100;
+
+			if (cycleID) {
+				cycleID = clearTimeout(cycleID);
+				trigger('pause');
+			}
+		};
+
+		/**
+		 * Toggle cycling.
+		 *
+		 * @return {Void}
+		 */
+		self.toggle = function () {
+			self[cycleID ? 'pause' : 'resume']();
+		};
+
+		/**
+		 * Updates a signle or multiple option values.
+		 *
+		 * @param {Mixed} name  Name of the option that should be updated, or object that will extend the options.
+		 * @param {Mixed} value New option value.
+		 *
+		 * @return {Void}
+		 */
+		self.set = function (name, value) {
+			if ($.isPlainObject(name)) {
+				$.extend(o, name);
+			} else if (o.hasOwnProperty(name)) {
+				o[name] = value;
+			}
+		};
+
+		/**
+		 * Add one or multiple items to the SLIDEE end, or a specified position index.
+		 *
+		 * @param {Mixed} element Node element, or HTML string.
+		 * @param {Int}   index   Index of a new item position. By default item is appended at the end.
+		 *
+		 * @return {Void}
+		 */
+		self.add = function (element, index) {
+			var $element = $(element);
+
+			if (itemNav) {
+				// Insert the element(s)
+				if (index == null || !items[0] || index >= items.length) {
+					$element.appendTo($slidee);
+				} else if (items.length) {
+					$element.insertBefore(items[index].el);
+				}
+
+				// Adjust the activeItem index
+				if (rel.activeItem != null && index <= rel.activeItem) {
+					last.active = rel.activeItem += $element.length;
+				}
+			} else {
+				$slidee.append($element);
+			}
+
+			// Reload
+			load();
+		};
+
+		/**
+		 * Remove an item from SLIDEE.
+		 *
+		 * @param {Mixed} element Item index, or DOM element.
+		 * @param {Int}   index   Index of a new item position. By default item is appended at the end.
+		 *
+		 * @return {Void}
+		 */
+		self.remove = function (element) {
+			if (itemNav) {
+				var index = getRelativeIndex(element);
+
+				if (index > -1) {
+					// Remove the element
+					$items.eq(index).remove();
+
+					// If the current item is being removed, activate new one after reload
+					var reactivate = index === rel.activeItem;
+
+					// Adjust the activeItem index
+					if (rel.activeItem != null && index < rel.activeItem) {
+						last.active = --rel.activeItem;
+					}
+
+					// Reload
+					load();
+
+					// Activate new item at the removed position
+					if (reactivate) {
+						last.active = null;
+						self.activate(rel.activeItem);
+					}
+				}
+			} else {
+				$(element).remove();
+				load();
+			}
+		};
+
+		/**
+		 * Helps re-arranging items.
+		 *
+		 * @param  {Mixed} item     Item DOM element, or index starting at 0. Use negative numbers to select items from the end.
+		 * @param  {Mixed} position Item insertion anchor. Accepts same input types as item argument.
+		 * @param  {Bool}  after    Insert after instead of before the anchor.
+		 *
+		 * @return {Void}
+		 */
+		function moveItem(item, position, after) {
+			item = getRelativeIndex(item);
+			position = getRelativeIndex(position);
+
+			// Move only if there is an actual change requested
+			if (item > -1 && position > -1 && item !== position && (!after || position !== item - 1) && (after || position !== item + 1)) {
+				$items.eq(item)[after ? 'insertAfter' : 'insertBefore'](items[position].el);
+
+				var shiftStart = item < position ? item : (after ? position : position - 1);
+				var shiftEnd = item > position ? item : (after ? position + 1 : position);
+				var shiftsUp = item > position;
+
+				// Update activeItem index
+				if (rel.activeItem != null) {
+					if (item === rel.activeItem) {
+						last.active = rel.activeItem = after ? (shiftsUp ? position + 1 : position) : (shiftsUp ? position : position - 1);
+					} else if (rel.activeItem > shiftStart && rel.activeItem < shiftEnd) {
+						last.active = rel.activeItem += shiftsUp ? 1 : -1;
+					}
+				}
+
+				// Reload
+				load();
+			}
+		}
+
+		/**
+		 * Move item after the target anchor.
+		 *
+		 * @param  {Mixed} item     Item to be moved. Can be DOM element or item index.
+		 * @param  {Mixed} position Target position anchor. Can be DOM element or item index.
+		 *
+		 * @return {Void}
+		 */
+		self.moveAfter = function (item, position) {
+			moveItem(item, position, 1);
+		};
+
+		/**
+		 * Move item before the target anchor.
+		 *
+		 * @param  {Mixed} item     Item to be moved. Can be DOM element or item index.
+		 * @param  {Mixed} position Target position anchor. Can be DOM element or item index.
+		 *
+		 * @return {Void}
+		 */
+		self.moveBefore = function (item, position) {
+			moveItem(item, position);
+		};
+
+		/**
+		 * Registers callbacks.
+		 *
+		 * @param  {Mixed} name  Event name, or callbacks map.
+		 * @param  {Mixed} fn    Callback, or an array of callback functions.
+		 *
+		 * @return {Void}
+		 */
+		self.on = function (name, fn) {
+			// Callbacks map
+			if (type(name) === 'object') {
+				for (var key in name) {
+					if (name.hasOwnProperty(key)) {
+						self.on(key, name[key]);
+					}
+				}
+			// Callback
+			} else if (type(fn) === 'function') {
+				var names = name.split(' ');
+				for (var n = 0, nl = names.length; n < nl; n++) {
+					callbacks[names[n]] = callbacks[names[n]] || [];
+					if (callbackIndex(names[n], fn) === -1) {
+						callbacks[names[n]].push(fn);
+					}
+				}
+			// Callbacks array
+			} else if (type(fn) === 'array') {
+				for (var f = 0, fl = fn.length; f < fl; f++) {
+					self.on(name, fn[f]);
+				}
+			}
+		};
+
+		/**
+		 * Registers callbacks to be executed only once.
+		 *
+		 * @param  {Mixed} name  Event name, or callbacks map.
+		 * @param  {Mixed} fn    Callback, or an array of callback functions.
+		 *
+		 * @return {Void}
+		 */
+		self.one = function (name, fn) {
+			function proxy() {
+				fn.apply(self, arguments);
+				self.off(name, proxy);
+			}
+			self.on(name, proxy);
+		};
+
+		/**
+		 * Remove one or all callbacks.
+		 *
+		 * @param  {String} name Event name.
+		 * @param  {Mixed}  fn   Callback, or an array of callback functions. Omit to remove all callbacks.
+		 *
+		 * @return {Void}
+		 */
+		self.off = function (name, fn) {
+			if (fn instanceof Array) {
+				for (var f = 0, fl = fn.length; f < fl; f++) {
+					self.off(name, fn[f]);
+				}
+			} else {
+				var names = name.split(' ');
+				for (var n = 0, nl = names.length; n < nl; n++) {
+					callbacks[names[n]] = callbacks[names[n]] || [];
+					if (fn == null) {
+						callbacks[names[n]].length = 0;
+					} else {
+						var index = callbackIndex(names[n], fn);
+						if (index !== -1) {
+							callbacks[names[n]].splice(index, 1);
+						}
+					}
+				}
+			}
+		};
+
+		/**
+		 * Returns callback array index.
+		 *
+		 * @param  {String}   name Event name.
+		 * @param  {Function} fn   Function
+		 *
+		 * @return {Int} Callback array index, or -1 if isn't registered.
+		 */
+		function callbackIndex(name, fn) {
+			for (var i = 0, l = callbacks[name].length; i < l; i++) {
+				if (callbacks[name][i] === fn) {
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		/**
+		 * Reset next cycle timeout.
+		 *
+		 * @return {Void}
+		 */
+		function resetCycle() {
+			if (dragging.released && !self.isPaused) {
+				self.resume();
+			}
+		}
+
+		/**
+		 * Calculate SLIDEE representation of handle position.
+		 *
+		 * @param  {Int} handlePos
+		 *
+		 * @return {Int}
+		 */
+		function handleToSlidee(handlePos) {
+			return round(within(handlePos, hPos.start, hPos.end) / hPos.end * (pos.end - pos.start)) + pos.start;
+		}
+
+		/**
+		 * Keeps track of a dragging delta history.
+		 *
+		 * @return {Void}
+		 */
+		function draggingHistoryTick() {
+			// Looking at this, I know what you're thinking :) But as we need only 4 history states, doing it this way
+			// as opposed to a proper loop is ~25 bytes smaller (when minified with GCC), a lot faster, and doesn't
+			// generate garbage. The loop version would create 2 new variables on every tick. Unexaptable!
+			dragging.history[0] = dragging.history[1];
+			dragging.history[1] = dragging.history[2];
+			dragging.history[2] = dragging.history[3];
+			dragging.history[3] = dragging.delta;
+		}
+
+		/**
+		 * Initialize continuous movement.
+		 *
+		 * @return {Void}
+		 */
+		function continuousInit(source) {
+			dragging.released = 0;
+			dragging.source = source;
+			dragging.slidee = source === 'slidee';
+		}
+
+		/**
+		 * Dragging initiator.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function dragInit(event) {
+			var isTouch = event.type === 'touchstart';
+			var source = event.data.source;
+			var isSlidee = source === 'slidee';
+
+			// Ignore when already in progress, or interactive element in non-touch navivagion
+			if (dragging.init || !isTouch && isInteractive(event.target)) {
+				return;
+			}
+
+			// Handle dragging conditions
+			if (source === 'handle' && (!o.dragHandle || hPos.start === hPos.end)) {
+				return;
+			}
+
+			// SLIDEE dragging conditions
+			if (isSlidee && !(isTouch ? o.touchDragging : o.mouseDragging && event.which < 2)) {
+				return;
+			}
+
+			if (!isTouch) {
+				// prevents native image dragging in Firefox
+				stopDefault(event);
+			}
+
+			// Reset dragging object
+			continuousInit(source);
+
+			// Properties used in dragHandler
+			dragging.init = 0;
+			dragging.$source = $(event.target);
+			dragging.touch = isTouch;
+			dragging.pointer = isTouch ? event.originalEvent.touches[0] : event;
+			dragging.initX = dragging.pointer.pageX;
+			dragging.initY = dragging.pointer.pageY;
+			dragging.initPos = isSlidee ? pos.cur : hPos.cur;
+			dragging.start = +new Date();
+			dragging.time = 0;
+			dragging.path = 0;
+			dragging.delta = 0;
+			dragging.locked = 0;
+			dragging.history = [0, 0, 0, 0];
+			dragging.pathToLock = isSlidee ? isTouch ? 30 : 10 : 0;
+
+			// Bind dragging events
+			$doc.on(isTouch ? dragTouchEvents : dragMouseEvents, dragHandler);
+
+			// Pause ongoing cycle
+			self.pause(1);
+
+			// Add dragging class
+			(isSlidee ? $slidee : $handle).addClass(o.draggedClass);
+
+			// Trigger moveStart event
+			trigger('moveStart');
+
+			// Keep track of a dragging path history. This is later used in the
+			// dragging release swing calculation when dragging SLIDEE.
+			if (isSlidee) {
+				historyID = setInterval(draggingHistoryTick, 10);
+			}
+		}
+
+		/**
+		 * Handler for dragging scrollbar handle or SLIDEE.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function dragHandler(event) {
+			dragging.released = event.type === 'mouseup' || event.type === 'touchend';
+			dragging.pointer = dragging.touch ? event.originalEvent[dragging.released ? 'changedTouches' : 'touches'][0] : event;
+			dragging.pathX = dragging.pointer.pageX - dragging.initX;
+			dragging.pathY = dragging.pointer.pageY - dragging.initY;
+			dragging.path = sqrt(pow(dragging.pathX, 2) + pow(dragging.pathY, 2));
+			dragging.delta = o.horizontal ? dragging.pathX : dragging.pathY;
+
+			if (!dragging.released && dragging.path < 1) return;
+
+			// We haven't decided whether this is a drag or not...
+			if (!dragging.init) {
+				// If the drag path was very short, maybe it's not a drag?
+				if (dragging.path < o.dragThreshold) {
+					// If the pointer was released, the path will not become longer and it's
+					// definitely not a drag. If not released yet, decide on next iteration
+					return dragging.released ? dragEnd() : undefined;
+				}
+				else {
+					// If dragging path is sufficiently long we can confidently start a drag
+					// if drag is in different direction than scroll, ignore it
+					if (o.horizontal ? abs(dragging.pathX) > abs(dragging.pathY) : abs(dragging.pathX) < abs(dragging.pathY)) {
+						dragging.init = 1;
+					} else {
+						return dragEnd();
+					}
+				}
+			}
+
+			stopDefault(event);
+
+			// Disable click on a source element, as it is unwelcome when dragging
+			if (!dragging.locked && dragging.path > dragging.pathToLock && dragging.slidee) {
+				dragging.locked = 1;
+				dragging.$source.on(clickEvent, disableOneEvent);
+			}
+
+			// Cancel dragging on release
+			if (dragging.released) {
+				dragEnd();
+
+				// Adjust path with a swing on mouse release
+				if (o.releaseSwing && dragging.slidee) {
+					dragging.swing = (dragging.delta - dragging.history[0]) / 40 * 300;
+					dragging.delta += dragging.swing;
+					dragging.tweese = abs(dragging.swing) > 10;
+				}
+			}
+
+			slideTo(dragging.slidee ? round(dragging.initPos - dragging.delta) : handleToSlidee(dragging.initPos + dragging.delta));
+		}
+
+		/**
+		 * Stops dragging and cleans up after it.
+		 *
+		 * @return {Void}
+		 */
+		function dragEnd() {
+			clearInterval(historyID);
+			dragging.released = true;
+			$doc.off(dragging.touch ? dragTouchEvents : dragMouseEvents, dragHandler);
+			(dragging.slidee ? $slidee : $handle).removeClass(o.draggedClass);
+
+			// Make sure that disableOneEvent is not active in next tick.
+			setTimeout(function () {
+				dragging.$source.off(clickEvent, disableOneEvent);
+			});
+
+			// Normally, this is triggered in render(), but if there
+			// is nothing to render, we have to do it manually here.
+			if (pos.cur === pos.dest && dragging.init) {
+				trigger('moveEnd');
+			}
+
+			// Resume ongoing cycle
+			self.resume(1);
+
+			dragging.init = 0;
+		}
+
+		/**
+		 * Check whether element is interactive.
+		 *
+		 * @return {Boolean}
+		 */
+		function isInteractive(element) {
+			return ~$.inArray(element.nodeName, interactiveElements) || $(element).is(o.interactive);
+		}
+
+		/**
+		 * Continuous movement cleanup on mouseup.
+		 *
+		 * @return {Void}
+		 */
+		function movementReleaseHandler() {
+			self.stop();
+			$doc.off('mouseup', movementReleaseHandler);
+		}
+
+		/**
+		 * Buttons navigation handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function buttonsHandler(event) {
+			/*jshint validthis:true */
+			stopDefault(event);
+			switch (this) {
+				case $forwardButton[0]:
+				case $backwardButton[0]:
+					self.moveBy($forwardButton.is(this) ? o.moveBy : -o.moveBy);
+					$doc.on('mouseup', movementReleaseHandler);
+					break;
+
+				case $prevButton[0]:
+					self.prev();
+					break;
+
+				case $nextButton[0]:
+					self.next();
+					break;
+
+				case $prevPageButton[0]:
+					self.prevPage();
+					break;
+
+				case $nextPageButton[0]:
+					self.nextPage();
+					break;
+			}
+		}
+
+		/**
+		 * Mouse wheel delta normalization.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Int}
+		 */
+		function normalizeWheelDelta(event) {
+			// wheelDelta needed only for IE8-
+			scrolling.curDelta = ((o.horizontal ? event.deltaY || event.deltaX : event.deltaY) || -event.wheelDelta);
+			scrolling.curDelta /= event.deltaMode === 1 ? 3 : 100;
+			if (!itemNav) {
+				return scrolling.curDelta;
+			}
+			time = +new Date();
+			if (scrolling.last < time - scrolling.resetTime) {
+				scrolling.delta = 0;
+			}
+			scrolling.last = time;
+			scrolling.delta += scrolling.curDelta;
+			if (abs(scrolling.delta) < 1) {
+				scrolling.finalDelta = 0;
+			} else {
+				scrolling.finalDelta = round(scrolling.delta / 1);
+				scrolling.delta %= 1;
+			}
+			return scrolling.finalDelta;
+		}
+
+		/**
+		 * Mouse scrolling handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function scrollHandler(event) {
+			// Mark event as originating in a Sly instance
+			event.originalEvent[namespace] = self;
+			// Don't hijack global scrolling
+			var time = +new Date();
+			if (lastGlobalWheel + o.scrollHijack > time && $scrollSource[0] !== document && $scrollSource[0] !== window) {
+				lastGlobalWheel = time;
+				return;
+			}
+			// Ignore if there is no scrolling to be done
+			if (!o.scrollBy || pos.start === pos.end) {
+				return;
+			}
+			var delta = normalizeWheelDelta(event.originalEvent);
+			// Trap scrolling only when necessary and/or requested
+			if (o.scrollTrap || delta > 0 && pos.dest < pos.end || delta < 0 && pos.dest > pos.start) {
+				stopDefault(event, 1);
+			}
+			self.slideBy(o.scrollBy * delta);
+		}
+
+		/**
+		 * Scrollbar click handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function scrollbarHandler(event) {
+			// Only clicks on scroll bar. Ignore the handle.
+			if (o.clickBar && event.target === $sb[0]) {
+				stopDefault(event);
+				// Calculate new handle position and sync SLIDEE to it
+				slideTo(handleToSlidee((o.horizontal ? event.pageX - $sb.offset().left : event.pageY - $sb.offset().top) - handleSize / 2));
+			}
+		}
+
+		/**
+		 * Keyboard input handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function keyboardHandler(event) {
+			if (!o.keyboardNavBy) {
+				return;
+			}
+
+			switch (event.which) {
+				// Left or Up
+				case o.horizontal ? 37 : 38:
+					stopDefault(event);
+					self[o.keyboardNavBy === 'pages' ? 'prevPage' : 'prev']();
+					break;
+
+				// Right or Down
+				case o.horizontal ? 39 : 40:
+					stopDefault(event);
+					self[o.keyboardNavBy === 'pages' ? 'nextPage' : 'next']();
+					break;
+			}
+		}
+
+		/**
+		 * Click on item activation handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function activateHandler(event) {
+			/*jshint validthis:true */
+
+			// Ignore clicks on interactive elements.
+			if (isInteractive(this)) {
+				event.originalEvent[namespace + 'ignore'] = true;
+				return;
+			}
+
+			// Ignore events that:
+			// - are not originating from direct SLIDEE children
+			// - originated from interactive elements
+			if (this.parentNode !== $slidee[0] || event.originalEvent[namespace + 'ignore']) return;
+
+			self.activate(this);
+		}
+
+		/**
+		 * Click on page button handler.
+		 *
+		 * @param {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function activatePageHandler() {
+			/*jshint validthis:true */
+			// Accept only events from direct pages bar children.
+			if (this.parentNode === $pb[0]) {
+				self.activatePage($pages.index(this));
+			}
+		}
+
+		/**
+		 * Pause on hover handler.
+		 *
+		 * @param  {Event} event
+		 *
+		 * @return {Void}
+		 */
+		function pauseOnHoverHandler(event) {
+			if (o.pauseOnHover) {
+				self[event.type === 'mouseenter' ? 'pause' : 'resume'](2);
+			}
+		}
+
+		/**
+		 * Trigger callbacks for event.
+		 *
+		 * @param  {String} name Event name.
+		 * @param  {Mixed}  argX Arguments passed to callbacks.
+		 *
+		 * @return {Void}
+		 */
+		function trigger(name, arg1) {
+			if (callbacks[name]) {
+				l = callbacks[name].length;
+				// Callbacks will be stored and executed from a temporary array to not
+				// break the execution queue when one of the callbacks unbinds itself.
+				tmpArray.length = 0;
+				for (i = 0; i < l; i++) {
+					tmpArray.push(callbacks[name][i]);
+				}
+				// Execute the callbacks
+				for (i = 0; i < l; i++) {
+					tmpArray[i].call(self, name, arg1);
+				}
+			}
+		}
+
+		/**
+		 * Destroys instance and everything it created.
+		 *
+		 * @return {Void}
+		 */
+		self.destroy = function () {
+			// Remove the reference to itself
+			Sly.removeInstance(frame);
+
+			// Unbind all events
+			$scrollSource
+				.add($handle)
+				.add($sb)
+				.add($pb)
+				.add($forwardButton)
+				.add($backwardButton)
+				.add($prevButton)
+				.add($nextButton)
+				.add($prevPageButton)
+				.add($nextPageButton)
+				.off('.' + namespace);
+
+			// Unbinding specifically as to not nuke out other instances
+			$doc.off('keydown', keyboardHandler);
+
+			// Remove classes
+			$prevButton
+				.add($nextButton)
+				.add($prevPageButton)
+				.add($nextPageButton)
+				.removeClass(o.disabledClass);
+
+			if ($items && rel.activeItem != null) {
+				$items.eq(rel.activeItem).removeClass(o.activeClass);
+			}
+
+			// Remove page items
+			$pb.empty();
+
+			if (!parallax) {
+				// Unbind events from frame
+				$frame.off('.' + namespace);
+				// Restore original styles
+				frameStyles.restore();
+				slideeStyles.restore();
+				sbStyles.restore();
+				handleStyles.restore();
+				// Remove the instance from element data storage
+				$.removeData(frame, namespace);
+			}
+
+			// Clean up collections
+			items.length = pages.length = 0;
+			last = {};
+
+			// Reset initialized status and return the instance
+			self.initialized = 0;
+			return self;
+		};
+
+		/**
+		 * Initialize.
+		 *
+		 * @return {Object}
+		 */
+		self.init = function () {
+			if (self.initialized) {
+				return;
+			}
+
+			// Disallow multiple instances on the same element
+			if (Sly.getInstance(frame)) throw new Error('There is already a Sly instance on this element');
+
+			// Store the reference to itself
+			Sly.storeInstance(frame, self);
+
+			// Register callbacks map
+			self.on(callbackMap);
+
+			// Save styles
+			var holderProps = ['overflow', 'position'];
+			var movableProps = ['position', 'webkitTransform', 'msTransform', 'transform', 'left', 'top', 'width', 'height'];
+			frameStyles.save.apply(frameStyles, holderProps);
+			sbStyles.save.apply(sbStyles, holderProps);
+			slideeStyles.save.apply(slideeStyles, movableProps);
+			handleStyles.save.apply(handleStyles, movableProps);
+
+			// Set required styles
+			var $movables = $handle;
+			if (!parallax) {
+				$movables = $movables.add($slidee);
+				$frame.css('overflow', 'hidden');
+				if (!transform && $frame.css('position') === 'static') {
+					$frame.css('position', 'relative');
+				}
+			}
+			if (transform) {
+				if (gpuAcceleration) {
+					$movables.css(transform, gpuAcceleration);
+				}
+			} else {
+				if ($sb.css('position') === 'static') {
+					$sb.css('position', 'relative');
+				}
+				$movables.css({ position: 'absolute' });
+			}
+
+			// Navigation buttons
+			if (o.forward) {
+				$forwardButton.on(mouseDownEvent, buttonsHandler);
+			}
+			if (o.backward) {
+				$backwardButton.on(mouseDownEvent, buttonsHandler);
+			}
+			if (o.prev) {
+				$prevButton.on(clickEvent, buttonsHandler);
+			}
+			if (o.next) {
+				$nextButton.on(clickEvent, buttonsHandler);
+			}
+			if (o.prevPage) {
+				$prevPageButton.on(clickEvent, buttonsHandler);
+			}
+			if (o.nextPage) {
+				$nextPageButton.on(clickEvent, buttonsHandler);
+			}
+
+			// Scrolling navigation
+			$scrollSource.on(wheelEvent, scrollHandler);
+
+			// Clicking on scrollbar navigation
+			if ($sb[0]) {
+				$sb.on(clickEvent, scrollbarHandler);
+			}
+
+			// Click on items navigation
+			if (itemNav && o.activateOn) {
+				$frame.on(o.activateOn + '.' + namespace, '*', activateHandler);
+			}
+
+			// Pages navigation
+			if ($pb[0] && o.activatePageOn) {
+				$pb.on(o.activatePageOn + '.' + namespace, '*', activatePageHandler);
+			}
+
+			// Dragging navigation
+			$dragSource.on(dragInitEvents, { source: 'slidee' }, dragInit);
+
+			// Scrollbar dragging navigation
+			if ($handle) {
+				$handle.on(dragInitEvents, { source: 'handle' }, dragInit);
+			}
+
+			// Keyboard navigation
+			$doc.on('keydown', keyboardHandler);
+
+			if (!parallax) {
+				// Pause on hover
+				$frame.on('mouseenter.' + namespace + ' mouseleave.' + namespace, pauseOnHoverHandler);
+				// Reset native FRAME element scroll
+				$frame.on('scroll.' + namespace, resetScroll);
+			}
+
+			// Mark instance as initialized
+			self.initialized = 1;
+
+			// Load
+			load(true);
+
+			// Initiate automatic cycling
+			if (o.cycleBy && !parallax) {
+				self[o.startPaused ? 'pause' : 'resume']();
+			}
+
+			// Return instance
+			return self;
+		};
+	}
+
+	Sly.getInstance = function (element) {
+		return $.data(element, namespace);
+	};
+
+	Sly.storeInstance = function (element, sly) {
+		return $.data(element, namespace, sly);
+	};
+
+	Sly.removeInstance = function (element) {
+		return $.removeData(element, namespace);
+	};
+
+	/**
+	 * Return type of the value.
+	 *
+	 * @param  {Mixed} value
+	 *
+	 * @return {String}
+	 */
+	function type(value) {
+		if (value == null) {
+			return String(value);
+		}
+
+		if (typeof value === 'object' || typeof value === 'function') {
+			return Object.prototype.toString.call(value).match(/\s([a-z]+)/i)[1].toLowerCase() || 'object';
+		}
+
+		return typeof value;
+	}
+
+	/**
+	 * Event preventDefault & stopPropagation helper.
+	 *
+	 * @param {Event} event     Event object.
+	 * @param {Bool}  noBubbles Cancel event bubbling.
+	 *
+	 * @return {Void}
+	 */
+	function stopDefault(event, noBubbles) {
+		event.preventDefault();
+		if (noBubbles) {
+			event.stopPropagation();
+		}
+	}
+
+	/**
+	 * Disables an event it was triggered on and unbinds itself.
+	 *
+	 * @param  {Event} event
+	 *
+	 * @return {Void}
+	 */
+	function disableOneEvent(event) {
+		/*jshint validthis:true */
+		stopDefault(event, 1);
+		$(this).off(event.type, disableOneEvent);
+	}
+
+	/**
+	 * Resets native element scroll values to 0.
+	 *
+	 * @return {Void}
+	 */
+	function resetScroll() {
+		/*jshint validthis:true */
+		this.scrollLeft = 0;
+		this.scrollTop = 0;
+	}
+
+	/**
+	 * Check if variable is a number.
+	 *
+	 * @param {Mixed} value
+	 *
+	 * @return {Boolean}
+	 */
+	function isNumber(value) {
+		return !isNaN(parseFloat(value)) && isFinite(value);
+	}
+
+	/**
+	 * Parse style to pixels.
+	 *
+	 * @param {Object}   $item    jQuery object with element.
+	 * @param {Property} property CSS property to get the pixels from.
+	 *
+	 * @return {Int}
+	 */
+	function getPx($item, property) {
+		return 0 | round(String($item.css(property)).replace(/[^\-0-9.]/g, ''));
+	}
+
+	/**
+	 * Make sure that number is within the limits.
+	 *
+	 * @param {Number} number
+	 * @param {Number} min
+	 * @param {Number} max
+	 *
+	 * @return {Number}
+	 */
+	function within(number, min, max) {
+		return number < min ? min : number > max ? max : number;
+	}
+
+	/**
+	 * Saves element styles for later restoration.
+	 *
+	 * Example:
+	 *   var styles = new StyleRestorer(frame);
+	 *   styles.save('position');
+	 *   element.style.position = 'absolute';
+	 *   styles.restore(); // restores to state before the assignment above
+	 *
+	 * @param {Element} element
+	 */
+	function StyleRestorer(element) {
+		var self = {};
+		self.style = {};
+		self.save = function () {
+			if (!element || !element.nodeType) return;
+			for (var i = 0; i < arguments.length; i++) {
+				self.style[arguments[i]] = element.style[arguments[i]];
+			}
+			return self;
+		};
+		self.restore = function () {
+			if (!element || !element.nodeType) return;
+			for (var prop in self.style) {
+				if (self.style.hasOwnProperty(prop)) element.style[prop] = self.style[prop];
+			}
+			return self;
+		};
+		return self;
+	}
+
+	// Local WindowAnimationTiming interface polyfill
+	(function (w) {
+		rAF = w.requestAnimationFrame
+			|| w.webkitRequestAnimationFrame
+			|| fallback;
+
+		/**
+		* Fallback implementation.
+		*/
+		var prev = new Date().getTime();
+		function fallback(fn) {
+			var curr = new Date().getTime();
+			var ms = Math.max(0, 16 - (curr - prev));
+			var req = setTimeout(fn, ms);
+			prev = curr;
+			return req;
+		}
+
+		/**
+		* Cancel.
+		*/
+		var cancel = w.cancelAnimationFrame
+			|| w.webkitCancelAnimationFrame
+			|| w.clearTimeout;
+
+		cAF = function(id){
+			cancel.call(w, id);
+		};
+	}(window));
+
+	// Feature detects
+	(function () {
+		var prefixes = ['', 'Webkit', 'Moz', 'ms', 'O'];
+		var el = document.createElement('div');
+
+		function testProp(prop) {
+			for (var p = 0, pl = prefixes.length; p < pl; p++) {
+				var prefixedProp = prefixes[p] ? prefixes[p] + prop.charAt(0).toUpperCase() + prop.slice(1) : prop;
+				if (el.style[prefixedProp] != null) {
+					return prefixedProp;
+				}
+			}
+		}
+
+		// Global support indicators
+		transform = testProp('transform');
+		gpuAcceleration = testProp('perspective') ? 'translateZ(0) ' : '';
+	}());
+
+	// Expose class globally
+	w[className] = Sly;
+
+	// jQuery proxy
+	$.fn[pluginName] = function (options, callbackMap) {
+		var method, methodArgs;
+
+		// Attributes logic
+		if (!$.isPlainObject(options)) {
+			if (type(options) === 'string' || options === false) {
+				method = options === false ? 'destroy' : options;
+				methodArgs = Array.prototype.slice.call(arguments, 1);
+			}
+			options = {};
+		}
+
+		// Apply to all elements
+		return this.each(function (i, element) {
+			// Call with prevention against multiple instantiations
+			var plugin = Sly.getInstance(element);
+
+			if (!plugin && !method) {
+				// Create a new object if it doesn't exist yet
+				plugin = new Sly(element, options, callbackMap).init();
+			} else if (plugin && method) {
+				// Call method
+				if (plugin[method]) {
+					plugin[method].apply(plugin, methodArgs);
+				}
+			}
+		});
+	};
+
+	// Default options
+	Sly.defaults = {
+		slidee:     null,  // Selector, DOM element, or jQuery object with DOM element representing SLIDEE.
+		horizontal: false, // Switch to horizontal mode.
+
+		// Item based navigation
+		itemNav:        null,  // Item navigation type. Can be: 'basic', 'centered', 'forceCentered'.
+		itemSelector:   null,  // Select only items that match this selector.
+		smart:          false, // Repositions the activated item to help with further navigation.
+		activateOn:     null,  // Activate an item on this event. Can be: 'click', 'mouseenter', ...
+		activateMiddle: false, // Always activate the item in the middle of the FRAME. forceCentered only.
+
+		// Scrolling
+		scrollSource: null,  // Element for catching the mouse wheel scrolling. Default is FRAME.
+		scrollBy:     0,     // Pixels or items to move per one mouse scroll. 0 to disable scrolling.
+		scrollHijack: 300,   // Milliseconds since last wheel event after which it is acceptable to hijack global scroll.
+		scrollTrap:   false, // Don't bubble scrolling when hitting scrolling limits.
+
+		// Dragging
+		dragSource:    null,  // Selector or DOM element for catching dragging events. Default is FRAME.
+		mouseDragging: false, // Enable navigation by dragging the SLIDEE with mouse cursor.
+		touchDragging: false, // Enable navigation by dragging the SLIDEE with touch events.
+		releaseSwing:  false, // Ease out on dragging swing release.
+		swingSpeed:    0.2,   // Swing synchronization speed, where: 1 = instant, 0 = infinite.
+		elasticBounds: false, // Stretch SLIDEE position limits when dragging past FRAME boundaries.
+		dragThreshold: 3,     // Distance in pixels before Sly recognizes dragging.
+		interactive:   null,  // Selector for special interactive elements.
+
+		// Scrollbar
+		scrollBar:     null,  // Selector or DOM element for scrollbar container.
+		dragHandle:    false, // Whether the scrollbar handle should be draggable.
+		dynamicHandle: false, // Scrollbar handle represents the ratio between hidden and visible content.
+		minHandleSize: 50,    // Minimal height or width (depends on sly direction) of a handle in pixels.
+		clickBar:      false, // Enable navigation by clicking on scrollbar.
+		syncSpeed:     0.5,   // Handle => SLIDEE synchronization speed, where: 1 = instant, 0 = infinite.
+
+		// Pagesbar
+		pagesBar:       null, // Selector or DOM element for pages bar container.
+		activatePageOn: null, // Event used to activate page. Can be: click, mouseenter, ...
+		pageBuilder:          // Page item generator.
+			function (index) {
+				return '<li>' + (index + 1) + '</li>';
+			},
+
+		// Navigation buttons
+		forward:  null, // Selector or DOM element for "forward movement" button.
+		backward: null, // Selector or DOM element for "backward movement" button.
+		prev:     null, // Selector or DOM element for "previous item" button.
+		next:     null, // Selector or DOM element for "next item" button.
+		prevPage: null, // Selector or DOM element for "previous page" button.
+		nextPage: null, // Selector or DOM element for "next page" button.
+
+		// Automated cycling
+		cycleBy:       null,  // Enable automatic cycling by 'items' or 'pages'.
+		cycleInterval: 5000,  // Delay between cycles in milliseconds.
+		pauseOnHover:  false, // Pause cycling when mouse hovers over the FRAME.
+		startPaused:   false, // Whether to start in paused sate.
+
+		// Mixed options
+		moveBy:        300,     // Speed in pixels per second used by forward and backward buttons.
+		speed:         0,       // Animations speed in milliseconds. 0 to disable animations.
+		easing:        'swing', // Easing for duration based (tweening) animations.
+		startAt:       null,    // Starting offset in pixels or items.
+		keyboardNavBy: null,    // Enable keyboard navigation by 'items' or 'pages'.
+
+		// Classes
+		draggedClass:  'dragged', // Class for dragged elements (like SLIDEE or scrollbar handle).
+		activeClass:   'active',  // Class for active items and pages.
+		disabledClass: 'disabled' // Class for disabled navigation elements.
+	};
+}(jQuery, window));
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Ability = Backbone.Model.extend({
+	defaults: {
+    name: "Ability",
+    uid: "ability",
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('ability-'+uid+'-name');
+    if(name)
+      this.set('name', name);
+  },
+
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Type = Backbone.Model.extend({
+	defaults: {
+    name: "Type",
+    uid: "type",
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('type-'+uid+'-name');
+    if(name)
+      this.set('name', name);
+  },
+
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+
+(function(){
+
+  //championStarRankValue[stars][rank]
+  var championStarRankLevels={
+    1:{
+      1:{ levels: 10, min:100, max:175 }, 
+      2:{ levels: 20, min:175, max:250 },
+      ranks: 2
+    },
+    2:{
+      1:{ levels: 10, min:150, max:250 }, 
+      2:{ levels: 20, min:250, max:400 }, 
+      3:{ levels: 30, min:400, max:600 },
+      ranks: 3
+    },
+    3:{
+      1:{ levels: 10, min:300, max:500 }, 
+      2:{ levels: 20, min:500, max:900 }, 
+      3:{ levels: 30, min:900, max:1200 }, 
+      4:{ levels: 40, min:1200, max:1500 },
+      ranks: 4
+    },
+    4:{
+      1:{ levels: 10, min:600, max:1000 }, 
+      2:{ levels: 20, min:1000, max:1500 }, 
+      3:{ levels: 30, min:1500, max:2000 }, 
+      4:{ levels: 40, min:2000, max:2800 }, 
+      5:{ levels: 50, min:2800, max:3500 },
+      ranks: 5
+    },
+    5:{
+      1:{ levels: 25, min:1500, max:2500 }, 
+      2:{ levels: 35, min:2500, max:3500 }, 
+      3:{ levels: 45, min:3500, max:4500 }, 
+      4:{ levels: 55, min:4500, max:5500 }, 
+      5:{ levels: 65, min:5500, max:6500 },
+      ranks: 5
+    }
+  };
+
+  var starStrings = ["", "★", "★★", "★★★", "★★★★", "★★★★★"];
+
+  CoC.model.Champion = Backbone.Model.extend({
+    defaults: {
+      uid: "champion",
+      stars: 2,
+      name: 'Champion',
+      shortname: null,
+      typeId: "mutant",
+      awakened: 0,
+      rank: 1,
+      level: 1,
+      grade: 0,
+      gradeAwakened: 0,
+      quest: false
+    },
+
+    constructor: function() {
+      Backbone.Model.apply(this, arguments);
+      var uid = this.get('uid');
+      var name = CoC.lang.model('champion-'+uid+'-name');
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname', null);
+      if(name)
+        this.set('name', name);
+      if(shortname)
+        this.set('shortname', shortname);
+    },
+
+    value:function(){
+      var stars = this.get("stars"), 
+        rank = this.get("rank"), 
+        level = this.get("level"), 
+        awakened = this.get("awakened");
+      if(level < 1 || championStarRankLevels[stars] === undefined)
+        return 0;
+      var range = championStarRankLevels[stars][rank];
+      if(range === undefined || level > range.levels )
+        return 0;
+      var value = range.min + (level / range.levels) * (range.max - range.min);
+      if(awakened > 0)
+        value *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+      return value;
+    },
+    
+    ranks:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      return stars.ranks;
+    },
+    
+    levels:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      var rank = stars[this.get("rank")];
+      if(rank === undefined)
+        return null;
+      return rank.levels;
+    },
+    
+    stars:function(){
+      if(this._stars === undefined){
+        this._stars = starStrings[this.get("stars")];
+      }
+      return this._stars;
+    },
+    
+    fid:function(){
+      return [this.get("uid"), this.get("stars"), this.get('quest')].join('_');
+    },
+    
+    portrait:function(){
+      if(this._portrait === undefined){
+        this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png';
+      }
+      return this._portrait;
+    },
+    
+    image:function(){
+      if(this._image === undefined){
+        this._image = 'images/champions/fullsize_'+this.get('uid')+'.png';
+      }
+      return this._image;
+    },
+    
+    type:function(){
+      if(this._type === undefined){
+        this._type = CoC.data.types.findWhere({ uid:this.get("typeId") });
+      }
+      return this._type;
+    },
+    
+    crystals:function(){
+      if(this._crystals === undefined){
+        this._crystals = [];
+        var ccs = CoC.data.crystalChampions.find({ championId:this.get("uid"), championStars:this.get("stars") });
+        for(var i=0; i<ccs.length; i++)
+          this._crystals.push(ccs.crystal());
+      }
+      return this._crystals;
+    },
+    
+    //clean an import's variable types
+    update:function(){
+      var uid = this.get('uid');
+      var stars = this.get('stars');
+      var other = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+      if(!other)
+        return false;
+
+      this.set("name", CoC.lang.model('champion-'+uid+'-name'));
+      this.set("shortname", CoC.lang.model('champion-'+uid+'-shortname', null));
+      this.set("typeId", other.get("typeId"));
+      this.set("stars", parseInt(stars, 10) || 1);
+      this.set("rank", parseInt(this.get("rank"), 10) || 1);
+      this.set("level", parseInt(this.get("level"), 10) || 1);
+      this.set("awakened", parseInt(this.get("awakened"), 10) || 0);
+      return true;
+    }
+  });
+  
+})();
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Effect = Backbone.Model.extend({
+	defaults: {
+    name: "Effect",
+    uid: "effect",
+		base: 10,
+    amount:0,
+    image:"",
+    altimage:""
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('effect-'+uid+'-name');
+    var description = CoC.lang.model('effect-'+uid+'-description');
+    if(name)
+      this.set('name', name);
+    if(description)
+      this.set('description', description);
+  },
+
+  image:function(){
+    return this.get("image") + ".jpg";
+  },
+
+  imageOff:function(){
+    return this.get("image") + "_off.jpg";
+  },
+
+  championIds:function(ids){
+    if(ids){
+      this._championIds = [];
+      for(var id in ids)
+        this._championIds.push(id);
+    }
+    return this._championIds;
+  }
+
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Synergy = Backbone.Model.extend({
+	defaults: {
+    fromId: "champion",
+    fromStars: 1,
+		toId: 'champion',
+		effectId: "effect",
+    effectAmount: 20
+  },
+  
+  to:function(){
+    if(this._to === undefined){
+      this._to = CoC.data.champions.findWhere({ uid:this.get("toId") });
+    }
+    return this._to;
+  },
+  
+  from:function(){
+    if(this._from === undefined){
+      this._from = CoC.data.champions.findWhere({ uid:this.get("fromId"), stars:this.get("fromStars") });
+    }
+    return this._from;
+  },
+  
+  effect: function(){
+    if(this._effect === undefined){
+      this._effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    }
+    return this._effect;
+  }
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Crystal = Backbone.Model.extend({
+	defaults: {
+    name: "Crystal",
+    uid: "crystal",
+    image:"crystal"
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('crystal-'+uid+'-name');
+    var description = CoC.lang.model('crystal-'+uid+'-description');
+    if(name)
+      this.set('name', name);
+    if(description)
+      this.set('description', description);
+  },
+
+  image:function(){
+    if(this._image === undefined){
+      this._image = 'images/crystals/crystal_'+this.get('image')+'.png';
+    }
+    return this._image;
+  },
+  
+  hologram:function(){
+    if(this._hologram === undefined){
+      this._hologram = 'images/crystals/hologram_'+this.get('hologram')+'.png';
+    }
+    return this._hologram;
+  },
+  
+  champions:function(stars){
+    var champions, ccs, i;
+    if(this._champions === undefined)
+      this._champions = [];
+    if(stars === undefined){
+      champions = this._champions[0];
+      if(champions === undefined){
+        champions = [];
+        ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid") });
+        for(i=0; i<ccs.length; i++)
+          if(ccs[i].champion() !== undefined)
+            champions.push( ccs[i].champion() );
+        champions = _(champions);
+        this._champions[0] = champions;
+      }
+    }
+    else{
+      champions = this._champions[stars];
+      if(champions === undefined){
+        champions = [];
+        ccs = CoC.data.crystalChampions.where({ crystalId:this.get("uid"), championStars:stars });
+        for(i=0; i<ccs.length; i++)
+          if(ccs[i].champion() !== undefined)
+            champions.push( ccs[i].champion() );
+        champions = _(champions);
+        this._champions[stars] = champions;
+      }
+    }
+    return champions;
+  }
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.CrystalChampion = Backbone.Model.extend({
+	defaults: {
+    crystalId: "crystal",
+    championId: "champion",
+    championStars:1
+  },
+  
+  crystal:function(){
+    if(this._crystal === undefined){
+      this._crystal = CoC.data.crystals.findWhere({ uid:this.get("crystalId") });
+    }
+    return this._crystal;
+  },
+
+  champion:function(){
+    if(this._champion === undefined){
+      this._champion = CoC.data.champions.findWhere({ uid:this.get("championId"), stars:this.get("championStars") });
+    }
+    
+    //If we can't load this champion it probably wasn't defined.
+    if(this._champion === undefined)
+      console.error(this.toJSON());
+    
+    return this._champion;
+  }
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champion Types
+CoC.data.abilities = new Backbone.Collection([
+
+  { uid:"stun" },
+  { uid:"fatigue" },
+  { uid:"powerdrain" },
+  { uid:"powerburn" },
+  { uid:"bleed" },
+  { uid:"cauterize" },
+  { uid:"armorbreak" },
+  { uid:"fury" },
+  { uid:"regeneration" },
+  { uid:"unstoppable" },
+  { uid:"poison" },
+  { uid:"armorup" },
+  { uid:"plusdamage" },
+  { uid:"pluscritrate" },
+  { uid:"pluscritdamage" },
+  { uid:"poisonimmunity" },
+  { uid:"bleedimmunity" },
+
+], {
+  model: CoC.model.Ability
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Effects
+CoC.data.effects = new Backbone.Collection([
+
+  { uid: "attack", image:"images/effects/attack", base:5 },
+  { uid: "stun", image:"images/effects/stun", base:15 },
+  { uid: "critrate", image:"images/effects/critical", base:5 },
+  { uid: "critdamage", image:"images/effects/critical", base:15 },
+  { uid: "powergain", image:"images/effects/mana", base:3 },
+  { uid: "powersteal", image:"images/effects/mana_steal", base:3 },
+  { uid: "perfectblock", image:"images/effects/block", base:3 },
+  { uid: "block", image:"images/effects/block", base:10 },
+  { uid: "armor", image:"images/effects/armor", base:4 },
+  { uid: "health", image:"images/effects/health", base:4 },
+  { uid: "healthsteal", image:"images/effects/health_steal", base:4 }
+
+], {
+  model: CoC.model.Effect
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champion Types
+CoC.data.types = new Backbone.Collection([
+
+  { uid:"cosmic", image:"images/icons/cosmic.png" },
+  { uid:"tech", image:"images/icons/tech.png" },
+  { uid:"mutant", image:"images/icons/mutant.png" },
+  { uid:"skill", image:"images/icons/skill.png" },
+  { uid:"science", image:"images/icons/science.png" },
+  { uid:"mystic", image:"images/icons/mystic.png" }
+  
+], {
+  model: CoC.model.Type
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champions
+CoC.data.champions = new Backbone.Collection([
+
+  { uid:"blackbolt", typeId:"cosmic", stars: 2 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 3 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 4 },
+
+  { uid:"captainmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 4 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 5 },
+
+  { uid:"drax", typeId:"cosmic", stars: 2 },
+  { uid:"drax", typeId:"cosmic", stars: 3 },
+  { uid:"drax", typeId:"cosmic", stars: 4 },
+
+  { uid:"gamora", typeId:"cosmic", stars: 1 },
+  { uid:"gamora", typeId:"cosmic", stars: 2 },
+  { uid:"gamora", typeId:"cosmic", stars: 3 },
+  { uid:"gamora", typeId:"cosmic", stars: 4 },
+
+  { uid:"msmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"msmarvel", typeId:"cosmic", stars: 4 },
+
+  { uid:"ronan", typeId:"cosmic", stars: 2 },
+  { uid:"ronan", typeId:"cosmic", stars: 3 },
+  { uid:"ronan", typeId:"cosmic", stars: 4 },
+  { uid:"ronan", typeId:"cosmic", stars: 5 },
+
+  { uid:"spidermanblack", typeId:"cosmic", stars: 3 },
+  { uid:"spidermanblack", typeId:"cosmic", stars: 4 },
+
+  { uid:"superiorironman", typeId:"cosmic", stars: 2 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 3 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 4 },
+
+  { uid:"thor", typeId:"cosmic", stars: 2 },
+  { uid:"thor", typeId:"cosmic", stars: 3 },
+  { uid:"thor", typeId:"cosmic", stars: 4 },
+
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 3 },
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 4 },
+
+  { uid:"venom", typeId:"cosmic", stars: 3 },
+  { uid:"venom", typeId:"cosmic", stars: 4 },
+  { uid:"venom", typeId:"cosmic", stars: 5 },
+
+  { uid:"ironman", typeId:"tech", stars: 1 },
+  { uid:"ironman", typeId:"tech", stars: 2 },
+  { uid:"ironman", typeId:"tech", stars: 3 },
+  { uid:"ironman", typeId:"tech", stars: 4 },
+  { uid:"ironman", typeId:"tech", stars: 5 },
+
+  { uid:"ironpatriot", typeId:"tech", stars: 3 },
+  { uid:"ironpatriot", typeId:"tech", stars: 4 },
+
+  { uid:"hulkbuster", typeId:"tech", stars: 2 },
+  { uid:"hulkbuster", typeId:"tech", stars: 3 },
+  { uid:"hulkbuster", typeId:"tech", stars: 4 },
+
+  { uid:"kang", typeId:"tech", stars: 4 },
+
+  { uid:"rocket", typeId:"tech", stars: 3 },
+  { uid:"rocket", typeId:"tech", stars: 4 },
+
+  { uid:"starlord", typeId:"tech", stars: 2 },
+  { uid:"starlord", typeId:"tech", stars: 3 },
+  { uid:"starlord", typeId:"tech", stars: 4 },
+  { uid:"starlord", typeId:"tech", stars: 5 },
+
+  { uid:"vision", typeId:"tech", stars: 1 },
+  { uid:"vision", typeId:"tech", stars: 2 },
+  { uid:"vision", typeId:"tech", stars: 3 },
+  { uid:"vision", typeId:"tech", stars: 4 },
+
+  { uid:"thevision", typeId:"tech", stars: 2 },
+  { uid:"thevision", typeId:"tech", stars: 3 },
+  { uid:"thevision", typeId:"tech", stars: 4 },
+
+  { uid:"ultron", typeId:"tech", stars: 2 },
+  { uid:"ultron", typeId:"tech", stars: 3 },
+  { uid:"ultron", typeId:"tech", stars: 4 },
+
+  { uid:"warmachine", typeId:"tech", stars: 3 },
+  { uid:"warmachine", typeId:"tech", stars: 4 },
+
+  { uid:"colossus", typeId:"mutant", stars: 1 },
+  { uid:"colossus", typeId:"mutant", stars: 2 },
+  { uid:"colossus", typeId:"mutant", stars: 3 },
+  { uid:"colossus", typeId:"mutant", stars: 4 },
+
+  { uid:"cyclops", typeId:"mutant", stars: 2 },
+  { uid:"cyclops", typeId:"mutant", stars: 3 },
+  { uid:"cyclops", typeId:"mutant", stars: 4 },
+  { uid:"cyclops", typeId:"mutant", stars: 5 },
+
+  { uid:"deadpool", typeId:"mutant", stars: 2 },
+  { uid:"deadpool", typeId:"mutant", stars: 3 },
+  { uid:"deadpool", typeId:"mutant", stars: 4 },
+
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 3 },
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 4 },
+
+  { uid:"magneto", typeId:"mutant", stars: 2 },
+  { uid:"magneto", typeId:"mutant", stars: 3 },
+  { uid:"magneto", typeId:"mutant", stars: 4 },
+
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 3 },
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 4 },
+
+  { uid:"storm", typeId:"mutant", stars: 2 },
+  { uid:"storm", typeId:"mutant", stars: 3 },
+  { uid:"storm", typeId:"mutant", stars: 4 },
+  { uid:"storm", typeId:"mutant", stars: 5 },
+
+  { uid:"wolverine", typeId:"mutant", stars: 1 },
+  { uid:"wolverine", typeId:"mutant", stars: 2 },
+  { uid:"wolverine", typeId:"mutant", stars: 3 },
+  { uid:"wolverine", typeId:"mutant", stars: 4 },
+
+  { uid:"blackpanther", typeId:"skill", stars: 1 },
+  { uid:"blackpanther", typeId:"skill", stars: 2 },
+  { uid:"blackpanther", typeId:"skill", stars: 3 },
+  { uid:"blackpanther", typeId:"skill", stars: 4 },
+  { uid:"blackpanther", typeId:"skill", stars: 5 },
+
+  { uid:"blackwidow", typeId:"skill", stars: 2 },
+  { uid:"blackwidow", typeId:"skill", stars: 3 },
+  { uid:"blackwidow", typeId:"skill", stars: 4 },
+
+  { uid:"daredevil", typeId:"skill", stars: 3 },
+  { uid:"daredevil", typeId:"skill", stars: 4 },
+
+  { uid:"daredevilnetflix", typeId:"skill", stars: 3 },
+  { uid:"daredevilnetflix", typeId:"skill", stars: 4 },
+
+  { uid:"elektra", typeId:"skill", stars: 3 },
+  { uid:"elektra", typeId:"skill", stars: 4 },
+
+  { uid:"hawkeye", typeId:"skill", stars: 1 },
+  { uid:"hawkeye", typeId:"skill", stars: 2 },
+  { uid:"hawkeye", typeId:"skill", stars: 3 },
+  { uid:"hawkeye", typeId:"skill", stars: 4 },
+
+  { uid:"moonknight", typeId:"skill", stars: 3 },
+  { uid:"moonknight", typeId:"skill", stars: 4 },
+
+  { uid:"punisher", typeId:"skill", stars: 2 },
+  { uid:"punisher", typeId:"skill", stars: 3 },
+  { uid:"punisher", typeId:"skill", stars: 4 },
+
+  { uid:"wintersoldier", typeId:"skill", stars: 2 },
+  { uid:"wintersoldier", typeId:"skill", stars: 3 },
+  { uid:"wintersoldier", typeId:"skill", stars: 4 },
+  { uid:"wintersoldier", typeId:"skill", stars: 5 },
+
+  { uid:"abomination", typeId:"science", stars: 2 },
+  { uid:"abomination", typeId:"science", stars: 3 },
+  { uid:"abomination", typeId:"science", stars: 4 },
+
+  { uid:"antman", typeId:"science", stars: 2 },
+  { uid:"antman", typeId:"science", stars: 3 },
+  { uid:"antman", typeId:"science", stars: 4 },
+
+  { uid:"captainamerica", typeId:"science", stars: 2 },
+  { uid:"captainamerica", typeId:"science", stars: 3 },
+  { uid:"captainamerica", typeId:"science", stars: 4 },
+
+  { uid:"captainamericawwii", typeId:"science", stars: 3 },
+  { uid:"captainamericawwii", typeId:"science", stars: 4 },
+
+  { uid:"electro", typeId:"science", stars: 3 },
+  { uid:"electro", typeId:"science", stars: 4 },
+
+  { uid:"hulk", typeId:"science", stars: 1 },
+  { uid:"hulk", typeId:"science", stars: 2 },
+  { uid:"hulk", typeId:"science", stars: 3 },
+  { uid:"hulk", typeId:"science", stars: 4 },
+
+  { uid:"joefixit", typeId:"science", stars: 3 },
+  { uid:"joefixit", typeId:"science", stars: 4 },
+
+  { uid:"rhino", typeId:"science", stars: 2 },
+  { uid:"rhino", typeId:"science", stars: 3 },
+  { uid:"rhino", typeId:"science", stars: 4 },
+  { uid:"rhino", typeId:"science", stars: 5 },
+
+  { uid:"spidergwen", typeId:"science", stars: 3 },
+  { uid:"spidergwen", typeId:"science", stars: 4 },
+  { uid:"spidergwen", typeId:"science", stars: 5 },
+
+  { uid:"spiderman", typeId:"science", stars: 1 },
+  { uid:"spiderman", typeId:"science", stars: 2 },
+  { uid:"spiderman", typeId:"science", stars: 3 },
+  { uid:"spiderman", typeId:"science", stars: 4 },
+  { uid:"spiderman", typeId:"science", stars: 5 },
+
+  { uid:"spidermanmorales", typeId:"science", stars: 3 },
+  { uid:"spidermanmorales", typeId:"science", stars: 4 },
+
+  { uid:"yellowjacket", typeId:"science", stars: 2 },
+  { uid:"yellowjacket", typeId:"science", stars: 3 },
+  { uid:"yellowjacket", typeId:"science", stars: 4 },
+
+  { uid:"drstrange", typeId:"mystic", stars: 3 },
+  { uid:"drstrange", typeId:"mystic", stars: 4 },
+
+  { uid:"guillotine", typeId:"mystic", stars: 2 },
+  { uid:"guillotine", typeId:"mystic", stars: 3 },
+  { uid:"guillotine", typeId:"mystic", stars: 4 },
+
+  { uid:"ironfist", typeId:"mystic", stars: 2 },
+  { uid:"ironfist", typeId:"mystic", stars: 3 },
+  { uid:"ironfist", typeId:"mystic", stars: 4 },
+
+  { uid:"juggernaut", typeId:"mystic", stars: 1 },
+  { uid:"juggernaut", typeId:"mystic", stars: 2 },
+  { uid:"juggernaut", typeId:"mystic", stars: 3 },
+  { uid:"juggernaut", typeId:"mystic", stars: 4 },
+  { uid:"juggernaut", typeId:"mystic", stars: 5 },
+
+  { uid:"magik", typeId:"mystic", stars: 2 },
+  { uid:"magik", typeId:"mystic", stars: 3 },
+  { uid:"magik", typeId:"mystic", stars: 4 },
+  { uid:"magik", typeId:"mystic", stars: 5 },
+
+  { uid:"scarletwitch", typeId:"mystic", stars: 1 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 2 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 3 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 4 },
+
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 2 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 3 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 4 }
+  
+], {
+  model: CoC.model.Champion
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Synergies
+CoC.data.synergies = new Backbone.Collection([
+
+  { fromId:"blackbolt", fromStars: 2, toId: "cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"blackbolt", fromStars: 3, toId: "cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"blackbolt", fromStars: 3, toId: "spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 3, toId: "ronan", effectId:"attack", effectAmount:4 },
+  { fromId:"blackbolt", fromStars: 3, toId: "hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"blackbolt", fromStars: 4, toId: "ronan", effectId:"attack", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 4, toId: "hulk", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"captainmarvel", fromStars: 3, toId: "captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "gamora", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "gamora", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "wolverine", effectId:"powergain", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "captainamerica", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "gamora", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "ironman", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "wolverine", effectId:"powergain", effectAmount:6 },
+
+  { fromId:"drax", fromStars:2, toId:"starlord", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"drax", fromStars:2, toId:"gamora", effectId:"critdamage", effectAmount:15 },
+  { fromId:"drax", fromStars:3, toId:"starlord", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drax", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"drax", fromStars:4, toId:"starlord", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"drax", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"gamora", fromStars:2, toId:"starlord", effectId:"armor", effectAmount:4 },
+  { fromId:"gamora", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"gamora", fromStars:3, toId:"drax", effectId:"critdamage", effectAmount:20 },
+  { fromId:"gamora", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"gamora", fromStars:4, toId:"drax", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"msmarvel", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"hulk", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"msmarvel", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"hulk", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ronan", fromStars:2, toId:"blackbolt", effectId:"critdamage", effectAmount:15 },
+  { fromId:"ronan", fromStars:3, toId:"blackbolt", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:3, toId:"ironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ronan", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:4, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:4, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:5, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"spidermanblack", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"spidermanblack", fromStars:3, toId:"electro", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"electro", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"superiorironman", fromStars:2, toId:"captainamerica", effectId:"critrate", effectAmount:5 },
+  { fromId:"superiorironman", fromStars:2, toId:"daredevil", effectId:"critdamage", effectAmount:15 },
+  { fromId:"superiorironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"superiorironman", fromStars:3, toId:"captainamerica", effectId:"critrate", effectAmount:6 },
+  { fromId:"superiorironman", fromStars:3, toId:"daredevil", effectId:"critdamage", effectAmount:20 },
+  { fromId:"superiorironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"superiorironman", fromStars:4, toId:"captainamerica", effectId:"critrate", effectAmount:7 },
+  { fromId:"superiorironman", fromStars:4, toId:"daredevil", effectId:"critdamage", effectAmount:25 },
+  { fromId:"superiorironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+
+  { fromId:"thor", fromStars:2, toId:"drstrange", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"juggernaut", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"juggernaut", effectId:"armor", effectAmount:7 },
+
+  { fromId:"venom", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"venom", fromStars:3, toId:"spidermanblack", effectId:"health", effectAmount:4 },
+  { fromId:"venom", fromStars:3, toId:"electro", effectId:"critdamage", effectAmount:20 },
+  { fromId:"venom", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:4, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:4, toId:"electro", effectId:"critdamage", effectAmount:25 },
+  { fromId:"venom", fromStars:5, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:5, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:5, toId:"electro", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"ironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"ironman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"ironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"ironman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"ironman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:5, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"ironpatriot", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"ironpatriot", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:3, toId:"captainamerica", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ironpatriot", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ironpatriot", fromStars:4, toId:"captainamerica", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"kang", fromStars:4, toId:"blackbolt", effectId:"armor", effectAmount:6 },
+  { fromId:"kang", fromStars:4, toId:"thevision", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"thor", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"spidermanblack", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulkbuster", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:3, toId:"superiorironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:4, toId:"hulk", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulkbuster", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"hulkbuster", fromStars:4, toId:"superiorironman", effectId:"perfectblock", effectAmount:6 },
+
+  { fromId:"rocket", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"rocket", fromStars:3, toId:"ronan", effectId:"critrate", effectAmount:6 },
+  { fromId:"rocket", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"rocket", fromStars:4, toId:"ronan", effectId:"critrate", effectAmount:7 },
+  { fromId:"rocket", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rocket", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"starlord", fromStars:2, toId:"rocket", effectId:"armor", effectAmount:4 },
+  { fromId:"starlord", fromStars:2, toId:"drax", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"starlord", fromStars:3, toId:"rocket", effectId:"armor", effectAmount:5 },
+  { fromId:"starlord", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:4, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:5, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"vision", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"vision", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"vision", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"vision", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"vision", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"vision", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"thevision", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"thevision", fromStars:2, toId:"scarletwitch", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"thevision", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"thevision", fromStars:3, toId:"scarletwitch", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"thevision", fromStars:3, toId:"ultron", effectId:"attack", effectAmount:4 },
+  { fromId:"thevision", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"thevision", fromStars:4, toId:"scarletwitch", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"thevision", fromStars:4, toId:"ultron", effectId:"attack", effectAmount:5 },
+
+  { fromId:"ultron", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"ultron", fromStars:2, toId:"scarletwitch", effectId:"armor", effectAmount:4 },
+  { fromId:"ultron", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"ultron", fromStars:3, toId:"scarletwitch", effectId:"armor", effectAmount:5 },
+  { fromId:"ultron", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"ultron", fromStars:4, toId:"scarletwitch", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"warmachine", fromStars:3, toId:"hulkbuster", effectId:"armor", effectAmount:5 },
+  { fromId:"warmachine", fromStars:3, toId:"hawkeye", effectId:"block", effectAmount:15 },
+  { fromId:"warmachine", fromStars:3, toId:"blackwidow", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"warmachine", fromStars:4, toId:"hulkbuster", effectId:"armor", effectAmount:6 },
+  { fromId:"warmachine", fromStars:4, toId:"blackpanther", effectId:"critrate", effectAmount:7 },
+  { fromId:"warmachine", fromStars:4, toId:"hawkeye", effectId:"block", effectAmount:20 },
+  { fromId:"warmachine", fromStars:4, toId:"blackwidow", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"colossus", fromStars:2, toId:"juggernaut", effectId:"critrate", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"juggernaut", effectId:"critrate", effectAmount:6 },
+  { fromId:"colossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"colossus", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"colossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"colossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:5 },
+
+  { fromId:"cyclops", fromStars:2, toId:"wolverine", effectId:"critdamage", effectAmount:15 },
+  { fromId:"cyclops", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"cyclops", fromStars:3, toId:"magneto", effectId:"attack", effectAmount:4 },
+  { fromId:"cyclops", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:4, toId:"magneto", effectId:"attack", effectAmount:5 },
+  { fromId:"cyclops", fromStars:5, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:5, toId:"magneto", effectId:"attack", effectAmount:5 },
+
+  { fromId:"deadpool", fromStars:2, toId:"punisher", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"deadpool", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"deadpool", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:4 },
+  { fromId:"deadpool", fromStars:3, toId:"punisher", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"deadpool", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"deadpoolxforce", fromStars:3, toId:"moonknight", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:3, toId:"deadpool", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"magnetomarvelnow", effectId:"armor", effectAmount:6 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"moonknight", effectId:"critdamage", effectAmount:25 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"deadpool", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magneto", fromStars:2, toId:"wolverine", effectId:"critrate", effectAmount:5 },
+  { fromId:"magneto", fromStars:2, toId:"cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"magneto", fromStars:2, toId:"storm", effectId:"critdamage", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
+  { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"wolverine", effectId:"critrate", effectAmount:7 },
+  { fromId:"magneto", fromStars:4, toId:"cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"storm", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"magik", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"magik", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"storm", fromStars:2, toId:"blackpanther", effectId:"powergain", effectAmount:3 },
+  { fromId:"storm", fromStars:3, toId:"magik", effectId:"armor", effectAmount:6 },
+  { fromId:"storm", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"storm", fromStars:3, toId:"blackpanther", effectId:"powergain", effectAmount:4 },
+  { fromId:"storm", fromStars:4, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"wolverine", fromStars:2, toId:"cyclops", effectId:"critdamage", effectAmount:15 },
+  { fromId:"wolverine", fromStars:3, toId:"cyclops", effectId:"critdamage", effectAmount:20 },
+  { fromId:"wolverine", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"wolverine", fromStars:3, toId:"magneto", effectId:"critrate", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"cyclops", effectId:"critdamage", effectAmount:25 },
+  { fromId:"wolverine", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"blackpanther", fromStars:2, toId:"ironfist", effectId:"critdamage", effectAmount:15 },
+  { fromId:"blackpanther", fromStars:3, toId:"ironfist", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackpanther", fromStars:3, toId:"storm", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackpanther", fromStars:3, toId:"deadpool", effectId:"critrate", effectAmount:6 },
+  { fromId:"blackpanther", fromStars:4, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:4, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:4, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+  { fromId:"blackpanther", fromStars:5, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:5, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:5, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"daredevil", fromStars:3, toId:"superiorironman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"daredevil", fromStars:3, toId:"blackwidow", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:3, toId:"elektra", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:4, toId:"superiorironman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"daredevil", fromStars:4, toId:"blackwidow", effectId:"powergain", effectAmount:5 },
+  { fromId:"daredevil", fromStars:4, toId:"elektra", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"elektra", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"elektra", fromStars:3, toId:"daredevil", effectId:"powergain", effectAmount:4 },
+  { fromId:"elektra", fromStars:3, toId:"blackwidow", effectId:"critdamage", effectAmount:20 },
+  { fromId:"elektra", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"elektra", fromStars:4, toId:"daredevil", effectId:"powergain", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"deadpool", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"blackwidow", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"hawkeye", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"hawkeye", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"hawkeye", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"hawkeye", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+
+  { fromId:"moonknight", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"moonknight", fromStars:3, toId:"daredevil", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"moonknight", fromStars:3, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:20 },
+  { fromId:"moonknight", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"moonknight", fromStars:4, toId:"daredevil", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"moonknight", fromStars:4, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:25 },
+  { fromId:"moonknight", fromStars:4, toId:"ironpatriot", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"punisher", fromStars:2, toId:"spiderman", effectId:"critdamage", effectAmount:15 },
+  { fromId:"punisher", fromStars:3, toId:"spiderman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"punisher", fromStars:3, toId:"rhino", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"punisher", fromStars:4, toId:"spiderman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"punisher", fromStars:4, toId:"rhino", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"wintersoldier", fromStars:2, toId:"wolverine", effectId:"armor", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:2, toId:"captainamerica", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"wintersoldier", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:3, toId:"captainamerica", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:4, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:5, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:5, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"blackwidow", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:2, toId:"wintersoldier", effectId:"powergain", effectAmount:3 },
+  { fromId:"blackwidow", fromStars:3, toId:"hulk", effectId:"stun", effectAmount:20 },
+  { fromId:"blackwidow", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:3, toId:"wintersoldier", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:3, toId:"hawkeye", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:4, toId:"hulk", effectId:"stun", effectAmount:25 },
+  { fromId:"blackwidow", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"blackwidow", fromStars:4, toId:"wintersoldier", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:4, toId:"hawkeye", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"abomination", fromStars:2, toId:"rhino", effectId:"armor", effectAmount:4 },
+  { fromId:"abomination", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"abomination", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:4 },
+  { fromId:"abomination", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+  { fromId:"abomination", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:5 },
+
+  { fromId:"antman", fromStars:2, toId:"yellowjacket", effectId:"attack", effectAmount:4 },
+  { fromId:"antman", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"antman", fromStars:3, toId:"yellowjacket", effectId:"attack", effectAmount:5 },
+  { fromId:"antman", fromStars:3, toId:"spiderman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"yellowjacket", effectId:"attack", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"spiderman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"antman", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"captainamerica", fromStars:2, toId:"spiderman", effectId:"armor", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:2, toId:"superiorironman", effectId:"critrate", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:3 },
+  { fromId:"captainamerica", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"superiorironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"superiorironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"captainamerica", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"captainamericawwii", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"electro", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:4 },
+  { fromId:"electro", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+
+  { fromId:"hulk", fromStars:2, toId:"thor", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulk", fromStars:3, toId:"thor", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulk", fromStars:3, toId:"abomination", effectId:"critrate", effectAmount:6 },
+  { fromId:"hulk", fromStars:3, toId:"hawkeye", effectId:"armor", effectAmount:5 },
+  { fromId:"hulk", fromStars:4, toId:"thor", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulk", fromStars:4, toId:"abomination", effectId:"critrate", effectAmount:7 },
+  { fromId:"hulk", fromStars:4, toId:"hawkeye", effectId:"armor", effectAmount:6 },
+
+  { fromId:"joefixit", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"joefixit", fromStars:3, toId:"moonknight", effectId:"critrate", effectAmount:6 },
+  { fromId:"joefixit", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:5 },
+  { fromId:"joefixit", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"joefixit", fromStars:4, toId:"moonknight", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"msmarvel", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:6 },
+
+  { fromId:"rhino", fromStars:2, toId:"spiderman", effectId:"critrate", effectAmount:5 },
+  { fromId:"rhino", fromStars:2, toId:"abomination", effectId:"armor", effectAmount:4 },
+  { fromId:"rhino", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"rhino", fromStars:3, toId:"abomination", effectId:"armor", effectAmount:5 },
+  { fromId:"rhino", fromStars:3, toId:"electro", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rhino", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:4, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:4, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rhino", fromStars:5, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:5, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:5, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"spiderman", fromStars:1, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:1, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"electro", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"spiderman", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+
+  { fromId:"spidergwen", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"daredevil", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"spiderman", effectId:"powergain", effectAmount:4 },
+  { fromId:"spidergwen", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:4, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+  { fromId:"spidergwen", fromStars:5, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:5, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
+  { fromId:"yellowjacket", fromStars:2, toId:"ultron", effectId:"critdamage", effectAmount:15 },
+  { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
+  { fromId:"yellowjacket", fromStars:3, toId:"ultron", effectId:"critdamage", effectAmount:20 },
+  { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
+  { fromId:"yellowjacket", fromStars:4, toId:"ultron", effectId:"critdamage", effectAmount:25 },
+  
+  { fromId:"drstrange", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"scarletwitch", effectId:"block", effectAmount:15 },
+  { fromId:"drstrange", fromStars:3, toId:"blackbolt", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drstrange", fromStars:4, toId:"thor", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"scarletwitch", effectId:"block", effectAmount:20 },
+  { fromId:"drstrange", fromStars:4, toId:"blackbolt", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ironfist", fromStars:2, toId:"blackpanther", effectId:"armor", effectAmount:4 },
+  { fromId:"ironfist", fromStars:3, toId:"blackpanther", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+
+  { fromId:"guillotine", fromStars:2, toId:"venom", effectId:"attack", effectAmount:4 },
+  { fromId:"guillotine", fromStars:2, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"guillotine", fromStars:3, toId:"venom", effectId:"attack", effectAmount:5 },
+  { fromId:"guillotine", fromStars:3, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"guillotine", fromStars:3, toId:"magik", effectId:"critdamage", effectAmount:20 },
+  { fromId:"guillotine", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"venom", effectId:"attack", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"guillotine", fromStars:4, toId:"magik", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"juggernaut", fromStars:2, toId:"colossus", effectId:"critrate", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:3, toId:"drstrange", effectId:"attack", effectAmount:4 },
+  { fromId:"juggernaut", fromStars:3, toId:"colossus", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:3, toId:"hulk", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:4, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:4, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:4, toId:"hulk", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:5, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"hulk", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"magik", fromStars:2, toId:"colossus", effectId:"health", effectAmount:4 },
+  { fromId:"magik", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"colossus", effectId:"health", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magik", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:5, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"scarletwitch", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"scarletwitch", fromStars:3, toId:"vision", effectId:"powergain", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"scarletwitch", fromStars:4, toId:"vision", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"juggernaut", effectId:"critdamage", effectAmount:15 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"juggernaut", effectId:"critdamage", effectAmount:20 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"juggernaut", effectId:"critdamage", effectAmount:25 }
+  
+], {
+  model: CoC.model.Synergy
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champions
+CoC.data.crystals = new Backbone.Collection([
+
+  { uid:"versus", image:"versus" },
+  { uid:"arena", image:"battlechips" },
+  { uid:"alliance", image:"alliance" },
+  
+  { uid:"daily", image:"daily" },
+  
+  { uid:"2star", image:"2star" },
+  { uid:"premium", image:"premium" },
+  { uid:"3star", image:"3star" },
+  { uid:"4star", image:"4star" },
+  
+], {
+  model: CoC.model.Crystal
+});
+
+CoC.data.crystalChampions = new Backbone.Collection([], {
+  model: CoC.model.CrystalChampion
+});
+
+CoC.data.crystalChampions.add([
+  { crystalId:"versus", championId:"punisher", championStars:2 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"arena", championId:"punisher", championStars:3 },
+  { crystalId:"arena", championId:"punisher", championStars:4 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"alliance", championId:"unstoppablecolossus", championStars:2 },
+  { crystalId:"alliance", championId:"unstoppablecolossus", championStars:3 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"daily", championId:"gamora", championStars:1 },
+  { crystalId:"daily", championId:"vision", championStars:1 },
+  { crystalId:"daily", championId:"colossus", championStars:1 },
+  { crystalId:"daily", championId:"blackpanther", championStars:1 },
+  { crystalId:"daily", championId:"hawkeye", championStars:1 },
+  { crystalId:"daily", championId:"hulk", championStars:1 },
+  { crystalId:"daily", championId:"scarletwitch", championStars:1 },
+
+  { crystalId:"daily", championId:"gamora", championStars:2 },
+  { crystalId:"daily", championId:"vision", championStars:2 },
+  { crystalId:"daily", championId:"colossus", championStars:2 },
+  { crystalId:"daily", championId:"blackpanther", championStars:2 },
+  { crystalId:"daily", championId:"hawkeye", championStars:2 },
+  
+  { crystalId:"daily", championId:"gamora", championStars:3 },
+  { crystalId:"daily", championId:"colossus", championStars:3 },
+  { crystalId:"daily", championId:"blackpanther", championStars:3 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"2star", championId:"blackbolt", championStars:2 },
+  { crystalId:"2star", championId:"drax", championStars:2 },
+  { crystalId:"2star", championId:"gamora", championStars:2 },
+  { crystalId:"2star", championId:"superiorironman", championStars:2 },
+  { crystalId:"2star", championId:"thor", championStars:2 },
+  { crystalId:"2star", championId:"hulkbuster", championStars:2 },
+  { crystalId:"2star", championId:"ironman", championStars:2 },
+  { crystalId:"2star", championId:"starlord", championStars:2 },
+  { crystalId:"2star", championId:"thevision", championStars:2 },
+  { crystalId:"2star", championId:"ultron", championStars:2 },
+  { crystalId:"2star", championId:"vision", championStars:2 },
+  { crystalId:"2star", championId:"colossus", championStars:2 },
+  { crystalId:"2star", championId:"cyclops", championStars:2 },
+  { crystalId:"2star", championId:"storm", championStars:2 },
+  { crystalId:"2star", championId:"wolverine", championStars:2 },
+  { crystalId:"2star", championId:"blackpanther", championStars:2 },
+  { crystalId:"2star", championId:"blackwidow", championStars:2 },
+  { crystalId:"2star", championId:"hawkeye", championStars:2 },
+  { crystalId:"2star", championId:"wintersoldier", championStars:2 },
+  { crystalId:"2star", championId:"abomination", championStars:2 },
+  { crystalId:"2star", championId:"antman", championStars:2 },
+  { crystalId:"2star", championId:"captainamerica", championStars:2 },
+  { crystalId:"2star", championId:"hulk", championStars:2 },
+  { crystalId:"2star", championId:"rhino", championStars:2 },
+  { crystalId:"2star", championId:"spiderman", championStars:2 },
+  { crystalId:"2star", championId:"yellowjacket", championStars:2 },
+  { crystalId:"2star", championId:"ironfist", championStars:2 },
+  { crystalId:"2star", championId:"juggernaut", championStars:2 },
+  { crystalId:"2star", championId:"magik", championStars:2 },
+  { crystalId:"2star", championId:"scarletwitch", championStars:2 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"premium", championId:"blackbolt", championStars:2 },
+  { crystalId:"premium", championId:"drax", championStars:2 },
+  { crystalId:"premium", championId:"gamora", championStars:2 },
+  { crystalId:"premium", championId:"ronan", championStars:2 },
+  { crystalId:"premium", championId:"superiorironman", championStars:2 },
+  { crystalId:"premium", championId:"thor", championStars:2 },
+  { crystalId:"premium", championId:"hulkbuster", championStars:2 },
+  { crystalId:"premium", championId:"ironman", championStars:2 },
+  { crystalId:"premium", championId:"starlord", championStars:2 },
+  { crystalId:"premium", championId:"thevision", championStars:2 },
+  { crystalId:"premium", championId:"ultron", championStars:2 },
+  { crystalId:"premium", championId:"vision", championStars:2 },
+  { crystalId:"premium", championId:"colossus", championStars:2 },
+  { crystalId:"premium", championId:"cyclops", championStars:2 },
+  { crystalId:"premium", championId:"storm", championStars:2 },
+  { crystalId:"premium", championId:"wolverine", championStars:2 },
+  { crystalId:"premium", championId:"blackpanther", championStars:2 },
+  { crystalId:"premium", championId:"blackwidow", championStars:2 },
+  { crystalId:"premium", championId:"hawkeye", championStars:2 },
+  { crystalId:"premium", championId:"wintersoldier", championStars:2 },
+  { crystalId:"premium", championId:"abomination", championStars:2 },
+  { crystalId:"premium", championId:"antman", championStars:2 },
+  { crystalId:"premium", championId:"captainamerica", championStars:2 },
+  { crystalId:"premium", championId:"hulk", championStars:2 },
+  { crystalId:"premium", championId:"rhino", championStars:2 },
+  { crystalId:"premium", championId:"spiderman", championStars:2 },
+  { crystalId:"premium", championId:"yellowjacket", championStars:2 },
+  { crystalId:"premium", championId:"ironfist", championStars:2 },
+  { crystalId:"premium", championId:"juggernaut", championStars:2 },
+  { crystalId:"premium", championId:"magik", championStars:2 },
+  { crystalId:"premium", championId:"scarletwitch", championStars:2 },
+
+  { crystalId:"premium", championId:"blackbolt", championStars:3 },
+  { crystalId:"premium", championId:"captainmarvel", championStars:3 },
+  { crystalId:"premium", championId:"msmarvel", championStars:3 },
+  { crystalId:"premium", championId:"drax", championStars:3 },
+  { crystalId:"premium", championId:"gamora", championStars:3 },
+  { crystalId:"premium", championId:"ronan", championStars:3 },
+  { crystalId:"premium", championId:"superiorironman", championStars:3 },
+  { crystalId:"premium", championId:"thor", championStars:3 },
+  { crystalId:"premium", championId:"hulkbuster", championStars:3 },
+  { crystalId:"premium", championId:"ironman", championStars:3 },
+  { crystalId:"premium", championId:"ironpatriot", championStars:3 },
+  { crystalId:"premium", championId:"rocket", championStars:3 },
+  { crystalId:"premium", championId:"starlord", championStars:3 },
+  { crystalId:"premium", championId:"ultron", championStars:3 },
+  { crystalId:"premium", championId:"thevision", championStars:3 },
+  { crystalId:"premium", championId:"warmachine", championStars:3 },
+  { crystalId:"premium", championId:"colossus", championStars:3 },
+  { crystalId:"premium", championId:"cyclops", championStars:3 },
+  { crystalId:"premium", championId:"magneto", championStars:3 },
+  { crystalId:"premium", championId:"magnetomarvelnow", championStars:3 },
+  { crystalId:"premium", championId:"storm", championStars:3 },
+  { crystalId:"premium", championId:"wolverine", championStars:3 },
+  { crystalId:"premium", championId:"blackpanther", championStars:3 },
+  { crystalId:"premium", championId:"blackwidow", championStars:3 },
+  { crystalId:"premium", championId:"daredevil", championStars:3 },
+  { crystalId:"premium", championId:"hawkeye", championStars:3 },
+  { crystalId:"premium", championId:"wintersoldier", championStars:3 },
+  { crystalId:"premium", championId:"abomination", championStars:3 },
+  { crystalId:"premium", championId:"antman", championStars:3 },
+  { crystalId:"premium", championId:"captainamerica", championStars:3 },
+  { crystalId:"premium", championId:"captainamericawwii", championStars:3 },
+  { crystalId:"premium", championId:"electro", championStars:3 },
+  { crystalId:"premium", championId:"hulk", championStars:3 },
+  { crystalId:"premium", championId:"rhino", championStars:3 },
+  { crystalId:"premium", championId:"spiderman", championStars:3 },
+  { crystalId:"premium", championId:"yellowjacket", championStars:3 },
+  { crystalId:"premium", championId:"drstrange", championStars:3 },
+  { crystalId:"premium", championId:"ironfist", championStars:3 },
+  { crystalId:"premium", championId:"juggernaut", championStars:3 },
+  { crystalId:"premium", championId:"magik", championStars:3 },
+  { crystalId:"premium", championId:"scarletwitch", championStars:3 },
+  
+  { crystalId:"premium", championId:"blackbolt", championStars:4 },
+  { crystalId:"premium", championId:"captainmarvel", championStars:4 },
+  { crystalId:"premium", championId:"msmarvel", championStars:4 },
+  { crystalId:"premium", championId:"drax", championStars:4 },
+  { crystalId:"premium", championId:"gamora", championStars:4 },
+  { crystalId:"premium", championId:"superiorironman", championStars:4 },
+  { crystalId:"premium", championId:"thor", championStars:4 },
+  { crystalId:"premium", championId:"hulkbuster", championStars:4 },
+  { crystalId:"premium", championId:"ironman", championStars:4 },
+  { crystalId:"premium", championId:"ironpatriot", championStars:4 },
+  { crystalId:"premium", championId:"rocket", championStars:4 },
+  { crystalId:"premium", championId:"starlord", championStars:4 },
+  { crystalId:"premium", championId:"ultron", championStars:4 },
+  { crystalId:"premium", championId:"thevision", championStars:4 },
+  { crystalId:"premium", championId:"warmachine", championStars:4 },
+  { crystalId:"premium", championId:"colossus", championStars:4 },
+  { crystalId:"premium", championId:"magneto", championStars:4 },
+  { crystalId:"premium", championId:"magnetomarvelnow", championStars:4 },
+  { crystalId:"premium", championId:"storm", championStars:4 },
+  { crystalId:"premium", championId:"wolverine", championStars:4 },
+  { crystalId:"premium", championId:"blackpanther", championStars:4 },
+  { crystalId:"premium", championId:"blackwidow", championStars:4 },
+  { crystalId:"premium", championId:"daredevil", championStars:4 },
+  { crystalId:"premium", championId:"hawkeye", championStars:4 },
+  { crystalId:"premium", championId:"wintersoldier", championStars:4 },
+  { crystalId:"premium", championId:"abomination", championStars:4 },
+  { crystalId:"premium", championId:"antman", championStars:4 },
+  { crystalId:"premium", championId:"captainamerica", championStars:4 },
+  { crystalId:"premium", championId:"captainamericawwii", championStars:4 },
+  { crystalId:"premium", championId:"electro", championStars:4 },
+  { crystalId:"premium", championId:"hulk", championStars:4 },
+  { crystalId:"premium", championId:"spiderman", championStars:4 },
+  { crystalId:"premium", championId:"yellowjacket", championStars:4 },
+  { crystalId:"premium", championId:"drstrange", championStars:4 },
+  { crystalId:"premium", championId:"ironfist", championStars:4 },
+  { crystalId:"premium", championId:"juggernaut", championStars:4 },
+  { crystalId:"premium", championId:"magik", championStars:4 },
+  { crystalId:"premium", championId:"scarletwitch", championStars:4 }
+]);
+
+CoC.data.crystalChampions.add([
+  { crystalId:"3star", championId:"blackbolt", championStars:3 },
+  { crystalId:"3star", championId:"captainmarvel", championStars:3 },
+  { crystalId:"3star", championId:"msmarvel", championStars:3 },
+  { crystalId:"3star", championId:"drax", championStars:3 },
+  { crystalId:"3star", championId:"gamora", championStars:3 },
+  { crystalId:"3star", championId:"ronan", championStars:3 },
+  { crystalId:"3star", championId:"superiorironman", championStars:3 },
+  { crystalId:"3star", championId:"thor", championStars:3 },
+  { crystalId:"3star", championId:"hulkbuster", championStars:3 },
+  { crystalId:"3star", championId:"ironman", championStars:3 },
+  { crystalId:"3star", championId:"ironpatriot", championStars:3 },
+  { crystalId:"3star", championId:"rocket", championStars:3 },
+  { crystalId:"3star", championId:"starlord", championStars:3 },
+  { crystalId:"3star", championId:"ultron", championStars:3 },
+  { crystalId:"3star", championId:"thevision", championStars:3 },
+  { crystalId:"3star", championId:"warmachine", championStars:3 },
+  { crystalId:"3star", championId:"colossus", championStars:3 },
+  { crystalId:"3star", championId:"cyclops", championStars:3 },
+  { crystalId:"3star", championId:"magneto", championStars:3 },
+  { crystalId:"3star", championId:"magnetomarvelnow", championStars:3 },
+  { crystalId:"3star", championId:"storm", championStars:3 },
+  { crystalId:"3star", championId:"wolverine", championStars:3 },
+  { crystalId:"3star", championId:"blackpanther", championStars:3 },
+  { crystalId:"3star", championId:"blackwidow", championStars:3 },
+  { crystalId:"3star", championId:"daredevil", championStars:3 },
+  { crystalId:"3star", championId:"hawkeye", championStars:3 },
+  { crystalId:"3star", championId:"wintersoldier", championStars:3 },
+  { crystalId:"3star", championId:"abomination", championStars:3 },
+  { crystalId:"3star", championId:"antman", championStars:3 },
+  { crystalId:"3star", championId:"captainamerica", championStars:3 },
+  { crystalId:"3star", championId:"captainamericawwii", championStars:3 },
+  { crystalId:"3star", championId:"electro", championStars:3 },
+  { crystalId:"3star", championId:"hulk", championStars:3 },
+  { crystalId:"3star", championId:"rhino", championStars:3 },
+  { crystalId:"3star", championId:"spiderman", championStars:3 },
+  { crystalId:"3star", championId:"yellowjacket", championStars:3 },
+  { crystalId:"3star", championId:"drstrange", championStars:3 },
+  { crystalId:"3star", championId:"ironfist", championStars:3 },
+  { crystalId:"3star", championId:"juggernaut", championStars:3 },
+  { crystalId:"3star", championId:"magik", championStars:3 },
+  { crystalId:"3star", championId:"scarletwitch", championStars:3 }
+]);
+  
+CoC.data.crystalChampions.add([
+  { crystalId:"4star", championId:"captainmarvel", championStars:4 },
+  { crystalId:"4star", championId:"msmarvel", championStars:4 },
+  { crystalId:"4star", championId:"drax", championStars:4 },
+  { crystalId:"4star", championId:"gamora", championStars:4 },
+  { crystalId:"4star", championId:"superiorironman", championStars:4 },
+  { crystalId:"4star", championId:"thor", championStars:4 },
+  { crystalId:"4star", championId:"hulkbuster", championStars:4 },
+  { crystalId:"4star", championId:"ironman", championStars:4 },
+  { crystalId:"4star", championId:"ironpatriot", championStars:4 },
+  { crystalId:"4star", championId:"rocket", championStars:4 },
+  { crystalId:"4star", championId:"starlord", championStars:4 },
+  { crystalId:"4star", championId:"ultron", championStars:4 },
+  { crystalId:"4star", championId:"thevision", championStars:4 },
+  { crystalId:"4star", championId:"warmachine", championStars:4 },
+  { crystalId:"4star", championId:"colossus", championStars:4 },
+  { crystalId:"4star", championId:"magneto", championStars:4 },
+  { crystalId:"4star", championId:"magnetomarvelnow", championStars:4 },
+  { crystalId:"4star", championId:"storm", championStars:4 },
+  { crystalId:"4star", championId:"wolverine", championStars:4 },
+  { crystalId:"4star", championId:"blackpanther", championStars:4 },
+  { crystalId:"4star", championId:"blackwidow", championStars:4 },
+  { crystalId:"4star", championId:"daredevil", championStars:4 },
+  { crystalId:"4star", championId:"hawkeye", championStars:4 },
+  { crystalId:"4star", championId:"wintersoldier", championStars:4 },
+  { crystalId:"4star", championId:"abomination", championStars:4 },
+  { crystalId:"4star", championId:"antman", championStars:4 },
+  { crystalId:"4star", championId:"captainamerica", championStars:4 },
+  { crystalId:"4star", championId:"captainamericawwii", championStars:4 },
+  { crystalId:"4star", championId:"electro", championStars:4 },
+  { crystalId:"4star", championId:"hulk", championStars:4 },
+  { crystalId:"4star", championId:"spiderman", championStars:4 },
+  { crystalId:"4star", championId:"yellowjacket", championStars:4 },
+  { crystalId:"4star", championId:"drstrange", championStars:4 },
+  { crystalId:"4star", championId:"ironfist", championStars:4 },
+  { crystalId:"4star", championId:"juggernaut", championStars:4 },
+  { crystalId:"4star", championId:"magik", championStars:4 },
+  { crystalId:"4star", championId:"scarletwitch", championStars:4 }
+]);
+
+var CoC=CoC || {};
+CoC.data = CoC.data || {};
+CoC.data.guides = CoC.data.guides || {};
+
+(function(){ 
+  var map = {};
+  var uids = _.uniq( CoC.data.champions.pluck("uid") );
+
+  CoC.data.guides.each = function(callback){
+    _(uids).each(function(uid){
+      callback.call(CoC.data.guides, map[uid]);
+    });
+  };
+
+  CoC.data.guides.get = function(uid){
+    return map[uid];
+  };
+
+  CoC.data.guides.set = function(uid, guide){
+    map[uid] = guide;
+  };
+
+  CoC.data.guides.init = function(uid){
+    //set initial guide state
+    var value = map[uid] = {
+      uid: uid,
+      champion:(function(){
+        var champion = CoC.data.champions.findWhere({ uid:uid }).clone();
+        champion.set("stars", 0);
+        return champion;
+      })(),
+      data:{
+        unavailable: true
+      }
+    };
+    //Add in champion grades
+    if(CoC.data.guides.raw[uid]){
+      value.data = CoC.data.guides.raw[uid];
+      if(value.data.grades !== undefined){
+        if(value.data.grades.normal !== undefined)
+          value.champion.set("grade", value.data.grades.normal);  
+        if(value.data.grades.awakened !== undefined)
+          value.champion.set("gradeAwakened", value.data.grades.awakened);  
+      }
+    }
+  };
+
+  _(uids).each(function(uid){
+    CoC.data.guides.init(uid);
+  });
+
+})();
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+CoC.view.MessageView = Backbone.View.extend({
+  tagName: 'div',
+  template: _.template('<div class="message selectable"><%= message %></div>'),
+  render:function(){  
+    this.$el.html( this.template( this.model ) );
+    return this;
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+
+(function(){
+  var portraitImages = {};
+
+  CoC.view.ChampionView = Backbone.View.extend({
+    tagName: 'div',
+    template: CoC.data.template.champion,
+    render:function(){
+      var model = this.model,
+        json = model.toJSON();
+      json.portrait = model.portrait();
+
+      var el = this.$el;
+      el.html(this.template( json ));
+
+      //set classes and attributes
+      el.addClass("champion").addClass(model.get("typeId"));
+      el.attr("uid", model.get("uid")).attr("stars", model.get("stars"));
+
+      //init portrait placeholder swap, skip if we have the image already
+      var image = el.find(".portrait"), placeholder = el.find(".portrait-placeholder");
+      if(portraitImages[image[0].src]){
+        image.addClass('loaded');
+        placeholder.addClass('loaded');
+      }
+      else{
+        image.addClass('fade');
+        placeholder.addClass('fade');
+      }
+      return this;
+    }
+  });
+
+  CoC.view.championPortraitLoaded=function(img){
+    portraitImages[img.src] = true;
+    
+    var parent = $(img.parentNode), 
+      image = parent.find('.portrait'), 
+      placeholder = parent.find(".portrait-placeholder");
+
+    image.addClass('loaded');
+    placeholder.addClass('loaded');
+  };
+})();
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+CoC.view.RosterView = Backbone.View.extend({
+ 
+  initialize: function(){
+    var that = this;
+    
+    that._championViews = {};
+    
+    CoC.data.roster.bind("remove", function(champion){
+      that.render();
+    });
+  },
+  
+  events:{
+    "click .champion .inner":"clicked"
+  },
+  
+  clicked:function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    var el = $(event.currentTarget.parentElement.parentElement),
+      uid = el.attr("uid"),
+      stars = parseInt( el.attr("stars") ),
+      champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    if(champion)
+      CoC.ui.roster.popup(el[0], champion);
+  },
+  
+  championView:function(champion){
+    var that = this, fid = champion.fid(), view = this._championViews[fid];
+    if(view === undefined){
+      view = new CoC.view.ChampionView({
+        model:champion
+      });
+      view.render();
+      champion.bind("change", function(){
+        view.render();
+      });
+      champion.bind("destroy", function(){
+        delete that._championViews[fid];
+      });
+      this._championViews[fid] = view;
+    }
+    
+    return view;
+  },
+  
+  render: function(){
+    var that = this, els = [], rosterCount = 0;
+    
+    //add champion views, updating if they've changed
+    CoC.data.roster.sortBy( CoC.settings.getValue("roster-sort"), CoC.settings.getValue("roster-sort-direction") === "descending" );
+    
+    var filterStars = {
+      1: CoC.settings.getValue("roster-filter-stars-1"),
+      2: CoC.settings.getValue("roster-filter-stars-2"),
+      3: CoC.settings.getValue("roster-filter-stars-3"),
+      4: CoC.settings.getValue("roster-filter-stars-4"),
+      5: CoC.settings.getValue("roster-filter-stars-5")
+    };
+    CoC.data.roster.each(function(champion){
+      if(filterStars[champion.get("stars")] !== true)
+        return;
+      var view = that.championView(champion);
+      if(view){      
+        els.push(view.el);
+        rosterCount++;
+      }
+    });  
+    
+    //add the message view
+    els.unshift(new CoC.view.MessageView({
+      model:{ message: rosterCount+" "+CoC.lang.string('of')+" "+CoC.data.roster.length+" "+ CoC.lang.string('champions') }
+    }).render().el);
+    
+    this.$el.empty();
+    var container = document.createDocumentFragment();
+    _(els).each(function(el){
+      container.appendChild(el);
+    });
+    this.$el.append(container);
+    
+    return this;
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+CoC.view.AddChampionsView = Backbone.View.extend({
+  initialize: function(){
+    var that = this;
+    that._championViews = {};
+    CoC.data.champions.each(function(champion){
+      var view = new CoC.view.ChampionView({
+        model:champion
+      });
+      view.render();
+      that._championViews[champion.fid()] = view;
+    });
+    
+    that._addChampion=function(element){
+      var uid = $(element).attr("uid"),
+        stars = parseInt($(element).attr("stars"), 10),
+        found = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+      if(found)
+        return;
+      var champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+      CoC.data.roster.add(champion);
+      champion.save();
+      CoC.tracking.event("roster", "add", uid + '-' + stars);
+    };
+  },
+  
+  events:{
+    "click .champion":"championClicked",
+    "click .add-all":"addAllClicked"
+  },
+  
+  championClicked:function(e){
+    e.preventDefault();
+    this._addChampion(e.currentTarget);
+    this.render();
+  },
+  
+  addAllClicked:function(e){
+    e.preventDefault();
+    var that = this, champions = $(e.currentTarget).parent().find(".champion");
+    champions.each(function(index, element){
+      that._addChampion(element);
+    });
+    this.render();
+  },
+  
+  render: function(){
+    var that = this;
+    
+    that.$el.empty();
+    var champions = new Backbone.Collection(CoC.data.champions.where({ stars:that._stars }));
+    _(CoC.data.roster.where({ stars:that._stars })).each(function(champion){
+      var found = champions.findWhere({ uid:champion.get("uid"), stars:champion.get("stars") });
+      champions.remove(found);
+    });
+    var container = document.createDocumentFragment();
+    
+    container.appendChild($('<button>',{ 
+      'class':'add-all',
+      'data-theme': 'c',
+      'disabled':(champions.length > 0)? undefined: ""
+    }).text( CoC.lang.string('add-all') )[0]);
+    
+    champions.each(function(champion){
+      var view = that._championViews[champion.fid()];
+      container.appendChild(view.el);
+    });
+    that.$el.append(container);
+    this.$el.trigger("create");
+    
+    return this;
+  },
+  
+  stars: function(stars){
+    this._stars = stars;
+  },
+  
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+CoC.view.TeamView = Backbone.View.extend({
+  template: CoC.data.template.teams,
+
+  events:{
+    "click .champion":"championClicked",
+    "tap .synergy":"synergyTapped",
+    "click .synergy":"synergyClicked",
+    "mouseover .synergy":"synergyHoverBegin",
+    "mouseout .synergy":"synergyHoverEnd"
+  },
+  
+  championClicked:function(event){
+    event.preventDefault();
+    var uid = $(event.currentTarget).attr("uid");
+    CoC.ui.guides.open( uid );
+  },
+
+  synergyTapped:function(event){
+    var selected = $(event.currentTarget).hasClass('selected');
+
+    this.synergyHoverEnd(event);
+    if(!selected)
+      this.synergyHoverBegin(event);
+
+    event.preventDefault();
+    return false;
+  },
+  
+  synergyClicked:function(event){
+    var synergy = $(event.currentTarget),
+      root = synergy.closest(".team");
+
+    if(root.hasClass('locked')){
+      root.removeClass('locked');
+      if(!synergy.hasClass('selected')){
+        this.synergyHoverEnd.call(this, event);
+        this.synergyHoverBegin.call(this, event);
+        root.addClass('locked');
+      }
+    }
+    else
+      root.addClass('locked');
+
+    event.preventDefault();
+    return false;
+  },
+
+  synergyHoverBegin:function(event){
+    var synergy = $(event.currentTarget),
+      root = synergy.closest(".team"),
+      champions = root.find(".champion"),
+      ids = synergy.attr("championIds").split(" ");
+
+    if(root.hasClass('locked'))
+      return;
+
+    root.addClass("selected");
+    synergy.addClass("selected");
+    champions.each(function(i, obj){
+      var champion = $(obj);
+      if(ids.indexOf(champion.attr("uid")) !== -1)
+        champion.addClass("selected");
+    });
+  },
+
+  synergyHoverEnd:function(event){
+    var root = $(event.currentTarget).closest(".team");
+
+    if(root.hasClass('locked'))
+      return;
+
+    root.removeClass("selected");
+    root.find(".champion").removeClass("selected");
+    root.find(".synergy").removeClass("selected");
+  },
+  
+  //set team size
+  size:function(size){
+    this._size = size;
+  },
+  
+  //build champion/effect team pairs
+  teams:function(teams){
+    
+    if(teams === undefined || teams.length === 0){
+      this._teams = undefined;
+      this._message = "Found 0 Teams";
+      return;
+    }
+  
+    var champions, championIds = {};
+    var effectMap, effects, effect, effectId;
+    var synergy, synergies, synergyCount = 0;
+
+    function synergiesFromChampion(champion, championIds){
+      var filtered = [];
+      var synergies = CoC.data.synergies.where({ 
+        fromId: champion.get("uid"), 
+        fromStars: champion.get("stars") 
+      });
+      for(var i=0; i<synergies.length; i++)
+        if(championIds[synergies[i].get('toId')])
+          filtered.push(synergies[i]);
+      return filtered;
+    }
+  
+    this._teams = [];
+    for(var c, s, i=0; i<teams.length; i++){
+      champions = teams[i];
+      championIds = {};
+      synergies = [];
+      for(c=0; c<champions.length; c++)
+        championIds[champions[c].get('uid')] = true;
+      //Get all valid synergies
+      for(c=0; c<champions.length; c++)
+        synergies = synergies.concat(synergiesFromChampion(champions[c], championIds));
+      synergyCount += synergies.length;
+      //Reduce to Effects
+      effectMap = {};
+      for(s=0; s<synergies.length; s++){
+        synergy = synergies[s];
+        effectId = synergy.get('effectId');
+        if(effectMap[effectId] === undefined){
+          effectMap[effectId] = {
+            amount: 0,
+            champions: {},
+            effect: synergy.effect()
+          };
+        }
+        effectMap[effectId].champions[synergy.get('fromId')] = true;
+        effectMap[effectId].champions[synergy.get('toId')] = true;
+        effectMap[effectId].amount += synergy.get('effectAmount');
+      }
+      effects = [];
+      for(effectId in effectMap){
+        effect = effectMap[effectId].effect.clone();
+        effect.set('amount', effectMap[effectId].amount);
+        effect.championIds(effectMap[effectId].champions);
+        effects.push(effect);
+      }
+      this._teams.push({ champions:champions, effects:effects });
+    }
+    
+    this._message = CoC.lang.string('found')+" "+this._teams.length+" "+CoC.lang.string('teams');
+    if(synergyCount > 0)
+      this._message += " "+CoC.lang.string('with')+" "+synergyCount+" "+CoC.lang.string('synergies');
+    else
+      this._message += ".";
+  },
+  
+  //add extras
+  extras:function(extras){
+    this._extras = (extras === undefined || extras.length === 0)? undefined: extras;
+  },
+  
+  render: function(){
+    this.$el.html(this.template({
+      string:CoC.lang.string,
+      message:this._message,
+      size:this._size,
+      teams:this._teams,
+      extras:this._extras,
+      renderMessage:function(message){
+        var view = new CoC.view.MessageView({ model:{ message:message } });
+        return view.render().el.outerHTML;
+      },
+      renderChampion:function(champion){
+        var view = new CoC.view.ChampionView({ model:champion });
+        return view.render().el.outerHTML;
+      }
+    }));
+    return this;
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+
+CoC.view.GuideViewHelpers={
+
+  string: CoC.lang.string,
+  model: CoC.lang.model,
+  
+  gradeSpan:function(grade){
+    if(grade === undefined)
+      return "";
+    var id = grade.toLowerCase().replace("-","").replace("+","").replace(" ","-");
+    return "<span class=\"grade-"+id+"\">"+grade+"</span>";
+  },
+
+  ratingSpan:function(rating){
+    if(rating === undefined)
+      return "";
+    return "<span class=\"rating\">" + "<span class=\"rating-"+rating+"\"> " + rating + " </span>/ 5</span>";
+  },
+  
+  damageTypeSpan:function(damage){
+    if(damage === undefined)
+      return "";
+    var id = damage.toLowerCase().replace(" ","-");
+    return "<span class=\"damage-"+id+"\">"+damage+"</span>";
+  },
+  
+  abilitySpan:function(ability){
+    if(ability === undefined)
+      return "";
+    return "<span class=\"ability-"+ability+"\">"+CoC.lang.model('ability-'+ability+'-name')+"</span>";
+  },
+  
+  rangeSpan:function(range){
+    if(range === undefined)
+      return "";
+    var id = range.toLowerCase().replace(" ","-");
+    return "<span class=\"range-"+id+"\">"+range+"</span>";
+  },
+  
+  crystalStarsSpan:function(data){
+    if(data === undefined)
+      return "";
+  
+    string = "";
+    
+    for(var i=0; i<data.champions.length; i++){
+      if(i > 0)
+        string += (i==data.champions.length-1)? " and ": ", ";
+      string += data.champions[i].stars();
+    }
+  
+    return "<span class=\"stars\">"+string+"</span>";
+  },
+  
+  availabilityImage:function(availability){
+    for(var crystal in availability){
+      return "<img class=\"crystal\" src=\"images/crystals/crystal_"+crystal.toLowerCase().replace(" ","_")+".png\" />";  
+    }
+    return "";
+  },
+  
+  availabilitySpan:function(availability){
+    if(availability === undefined)
+      return "";
+    var id = availability.toLowerCase().replace(" ","-");
+    return "<span class=\"availability-"+id+"\">"+availability+" "+ CoC.lang.string('crystal') +"</span>";
+  },
+  
+  joinSpans:function(list, render){
+    if(list === undefined || !list.length)
+      return "";
+    var spans = [];
+    for(var i=0; i<list.length; i++)
+      spans.push(render.call(this, list[i]));
+    return spans.join(", ");
+  },
+  
+  definition:function(object, render){
+    if(object === undefined)
+      return "";
+    if(typeof object === "string")
+      return "<b>"+render.call(this, object)+"</b>";
+    for(var key in object)
+      return "<b>"+render.call(this, key) + ":</b> " + object[key];
+    return "";
+  },
+  
+  crystals:function(uid){
+    var i;
+    if(this._crystals === undefined)
+      this._crystals = [];
+    var crystals = this._crystals[uid];
+    if(crystals === undefined){
+      var map = {},
+        ids = [],
+        ccs = CoC.data.crystalChampions.where({ championId:uid });
+      for(i=0; i<ccs.length; i++){
+        var crystal = ccs[i].crystal(),
+          champion = ccs[i].champion(),
+          name = crystal.get("name");
+        if(map[name] === undefined){
+          map[name] = {
+            crystal:crystal,
+            champions:[]
+          };
+          ids.push(name);
+        }
+        map[name].champions.push( champion );
+      }
+      crystals = [];
+      for(i=0; i<ids.length; i++)
+        crystals.push(map[ids[i]]);
+      this._crystals[uid] = crystals;
+    }
+    return crystals;
+  },
+  
+  synergiesFrom:function(uid){
+    var key, old, i;
+    var synergies = this._synergiesFrom[uid], from;
+    if(synergies === undefined){
+      synergies = CoC.data.synergies.where({ fromId:uid });
+      
+      from = {};
+      for(i=0; i<synergies.length; i++){
+        key = synergies[i].get("toId");
+        old = from[key];
+        if(!old || old.from().get("stars") >= synergies[i].from().get("stars"))
+          from[key]=synergies[i];
+      }
+      synergies = [];
+      for(key in from)
+        synergies.push(from[key]);
+        
+      this._synergiesFrom[uid] = synergies;
+    }
+    return _(synergies);
+  },
+  _synergiesFrom:{},
+  
+  synergiesTo:function(uid){
+    var key, old, i;
+    var synergies = this._synergiesTo[uid], to;
+    if(synergies === undefined){
+      synergies = CoC.data.synergies.where({ toId:uid });
+      
+      to = {};
+
+      for(i=0; i<synergies.length; i++){
+        key = synergies[i].get("fromId");
+        old = to[key];
+        if(!old || old.to().get("stars") < synergies[i].to().get("stars"))
+          to[key]=synergies[i];
+      }
+        
+      synergies = [];
+      for(key in to)
+        synergies.push(to[key]);
+        
+      this._synergiesTo[uid] = synergies;
+    }
+    return _(synergies);
+  },
+  _synergiesTo:{}
+};
+
+//Message View
+CoC.view.GuideView = Backbone.View.extend({
+  tagName: 'div',
+  guideTemplate: CoC.data.template.guide,
+  
+  initialize:function(){
+    var that = this;
+
+    this._guides = {};
+    this._guideChampionsView = this.model;
+  },
+  
+  events:{
+    "click .synergy .champion-title":"synergyChampionClick",
+    "click .synergy .effect":"synergyEffectClick",
+  },
+  
+  synergyChampionClick:function(event){
+    if(this._guideChampionsView === undefined)
+      return;
+    var uid = $(event.currentTarget).attr("uid");
+    if(uid === undefined)
+      return;
+    this._guideChampionsView.select(uid);
+  },
+  
+  synergyEffectClick:function(event){
+    if(CoC.ui && CoC.ui.hasSelection())
+      return;
+      
+    var effectElement = $(event.currentTarget),
+      uid = effectElement.attr("uid");
+    if(uid === undefined)
+      return;
+  
+    var effect = CoC.data.effects.findWhere({ uid:uid });
+    if(!effect)
+      return;
+      
+    $("#popup-guide-effect .ui-content").text(effect.get("description"));
+    $("#popup-guide-effect").popup("open",{ positionTo:effectElement });
+  },
+  
+  render:function(uid, forceRefresh){
+    if(uid === undefined)
+      return this;
+      
+    var html = this._guides[uid];
+    if(html === undefined || forceRefresh){
+      var guide = CoC.data.guides.get(uid),
+        data = {};
+      _.extend(data, guide);
+      _.extend(data, CoC.view.GuideViewHelpers);
+      this._guides[uid] = html = this.guideTemplate(data);
+    }
+    if(html === undefined)
+      return this;
+
+    this.$el.empty();
+    this.$el.append( html );
+    this.$el.trigger("create");
+    this.$el.removeClass("dirty");
+    
+    return this;
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+CoC.view.GuideChampionsView = Backbone.View.extend({
+  optionTemplate: CoC.data.template['guide-select-option'],
+  optgroupTemplate: CoC.data.template['guide-select-optgroup'],
+  
+  initialize: function(){
+    var that = this;
+    
+    that._init = true;
+    that._instant = true;
+    that._championViews = [];
+    that._uids = [];
+    that._indices = {};
+    that._selector = $("#guide-champions-selector");
+    that._guideView = new CoC.view.GuideView({
+      model: that,
+      el: $("#guide-content")[0]
+    });
+    
+    var optgroups = {}, optindex = [];
+    CoC.data.guides.each(function(guide){
+      var champion = guide.champion;
+      var view = new CoC.view.ChampionView({
+        model:champion
+      });
+      that._championViews.push( $("<li>").append( view.render().el )[0] );
+      
+      //add select menu options
+      var selectType = champion.get("typeId");
+      if(optgroups[selectType]===undefined){
+        optgroups[selectType] = $('<optgroup>',{ label:champion.get("typeId") });
+        that._selector.append( optgroups[selectType] );
+        optindex.push(selectType);
+      }
+      optgroups[selectType].append( $('<option>', { value:guide.uid }).text( champion.get("name") ) );
+      
+      //set uids map
+      that._indices[guide.uid] = that._uids.length;
+      that._uids.push(guide.uid);
+    });
+    
+    that._selector.change(function(event){
+      var uid = this.value,
+        index = that._indices[uid];
+      if(that._indices[uid] === undefined)
+        return;
+      setTimeout(function(){
+        that._instant = true;
+        that.sly.activate(index);
+      },0);
+    });
+
+    $.mobile.document.on("pagebeforeshow", "#guide-champions-selector-dialog", function(event, ui){    
+      var currentTarget = $(event.currentTarget); 
+      currentTarget.find("li[role=option]").each(function(index){
+        //add class to li, set contents of a to template of guide champion
+        $(this).addClass("ui-li-has-icon").find("a").html(that.optionTemplate({
+          champion: CoC.data.guides.get(that._uids[index]).champion
+        }));
+      });
+      currentTarget.find("li[role=heading]").each(function(index){
+        var li = $(this),
+          typeId = optindex[index];
+        li.data("typeId");
+        li.html(that.optgroupTemplate({
+          type: CoC.data.types.findWhere({ uid:typeId })
+        }));
+      });
+    });
+    
+    that.sly = new Sly("#guide-champions-frame", {
+      horizontal: 1,
+      itemNav: 'forceCentered',
+      activateMiddle: 1,
+      smart: 1,
+      activateOn:'click',
+      scrollBy:1,    
+      mouseDragging:1,
+      touchDragging:1,
+      releaseSwing:1,
+      speed:0
+    },{
+      active:function(event, index){    
+        that.activate.call(that, event, index, (that._instant)? 0: 300);
+      }
+    }).init();
+
+    //reload on page resize
+    $(window).bind("resize", function(){
+      that.reload.call(that);
+    });
+  },
+  
+  events:{
+    "click li.active":"openMenu"
+  },
+  
+  openMenu:function(event){
+    event.stopPropagation();
+    event.preventDefault();
+  
+    var champion = $(event.currentTarget).find(".champion");
+    if(!champion || champion.attr("uid") !== this._selected)
+      return;
+    
+    $("#guide-champions-selector").selectmenu("open");
+  },
+  
+  disable:function(){
+    this.sly.set('keyboardNavBy', null);
+  },
+  
+  enable:function(){
+    this.sly.set('keyboardNavBy', 'items');
+  },
+  
+  //Update Sly
+  reload:function(){
+    var that = this;
+    if(CoC.hasUrlParam("page-guide") === false)
+      return;
+    that.sly.reload();
+    
+    //do delayed but just once
+    if(that._reloadTimeout)
+      clearTimeout(that._reloadTimeout);
+    that._reloadTimeout = setTimeout(function(){
+      if(CoC.hasUrlParam("page-guide") === false)
+        return;
+      that.sly.reload();
+      that._reloadTimeout = undefined;
+    }, 250);
+  },
+  
+  selected:function(){
+    return (this._selected)? this._selected: 0;
+  },
+  
+  //Select a guide by Champion UID
+  select:function(uid){  
+    var index = (uid === undefined)? undefined: (typeof uid === "string")? this._indices[uid]: uid;
+    if(index === undefined)
+      index = 0;
+    this._instant = true;
+    this.sly.activate(index, true);
+  },
+  
+  //Sly activate opens 
+  activate:function(event, index, delay){
+    if(this._init){
+      this._init = false;
+      delay = 0;
+    }
+
+    var that = this,
+      uid = $( that.sly.items[index].el ).find(".champion").attr("uid");
+
+    if(that._activateTimeout)
+      clearTimeout(that._activateTimeout);
+    if(delay > 0){
+      that._activateTimeout = setTimeout(function(){
+        that.guide.call(that, uid);
+        that._activateTimeout = undefined;
+      }, delay);
+    }
+    else
+      that.guide.call(that, uid);
+  },
+  
+  guide: function(uid){
+    //if we aren't even looking at guides anymore
+    if(CoC.hasUrlParam("page-guide") === false)
+      return;
+      
+    this._selected = uid;
+    this._instant = false;
+    this._selector.val(uid).selectmenu("refresh");
+    this._guideView.render(uid);
+    
+    //scroll to beginning when we replace, and set url so a refresh goes back here
+    $.mobile.silentScroll(0);
+    CoC.setUrlParam("page-guide","guide",uid);
+  },
+  
+  render: function(){
+    this.$el.empty();
+    
+    //TODO: sort this list
+    var container = document.createDocumentFragment();
+    _(this._championViews).each(function(view){
+      container.appendChild( view );
+    });
+    this.$el.append(container);
+    return this;
+  },
+  
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }
+});
+
+var CoC = CoC || {};
+CoC.view = CoC.view || {};
+
+
+CoC.view.CrystalsViewHelpers={
+
+  string: CoC.lang.string,
+  
+  parseDescription:function(crystal){
+    //convert $CURRENCY$ strings to images
+    return crystal.get("description").replace(
+      /([0-9]+)\s*[$]([A-Z]+)[$]/gi, function(match, amount, currency){
+        return "<span class=\"amount\"><img class=\"currency\" src=\"images/currency/"+currency.toLowerCase()+".png\" />"+amount+"</span>";
+      }
+    );
+  }
+  
+};
+
+CoC.view.CrystalsView = Backbone.View.extend({
+  template: CoC.data.template.crystals,
+  
+  initialize: function(){
+    var that = this;
+    that._views = [];
+    CoC.data.crystals.each(function(crystal){
+      var html, data = {};
+      _.extend(data, { crystal:crystal });
+      _.extend(data, CoC.view.CrystalsViewHelpers);
+    
+      html = $(that.template(data));
+      for(var i=0; i<html.length; i++)
+        that._views.push( html[i] );
+    });
+  },
+  
+  render: function(){
+    var container = document.createDocumentFragment();
+
+    this.$el.empty();
+    _(this._views).each(function(el){
+      container.appendChild(el);
+    });
+    this.$el.append(container);
+    this.$el.trigger("create");
+    return this;
+  }
+});
+
+var CoC=CoC || {};
+CoC.tracking = CoC.tracking || {};
+
+//Google Analytics Init: make GA and create
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments);},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+})(window,document,'script','//www.google-analytics.com/analytics.js','_gaTracker');
+_gaTracker('create', 'UA-64735733-1', 'auto');
+
+CoC.tracking.pageView = function(){
+  if(location.hostname === "localhost")
+    return;
+  var array = ['send', 'pageview'];
+  for(var i=0; i<arguments.length; i++)
+    array.push(arguments[i]);
+  _gaTracker.apply(_gaTracker, array);
+};
+
+CoC.tracking.event = function(){
+  if(location.hostname === "localhost")
+    return;
+  var array = ['send','event'];
+  for(var i=0; i<arguments.length; i++)
+    array.push(arguments[i]);
+  _gaTracker.apply(_gaTracker, array);
+};
+
+window.onerror = function(description, file, line){
+  if(location.hostname === "localhost")
+    return;
+  //Send (description text...\t filename:line) exception message for size 155 bytes
+  var _location = "\t"+((file.lastIndexOf('/') !== -1)? file.substr(file.lastIndexOf('/')+1): file)+":"+line,
+    bytes = 155 - unescape(encodeURIComponent(_location)).length;
+  while(unescape(encodeURIComponent(description)).length > bytes)
+    description = description.substr(0, description.length - 1);
+  _gaTracker('send', 'exception', {
+    'exDescription': description + _location,
+    'exFatal': true
+  });
+};
+
+var CoC=CoC || {};
+CoC.manager = CoC.manager || {};
+
+CoC.manager.initialize = function(){
+  CoC.utils.info({
+    style: 'initialize',
+    value: "Contest of Champions - Roster Manager v"+CoC.version+" -"
+  },{
+    style: 'link',
+    value: "https://github.com/gabriel-hook/contest-of-champions"
+  });
+
+  //reset settings if we are a new version!
+  if(CoC.settings.getValue("hasDefaults") !== true || CoC.settings.getValue("version") !== CoC.version){
+    CoC.settings.preset.apply("defaults", true, true);
+    CoC.settings.setValue("hasDefaults", true);
+    CoC.settings.setValue("version", CoC.version);
+  }
+};
+
+CoC.manager.reset=function(){
+  localStorage.clear();
+  location.reload();
+};
+
+CoC.hasUrlParam=function(fragment, param){
+  if(fragment === undefined)
+    return false;
+  if(param !== undefined)
+    return $.url().fparam(fragment + "?" + param) !== undefined;
+  return $.url().attr("fragment").replace(/[?].*/, '') === fragment;
+};
+
+CoC.getUrlParam=function(fragment, param){
+  if(fragment === undefined || param === undefined)
+    return undefined;
+  return $.url().fparam(fragment + "?" + param);
+};
+
+CoC.setUrlParam=function(fragment, param, value){
+  if(fragment === undefined || param === undefined || value === undefined)
+    return;
+  //build hash
+  var hash = "#"+fragment+"?"+param + "=" + value;
+  window.location.hash = hash;
+  //track this pageview
+  var path = location.pathname;
+  if(location.hash)
+    path += location.hash;
+  CoC.tracking.pageView(path);
+};
+
+CoC.settings = CoC.settings || {};
+
+CoC.settings.loadObjectFromLocalStorage=function(key){
+  var object = {};
+  if(window && window.Storage){
+    var string = localStorage.getItem(key);
+    object = JSON.parse(string);
+  }
+  if(object === null || object === undefined)
+    object = {};
+  return object;
+};
+CoC.settings.saveObjectToLocalStorage=function(key,value){
+  if(window && window.Storage){
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
+
+CoC.settings.misc = CoC.settings.loadObjectFromLocalStorage("misc");
+CoC.settings.getValue=function(key){
+  return CoC.settings.misc[key];
+};
+CoC.settings.setValue=function(key,value){
+  CoC.settings.misc[key]=value;
+  CoC.settings.saveObjectToLocalStorage("misc", CoC.settings.misc);
+};
+
+CoC.settings.weights = CoC.settings.loadObjectFromLocalStorage("weights");
+
+CoC.settings.getWeight=function(key){
+  var weight = CoC.settings.weights[key];
+  return (weight === undefined)? 1: weight;
+};
+
+CoC.settings.setWeight=function(type, weight){
+  CoC.settings.weights[type] = weight;
+  CoC.settings.saveObjectToLocalStorage("weights", CoC.settings.weights);
+};
+
+CoC.settings.keys = CoC.settings.keys || {};
+
+//duplcates-X
+CoC.settings.keys.duplicates=new function(){
+  this.map = {};
+  this.get=function(number){
+    var value = this.map[number];
+    if(value === undefined){
+      value = this.map[number] = "duplicates-"+number;
+    }
+    return value;
+  };
+};
+
+CoC.settings.setDuplicateWeight=function(number,weight){
+  if(isNaN(parseInt(number)) || number < 2 || number > 5)
+    return;
+  CoC.settings.setWeight(CoC.settings.keys.duplicates.get(number), weight);
+};
+CoC.settings.getDuplicateWeight=function(number){
+  return CoC.settings.getWeight(CoC.settings.keys.duplicates.get(number));
+};
+
+var CoC = CoC || {};
+CoC.algorithm = CoC.algorithm || {};
+
+(function(){
+  "use strict";
+
+  CoC.algorithm['quest']=new function(){
+    this.build=function(options){
+      var size = parseInt(options.size, 10), list = [], preselect = [], typeWeights = [], progress = null, team;
+      preProcess(options.champions, list, typeWeights, options.levels);
+      
+      _.filter(list, function(champion){
+        if(champion.quest){
+          preselect.push(champion);
+          return false;
+        }
+        return true;
+      });
+
+      if(options.progress)
+        progress={
+          current: 0,
+          max: combination(list.length, preselect.length? size - preselect.length: size),
+          callback: options.progress
+        };
+
+      if(preselect.length > 0){      
+        if(preselect.length > size){
+          team = getTopPartner(preselect, 0, size, typeWeights, progress);
+        }
+        else{
+          team = getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progress);
+        }
+      }
+      else{
+        team = getTopPartner(list, 0, size, typeWeights, progress);
+      }
+        
+      return postProcess(team.champions);
+    };
+    
+    function preProcess(champions, list, typeWeights, useLevels){
+      var i, fid, champion, uid, stars, quest, synergies;
+
+      for(i=2; i<=5; i++)
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
+        
+      for(i=0; i<champions.length; i++){
+        fid = champions[i];
+        splitValues(fid, '_', function(_uid, _stars, _quest){
+          uid = _uid;
+          stars = parseInt(_stars, 10);
+          quest = _quest === 'true';
+        });
+        champion = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+
+        synergies = {};
+        _(CoC.data.synergies.where({ fromId:uid, fromStars:stars })).each(function(synergy){
+          var effect = synergy.effect();
+          synergies[synergy.get("toId")]={
+            id:synergy.get("toId"),
+            fromId:synergy.get("fromId"),
+            fromStars:synergy.get("fromStars"),
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
+          };
+        });
+
+        list.push({
+          fid: fid,
+          id:uid,
+          stars:stars,
+          quest:quest,
+          type:CoC.data.types.indexOf(champion.type()),
+          synergies:synergies,
+          value: (useLevels? champion.value(): 1)
+        });
+      }  
+    }
+    
+    function postProcess(champions){
+      return {
+        teams:[
+          champions.map(function(champion){
+            return champion.fid;
+          })
+        ],
+        extras:[]
+      };
+    }
+
+    function getTopPartner(list, index, depth, typeWeights, progress){
+      if(index >= list.length)
+        return null;
+      var current = getNextPartner(list, addPartnerHero([], list[index]), [], getTypes([ list[index] ]), index+1, depth, typeWeights, progress);
+      if(current === null)
+        return null;
+      var next = getTopPartner(list,index+1,depth, typeWeights, progress);
+      return (compareTeams(current,next) >= 0)? current: next;
+    }
+    
+    function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progress){
+      if(champions.length == depth){
+        if(progress)
+          progress.callback(++progress.current, progress.max);
+        return {
+          champions:champions,
+          synergies:synergies,
+          value:getTeamValue(champions, synergies, types, typeWeights)
+        };
+      }
+      if(index == list.length)
+        return null;
+      var current = getNextPartner(list, 
+        addPartnerHero(champions, list[index]), 
+        addPartnerSynergies(synergies, champions, list[index]), 
+        addPartnerType(types, list[index]), 
+        index+1, depth, typeWeights, progress
+      );
+      var next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progress);
+
+      return (compareTeams(current,next) >= 0)? current: next;
+    }
+    
+    function addPartnerHero(list, hero){
+      var champions = list.slice();
+      champions.push(hero);
+      return champions;
+    }
+    
+    function addPartnerType(list, hero){
+      var types = list.slice();
+      types[hero.type]++;
+      return types;
+    }
+
+    function getTypes(champions){
+      var types=[0,0,0,0,0,0], i;
+      if(champions !== undefined)
+        for(i=0; i<champions.length; i++)
+          types[champions[i].type]++;
+      return types;
+    }
+    
+    function addPartnerSynergies(oldSynergies, list, next){
+      var synergies = oldSynergies.slice(), i;    
+      for(i=0; i<list.length; i++){
+        if(list[i].synergies[next.id] !== undefined)
+          synergies.push(list[i].synergies[next.id]);
+        if(next.synergies[list[i].id] !== undefined)
+          synergies.push(next.synergies[list[i].id]);
+      }
+      return synergies;
+    }
+    
+    function getSynergies(list){
+      if(list.length < 2)
+        return [];
+    
+      var champions = [], synergies = [], remaining = champions.slice();
+      while(remaining.length > 0){
+        var hero = remaining[0];
+        remaining.splice(0,1);
+        synergies = addPartnerSynergies(synergies, champions, hero);
+        champions.push(hero);
+      }
+      return synergies;
+    }
+      
+    function getTeamValue(champions, synergies, types, typeWeights){
+      var vsynergies = 0, vchampions = 0, vtypes = 1, i;
+      for(i in synergies)
+        vsynergies += synergies[i].value;
+      for(i in champions)
+        vchampions += champions[i].value;
+      for(i in types)
+        if(types[i] > 1)
+          vtypes *= typeWeights[types[i]];
+      return vsynergies * vchampions * vtypes;
+    }
+    
+    function compareTeams(a, b){
+      if(b === null)
+        return 1;
+      return a.value - b.value;
+    }
+  };
+
+  CoC.algorithm['arena']=new function(){
+    this.build=function(options){
+      var i, j;
+      var size = parseInt(options.size, 10), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
+      var heroMap = {}, synergyMap = {}, typeWeights = {}, teamValues = {};
+      preprocess(options.champions, heroMap, synergyMap, typeWeights, options.levels);
+    
+      var swaps;
+      
+      function checkValueAndSwap(array, a, b){
+        //get team values and counts with swaps
+        var v1a = getTeamValue(array, a), v1b = getTeamValue(array, b),
+          v2a = getTeamValue(array, a, b), v2b = getTeamValue(array, b, a), 
+          count1 = (v1a > 0? 1: 0) + (v1b > 0? 1: 0),
+          count2 = (v2a > 0? 1: 0) + (v2b > 0? 1: 0);
+        
+        //dont accept less teams
+        if(count1 > count2)
+          return false;
+          
+        //more teams, or more value
+        if(count2 > count1 || (v2a + v2b > v1a + v1b)){
+          var tmp = array[a];
+          array[a] = array[b];
+          array[b] = tmp;
+          swaps++;
+          return true;
+        }
+        return false;
+      }
+    
+      function getTeamValue(array, index, swap){
+        if(index >= forceExtras)
+          return 0;
+      
+        var start = Math.floor(index/size) * size, team = array.slice(start, start + size);
+        if(swap !== undefined)
+          team[index % size] = array[swap];
+          
+        var tid = getTeamId(team), value = teamValues[tid];
+        if(value === undefined){
+          var hvalue = 0, svalue = 0, types = {};
+          for(var i=0; i<team.length; i++){
+            var hero = team[i];
+            //get my value
+            hvalue += hero.value;
+            //get my synergies
+            var synergies = synergyMap[hero.fid];
+            for(var j=0; j<team.length; j++){
+              var synergy = synergies[team[j].id];
+              if(synergy)
+                svalue += synergy.value;
+            }
+            //get my type dupes
+            types[hero.type] = (types[hero.type] || 0) + 1;
+          }
+          var cvalue = 1;
+          for(i in types)
+            if(types[i] > 1)
+              cvalue *= typeWeights[types[i]] || 1;
+          //combine them
+          teamValues[tid] = value = hvalue * svalue * cvalue;
+        }
+        return value;
+      }
+      
+      var progressMax = 16, didExtrasShuffle, array, arrays = [];
+      
+      function addArray(){
+        array = [];
+        for(i in heroMap)
+          array.push(heroMap[i]);
+        shuffle(array);
+        arrays.push(array);
+        didExtrasShuffle = false;
+      }
+      
+      addArray();
+      
+      for(var progressCounter=0; progressCounter<progressMax; progressCounter++){
+        if(options.progress)
+          options.progress(progressCounter, progressMax);
+          
+        swaps = 0;
+        
+        //do the swaps
+        for(i=0; i<forceExtras; i++)
+          for(j=(Math.floor(i/size)+1)*size; j<array.length; j++)
+            if(checkValueAndSwap(array, i, j))
+              break;
+    
+        //check if we are missing teams
+        var allFull = true;
+        for(i=0; i<forceExtras; i+=size)
+          if(getTeamValue(array, i) === 0)
+            allFull = false;
+    
+        //exit if we have nothing left to mess with
+        if(swaps === 0){
+        
+          //stuff at the end can be ignored, lets move to empty team
+          if(!didExtrasShuffle && !allFull){
+            var empty = -1;
+            for(i=0; i<forceExtras; i+=size)
+              if(getTeamValue(array, i) === 0)
+                empty = i;
+            if(empty !== -1){
+              var tmp;
+              for(i=0; i<size && forceExtras+i<array.length; i++){
+                tmp = array[empty+i];
+                array[empty+i] = array[forceExtras+i];
+                array[forceExtras+i] = tmp;
+              }
+              didExtrasShuffle = true;
+              continue;
+            }
+          }
+          
+          //start new list
+          addArray();
+        }
+        
+      }
+      if(options.progress)
+        options.progress(progressMax, progressMax);
+        
+      //get the best array
+      var best = {};
+      for(i=0; i<arrays.length; i++){
+        var current = arrays[i], value = 0;
+        for(j=0; j<forceExtras; j+=size)
+          value += getTeamValue(current, j);
+        if(best.value === undefined || best.value < value){
+          best.value = value;
+          best.array = current;
+        }
+      }
+    
+      return postprocess(best.array, size, function(array, i){ 
+        return getTeamValue(array, i);
+      });
+    };
+    
+    function preprocess(champions, heroMap, synergyMap, typeWeights, levels){
+      var i, fid, uid, stars, champion, synergies;
+
+      for(i=2; i<=5; i++)
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
+    
+      for(i=0; i<champions.length; i++){
+        fid = champions[i];
+        splitValues(fid, '_', function(_uid, _stars){
+          uid = _uid;
+          stars = parseInt(_stars, 10);
+        });
+        champion = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+
+        //add hero
+        heroMap[fid]={
+          id:uid,
+          fid:fid,
+          type:champion.get("typeId"),
+          value:calculateChampionValue(champion, levels)
+        };
+        synergyMap[fid] = {};
+        synergies = CoC.data.synergies.where({ fromId:uid, fromStars:stars });
+        for(var s=0;s < synergies.length; s++){
+          var synergy = synergies[s];          
+          var effect = synergy.effect();
+          synergyMap[fid][synergy.get("toId")]={
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
+          };
+        }
+      }
+    }
+    
+    function postprocess(array, size, getValue){
+      var result = { teams:[], extras:[] }, teams = [], i, j;
+
+      for(i=0; i<array.length; i+=size){
+        var value = getValue(array, i);
+        if(value > 0){
+          var team = [];
+          for(j=0; j<size; j++)
+            team.push(array[i+j].fid);
+            
+          //sort so same teams don't shuffle around
+          team.sort();
+          teams.push({ team:team, value:value });
+        }
+        else
+          for(j=0; j<size && i+j<array.length; j++)
+            result.extras.push(array[i+j].fid);
+      }
+      
+      //best teams will be first
+      teams.sort(function(a,b){ return b.value-a.value; });
+      for(i=0; i<teams.length; i++)
+        result.teams.push(teams[i].team);
+
+      return result;
+    }
+    
+    //getTeamId
+    function getTeamId(team){
+      var ids = [];
+      for(var i in team)
+        ids.push(team[i].fid);
+      ids.sort();
+      return ids.join('-');
+    }
+  };
+  
+  function calculateChampionValue(champion, levels){
+    if(levels === false)
+      return 1;
+    return champion.value();
+  }
+  
+  function factorial(n){
+    if(factorial.cache === undefined)
+      factorial.cache = { 0:1, 1:1, length:1 };
+    if(factorial.cache.length < n){
+      for(var i=factorial.cache.length; i <= n; i++)
+        factorial.cache[i] = i * factorial.cache[i - 1];
+      factorial.cache.length = n;
+    }
+    return factorial.cache[n];
+  }
+
+  function combination(n, r){
+    var value = n / factorial(r);
+    for(var i = n - 1; i > n - r; i--)
+      value *= i;
+    return value;
+  }
+
+  function shuffle(array){
+    var counter = array.length, temp, index;
+    while (counter > 0) {
+      index = Math.floor(Math.random() * counter);
+      counter--;
+      if(index != counter){
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+    }
+  }
+
+  function splitValues(string, split, callback){
+    var values = string.split(split);
+    callback.apply(null, values);
+  }
+  
+})();
+
+var CoC = CoC || {};
+CoC.roster = {};
+
+CoC.roster.initialize = function(){
+
+  var typeIds = {};
+  CoC.data.types.each(function(type, i){
+    typeIds[ type.get("uid") ] = i;
+  });
+
+  var Roster = Backbone.Collection.extend({
+    model: CoC.model.Champion,
+    localStorage: new Backbone.LocalStorage("coc-roster"),
+    sortBy: function(key, direction){
+      this._order = (key === "name")? [
+        { field: "name", order: (direction? "asc": "desc") }, { field: "stars", order: "desc" }
+      ]: (key === "type")? [ 
+        { field: "typeId", order: (direction? "asc": "desc"), map:typeIds }, { field: "stars", order: "desc" }, { field: "name", order: "asc" }
+      ]: (key === "stars")? [ 
+        { field: "stars", order: (direction? "desc": "asc") }, { field: "typeId", order: "asc", map:typeIds }, { field: "name", order: "asc" }
+      ]: undefined;
+      this.sort();
+    },
+    comparator: function(one, another) {
+      if (this._order) {
+        for (var i = 0; i < this._order.length; i++) {
+          var greater;
+        
+          if(this._order[i].map){
+            greater = this._order[i].map[ one.get(this._order[i].field) ] > this._order[i].map[ another.get(this._order[i].field) ];
+          }
+          else{
+            greater = one.get(this._order[i].field) > another.get(this._order[i].field);
+          }
+          
+          if (greater) {
+            return ("desc" !== this._order[i].order) ? 1 : -1;
+          } else if (one.get(this._order[i].field) === another.get(this._order[i].field)) {
+            // do nothing but let the loop move further for next layer comparison
+          } else {
+            return ("desc" !== this._order[i].order) ? -1 : 1;
+          }
+        }
+      }
+      return 0;
+    }
+  });
+  CoC.data.roster = new Roster();
+  CoC.data.roster.sortBy("stars");
+  CoC.data.roster.fetch();
+  CoC.data.roster.each(function(champion){
+    var updated = champion.update();
+    if(updated)
+      champion.save();
+    else
+      champion.destroy();
+  });
+};
+
+CoC.roster.clear = function(){
+  while(CoC.data.roster.length > 0)
+    CoC.data.roster.first().destroy();
+};
+
+CoC.roster.filtered = function(){
+  var filterStars = {
+    1: CoC.settings.getValue("build-filter-stars-1"),
+    2: CoC.settings.getValue("build-filter-stars-2"),
+    3: CoC.settings.getValue("build-filter-stars-3"),
+    4: CoC.settings.getValue("build-filter-stars-4"),
+    5: CoC.settings.getValue("build-filter-stars-5")
+  };
+  return CoC.data.roster.filter(function(champion){
+    return filterStars[champion.get("stars")];
+  });
+};
+
+CoC.roster.csvExport=function(separator, filename){
+  var array = [];
+  //add headers
+  array.push([
+    "Id",
+    "Stars",
+    "Rank",
+    "Level",
+    "Awakened"
+  ].join(','));
+  //add champions
+  CoC.data.roster.each(function(champion){
+    array.push([
+      '"' + champion.get("uid") + '"',
+      champion.get("stars"),
+      champion.get("rank"),
+      champion.get("level"),
+      champion.get("awakened")
+    ].join(','));
+  });
+  return array.join(separator || '\n');
+};
+  
+CoC.roster.csvImport=function(csv, filename){
+  var name = filename || "csv", lines = csv.match(/[^\r\n]+/g);
+  for(var i=0;i<lines.length;i++){
+    //skip first line if its headings
+    if(i === 0 && lines[i].replace(/["]/g,'') === "Id,Stars,Rank,Level,Awakened")
+      continue;
+  
+    var values = lines[i].split(",");
+    if(values.length != 5)
+      throw "Invalid roster CSV";
+      
+    var uid = values[0].replace(/["]/g,'').toLowerCase(),
+      stars = parseInt(values[1].replace(/["]/g,''), 10),
+      rank = parseInt(values[2].replace(/["]/g,''), 10),
+      level = parseInt(values[3].replace(/["]/g,''), 10),
+      awakened = parseInt(values[4].replace(/["]/g,''), 10);
+
+    //throw a useful error
+    if(typeof uid !== "string" || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)){
+      console.error("Invalid line in "+filename+":"+(i+1));
+      continue;
+    }
+    
+    var champion = CoC.data.roster.findWhere({ uid: uid, stars:stars });
+    if(champion === undefined){
+      champion = CoC.data.champions.findWhere({ uid: uid, stars:stars }).clone();
+      CoC.data.roster.add(champion);
+    }
+    
+    if(champion === undefined){
+      console.error("Champion not found \""+ uid + "\" in "+filename+":"+(i+1));
+      continue;
+    }
+      
+    champion.set("rank", rank);
+    champion.set("level", level);
+    champion.set("awakened", awakened);
+    champion.save();
+  }
+};
+
+var CoC = CoC || {};
+CoC.settings = CoC.settings || {};
+CoC.settings.preset = CoC.settings.preset || {};
+
+CoC.settings.preset.list=[];
+
+CoC.settings.preset.ids=function(category){
+  var keys = [];
+  for(var i in CoC.settings.preset.list)
+    if(category === undefined || category === CoC.settings.preset.list[i].category)
+      keys.push(CoC.settings.preset.list[i].id);
+  return keys;
+};
+
+CoC.settings.preset.get=function(id){
+  for(var i in CoC.settings.preset.list)
+    if(CoC.settings.preset.list[i].id === id)
+      return CoC.settings.preset.list[i];
+  return null;
+};
+
+CoC.settings.preset.info=function(id){
+  var preset = CoC.settings.preset.get(id);
+  if(preset)
+    return {
+      id:preset.id,
+      name:preset.name,
+      category:preset.category
+    };
+  return null;
+};
+
+CoC.settings.preset.apply=function(id, funcWeights, funcSettings){
+  var preset = CoC.settings.preset.get(id),
+    key;
+  if(preset){
+    if(funcWeights !== undefined)
+      for(key in preset.weights)
+        if(funcWeights === true || funcWeights(key, preset.weights[key]))
+          CoC.settings.setWeight(key, preset.weights[key]);
+    if(funcSettings !== undefined)
+      for(key in preset.settings)
+        if(funcSettings === true || funcSettings(key, preset.settings[key]))
+          CoC.settings.setValue(key, preset.settings[key]);
+  }  
+};
+
+CoC.settings.preset.add=function(category, name, weights, settings){
+  var id = (category)? [category,name].join("-").toLowerCase(): name.toLowerCase();
+  CoC.settings.preset.list.push({
+    id:id,
+    name:name,
+    category:category,
+    weights:weights,
+    settings:settings
+  });
+};
+
+CoC.settings.preset.add(null, "Defaults",{
+//effect weights
+  "attack":6,
+  "stun":5,
+  "critrate":4,
+  "critdamage":4,
+  "powergain":2,
+  "perfectblock":1,
+  "block":1,
+  "armor":1,
+  "health":1,
+//class duplicate weights  
+  "duplicates-2":0.8,
+  "duplicates-3":0.4,
+  "duplicates-4":0.2,
+  "duplicates-5":0.1
+},{
+//roster settings 
+  "roster-sort":"stars",
+  "roster-sort-direction":"descending",
+  "roster-filter-stars-5":true,
+  "roster-filter-stars-4":true,
+  "roster-filter-stars-3":true,
+  "roster-filter-stars-2":true,
+  "roster-filter-stars-1":true,
+//build settings 
+  "build-size":3,
+  "build-filter-stars-5":true,
+  "build-filter-stars-4":true,
+  "build-filter-stars-3":true,
+  "build-filter-stars-2":true,
+  "build-filter-stars-1":true,
+  "build-type":"arena",
+  "build-levels":true
+});
+CoC.settings.preset.add("Synergies", "Offensive",{
+  "attack":6,
+  "stun":5,
+  "critrate":4,
+  "critdamage":4,
+  "powergain":2,
+  "perfectblock":1,
+  "block":1,
+  "armor":1,
+  "health":1
+});
+CoC.settings.preset.add("Synergies", "Balanced",{
+  "attack":1,
+  "stun":1,
+  "critrate":1,
+  "critdamage":1,
+  "powergain":1,
+  "perfectblock":1,
+  "block":1,
+  "armor":1,
+  "health":1
+});
+CoC.settings.preset.add("Synergies", "Defensive",{
+  "attack":1,
+  "stun":3,
+  "critrate":1,
+  "critdamage":1,
+  "powergain":2,
+  "perfectblock":5,
+  "block":5,
+  "armor":4,
+  "health":3
+});
+CoC.settings.preset.add("Duplicates", "All",{
+  "duplicates-2":1,
+  "duplicates-3":1,
+  "duplicates-4":1,
+  "duplicates-5":1
+});
+CoC.settings.preset.add("Duplicates", "Balanced",{
+  "duplicates-2":0.8,
+  "duplicates-3":0.4,
+  "duplicates-4":0.2,
+  "duplicates-5":0.1
+});
+CoC.settings.preset.add("Duplicates", "None",{
+  "duplicates-2":0,
+  "duplicates-3":0,
+  "duplicates-4":0,
+  "duplicates-5":0
+});
+
+var CoC = CoC || {};
+CoC.ui = CoC.ui || {};
+
+CoC.ui.workerScriptUrl = 'build/legacy/worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
+
+CoC.ui.initialize=function(){
+  //nothing
+};
+
+//View logic for pages
+CoC.ui.roster=new function(){
+
+  this.initialize=function(){
+    if(this._initialized)
+      return;
+    this.view = new CoC.view.RosterView({
+      el: $("#roster")[0]
+    });
+    this._initialized = true;
+  };
+  
+  this.popup=function(element, champion){
+    var i;
+  
+    $(element).addClass("selected");
+    $('#popup-roster-configure').one("popupafterclose", function(){
+      $(element).removeClass("selected");
+      $("#roster-configure-image").prop("src", "");
+    });
+    
+    $("#roster-configure-stars").text("");
+    $("#roster-configure-stars").append((function(){
+      var string = "";
+      for(var i=0;i<champion.get("stars");i++)
+        string+="<span class='star'></span>";
+      return string;
+    })());
+    if(champion.get("awakened") > 0)
+      $("#roster-configure-stars").addClass("awakened");
+    else
+      $("#roster-configure-stars").removeClass("awakened");
+
+      
+    $(".roster-configure-guide").unbind("click").bind("click",function(e){
+      e.preventDefault();
+      $('#popup-roster-configure').one("popupafterclose", function(){
+        CoC.ui.guides.open( champion.get("uid") );
+      });
+      $('#popup-roster-configure').popup("close");
+      
+    });
+
+    $("#roster-configure-image").prop("src", champion.image());
+    $("#roster-configure-name").prop("class", champion.get("typeId")).text(champion.get("name"));
+    
+    $("#roster-configure-type").prop("src", CoC.data.types.findWhere({ uid:champion.get("typeId") }).get("image"));
+
+    function setupRankLevel(){
+      $("#roster-configure-level").empty();
+      for(var i = 1, levels = champion.levels(); i<=levels; i++)
+        $("#roster-configure-level").append($("<option>").val(i).text(i));
+        
+      $("#roster-configure-level").unbind("change").change(function(e){
+        var value = parseInt(e.target.value, 10);
+        champion.set("level", value);
+        champion.save();
+        $("#roster-configure-level").selectmenu('refresh');
+      }).val(champion.get("level")).selectmenu('refresh');
+    }
+    
+    $("#roster-configure-rank").empty();
+    for(i = 1, ranks = champion.ranks(); i<=ranks; i++)
+      $("#roster-configure-rank").append($("<option>").val(i).text(i));
+    $("#roster-configure-rank").unbind("change").change(function(e){
+      var value = parseInt(e.target.value, 10);
+      champion.set("rank", value);
+      champion.set("level", 1);
+      champion.save();
+      setupRankLevel();
+      $("#roster-configure-rank").selectmenu('refresh');
+    }).val(champion.get("rank")).selectmenu('refresh');
+    
+    setupRankLevel();
+    
+    $("#roster-configure-awakened").empty();
+    $("#roster-configure-awakened").append($("<option>").val(0).text(CoC.lang.string('none')));
+    for(i = 1; i<=99; i++)
+      $("#roster-configure-awakened").append($("<option>").val(i).text(i));
+    $("#roster-configure-awakened").unbind("change").change(function(e){
+      var value = parseInt(e.target.value, 10);
+      champion.set("awakened", value);
+      champion.save();
+      $("#roster-configure-awakened").selectmenu('refresh');
+      $("#roster-configure-stars").attr("class", (value > 0)? "awakened": "");
+    }).val(champion.get("awakened")).selectmenu('refresh');
+    
+    $("#roster-configure-quest").prop("checked", champion.get("quest")).checkboxradio("refresh").unbind("change").change(function(e){
+      champion.set("quest", (e.target.checked)? true: false);
+      champion.save();
+    });
+    
+    $("#roster-configure-delete").unbind("click").click(function(e){
+      e.preventDefault();
+      $("#roster .champion").removeClass("selected");
+      $('#popup-roster-configure').one("popupafterclose", function(){
+        $("#popup-roster-delete-confirm").popup("open",{
+          positionTo:"window"
+        });
+      });
+      $('#popup-roster-configure').popup("close");
+    });
+    
+    $("#roster-delete-confirm-name").attr("class", champion.get("typeId")).text(champion.get("name"));
+    $("#roster-delete-confirm-stars").text("").attr("class", (champion.get("awakened") > 0)? "awakened": "");
+    for(i=0; i<champion.get("stars");i++)
+      $("#roster-delete-confirm-stars").append($("<span>",{ class:'star' }));
+    $("#roster-delete-confirm-yes").unbind("click").click(function(e){
+      e.preventDefault();
+      var uid = champion.get('uid'),
+        stars = champion.get('stars');
+      $("#popup-roster-delete-confirm").popup("close");
+      champion.destroy();
+      CoC.tracking.event("roster", "delete", uid + '-' + stars);
+    });
+    $("#roster-delete-confirm-no").unbind("click").click(function(e){
+      e.preventDefault();
+      $("#popup-roster-delete-confirm").popup("close");
+    });
+    
+    $('#popup-roster-configure').popup("open",{
+      positionTo:$(element)
+    });
+  
+  };
+  
+  this.render=function(){
+    this.view.render();
+  };
+};
+
+CoC.ui.add=new function(){
+  
+  this.initialize=function(){
+    if(this._initialized)
+      return;
+    this._stars = 2;
+    this.view = new CoC.view.AddChampionsView({
+      el: $("#add-champions")[0]
+    });
+    this.view.stars(this._stars);
+    this._initialized = true;
+  };
+
+  this.setStars=function(stars){
+    this._stars = stars;
+    this.view.stars(this._stars);
+    this.render();
+  };
+  
+  this.render=function(){
+    this.view.render();
+    $("#page-add #add-stars a").removeClass("ui-btn-active");
+    $("#page-add #add-stars a[stars=" + this._stars + "]").addClass("ui-btn-active");
+  };
+  
+  this.show=function(){
+    //nothing to do here
+  };
+};
+CoC.ui.teams=new function(){
+  var useWorkers = window.Worker !== undefined && 
+    !(window.location.protocol == "file:" && navigator.userAgent.toLowerCase().indexOf('chrome') > -1);
+
+  this.initialize=function(){
+    if(this._initialized)
+      return;
+    this.initWorker();
+    this.view = new CoC.view.TeamView({
+      el: $("#teams")[0]
+    });
+    this._initialized = true;
+  };
+
+  this.empty = true;
+ 
+  this.render=function(result, size){
+    $("#teams").removeClass("dirty");
+  
+    this.empty = false;
+    this.view.size(size);
+    this.view.teams(result.teams);
+    this.view.extras(result.extras);
+    this.view.render();
+  };
+  
+  this.initWorker=function(){
+    if(!useWorkers)
+      return;  
+    this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
+  };
+  
+  this.getWorker=function(){
+    if(!useWorkers)
+      return null;  
+    this.destroyWorker();
+    this._currentWorker = this._nextWorker || new Worker(CoC.ui.workerScriptUrl);
+    this._nextWorker = new Worker(CoC.ui.workerScriptUrl);
+    return this._currentWorker;
+  };
+  
+  this.destroyWorker=function(){
+    if(!useWorkers)
+      return;
+    if(this._currentWorker){
+      this._currentWorker.terminate();
+      delete this._currentWorker;
+    }
+  };
+
+  this.progress = function(progress){
+    if(progress.description){
+      $("#onboarding-progress .text").text(progress.description);
+      $("#onboarding-progress").addClass("show");
+    }
+    else
+      $("#onboarding-progress").removeClass("show");
+    $("#team-build-progress input").val(Math.min(1000 * (progress.current / progress.max), 1000)).slider("refresh");
+  };
+
+  this.progress.show = function(){
+    $("#team-build-progress input").val(0).slider("refresh");
+    $("#team-build-progress").removeClass("hidden");
+    $('body').addClass('building');
+  };
+
+  this.progress.hide = function(){
+    $("#team-build-progress input").val(10000).slider("refresh");
+    $("#team-build-progress").addClass("hidden");
+    $("#onboarding-progress").removeClass("show");
+    $('body').removeClass('building');
+  };
+
+  this.build = function(){
+    $("#teams").addClass("dirty");
+    
+    var size = CoC.settings.getValue("build-size") || 3;
+    var roster = CoC.roster.filtered();
+    var algorithm = CoC.settings.getValue("build-type");
+    var levels = CoC.settings.getValue("build-levels") === true;
+    var champions = [];
+    for(var i=0; i<roster.length; i++)
+      champions.push(roster[i].fid());
+
+    CoC.ui.teams.progress.show();
+    
+    var startTime = new Date();
+    var worker = CoC.ui.teams.getWorker();
+    if (worker){
+      try{
+        //Setup and start the worker
+        worker.onmessage=function(event){
+          var i, j;
+          if(event.data.type === "progress"){
+            CoC.ui.teams.progress(event.data.progress);
+          }
+          if(event.data.type === "failed"){
+            CoC.ui.teams.progress.hide();
+            CoC.ui.teams.render(event.data.result, size);
+            CoC.utils.error(event.data.message);
+          }
+          if(event.data.type === "complete"){
+            CoC.utils.log({
+              style: 'search',
+              value: CoC.lang.model('algorithm-'+algorithm+'-name') + " search completed in "+((new Date() - startTime) / 1000)+"s"
+            });
+
+            //Convert the result back to Champion models post-transport
+            var result = {}, fid, champion;
+            if(event.data.result.teams !== undefined){
+              result.teams=[];
+              for(i=0; i<event.data.result.teams.length; i++){
+                var team = [];
+                for(j=0; j<event.data.result.teams[i].length; j++){
+                  fid = event.data.result.teams[i][j].split('_');
+                  champion = CoC.data.roster.findWhere({ uid:fid[0], stars:parseInt(fid[1], 10) });
+                  if(champion)
+                    team.push(champion);
+                }
+                result.teams.push(team);
+              }
+            }
+            if(event.data.result.extras !== undefined){
+              result.extras=[];
+              for(i=0; i<event.data.result.extras.length; i++){
+                fid = event.data.result.extras[i].split('_');
+                champion = CoC.data.roster.findWhere({ uid:fid[0], stars:parseInt(fid[1], 10) });
+                if(champion)
+                  result.extras.push(champion);
+              }
+            }
+            
+            //update the UI
+            CoC.ui.teams.render(result, size);
+            CoC.ui.teams.progress.hide();
+            CoC.tracking.event("teams", "build", algorithm + '-' + size);
+          }
+        };
+        worker.postMessage({
+          type: 'build',
+          options:{
+            algorithm: algorithm,
+            champions: champions, 
+            size: size, 
+            levels: levels,
+            weights: CoC.settings.weights
+          }
+        });
+      }
+      catch(e){
+        CoC.ui.teams.progress.hide();
+        console.error(e);
+      }
+    }
+  };
+};
+
+CoC.ui.guides=new function(){
+
+  this.initialized = false;
+  this.shown = false;
+  this.seen = false;
+  
+  this.initialize=function(){
+    if(this._initialized)
+      return;
+
+    this.view = new CoC.view.GuideChampionsView({
+      el: $("#guide-champions")[0]
+    });
+    this.view.render();
+    if(this.shown)
+      this.show();
+
+    this._initialized = true;
+  };
+  
+  this.open=function(uid){
+    this._uid = uid;
+    $.mobile.changePage("#page-guide",{
+      transition:"fade"
+    });
+  };
+
+  this.render=function(){
+    if(!this.view)
+      return;
+      
+    this.view.render();
+  };
+  
+  this.show=function(){
+    if(!this.view){
+      this.shown = true;
+      return;
+    }
+    
+    var uid = CoC.getUrlParam("page-guide", "guide") || this.view.selected();
+    if(this._uid){
+      uid = this._uid;
+      delete this._uid;
+    }
+    this.seen = true;
+    
+    this.view.enable();
+    this.view.reload();
+    this.view.select(uid);
+  };
+  
+  this.hide=function(){
+    if(!this.view)
+      return;
+    this.view.disable();
+  };
+};
+CoC.ui.crystals=new function(){
+  
+  this.initialize=function(){
+    if(this._initialized)
+      return;
+    this.view = new CoC.view.CrystalsView({
+      el: $("#crystals")[0]
+    });
+    this._initialized = true;
+  };
+  
+  this.render=function(){
+    this.view.render();
+  };
+};
+
+//Load onboarding when appropriate
+$("#page-roster").on("pageshow", function() {
+  if(CoC.data.roster.length === 0){
+    $("#onboarding-roster").addClass("show");
+    $("#page-roster").one("click",function(){
+      $("#onboarding-roster").removeClass("show");
+    });
+  }
+});
+$("#page-teams").on("pageshow", function() {
+  if(CoC.ui.teams.empty && $("#team-build-progress").hasClass("hidden")){
+    $("#onboarding-teams").addClass("show");
+    $("#page-teams").one("click",function(){
+      $("#onboarding-teams").removeClass("show");
+    });
+  }
+});
+
+//handle checking and clearing selections on page swipes
+CoC.ui.hasSelection=function(){
+  var text = "";
+  if (window.getSelection) {
+      text = window.getSelection().toString();
+  } else if (document.selection && document.selection.type != "Control") {
+      text = document.selection.createRange().text;
+  }
+  return text.length > 0;
+};
+CoC.ui.clearSelection=function(){
+  if ( document.selection ) {
+    document.selection.empty();
+  } else if ( window.getSelection ) {
+    window.getSelection().removeAllRanges();
+  }
+};
+
+//Make swipes move to the next screen
+$(document).on("pagecreate", "#page-roster", function() {
+  $(document).on("swiperight", "#page-roster", function( e ) {
+    if(CoC.ui.hasSelection())
+      return;
+    if($("#page-roster").find(".ui-popup-active").length || $("#page-roster").find(".ui-panel-open").length)
+      return;
+    $("#page-roster").find("#header a[href=#panel-roster-options]").click();
+    setTimeout(CoC.ui.clearSelection, 50);
+  });
+});
+
+//Make swipes move to the last screen or open the panel
+$(document).on("pagecreate", "#page-teams", function() {
+  $(document).on("swiperight", "#page-teams", function( e ) {
+    if(CoC.ui.hasSelection())
+      return;
+    if($("#page-teams").find(".panel").hasClass("ui-panel-open"))
+      return;
+    $("#page-teams").find("#header a[href=#panel-team-settings]").click();
+    setTimeout(CoC.ui.clearSelection, 50);
+  });
+});
+  
+//Handle opening/closing pages 
+$("#page-roster").on("pagebeforeshow",function(){
+  CoC.ui.roster.initialize();
+  CoC.ui.roster.render();
+});
+$("#page-add").on("pagebeforeshow",function(){
+  CoC.ui.add.initialize();
+  CoC.ui.add.render();
+});
+$("#page-teams").on("pagebeforeshow",function(){
+  CoC.ui.teams.initialize();
+});
+$("#page-add").on("pageshow",function(){
+  CoC.ui.add.show();
+});
+$("#page-guide").on("pagebeforeshow",function(){
+  CoC.ui.guides.initialize();
+  CoC.ui.guides.render();
+});
+$("#page-guide").on("pageshow",function(){
+  CoC.ui.guides.show();
+});
+$("#page-guide").on("pagehide",function(){
+  CoC.ui.guides.hide();
+});
+$("#page-crystals").on("pagebeforeshow",function(){
+  CoC.ui.crystals.initialize();
+  CoC.ui.crystals.render();
+});
+
+//Initialize inputs
+$("#page-roster").on("pagecreate",function(){
+
+  //csv importer
+  if(window.FileReader){
+    $('#roster-import-input').change(function(e){
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        var file = this.files[0];
+        CoC.utils.log({ style: 'io', value: "Importing champions..." },{ style: 'filename', value: file.name });
+        reader.onload = function (e) {
+          var result = e.target.result;
+          CoC.roster.csvImport(result, file.name || undefined);
+          CoC.ui.roster.render();
+        };
+        reader.readAsText(file);
+        $(this).val("");
+      }
+    });
+    $('#roster-import').click(function(){
+      $('#roster-import-input').click();
+      $('#panel-roster-options').panel("close");
+      CoC.tracking.event("roster", "import");
+    });
+  }
+  //windows safari and other bullshit browsers that dont support FileReader
+  else{
+    $('#roster-import').addClass("ui-disabled");
+  } 
+  
+  //csv exporter
+  $('#roster-export').click(function(){
+    var csvRoster;
+    var csvRosterName = 'champions.csv';
+    CoC.utils.log({ style: 'io', value: "Exporting champions..." },{ style: 'filename', value: csvRosterName });
+    if (isInternetExplorer()){
+      csvRoster = CoC.roster.csvExport('\r\n');
+      rosterExportFrame.document.open("text/html", "replace");
+      rosterExportFrame.document.write('sep=,\r\n' + csvRoster);
+      rosterExportFrame.document.close();
+      rosterExportFrame.focus();
+      rosterExportFrame.document.execCommand('SaveAs', true, csvRosterName);
+    }
+    else{
+      csvRoster = CoC.roster.csvExport();
+      $('#roster-export')
+        .attr('download', csvRosterName)
+        .attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRoster));
+    }
+    $('#panel-roster-options').panel("close");
+    CoC.tracking.event("roster", "export");
+  }); 
+  
+  $('#roster-clear-all').click(function(){
+    $('#panel-roster-options').panel("close");
+    $("#popup-roster-clear-confirm").popup("open",{
+      positionTo:"window"
+    });
+  });
+  $("#roster-clear-confirm-no").click(function(){
+    $("#popup-roster-clear-confirm").popup("close");
+  });
+  $("#roster-clear-confirm-yes").click(function(){
+    CoC.roster.clear();
+    CoC.ui.roster.render();
+    $("#popup-roster-clear-confirm").popup("close");
+    $('#panel-roster-options').panel("close");
+    CoC.tracking.event("roster", "delete", "all");
+  });
+
+  var sorts = [ "stars", "type", "name" ];
+  _(sorts).each(function(sort){
+    function setAscendingDescending(){
+      if(CoC.settings.getValue("roster-sort-direction") === "ascending")
+        $("label[for=roster-sort-"+sort+"]").removeClass("ui-descending").addClass("ui-ascending");
+      else
+        $("label[for=roster-sort-"+sort+"]").removeClass("ui-ascending").addClass("ui-descending");
+    }
+    var element = $('#roster-sort-' + sort);
+    element.change(function(){
+      var newSort = CoC.settings.getValue("roster-sort") !== sort;
+      var wasAscending = CoC.settings.getValue("roster-sort-direction") === "ascending";
+      CoC.settings.setValue("roster-sort-direction", (newSort || wasAscending)? "descending": "ascending");
+      CoC.settings.setValue("roster-sort", sort);
+      setAscendingDescending();
+      CoC.ui.roster.render();
+    });
+    element.prop("checked", (CoC.settings.getValue("roster-sort") === sort)? true: false).checkboxradio('refresh');
+    setAscendingDescending();
+  });
+  
+  var filters = [
+    'roster-filter-stars-1',
+    'roster-filter-stars-2',
+    'roster-filter-stars-3',
+    'roster-filter-stars-4',
+    'roster-filter-stars-5'
+  ];
+  for(var i=0; i<filters.length; i++)
+    (function(filter){
+      $('#'+filter).change(function(){
+        CoC.settings.setValue(filter, this.checked);
+        CoC.ui.roster.render();
+      })
+      .prop("checked", CoC.settings.getValue(filter)? true: false)
+      .checkboxradio('refresh');
+    })(filters[i]);
+});
+$("#page-add").on("pagecreate",function(){
+  $("#page-add #add-stars a").each(function(i, obj){
+    var button = $(obj),
+      stars = parseInt(button.attr("stars"), 10);
+    button.on("click", function(){
+      CoC.ui.add.setStars(stars);
+      return false;
+    });
+  });
+});
+$("#page-teams").on("pagecreate", function() {
+  var i;
+
+  $("#team-build-progress").addClass("hidden");
+  $("#team-build-progress input").css('opacity', 0).css('pointer-events','none');
+  $("#team-build-progress .ui-slider-handle").remove();
+  $('#team-build-progress .ui-slider-track').css('margin','0 15px 0 15px').css('pointer-events','none');
+  
+  var teamSettingsSize = $('input:radio[name=build-settings-size]');
+  teamSettingsSize.filter('[value='+CoC.settings.getValue("build-size")+']').prop("checked", true).checkboxradio("refresh");
+  teamSettingsSize.change(function(){ 
+    CoC.settings.setValue("build-size",this.value); 
+  });
+    
+  var filters = [
+    'build-filter-stars-1',
+    'build-filter-stars-2',
+    'build-filter-stars-3',
+    'build-filter-stars-4',
+    'build-filter-stars-5'
+  ];
+  for(var f=0; f<filters.length; f++)
+    (function(filter){
+      $('#'+filter).change(function(){
+        CoC.settings.setValue(filter, this.checked);
+      })
+      .prop("checked", CoC.settings.getValue(filter)? true: false)
+      .checkboxradio('refresh');
+    })(filters[f]);
+
+  var algorithm = $('input:radio[name=build-settings-type]');
+  algorithm.filter('[value='+CoC.settings.getValue("build-type")+']').prop("checked", true).checkboxradio("refresh");
+  algorithm.change(function(){ 
+    CoC.settings.setValue("build-type",this.value); 
+    updateAlgorithmDescription();
+  });
+
+  function updateAlgorithmDescription(){
+    algorithm = CoC.settings.getValue("build-type");
+    $('#build-settings-type-description').text( CoC.lang.model('algorithm-'+algorithm+'-description') );
+  }
+  updateAlgorithmDescription();
+
+  
+  $("#button-build-settings-apply").click(function(){
+    $("#panel-team-settings").panel("close");
+    CoC.ui.teams.build();
+  });
+});
+$("#page-settings-advanced").on("pagecreate", function() {
+  var sliders = {}, checkboxes = {};
+
+  function enableSlider(category, type){
+    var id = "#settings-advanced-"+type,
+      presetId = "#settings-advanced-preset-"+category,
+      value = CoC.settings.getWeight(type);
+    $(id).val(value * 100).slider("refresh").change(function(){
+      CoC.settings.setWeight(type, parseInt(this.value) / 100.0);
+      $(presetId).val(null).selectmenu("refresh");
+    });
+    sliders[type]=id;
+  }
+  enableSlider("synergies", "attack");
+  enableSlider("synergies", "stun");
+  enableSlider("synergies", "critrate");
+  enableSlider("synergies", "critdamage");
+  enableSlider("synergies", "perfectblock");
+  enableSlider("synergies", "block");
+  enableSlider("synergies", "powergain");
+  enableSlider("synergies", "armor");
+  enableSlider("synergies", "health");
+  enableSlider("duplicates", "duplicates-2");
+  enableSlider("duplicates", "duplicates-3");
+  enableSlider("duplicates", "duplicates-4");
+  enableSlider("duplicates", "duplicates-5");
+
+  function enableCheckbox(id, type){
+    var value = CoC.settings.getValue(type);
+    $(id).prop("checked", value).checkboxradio("refresh").change(function(){
+      CoC.settings.setValue(type, this.checked);
+    });
+    checkboxes[type]=id;
+  }
+  enableCheckbox("#settings-advanced-levels","build-levels");
+  
+  function addPresets(category){
+    var container = $("#settings-advanced-preset-"+category.toLowerCase()),
+      presets = CoC.settings.preset.ids(category);      
+    for(var i in presets){
+      var preset = CoC.settings.preset.info(presets[i]);
+      container.append($('<option>', { value:preset.id }).text( preset.name ));
+    }
+  }
+  addPresets("Synergies");
+  addPresets("Duplicates");
+  
+  $("#settings-advanced-preset-defaults").click(function(){
+    CoC.settings.preset.apply("defaults", function(key, value){
+      var slider = $(sliders[key]);
+      if(slider.length){
+        slider.val(value * 100).slider("refresh");
+        return true;
+      }
+      return false;
+    }, function(key, value){
+      var checkbox = $(checkboxes[key]);
+      if(checkbox.length){
+        checkbox.prop("checked",value).checkboxradio("refresh");
+        return true;
+      }
+      return false;
+    });
+    $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").val(null).selectmenu("refresh");
+  });
+  
+  $("#settings-advanced-preset-synergies, #settings-advanced-preset-duplicates").change(function(){
+    CoC.settings.preset.apply(this.value, function(key, value){
+      var slider = $(sliders[key]);
+      if(slider.length){
+        slider.val(value * 100).slider("refresh");
+        return true;
+      }
+      return false;
+    });
+  });
+});
+
+$("#page-guide").on("pagecreate",function(){
+  $("#button-select-guide").on("tap click", function(){
+    $("#guide-champions-selector").selectmenu("open");
+    return false;
+  });
+});
+    
+//close dialogs when we click outside of them or click escape
+$.mobile.document.on("tap click", "[data-role=dialog]", function(event, ui){
+  if(event.target === this){
+    $(this).dialog("close");
+  }
+}).on("keyup", "[data-role=dialog]", function(event, ui){
+  if(event.keyCode == 27){
+    $(this).dialog("close");
+  }
+});
+
+//Tracking for pages that have the data attribute
+$('[data-tracking=true]').on('pageshow', function(){
+  var path = location.pathname;
+  if(location.hash)
+    path += location.hash;
+  CoC.tracking.pageView(path);
+});
+
+function isInternetExplorer() {
+  return (
+    window.navigator.userAgent.indexOf("MSIE ") !== -1 || 
+    window.navigator.userAgent.indexOf("Edge ") !== -1 || 
+    !!navigator.userAgent.match(/Trident.*rv\:11\./)
+  )? true: false;
+}
+
+//remove '&ui-state=dialog' from url hash when loading
+(function(){
+  var hash = location.hash.replace(/([&][u][i][-][s][t][a][t][e][=][d][i][a][l][o][g])/g, '');
+  if(hash !== location.hash)
+    location.hash = hash;
+})();
+
+var CoC = CoC || {};
+CoC.options = {};
+
+CoC.options.initialize = function(current){
+
+  if(window.self !== window.top)
+    $('body').addClass('iframe');
+
+  var html = CoC.data.template['options']({
+    model: CoC.lang.model,
+    string: CoC.lang.string,
+    search: CoC.lang.search,
+    current: current
+  });
+  $(document.body).append(html);
+
+  $("#panel-options").enhanceWithin().panel();
+  $("#share-facebook").click(function(){
+    CoC.tracking.event("share", "facebook");
+  });
+  $("#share-twitter").click(function(){
+    CoC.tracking.event("share", "twitter");
+  });
+  $("#share-googleplus").click(function(){
+    CoC.tracking.event("share", "googleplus");
+  });
+  $(".change-lang").click(function(){
+    var lang = $(this).attr('lang');
+    var query = {};
+    location.search.substr(1).split('&').map(function(str){
+      var attr = str.split('=');
+      if(attr.length === 2)
+        query[attr[0]] = attr[1] && unescape(attr[1]);
+    });
+    query.lang = lang;
+
+    location.search = '?' + _.pairs(query).map(function(value){
+      return value[0] + '=' + escape(value[1]);
+    }).join('&');
+  });
+
+  everyFrame(function(){
+    var panel = $('.ui-panel-open');
+    if(panel.length === 1)
+      resizePanel($(panel));
+  });
+
+  function resizePanel(panel){
+    var page = $('.ui-page-active');
+    var header = page.find('#header');
+    var footer = page.find('#footer');
+    var dismiss = $('.ui-panel-dismiss[data-panelid='+panel[0].id+']');
+
+    var headerHeight = header.height();
+    var footerHeight = footer.length && footer.height();
+    var panelHeight = window.innerHeight - headerHeight;
+
+    page.css({
+      'min-height': panelHeight - footerHeight,
+      'padding-bottom': footerHeight - 1
+    });
+    panel.css({
+      'height': panelHeight,
+      'top': headerHeight,
+      'position': 'fixed',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'overflow-y': 'auto',
+      'z-index': 1500
+    });
+    dismiss.css({
+      'position': 'fixed',
+      'height': panelHeight,
+      'top': headerHeight,
+      'left': 0,
+      'right': 'initial',
+      'min-height': 'initial',
+      'max-height': 'initial',
+      'background': 'rgba(0,0,0,0.333)',
+      'width': '100%'
+    });
+  }
+
+  function everyFrame(callback){
+    var raf = window.requestAnimationFrame || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame || 
+      window.msRequestAnimationFrame || 
+      window.oRequestAnimationFrame || 
+      function(callback){ 
+        window.setTimeout(callback, 1000/60);
+      };
+    raf(function action(){
+      callback();
+      raf(action);
+    });
+  }
+};
+
+CoC.manager.initialize();
+CoC.roster.initialize();
+CoC.options.initialize('app-roster');
+CoC.ui.initialize();

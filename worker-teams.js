@@ -1,3 +1,977 @@
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['en'] = {
+  name:'English',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Black Bolt',
+    'champion-captainmarvel-name': 'Captain Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Symbiote',
+    'champion-superiorironman-name': 'Superior Iron Man',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket Raccoon',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Vision',
+    'champion-thevision-name': 'The Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'War Machine',
+    'champion-colossus-name': 'Colossus',
+    'champion-cyclops-name': 'Cyclops',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Storm',
+    'champion-wolverine-name': 'Wolverine',
+    'champion-blackpanther-name': 'Black Panther',
+    'champion-blackwidow-name': 'Black Widow',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Hawkeye',
+    'champion-moonknight-name': 'Moon Knight',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Winter Soldier',
+    'champion-abomination-name': 'Abomination',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Captain America',
+    'champion-captainamericawwii-name': 'Captain America WWII',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Doctor Strange',
+    'champion-ironfist-name': 'Iron Fist',
+    'champion-guillotine-name': 'Guillotine',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Scarlet Witch',
+    'champion-unstoppablecolossus-name': 'Unstoppable Colossus',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Sup. Iron Man',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-drstrange-shortname': 'Dr. Strange',
+    'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
+
+    //Ability name
+    'ability-stun-name': 'Stun',
+    'ability-fatigue-name': 'Fatigue',
+    'ability-powerdrain-name': 'Power Drain',
+    'ability-powerburn-name': 'Power Burn',
+    'ability-bleed-name': 'Bleed',
+    'ability-cauterize-name': 'Cauterize',
+    'ability-armorbreak-name': 'Armor Break',
+    'ability-fury-name': 'Fury',
+    'ability-regeneration-name': 'Regeneration',
+    'ability-unstoppable-name': 'Unstoppable',
+    'ability-poison-name': 'Poison',
+    'ability-armorup-name': 'Armor Up',
+    'ability-plusdamage-name': 'Increased Damage',
+    'ability-pluscritrate-name': 'Increased Critical Rate',
+    'ability-pluscritdamage-name': 'Increased Critical Damage',
+    'ability-poisonimmunity-name': 'Poison Immunity',
+    'ability-bleedimmunity-name': 'Bleed Immunity',
+
+    //Effect name
+    'effect-attack-name': 'Attack',
+    'effect-stun-name': 'Stun',
+    'effect-critrate-name': 'Critical Rate',
+    'effect-critdamage-name': 'Critical Damage',
+    'effect-powergain-name': 'Power Gain',
+    'effect-powersteal-name': 'Power Steal',
+    'effect-perfectblock-name': 'Perfect Block',
+    'effect-block-name': 'Block Proficiency',
+    'effect-armor-name': 'Armor',
+    'effect-health-name': 'Health',
+    'effect-healthsteal-name': 'Health Steal',
+
+    //Effect description
+    'effect-attack-description': 'Increases damage on all attacks.',
+    'effect-stun-description': 'Chance to Stun on special attacks.',
+    'effect-critrate-description': 'Increases the chance for Critical hit.',
+    'effect-critdamage-description': 'Increases damage multiplier for Critical hits.',
+    'effect-powergain-description': 'Gain additional Power (used to trigger a special) whenever Power is gained.',
+    'effect-powersteal-description': 'Gain Power (used to trigger a special) when attacking.',
+    'effect-perfectblock-description': 'Increased chance to Perfect Block for 0 damage.',
+    'effect-block-description': 'Increases Block effectiveness for less damage taken.',
+    'effect-armor-description': 'Increases Armor so that all damage taken is decreased.',
+    'effect-health-description': 'Increases champion Health.',
+    'effect-healthsteal-description': 'Gain Health when attacking.',
+
+    //Type name
+    'type-cosmic-name': 'Cosmic',
+    'type-tech-name': 'Tech',
+    'type-mutant-name': 'Mutant',
+    'type-skill-name': 'Skill',
+    'type-science-name': 'Science',
+    'type-mystic-name': 'Mystic',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alliance',
+    'crystal-daily-name': 'Daily',
+    'crystal-2star-name': '2-Star',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3-Star',
+    'crystal-4star-name': '4-Star',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Acquired when you win a versus match.',
+    'crystal-arena-description': 'Buy for 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Buy for 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Acquired once every 24 hours.',
+    'crystal-premium-description': 'Buy for 100 $UNITS$.',
+    'crystal-3star-description': 'Buy for 400 $UNITS$, rare event.',
+    'crystal-4star-description': 'Buy for 2500 $UNITS$, very rare event.',
+
+    //Algorithm name
+    'algorithm-quest-name': 'Quest',
+    'algorithm-arena-name': 'Arena',
+
+    //Algorithm description
+    'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
+    'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'of',
+    'with': 'with',
+    'found': 'Found',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Team',
+    'teams': 'Teams',
+
+    'guide': 'Guide',
+    'guides': 'Guides',
+
+    'champion': 'Champion',
+    'champions': 'Champions',
+
+    'synergy': 'Synergy',
+    'synergies': 'Synergies',
+
+    'crystal': 'Crystal',
+    'crystals': 'Crystals',
+
+    'roster': 'Roster',
+
+    //Roster Panel
+    'manage': 'Manage',
+    'add-champion': 'Add a Champion',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Delete All',
+
+    'sort': 'Sort',
+    'filter': 'Filter',
+
+    //Roster Config
+    'stars': 'Stars',
+    'type': 'Type',
+    'name': 'Name',
+
+    'rank': 'Rank',
+    'level': 'Level',
+    'awakened': 'Awakened',
+    'quest': 'Quest',
+    'view-guide': 'View Guide',
+
+    'delete': 'Delete',
+    'cancel': 'Cancel',
+
+    'ask-delete': 'Are you sure you want to delete',
+    'ask-delete-all': 'Are you sure you want to delete all of your champions?',
+    'cannot-undo': 'This action cannot be undone.',
+
+    //Team Panel
+    'advanced-settings': 'Advanced Settings',
+    'team-size': 'Team Size',
+    'algorithm': 'Algorithm',
+    'arena': 'Arena',
+    'build': 'Build',
+
+    //Add Champion Page
+    'add-all': 'Add All',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reset to Defaults',
+    'champion-weights': 'Champion Weights',
+    'synergy-weights': 'Synergy Weights',
+    'duplicate-weights': 'Duplicate Class Weights',
+    'choose-preset': 'Choose a preset...',
+    'use-levels': 'Calculate using stars / ranks / levels',
+
+    //Tuples
+    'double': 'Double',
+    'triple': 'Triple',
+    'quadruple': 'Quadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Choose a guide',
+
+    //Options
+    'options': 'Options',
+    'share-to': 'Share to',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Tools',
+    'language': 'Language',
+    'synergy-map': 'Synergy Map',    
+    'roster-manager': 'Roster Manager',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
+    'onboarding-roster': 'Use the options menu to add new champions',
+    'onboarding-teams': 'Use the Build menu create your teams!',
+
+    //Guide
+    'coming-soon': 'Coming Soon...',
+    'description': 'Description',
+    'gameplay': 'Gameplay',
+    'special': 'Special',
+    'signature': 'Signature Ability',
+    'attack': 'Attack',
+    'heavy-attack': 'Heavy Attack',
+    'abilities': 'Abilities',
+    'passive-abilities': 'Passive Abilities',
+
+    'rating': 'Rating',
+    'grade': 'Grade',
+    'strategy': 'Strategy',
+    'style': 'Style',
+
+    'damage-type': 'Damage Type',
+    'range': 'Range',
+    'note': 'Note',
+
+    'synergies-external': 'External Synergies',
+
+    'author': 'Author',
+    'profile': 'Profile',
+    'profile-reddit': 'Reddit /u/',
+    'profile-kabam': 'Kabam Forums',
+    'author-credit': 'This guide was written by',
+
+    'email': 'E-mail',
+    
+    'none': 'None',
+  }
+};
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['es'] = {
+  name:'Español',
+  model:{
+
+    //Champion name
+    'champion-blackbolt-name': 'Rayo Negro',
+    'champion-captainmarvel-name': 'Capitana Marvel',
+    'champion-drax-name': 'Drax',
+    'champion-gamora-name': 'Gamora',
+    'champion-msmarvel-name': 'Ms. Marvel',
+    'champion-ronan-name': 'Ronan',
+    'champion-spidermanblack-name': 'Spider-Man Simbionte',
+    'champion-superiorironman-name': 'Iron Man Superior',
+    'champion-thor-name': 'Thor',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
+    'champion-venom-name': 'Venom',
+    'champion-ironman-name': 'Iron Man',
+    'champion-ironpatriot-name': 'Iron Patriot',
+    'champion-hulkbuster-name': 'Hulkbuster',
+    'champion-kang-name': 'Kang',
+    'champion-rocket-name': 'Rocket el Mapache',
+    'champion-starlord-name': 'Star-Lord',
+    'champion-vision-name': 'Visión',
+    'champion-thevision-name': 'La Vision',
+    'champion-ultron-name': 'Ultron',
+    'champion-warmachine-name': 'Máquina de Guerra',
+    'champion-colossus-name': 'Coloso',
+    'champion-cyclops-name': 'Cíclope',
+    'champion-deadpool-name': 'Deadpool',
+    'champion-deadpoolxforce-name': 'Deadpool X-Force',
+    'champion-magneto-name': 'Magneto',
+    'champion-magnetomarvelnow-name': 'Magneto Marvel Now',
+    'champion-storm-name': 'Tormenta',
+    'champion-wolverine-name': 'Lobezno',
+    'champion-blackpanther-name': 'Pantera Negra',
+    'champion-blackwidow-name': 'Viuda Negra',
+    'champion-daredevil-name': 'Daredevil',
+    'champion-daredevilnetflix-name': 'Daredevil',
+    'champion-elektra-name': 'Elektra',
+    'champion-hawkeye-name': 'Ojo de Halcon',
+    'champion-moonknight-name': 'Caballero Luna',
+    'champion-punisher-name': 'Punisher',
+    'champion-wintersoldier-name': 'Soldado del Invierno',
+    'champion-abomination-name': 'Abominación',
+    'champion-antman-name': 'Ant-Man',
+    'champion-captainamerica-name': 'Capitán América',
+    'champion-captainamericawwii-name': 'Capitán América 2º GM',
+    'champion-electro-name': 'Electro',
+    'champion-hulk-name': 'Hulk',
+    'champion-joefixit-name': 'Joe Fixit',
+    'champion-rhino-name': 'Rhino',
+    'champion-spidergwen-name': 'Spider-Gwen',
+    'champion-spiderman-name': 'Spider-Man',
+    'champion-spidermanmorales-name': 'Spider-Man Morales',
+    'champion-yellowjacket-name': 'YellowJacket',
+    'champion-drstrange-name': 'Dr. Extraño',
+    'champion-ironfist-name': 'Puño de Hierro',
+    'champion-juggernaut-name': 'Juggernaut',
+    'champion-magik-name': 'Magik',
+    'champion-scarletwitch-name': 'Bruja Escarlata',
+    'champion-unstoppablecolossus-name': 'Coloso Imparable',
+
+    //Champion shortname
+    'champion-captainmarvel-shortname': 'Cap. Marvel',
+    'champion-spidermanblack-shortname': 'Spider-Man',
+    'champion-superiorironman-shortname': 'Iron Man Sup.',
+    'champion-thorjanefoster-shortname': 'Thor',
+    'champion-rocket-shortname': 'Rocket',
+    'champion-deadpoolxforce-shortname': 'Deadpool',
+    'champion-magnetomarvelnow-shortname': 'Magneto',
+    'champion-captainamerica-shortname': 'Cap. America',
+    'champion-captainamericawwii-shortname': 'Cap. America',
+    'champion-spidermanmorales-shortname': 'Spider-Man',
+    'champion-unstoppablecolossus-shortname': 'Coloso Imp.',
+
+    //Effect name
+    'effect-attack-name': 'Ataque',
+    'effect-stun-name': 'Aturdir',
+    'effect-critrate-name': 'Prob. de Golpe Crítico',
+    'effect-critdamage-name': 'Daño de Golpe Crítico',
+    'effect-powergain-name': 'Acopio de Poder',
+    'effect-powersteal-name': 'Robapoderes',
+    'effect-perfectblock-name': 'Bloqueo Impecable',
+    'effect-block-name': 'Bloqueo Maestro',
+    'effect-armor-name': 'Robustez',
+    'effect-health-name': 'Curación',
+    'effect-healthsteal-name': 'Parásito',
+
+    //Effect description
+    'effect-attack-description': 'Incrementa el daño de todos los ataques.',
+    'effect-stun-description': 'Probabilidad de aturdir con ataques especiales.',
+    'effect-critrate-description': 'Incrementa la probabilidad para golpes críticos.',
+    'effect-critdamage-description': 'Incrementa el daño para golpes críticos.',
+    'effect-powergain-description': 'Gana poder adicional (usado para activar un especial) cada vez que se gana poder.',
+    'effect-powersteal-description': 'Gana poder adicional (usado para activar un especial) cuando atacas.',
+    'effect-perfectblock-description': 'Probabilidad adicional de hacer un bloqueo perfecto con 0 daño.',
+    'effect-block-description': 'Incrementa la efectividad del bloqueo para reducir el daño recibido.',
+    'effect-armor-description': 'Incrementa la armadura para reducir todo el daño recibido.',
+    'effect-health-description': 'Incrementa la salúd del luchador.',
+    'effect-healthsteal-description': 'Incrementa la salúd al atacar.',
+
+    //Type name
+    'type-cosmic-name': 'Cósmico',
+    'type-tech-name': 'Tecnológico',
+    'type-mutant-name': 'Mutante',
+    'type-skill-name': 'Habilidad',
+    'type-science-name': 'Científico',
+    'type-mystic-name': 'Místico',
+
+    //Crystal name
+    'crystal-versus-name': 'Versus',
+    'crystal-arena-name': 'Arena',
+    'crystal-alliance-name': 'Alianza',
+    'crystal-daily-name': 'Diario',
+    'crystal-2star-name': '2 Estrellas',
+    'crystal-premium-name': 'Premium',
+    'crystal-3star-name': '3 Estrellas',
+    'crystal-4star-name': '4 Estrellas',
+
+    //Crystal description (keep $CURRENCY$ tokens for image replacement)
+    'crystal-versus-description': 'Obtenido al ganar una pelea versus.',
+    'crystal-arena-description': 'Cómpralo por 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Cómpralo por 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Adquirido una vez cada 24 horas.',
+    'crystal-premium-description': 'Cómpralo por 100 $UNITS$.',
+    'crystal-3star-description': 'Cómpralo por 400 $UNITS$, poco común.',
+    'crystal-4star-description': 'Cómpralo por 2500 $UNITS$, muy poco común.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Egoísta',
+    'algorithm-shuffle-name': 'Mixto',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'LENTO. Elige el mejor equipo matemáticamente tomando en cuenta todos los parámetros.',
+    'algorithm-shuffle-description': 'RÁPIDO. Elige las mejores combinaciones posibles de equipos.',
+
+  },
+  string: {
+    //Listing words
+    'of': 'de',
+    'with': 'con',
+    'found': 'Encontrado',
+    'extras': 'Extras',
+
+    //Common words/sections
+    'team': 'Equipo',
+    'teams': 'Equipos',
+
+    'guide': 'Guía',
+    'guides': 'Guías',
+
+    'champion': 'Luchador',
+    'champions': 'Luchadores',
+
+    'synergy': 'Sinergia',
+    'synergies': 'Sinergias',
+
+    'crystal': 'Cristal',
+    'crystals': 'Cristales',
+
+    'roster': 'Repertorio',
+
+    //Roster Panel
+    'manage': 'Administra',
+    'add-champion': 'Añade un Luchador',
+    'import-csv': 'Import .csv',
+    'export-csv': 'Export .csv',
+    'delete-all': 'Borra todo',
+
+    'sort': 'Clasificar',
+    'filter': 'Filtrar',
+
+    //Roster Config
+    'stars': 'Estrellas',
+    'type': 'Tipo',
+    'name': 'Name',
+
+    'rank': 'Rango',
+    'level': 'Nivel',
+    'awakened': 'Despertado',
+    'quest': 'Gesta',
+    'view-guide': 'Ver Guía',
+
+    'delete': 'Borrar',
+    'cancel': 'Cancelar',
+
+    'ask-delete': '¿Estas seguro que quieres borrar?',
+    'ask-delete-all': '¿Estás seguro que quieres borrar a todos tus luchadores?',
+    'cannot-undo': 'Esta acción no puede ser deshecha.',
+
+    //Team Panel
+    'advanced-settings': 'Configuración Avanzada',
+    'team-size': 'Tamaño del Equipo',
+    'algorithm': 'Algoritmo',
+    'arena': 'Arena',
+    'build': 'Armar',
+
+    //Add Champion Page
+    'add-all': 'Añadir Todo',
+
+    //Advanced Settings Page
+    'reset-defaults': 'Reiniciar a default',
+    'champion-weights': 'Importancia de Luchadores',
+    'synergy-weights': 'Importancia de Sinergías',
+    'duplicate-weights': 'Importancia de Duplicación',
+    'choose-preset': 'Elige un parámetro...',
+    'use-levels': 'Calcula usando Estrellas / Rangos / Niveles',
+
+    //Tuples
+    'double': 'Doble',
+    'triple': 'Triple',
+    'quadruple': 'Cuadruple',
+    'quintuple': 'Quintuple',
+
+    //Guide Page
+    'choose-guide': 'Elige una guía',
+
+    //Options
+    'options': 'Opciones',
+    'share-to': 'Compartir',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'tools': 'Herramientas',
+    'language': 'Idioma',
+    'synergy-map': 'Mapa de Sinergias',    
+    'roster-manager': 'Administrador de Repertorio',  
+
+    //Onboarding Messages
+    'onboarding-synergies': 'Usa la herramienta Administrador de Repertorio para añadir más luchadores a tu repertorio.',
+    'onboarding-roster': 'Usa el menú de opciones para añadir nuevos luchadores',
+    'onboarding-teams': '¡Usa el menú Armar para crear tus equipos!',
+
+    //Guide
+    'coming-soon': 'Pronto...',
+    'gameplay': 'Gameplay',
+    'special': 'Especial',
+    'signature': 'Habilidad Especial',
+    'heavy-attack': 'Ataque Pesado',
+    'abilities': 'Abilidades',
+
+    'grade': 'Calificación',
+    'strategy': 'Estrategia',
+
+    'damage-type': 'Tipo de daño',
+    'range': 'Rango',
+    'note': 'Nota',
+
+    'synergies-external': 'Sinergias Externas',
+
+    'none': 'Ninguno',
+  }
+};
+// http://collabedit.com/pwxck
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+CoC.lang['ru'] = {
+  name:'Русский',
+  model: { 
+  
+    //Champion name 
+    'champion-blackbolt-name': 'Черный Гром',
+    'champion-captainmarvel-name': 'Капитан Марвел',
+    'champion-drax-name': 'Дракс',
+    'champion-gamora-name': 'Гамора',
+    'champion-msmarvel-name': 'Мисс Марвел',
+    'champion-ronan-name': 'Ронан',
+    'champion-spidermanblack-name': 'Черный Человек-Паук',
+    'champion-superiorironman-name': 'Высший Железный Человек',
+    'champion-thor-name': 'Тор',
+    'champion-thorjanefoster-name': 'Джейн Фостер',
+    'champion-venom-name': 'Веном',
+    'champion-ironman-name': 'Железный Человек',
+    'champion-ironpatriot-name': 'Железный Патриот',
+    'champion-hulkbuster-name': 'Халкбастер',
+    'champion-kang-name': 'Канг',
+    'champion-rocket-name': 'Реактивный Енот',
+    'champion-starlord-name': 'Звездный Лорд',
+    'champion-vision-name': 'Вижн',
+    'champion-thevision-name': 'Вижн Кино',
+    'champion-ultron-name': 'Альтрон Прайм',
+    'champion-warmachine-name': 'Воитель',
+    'champion-colossus-name': 'Колосс',
+    'champion-cyclops-name': 'Циклоп',
+    'champion-deadpool-name': 'Дедпул',
+    'champion-deadpoolxforce-name': 'Дедпул X-Force',
+    'champion-magneto-name': 'Магнето',
+    'champion-magnetomarvelnow-name': 'Белый Магнето',
+    'champion-storm-name': 'Шторм',
+    'champion-wolverine-name': 'Росомаха',
+    'champion-blackpanther-name': 'Черная Пантера',
+    'champion-blackwidow-name': 'Черная Вдова',
+    'champion-daredevil-name': 'Сорвиголова',
+    'champion-daredevilnetflix-name': 'Сорвиголова Netflix',
+    'champion-elektra-name': 'Электра',
+    'champion-hawkeye-name': 'Соколиный Глаз',
+    'champion-moonknight-name': 'Лунный Рыцарь',
+    'champion-punisher-name': 'Каратель',
+    'champion-wintersoldier-name': 'Зимний Солдат',
+    'champion-abomination-name': 'Мерзость',
+    'champion-antman-name': 'Человек Муравей',
+    'champion-captainamerica-name': 'Капитан Америка',
+    'champion-captainamericawwii-name': 'Капитан Америка WWII',
+    'champion-electro-name': 'Электро',
+    'champion-hulk-name': 'Халк',
+    'champion-joefixit-name': 'Джо Фиксит',
+    'champion-rhino-name': 'Носорог',
+    'champion-spidergwen-name': 'Спайдер Гвен',
+    'champion-spiderman-name': 'Человек-Паук',
+    'champion-spidermanmorales-name': 'Человек-Паук Моралес',
+    'champion-yellowjacket-name': 'Желтый Шершень',
+    'champion-drstrange-name': 'Доктор Стрэндж',
+    'champion-ironfist-name': 'Железный Кулак',
+    'champion-juggernaut-name': 'Джаггернаут',
+    'champion-magik-name': 'Мэджик',
+    'champion-scarletwitch-name': 'Алая Ведьма',
+    'champion-unstoppablecolossus-name': 'Неудержимый Колосс',
+    
+    //Champion shortnames
+    'champion-blackbolt-shortname': 'Гром',
+    'champion-captainmarvel-shortname': 'Кэп Марвел',
+    'champion-drax-shortname': 'Дракс',
+    'champion-gamora-shortname': 'Гамора',
+    'champion-msmarvel-shortname': 'Мисс',
+    'champion-ronan-shortname': 'Ронан',
+    'champion-spidermanblack-shortname': 'Черный Паук',
+    'champion-superiorironman-shortname': 'СЖЧ',
+    'champion-thor-shortname': 'Тор',
+    'champion-thorjanefoster-shortname': 'Джейн Фостер',
+    'champion-venom-shortname': 'Веном',
+    'champion-ironman-shortname': 'ЖЧ',
+    'champion-ironpatriot-shortname': 'ЖП',
+    'champion-hulkbuster-shortname': 'ХБ',
+    'champion-kang-shortname': 'Канг',
+    'champion-rocket-shortname': 'Енот',
+    'champion-starlord-shortname': 'Лорд',
+    'champion-vision-shortname': 'Вижн',
+    'champion-thevision-shortname': 'Вижн Кино',
+    'champion-ultron-shortname': 'Альтрон',
+    'champion-warmachine-shortname': 'Воитель',
+    'champion-colossus-shortname': 'Колосс',
+    'champion-cyclops-shortname': 'Циклоп',
+    'champion-deadpool-shortname': 'Дед',
+    'champion-deadpoolxforce-shortname': 'Дед седой',
+    'champion-magneto-shortname': 'Магнит',
+    'champion-magnetomarvelnow-shortname': 'Белый Магнит',
+    'champion-storm-shortname': 'Шторм',
+    'champion-wolverine-shortname': 'Рося',
+    'champion-blackpanther-shortname': 'Пантера',
+    'champion-blackwidow-shortname': 'Вдова',
+    'champion-daredevil-shortname': 'Сорвиголова',
+    'champion-daredevilnetflix-shortname': 'Сорвиголова Netflix',
+    'champion-elektra-shortname': 'Электра',
+    'champion-hawkeye-shortname': 'Сокол',
+    'champion-moonknight-shortname': 'Лунатик',
+    'champion-punisher-shortname': 'Кара',
+    'champion-wintersoldier-shortname': 'Зимний',
+    'champion-abomination-shortname': 'Мерзость',
+    'champion-antman-shortname': 'Муравей',
+    'champion-captaishortnamerica-shortname': 'Кэп',
+    'champion-captaishortnamericawwii-shortname': 'Кэп ВМВ',
+    'champion-electro-shortname': 'Электрик',
+    'champion-hulk-shortname': 'Халк',
+    'champion-joefixit-shortname': 'Фиксит',
+    'champion-rhino-shortname': 'Носорог',
+    'champion-spidergwen-shortname': 'Гвен',
+    'champion-spiderman-shortname': 'Паук',
+    'champion-spidermanmorales-shortname': 'Моралес',
+    'champion-yellowjacket-shortname': 'Шершень',
+    'champion-drstrange-shortname': 'Док',
+    'champion-ironfist-shortname': 'Кулак',
+    'champion-juggernaut-shortname': 'Джаг',
+    'champion-magik-shortname': 'Мэджик',
+    'champion-scarletwitch-shortname': 'Ведьма',
+    'champion-unstoppablecolossus-shortname': 'Неуд',
+    
+    //Effect name 
+    'effect-attack-name': 'Атака',
+    'effect-stun-name': 'Оглушение',
+    'effect-critrate-name': 'Вероятность крит. урона',
+    'effect-critdamage-name': 'Крит. Урон',
+    'effect-powergain-name': 'Увеличение Энергии',
+    'effect-powersteal-name': 'Кража Энергии',
+    'effect-perfectblock-name': 'Идеальный Блок',
+    'effect-block-name': 'Вероятность ид. блока',
+    'effect-armor-name': 'Броня',
+    'effect-health-name': 'Здоровье',
+    'effect-healthsteal-name': 'Кража здоровья',
+    
+    //Effect description 
+    'effect-attack-description': 'Увеличение урона на все атаки.',
+    'effect-stun-description': 'Шанс оглушения при спец. атаках.',
+    'effect-critrate-description': 'Увеличение вероятности крит. урона.',
+    'effect-critdamage-description': 'Увеличение критического урона.',
+    'effect-powergain-description': 'Увеличечние энергии (от спец. атак) независимо от атаки.',
+    'effect-powersteal-description': 'Кража энергии (от спец. атак) за счет атаки.',
+    'effect-perfectblock-description': 'Увеличение шанса идеального блока - 0 урона в блоке.',
+    'effect-block-description': 'Увеличение эффективности блокирования - уменьшение урона в блоке.',
+    'effect-armor-description': 'Увеличение брони, тем самым уменьшая получаемый урон.',
+    'effect-health-description': 'Увеличение здоровья чемпиона.',
+    'effect-healthsteal-description': 'Восполнение здоровья при атаке.',
+    
+    //Type name 
+    'type-cosmic-name': 'Космос',
+    'type-tech-name': 'Технологии',
+    'type-mutant-name': 'Мутации',
+    'type-skill-name': 'Способности',
+    'type-science-name': 'Наука',
+    'type-mystic-name': 'Мистика',
+    
+    //Crystal name 
+    'crystal-versus-name': 'Кристалл за битвы',
+    'crystal-arena-name': 'Кристалл Арены',
+    'crystal-alliance-name': 'Кристалл союза',
+    'crystal-daily-name': 'Ежедневный кристалл',
+    'crystal-2star-name': 'Кристалл героя с 2-мя звездами',
+    'crystal-premium-name': 'Усиленный кристалл героя',
+    'crystal-3star-name': 'Кристалл героя с 3-мя звездами',
+    'crystal-4star-name': 'Кристалл героя с 4-мя звездами',
+    
+    //Crystal description (keep $CURRENCY$ tokens for image replacement) 
+    'crystal-versus-description': 'Даётся за победу на арене 1vs1.',
+    'crystal-arena-description': 'Покупается за 2000 $BATTLECHIPS$.',
+    'crystal-alliance-description': 'Покупается за 1000 $LOYALTY$.',
+    'crystal-daily-description': 'Появляется каждые 24 часа.',
+    'crystal-premium-description': 'Покупается за 100 $UNITS$.',
+    'crystal-3star-description': 'Покупается за 400 $UNITS$, редкая акция.',
+    'crystal-4star-description': 'Покупается за 2500 $UNITS$, очень редкая акция.',
+
+    //Algorithm name
+    'algorithm-greedy-name': 'Greedy',
+    'algorithm-shuffle-name': 'Смешанный',
+
+    //Algorithm description
+    'algorithm-greedy-description': 'МЕДЛЕННЫЙ. Выбирает команды, используя математический просчет на основе введенных апраметров.',
+    'algorithm-shuffle-description': 'БЫСТРЫЙ. Выбирает лучшую возможную комбинацию команды.',
+  },
+  string: { 
+  
+      //Listing words 
+    'of': 'из',
+    'with': 'с',
+    'found': 'Найден',
+    'extras': 'Экстра',
+    
+    //Common words/sections 
+    'team': 'Команда',
+    'teams': 'Команды',
+    'guide': 'Руководство',
+    'guides': 'Руководства',
+    'champion': 'Чемпион',
+    'champions': 'Чемпионы',
+    'synergy': 'Синергия',
+    'synergies': 'Синергии',
+    'crystal': 'Кристалл',
+    'crystals': 'Кристаллы',
+    'roster': 'Список',
+    
+    //Roster Panel 
+    'manage': 'Управление',
+    'add-champion': 'Добавить чемпиона',
+    'import-csv': 'Импорт .csv',
+    'export-csv': 'Экспорт .csv',
+    'delete-all': 'Удалить всех',
+    'sort': 'Сортировать',
+    'filter': 'Фильтр',
+    
+    //Roster Config 
+    'stars': 'Категория',
+    'type': 'Класс',
+    'name': 'Имя',
+    
+    'rank': 'Ранг',
+    'level': 'Уровень',
+    'awakened': 'Дубль',
+    'quest': 'Задание',
+    'view-guide': 'Посмотреть руководство',
+    
+    'delete': 'Удалить',
+    'cancel': 'Отмена',
+    
+    'ask-delete': 'Вы уверены, что хотите удалить?',
+    'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
+    'cannot-undo': 'Это действие не может быть отменено.',
+    
+    //Team Panel 
+    'advanced-settings': 'Дополнительные настройки',
+    'team-size': 'Размер команды',
+    'algorithm': 'Алгоритм',
+    'quest-group': 'Группа задания',
+    'build': 'Построить',
+    
+    //Add Champion Page
+    'add-all': 'Добавить всех',
+   
+    //Advanced Settings Page
+    'reset-defaults': 'Восстановить стандартные настройки',
+    'champion-weights':'Уровни чемпионов',
+    'synergy-weights': 'Уровни синергии',
+    'duplicate-weights': 'Уровни дублей',
+    'choose-preset': 'Выберите предустановку...',
+    'use-levels': 'Просчитать используя звезды / ранги / уровни',
+    
+    //Tuples 
+    'double': 'Двойной',
+    'triple': 'Тройной',
+    'quadruple': 'Четверной',
+    'quintuple': 'Пятерной',
+    
+    //Guide Page 
+    'choose-guide': 'Выберите руководство',
+    
+    //Options
+    'options': 'Опции',
+    'share-to': 'Поделиться',
+    'facebook': 'Facebook',
+    'twitter': 'Twitter',
+    'google': 'Google',
+    'language': 'Язык',
+    'tools': 'Опции',
+    'synergy-map': 'Карта синергии',
+    'roster-manager': 'Манеджер списка',
+    
+    //Onboarding Messages 
+    'onboarding-synergies': 'Используейте меню настройки списка, чтобы добавить еще чемпионов.',
+    'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
+    'onboarding-teams': 'Используйте меню строителя, чтобы создать свою команду!',
+    
+    //Guide 
+    'coming-soon': 'Скоро обновление...',
+    'gameplay': 'Геймплей',
+    'special': 'Специальные атаки',
+    'signature': 'Коронная способность',
+    'heavy-attack': 'Тяжелая атака',
+    'abilities': 'Способности',
+    
+    'grade': 'Оценка',
+    'strategy': 'Стратегия',
+    
+    'damage-type': 'Тип урона',
+    'range': 'Дальний',
+    'note': 'Заметка',
+    
+    'synergies-external': 'Синергия от других чемпионов',
+    
+    'none': 'Отсутствует',
+  }
+};
+// http://collabedit.com/uuf57
+
+var CoC = CoC || {};
+CoC.lang = CoC.lang || {};
+
+(function(){
+  var defaultLang = 'en';
+  var currentLang = 'en';
+
+  var query = {};
+  location.search.substr(1).split('&').map(function(str){
+    var attr = str.split('=');
+    if(attr.length === 2)
+      query[attr[0]] = attr[1] && unescape(attr[1]);
+  });
+  if(query['lang']){
+    if(CoC.lang[query['lang']]){
+      currentLang = query['lang'];
+      console.warn('Language set to "' + currentLang + '"');
+    }
+  }
+
+  CoC.lang.model = function(key, notFoundValue){
+    var value = CoC.lang[currentLang].model[key];
+    if(value === undefined)
+      value = (notFoundValue !== undefined)? notFoundValue: CoC.lang[defaultLang].model[key];
+    return value;
+  };
+
+  CoC.lang.string = function(key){
+    var value = CoC.lang[currentLang].string[key];
+    if(value === undefined)
+      value = CoC.lang[defaultLang].string[key];
+    return value;
+  };
+
+  CoC.lang.search = (defaultLang === currentLang)? '': '?lang='+currentLang;
+
+  CoC.lang.current = currentLang;
+
+  if(currentLang === defaultLang && query['lang'] === undefined){
+    var languages = [], updateLang;
+    if(navigator && navigator.language)
+      languages.push(navigator.language);
+    if(navigator && navigator.languages)
+      languages.concat(navigator.languages);
+    for(var i=0; i<languages.length; i++){
+      var lang = navigator.language.split('-')[0];
+      if(currentLang !== lang || CoC.lang[lang]){
+        updateLang = lang;
+        break;
+      }
+    }
+    if(updateLang && updateLang !== defaultLang){
+      query.lang = updateLang;
+      location.search = '?' + _.pairs(query).map(function(value){
+        return value[0] + '=' + escape(value[1]);
+      }).join('&');
+    }
+  }
+
+})();
+
+var CoC=CoC || {};
+CoC.utils = CoC.utils || {};
+
+CoC.version = '1.6.0';
+
+CoC.utils.typeOfs = {
+  'string': 's',
+  'object': 'o',
+  'function': 'o',
+  'number': 'i'
+};
+
+CoC.utils.styles = {
+  'initialize': 'color:#55f; font-size:14px;',
+  'link': 'color:#00c; font-size:14px;',
+  'search': 'color:#000; text-shadow:1px 1px #ccc; font-size: 16px;',
+  'io': 'color:#060; font-size:14px;',
+  'filename': 'color:#000; text-shadow:1px 1px #ccc; font-size:14px;'
+};
+
+CoC.utils.applyArgumentsEffect = function(args){
+  var array = [], argument, i, prefix = [];
+  for(i = 0; i<args.length; i++){
+    argument = args[i];
+    if(argument && argument.value && argument.style){
+      prefix.push('%c%'+CoC.utils.typeOfs[typeof argument.value]);
+      array.push(CoC.utils.styles[argument.style]);
+      array.push(argument.value);
+    }
+    else{
+      prefix.push('%'+CoC.utils.typeOfs[typeof argument]);
+      array.push(argument);
+    }
+  }
+  array.unshift(prefix.join(' '));
+  return array;
+};
+
+CoC.utils.log = function(){
+  if (console && console.log)
+    console.log.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+};
+
+CoC.utils.info = function(){
+  if(console && console.info){
+    console.info.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.warn = function(){
+  if(console && console.warn){
+    console.warn.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
+CoC.utils.error = function(){
+  if(console && console.error){
+    console.error.apply(console, CoC.utils.applyArgumentsEffect(arguments));
+  }
+  else if (console && console.log)
+    console.log.apply(console, arguments);
+};
+
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3441,3 +4415,1546 @@
   return Backbone;
 
 }));
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+
+(function(){
+
+  //championStarRankValue[stars][rank]
+  var championStarRankLevels={
+    1:{
+      1:{ levels: 10, min:100, max:175 }, 
+      2:{ levels: 20, min:175, max:250 },
+      ranks: 2
+    },
+    2:{
+      1:{ levels: 10, min:150, max:250 }, 
+      2:{ levels: 20, min:250, max:400 }, 
+      3:{ levels: 30, min:400, max:600 },
+      ranks: 3
+    },
+    3:{
+      1:{ levels: 10, min:300, max:500 }, 
+      2:{ levels: 20, min:500, max:900 }, 
+      3:{ levels: 30, min:900, max:1200 }, 
+      4:{ levels: 40, min:1200, max:1500 },
+      ranks: 4
+    },
+    4:{
+      1:{ levels: 10, min:600, max:1000 }, 
+      2:{ levels: 20, min:1000, max:1500 }, 
+      3:{ levels: 30, min:1500, max:2000 }, 
+      4:{ levels: 40, min:2000, max:2800 }, 
+      5:{ levels: 50, min:2800, max:3500 },
+      ranks: 5
+    },
+    5:{
+      1:{ levels: 25, min:1500, max:2500 }, 
+      2:{ levels: 35, min:2500, max:3500 }, 
+      3:{ levels: 45, min:3500, max:4500 }, 
+      4:{ levels: 55, min:4500, max:5500 }, 
+      5:{ levels: 65, min:5500, max:6500 },
+      ranks: 5
+    }
+  };
+
+  var starStrings = ["", "★", "★★", "★★★", "★★★★", "★★★★★"];
+
+  CoC.model.Champion = Backbone.Model.extend({
+    defaults: {
+      uid: "champion",
+      stars: 2,
+      name: 'Champion',
+      shortname: null,
+      typeId: "mutant",
+      awakened: 0,
+      rank: 1,
+      level: 1,
+      grade: 0,
+      gradeAwakened: 0,
+      quest: false
+    },
+
+    constructor: function() {
+      Backbone.Model.apply(this, arguments);
+      var uid = this.get('uid');
+      var name = CoC.lang.model('champion-'+uid+'-name');
+      var shortname = CoC.lang.model('champion-'+uid+'-shortname', null);
+      if(name)
+        this.set('name', name);
+      if(shortname)
+        this.set('shortname', shortname);
+    },
+
+    value:function(){
+      var stars = this.get("stars"), 
+        rank = this.get("rank"), 
+        level = this.get("level"), 
+        awakened = this.get("awakened");
+      if(level < 1 || championStarRankLevels[stars] === undefined)
+        return 0;
+      var range = championStarRankLevels[stars][rank];
+      if(range === undefined || level > range.levels )
+        return 0;
+      var value = range.min + (level / range.levels) * (range.max - range.min);
+      if(awakened > 0)
+        value *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+      return value;
+    },
+    
+    ranks:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      return stars.ranks;
+    },
+    
+    levels:function(){
+      var stars = championStarRankLevels[this.get("stars")];
+      if(stars === undefined)
+        return null;
+      var rank = stars[this.get("rank")];
+      if(rank === undefined)
+        return null;
+      return rank.levels;
+    },
+    
+    stars:function(){
+      if(this._stars === undefined){
+        this._stars = starStrings[this.get("stars")];
+      }
+      return this._stars;
+    },
+    
+    fid:function(){
+      return [this.get("uid"), this.get("stars"), this.get('quest')].join('_');
+    },
+    
+    portrait:function(){
+      if(this._portrait === undefined){
+        this._portrait = 'images/champions/portrait_'+this.get('uid')+'.png';
+      }
+      return this._portrait;
+    },
+    
+    image:function(){
+      if(this._image === undefined){
+        this._image = 'images/champions/fullsize_'+this.get('uid')+'.png';
+      }
+      return this._image;
+    },
+    
+    type:function(){
+      if(this._type === undefined){
+        this._type = CoC.data.types.findWhere({ uid:this.get("typeId") });
+      }
+      return this._type;
+    },
+    
+    crystals:function(){
+      if(this._crystals === undefined){
+        this._crystals = [];
+        var ccs = CoC.data.crystalChampions.find({ championId:this.get("uid"), championStars:this.get("stars") });
+        for(var i=0; i<ccs.length; i++)
+          this._crystals.push(ccs.crystal());
+      }
+      return this._crystals;
+    },
+    
+    //clean an import's variable types
+    update:function(){
+      var uid = this.get('uid');
+      var stars = this.get('stars');
+      var other = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+      if(!other)
+        return false;
+
+      this.set("name", CoC.lang.model('champion-'+uid+'-name'));
+      this.set("shortname", CoC.lang.model('champion-'+uid+'-shortname', null));
+      this.set("typeId", other.get("typeId"));
+      this.set("stars", parseInt(stars, 10) || 1);
+      this.set("rank", parseInt(this.get("rank"), 10) || 1);
+      this.set("level", parseInt(this.get("level"), 10) || 1);
+      this.set("awakened", parseInt(this.get("awakened"), 10) || 0);
+      return true;
+    }
+  });
+  
+})();
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Effect = Backbone.Model.extend({
+	defaults: {
+    name: "Effect",
+    uid: "effect",
+		base: 10,
+    amount:0,
+    image:"",
+    altimage:""
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('effect-'+uid+'-name');
+    var description = CoC.lang.model('effect-'+uid+'-description');
+    if(name)
+      this.set('name', name);
+    if(description)
+      this.set('description', description);
+  },
+
+  image:function(){
+    return this.get("image") + ".jpg";
+  },
+
+  imageOff:function(){
+    return this.get("image") + "_off.jpg";
+  },
+
+  championIds:function(ids){
+    if(ids){
+      this._championIds = [];
+      for(var id in ids)
+        this._championIds.push(id);
+    }
+    return this._championIds;
+  }
+
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Synergy = Backbone.Model.extend({
+	defaults: {
+    fromId: "champion",
+    fromStars: 1,
+		toId: 'champion',
+		effectId: "effect",
+    effectAmount: 20
+  },
+  
+  to:function(){
+    if(this._to === undefined){
+      this._to = CoC.data.champions.findWhere({ uid:this.get("toId") });
+    }
+    return this._to;
+  },
+  
+  from:function(){
+    if(this._from === undefined){
+      this._from = CoC.data.champions.findWhere({ uid:this.get("fromId"), stars:this.get("fromStars") });
+    }
+    return this._from;
+  },
+  
+  effect: function(){
+    if(this._effect === undefined){
+      this._effect = CoC.data.effects.findWhere({ uid:this.get("effectId") });
+    }
+    return this._effect;
+  }
+});
+
+var CoC = CoC || {};
+CoC.model = CoC.model || {};
+CoC.model.Type = Backbone.Model.extend({
+	defaults: {
+    name: "Type",
+    uid: "type",
+  },
+
+  constructor: function() {
+    Backbone.Model.apply(this, arguments);
+    var uid = this.get('uid');
+    var name = CoC.lang.model('type-'+uid+'-name');
+    if(name)
+      this.set('name', name);
+  },
+
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champions
+CoC.data.champions = new Backbone.Collection([
+
+  { uid:"blackbolt", typeId:"cosmic", stars: 2 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 3 },
+  { uid:"blackbolt", typeId:"cosmic", stars: 4 },
+
+  { uid:"captainmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 4 },
+  { uid:"captainmarvel", typeId:"cosmic", stars: 5 },
+
+  { uid:"drax", typeId:"cosmic", stars: 2 },
+  { uid:"drax", typeId:"cosmic", stars: 3 },
+  { uid:"drax", typeId:"cosmic", stars: 4 },
+
+  { uid:"gamora", typeId:"cosmic", stars: 1 },
+  { uid:"gamora", typeId:"cosmic", stars: 2 },
+  { uid:"gamora", typeId:"cosmic", stars: 3 },
+  { uid:"gamora", typeId:"cosmic", stars: 4 },
+
+  { uid:"msmarvel", typeId:"cosmic", stars: 3 },
+  { uid:"msmarvel", typeId:"cosmic", stars: 4 },
+
+  { uid:"ronan", typeId:"cosmic", stars: 2 },
+  { uid:"ronan", typeId:"cosmic", stars: 3 },
+  { uid:"ronan", typeId:"cosmic", stars: 4 },
+  { uid:"ronan", typeId:"cosmic", stars: 5 },
+
+  { uid:"spidermanblack", typeId:"cosmic", stars: 3 },
+  { uid:"spidermanblack", typeId:"cosmic", stars: 4 },
+
+  { uid:"superiorironman", typeId:"cosmic", stars: 2 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 3 },
+  { uid:"superiorironman", typeId:"cosmic", stars: 4 },
+
+  { uid:"thor", typeId:"cosmic", stars: 2 },
+  { uid:"thor", typeId:"cosmic", stars: 3 },
+  { uid:"thor", typeId:"cosmic", stars: 4 },
+
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 3 },
+  { uid:"thorjanefoster", typeId:"cosmic", stars: 4 },
+
+  { uid:"venom", typeId:"cosmic", stars: 3 },
+  { uid:"venom", typeId:"cosmic", stars: 4 },
+  { uid:"venom", typeId:"cosmic", stars: 5 },
+
+  { uid:"ironman", typeId:"tech", stars: 1 },
+  { uid:"ironman", typeId:"tech", stars: 2 },
+  { uid:"ironman", typeId:"tech", stars: 3 },
+  { uid:"ironman", typeId:"tech", stars: 4 },
+  { uid:"ironman", typeId:"tech", stars: 5 },
+
+  { uid:"ironpatriot", typeId:"tech", stars: 3 },
+  { uid:"ironpatriot", typeId:"tech", stars: 4 },
+
+  { uid:"hulkbuster", typeId:"tech", stars: 2 },
+  { uid:"hulkbuster", typeId:"tech", stars: 3 },
+  { uid:"hulkbuster", typeId:"tech", stars: 4 },
+
+  { uid:"kang", typeId:"tech", stars: 4 },
+
+  { uid:"rocket", typeId:"tech", stars: 3 },
+  { uid:"rocket", typeId:"tech", stars: 4 },
+
+  { uid:"starlord", typeId:"tech", stars: 2 },
+  { uid:"starlord", typeId:"tech", stars: 3 },
+  { uid:"starlord", typeId:"tech", stars: 4 },
+  { uid:"starlord", typeId:"tech", stars: 5 },
+
+  { uid:"vision", typeId:"tech", stars: 1 },
+  { uid:"vision", typeId:"tech", stars: 2 },
+  { uid:"vision", typeId:"tech", stars: 3 },
+  { uid:"vision", typeId:"tech", stars: 4 },
+
+  { uid:"thevision", typeId:"tech", stars: 2 },
+  { uid:"thevision", typeId:"tech", stars: 3 },
+  { uid:"thevision", typeId:"tech", stars: 4 },
+
+  { uid:"ultron", typeId:"tech", stars: 2 },
+  { uid:"ultron", typeId:"tech", stars: 3 },
+  { uid:"ultron", typeId:"tech", stars: 4 },
+
+  { uid:"warmachine", typeId:"tech", stars: 3 },
+  { uid:"warmachine", typeId:"tech", stars: 4 },
+
+  { uid:"colossus", typeId:"mutant", stars: 1 },
+  { uid:"colossus", typeId:"mutant", stars: 2 },
+  { uid:"colossus", typeId:"mutant", stars: 3 },
+  { uid:"colossus", typeId:"mutant", stars: 4 },
+
+  { uid:"cyclops", typeId:"mutant", stars: 2 },
+  { uid:"cyclops", typeId:"mutant", stars: 3 },
+  { uid:"cyclops", typeId:"mutant", stars: 4 },
+  { uid:"cyclops", typeId:"mutant", stars: 5 },
+
+  { uid:"deadpool", typeId:"mutant", stars: 2 },
+  { uid:"deadpool", typeId:"mutant", stars: 3 },
+  { uid:"deadpool", typeId:"mutant", stars: 4 },
+
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 3 },
+  { uid:"deadpoolxforce", typeId:"mutant", stars: 4 },
+
+  { uid:"magneto", typeId:"mutant", stars: 2 },
+  { uid:"magneto", typeId:"mutant", stars: 3 },
+  { uid:"magneto", typeId:"mutant", stars: 4 },
+
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 3 },
+  { uid:"magnetomarvelnow", typeId:"mutant", stars: 4 },
+
+  { uid:"storm", typeId:"mutant", stars: 2 },
+  { uid:"storm", typeId:"mutant", stars: 3 },
+  { uid:"storm", typeId:"mutant", stars: 4 },
+  { uid:"storm", typeId:"mutant", stars: 5 },
+
+  { uid:"wolverine", typeId:"mutant", stars: 1 },
+  { uid:"wolverine", typeId:"mutant", stars: 2 },
+  { uid:"wolverine", typeId:"mutant", stars: 3 },
+  { uid:"wolverine", typeId:"mutant", stars: 4 },
+
+  { uid:"blackpanther", typeId:"skill", stars: 1 },
+  { uid:"blackpanther", typeId:"skill", stars: 2 },
+  { uid:"blackpanther", typeId:"skill", stars: 3 },
+  { uid:"blackpanther", typeId:"skill", stars: 4 },
+  { uid:"blackpanther", typeId:"skill", stars: 5 },
+
+  { uid:"blackwidow", typeId:"skill", stars: 2 },
+  { uid:"blackwidow", typeId:"skill", stars: 3 },
+  { uid:"blackwidow", typeId:"skill", stars: 4 },
+
+  { uid:"daredevil", typeId:"skill", stars: 3 },
+  { uid:"daredevil", typeId:"skill", stars: 4 },
+
+  { uid:"daredevilnetflix", typeId:"skill", stars: 3 },
+  { uid:"daredevilnetflix", typeId:"skill", stars: 4 },
+
+  { uid:"elektra", typeId:"skill", stars: 3 },
+  { uid:"elektra", typeId:"skill", stars: 4 },
+
+  { uid:"hawkeye", typeId:"skill", stars: 1 },
+  { uid:"hawkeye", typeId:"skill", stars: 2 },
+  { uid:"hawkeye", typeId:"skill", stars: 3 },
+  { uid:"hawkeye", typeId:"skill", stars: 4 },
+
+  { uid:"moonknight", typeId:"skill", stars: 3 },
+  { uid:"moonknight", typeId:"skill", stars: 4 },
+
+  { uid:"punisher", typeId:"skill", stars: 2 },
+  { uid:"punisher", typeId:"skill", stars: 3 },
+  { uid:"punisher", typeId:"skill", stars: 4 },
+
+  { uid:"wintersoldier", typeId:"skill", stars: 2 },
+  { uid:"wintersoldier", typeId:"skill", stars: 3 },
+  { uid:"wintersoldier", typeId:"skill", stars: 4 },
+  { uid:"wintersoldier", typeId:"skill", stars: 5 },
+
+  { uid:"abomination", typeId:"science", stars: 2 },
+  { uid:"abomination", typeId:"science", stars: 3 },
+  { uid:"abomination", typeId:"science", stars: 4 },
+
+  { uid:"antman", typeId:"science", stars: 2 },
+  { uid:"antman", typeId:"science", stars: 3 },
+  { uid:"antman", typeId:"science", stars: 4 },
+
+  { uid:"captainamerica", typeId:"science", stars: 2 },
+  { uid:"captainamerica", typeId:"science", stars: 3 },
+  { uid:"captainamerica", typeId:"science", stars: 4 },
+
+  { uid:"captainamericawwii", typeId:"science", stars: 3 },
+  { uid:"captainamericawwii", typeId:"science", stars: 4 },
+
+  { uid:"electro", typeId:"science", stars: 3 },
+  { uid:"electro", typeId:"science", stars: 4 },
+
+  { uid:"hulk", typeId:"science", stars: 1 },
+  { uid:"hulk", typeId:"science", stars: 2 },
+  { uid:"hulk", typeId:"science", stars: 3 },
+  { uid:"hulk", typeId:"science", stars: 4 },
+
+  { uid:"joefixit", typeId:"science", stars: 3 },
+  { uid:"joefixit", typeId:"science", stars: 4 },
+
+  { uid:"rhino", typeId:"science", stars: 2 },
+  { uid:"rhino", typeId:"science", stars: 3 },
+  { uid:"rhino", typeId:"science", stars: 4 },
+  { uid:"rhino", typeId:"science", stars: 5 },
+
+  { uid:"spidergwen", typeId:"science", stars: 3 },
+  { uid:"spidergwen", typeId:"science", stars: 4 },
+  { uid:"spidergwen", typeId:"science", stars: 5 },
+
+  { uid:"spiderman", typeId:"science", stars: 1 },
+  { uid:"spiderman", typeId:"science", stars: 2 },
+  { uid:"spiderman", typeId:"science", stars: 3 },
+  { uid:"spiderman", typeId:"science", stars: 4 },
+  { uid:"spiderman", typeId:"science", stars: 5 },
+
+  { uid:"spidermanmorales", typeId:"science", stars: 3 },
+  { uid:"spidermanmorales", typeId:"science", stars: 4 },
+
+  { uid:"yellowjacket", typeId:"science", stars: 2 },
+  { uid:"yellowjacket", typeId:"science", stars: 3 },
+  { uid:"yellowjacket", typeId:"science", stars: 4 },
+
+  { uid:"drstrange", typeId:"mystic", stars: 3 },
+  { uid:"drstrange", typeId:"mystic", stars: 4 },
+
+  { uid:"guillotine", typeId:"mystic", stars: 2 },
+  { uid:"guillotine", typeId:"mystic", stars: 3 },
+  { uid:"guillotine", typeId:"mystic", stars: 4 },
+
+  { uid:"ironfist", typeId:"mystic", stars: 2 },
+  { uid:"ironfist", typeId:"mystic", stars: 3 },
+  { uid:"ironfist", typeId:"mystic", stars: 4 },
+
+  { uid:"juggernaut", typeId:"mystic", stars: 1 },
+  { uid:"juggernaut", typeId:"mystic", stars: 2 },
+  { uid:"juggernaut", typeId:"mystic", stars: 3 },
+  { uid:"juggernaut", typeId:"mystic", stars: 4 },
+  { uid:"juggernaut", typeId:"mystic", stars: 5 },
+
+  { uid:"magik", typeId:"mystic", stars: 2 },
+  { uid:"magik", typeId:"mystic", stars: 3 },
+  { uid:"magik", typeId:"mystic", stars: 4 },
+  { uid:"magik", typeId:"mystic", stars: 5 },
+
+  { uid:"scarletwitch", typeId:"mystic", stars: 1 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 2 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 3 },
+  { uid:"scarletwitch", typeId:"mystic", stars: 4 },
+
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 2 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 3 },
+  { uid:"unstoppablecolossus", typeId:"mystic", stars: 4 }
+  
+], {
+  model: CoC.model.Champion
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Effects
+CoC.data.effects = new Backbone.Collection([
+
+  { uid: "attack", image:"images/effects/attack", base:5 },
+  { uid: "stun", image:"images/effects/stun", base:15 },
+  { uid: "critrate", image:"images/effects/critical", base:5 },
+  { uid: "critdamage", image:"images/effects/critical", base:15 },
+  { uid: "powergain", image:"images/effects/mana", base:3 },
+  { uid: "powersteal", image:"images/effects/mana_steal", base:3 },
+  { uid: "perfectblock", image:"images/effects/block", base:3 },
+  { uid: "block", image:"images/effects/block", base:10 },
+  { uid: "armor", image:"images/effects/armor", base:4 },
+  { uid: "health", image:"images/effects/health", base:4 },
+  { uid: "healthsteal", image:"images/effects/health_steal", base:4 }
+
+], {
+  model: CoC.model.Effect
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Synergies
+CoC.data.synergies = new Backbone.Collection([
+
+  { fromId:"blackbolt", fromStars: 2, toId: "cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"blackbolt", fromStars: 3, toId: "cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"blackbolt", fromStars: 3, toId: "spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 3, toId: "ronan", effectId:"attack", effectAmount:4 },
+  { fromId:"blackbolt", fromStars: 3, toId: "hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"blackbolt", fromStars: 4, toId: "spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"blackbolt", fromStars: 4, toId: "ronan", effectId:"attack", effectAmount:5 },
+  { fromId:"blackbolt", fromStars: 4, toId: "hulk", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"captainmarvel", fromStars: 3, toId: "captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "gamora", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 3, toId: "ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "gamora", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainmarvel", fromStars: 4, toId: "wolverine", effectId:"powergain", effectAmount:5 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "captainamerica", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "gamora", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "ironman", effectId:"armor", effectAmount:7 },
+  { fromId:"captainmarvel", fromStars: 5, toId: "wolverine", effectId:"powergain", effectAmount:6 },
+
+  { fromId:"drax", fromStars:2, toId:"starlord", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"drax", fromStars:2, toId:"gamora", effectId:"critdamage", effectAmount:15 },
+  { fromId:"drax", fromStars:3, toId:"starlord", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drax", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"drax", fromStars:4, toId:"starlord", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"drax", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"gamora", fromStars:2, toId:"starlord", effectId:"armor", effectAmount:4 },
+  { fromId:"gamora", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"gamora", fromStars:3, toId:"drax", effectId:"critdamage", effectAmount:20 },
+  { fromId:"gamora", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"gamora", fromStars:4, toId:"drax", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"msmarvel", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:3, toId:"hulk", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"msmarvel", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"msmarvel", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"msmarvel", fromStars:4, toId:"hulk", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ronan", fromStars:2, toId:"blackbolt", effectId:"critdamage", effectAmount:15 },
+  { fromId:"ronan", fromStars:3, toId:"blackbolt", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:3, toId:"ironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ronan", fromStars:3, toId:"gamora", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ronan", fromStars:4, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:4, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:4, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"blackbolt", effectId:"critdamage", effectAmount:25 },
+  { fromId:"ronan", fromStars:5, toId:"ironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ronan", fromStars:5, toId:"gamora", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"spidermanblack", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"spidermanblack", fromStars:3, toId:"electro", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"spidermanblack", fromStars:4, toId:"electro", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"superiorironman", fromStars:2, toId:"captainamerica", effectId:"critrate", effectAmount:5 },
+  { fromId:"superiorironman", fromStars:2, toId:"daredevil", effectId:"critdamage", effectAmount:15 },
+  { fromId:"superiorironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"superiorironman", fromStars:3, toId:"captainamerica", effectId:"critrate", effectAmount:6 },
+  { fromId:"superiorironman", fromStars:3, toId:"daredevil", effectId:"critdamage", effectAmount:20 },
+  { fromId:"superiorironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"superiorironman", fromStars:4, toId:"captainamerica", effectId:"critrate", effectAmount:7 },
+  { fromId:"superiorironman", fromStars:4, toId:"daredevil", effectId:"critdamage", effectAmount:25 },
+  { fromId:"superiorironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+
+  { fromId:"thor", fromStars:2, toId:"drstrange", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:4 },
+  { fromId:"thor", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"thor", fromStars:3, toId:"juggernaut", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"thor", fromStars:4, toId:"juggernaut", effectId:"armor", effectAmount:7 },
+
+  { fromId:"venom", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"venom", fromStars:3, toId:"spidermanblack", effectId:"health", effectAmount:4 },
+  { fromId:"venom", fromStars:3, toId:"electro", effectId:"critdamage", effectAmount:20 },
+  { fromId:"venom", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:4, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:4, toId:"electro", effectId:"critdamage", effectAmount:25 },
+  { fromId:"venom", fromStars:5, toId:"spiderman", effectId:"attack", effectAmount:6 },
+  { fromId:"venom", fromStars:5, toId:"spidermanblack", effectId:"health", effectAmount:5 },
+  { fromId:"venom", fromStars:5, toId:"electro", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"ironman", fromStars:2, toId:"thor", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"ironman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"ironman", fromStars:3, toId:"thor", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"ironman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:4, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"ironman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"ironman", fromStars:5, toId:"thor", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"ironpatriot", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"ironpatriot", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:3, toId:"captainamerica", effectId:"critdamage", effectAmount:20 },
+  { fromId:"ironpatriot", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"ironpatriot", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"ironpatriot", fromStars:4, toId:"captainamerica", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"kang", fromStars:4, toId:"blackbolt", effectId:"armor", effectAmount:6 },
+  { fromId:"kang", fromStars:4, toId:"thevision", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"thor", effectId:"critrate", effectAmount:7 },
+  { fromId:"kang", fromStars:4, toId:"spidermanblack", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"hulkbuster", fromStars:2, toId:"hulk", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulkbuster", fromStars:3, toId:"hulk", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulkbuster", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:3, toId:"superiorironman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"hulkbuster", fromStars:4, toId:"hulk", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulkbuster", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:6 },
+  { fromId:"hulkbuster", fromStars:4, toId:"superiorironman", effectId:"perfectblock", effectAmount:6 },
+
+  { fromId:"rocket", fromStars:3, toId:"starlord", effectId:"armor", effectAmount:5 },
+  { fromId:"rocket", fromStars:3, toId:"ronan", effectId:"critrate", effectAmount:6 },
+  { fromId:"rocket", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rocket", fromStars:4, toId:"starlord", effectId:"armor", effectAmount:6 },
+  { fromId:"rocket", fromStars:4, toId:"ronan", effectId:"critrate", effectAmount:7 },
+  { fromId:"rocket", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rocket", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"starlord", fromStars:2, toId:"rocket", effectId:"armor", effectAmount:4 },
+  { fromId:"starlord", fromStars:2, toId:"drax", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"starlord", fromStars:3, toId:"rocket", effectId:"armor", effectAmount:5 },
+  { fromId:"starlord", fromStars:3, toId:"drax", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:3, toId:"gamora", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"starlord", fromStars:4, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:4, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:4, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"rocket", effectId:"armor", effectAmount:6 },
+  { fromId:"starlord", fromStars:5, toId:"drax", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"starlord", fromStars:5, toId:"gamora", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"vision", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"vision", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"vision", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"vision", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"vision", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"vision", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"thevision", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"thevision", fromStars:2, toId:"scarletwitch", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"thevision", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"thevision", fromStars:3, toId:"scarletwitch", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"thevision", fromStars:3, toId:"ultron", effectId:"attack", effectAmount:4 },
+  { fromId:"thevision", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"thevision", fromStars:4, toId:"scarletwitch", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"thevision", fromStars:4, toId:"ultron", effectId:"attack", effectAmount:5 },
+
+  { fromId:"ultron", fromStars:2, toId:"ironman", effectId:"health", effectAmount:4 },
+  { fromId:"ultron", fromStars:2, toId:"scarletwitch", effectId:"armor", effectAmount:4 },
+  { fromId:"ultron", fromStars:3, toId:"ironman", effectId:"health", effectAmount:5 },
+  { fromId:"ultron", fromStars:3, toId:"scarletwitch", effectId:"armor", effectAmount:5 },
+  { fromId:"ultron", fromStars:4, toId:"ironman", effectId:"health", effectAmount:6 },
+  { fromId:"ultron", fromStars:4, toId:"scarletwitch", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"warmachine", fromStars:3, toId:"hulkbuster", effectId:"armor", effectAmount:5 },
+  { fromId:"warmachine", fromStars:3, toId:"hawkeye", effectId:"block", effectAmount:15 },
+  { fromId:"warmachine", fromStars:3, toId:"blackwidow", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"warmachine", fromStars:4, toId:"hulkbuster", effectId:"armor", effectAmount:6 },
+  { fromId:"warmachine", fromStars:4, toId:"blackpanther", effectId:"critrate", effectAmount:7 },
+  { fromId:"warmachine", fromStars:4, toId:"hawkeye", effectId:"block", effectAmount:20 },
+  { fromId:"warmachine", fromStars:4, toId:"blackwidow", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"colossus", fromStars:2, toId:"juggernaut", effectId:"critrate", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"juggernaut", effectId:"critrate", effectAmount:6 },
+  { fromId:"colossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"colossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"colossus", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"colossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"colossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:5 },
+
+  { fromId:"cyclops", fromStars:2, toId:"wolverine", effectId:"critdamage", effectAmount:15 },
+  { fromId:"cyclops", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"cyclops", fromStars:3, toId:"magneto", effectId:"attack", effectAmount:4 },
+  { fromId:"cyclops", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:4, toId:"magneto", effectId:"attack", effectAmount:5 },
+  { fromId:"cyclops", fromStars:5, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+  { fromId:"cyclops", fromStars:5, toId:"magneto", effectId:"attack", effectAmount:5 },
+
+  { fromId:"deadpool", fromStars:2, toId:"punisher", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"deadpool", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"deadpool", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:4 },
+  { fromId:"deadpool", fromStars:3, toId:"punisher", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"deadpool", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"deadpool", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"deadpool", fromStars:4, toId:"punisher", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"deadpoolxforce", fromStars:3, toId:"moonknight", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:3, toId:"deadpool", effectId:"critdamage", effectAmount:20 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"magnetomarvelnow", effectId:"armor", effectAmount:6 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"moonknight", effectId:"critdamage", effectAmount:25 },
+  { fromId:"deadpoolxforce", fromStars:4, toId:"deadpool", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magneto", fromStars:2, toId:"wolverine", effectId:"critrate", effectAmount:5 },
+  { fromId:"magneto", fromStars:2, toId:"cyclops", effectId:"block", effectAmount:10 },
+  { fromId:"magneto", fromStars:2, toId:"storm", effectId:"critdamage", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"wolverine", effectId:"critrate", effectAmount:6 },
+  { fromId:"magneto", fromStars:3, toId:"cyclops", effectId:"block", effectAmount:15 },
+  { fromId:"magneto", fromStars:3, toId:"storm", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"wolverine", effectId:"critrate", effectAmount:7 },
+  { fromId:"magneto", fromStars:4, toId:"cyclops", effectId:"block", effectAmount:20 },
+  { fromId:"magneto", fromStars:4, toId:"storm", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"magik", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magnetomarvelnow", fromStars:3, toId:"wolverine", effectId:"critdamage", effectAmount:20 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"magik", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magnetomarvelnow", fromStars:4, toId:"wolverine", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"storm", fromStars:2, toId:"blackpanther", effectId:"powergain", effectAmount:3 },
+  { fromId:"storm", fromStars:3, toId:"magik", effectId:"armor", effectAmount:6 },
+  { fromId:"storm", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"storm", fromStars:3, toId:"blackpanther", effectId:"powergain", effectAmount:4 },
+  { fromId:"storm", fromStars:4, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"magik", effectId:"armor", effectAmount:7 },
+  { fromId:"storm", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"blackpanther", effectId:"powergain", effectAmount:5 },
+  { fromId:"storm", fromStars:5, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"wolverine", fromStars:2, toId:"cyclops", effectId:"critdamage", effectAmount:15 },
+  { fromId:"wolverine", fromStars:3, toId:"cyclops", effectId:"critdamage", effectAmount:20 },
+  { fromId:"wolverine", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"wolverine", fromStars:3, toId:"magneto", effectId:"critrate", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"cyclops", effectId:"critdamage", effectAmount:25 },
+  { fromId:"wolverine", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"wolverine", fromStars:4, toId:"magneto", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"blackpanther", fromStars:2, toId:"ironfist", effectId:"critdamage", effectAmount:15 },
+  { fromId:"blackpanther", fromStars:3, toId:"ironfist", effectId:"critdamage", effectAmount:20 },
+  { fromId:"blackpanther", fromStars:3, toId:"storm", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackpanther", fromStars:3, toId:"deadpool", effectId:"critrate", effectAmount:6 },
+  { fromId:"blackpanther", fromStars:4, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:4, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:4, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+  { fromId:"blackpanther", fromStars:5, toId:"ironfist", effectId:"critdamage", effectAmount:25 },
+  { fromId:"blackpanther", fromStars:5, toId:"storm", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackpanther", fromStars:5, toId:"deadpool", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"daredevil", fromStars:3, toId:"superiorironman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"daredevil", fromStars:3, toId:"blackwidow", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:3, toId:"elektra", effectId:"powergain", effectAmount:4 },
+  { fromId:"daredevil", fromStars:4, toId:"superiorironman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"daredevil", fromStars:4, toId:"blackwidow", effectId:"powergain", effectAmount:5 },
+  { fromId:"daredevil", fromStars:4, toId:"elektra", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"elektra", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"elektra", fromStars:3, toId:"daredevil", effectId:"powergain", effectAmount:4 },
+  { fromId:"elektra", fromStars:3, toId:"blackwidow", effectId:"critdamage", effectAmount:20 },
+  { fromId:"elektra", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"elektra", fromStars:4, toId:"daredevil", effectId:"powergain", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"deadpool", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"elektra", fromStars:4, toId:"blackwidow", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"hawkeye", fromStars:2, toId:"scarletwitch", effectId:"powergain", effectAmount:3 },
+  { fromId:"hawkeye", fromStars:3, toId:"scarletwitch", effectId:"powergain", effectAmount:4 },
+  { fromId:"hawkeye", fromStars:3, toId:"ironman", effectId:"armor", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"scarletwitch", effectId:"powergain", effectAmount:5 },
+  { fromId:"hawkeye", fromStars:4, toId:"ironman", effectId:"armor", effectAmount:6 },
+  { fromId:"hawkeye", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+
+  { fromId:"moonknight", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"moonknight", fromStars:3, toId:"daredevil", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"moonknight", fromStars:3, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:20 },
+  { fromId:"moonknight", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"moonknight", fromStars:4, toId:"daredevil", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"moonknight", fromStars:4, toId:"deadpoolxforce", effectId:"critdamage", effectAmount:25 },
+  { fromId:"moonknight", fromStars:4, toId:"ironpatriot", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"punisher", fromStars:2, toId:"spiderman", effectId:"critdamage", effectAmount:15 },
+  { fromId:"punisher", fromStars:3, toId:"spiderman", effectId:"critdamage", effectAmount:20 },
+  { fromId:"punisher", fromStars:3, toId:"rhino", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"punisher", fromStars:4, toId:"spiderman", effectId:"critdamage", effectAmount:25 },
+  { fromId:"punisher", fromStars:4, toId:"rhino", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"wintersoldier", fromStars:2, toId:"wolverine", effectId:"armor", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:2, toId:"captainamerica", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"wintersoldier", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:3, toId:"captainamerica", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"wintersoldier", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:4, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"wintersoldier", fromStars:5, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"wintersoldier", fromStars:5, toId:"captainamerica", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"blackwidow", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:2, toId:"wintersoldier", effectId:"powergain", effectAmount:3 },
+  { fromId:"blackwidow", fromStars:3, toId:"hulk", effectId:"stun", effectAmount:20 },
+  { fromId:"blackwidow", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:3, toId:"wintersoldier", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:3, toId:"hawkeye", effectId:"powergain", effectAmount:4 },
+  { fromId:"blackwidow", fromStars:4, toId:"hulk", effectId:"stun", effectAmount:25 },
+  { fromId:"blackwidow", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"blackwidow", fromStars:4, toId:"wintersoldier", effectId:"powergain", effectAmount:5 },
+  { fromId:"blackwidow", fromStars:4, toId:"hawkeye", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"abomination", fromStars:2, toId:"rhino", effectId:"armor", effectAmount:4 },
+  { fromId:"abomination", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"abomination", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:4 },
+  { fromId:"abomination", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+  { fromId:"abomination", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:5 },
+
+  { fromId:"antman", fromStars:2, toId:"yellowjacket", effectId:"attack", effectAmount:4 },
+  { fromId:"antman", fromStars:2, toId:"ironman", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"antman", fromStars:3, toId:"yellowjacket", effectId:"attack", effectAmount:5 },
+  { fromId:"antman", fromStars:3, toId:"spiderman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"antman", fromStars:4, toId:"hulk", effectId:"armor", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"yellowjacket", effectId:"attack", effectAmount:6 },
+  { fromId:"antman", fromStars:4, toId:"spiderman", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"antman", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"captainamerica", fromStars:2, toId:"spiderman", effectId:"armor", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:2, toId:"superiorironman", effectId:"critrate", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:2, toId:"ironman", effectId:"armor", effectAmount:3 },
+  { fromId:"captainamerica", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamerica", fromStars:3, toId:"superiorironman", effectId:"critrate", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:3, toId:"ironman", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"captainamerica", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamerica", fromStars:4, toId:"superiorironman", effectId:"critrate", effectAmount:7 },
+  { fromId:"captainamerica", fromStars:4, toId:"ironman", effectId:"perfectblock", effectAmount:5 },
+  
+  { fromId:"captainamericawwii", fromStars:3, toId:"wintersoldier", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wintersoldier", effectId:"armor", effectAmount:6 },
+  { fromId:"captainamericawwii", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  
+  { fromId:"electro", fromStars:3, toId:"spiderman", effectId:"attack", effectAmount:4 },
+  { fromId:"electro", fromStars:3, toId:"rhino", effectId:"armor", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"spiderman", effectId:"attack", effectAmount:5 },
+  { fromId:"electro", fromStars:4, toId:"rhino", effectId:"armor", effectAmount:6 },
+
+  { fromId:"hulk", fromStars:2, toId:"thor", effectId:"critdamage", effectAmount:15 },
+  { fromId:"hulk", fromStars:3, toId:"thor", effectId:"critdamage", effectAmount:20 },
+  { fromId:"hulk", fromStars:3, toId:"abomination", effectId:"critrate", effectAmount:6 },
+  { fromId:"hulk", fromStars:3, toId:"hawkeye", effectId:"armor", effectAmount:5 },
+  { fromId:"hulk", fromStars:4, toId:"thor", effectId:"critdamage", effectAmount:25 },
+  { fromId:"hulk", fromStars:4, toId:"abomination", effectId:"critrate", effectAmount:7 },
+  { fromId:"hulk", fromStars:4, toId:"hawkeye", effectId:"armor", effectAmount:6 },
+
+  { fromId:"joefixit", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"joefixit", fromStars:3, toId:"moonknight", effectId:"critrate", effectAmount:6 },
+  { fromId:"joefixit", fromStars:3, toId:"hulk", effectId:"attack", effectAmount:5 },
+  { fromId:"joefixit", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"joefixit", fromStars:4, toId:"moonknight", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"msmarvel", effectId:"critrate", effectAmount:7 },
+  { fromId:"joefixit", fromStars:4, toId:"hulk", effectId:"attack", effectAmount:6 },
+
+  { fromId:"rhino", fromStars:2, toId:"spiderman", effectId:"critrate", effectAmount:5 },
+  { fromId:"rhino", fromStars:2, toId:"abomination", effectId:"armor", effectAmount:4 },
+  { fromId:"rhino", fromStars:3, toId:"spiderman", effectId:"critrate", effectAmount:6 },
+  { fromId:"rhino", fromStars:3, toId:"abomination", effectId:"armor", effectAmount:5 },
+  { fromId:"rhino", fromStars:3, toId:"electro", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"rhino", fromStars:4, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:4, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:4, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"rhino", fromStars:5, toId:"spiderman", effectId:"critrate", effectAmount:7 },
+  { fromId:"rhino", fromStars:5, toId:"abomination", effectId:"armor", effectAmount:6 },
+  { fromId:"rhino", fromStars:5, toId:"electro", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"spiderman", fromStars:1, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:1, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:2, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"wolverine", effectId:"health", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"hawkeye", effectId:"attack", effectAmount:5 },
+  { fromId:"spiderman", fromStars:3, toId:"electro", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:3, toId:"captainamerica", effectId:"armor", effectAmount:5 },
+  { fromId:"spiderman", fromStars:4, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:4, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:4, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"wolverine", effectId:"health", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"hawkeye", effectId:"attack", effectAmount:6 },
+  { fromId:"spiderman", fromStars:5, toId:"electro", effectId:"health", effectAmount:7 },
+  { fromId:"spiderman", fromStars:5, toId:"captainamerica", effectId:"armor", effectAmount:6 },
+
+  { fromId:"spidergwen", fromStars:3, toId:"rhino", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"daredevil", effectId:"critrate", effectAmount:6 },
+  { fromId:"spidergwen", fromStars:3, toId:"spiderman", effectId:"powergain", effectAmount:4 },
+  { fromId:"spidergwen", fromStars:4, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:4, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:4, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+  { fromId:"spidergwen", fromStars:5, toId:"rhino", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"daredevil", effectId:"critrate", effectAmount:7 },
+  { fromId:"spidergwen", fromStars:5, toId:"spiderman", effectId:"powergain", effectAmount:5 },
+  { fromId:"spidergwen", fromStars:5, toId:"punisher", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"yellowjacket", fromStars:2, toId:"antman", effectId:"attack", effectAmount:4 },
+  { fromId:"yellowjacket", fromStars:2, toId:"ultron", effectId:"critdamage", effectAmount:15 },
+  { fromId:"yellowjacket", fromStars:3, toId:"antman", effectId:"attack", effectAmount:5 },
+  { fromId:"yellowjacket", fromStars:3, toId:"ultron", effectId:"critdamage", effectAmount:20 },
+  { fromId:"yellowjacket", fromStars:4, toId:"antman", effectId:"attack", effectAmount:6 },
+  { fromId:"yellowjacket", fromStars:4, toId:"ultron", effectId:"critdamage", effectAmount:25 },
+  
+  { fromId:"drstrange", fromStars:3, toId:"thor", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"spiderman", effectId:"armor", effectAmount:5 },
+  { fromId:"drstrange", fromStars:3, toId:"scarletwitch", effectId:"block", effectAmount:15 },
+  { fromId:"drstrange", fromStars:3, toId:"blackbolt", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"drstrange", fromStars:4, toId:"thor", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"spiderman", effectId:"armor", effectAmount:6 },
+  { fromId:"drstrange", fromStars:4, toId:"scarletwitch", effectId:"block", effectAmount:20 },
+  { fromId:"drstrange", fromStars:4, toId:"blackbolt", effectId:"perfectblock", effectAmount:5 },
+
+  { fromId:"ironfist", fromStars:2, toId:"blackpanther", effectId:"armor", effectAmount:4 },
+  { fromId:"ironfist", fromStars:3, toId:"blackpanther", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:3, toId:"drstrange", effectId:"armor", effectAmount:5 },
+  { fromId:"ironfist", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"drstrange", effectId:"armor", effectAmount:6 },
+  { fromId:"ironfist", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+
+  { fromId:"guillotine", fromStars:2, toId:"venom", effectId:"attack", effectAmount:4 },
+  { fromId:"guillotine", fromStars:2, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:3 },
+  { fromId:"guillotine", fromStars:3, toId:"venom", effectId:"attack", effectAmount:5 },
+  { fromId:"guillotine", fromStars:3, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"guillotine", fromStars:3, toId:"magik", effectId:"critdamage", effectAmount:20 },
+  { fromId:"guillotine", fromStars:4, toId:"blackpanther", effectId:"armor", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"venom", effectId:"attack", effectAmount:6 },
+  { fromId:"guillotine", fromStars:4, toId:"captainamericawwii", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"guillotine", fromStars:4, toId:"magik", effectId:"critdamage", effectAmount:25 },
+
+  { fromId:"juggernaut", fromStars:2, toId:"colossus", effectId:"critrate", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:3, toId:"drstrange", effectId:"attack", effectAmount:4 },
+  { fromId:"juggernaut", fromStars:3, toId:"colossus", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:3, toId:"hulk", effectId:"critrate", effectAmount:6 },
+  { fromId:"juggernaut", fromStars:4, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:4, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:4, toId:"hulk", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"drstrange", effectId:"attack", effectAmount:5 },
+  { fromId:"juggernaut", fromStars:5, toId:"colossus", effectId:"critrate", effectAmount:7 },
+  { fromId:"juggernaut", fromStars:5, toId:"hulk", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"magik", fromStars:2, toId:"colossus", effectId:"health", effectAmount:4 },
+  { fromId:"magik", fromStars:3, toId:"storm", effectId:"armor", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"colossus", effectId:"health", effectAmount:5 },
+  { fromId:"magik", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"magik", fromStars:4, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:4, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+  { fromId:"magik", fromStars:5, toId:"storm", effectId:"armor", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"colossus", effectId:"health", effectAmount:6 },
+  { fromId:"magik", fromStars:5, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"magik", fromStars:5, toId:"juggernaut", effectId:"critrate", effectAmount:7 },
+
+  { fromId:"scarletwitch", fromStars:2, toId:"captainmarvel", effectId:"armor", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:3, toId:"captainmarvel", effectId:"armor", effectAmount:5 },
+  { fromId:"scarletwitch", fromStars:3, toId:"vision", effectId:"powergain", effectAmount:4 },
+  { fromId:"scarletwitch", fromStars:4, toId:"captainmarvel", effectId:"armor", effectAmount:6 },
+  { fromId:"scarletwitch", fromStars:4, toId:"vision", effectId:"powergain", effectAmount:5 },
+
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"magik", effectId:"health", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:2, toId:"juggernaut", effectId:"critdamage", effectAmount:15 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"wolverine", effectId:"armor", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"magik", effectId:"health", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"cyclops", effectId:"perfectblock", effectAmount:4 },
+  { fromId:"unstoppablecolossus", fromStars:3, toId:"juggernaut", effectId:"critdamage", effectAmount:20 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"wolverine", effectId:"armor", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"magik", effectId:"health", effectAmount:6 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"cyclops", effectId:"perfectblock", effectAmount:5 },
+  { fromId:"unstoppablecolossus", fromStars:4, toId:"juggernaut", effectId:"critdamage", effectAmount:25 }
+  
+], {
+  model: CoC.model.Synergy
+});
+
+var CoC = CoC || {};
+CoC.data = CoC.data || {};
+
+//Champion Types
+CoC.data.types = new Backbone.Collection([
+
+  { uid:"cosmic", image:"images/icons/cosmic.png" },
+  { uid:"tech", image:"images/icons/tech.png" },
+  { uid:"mutant", image:"images/icons/mutant.png" },
+  { uid:"skill", image:"images/icons/skill.png" },
+  { uid:"science", image:"images/icons/science.png" },
+  { uid:"mystic", image:"images/icons/mystic.png" }
+  
+], {
+  model: CoC.model.Type
+});
+
+var CoC = CoC || {};
+CoC.algorithm = CoC.algorithm || {};
+
+(function(){
+  "use strict";
+
+  CoC.algorithm['quest']=new function(){
+    this.build=function(options){
+      var size = parseInt(options.size, 10), list = [], preselect = [], typeWeights = [], progress = null, team;
+      preProcess(options.champions, list, typeWeights, options.levels);
+      
+      _.filter(list, function(champion){
+        if(champion.quest){
+          preselect.push(champion);
+          return false;
+        }
+        return true;
+      });
+
+      if(options.progress)
+        progress={
+          current: 0,
+          max: combination(list.length, preselect.length? size - preselect.length: size),
+          callback: options.progress
+        };
+
+      if(preselect.length > 0){      
+        if(preselect.length > size){
+          team = getTopPartner(preselect, 0, size, typeWeights, progress);
+        }
+        else{
+          team = getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progress);
+        }
+      }
+      else{
+        team = getTopPartner(list, 0, size, typeWeights, progress);
+      }
+        
+      return postProcess(team.champions);
+    };
+    
+    function preProcess(champions, list, typeWeights, useLevels){
+      var i, fid, champion, uid, stars, quest, synergies;
+
+      for(i=2; i<=5; i++)
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
+        
+      for(i=0; i<champions.length; i++){
+        fid = champions[i];
+        splitValues(fid, '_', function(_uid, _stars, _quest){
+          uid = _uid;
+          stars = parseInt(_stars, 10);
+          quest = _quest === 'true';
+        });
+        champion = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+
+        synergies = {};
+        _(CoC.data.synergies.where({ fromId:uid, fromStars:stars })).each(function(synergy){
+          var effect = synergy.effect();
+          synergies[synergy.get("toId")]={
+            id:synergy.get("toId"),
+            fromId:synergy.get("fromId"),
+            fromStars:synergy.get("fromStars"),
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
+          };
+        });
+
+        list.push({
+          fid: fid,
+          id:uid,
+          stars:stars,
+          quest:quest,
+          type:CoC.data.types.indexOf(champion.type()),
+          synergies:synergies,
+          value: (useLevels? champion.value(): 1)
+        });
+      }  
+    }
+    
+    function postProcess(champions){
+      return {
+        teams:[
+          champions.map(function(champion){
+            return champion.fid;
+          })
+        ],
+        extras:[]
+      };
+    }
+
+    function getTopPartner(list, index, depth, typeWeights, progress){
+      if(index >= list.length)
+        return null;
+      var current = getNextPartner(list, addPartnerHero([], list[index]), [], getTypes([ list[index] ]), index+1, depth, typeWeights, progress);
+      if(current === null)
+        return null;
+      var next = getTopPartner(list,index+1,depth, typeWeights, progress);
+      return (compareTeams(current,next) >= 0)? current: next;
+    }
+    
+    function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progress){
+      if(champions.length == depth){
+        if(progress)
+          progress.callback(++progress.current, progress.max);
+        return {
+          champions:champions,
+          synergies:synergies,
+          value:getTeamValue(champions, synergies, types, typeWeights)
+        };
+      }
+      if(index == list.length)
+        return null;
+      var current = getNextPartner(list, 
+        addPartnerHero(champions, list[index]), 
+        addPartnerSynergies(synergies, champions, list[index]), 
+        addPartnerType(types, list[index]), 
+        index+1, depth, typeWeights, progress
+      );
+      var next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progress);
+
+      return (compareTeams(current,next) >= 0)? current: next;
+    }
+    
+    function addPartnerHero(list, hero){
+      var champions = list.slice();
+      champions.push(hero);
+      return champions;
+    }
+    
+    function addPartnerType(list, hero){
+      var types = list.slice();
+      types[hero.type]++;
+      return types;
+    }
+
+    function getTypes(champions){
+      var types=[0,0,0,0,0,0], i;
+      if(champions !== undefined)
+        for(i=0; i<champions.length; i++)
+          types[champions[i].type]++;
+      return types;
+    }
+    
+    function addPartnerSynergies(oldSynergies, list, next){
+      var synergies = oldSynergies.slice(), i;    
+      for(i=0; i<list.length; i++){
+        if(list[i].synergies[next.id] !== undefined)
+          synergies.push(list[i].synergies[next.id]);
+        if(next.synergies[list[i].id] !== undefined)
+          synergies.push(next.synergies[list[i].id]);
+      }
+      return synergies;
+    }
+    
+    function getSynergies(list){
+      if(list.length < 2)
+        return [];
+    
+      var champions = [], synergies = [], remaining = champions.slice();
+      while(remaining.length > 0){
+        var hero = remaining[0];
+        remaining.splice(0,1);
+        synergies = addPartnerSynergies(synergies, champions, hero);
+        champions.push(hero);
+      }
+      return synergies;
+    }
+      
+    function getTeamValue(champions, synergies, types, typeWeights){
+      var vsynergies = 0, vchampions = 0, vtypes = 1, i;
+      for(i in synergies)
+        vsynergies += synergies[i].value;
+      for(i in champions)
+        vchampions += champions[i].value;
+      for(i in types)
+        if(types[i] > 1)
+          vtypes *= typeWeights[types[i]];
+      return vsynergies * vchampions * vtypes;
+    }
+    
+    function compareTeams(a, b){
+      if(b === null)
+        return 1;
+      return a.value - b.value;
+    }
+  };
+
+  CoC.algorithm['arena']=new function(){
+    this.build=function(options){
+      var i, j;
+      var size = parseInt(options.size, 10), maxTeams = Math.floor(options.champions.length/size), forceExtras = maxTeams * size;
+      var heroMap = {}, synergyMap = {}, typeWeights = {}, teamValues = {};
+      preprocess(options.champions, heroMap, synergyMap, typeWeights, options.levels);
+    
+      var swaps;
+      
+      function checkValueAndSwap(array, a, b){
+        //get team values and counts with swaps
+        var v1a = getTeamValue(array, a), v1b = getTeamValue(array, b),
+          v2a = getTeamValue(array, a, b), v2b = getTeamValue(array, b, a), 
+          count1 = (v1a > 0? 1: 0) + (v1b > 0? 1: 0),
+          count2 = (v2a > 0? 1: 0) + (v2b > 0? 1: 0);
+        
+        //dont accept less teams
+        if(count1 > count2)
+          return false;
+          
+        //more teams, or more value
+        if(count2 > count1 || (v2a + v2b > v1a + v1b)){
+          var tmp = array[a];
+          array[a] = array[b];
+          array[b] = tmp;
+          swaps++;
+          return true;
+        }
+        return false;
+      }
+    
+      function getTeamValue(array, index, swap){
+        if(index >= forceExtras)
+          return 0;
+      
+        var start = Math.floor(index/size) * size, team = array.slice(start, start + size);
+        if(swap !== undefined)
+          team[index % size] = array[swap];
+          
+        var tid = getTeamId(team), value = teamValues[tid];
+        if(value === undefined){
+          var hvalue = 0, svalue = 0, types = {};
+          for(var i=0; i<team.length; i++){
+            var hero = team[i];
+            //get my value
+            hvalue += hero.value;
+            //get my synergies
+            var synergies = synergyMap[hero.fid];
+            for(var j=0; j<team.length; j++){
+              var synergy = synergies[team[j].id];
+              if(synergy)
+                svalue += synergy.value;
+            }
+            //get my type dupes
+            types[hero.type] = (types[hero.type] || 0) + 1;
+          }
+          var cvalue = 1;
+          for(i in types)
+            if(types[i] > 1)
+              cvalue *= typeWeights[types[i]] || 1;
+          //combine them
+          teamValues[tid] = value = hvalue * svalue * cvalue;
+        }
+        return value;
+      }
+      
+      var progressMax = 16, didExtrasShuffle, array, arrays = [];
+      
+      function addArray(){
+        array = [];
+        for(i in heroMap)
+          array.push(heroMap[i]);
+        shuffle(array);
+        arrays.push(array);
+        didExtrasShuffle = false;
+      }
+      
+      addArray();
+      
+      for(var progressCounter=0; progressCounter<progressMax; progressCounter++){
+        if(options.progress)
+          options.progress(progressCounter, progressMax);
+          
+        swaps = 0;
+        
+        //do the swaps
+        for(i=0; i<forceExtras; i++)
+          for(j=(Math.floor(i/size)+1)*size; j<array.length; j++)
+            if(checkValueAndSwap(array, i, j))
+              break;
+    
+        //check if we are missing teams
+        var allFull = true;
+        for(i=0; i<forceExtras; i+=size)
+          if(getTeamValue(array, i) === 0)
+            allFull = false;
+    
+        //exit if we have nothing left to mess with
+        if(swaps === 0){
+        
+          //stuff at the end can be ignored, lets move to empty team
+          if(!didExtrasShuffle && !allFull){
+            var empty = -1;
+            for(i=0; i<forceExtras; i+=size)
+              if(getTeamValue(array, i) === 0)
+                empty = i;
+            if(empty !== -1){
+              var tmp;
+              for(i=0; i<size && forceExtras+i<array.length; i++){
+                tmp = array[empty+i];
+                array[empty+i] = array[forceExtras+i];
+                array[forceExtras+i] = tmp;
+              }
+              didExtrasShuffle = true;
+              continue;
+            }
+          }
+          
+          //start new list
+          addArray();
+        }
+        
+      }
+      if(options.progress)
+        options.progress(progressMax, progressMax);
+        
+      //get the best array
+      var best = {};
+      for(i=0; i<arrays.length; i++){
+        var current = arrays[i], value = 0;
+        for(j=0; j<forceExtras; j+=size)
+          value += getTeamValue(current, j);
+        if(best.value === undefined || best.value < value){
+          best.value = value;
+          best.array = current;
+        }
+      }
+    
+      return postprocess(best.array, size, function(array, i){ 
+        return getTeamValue(array, i);
+      });
+    };
+    
+    function preprocess(champions, heroMap, synergyMap, typeWeights, levels){
+      var i, fid, uid, stars, champion, synergies;
+
+      for(i=2; i<=5; i++)
+        typeWeights[i] = CoC.settings.getDuplicateWeight(i);
+    
+      for(i=0; i<champions.length; i++){
+        fid = champions[i];
+        splitValues(fid, '_', function(_uid, _stars){
+          uid = _uid;
+          stars = parseInt(_stars, 10);
+        });
+        champion = CoC.data.champions.findWhere({ uid:uid, stars:stars });
+
+        //add hero
+        heroMap[fid]={
+          id:uid,
+          fid:fid,
+          type:champion.get("typeId"),
+          value:calculateChampionValue(champion, levels)
+        };
+        synergyMap[fid] = {};
+        synergies = CoC.data.synergies.where({ fromId:uid, fromStars:stars });
+        for(var s=0;s < synergies.length; s++){
+          var synergy = synergies[s];          
+          var effect = synergy.effect();
+          synergyMap[fid][synergy.get("toId")]={
+            value:CoC.settings.getWeight(synergy.get("effectId")) * synergy.get("effectAmount") / effect.get("base")
+          };
+        }
+      }
+    }
+    
+    function postprocess(array, size, getValue){
+      var result = { teams:[], extras:[] }, teams = [], i, j;
+
+      for(i=0; i<array.length; i+=size){
+        var value = getValue(array, i);
+        if(value > 0){
+          var team = [];
+          for(j=0; j<size; j++)
+            team.push(array[i+j].fid);
+            
+          //sort so same teams don't shuffle around
+          team.sort();
+          teams.push({ team:team, value:value });
+        }
+        else
+          for(j=0; j<size && i+j<array.length; j++)
+            result.extras.push(array[i+j].fid);
+      }
+      
+      //best teams will be first
+      teams.sort(function(a,b){ return b.value-a.value; });
+      for(i=0; i<teams.length; i++)
+        result.teams.push(teams[i].team);
+
+      return result;
+    }
+    
+    //getTeamId
+    function getTeamId(team){
+      var ids = [];
+      for(var i in team)
+        ids.push(team[i].fid);
+      ids.sort();
+      return ids.join('-');
+    }
+  };
+  
+  function calculateChampionValue(champion, levels){
+    if(levels === false)
+      return 1;
+    return champion.value();
+  }
+  
+  function factorial(n){
+    if(factorial.cache === undefined)
+      factorial.cache = { 0:1, 1:1, length:1 };
+    if(factorial.cache.length < n){
+      for(var i=factorial.cache.length; i <= n; i++)
+        factorial.cache[i] = i * factorial.cache[i - 1];
+      factorial.cache.length = n;
+    }
+    return factorial.cache[n];
+  }
+
+  function combination(n, r){
+    var value = n / factorial(r);
+    for(var i = n - 1; i > n - r; i--)
+      value *= i;
+    return value;
+  }
+
+  function shuffle(array){
+    var counter = array.length, temp, index;
+    while (counter > 0) {
+      index = Math.floor(Math.random() * counter);
+      counter--;
+      if(index != counter){
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+    }
+  }
+
+  function splitValues(string, split, callback){
+    var values = string.split(split);
+    callback.apply(null, values);
+  }
+  
+})();
+
+onmessage = function (event){
+  if (event.data.type === 'build'){
+    build(event.data.options);
+  }
+};
+
+function build(options){
+  var algorithm = options.algorithm;
+  var champions = options.champions;
+  var size = options.size;
+  var levels = options.levels;
+  var weights = options.weights;
+
+  var delay = 50;
+  var lastTime;
+  function progress(current, max, description){
+    var now = new Date().getTime();
+    var elapsed = now - (lastTime || 0);
+    var value = {
+      current: current,
+      max: max
+    };
+    if(description)
+      value.description = description;
+
+    if(current === 0 || current === max || elapsed >= delay){
+      postMessage({ 
+        type: 'progress', 
+        progress: value
+      });
+      lastTime = now;
+    }
+  }
+  
+  if(!CoC.algorithm[algorithm]){
+    postMessage({ 
+      type: 'failed', 
+      message: 'Algorithm not found'
+    });
+    return;
+  }
+  
+  //build mock settings with weights
+  CoC.settings = {};
+  CoC.settings.getWeight=function(key){
+    var value = weights[key];
+    if(value === undefined || value === null)
+      return 1;
+    return value;
+  };
+
+  CoC.settings.getDuplicateWeight=function(number){
+    if(CoC.settings.getDuplicateWeight.keys === undefined)
+      CoC.settings.getDuplicateWeight.keys = {
+        '2': 'duplicates-2',
+        '3': 'duplicates-3',
+        '4': 'duplicates-4',
+        '5': 'duplicates-5'
+      };
+    return CoC.settings.getWeight(CoC.settings.getDuplicateWeight.keys[number]);
+  };
+
+  //Get result from algorithm
+  var result = CoC.algorithm[algorithm].build({ 
+    champions: champions, 
+    size: size, 
+    levels: levels,
+    progress: progress
+  });
+
+  postMessage({ 
+    type: 'complete', 
+    result: result 
+  });
+}
