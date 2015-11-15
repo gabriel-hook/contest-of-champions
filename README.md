@@ -27,6 +27,12 @@
 
 ### Publishing
 
+  Delint v1 and v2 before publishing to ensure proper code styling.
+
+```
+  $ gulp lint
+```
+
   Build v1 and v2 and publish to gh-pages branch.
 
 ```
