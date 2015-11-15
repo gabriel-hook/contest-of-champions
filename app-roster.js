@@ -176,56 +176,6 @@ __p += '<div class=page id=page-roster data-title="' +
 }
 return __p
 };
-window["CoC"]["data"]["template"]["options"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
-function print() { __p += __j.call(arguments, '') }
-with (obj) {
-__p += '<div id=panel-options data-role=panel data-display=overlay data-position=right data-theme=a data-overlay-theme=b><h3>' +
-((__t = ( string('options') )) == null ? '' : __t) +
-'</h3><ul data-role=listview><li data-role=list-divider>' +
-((__t = ( string('share-to') )) == null ? '' : __t) +
-'</li><li><a id=share-facebook class=share-button href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target=_blank><img src=images/share/facebook_32.png class="ui-li-icon ui-corner-none">' +
-((__t = ( string('facebook') )) == null ? '' : __t) +
-'</a></li><li><a id=share-twitter class=share-button href="https://twitter.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/twitter_32.png class="ui-li-icon ui-corner-none">' +
-((__t = ( string('twitter') )) == null ? '' : __t) +
-'</a></li><li><a id=share-googleplus class=share-button href="https://plus.google.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/googleplus_32.png class="ui-li-icon ui-corner-none">' +
-((__t = ( string('google') )) == null ? '' : __t) +
-'+</a></li><li data-role=list-divider>' +
-((__t = ( string('language') )) == null ? '' : __t) +
-'</li>';
- _(['en', 'es', 'ru']).each(function(lang){ ;
-__p += '<li><a href="" class=change-lang lang="' +
-((__t = ( lang )) == null ? '' : __t) +
-'"><img src="images/lang/' +
-((__t = ( lang )) == null ? '' : __t) +
-'.png" class="ui-li-icon ui-corner-none">' +
-((__t = ( CoC.lang[lang].name )) == null ? '' : __t) +
-'</a></li>';
- }) ;
-__p += '<li data-role=list-divider>' +
-((__t = ( string('tools') )) == null ? '' : __t) +
-'</li>';
- if(current !== 'app-roster'){ ;
-__p += '<li><a href="/contest-of-champions/' +
-((__t = ( search )) == null ? '' : __t) +
-'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
-((__t = ( string('roster-manager') )) == null ? '' : __t) +
-'</a></li>';
- } ;
-
- if(current !== 'app-synergies'){ ;
-__p += '<li><a href="/contest-of-champions/synergies.html' +
-((__t = ( search )) == null ? '' : __t) +
-'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
-((__t = ( string('synergy-map') )) == null ? '' : __t) +
-'</a></li>';
- } ;
-__p += '</ul></div>';
-
-}
-return __p
-};
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -10986,6 +10936,56 @@ return jQuery;
   }
 }.call(this));
 
+window["CoC"]["data"]["template"]["options"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div id=panel-options data-role=panel data-display=overlay data-position=right data-theme=a data-overlay-theme=b><h3>' +
+((__t = ( string('options') )) == null ? '' : __t) +
+'</h3><ul data-role=listview><li data-role=list-divider>' +
+((__t = ( string('share-to') )) == null ? '' : __t) +
+'</li><li><a id=share-facebook class=share-button href="http://www.facebook.com/sharer/sharer.php?u=http://tiny.cc/champions" target=_blank><img src=images/share/facebook_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('facebook') )) == null ? '' : __t) +
+'</a></li><li><a id=share-twitter class=share-button href="https://twitter.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/twitter_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('twitter') )) == null ? '' : __t) +
+'</a></li><li><a id=share-googleplus class=share-button href="https://plus.google.com/share?url=http://tiny.cc/champions" target=_blank><img src=images/share/googleplus_32.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('google') )) == null ? '' : __t) +
+'+</a></li><li data-role=list-divider>' +
+((__t = ( string('language') )) == null ? '' : __t) +
+'</li>';
+ _(['en', 'es', 'ru']).each(function(lang){ ;
+__p += '<li><a href="" class=change-lang lang="' +
+((__t = ( lang )) == null ? '' : __t) +
+'"><img src="images/lang/' +
+((__t = ( lang )) == null ? '' : __t) +
+'.png" class="ui-li-icon ui-corner-none">' +
+((__t = ( CoC.lang[lang].name )) == null ? '' : __t) +
+'</a></li>';
+ }) ;
+__p += '<li data-role=list-divider>' +
+((__t = ( string('tools') )) == null ? '' : __t) +
+'</li>';
+ if(current !== 'app-roster'){ ;
+__p += '<li><a href="/contest-of-champions/' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('roster-manager') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+
+ if(current !== 'app-synergies'){ ;
+__p += '<li><a href="/contest-of-champions/synergies.html' +
+((__t = ( search )) == null ? '' : __t) +
+'" target=_blank><img src=images/icon.png class="ui-li-icon ui-corner-none">' +
+((__t = ( string('synergy-map') )) == null ? '' : __t) +
+'</a></li>';
+ } ;
+__p += '</ul></div>';
+
+}
+return __p
+};
 var CoC = CoC || {};
 CoC.lang = CoC.lang || {};
 
