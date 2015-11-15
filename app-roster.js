@@ -11929,6 +11929,37 @@ __e( type.get('name') ) +
 }
 return __p
 };
+window["CoC"]["data"]["template"]["guide-select-option"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<img src="' +
+((__t = ( champion.portrait() )) == null ? '' : __t) +
+'" class="ui-li-icon ui-corner-none champion ' +
+((__t = ( champion.get('typeId') )) == null ? '' : __t) +
+'">' +
+__e( champion.get('name') );
+ if(champion.get('grade')){ ;
+__p += '<div class=grade><span class="grade-' +
+((__t = ( champion.get('grade').substr(0,1).toLowerCase() )) == null ? '' : __t) +
+'">' +
+__e( champion.get('grade') ) +
+'</span>';
+ if(champion.get('gradeAwakened')){ ;
+__p += ' <span>/</span> <span class="grade-' +
+((__t = ( champion.get('gradeAwakened').substr(0,1).toLowerCase() )) == null ? '' : __t) +
+'">' +
+__e( champion.get('gradeAwakened') ) +
+'</span>';
+ } ;
+__p += '</div>';
+ } ;
+
+
+}
+return __p
+};
 window["CoC"] = window["CoC"] || {};
 window["CoC"]["data"] = window["CoC"]["data"] || {};
 window["CoC"]["data"]["guides"] = window["CoC"]["data"]["guides"] || {};
@@ -12402,37 +12433,6 @@ window["CoC"]["data"]["guides"]["raw"]["vision"] = {
 		"heavy": "The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
 		"rating": "4"
 	}
-};
-window["CoC"]["data"]["template"]["guide-select-option"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
-function print() { __p += __j.call(arguments, '') }
-with (obj) {
-__p += '<img src="' +
-((__t = ( champion.portrait() )) == null ? '' : __t) +
-'" class="ui-li-icon ui-corner-none champion ' +
-((__t = ( champion.get('typeId') )) == null ? '' : __t) +
-'">' +
-__e( champion.get('name') );
- if(champion.get('grade')){ ;
-__p += '<div class=grade><span class="grade-' +
-((__t = ( champion.get('grade').substr(0,1).toLowerCase() )) == null ? '' : __t) +
-'">' +
-__e( champion.get('grade') ) +
-'</span>';
- if(champion.get('gradeAwakened')){ ;
-__p += ' <span>/</span> <span class="grade-' +
-((__t = ( champion.get('gradeAwakened').substr(0,1).toLowerCase() )) == null ? '' : __t) +
-'">' +
-__e( champion.get('gradeAwakened') ) +
-'</span>';
- } ;
-__p += '</div>';
- } ;
-
-
-}
-return __p
 };
 window["CoC"]["data"]["template"]["guide"] = function(obj) {
 obj || (obj = {});
