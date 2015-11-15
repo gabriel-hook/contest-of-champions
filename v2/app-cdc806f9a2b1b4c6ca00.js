@@ -4710,7 +4710,7 @@
 		menu.options = menu.options.concat(uids.map(function (uid) {
 			return {
 				title: 'champion-' + uid + '-name',
-				image: 'images/champions/portrait_' + uid + '.png',
+				image: '../images/champions/portrait_' + uid + '.png',
 				selected: function selected(currentUid) {
 					return currentUid === uid;
 				},
@@ -4760,7 +4760,7 @@
 	var $synergy = function $synergy(championId, effectId, stars) {
 		return {
 			tag: 'div',
-			children: ['\n\t\t\t', $image('images/champions/portrait_' + championId + '.png'), $image((0, _effects.effectImage)(effectId)), '\n\t\t\t', {
+			children: ['\n\t\t\t', $image('../images/champions/portrait_' + championId + '.png'), $image((0, _effects.effectImage)(effectId)), '\n\t\t\t', {
 				tag: 'span',
 				children: ['\n\t\t\t\t', stars, '★ \n\t\t\t\t', _lang2.default.get('champion-' + championId + '-name'), '\n\t\t\t'],
 				attrs: { className: 'champion--name', onclick: function onclick() {
@@ -5406,7 +5406,7 @@
 			for (var i = 0; i < stars; i++) {
 				starImages.push({
 					tag: 'img',
-					attrs: { className: 'star', src: 'images/icons/star.png' }
+					attrs: { className: 'star', src: '../images/icons/star.png' }
 				});
 			}var name = _lang2.default.get('champion-' + uid + '-shortname', null) || _lang2.default.get('champion-' + uid + '-name');
 			return {
@@ -5417,7 +5417,7 @@
 						tag: 'div',
 						children: ['\n\t\t\t\t\t\t', {
 							tag: 'img',
-							attrs: { className: 'portrait', src: 'images/champions/portrait_' + uid + '.png' }
+							attrs: { className: 'portrait', src: '../images/champions/portrait_' + uid + '.png' }
 						}, '\n\t\t\t\t\t\t', {
 							tag: 'div',
 							children: ['\n\t\t\t\t\t\t\t', {
@@ -6116,7 +6116,7 @@
 	
 					var node = graph.newNode({
 						label: uid,
-						image: getImage('images/champions/portrait_' + uid + '.png'),
+						image: getImage('../images/champions/portrait_' + uid + '.png'),
 						type: typeId,
 						color: typeColors[typeId],
 						neighbors: {},
@@ -8117,4 +8117,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=app-a9024cb73f01a78edfac.js.map
+//# sourceMappingURL=app-cdc806f9a2b1b4c6ca00.js.map
