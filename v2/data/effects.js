@@ -31,7 +31,7 @@ const imageMap = {
 };
 
 function effectImage(uid, isAlternate) {
-    return `images/effects/${ 
+    return `../images/effects/${
         imageMap[uid] 
     }${ 
         isAlternate? '_off': ''

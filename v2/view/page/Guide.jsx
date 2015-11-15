@@ -29,7 +29,7 @@ uidsByType.forEach(({ typeId, uids}) => {
 	});
 	menu.options = menu.options.concat(uids.map((uid) => ({
 		title: `champion-${ uid }-name`,
-		image: `images/champions/portrait_${ uid }.png`,
+		image: `../images/champions/portrait_${ uid }.png`,
 		selected: (currentUid) => currentUid === uid,
 		onclick: () => router.setRoute(`/guide/${ uid }`) && false,
 	})));
@@ -66,7 +66,7 @@ const $synergy = (championId, effectId, stars) => {
 	return (
 		<div class="guide--synergy">
 			{ 
-				$image(`images/champions/portrait_${ championId }.png`) 
+				$image(`../images/champions/portrait_${ championId }.png`)
 			}{ 
 				$image(effectImage(effectId)) 
 			}

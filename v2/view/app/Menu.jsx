@@ -109,7 +109,7 @@ const Menu = {
                     }
                     onclick={ selectLanguage }
                 >
-                    { $image(`images/lang/${ id }.png`) }
+                    { $image(`../images/lang/${ id }.png`) }
                     { lang.messages[id].lang }
                 </li>
             );

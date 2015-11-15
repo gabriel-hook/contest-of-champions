@@ -8,7 +8,7 @@ function config(){
 			app: ['./v2/index.js'],
 		},
 		output: {
-			path: path.resolve('./build/v2/'),
+			path: path.resolve('./.build/v2/'),
 			filename: '[name]-[hash].js',
 		},
 		module: {

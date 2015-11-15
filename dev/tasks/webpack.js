@@ -1,9 +1,12 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
+import plumber from 'gulp-plumber';
 import symlink from 'gulp-symlink';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { config } from '../v2/webpack-config.js';
+
+const DEVELOPMENT = gutil.env.dev;
 
 gulp.task('webpack-dev', (callback) => {
     const domain = 'localhost';
@@ -32,16 +35,18 @@ gulp.task('webpack-dev', (callback) => {
 
 gulp.task('webpack', (callback) => {
     const buildConfig = config();
-    buildConfig.plugins.unshift(
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
-    );
+
+    if(!DEVELOPMENT) {
+        buildConfig.plugins.unshift(
+            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.UglifyJsPlugin()
+        );
+    }
+
     buildConfig.devtool = '#sourcemaps';
     webpack(buildConfig, (err) => {
         if(err)
             throw new gutil.PluginError('webpack', err);
-        gulp.src('./build/images')
-            .pipe(symlink('./build/v2/images'));
         callback();
     });
 });

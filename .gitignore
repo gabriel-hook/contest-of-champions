@@ -1,5 +1,6 @@
 .sublime-*
 npm-debug.log
-/build
+/.publish
+/.build
 /.idea
 /node_modules

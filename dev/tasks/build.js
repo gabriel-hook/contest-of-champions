@@ -18,7 +18,7 @@ import styles from '../v1/styles.json';
 
 const DEVELOPMENT = gutil.env.dev;
 
-const distPath = './build';
+const distPath = './.build';
 
 function renamePaths(override, options = {}){
   const { force } = options;
@@ -40,7 +40,7 @@ gulp.task('build:js', ['clean:js'], () => {
       streams[name] = [];
 
   //get the streams
-  for(const {name, files, json, template} of scripts){
+  for(const { name, files, json, template } of scripts){
     //if its JSON, store it to a variable
     if(json){
       streams[name].push(gulp.src(files, { base: './' })
@@ -107,9 +107,9 @@ gulp.task('build:js', ['clean:js'], () => {
 
 gulp.task('build:css', ['clean:css'], () => {
   let streams = [];
-  streams.push(gulp.src('./v1/styles/fonts/*')
+  streams.push(gulp.src('./v1/fonts/*.*')
     .pipe(plumber())
-    .pipe(gulp.dest(`./build/fonts`))
+    .pipe(gulp.dest(`${ distPath }/fonts`))
   );
   //regular multiple css minification
   for(const {name, files} of styles){

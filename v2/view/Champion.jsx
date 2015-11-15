@@ -11,7 +11,7 @@ const Champion = {
 		const starImages = [];
 		for(let i=0; i<stars; i++)
 			starImages.push(
-	        	<img class="star" src="images/icons/star.png" />
+	        	<img class="star" src="../images/icons/star.png" />
 			);
 		const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
 		return (
@@ -21,7 +21,7 @@ const Champion = {
 						class={ `inner ${ hasClick && 'clickable' }` } 
 						onclick={ args.onclick }
 					>
-						<img class="portrait" src={ `images/champions/portrait_${ uid }.png` } />
+						<img class="portrait" src={ `../images/champions/portrait_${ uid }.png` } />
 						<div class="title">
 							<span class="name">{ name }</span>
 						</div>

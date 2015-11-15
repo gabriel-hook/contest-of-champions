@@ -1,38 +1,38 @@
 [{
   "name": "app-roster-screen",
   "files":[
-    "./legacy/styles/fonts.css",
+    "./v1/styles/fonts.css",
     "./node_modules/jquery-mobile/dist/jquery.mobile.css",
-    "./legacy/styles/coc-jquery-mobile-theme.css",
-    "./legacy/styles/coc.css",
-    "./legacy/styles/coc-champion.css",
-    "./legacy/styles/coc-guide.css",
-    "./legacy/styles/coc-crystal.css",
-    "./legacy/styles/coc-roster.css",
-    "./legacy/styles/coc-team.css"
+    "./v1/styles/coc-jquery-mobile-theme.css",
+    "./v1/styles/coc.css",
+    "./v1/styles/coc-champion.css",
+    "./v1/styles/coc-guide.css",
+    "./v1/styles/coc-crystal.css",
+    "./v1/styles/coc-roster.css",
+    "./v1/styles/coc-team.css"
   ]
 },{
   "name": "app-roster-print",
   "files":[
-    "./legacy/styles/print.css"
+    "./v1/styles/print.css"
   ]
 },{
   "name": "app-synergies-screen",
   "files":[
-    "./legacy/styles/fonts.css",
+    "./v1/styles/fonts.css",
     "./node_modules/jquery-mobile/dist/jquery.mobile.css",
-    "./legacy/styles/coc-jquery-mobile-theme.css",
-    "./legacy/styles/coc-synergies.css"
+    "./v1/styles/coc-jquery-mobile-theme.css",
+    "./v1/styles/coc-synergies.css"
   ]
 },{
   "name": "app-editor-screen",
   "files":[
-    "./legacy/styles/fonts.css",
+    "./v1/styles/fonts.css",
     "./node_modules/jquery-mobile/dist/jquery.mobile.css",
-    "./legacy/styles/coc-jquery-mobile-theme.css",
+    "./v1/styles/coc-jquery-mobile-theme.css",
     "./node_modules/select2/dist/css/select2.css",
-    "./legacy/styles/coc.css",
-    "./legacy/styles/coc-guide.css",
-    "./legacy/styles/coc-editor.css"
+    "./v1/styles/coc.css",
+    "./v1/styles/coc-guide.css",
+    "./v1/styles/coc-editor.css"
   ]
 }]

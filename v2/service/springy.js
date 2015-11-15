@@ -51,7 +51,7 @@ function getGraph(stars) {
 				const { typeId, uid } = champion.attr;
 				const node = graph.newNode({
 					label: uid,
-					image: getImage(`images/champions/portrait_${ uid }.png`),
+					image: getImage(`../images/champions/portrait_${ uid }.png`),
 					type: typeId,
 					color: typeColors[ typeId ],
 					neighbors: {},

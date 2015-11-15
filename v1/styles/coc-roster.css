@@ -66,7 +66,7 @@
   height:24px;
   width:24px;
   margin-right:2px;
-  background:center url(../../images/icons/star.png) no-repeat;
+  background:center url(images/icons/star.png) no-repeat;
   background-size:contain;
 }
 #roster-delete-confirm-stars .star{
@@ -76,7 +76,7 @@
 }
 #roster-delete-confirm-stars.awakened .star,
 #roster-configure-stars.awakened .star{
-  background-image:url(../../images/icons/star-awakened.png);
+  background-image:url(images/icons/star-awakened.png);
 }
 
 #popup-roster-configure .extras{

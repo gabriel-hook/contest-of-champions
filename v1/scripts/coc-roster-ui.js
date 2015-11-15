@@ -1,7 +1,7 @@
 var CoC = CoC || {};
 CoC.ui = CoC.ui || {};
 
-CoC.ui.workerScriptUrl = 'build/legacy/worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
+CoC.ui.workerScriptUrl = 'worker-teams.js?' + parseInt(new Date().getTime() % 1000000).toString(16);
 
 CoC.ui.initialize=function(){
   //nothing

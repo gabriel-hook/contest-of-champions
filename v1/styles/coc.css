@@ -124,7 +124,7 @@ body.ui-mobile-viewport.iframe{
 
 
 .ui-icon-crystal:after{
-  background-image:url(../../images/icons/crystal.png);
+  background-image:url("images/icons/crystal.png");
 }
 
 /******************
