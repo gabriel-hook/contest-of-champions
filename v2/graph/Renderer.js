@@ -40,19 +40,19 @@ class Renderer {
                 this.processNode(node, point.p);
                 opsBefore.push({
                     args:[ node, point.p ],
-                    func:this.drawNode,
+                    callback:this.drawNode,
                     zindex:point.p.y,
                 });
                 opsAfter.push({
                     args:[ node, point.p ],
-                    func:this.drawNodeOverlay,
+                    callback:this.drawNodeOverlay,
                     zindex:point.p.y,
                 });
             });
             this.layout.eachEdge((edge, spring) => {
                 opsBefore.push({
                     args:[ edge, spring.point1.p, spring.point2.p ],
-                    func:this.drawEdge,
+                    callback:this.drawEdge,
                     zindex:(spring.point1.p.y + spring.point2.p.y + Math.max(spring.point1.p.y, spring.point2.p.y)) / 3,
                 });
             });
@@ -65,9 +65,9 @@ class Renderer {
             });
             //process the rendering functions
             for(let i=0; i<opsBefore.length; i++)
-                Reflect.apply(opsBefore[ i ], this, opsBefore[ i ].args);
+                opsBefore[ i ].callback.apply(this, opsBefore[ i ].args);
             for(let i=0; i<opsAfter.length; i++)
-                Reflect.apply(opsAfter[ i ], this, opsAfter[ i ].args);
+                opsAfter[ i ].callback.apply(this, opsAfter[ i ].args);
             this.drawOverlay();
         }, this.onRenderStop, this.onRenderStart);
     }

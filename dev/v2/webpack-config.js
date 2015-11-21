@@ -12,9 +12,16 @@ function config() {
         },
         module: {
             loaders: [
-                // javascript and jsx
+                // jsx
                 {
-                    test: /\.jsx?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    test: /\.jsx(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    loaders: [ 'babel' ],
+                    exclude: /node_modules/,
+                    hot: true,
+                },
+                // javascript
+                {
+                    test: /\.js(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loaders: [ 'babel' ],
                     exclude: /node_modules/,
                 },
@@ -23,6 +30,7 @@ function config() {
                     test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loaders: [ 'style', 'css', 'sass' ],
                     exclude: /node_modules/,
+                    hot: true,
                 },
                 // fonts & svg
                 {

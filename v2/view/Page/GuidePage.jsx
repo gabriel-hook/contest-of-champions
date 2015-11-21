@@ -1,6 +1,5 @@
-import './Guide.scss';
+import './GuidePage.scss';
 import { effectImage } from '../../data/effects.js';
-import { uidsByType } from '../../data/champions.js';
 import synergies from '../../data/synergies.js';
 //import guides from '../../data/guides.js';
 import router from '../../service/router.js';
@@ -8,32 +7,6 @@ import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
-
-const tab = {
-    id: 'guide',
-    icon: 'user',
-    title: 'guide',
-};
-
-const menu = {
-    header:{
-        title: 'guides',
-        icon: 'user',
-    },
-    options: [],
-};
-uidsByType.forEach(({ typeId, uids }) => {
-    menu.options.push({
-        header: true,
-        title: `type-${ typeId }-name`,
-    });
-    menu.options = menu.options.concat(uids.map((uid) => ({
-        title: `champion-${ uid }-name`,
-        image: `../images/champions/portrait_${ uid }.png`,
-        selected: (currentUid) => currentUid === uid,
-        onclick: () => router.setRoute(`/guide/${ uid }`) && false,
-    })));
-});
 
 function $image(src) {
     return src && (
@@ -110,5 +83,4 @@ const Guide = {
     },
 };
 
-export { tab, menu };
 export default Guide;

@@ -13,7 +13,8 @@ gulp.task('webpack-dev', (callback) => {
     for (const key in devConfig.entry)
         devConfig.entry[ key ].unshift(`webpack-dev-server/client?http://${ domain }:${ port }`, 'webpack/hot/only-dev-server');
     for (const key in devConfig.module.loaders)
-        devConfig.module.loaders[ key ].loaders.unshift('simple-hot');
+        if(devConfig.module.loaders[ key ].hot)
+            devConfig.module.loaders[ key ].loaders.unshift('simple-hot');
     devConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
     devConfig.devtool = 'eval';
     const compiler = webpack(devConfig);

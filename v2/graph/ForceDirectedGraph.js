@@ -1,5 +1,6 @@
 import lang from '../service/lang.js';
-import ForceDirectedLayout from './ForceDirectedLayout.js';
+import { getImage } from '../util/images.js';
+import Layout from './Layout.js';
 import Renderer from './Renderer.js';
 import Graph from './Graph.js';
 import Vector from './Vector.js';
@@ -15,12 +16,13 @@ export default function({
     damping = 0.5,
     minEnergyThreshold = 0.00001,
     nodeSelected = null,
+    effectSelected = null,
     maxTeamSize = 5,
     activeMass = 500,
     graph = new Graph(),
     }) {
     const canvas = this.canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = this.ctx = canvas.getContext('2d');
 
     //We can check to see if the font has been loaded before using.
     function ScaledNodeFont() {
@@ -45,46 +47,53 @@ export default function({
     let nodeFont;
     let pixelRatio;
     let canvasState;
-    this.resize = function() {
+
+
+    function resize() {
+        canvas.width = canvasState.width;
+        canvas.height = canvasState.height;
+    }
+    let resizeTimeout;
+
+    this.update = (stars, graph, top, left, width, height) => {
+        if(graph && this.stars !== stars) {
+            this.stars = stars;
+
+            this.layout.graph = graph;
+            this.layout.nodePoints = {};
+            this.layout.edgeSprings = {};
+
+            graph.eventListeners = this.graph.eventListeners;
+            this.graph = graph;
+
+            clearSelected();
+        }
+
         pixelRatio = window.devicePixelRatio || 1;
         nodeFont = new ScaledNodeFont();
+        canvasState = {
+            top,
+            left,
+            width: width * pixelRatio,
+            height: height * pixelRatio,
+        };
 
-        const parentNode = canvas.parentNode;
-        if (parentNode) {
-            canvas.width = parentNode.offsetWidth;
-            canvas.height = parentNode.offsetHeight;
-        }
-        canvasState = canvas.getBoundingClientRect();
-    };
-    this.resize();
+        //resize with a max rate of every 50ms, so we don't get resize blinking.
+        if(!resizeTimeout)
+            resizeTimeout = setTimeout(() => {
+                resize();
+                resizeTimeout = null;
+            }, 50);
 
-    this.update = (stars, graph) => {
-        this.stars = stars;
-
-        this.layout.graph = graph;
-        this.layout.nodePoints = {};
-        this.layout.edgeSprings = {};
-
-        graph.eventListeners = this.graph.eventListeners;
-        this.graph = graph;
-
-        clearSelected();
-        renderer.start();
+        this.renderer.start();
     };
 
     function addEventListeners(element, types, listener) {
         types.split(' ').forEach((type) => element.addEventListener(type, listener, true));
     }
 
-    let resizeTimeout;
-    addEventListeners(window, 'resize', () => {
-        if (resizeTimeout)
-            clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(this.resize, 25);
-    });
-
     this.graph = graph;
-    this.layout = new ForceDirectedLayout(graph, stiffness, repulsion, damping, minEnergyThreshold);
+    this.layout = new Layout(graph, stiffness, repulsion, damping, minEnergyThreshold);
 
     // calculate bounding box of graph layout.. with ease-in
     let currentBB = this.layout.getBoundingBox();
@@ -126,6 +135,7 @@ export default function({
         if (dragged)
             dragged.point.active = false;
         dragged = null;
+        effectSelected(type);
         renderer.start();
     };
 
@@ -498,15 +508,9 @@ export default function({
         list: [],
         todo: {},
     };
-    nodeImageQueue.push = function(id, callback) {
-        nodeImageQueue.insert(id, callback, 'push');
-    };
-    nodeImageQueue.unshift = function(id, callback) {
-        nodeImageQueue.insert(id, callback, 'unshift');
-    };
-    nodeImageQueue.insert = function(id, callback, method) {
+    nodeImageQueue.insert = function(id, callback) {
         nodeImageQueue.todo[ id ] = callback;
-        Reflect.apply(nodeImageQueue.list[ method ], nodeImageQueue.list, [ id ]);
+        nodeImageQueue.list.unshift(id);
         if (!nodeImageQueue.timeout)
             nodeImageQueue.next();
     };
@@ -515,10 +519,10 @@ export default function({
             return;
         const id = nodeImageQueue.list.shift();
         const todo = nodeImageQueue.todo[ id ];
-        Reflect.deleteProperty(nodeImageQueue.todo, id);
+        delete nodeImageQueue.todo[ id ];
         nodeImageQueue.timeout = setTimeout(() => {
-            Reflect.deleteProperty(nodeImageQueue, 'timeout');
-            Reflect.apply(todo);
+            delete nodeImageQueue.timeout;
+            todo();
             nodeImageQueue.next();
         }, 25);
     };
@@ -536,6 +540,7 @@ export default function({
         if (nodeImages[ src ].portraits === undefined)
             nodeImages[ src ].portraits = [];
         nodeImages[ src ].portraits.push(canvas);
+        nodeImages[ src ].loaded = true;
 
         const resize = image.width >> 1;
         if (resize >= 16) {
@@ -543,12 +548,7 @@ export default function({
             const resizeContext = resizeCanvas.getContext('2d');
             resizeCanvas.width = resizeCanvas.height = resize;
             resizeContext.drawImage(image, 0, 0, resize, resize);
-            nodeImageQueue.unshift(src, () => {
-                addPortaitImages(src, resizeCanvas, color);
-            }, 'unshift');
-        }
-        else {
-            nodeImages[ src ].loaded = true;
+            nodeImageQueue.insert(src, () => addPortaitImages(src, resizeCanvas, color));
         }
     }
 
@@ -636,15 +636,15 @@ export default function({
 
     //we cache the best sized portrait with type bar
     Node.prototype.setPortraitImage = function(size) {
-        const img = this.data.image;
+        const src = this.data.image;
+        const image = getImage(src);
         const color = this.data.color || '#111111';
         let portrait;
         let hitmask;
-        if (img) {
-            const src = img.src;
+        if (image) {
             if (src in nodeImages) {
                 if (nodeImages[ src ].loaded) {
-                    //sample down for better antialiasing
+                    //sample down for better anti-aliasing
                     const portraits = nodeImages[ src ].portraits;
                     const target = getPortraitSizeTarget(size);
                     for(let i = 0; i < portraits.length && portraits[ i ].width >= target; i++)
@@ -654,27 +654,18 @@ export default function({
                     hitmask = getHitmask(src, portraits[ 0 ]);
                 }
             }
-            else {
+            else if(!nodeImageQueue.todo[ src ]) {
                 nodeImages[ src ] = {
                     loaded: false,
                     portraits: [],
                 };
-                const image = new Image();
-                image.addEventListener('load', () => {
-                    nodeImageQueue.push(src, () => {
-                        addPortaitImages(src, image, color);
-                    });
-                });
-                image.src = src;
+                nodeImageQueue.insert(src, () => addPortaitImages(src, image, color));
             }
         }
         if (!portrait) {
             portrait = getPlaceholder(size, color);
-            hitmask = getHitmask('portrait', () => {
-                return getPlaceholder(256);
-            });
+            hitmask = getHitmask('portrait', getPlaceholder(256));
         }
-
         this.image = portrait;
         this.hitmask = hitmask;
     };
@@ -1063,6 +1054,9 @@ export default function({
         //scale and move back to relative position
         return last.divide(this.hitmask.size).multiply(this.bb.size).add(this.bb.topLeft);
     };
+
+    this.update(undefined, null, 0, 0, 100, 100);
+
     return this;
 }
 

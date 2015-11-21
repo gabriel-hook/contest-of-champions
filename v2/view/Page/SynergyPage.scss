@@ -1,0 +1,83 @@
+.synergy {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    canvas {
+        width: 100%;
+        height: 100%;
+
+        &.hover {
+            cursor: pointer;
+            cursor: grab;
+        }
+        &.dragging {
+            cursor: move;
+            cursor: grabbing;
+        }
+        &.selecting {
+            cursor: crosshair;
+            cursor: cell;
+        }
+    }
+
+    .legend {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        text-shadow: 0 1px 0 #000;
+        padding: 5px;
+        font-family: Hanzel, Verdana, Geneva, sans-serif;
+        font-size: 1.0em;
+        line-height: 1.2em;
+
+        .legend-effect {
+            border-left: solid 1em;
+            padding: 0 .4em;
+            opacity: 0.5;
+            transition: opacity 0.25s;
+
+
+            &.legend-effect--selected {
+                opacity: 1;
+            }
+        }
+
+        .legend-effect--attack {
+             border-color: #f00;
+        }
+        .legend-effect--stun {
+             border-color: #f60;
+        }
+        .legend-effect--critrate {
+             border-color: #fa0;
+        }
+        .legend-effect--critdamage {
+             border-color: #a60;
+        }
+        .legend-effect--powergain {
+             border-color: #a0f;
+        }
+        .legend-effect--powersteal {
+             border-color: #a6f;
+        }
+        .legend-effect--perfectblock {
+             border-color: #00a;
+        }
+        .legend-effect--block {
+             border-color: #66f;
+        }
+        .legend-effect--armor {
+             border-color: #0af;
+        }
+        .legend-effect--health {
+             border-color: #0f0;
+        }
+        .legend-effect--healthsteal {
+             border-color: #af0;
+        }
+    }
+}

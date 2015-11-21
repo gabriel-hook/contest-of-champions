@@ -1,0 +1,24 @@
+
+.menu-option {
+    cursor: pointer;
+    font-family: Hanzel, Verdana, Geneva, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.1em;
+    color: #fff;
+    padding: .5em .5em .5em 1.5em;
+    text-shadow: 0 1px 0 #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover {
+        background: #ddd;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+    }
+    &.menu-option--selected {
+        background: #eee;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+    }
+}

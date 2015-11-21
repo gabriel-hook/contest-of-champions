@@ -3,6 +3,7 @@ import sequence from 'gulp-sequence';
 import plumber from 'gulp-plumber';
 import jshint from 'gulp-jshint';
 import eslint from 'gulp-eslint';
+import sasslint from 'gulp-sass-lint';
 
 gulp.task('lint:v1:js', () => gulp.src([
     './v1/scripts/**/*.js',
@@ -37,6 +38,22 @@ gulp.task('lint:v2:js', () => gulp.src([
     .pipe(eslint())
     .pipe(eslint.format())
 );
-gulp.task('lint:v2', [ 'lint:v2:js' ]);
+gulp.task('lint:v2:css', () => gulp.src([
+    './v2/**/*.scss',
+])
+    .pipe(sasslint())
+    .pipe(sasslint.format())
+    .pipe(sasslint.failOnError())
+);
+gulp.task('lint:v2', [ 'lint:v2:js' ]); //sequence('lint:v2:css', 'lint:v2:js'));
 
-gulp.task('lint', sequence('lint:v1', 'lint:v2'));
+gulp.task('lint:dev:js', () => gulp.src([
+    './dev/**/*.js',
+])
+    .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
+);
+gulp.task('lint:dev', [ 'lint:dev:js' ]);
+
+gulp.task('lint', sequence('lint:dev', 'lint:v1', 'lint:v2'));

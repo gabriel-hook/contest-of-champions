@@ -1,9 +1,9 @@
 import Point from './Point.js';
 import Spring from './Spring.js';
 import Vector from './Vector.js';
-import { requestRender } from './animation.js';
+import { requestRender } from '../util/animation.js';
 
-class ForceDirectedLayout {
+class Layout {
     constructor(graph, stiffness, repulsion, damping, minEnergyThreshold = 0.01) {
         this.graph = graph;
         this.stiffness = stiffness; // spring stiffness constant
@@ -24,7 +24,7 @@ class ForceDirectedLayout {
     }
 
     spring(edge) {
-        if (!(edge.id in this.edgeSprings)) {
+        if (!this.edgeSprings[ edge.id ]) {
             const length = (edge.data.length !== undefined) ? edge.data.length : 1.0;
             let existingSpring = false;
             this.graph.getEdges(edge.source, edge.target).forEach((otherEdge) => {
@@ -65,17 +65,17 @@ class ForceDirectedLayout {
 
     // callback should accept two arguments: Node, Point
     eachNode(callback) {
-        this.graph.nodes.forEach((node) => Reflect.apply(callback, this, [ node, this.point(node) ]));
+        this.graph.nodes.forEach((node) => callback.call(this, node, this.point(node)));
     }
 
     // callback should accept two arguments: Edge, Spring
     eachEdge(callback) {
-        this.graph.edges.forEach((edge) => Reflect.apply(callback, this, [ edge, this.spring(edge) ]));
+        this.graph.edges.forEach((edge) => callback.call(this, edge, this.spring(edge)));
     }
 
     // callback should accept one argument: Spring
     eachSpring(callback) {
-        this.graph.edges.forEach((edge) => Reflect.apply(callback, this, [ this.spring(edge) ]));
+        this.graph.edges.forEach((edge) => callback.call(this, edge, this.spring(edge)));
     }
 
     // callback should accept one argument: Spring
@@ -85,7 +85,7 @@ class ForceDirectedLayout {
             if(ids[ edge.nodes ])
                 return;
             ids[ edge.nodes ] = true;
-            Reflect.apply(callback, this, [ this.spring(edge) ]);
+            callback.call(this, this.spring(edge));
         });
     }
 
@@ -163,7 +163,7 @@ class ForceDirectedLayout {
     updateVelocity(timestep) {
         this.eachNode((node, point) => {
             point.v.add(point.a.multiply(timestep)).multiply(this.damping);
-            point.a = new Vector(0);
+            point.a = new Vector(0, 0);
         });
     }
 
@@ -196,6 +196,7 @@ class ForceDirectedLayout {
         }
         const tickDelta = 0.01;
         const milliseconds = 25;
+        const minEnergyThreshold = this.minEnergyThreshold;
         let totalEnergy = 500;
         let rendering = true;
         //force initial render in case we start out of focus
@@ -215,19 +216,19 @@ class ForceDirectedLayout {
                 setTimeout(tickLoop, milliseconds);
         };
         setTimeout(tickLoop, milliseconds);
+
         //do renders every animation frame
-        const animationLoop = () => {
+        requestRender('springy', function renderLoop() {
             if(rendering) {
-                requestRender(animationLoop);
-                if (render !== undefined && totalEnergy > this.minEnergyThreshold) {
+                requestRender('springy', renderLoop);
+                if (render && !isNaN(totalEnergy) && totalEnergy > minEnergyThreshold) {
                     render();
                 }
             }
             else if (onRenderStop !== undefined) {
                 onRenderStop();
             }
-        };
-        requestRender(animationLoop);
+        });
     }
 
     stop() {
@@ -282,4 +283,4 @@ class ForceDirectedLayout {
     }
 }
 
-export default ForceDirectedLayout;
+export default Layout;

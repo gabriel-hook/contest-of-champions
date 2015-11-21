@@ -1,45 +1,17 @@
-import './Roster.scss';
+import './RosterPage.scss';
 import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
 import lang from '../../service/lang.js';
+/* eslint-disable no-unused-vars */
 import m from 'mithril';
+/* eslint-enable no-unused-vars */
 
 const tab = {
     id: 'roster',
     icon: 'th',
     title: 'roster',
-};
-
-const menu = {
-    header:{
-        title: 'roster',
-        icon: 'th',
-    },
-    options:[
-        {
-            title: 'add-champion',
-            icon: 'user-plus',
-            onclick: () => router.setRoute('/roster/add/2') || true,
-        },
-        {
-            title: 'import-csv',
-            icon: 'clipboard',
-        },
-        {
-            title: 'export-csv',
-            icon: 'floppy-o',
-        },
-        {
-            title: 'delete-all',
-            icon: 'user-times',
-            onclick: () => {
-                roster.clear();
-                m.redraw();
-            },
-        },
-    ],
 };
 
 const Roster = {
@@ -84,5 +56,5 @@ const Roster = {
     },
 };
 
-export { tab, menu };
+export { tab };
 export default Roster;

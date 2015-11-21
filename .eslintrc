@@ -82,7 +82,6 @@
         "prefer-arrow-callback": 2,
         "prefer-const": 2,
         "prefer-spread": 2,
-        "prefer-reflect": 2,
         "no-console": 2,
         "no-constant-condition": 2,
         "no-debugger": 2,

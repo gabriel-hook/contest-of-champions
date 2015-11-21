@@ -9,7 +9,7 @@ class Edge {
         nodes.sort();
         this.nodes = nodes.join('_');
 
-        // Edge data field used by layout alorithm
+        // Edge data field used by layout algorithm
         // this.data.length
         // this.data.type
     }

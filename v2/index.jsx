@@ -2,15 +2,20 @@ import 'font-awesome-webpack';
 import './index.scss';
 import { uids } from './data/champions.js';
 import app from './service/app.js';
-import teams from './service/teams.js';
 import router from './service/router.js';
-import App from './view/app/App.jsx';
+import App from './view/App.jsx';
 import Card from './view/Card.jsx';
-import Guide, { tab as guideTab, menu as guideMenu } from './view/page/Guide.jsx';
-import Roster, { tab as rosterTab, menu as rosterMenu } from './view/page/Roster.jsx';
-import RosterAdd, { menu as rosterAddMenu } from './view/page/RosterAdd.jsx';
-import Teams, { tab as teamsTab, menu as teamsMenu } from './view/page/Teams.jsx';
-import Synergy, { tab as synergyTab, menu as synergyMenu } from './view/page/Synergy.jsx';
+import GuidePage from './view/Page/GuidePage.jsx';
+import GuideMenu from './view/Page/GuideMenu.jsx';
+import RosterPage from './view/Page/RosterPage.jsx';
+import RosterMenu from './view/Page/RosterMenu.jsx';
+import RosterAddPage from './view/Page/RosterAddPage.jsx';
+import RosterAddMenu from './view/Page/RosterAddMenu.jsx';
+import TeamsPage from './view/Page/TeamsPage.jsx';
+import TeamsMenu from './view/Page/TeamsMenu.jsx';
+import SynergyPage from './view/Page/SynergyPage.jsx';
+import SynergyMenu from './view/Page/SynergyMenu.jsx';
+import { requestRender } from './util/animation.js';
 import m from 'mithril';
 
 router.on('/guide', () => {
@@ -20,17 +25,18 @@ router.on('/guide', () => {
 router.on('/guide/:uid', (uid) => {
     app.tab = 'guide';
     app.pages[ 'guide' ] = (
-        <Guide uid={ uid } />
+        <GuidePage uid={ uid } />
     );
-    app.menu = guideMenu;
-    app.menuKey = uid;
+    app.menu = (
+        <GuideMenu uid={ uid } />
+    );
     m.redraw();
 });
 
 router.on('/roster', () => {
     app.tab = 'roster';
     app.pages[ 'roster-main' ] = (
-        <Roster />
+        <RosterPage />
     );
     app.pages[ 'roster' ] = (
         <Card
@@ -39,15 +45,16 @@ router.on('/roster', () => {
             flipped={ false }
         />
     );
-    app.menu = rosterMenu;
-    app.menuKey = null;
+    app.menu = (
+        <RosterMenu />
+    );
     m.redraw();
 });
 
 router.on('/roster/add/:stars', (stars) => {
     app.tab = 'roster';
     app.pages[ 'roster-add' ] = (
-        <RosterAdd stars={ parseInt(stars, 10) } />
+        <RosterAddPage stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Card
@@ -56,15 +63,16 @@ router.on('/roster/add/:stars', (stars) => {
             flipped={ true }
         />
     );
-    app.menu = rosterAddMenu;
-    app.menuKey = stars;
+    app.menu = (
+        <RosterAddMenu stars={ stars } />
+    );
     m.redraw();
 });
 
 router.on('/roster/:uid/:stars', (uid, stars) => {
     app.tab = 'roster';
     app.pages[ 'roster-main' ] = (
-        <Roster selected={ { uid, stars: parseInt(stars, 10) } } />
+        <RosterPage selected={ { uid, stars: parseInt(stars, 10) } } />
     );
     app.pages[ 'roster' ] = (
         <Card
@@ -73,18 +81,22 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
             flipped={ false }
         />
     );
-    app.menu = rosterMenu;
-    app.menuKey = null;
+    app.menu = (
+        <RosterMenu />
+    );
     m.redraw();
 });
 
 router.on('/teams', () => {
     app.tab = 'teams';
     app.pages[ 'teams' ] = (
-        <Teams />
+        <TeamsPage />
     );
-    app.menu = teamsMenu;
-    app.menuKey = teams;
+    app.menu = null;
+
+    app.menu = (
+        <TeamsMenu />
+    );
     m.redraw();
 });
 
@@ -95,18 +107,35 @@ router.on('/synergy', () => {
 router.on('/synergy/:stars', (stars) => {
     app.tab = 'synergy';
     app.pages[ 'synergy' ] = (
-        <Synergy stars={ parseInt(stars, 10) } />
+        <SynergyPage stars={ parseInt(stars, 10) } />
     );
-    app.menu = synergyMenu;
-    app.menuKey = stars;
+    app.menu = (
+        <SynergyMenu stars={ stars } />
+    );
     m.redraw();
 });
 
 app.tabs = [
-    guideTab,
-    rosterTab,
-    teamsTab,
-    synergyTab,
+    {
+        id: 'guide',
+        icon: 'user',
+        title: 'guide',
+    },
+    {
+        id: 'roster',
+        icon: 'th',
+        title: 'roster',
+    },
+    {
+        id: 'teams',
+        icon: 'cog',
+        title: 'teams',
+    },
+    {
+        id: 'synergy',
+        icon: 'users',
+        title: 'synergy',
+    },
 ];
 
 m.mount(document.body, (
@@ -116,3 +145,4 @@ router.init('/roster');
 document.addEventListener('hotreload', () => {
     m.redraw();
 });
+window.addEventListener('resize', () => requestRender('resize', m.redraw), true);
