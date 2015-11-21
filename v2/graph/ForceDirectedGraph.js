@@ -69,23 +69,25 @@ export default function({
             clearSelected();
         }
 
-        pixelRatio = window.devicePixelRatio || 1;
-        nodeFont = new ScaledNodeFont();
-        canvasState = {
-            top,
-            left,
-            width: width * pixelRatio,
-            height: height * pixelRatio,
-        };
+        if(width && height) {
+            pixelRatio = window.devicePixelRatio || 1;
+            nodeFont = new ScaledNodeFont();
+            canvasState = {
+                top,
+                left,
+                width: width * pixelRatio,
+                height: height * pixelRatio,
+            };
 
-        //resize with a max rate of every 50ms, so we don't get resize blinking.
-        if(!resizeTimeout)
-            resizeTimeout = setTimeout(() => {
-                resize();
-                resizeTimeout = null;
-            }, 50);
+            //resize with a max rate of every 50ms, so we don't get resize blinking.
+            if (!resizeTimeout)
+                resizeTimeout = setTimeout(() => {
+                    resize();
+                    resizeTimeout = null;
+                }, 50);
 
-        this.renderer.start();
+            this.renderer.start();
+        }
     };
 
     function addEventListeners(element, types, listener) {

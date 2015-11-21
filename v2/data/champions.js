@@ -131,8 +131,10 @@ const champions = [
     { uid:'daredevil', typeId:'skill', stars: 3 },
     { uid:'daredevil', typeId:'skill', stars: 4 },
 
+    { uid:'daredevilnetflix', typeId:'skill', stars: 2 },
     { uid:'daredevilnetflix', typeId:'skill', stars: 3 },
     { uid:'daredevilnetflix', typeId:'skill', stars: 4 },
+    { uid:'daredevilnetflix', typeId:'skill', stars: 5 },
 
     { uid:'elektra', typeId:'skill', stars: 3 },
     { uid:'elektra', typeId:'skill', stars: 4 },

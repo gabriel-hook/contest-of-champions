@@ -1,6 +1,7 @@
 import './SynergyPage.scss';
 import graph, { getLegend, updateGraph } from '../../service/graph.js';
 import lang from '../../service/lang.js';
+import synergy from '../../service/synergy.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -26,8 +27,8 @@ const Synergy = {
             };
             return (
                 <div
-                    class={ `legend-effect legend-effect--${ effectId }${
-                        selected? ' legend-effect--selected': ''
+                    class={ `legend-effect legend-effect--${ effectId } ${
+                        selected? 'legend-effect--selected': ''
                     }` }
                     onclick={ onclick }
                 >
@@ -39,7 +40,7 @@ const Synergy = {
 
         return (
             <div class="synergy" stars={ stars } config={ config }>
-                <div class="legend">
+                <div class={ `legend ${ !synergy.legend? 'legend--hidden': '' }` }>
                     { items }
                 </div>
             </div>

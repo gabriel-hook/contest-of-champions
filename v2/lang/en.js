@@ -233,6 +233,9 @@ export default {
     //Guide Page
     'choose-guide': 'Choose a guide',
 
+    //Synergy Page
+    'legend-show': 'Show Legend',
+
     //Options
     'options': 'Options',
     'share-to': 'Share to',

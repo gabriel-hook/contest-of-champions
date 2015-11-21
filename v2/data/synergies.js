@@ -257,6 +257,18 @@ const synergies = [
     { fromId:'daredevil', fromStars:4, toId:'blackwidow', effectId:'powergain', effectAmount:5 },
     { fromId:'daredevil', fromStars:4, toId:'elektra', effectId:'powergain', effectAmount:5 },
 
+    { fromId:'daredevilnetflix', fromStars:2, toId:'elektra', effectId:'powergain', effectAmount:3 },
+    { fromId:'daredevilnetflix', fromStars:2, toId:'punisher', effectId:'critdamage', effectAmount:15 },
+    { fromId:'daredevilnetflix', fromStars:3, toId:'elektra', effectId:'powergain', effectAmount:4 },
+    { fromId:'daredevilnetflix', fromStars:3, toId:'lukecage', effectId:'perfectblock', effectAmount:4 },
+    { fromId:'daredevilnetflix', fromStars:3, toId:'punisher', effectId:'critdamage', effectAmount:20 },
+    { fromId:'daredevilnetflix', fromStars:4, toId:'elektra', effectId:'powergain', effectAmount:5 },
+    { fromId:'daredevilnetflix', fromStars:4, toId:'lukecage', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'daredevilnetflix', fromStars:4, toId:'punisher', effectId:'critdamage', effectAmount:25 },
+    { fromId:'daredevilnetflix', fromStars:5, toId:'elektra', effectId:'powergain', effectAmount:5 },
+    { fromId:'daredevilnetflix', fromStars:5, toId:'lukecage', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'daredevilnetflix', fromStars:5, toId:'punisher', effectId:'critdamage', effectAmount:25 },
+
     { fromId:'elektra', fromStars:3, toId:'wolverine', effectId:'armor', effectAmount:5 },
     { fromId:'elektra', fromStars:3, toId:'daredevil', effectId:'powergain', effectAmount:4 },
     { fromId:'elektra', fromStars:3, toId:'blackwidow', effectId:'critdamage', effectAmount:20 },

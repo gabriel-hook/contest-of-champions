@@ -10,9 +10,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    transition: background .25s, color .25s;
 
     &:hover {
-        background: #ddd;
+        background: rgba(255, 255, 255, 0.65);
         color: #000;
         text-shadow: 0 1px 0 #fff;
     }

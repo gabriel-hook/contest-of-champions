@@ -132,7 +132,8 @@ CoC.view.GuideViewHelpers={
       }
       synergies = [];
       for(key in from)
-        synergies.push(from[key]);
+        if(from[key].to())
+          synergies.push(from[key]);
         
       this._synergiesFrom[uid] = synergies;
     }
