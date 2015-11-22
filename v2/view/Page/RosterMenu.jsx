@@ -1,6 +1,6 @@
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
-import MenuIcon from '../App/Menu/MenuIcon.jsx';
+import Icon from '../Icon.jsx';
 import roster from '../../service/roster.js';
 import router from '../../service/router.js';
 /* eslint-disable no-unused-vars */
@@ -13,32 +13,32 @@ const RosterMenu = {
             <div>
                 <MenuSection
                     icon={(
-                        <MenuIcon icon="th"/>
+                        <Icon icon="th"/>
                     )}
                     title="roster"
                 />
                 <MenuOption
                     icon={(
-                        <MenuIcon icon="user-plus" />
+                        <Icon icon="user-plus" />
                     )}
                     title="add-champion"
                     onclick={ () => router.setRoute('/roster/add/2') }
                 />
                 <MenuOption
                     icon={(
-                        <MenuIcon icon="clipboard" />
+                        <Icon icon="clipboard" />
                     )}
                     title="import-csv"
                 />
                 <MenuOption
                     icon={(
-                        <MenuIcon icon="floppy-o" />
+                        <Icon icon="floppy-o" />
                     )}
                     title="export-csv"
                 />
                 <MenuOption
                     icon={(
-                        <MenuIcon icon="user-times" />
+                        <Icon icon="user-times" />
                     )}
                     title="delete-all"
                     onclick={ () => roster.clear() }

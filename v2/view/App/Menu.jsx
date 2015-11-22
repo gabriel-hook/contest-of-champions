@@ -2,8 +2,8 @@ import './Menu.scss';
 import MenuHeader from './Menu/MenuHeader.jsx';
 import MenuSection from './Menu/MenuSection.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
-import MenuIcon from './Menu/MenuIcon.jsx';
-import MenuImage from './Menu/MenuImage.jsx';
+import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -31,7 +31,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={(
-                    <MenuIcon icon="globe" />
+                    <Icon icon="globe" />
                 )}
                 title="language"
             />
@@ -42,7 +42,7 @@ const Menu = {
                 <MenuOption
                     selected={ lang.current === id }
                     icon={(
-                        <MenuImage src={ `images/lang/${ id }.png` } />
+                        <ImageIcon src={ `images/lang/${ id }.png` } />
                     )}
                     title={ lang.messages[ id ].lang }
                     onclick={ selectLanguage }
@@ -56,7 +56,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <MenuIcon icon="google" />
+                    <Icon icon="google" />
                 }
                 title="google"
             />
@@ -64,7 +64,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <MenuIcon icon="facebook" />
+                    <Icon icon="facebook" />
                 }
                 title="facebook"
             />
@@ -72,7 +72,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <MenuIcon icon="twitter" />
+                    <Icon icon="twitter" />
                 }
                 title="twitter"
             />
@@ -85,7 +85,7 @@ const Menu = {
                         { options }
                     </ul>
                     <div class="menu--button" onclick={ ctrl.toggle }>
-                        <MenuIcon icon="bars" />
+                        <Icon icon="bars" />
                     </div>
                 </div>
             </div>

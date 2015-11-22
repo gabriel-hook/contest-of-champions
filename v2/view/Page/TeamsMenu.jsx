@@ -1,7 +1,7 @@
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
-import MenuIcon from '../App/Menu/MenuIcon.jsx';
+import Icon from '../Icon.jsx';
 import teams from '../../service/teams.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -13,7 +13,7 @@ const TeamsMenu = {
         options.push(
             <MenuSection
                 icon={(
-                    <MenuIcon icon="users"/>
+                    <Icon icon="users"/>
                 )}
                 title="teams"
             />
@@ -22,7 +22,7 @@ const TeamsMenu = {
             <MenuOption
                 title="build"
                 icon={(
-                    <MenuIcon icon="cog" />
+                    <Icon icon="cog spinning" />
                 )}
                 onclick={ () => true }
             />
@@ -63,6 +63,17 @@ const TeamsMenu = {
             <MenuSection
                 title="type"
             />
+        );
+        options.push(
+            <MenuOptionGroup options={
+                [ 'quest', 'arena' ].map((type) => (
+                    <MenuOption
+                        title={ type }
+                        selected={ teams.type === type }
+                        onclick={ () => teams.type = type }
+                    />
+                ))
+            } />
         );
         return (
             <div>

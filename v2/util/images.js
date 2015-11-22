@@ -10,6 +10,9 @@ function getImage(src) {
             image.loaded = true;
             m.redraw();
         });
+        image.addEventListener('error', () => {
+            image[ src ] = null;
+        });
         image.src = `../${ src }`;
         images[ src ] = image;
     }

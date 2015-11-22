@@ -1,11 +1,11 @@
 .navigation {
-
-    border-top: solid 1px rgb(192, 192, 192);
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.25);
 
     .navigation-tab {
+        height:54px;
         font-size: 1.0em;
         line-height: 18px;
-        padding: .5em 0;
+        padding: .25em 0;
         border: 0;
         background: #f6f6f6;
         color: #000;
@@ -18,6 +18,13 @@
 
         .icon {
             padding-bottom: 4px;
+        }
+
+        .navigation-tab-title {
+            padding: 0 .25em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     .navigation-tab:hover {

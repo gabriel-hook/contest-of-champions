@@ -1,4 +1,5 @@
 import './Navigation.scss';
+import Icon from '../Icon.jsx';
 import router from '../../service/router.js';
 import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
@@ -10,19 +11,15 @@ const Navigation = {
         const { tab: currentTab, tabs } = args;
 
         const buttons = tabs.map((tab) => {
-            const className = `navigation-tab ${ (currentTab === tab.id)? 'navigation-tab--current': '' }`;
-            const handleClick = (/* evt */) => router.setRoute(`/${ tab.id }`);
-            let icon;
-            if(tab.icon)
-                icon = (
-                    <div class="icon">
-                        <i class={ `fa fa-${ tab.icon }` } />
-                    </div>
-                );
             return (
-                <button class={ className } onclick={ handleClick }>
-                    { icon }
-                    { lang.get(tab.title) }
+                <button
+                    class={ `navigation-tab ${ (currentTab === tab.id)? 'navigation-tab--current': '' }` }
+                    onclick={ () => router.setRoute(`/${ tab.id }`) }
+                >
+                    <Icon icon={ tab.icon } />
+                    <div class="navigation-tab-title">
+                        { lang.get(tab.title) }
+                    </div>
                 </button>
             );
         });

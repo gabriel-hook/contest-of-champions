@@ -1,7 +1,7 @@
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
-import MenuIcon from '../App/Menu/MenuIcon.jsx';
-import MenuImage from '../App/Menu/MenuImage.jsx';
+import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import { uidsByType } from '../../data/champions.js';
 import router from '../../service/router.js';
 /* eslint-disable no-unused-vars */
@@ -16,7 +16,7 @@ const GuideMenu = {
         options.push(
             <MenuSection
                 icon={(
-                    <MenuIcon icon="user"/>
+                    <Icon icon="user"/>
                 )}
                 title="guides"
             />
@@ -28,7 +28,7 @@ const GuideMenu = {
             uids.map((uid) => options.push(
                 <MenuOption
                     icon={(
-                        <MenuImage src={ `images/champions/portrait_${ uid }.png` } />
+                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } />
                     )}
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }

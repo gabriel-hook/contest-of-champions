@@ -4,9 +4,9 @@ import m from 'mithril';
 
 const MenuIcon = {
     view(ctrl, args) {
-        const { icon } = args;
+        const { icon, spin } = args;
         return icon && (
-            <i class={ `fa fa-${ icon }` } />
+            <i class={ `icon fa fa-${ icon } ${ spin? 'fa-spin': '' }` } />
         );
     },
 };

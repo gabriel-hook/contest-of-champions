@@ -1,4 +1,4 @@
-import { getImage } from '../../../util/images.js';
+import { getImage } from '../util/images.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

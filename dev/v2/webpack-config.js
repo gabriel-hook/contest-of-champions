@@ -46,7 +46,8 @@ function config() {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Champions',
+                template: './v2/index.html',
+                inject: 'body',
             }),
         ],
     };

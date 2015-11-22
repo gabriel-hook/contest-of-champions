@@ -1,7 +1,7 @@
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
-import MenuIcon from '../App/Menu/MenuIcon.jsx';
+import Icon from '../Icon.jsx';
 import router from '../../service/router.js';
 import synergy from '../../service/synergy.js';
 /* eslint-disable no-unused-vars */
@@ -15,7 +15,7 @@ const SynergyMenu = {
         options.push(
             <MenuSection
                 icon={(
-                    <MenuIcon icon="users"/>
+                    <Icon icon="users"/>
                 )}
                 title="synergies"
             />
