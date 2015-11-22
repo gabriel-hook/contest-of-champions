@@ -3,6 +3,7 @@ import './index.scss';
 import { uids } from './data/champions.js';
 import app from './service/app.js';
 import router from './service/router.js';
+import teams from './service/teams.js';
 import App from './view/App.jsx';
 import Card from './view/Card.jsx';
 import GuidePage from './view/Page/GuidePage.jsx';
@@ -129,6 +130,7 @@ app.tabs = [
     {
         id: 'teams',
         icon: 'cog',
+        spin: () => teams.building,
         title: 'teams',
     },
     {
@@ -142,7 +144,5 @@ m.mount(document.body, (
     <App />
 ));
 router.init('/roster');
-document.addEventListener('hotreload', () => {
-    m.redraw();
-});
+document.addEventListener('hotreload', () => m.redraw());
 window.addEventListener('resize', () => requestRender('resize', m.redraw), true);

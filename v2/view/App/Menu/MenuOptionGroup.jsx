@@ -1,4 +1,5 @@
 import './MenuOptionGroup.scss';
+import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -8,7 +9,7 @@ const MenuGroupOption = {
         const { options } = args;
 
         return (
-            <div class={ `menu-option--group menu-option--group-${ options.length }` }>
+            <div class={ classNames('menu-option--group', `menu-option--group-${ options.length }`) }>
                 { options }
             </div>
         );

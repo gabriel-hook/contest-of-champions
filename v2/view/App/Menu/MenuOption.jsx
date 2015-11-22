@@ -1,4 +1,5 @@
 import './MenuOption.scss';
+import classNames from 'classnames';
 import lang from '../../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -6,17 +7,20 @@ import m from 'mithril';
 
 const MenuOption = {
     view(ctrl, args) {
-        const { title, icon, onclick, selected } = args;
-
+        const { title, icon, onclick, selected, progress } = args;
         return (
             <div
-                class={
-                    `menu-option ${ selected? 'menu-option--selected': '' }`
-                }
+                class={ classNames('menu-option', { 'menu-option--selected': selected, 'menu-option--progress': progress }) }
                 onclick={ onclick }
                 disabled={ Boolean(onclick) }
             >
-                <div>{ icon }{ lang.get(title) }</div>
+                { progress && (
+                    <div
+                        class="menu-option-progress-bar"
+                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%;` }
+                    />
+                ) || null }
+                <div class="menu-option--label">{ icon }{ lang.get(title) }</div>
             </div>
         );
     },

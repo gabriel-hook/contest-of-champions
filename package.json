@@ -78,6 +78,7 @@
   "dependencies": {
     "backbone": "^1.2.3",
     "backbone.localstorage": "^1.1.16",
+    "classnames": "^2.2.0",
     "director": "^1.2.8",
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",

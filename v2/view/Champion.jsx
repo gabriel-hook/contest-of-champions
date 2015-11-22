@@ -1,4 +1,5 @@
 import './Champion.scss';
+import classNames from 'classnames';
 import { getImage } from '../util/images.js';
 import lang from '../service/lang.js';
 /* eslint-disable no-unused-vars */
@@ -29,17 +30,17 @@ const Champion = {
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         return (
-            <div class={ `champion champion--${ typeId } ${ isEditing && 'editing' }` }>
+            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--editing': isEditing }) }>
                 <div class="container">
                     <div
-                        class={ `inner ${ hasClick && 'clickable' }` }
+                        class={ classNames('inner', { 'clickable': hasClick }) }
                         onclick={ args.onclick }
                     >
                         <div
-                            class={ `portrait ${ hasPortraitImage? 'portrait--hidden': '' }` }
+                            class={ classNames('portrait', { 'portrait--hidden': hasPortraitImage }) }
                             config={ addSVG }
                         />
-                        <div class={ `portrait ${ !hasPortraitImage? 'portrait--hidden': '' }` }>
+                        <div class={ classNames('portrait', { 'portrait--hidden': !hasPortraitImage }) }>
                             <img src={ portraitImage && portraitImage.src } />
                         </div>
                         <div class="title">

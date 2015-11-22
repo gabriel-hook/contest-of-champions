@@ -2,7 +2,7 @@ import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
-import teams from '../../service/teams.js';
+import teams, { buildTeams } from '../../service/teams.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -22,9 +22,10 @@ const TeamsMenu = {
             <MenuOption
                 title="build"
                 icon={(
-                    <Icon icon="cog spinning" />
+                    <Icon icon="cog" spin={ teams.building } />
                 )}
-                onclick={ () => true }
+                onclick={ buildTeams }
+                progress={ teams.building && teams.progress }
             />
         );
         options.push(

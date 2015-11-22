@@ -1,4 +1,5 @@
 import './Menu.scss';
+import classNames from 'classnames';
 import MenuHeader from './Menu/MenuHeader.jsx';
 import MenuSection from './Menu/MenuSection.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
@@ -78,7 +79,7 @@ const Menu = {
             />
         );
         return (
-            <div class={ `menu ${ isOpen? 'menu--open': '' }` }>
+            <div class={ classNames('menu', { 'menu--open': isOpen }) }>
                 <div class="menu--background" onclick={ ctrl.toggle }></div>
                 <div class="wrapper">
                     <ul class="menu--options">

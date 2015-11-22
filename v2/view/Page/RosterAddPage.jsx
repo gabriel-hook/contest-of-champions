@@ -1,4 +1,5 @@
 import './RosterAddPage.scss';
+import classNames from 'classnames';
 import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
 import lang from '../../service/lang.js';
@@ -13,7 +14,7 @@ const RosterAdd = {
         return (
             <div class="roster-add">
                 <button
-                    class={ `add-all ${ champions.length === 0? 'disabled': '' }` }
+                    class={ classNames('add-all', { 'disabled': champions.length === 0 }) }
                     onclick={ () => roster.addAll(stars) }
                 >
                     { lang.get('add-all') }

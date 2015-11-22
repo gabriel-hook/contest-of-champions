@@ -1,4 +1,5 @@
 import './SynergyPage.scss';
+import classNames from 'classnames';
 import graph, { getLegend, updateGraph } from '../../service/graph.js';
 import lang from '../../service/lang.js';
 import synergy from '../../service/synergy.js';
@@ -27,9 +28,9 @@ const Synergy = {
             };
             return (
                 <div
-                    class={ `legend-effect legend-effect--${ effectId } ${
-                        selected? 'legend-effect--selected': ''
-                    }` }
+                    class={ classNames('legend-effect', `legend-effect--${ effectId }`,
+                        { 'legend-effect--selected': selected }
+                    ) }
                     onclick={ onclick }
                 >
                     { lang.get(`effect-${ effectId }-name`) }
@@ -40,7 +41,7 @@ const Synergy = {
 
         return (
             <div class="synergy" stars={ stars } config={ config }>
-                <div class={ `legend ${ !synergy.legend? 'legend--hidden': '' }` }>
+                <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
                     { items }
                 </div>
             </div>

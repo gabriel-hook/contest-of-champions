@@ -1,4 +1,5 @@
 import './Navigation.scss';
+import classNames from 'classnames';
 import Icon from '../Icon.jsx';
 import router from '../../service/router.js';
 import lang from '../../service/lang.js';
@@ -13,10 +14,10 @@ const Navigation = {
         const buttons = tabs.map((tab) => {
             return (
                 <button
-                    class={ `navigation-tab ${ (currentTab === tab.id)? 'navigation-tab--current': '' }` }
+                    class={ classNames('navigation-tab', { 'navigation-tab--current': (currentTab === tab.id) }) }
                     onclick={ () => router.setRoute(`/${ tab.id }`) }
                 >
-                    <Icon icon={ tab.icon } />
+                    <Icon icon={ tab.icon } spin={ tab.spin } />
                     <div class="navigation-tab-title">
                         { lang.get(tab.title) }
                     </div>
@@ -25,7 +26,7 @@ const Navigation = {
         });
 
         return (
-            <header class={ `navigation navigation--count-${ buttons.length }` }>
+            <header class={ classNames('navigation', `navigation--count-${ buttons.length }`) }>
                 { buttons }
             </header>
         );

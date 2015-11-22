@@ -1,4 +1,5 @@
 import './RosterPage.scss';
+import classNames from 'classnames';
 import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
 import roster from '../../service/roster.js';
@@ -38,7 +39,7 @@ const Roster = {
         );
         return (
             <div
-                class={ `roster ${ selected ? 'editing': '' }` }
+                class={ classNames('roster', { 'roster--editing': selected }) }
                 onclick={ handleDeselect.bind(this) }
             >
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>

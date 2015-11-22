@@ -1,5 +1,6 @@
 
 .menu-option {
+    position: relative;
     cursor: pointer;
     font-family: Hanzel, Verdana, Geneva, sans-serif;
     font-size: 1.1em;
@@ -11,14 +12,29 @@
     white-space: nowrap;
     overflow: hidden;
 
+    &.menu-option--progress,
     &:hover {
         background: rgba(255, 255, 255, 0.65);
         color: #000;
         text-shadow: 0 1px 0 #fff;
     }
+
     &.menu-option--selected {
         background: #eee;
         color: #000;
         text-shadow: 0 1px 0 #fff;
+    }
+
+    & .menu-option--label {
+        position: relative;
+    }
+
+    & .menu-option-progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        max-width: 100%;
+        background: #fff;
     }
 }

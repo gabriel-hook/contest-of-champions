@@ -1,4 +1,5 @@
 import './App.scss';
+import classNames from 'classnames';
 import Navigation from './App/Navigation.jsx';
 import Menu from './App/Menu.jsx';
 import app from '../service/app.js';
@@ -30,7 +31,7 @@ const App = {
                 <div class="pages" key={ 0 }>
                     <div class="wrapper">
                     {tabs.map((tab) => (
-                        <div class={ `page ${ currentPage === tab.id? 'page--current': '' }` }>
+                        <div class={ classNames('page', { 'page--current': currentPage === tab.id }) }>
                             { pages[ tab.id ] }
                         </div>
                     ))}
