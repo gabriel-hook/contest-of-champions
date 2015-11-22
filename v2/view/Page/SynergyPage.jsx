@@ -22,19 +22,15 @@ const Synergy = {
 
         const legend = getLegend(stars);
         const items = legend && legend.map(({ effectId, selected, amount }) => {
-            const amountString = amount && ` - ${ amount }%`;
-            const onclick = () => {
-                graph.selectEdgeType(effectId);
-            };
             return (
                 <div
                     class={ classNames('legend-effect', `legend-effect--${ effectId }`,
                         { 'legend-effect--selected': selected }
                     ) }
-                    onclick={ onclick }
+                    onclick={ () => graph.selectEdgeType(effectId) }
                 >
                     { lang.get(`effect-${ effectId }-name`) }
-                    { amountString }
+                    { amount && ` - ${ amount }%` }
                 </div>
             );
         });

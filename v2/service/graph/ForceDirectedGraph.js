@@ -1,5 +1,5 @@
-import lang from '../service/lang.js';
-import { getImage } from '../util/images.js';
+import lang from '../../service/lang.js';
+import { getImage } from '../../util/images.js';
 import Layout from './Layout.js';
 import Renderer from './Renderer.js';
 import Graph from './Graph.js';

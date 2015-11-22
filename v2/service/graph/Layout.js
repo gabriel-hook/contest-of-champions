@@ -1,7 +1,7 @@
 import Point from './Point.js';
 import Spring from './Spring.js';
 import Vector from './Vector.js';
-import { requestRender } from '../util/animation.js';
+import { requestRender } from '../../util/animation.js';
 
 class Layout {
     constructor(graph, stiffness, repulsion, damping, minEnergyThreshold = 0.01) {

@@ -44,14 +44,17 @@
         }
 
         .legend-effect {
+            position: relative;
+            cursor: pointer;
             border-left: solid 1em;
             padding: 0 .4em;
             opacity: 0.5;
             transition: opacity 0.25s;
 
-
             &.legend-effect--selected {
                 opacity: 1;
+                //chrome is being a dick and ignoring opacity change if it's on its own.
+                padding-left: .4em;
             }
         }
 

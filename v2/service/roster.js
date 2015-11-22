@@ -24,8 +24,8 @@ function all() {
     return roster.slice();
 }
 
-function filter(/* filter */) {
-    return roster.slice();
+function filter(fn) {
+    return roster.filter(fn);
 }
 
 function available(stars) {
@@ -77,6 +77,7 @@ function clear() {
 }
 
 update();
+
 export default {
     all,
     filter,

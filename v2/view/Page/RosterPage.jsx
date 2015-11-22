@@ -18,9 +18,7 @@ const tab = {
 const Roster = {
     view(ctrl, args) {
         const total = roster.all().length;
-        const champions = roster.filter({
-            // some filter
-        });
+        const champions = roster.all();
         const { selected } = args;
         const handleSelect = ({ uid, stars }, event) => {
             event.stopPropagation();

@@ -38,5 +38,11 @@ function effectImage(uid, isAlternate) {
     }.jpg`;
 }
 
-export { effectImage };
+const effectBases = {};
+effects.forEach((effect) => effectBases[ effect.attr.uid ] = effect.attr.base);
+function effectBase(uid) {
+    return effectBases[ uid ];
+}
+
+export { effectImage, effectBase };
 export default effects;

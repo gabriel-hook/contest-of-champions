@@ -3,7 +3,7 @@ import Model from './Model.js';
 class Champion extends Model {
     constructor({ uid, stars, typeId, pi }) {
         super({
-            uid: 'champion-uid',
+            uid: 'champion',
             stars: 1,
             typeId: 'mutant',
             pi: 0,

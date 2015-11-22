@@ -11,4 +11,7 @@ const types = [
 
 ].map((type) => new Type(type));
 
+const uids = [ ...new Set(types.map((type) => type.attr.uid)) ];
+
+export { uids };
 export default types;
