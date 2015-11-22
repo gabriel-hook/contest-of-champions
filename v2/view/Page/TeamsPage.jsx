@@ -1,7 +1,7 @@
 import './TeamsPage.scss';
 import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
-import teams from '../../service/teams.js'
+import teams from '../../service/teams.js';
 import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

@@ -34,12 +34,14 @@ function buildTeams() {
                     .map((champion) => champion.id()),
                 size: teams.size,
             });
+            /* eslint-disable eqeqeq */
             teams.result.teams = teams.result.teams.map((team) => team.map((fid) => {
                 const [ uid, stars ] = fid.split('-');
                 return roster.filter((champion) =>
                     champion.attr.uid === uid && champion.attr.stars == stars
                 )[ 0 ];
             }));
+            /* eslint-enable eqeqeq */
         }
         m.redraw();
     }, BUILD_STEP_TIME);

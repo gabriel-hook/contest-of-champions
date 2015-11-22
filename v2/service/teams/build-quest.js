@@ -5,37 +5,18 @@ import { effectBase } from '../../data/effects.js';
 import { combination } from '../../util/math.js';
 import { getDuplicateWeight, getWeight } from './helpers.js';
 
-function buildQuest(options) {
-    const size = parseInt(options.size, 10);
+function buildQuest({
+    champions,
+    size,
+    progress,
+}) {
     const preselect = [];
     const typeWeights = [];
-    const list = preProcess(options.champions, typeWeights, options.levels).filter((champion) => {
-        if(champion.quest) {
-            preselect.push(champion);
-            return false;
-        }
-        return true;
-    });
-
-    const progress = options.progress && {
-        current: 0,
-        max: combination(list.length, preselect.length? size - preselect.length: size),
-        callback: options.progress,
-    };
-
-    const team = (preselect.length > 0)? ((preselect.length > size)?
-        getTopPartner(preselect, 0, size, typeWeights, progress):
-        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progress)
-    ): getTopPartner(list, 0, size, typeWeights, progress);
-
-    return postProcess(team.value > 0? team.champions: []);
-}
-
-function preProcess(champions, typeWeights) {
     for(let i=2; i<=5; i++)
         typeWeights[ i ] = getDuplicateWeight(i);
 
-    return champions.map((fid) => {
+    const list = champions.map((fid) => {
+        /* eslint-disable eqeqeq */
         const [ uid, stars, quest ] = fid.split('-');
         const champion = dataChampions.find(({ attr }) => attr.uid === uid && attr.stars == stars);
         const { typeId } = champion.attr;
@@ -46,7 +27,7 @@ function preProcess(champions, typeWeights) {
                 id: attr.toId,
                 value: getWeight(attr.effectId) * attr.effectAmount / effectBase(attr.effectId),
             });
-
+        /* eslint-enable eqeqeq */
         return {
             fid,
             uid,
@@ -56,14 +37,35 @@ function preProcess(champions, typeWeights) {
             synergies,
             value: 1,
         };
+    }).filter((champion) => {
+        if(champion.quest) {
+            preselect.push(champion);
+            return false;
+        }
+        return true;
     });
-}
 
-function postProcess(champions) {
+    const progresser = progress && {
+        current: 0,
+        max: combination(list.length, preselect.length? size - preselect.length: size),
+        callback: progress,
+    };
+
+    const team = (preselect.length > 0)? ((preselect.length > size)?
+        getTopPartner(preselect, 0, size, typeWeights, progresser):
+        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progresser)
+    ): getTopPartner(list, 0, size, typeWeights, progresser);
+
+    if(team.value > 0) {
+        return {
+            teams:[
+                team.champions.map((champion) => champion.fid),
+            ],
+            extras:[],
+        };
+    }
     return {
-        teams:[
-            champions.map((champion) => champion.fid),
-        ],
+        teams:[],
         extras:[],
     };
 }
