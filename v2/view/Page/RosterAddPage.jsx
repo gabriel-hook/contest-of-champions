@@ -7,7 +7,7 @@ import lang from '../../service/lang.js';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const RosterAdd = {
+const RosterAddPage = {
     view(ctrl, args) {
         const { stars } = args;
         const champions = roster.available(stars);
@@ -33,4 +33,4 @@ const RosterAdd = {
     },
 };
 
-export default RosterAdd;
+export default RosterAddPage;

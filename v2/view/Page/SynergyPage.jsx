@@ -15,7 +15,7 @@ function config(element, isInitialized) {
         element.appendChild(graph.canvas);
 }
 
-const Synergy = {
+const SynergyPage = {
     view(ctrl, args) {
         const stars = args.stars;
         updateGraph(stars);
@@ -45,4 +45,4 @@ const Synergy = {
     },
 };
 
-export default Synergy;
+export default SynergyPage;

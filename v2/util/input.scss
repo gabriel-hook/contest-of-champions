@@ -1,0 +1,62 @@
+@mixin inputRange( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+    -webkit-appearance: none;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none; // needed again for Chrome & Safari
+        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+    }
+
+    &::-moz-range-thumb {
+        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+    }
+
+    &::-ms-thumb {
+        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+    }
+
+    // Track
+    &::-webkit-slider-runnable-track {
+        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
+    }
+
+    &::-moz-range-track {
+        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
+    }
+
+    &::-ms-track {
+        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
+    }
+
+    &:focus { // override outline/background on focus
+        background: none;
+        outline: none;
+    }
+
+    &::-ms-track { // A little somethin' somethin' for IE
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+}
+
+@mixin rangeThumb( $thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+    width: $thumb-size;
+    height: $thumb-size;
+    border: $thumb-border;
+    border-radius: $thumb-border-radius;
+    box-shadow: $thumb-box-shadow;
+    background: $thumb-background;
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+@mixin rangeTrack( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius ) {
+    width: $track-width;
+    height: $track-height;
+    cursor: pointer;
+    border-radius: $track-border-radius;
+    box-shadow: $track-box-shadow;
+    background: $track-background;
+}

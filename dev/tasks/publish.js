@@ -17,4 +17,7 @@ gulp.task('publish:commit', () => {
         }));
 });
 
-gulp.task('publish', [ 'lint' ], sequence('clean:all', 'build', 'webpack', 'publish:commit'));
+gulp.task('publish',
+    [ 'lint:v1:js', 'lint:v2:js' ],
+    sequence('clean:all', 'build', 'webpack', 'publish:commit')
+);

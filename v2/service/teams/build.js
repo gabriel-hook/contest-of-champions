@@ -1,20 +1,16 @@
+import buildArena from './build-arena.js';
 import buildQuest from './build-quest.js';
 
 function build({
     champions,
     size,
     type,
+    weights,
+    progress,
 }) {
-    const result = (type === 'quest')?
-        buildQuest({
-            champions,
-            size,
-        }):
-        {
-            teams: [],
-            extras: [],
-        };
-    return result;
+    return (type === 'arena')? buildArena({ champions, size, weights, progress }):
+        (type === 'quest')? buildQuest({ champions, size, weights, progress }):
+        { teams: [], extras: [] };
 }
 
 export default build;

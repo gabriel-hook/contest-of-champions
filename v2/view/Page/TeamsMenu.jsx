@@ -3,6 +3,7 @@ import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
 import teams, { buildTeams } from '../../service/teams.js';
+import router from '../../service/router.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -10,6 +11,15 @@ import m from 'mithril';
 const TeamsMenu = {
     view(/* ctrl, args */) {
         const options = [];
+        options.push(
+            <MenuOption
+                title="advanced-settings"
+                icon={(
+                    <Icon icon="cogs" />
+                )}
+                onclick={ () => router.setRoute('/teams/settings') }
+            />
+        );
         options.push(
             <MenuSection
                 icon={(
@@ -51,7 +61,7 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                [ 1, 2, 3 ].map((size) => (
+                [ 3, 4, 5 ].map((size) => (
                     <MenuOption
                         title={ size }
                         selected={ teams.size === size }

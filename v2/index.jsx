@@ -14,6 +14,8 @@ import RosterAddPage from './view/Page/RosterAddPage.jsx';
 import RosterAddMenu from './view/Page/RosterAddMenu.jsx';
 import TeamsPage from './view/Page/TeamsPage.jsx';
 import TeamsMenu from './view/Page/TeamsMenu.jsx';
+import TeamsSettingsPage from './view/Page/TeamsSettingsPage.jsx';
+import TeamsSettingsMenu from './view/Page/TeamsSettingsMenu.jsx';
 import SynergyPage from './view/Page/SynergyPage.jsx';
 import SynergyMenu from './view/Page/SynergyMenu.jsx';
 import { requestRender } from './util/animation.js';
@@ -88,13 +90,36 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
     m.redraw();
 });
 
+router.on('/teams/settings', () => {
+    app.tab = 'teams';
+    app.pages[ 'teams-settings' ] = (
+        <TeamsSettingsPage />
+    );
+    app.pages[ 'teams' ] = (
+        <Card
+            front={ app.pages[ 'teams-main' ] }
+            back={ app.pages[ 'teams-settings' ] }
+            flipped={ true }
+        />
+    );
+    app.menu = (
+        <TeamsSettingsMenu />
+    );
+    m.redraw();
+});
+
 router.on('/teams', () => {
     app.tab = 'teams';
-    app.pages[ 'teams' ] = (
+    app.pages[ 'teams-main' ] = (
         <TeamsPage />
     );
-    app.menu = null;
-
+    app.pages[ 'teams' ] = (
+        <Card
+            front={ app.pages[ 'teams-main' ] }
+            back={ app.pages[ 'teams-settings' ] }
+            flipped={ false }
+        />
+    );
     app.menu = (
         <TeamsMenu />
     );

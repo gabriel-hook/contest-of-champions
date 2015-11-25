@@ -15,7 +15,7 @@ const tab = {
     title: 'roster',
 };
 
-const Roster = {
+const RosterPage = {
     view(ctrl, args) {
         const total = roster.all().length;
         const champions = roster.all();
@@ -49,11 +49,10 @@ const Roster = {
                         onclick={ handleSelect.bind(this, champion.attr) }
                     />
                 )) }
-                <div class="clear"></div>
             </div>
         );
     },
 };
 
 export { tab };
-export default Roster;
+export default RosterPage;

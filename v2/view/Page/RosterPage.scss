@@ -5,10 +5,6 @@
         transition: opacity 0.25s;
     }
 
-    .clear {
-        clear: both;
-    }
-
     &.roster--editing {
         .champion {
             opacity: 0.25;

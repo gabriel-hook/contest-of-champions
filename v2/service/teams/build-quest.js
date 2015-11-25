@@ -3,17 +3,16 @@ import dataSynergies from '../../data/synergies.js';
 import { uids as typeIds } from '../../data/types.js';
 import { effectBase } from '../../data/effects.js';
 import { combination } from '../../util/math.js';
-import { getDuplicateWeight, getWeight } from './helpers.js';
 
 function buildQuest({
     champions,
     size,
+    weights,
     progress,
 }) {
     const preselect = [];
-    const typeWeights = [];
-    for(let i=2; i<=5; i++)
-        typeWeights[ i ] = getDuplicateWeight(i);
+    const typeWeights = { 1: 1 };
+    [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     const list = champions.map((fid) => {
         /* eslint-disable eqeqeq */
@@ -25,7 +24,7 @@ function buildQuest({
             .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars )
             .forEach(({ attr }) => synergies[ attr.toId ] = {
                 id: attr.toId,
-                value: getWeight(attr.effectId) * attr.effectAmount / effectBase(attr.effectId),
+                value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
             });
         /* eslint-enable eqeqeq */
         return {
