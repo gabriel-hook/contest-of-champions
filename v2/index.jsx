@@ -33,6 +33,7 @@ router.on('/guide/:uid', (uid) => {
     app.menu = (
         <GuideMenu uid={ uid } />
     );
+    app.button = null;
     m.redraw();
 });
 
@@ -51,6 +52,10 @@ router.on('/roster', () => {
     app.menu = (
         <RosterMenu />
     );
+    app.button = {
+        icon: 'user-plus',
+        onclick: () => router.setRoute('/roster/add/2'),
+    };
     m.redraw();
 });
 
@@ -69,6 +74,10 @@ router.on('/roster/add/:stars', (stars) => {
     app.menu = (
         <RosterAddMenu stars={ stars } />
     );
+    app.button = {
+        icon: 'th',
+        onclick: () => router.setRoute('/roster'),
+    };
     m.redraw();
 });
 
@@ -87,6 +96,10 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
     app.menu = (
         <RosterMenu />
     );
+    app.button = {
+        icon: 'user-plus',
+        onclick: () => router.setRoute('/roster/add/2'),
+    };
     m.redraw();
 });
 
@@ -105,6 +118,10 @@ router.on('/teams/settings', () => {
     app.menu = (
         <TeamsSettingsMenu />
     );
+    app.button = {
+        icon: 'chevron-circle-left',
+        onclick: () => router.setRoute('/teams'),
+    };
     m.redraw();
 });
 
@@ -123,6 +140,10 @@ router.on('/teams', () => {
     app.menu = (
         <TeamsMenu />
     );
+    app.button = {
+        icon: 'cogs',
+        onclick: () => router.setRoute('/teams/settings'),
+    };
     m.redraw();
 });
 
@@ -138,6 +159,7 @@ router.on('/synergy/:stars', (stars) => {
     app.menu = (
         <SynergyMenu stars={ stars } />
     );
+    app.button = null;
     m.redraw();
 });
 

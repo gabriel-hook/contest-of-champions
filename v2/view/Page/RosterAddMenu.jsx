@@ -12,15 +12,6 @@ const RosterAddMenu = {
         const { stars } = args;
         const options = [];
         options.push(
-            <MenuOption
-                title="roster"
-                icon={(
-                    <Icon icon="chevron-circle-left" />
-                )}
-                onclick={ () => router.setRoute('/roster') }
-            />
-        );
-        options.push(
             <MenuSection
                 icon={(
                     <Icon icon="user-plus"/>

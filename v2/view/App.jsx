@@ -24,7 +24,7 @@ function addSVG(element, isInitialized) {
 
 const App = {
     view() {
-        const { tabs, tab, pages, menu } = app;
+        const { tabs, tab, pages, menu, button } = app;
         const currentPage = tab;
         return (
             <div class="app">
@@ -38,7 +38,7 @@ const App = {
                     </div>
                 </div>
                 <Navigation tabs={ tabs } tab={ tab } key={ 1 } />
-                <Menu menu={ menu } key={ 2 } />
+                <Menu menu={ menu } button={ button } key={ 2 } />
                 <div class="svg" config={ addSVG } />
             </div>
         );

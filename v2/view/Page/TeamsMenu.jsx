@@ -12,15 +12,6 @@ const TeamsMenu = {
     view(/* ctrl, args */) {
         const options = [];
         options.push(
-            <MenuOption
-                title="advanced-settings"
-                icon={(
-                    <Icon icon="cogs" />
-                )}
-                onclick={ () => router.setRoute('/teams/settings') }
-            />
-        );
-        options.push(
             <MenuSection
                 icon={(
                     <Icon icon="users"/>

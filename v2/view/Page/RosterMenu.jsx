@@ -19,13 +19,6 @@ const RosterMenu = {
                 />
                 <MenuOption
                     icon={(
-                        <Icon icon="user-plus" />
-                    )}
-                    title="add-champion"
-                    onclick={ () => router.setRoute('/roster/add/2') }
-                />
-                <MenuOption
-                    icon={(
                         <Icon icon="clipboard" />
                     )}
                     title="import-csv"

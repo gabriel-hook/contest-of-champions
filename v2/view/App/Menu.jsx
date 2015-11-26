@@ -20,7 +20,14 @@ const Menu = {
     view(ctrl, args) {
         const isOpen = ctrl.open;
         const options = [];
-        const { menu } = args;
+        const { menu, button } = args;
+
+        const buttonLeft = button && (
+            <div class="menu-button menu-button-left" onclick={ button.onclick }>
+                <Icon icon={ button.icon } />
+            </div>
+        );
+
         // header
         options.push(
             <MenuHeader title="options" />
@@ -80,15 +87,16 @@ const Menu = {
         );
         return (
             <div class={ classNames('menu', { 'menu--open': isOpen }) }>
-                <div class="menu--background" onclick={ ctrl.toggle }></div>
+                <div class="menu-background" onclick={ ctrl.toggle }></div>
                 <div class="wrapper">
-                    <ul class="menu--options">
+                    <ul class="menu-options">
                         { options }
                     </ul>
-                    <div class="menu--button" onclick={ ctrl.toggle }>
+                    <div class="menu-button menu-button-right" onclick={ ctrl.toggle }>
                         <Icon icon="bars" />
                     </div>
                 </div>
+                { buttonLeft }
             </div>
         );
     },

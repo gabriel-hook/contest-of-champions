@@ -36,10 +36,7 @@ const TeamsSettingsPage = {
 
         return (
             <div class="teams-settings">
-                <h3>{ lang.get('advanced-settings') }</h3>
-                <div>
-                    { effectSliders }
-                </div>
+                { effectSliders }
             </div>
         );
     },

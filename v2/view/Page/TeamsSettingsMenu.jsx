@@ -11,15 +11,6 @@ const TeamsSettingsMenu = {
     view(/* ctrl, args */) {
         const options = [];
         options.push(
-            <MenuOption
-                title="teams"
-                icon={(
-                    <Icon icon="chevron-circle-left" />
-                )}
-                onclick={ () => router.setRoute('/teams') }
-            />
-        );
-        options.push(
             <MenuSection title="presets" />
         );
         Object.keys(presets).forEach((id) => {
