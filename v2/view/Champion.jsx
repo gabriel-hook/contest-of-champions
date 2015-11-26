@@ -18,9 +18,8 @@ function addSVG(element, isInitialized) {
 
 const Champion = {
     view(ctrl, args) {
+        const { events, onclick, selected } = args;
         const { uid, stars, typeId } = args.champion.toJSON();
-        const hasClick = args.onclick || '';
-        const isEditing = args.isEditing || '';
         const starImages = [];
         for(let i=0; i<stars; i++)
             starImages.push(
@@ -30,11 +29,12 @@ const Champion = {
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         return (
-            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--editing': isEditing }) }>
+            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected }) }>
                 <div class="container">
                     <div
-                        class={ classNames('inner', { 'clickable': hasClick }) }
-                        onclick={ args.onclick }
+                        { ...events }
+                        class={ classNames('inner', { 'clickable': onclick }) }
+                        onclick={ onclick }
                     >
                         <div
                             class={ classNames('portrait', { 'portrait--hidden': hasPortraitImage }) }

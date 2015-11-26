@@ -102,7 +102,7 @@ function buildArena({
         return value;
     }
 
-    const progressMax = 16;
+    const progressMax = 24;
     let didExtrasShuffle;
     let array;
     const arrays = [];
@@ -170,7 +170,7 @@ function buildArena({
     for(let i=0; i<arrays.length; i++) {
         const current = arrays[ i ];
         let value = 0;
-        for(let j=0; j<forceExtras; j+=size)
+        for(let j = 0; j < forceExtras; j += size)
             value += getTeamValue(current, j);
         if(best.value === undefined || best.value < value) {
             best.value = value;

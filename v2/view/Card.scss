@@ -1,11 +1,11 @@
+$transition-time: 0.333s;
 
 .card {
     position: relative;
     width: 100%;
     height: 100%;
     background: #fff;
-    transform-style: preserve-3d;
-    transition: transform 0.333s;
+    overflow: hidden;
 
     .card-front,
     .card-back {
@@ -14,24 +14,35 @@
         left: 0;
         width: 100%;
         height: 100%;
+        overflow-x: hidden;
         overflow-y: auto;
         background: #fff;
-        backface-visibility: hidden;
+        transition: opacity $transition-time, transform $transition-time;
+    }
+
+    .card-front {
+        pointer-events: auto;
+        opacity: 1;
+        transform: scale(1) translate(0, 0);
     }
 
     .card-back {
         pointer-events: none;
-        transform: rotateY(180deg);
+        opacity: 0.001;
+        transform: scale(1.5) translate(100%, 0);
     }
 
     &.card--flipped {
-        transform: rotateY(180deg);
 
         .card-front {
             pointer-events: none;
+            opacity: 0.001;
+            transform: scale(0.8) translate(-50%, 0);
         }
         .card-back {
             pointer-events: auto;
+            opacity: 1;
+            transform: scale(1) translate(0, 0);
         }
     }
 }

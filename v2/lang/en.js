@@ -154,6 +154,11 @@ export default {
     'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
     'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
 
+    //Preset name
+    'preset-offensive-name': 'Offensive',
+    'preset-balanced-name': 'Balanced',
+    'preset-defensive-name': 'Defensive',
+
     //Listing words
     'of': 'of',
     'with': 'with',

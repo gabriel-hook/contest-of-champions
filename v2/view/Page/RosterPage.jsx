@@ -45,7 +45,7 @@ const RosterPage = {
                     <Champion
                         key={ champion.id() }
                         champion={ champion }
-                        isEditing={ isEditing(selected, champion) }
+                        selected={ isEditing(selected, champion) }
                         onclick={ handleSelect.bind(this, champion.attr) }
                     />
                 )) }
