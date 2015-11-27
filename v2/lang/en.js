@@ -47,6 +47,7 @@ export default {
     'champion-electro-name': 'Electro',
     'champion-hulk-name': 'Hulk',
     'champion-joefixit-name': 'Joe Fixit',
+    'champion-lukecage-name': 'Luke Cage',
     'champion-rhino-name': 'Rhino',
     'champion-spidergwen-name': 'Spider-Gwen',
     'champion-spiderman-name': 'Spider-Man',
