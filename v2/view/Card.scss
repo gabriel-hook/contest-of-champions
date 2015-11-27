@@ -24,12 +24,14 @@ $transition-time: 0.333s;
         pointer-events: auto;
         opacity: 1;
         transform: scale(1) translate(0, 0);
+        z-index: 100;
     }
 
     .card-back {
         pointer-events: none;
         opacity: 0.001;
         transform: scale(1.5) translate(100%, 0);
+        z-index: 0;
     }
 
     &.card--flipped {
@@ -38,11 +40,13 @@ $transition-time: 0.333s;
             pointer-events: none;
             opacity: 0.001;
             transform: scale(0.8) translate(-50%, 0);
+            z-index: 0;
         }
         .card-back {
             pointer-events: auto;
             opacity: 1;
             transform: scale(1) translate(0, 0);
+            z-index: 100;
         }
     }
 }

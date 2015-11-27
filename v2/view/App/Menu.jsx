@@ -21,16 +21,10 @@ const Menu = {
         const isOpen = ctrl.open;
         const options = [];
         const { menu, button } = args;
-
         const buttonLeft = button && (
             <div class="menu-button menu-button-left" onclick={ button.onclick }>
                 <Icon icon={ button.icon } />
             </div>
-        );
-
-        // header
-        options.push(
-            <MenuHeader title="options" />
         );
         if(menu) {
             options.push(menu);

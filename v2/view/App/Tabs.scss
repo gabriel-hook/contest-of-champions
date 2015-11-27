@@ -1,7 +1,7 @@
-.navigation {
+.tabs {
     box-shadow: 0 0 2px 2px rgba(0,0,0,0.25);
 
-    .navigation-tab {
+    .tabs-tab {
         height:54px;
         font-size: 1.0em;
         line-height: 18px;
@@ -20,50 +20,50 @@
             margin-bottom: 4px;
         }
 
-        .navigation-tab-title {
+        .tabs-tab-title {
             padding: 0 .25em;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
     }
-    .navigation-tab:hover {
+    .tabs:hover {
         background: #eee;
     }
 
-    .navigation-tab--current,
-    .navigation-tab--current:hover {
+    .tabs-tab--current,
+    .tabs-tab--current:hover {
         background: #38c;
         color: #fff;
         text-shadow: 0 1px 0 #000;
     }
 
-    &.navigation--count-1 {
-        .navigation-tab {
+    &.tabs--count-1 {
+        .tabs-tab {
             width: 100%;
         }
     }
 
-    &.navigation--count-2 {
-        .navigation-tab {
+    &.tabs--count-2 {
+        .tabs-tab {
             width: 50%;
         }
     }
 
-    &.navigation--count-3 {
-        .navigation-tab {
+    &.tabs--count-3 {
+        .tabs-tab {
             width: 33.334%;
         }
     }
 
-    &.navigation--count-4 {
-        .navigation-tab {
+    &.tabs--count-4 {
+        .tabs-tab {
             width: 25%;
         }
     }
 
-    &.navigation--count-5 {
-        .navigation-tab {
+    &.tabs--count-5 {
+        .tabs-tab {
             width: 20%;
         }
     }

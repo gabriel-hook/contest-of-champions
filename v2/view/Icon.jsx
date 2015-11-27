@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const MenuIcon = {
+const Icon = {
     view(ctrl, args) {
         const { icon, spin } = args;
         const isSpinning = spin && (typeof spin === 'function')? spin(): spin;
@@ -13,4 +13,4 @@ const MenuIcon = {
     },
 };
 
-export default MenuIcon;
+export default Icon;

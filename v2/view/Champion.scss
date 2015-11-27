@@ -43,7 +43,7 @@
         }
     }
 
-    .portrait {
+    .portrait-image {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -51,7 +51,7 @@
         opacity: 1;
         transition: opacity .35s;
 
-        &.portrait--hidden {
+        &.portrait-image--hidden {
             opacity: 0.001;
         }
 

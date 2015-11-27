@@ -18,7 +18,7 @@ function addSVG(element, isInitialized) {
 
 const Champion = {
     view(ctrl, args) {
-        const { events, onclick, selected } = args;
+        const { events, onclick, selected, neighbor } = args;
         const { uid, stars, typeId } = args.champion.toJSON();
         const starImages = [];
         for(let i=0; i<stars; i++)
@@ -29,19 +29,21 @@ const Champion = {
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         return (
-            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected }) }>
+            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected, 'champion--neighbor': neighbor }) }>
                 <div class="container">
                     <div
                         { ...events }
                         class={ classNames('inner', { 'clickable': onclick }) }
                         onclick={ onclick }
                     >
-                        <div
-                            class={ classNames('portrait', { 'portrait--hidden': hasPortraitImage }) }
-                            config={ addSVG }
-                        />
-                        <div class={ classNames('portrait', { 'portrait--hidden': !hasPortraitImage }) }>
-                            <img src={ portraitImage && portraitImage.src } />
+                        <div class="portrait">
+                            <div
+                                class={ classNames('portrait-image', { 'portrait-image--hidden': hasPortraitImage }) }
+                                config={ addSVG }
+                            />
+                            <div class={ classNames('portrait-image', { 'portrait-image--hidden': !hasPortraitImage }) }>
+                                <img src={ portraitImage && portraitImage.src } />
+                            </div>
                         </div>
                         <div class="title">
                             <span class="name">{ name }</span>

@@ -1,3 +1,4 @@
+import MenuHeader from '../App/Menu/MenuHeader.jsx';
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
@@ -11,7 +12,7 @@ const TeamsMenu = {
     view(/* ctrl, args */) {
         const options = [];
         options.push(
-            <MenuSection
+            <MenuHeader
                 icon={(
                     <Icon icon="users"/>
                 )}

@@ -90,10 +90,20 @@
 
     &.team--selected {
         .champion {
-            opacity: 0.5;
+            .portrait {
+                opacity: 0.25;
+            }
+
+            &.champion--neighbor {
+                .portrait {
+                    opacity: 0.75;
+                }
+            }
 
             &.champion--selected {
-                opacity: 1;
+                .portrait {
+                    opacity: 1;
+                }
             }
         }
     }

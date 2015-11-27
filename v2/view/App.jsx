@@ -1,6 +1,6 @@
 import './App.scss';
 import classNames from 'classnames';
-import Navigation from './App/Navigation.jsx';
+import Tabs from './App/Tabs.jsx';
 import Menu from './App/Menu.jsx';
 import app from '../service/app.js';
 /* eslint-disable no-unused-vars */
@@ -37,7 +37,7 @@ const App = {
                     ))}
                     </div>
                 </div>
-                <Navigation tabs={ tabs } tab={ tab } key={ 1 } />
+                <Tabs tabs={ tabs } tab={ tab } key={ 1 } />
                 <Menu menu={ menu } button={ button } key={ 2 } />
                 <div class="svg" config={ addSVG } />
             </div>

@@ -8,51 +8,103 @@ import lang from '../service/lang.js';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const TYPE_CHAMPION = 1;
-const TYPE_SYNERGY = 2;
+const CHAMPION_SELECTED = 1;
+const CHAMPION_NEIGHBOR = 2;
+const SYNERGY_SELECTED = 1;
+
+function selectNone(ctrl) {
+    ctrl.selected = {
+        synergies: {},
+        champions: {},
+    };
+    m.redraw();
+}
+
+function selectChampion(ctrl, synergies, champions, index) {
+    let selected = ctrl.champions[ index ];
+    if(!selected) {
+        selected = {
+            active: true,
+            champions: {
+                [ index ]: CHAMPION_SELECTED,
+            },
+            synergies: {},
+        };
+        const champion = champions[ index ];
+        synergies.forEach((synergy, index) => {
+            if(champion.attr.uid === synergy.attr.toId) {
+                selected.synergies[ index ] = SYNERGY_SELECTED;
+                champions.forEach((champion, index) => {
+                    if(champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars)
+                        selected.champions[ index ] = CHAMPION_NEIGHBOR;
+                });
+            }
+            else if(champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars) {
+                selected.synergies[ index ] = SYNERGY_SELECTED;
+                champions.forEach((champion, index) => {
+                    if(champion.attr.uid === synergy.attr.toId)
+                        selected.champions[ index ] = CHAMPION_NEIGHBOR;
+                });
+            }
+        });
+        ctrl.champions[ index ] = selected;
+    }
+    ctrl.selected = selected;
+    m.redraw();
+}
+
+function selectSynergy(ctrl, synergies, champions, index) {
+    let selected = ctrl.synergies[ index ];
+    if(!selected) {
+        selected = {
+            active: true,
+            champions: {},
+            synergies: {
+                [ index ]: SYNERGY_SELECTED,
+            },
+        };
+        const synergy = synergies[ index ];
+        champions.forEach((champion, index) => {
+            if (champion.attr.uid === synergy.attr.toId)
+                selected.champions[ index ] = CHAMPION_SELECTED;
+            else if (champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars)
+                selected.champions[ index ] = CHAMPION_SELECTED;
+        });
+        ctrl.synergies[ index ] = selected;
+    }
+    ctrl.selected = selected;
+    m.redraw();
+}
 
 const Team = {
     controller() {
         this.selected = {
-            type: null,
-            index: null,
+            synergies: {},
+            champions: {},
         };
+        this.champions = {};
+        this.synergies = {};
     },
     view(ctrl, args) {
         const { champions, synergies } = args;
         const size = champions.length;
         return(
             <div
-                class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.type }) }
-                onmouseout={() => {
-                    ctrl.selected = {
-                        type: null,
-                        index: null,
-                    };
-                    m.redraw();
-                }}
+                class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
+                onmouseleave={ () => selectNone(ctrl) }
             >
                 <div>
                 { champions.map((champion, index) => {
-                    let selected = false;
-                    if(ctrl.selected.type === TYPE_SYNERGY) {
-                        const synergy = synergies[ ctrl.selected.index ];
-                        selected = synergy.attr.toId === champion.attr.uid ||
-                            synergy.attr.fromId === champion.attr.uid && synergy.attr.fromStars === champion.attr.stars;
-                    }
-                    else if (ctrl.selected.type === TYPE_CHAMPION)
-                        selected = ctrl.selected.index === index;
+                    const selected = ctrl.selected.champions[ index ] === CHAMPION_SELECTED;
+                    const neighbor = ctrl.selected.champions[ index ] === CHAMPION_NEIGHBOR;
                     return (
                         <Champion
                             key={ `champion-${ index }` }
                             champion={ champion }
                             selected={ selected }
+                            neighbor={ neighbor }
                             events={{
-                                onmouseover: () => {
-                                    ctrl.selected.type = TYPE_CHAMPION;
-                                    ctrl.selected.index = index;
-                                    m.redraw();
-                                },
+                                onmouseenter: () => selectChampion(ctrl, synergies, champions, index),
                             }}
                         />
                     );
@@ -60,22 +112,11 @@ const Team = {
                 </div>
                 <div className="team-synergies">
                 { synergies.map((synergy, index) => {
-                    let selected = false;
-                    if(ctrl.selected.type === TYPE_CHAMPION) {
-                        const champion = champions[ ctrl.selected.index ];
-                        selected = synergy.attr.toId === champion.attr.uid ||
-                            synergy.attr.fromId === champion.attr.uid && synergy.attr.fromStars === champion.attr.stars;
-                    }
-                    else if (ctrl.selected.type === TYPE_SYNERGY)
-                        selected = ctrl.selected.index === index;
+                    const selected = ctrl.selected.synergies[ index ] === SYNERGY_SELECTED;
                     return (
                         <div
                             class={ classNames('team-synergy', { 'team-synergy--selected': selected }) }
-                            onmouseover={() => {
-                                ctrl.selected.type = TYPE_SYNERGY;
-                                ctrl.selected.index = index;
-                                m.redraw();
-                            }}
+                            onmouseenter={ () => selectSynergy(ctrl, synergies, champions, index) }
                         >
                             <ImageIcon src={ effectImage(synergy.attr.effectId) }/>
                             <span class="effect-name">
@@ -85,7 +126,7 @@ const Team = {
                                 { synergy.attr.effectAmount }%
                             </span>
                         </div>
-                            );
+                    );
                 })}
                 </div>
             </div>

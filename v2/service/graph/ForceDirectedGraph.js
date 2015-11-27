@@ -46,12 +46,15 @@ export default function({
 
     let nodeFont;
     let pixelRatio;
-    let canvasState;
-
+    let canvasState = {};
+    let lastCanvasState = {};
 
     function resize() {
-        canvas.width = canvasState.width;
-        canvas.height = canvasState.height;
+        //resize only when the value changes, so we don't get canvas blinking.
+        if(lastCanvasState.width !== canvasState.width)
+            canvas.width = canvasState.width;
+        if(lastCanvasState.height !== canvasState.height)
+            canvas.height = canvasState.height;
     }
     let resizeTimeout;
 
@@ -72,6 +75,7 @@ export default function({
         if(width && height) {
             pixelRatio = window.devicePixelRatio || 1;
             nodeFont = new ScaledNodeFont();
+            lastCanvasState = canvasState;
             canvasState = {
                 top,
                 left,

@@ -3,7 +3,7 @@ import { getImage } from '../util/images.js';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const MenuImage = {
+const ImageIcon = {
     view(ctrl, args) {
         const { src } = args;
         const image = getImage(src);
@@ -15,4 +15,4 @@ const MenuImage = {
     },
 };
 
-export default MenuImage;
+export default ImageIcon;

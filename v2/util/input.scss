@@ -1,17 +1,17 @@
-@mixin inputRange( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+@mixin inputRange( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
     -webkit-appearance: none;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none; // needed again for Chrome & Safari
-        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     &::-moz-range-thumb {
-        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     &::-ms-thumb {
-        @include rangeThumb($thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     // Track
@@ -41,17 +41,6 @@
     }
 }
 
-@mixin rangeThumb( $thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
-    width: $thumb-size;
-    height: $thumb-size;
-    border: $thumb-border;
-    border-radius: $thumb-border-radius;
-    box-shadow: $thumb-box-shadow;
-    background: $thumb-background;
-    cursor: pointer;
-    margin-top: -5px;
-}
-
 @mixin rangeTrack( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius ) {
     width: $track-width;
     height: $track-height;
@@ -59,4 +48,15 @@
     border-radius: $track-border-radius;
     box-shadow: $track-box-shadow;
     background: $track-background;
+}
+
+@mixin rangeThumb( $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+    width: $thumb-size;
+    height: $thumb-size;
+    border: $thumb-border;
+    border-radius: $thumb-border-radius;
+    box-shadow: $thumb-box-shadow;
+    background: $thumb-background;
+    cursor: pointer;
+    margin-top: $thumb-margin;
 }

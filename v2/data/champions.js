@@ -182,6 +182,9 @@ const champions = [
     { uid:'joefixit', typeId:'science', stars: 3 },
     { uid:'joefixit', typeId:'science', stars: 4 },
 
+    { uid:'lukecage', typeId:'science', stars: 3 },
+    { uid:'lukecage', typeId:'science', stars: 4 },
+
     { uid:'rhino', typeId:'science', stars: 2 },
     { uid:'rhino', typeId:'science', stars: 3 },
     { uid:'rhino', typeId:'science', stars: 4 },

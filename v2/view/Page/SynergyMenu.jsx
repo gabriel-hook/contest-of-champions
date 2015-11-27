@@ -1,3 +1,4 @@
+import MenuHeader from '../App/Menu/MenuHeader.jsx';
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
@@ -13,11 +14,20 @@ const SynergyMenu = {
         const { stars } = args;
         const options = [];
         options.push(
-            <MenuSection
+            <MenuHeader
                 icon={(
                     <Icon icon="users"/>
                 )}
                 title="synergies"
+            />
+        );
+        options.push(
+            <MenuOption
+                title="legend-show"
+                selected={ synergy.legend === true }
+                onclick={ () => {
+                    synergy.legend = !synergy.legend;
+                }}
             />
         );
         options.push(
@@ -30,15 +40,6 @@ const SynergyMenu = {
                     />
                 ))
             } />
-        );
-        options.push(
-            <MenuOption
-                title="legend-show"
-                selected={ synergy.legend === true }
-                onclick={ () => {
-                    synergy.legend = !synergy.legend;
-                }}
-            />
         );
         return (
             <div>

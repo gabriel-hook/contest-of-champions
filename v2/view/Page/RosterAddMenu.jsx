@@ -1,4 +1,4 @@
-import MenuSection from '../App/Menu/MenuSection.jsx';
+import MenuHeader from '../App/Menu/MenuHeader.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
@@ -10,29 +10,23 @@ import m from 'mithril';
 const RosterAddMenu = {
     view(ctrl, args) {
         const { stars } = args;
-        const options = [];
-        options.push(
-            <MenuSection
-                icon={(
-                    <Icon icon="user-plus"/>
-                )}
-                title="add-champion"
-            />
-        );
-        options.push(
-            <MenuOptionGroup options={
-                [ '1', '2', '3', '4', '5' ].map((star) => (
-                    <MenuOption
-                        title={ `${ star }★` }
-                        selected={ stars === star }
-                        onclick={ () => router.setRoute(`/roster/add/${ star }`) }
-                    />
-                ))
-            } />
-        );
         return (
             <div>
-                { options }
+                <MenuHeader
+                    icon={(
+                        <Icon icon="user-plus"/>
+                    )}
+                    title="add-champion"
+                />
+                <MenuOptionGroup
+                    options={ [ '1', '2', '3', '4', '5' ].map((star) => (
+                        <MenuOption
+                            title={ `${ star }★` }
+                            selected={ stars === star }
+                            onclick={ () => router.setRoute(`/roster/add/${ star }`) }
+                        />
+                    ))}
+                />
             </div>
         );
     },

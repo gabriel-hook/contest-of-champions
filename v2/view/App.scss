@@ -23,21 +23,23 @@
                 pointer-events: none;
                 transition: opacity 0.25s;
                 background: #ccc;
+                z-index: 0;
 
                 &.page--current {
                     opacity: 1;
                     pointer-events: auto;
-                    perspective: 1600px;
+                    z-index: 10;
                 }
             }
         }
     }
 
-    .navigation {
+    .tabs {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
+        z-index: 20;
     }
 
     .svg {

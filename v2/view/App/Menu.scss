@@ -79,7 +79,7 @@ $menu-transition-time: .25s;
                 position: relative;
                 width: 1.2em;
                 margin-bottom: -.2em;
-                z-index: 100;
+                z-index: 1000;
             }
         }
 
@@ -89,23 +89,19 @@ $menu-transition-time: .25s;
 
         .menu-header,
         .menu-section {
+            padding: .75em;
             font-family: Hanzel, Verdana, Geneva, sans-serif;
             font-size: 1.1em;
             line-height: 1.1em;
             color: #fff;
             text-shadow: 0 1px 0 #000;
             text-transform: uppercase;
-            padding: .75em;
-        }
-
-        .menu-header {
-            padding: .75em;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .menu-section {
             line-height: 1.3em;
             padding: .5em .75em;
-            background: rgba(255, 255, 255, 0.1);
         }
     }
 
