@@ -31,10 +31,7 @@ const RosterPage = {
             event.stopPropagation();
             router.setRoute('/roster');
         };
-        const isEditing = (selected, champion) => (selected && champion
-            && selected.uid === champion.attr.uid
-            && selected.stars === champion.attr.stars
-        );
+        const isSelected = ({ uid, stars }) => selected && selected.uid === uid && selected.stars === stars;
         return (
             <div
                 class={ classNames('roster', { 'roster--editing': selected }) }
@@ -45,7 +42,7 @@ const RosterPage = {
                     <Champion
                         key={ champion.id() }
                         champion={ champion }
-                        selected={ isEditing(selected, champion) }
+                        selected={ isSelected(champion.attr) }
                         onclick={ handleSelect.bind(this, champion.attr) }
                     />
                 )) }

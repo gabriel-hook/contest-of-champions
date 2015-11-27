@@ -1,5 +1,4 @@
 import MenuHeader from '../App/Menu/MenuHeader.jsx';
-import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import roster from '../../service/roster.js';

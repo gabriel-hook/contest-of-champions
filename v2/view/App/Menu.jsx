@@ -1,6 +1,5 @@
 import './Menu.scss';
 import classNames from 'classnames';
-import MenuHeader from './Menu/MenuHeader.jsx';
 import MenuSection from './Menu/MenuSection.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';

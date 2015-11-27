@@ -1,20 +1,51 @@
 @import "../../util/input";
 
 .teams-settings {
-    padding: 64px 24px 24px 24px;
+    padding: 0 24px 24px 24px;
 
-    input,
-    select {
-        width: 100%;
+    .header {
+        font-weight: normal;
+        font-family: Hanzel, Verdana, Geneva, sans-serif;
+        text-shadow: 0 1px 0 #ccc;
+        text-align: center;
     }
 
-    input[type=range] {
-        //$track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius,
-        //$thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius
-        @include inputRange(
-            100%, 1em, #333, inset 0 0 3px #000, 1px,
-            1.2em, -.15em, #38c, 0 1px 1px #000, none, 3px
-        );
+    .field {
+        .field-name {
+            font-family: Hanzel, Verdana, Geneva, sans-serif;
+            font-size: 1.0em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 0 #ccc;
+        }
+
+        .field-input {
+            position: relative;
+            padding-right: 48px;
+
+            .field-value {
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                font-size: 1.0em;
+            }
+
+            .field-slider {
+                //$track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius,
+                //$thumb-size, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius
+                @include inputRange(
+                                100%, 1em, #333, inset 0 0 3px #000, 1px,
+                                1.2em, -.15em, #38c, 0 1px 1px #000, none, 3px
+                );
+                width: 100%;
+            }
+
+            @media (min-width: 500px) {
+                display: inline-block;
+                width: 400px;
+            }
+        }
     }
+
 }
 
