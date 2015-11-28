@@ -50,7 +50,6 @@ function selectChampion(ctrl, synergies, champions, index) {
         ctrl.champions[ index ] = selected;
     }
     ctrl.selected = selected;
-    m.redraw();
 }
 
 function selectSynergy(ctrl, synergies, champions, index) {
@@ -73,7 +72,6 @@ function selectSynergy(ctrl, synergies, champions, index) {
         ctrl.synergies[ index ] = selected;
     }
     ctrl.selected = selected;
-    m.redraw();
 }
 
 const Team = {

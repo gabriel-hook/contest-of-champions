@@ -22,9 +22,7 @@ import SynergyMenu from './view/Page/SynergyMenu.jsx';
 import { requestRender } from './util/animation.js';
 import m from 'mithril';
 
-router.on('/guide', () => {
-    router.setRoute(`/guide/${ uids[ 0 ] }`);
-});
+router.on('/guide', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
 
 router.on('/guide/:uid', (uid) => {
     app.tab = 'guide';
@@ -148,9 +146,7 @@ router.on('/teams', () => {
     m.redraw();
 });
 
-router.on('/synergy', () => {
-    router.setRoute(`/synergy/${ 2 }`);
-});
+router.on('/synergy', () => router.setRoute(`/synergy/${ 2 }`));
 
 router.on('/synergy/:stars', (stars) => {
     app.tab = 'synergy';
@@ -163,6 +159,8 @@ router.on('/synergy/:stars', (stars) => {
     app.button = null;
     m.redraw();
 });
+
+router.on('.*', () => router.setRoute('roster'));
 
 app.tabs = [
     {

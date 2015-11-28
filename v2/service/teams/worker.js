@@ -33,3 +33,5 @@ onmessage = function(event) {
         break;
     }
 };
+
+export default {};
