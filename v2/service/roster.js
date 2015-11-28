@@ -1,24 +1,10 @@
 import Champion from '../model/Champion.js';
 import champions from '../data/champions';
+import { fromStorage, toStorage } from '../util/storage.js';
 
-function fromStorage(id) {
-    let array = [];
-    if(localStorage) {
-        const string = localStorage.getItem(id);
-        array = JSON.parse(string) || [];
-        array = array.map((champion) => new Champion(champion));
-    }
-    return array;
-}
-
-function toStorage(id, object) {
-    if(localStorage) {
-        localStorage.setItem('roster', JSON.stringify(object));
-    }
-}
 
 let rosterMap;
-let roster = fromStorage('roster');
+let roster = fromStorage('roster', []).map((champion) => new Champion(champion));
 
 function all() {
     return roster.slice();

@@ -1,6 +1,6 @@
 import './TeamsSettingsPage.scss';
 import effects from '../../data/effects.js';
-import teams from '../../service/teams.js';
+import teams, { update } from '../../service/teams.js';
 import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -26,6 +26,7 @@ const Slider = {
                 value={ object[ field ] * 1000 }
                 oninput={ (event) => {
                     object[ field ] = event.target.value / 1000;
+                    update();
                     m.redraw();
                 } }
             />

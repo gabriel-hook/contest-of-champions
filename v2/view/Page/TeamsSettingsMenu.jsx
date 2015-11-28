@@ -2,7 +2,7 @@ import MenuHeader from '../App/Menu/MenuHeader.jsx';
 import MenuSection from '../App/Menu/MenuSection.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
-import teams, { presets } from '../../service/teams.js';
+import teams, { presets, update } from '../../service/teams.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -30,6 +30,7 @@ const TeamsSettingsMenu = {
                             ...teams.weights,
                             ...presets[ id ],
                         };
+                        update();
                         m.redraw();
                     } }
                 />

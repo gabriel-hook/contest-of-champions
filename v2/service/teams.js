@@ -1,8 +1,8 @@
 import m from 'mithril';
 import dataSynergies from '../data/synergies.js';
-import { requestRender } from '../util/animation.js';
 import roster from './roster.js';
-import build from './teams/build.js';
+import { fromStorage, toStorage } from '../util/storage.js';
+import Worker from 'webworker!./teams/worker.js';
 
 const presets = {
     'offensive': {
@@ -46,7 +46,6 @@ const presets = {
     },
 };
 
-
 const teams = {
     type: 'arena',
     size: 3,
@@ -66,7 +65,17 @@ const teams = {
     },
     progress: 0,
     building: false,
+    ...fromStorage('teams', {}),
 };
+
+function update() {
+    toStorage('teams', {
+        type: teams.type,
+        size: teams.size,
+        stars: teams.stars,
+        weights: teams.weights,
+    });
+}
 
 function fidToRosterChampion(fid) {
     /* eslint-disable eqeqeq */
@@ -77,54 +86,67 @@ function fidToRosterChampion(fid) {
     /* eslint-enable eqeqeq */
 }
 
+const worker = new Worker();
+worker.onmessage = (event) => {
+    switch(event.data.type) {
+    case 'result':
+        const result = event.data.data;
+        let teamsCount = 0;
+        let synergiesCount = 0;
+        teams.result = {
+            ...result,
+            teams: result.teams.map((team) => {
+                const champions = team.map(fidToRosterChampion);
+                const synergies = dataSynergies.filter((synergy) => {
+                    const { fromId, fromStars, toId } = synergy.attr;
+                    if(!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
+                        return false;
+                    return Boolean(champions.find(({ attr }) => toId === attr.uid));
+
+                });
+                teamsCount++;
+                synergiesCount += synergies.length;
+                return {
+                    champions,
+                    synergies,
+                };
+            }),
+            counts: {
+                teams: teamsCount,
+                synergies: synergiesCount,
+            },
+            extras: result.extras.map(fidToRosterChampion),
+        };
+        teams.building = false;
+        m.redraw();
+        break;
+    case 'progress':
+        const progress = event.data.data;
+        teams.progress = progress.current / progress.max;
+        m.redraw();
+        break;
+    }
+};
+
 function buildTeams() {
+    if(teams.building)
+        return;
     teams.building = true;
-    const result = build({
-        type: teams.type,
-        champions: roster
-            .filter((champion) => teams.stars[ champion.attr.stars ])
-            .map((champion) => champion.id()),
-        size: teams.size,
-        weights: {
-            ...teams.weights,
-        },
-        progress: (current, max) => {
-            requestRender('progress', () => {
-                teams.progress = current / max;
-                m.redraw();
-            });
+    teams.progress = 0;
+    worker.postMessage({
+        type: 'build',
+        data: {
+            type: teams.type,
+            champions: roster
+                .filter((champion) => teams.stars[ champion.attr.stars ])
+                .map((champion) => champion.id()),
+            size: teams.size,
+            weights: {
+                ...teams.weights,
+            },
         },
     });
-    let teamsCount = 0;
-    let synergiesCount = 0;
-    teams.result = {
-        ...result,
-        teams: result.teams.map((team) => {
-            const champions = team.map(fidToRosterChampion);
-            const synergies = dataSynergies.filter((synergy) => {
-                const { fromId, fromStars, toId } = synergy.attr;
-                if(!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
-                    return false;
-                return Boolean(champions.find(({ attr }) => toId === attr.uid));
-
-            });
-            teamsCount++;
-            synergiesCount += synergies.length;
-            return {
-                champions,
-                synergies,
-            };
-        }),
-        counts: {
-            teams: teamsCount,
-            synergies: synergiesCount,
-        },
-        extras: result.extras.map(fidToRosterChampion),
-
-    };
-    teams.building = false;
-    m.redraw();
 }
 
-export { presets, buildTeams };
+export { presets, update, buildTeams };
 export default teams;

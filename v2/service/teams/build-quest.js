@@ -44,16 +44,17 @@ function buildQuest({
         return true;
     });
 
-    const progresser = progress && {
-        current: 0,
-        max: combination(list.length, preselect.length? size - preselect.length: size),
-        callback: progress,
+    let progressCurrent = 0;
+    const progressMax = combination(list.length, preselect.length? size - preselect.length: size);
+    const progressIncrement = () => {
+        progressCurrent++;
+        progress(progressCurrent, progressMax);
     };
 
     const team = (preselect.length > 0)? ((preselect.length > size)?
-        getTopPartner(preselect, 0, size, typeWeights, progresser):
-        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progresser)
-    ): getTopPartner(list, 0, size, typeWeights, progresser);
+        getTopPartner(preselect, 0, size, typeWeights, progressIncrement):
+        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progressIncrement)
+    ): getTopPartner(list, 0, size, typeWeights, progressIncrement);
 
     if(team.value > 0) {
         return {
@@ -69,7 +70,7 @@ function buildQuest({
     };
 }
 
-function getTopPartner(list, index, depth, typeWeights, progress) {
+function getTopPartner(list, index, depth, typeWeights, progressIncrement) {
     if(index >= list.length)
         return null;
     const current = getNextPartner(
@@ -80,18 +81,17 @@ function getTopPartner(list, index, depth, typeWeights, progress) {
         index + 1,
         depth,
         typeWeights,
-        progress
+        progressIncrement
     );
     if(current === null)
         return null;
-    const next = getTopPartner(list, index+1, depth, typeWeights, progress);
+    const next = getTopPartner(list, index+1, depth, typeWeights, progressIncrement);
     return (compareTeams(current, next) >= 0)? current: next;
 }
 
-function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progress) {
+function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progressIncrement) {
     if(champions.length === depth) {
-        if(progress)
-            progress.callback(++progress.current, progress.max);
+        progressIncrement();
         return {
             champions,
             synergies,
@@ -108,9 +108,9 @@ function getNextPartner(list, champions, synergies, types, index, depth, typeWei
         index + 1,
         depth,
         typeWeights,
-        progress
+        progressIncrement
     );
-    const next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progress);
+    const next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progressIncrement);
 
     return (compareTeams(current, next) >= 0)? current: next;
 }

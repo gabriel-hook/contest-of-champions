@@ -1,6 +1,6 @@
+import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import 'babel-polyfill';
 import { uids } from './data/champions.js';
 import app from './service/app.js';
 import router from './service/router.js';
