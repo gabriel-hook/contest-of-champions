@@ -51,6 +51,7 @@ const Menu = {
             );
         }
         // share
+        /*
         options.push(
             <MenuSection title="share-to" />
         );
@@ -78,6 +79,7 @@ const Menu = {
                 title="twitter"
             />
         );
+        */
         return (
             <div class={ classNames('menu', { 'menu--open': isOpen }) }>
                 <div class="menu-background" onclick={ ctrl.toggle }></div>

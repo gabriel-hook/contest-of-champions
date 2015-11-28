@@ -172,16 +172,12 @@ function buildArena({
         let value = 0;
         for(let j = 0; j < forceExtras; j += size)
             value += getTeamValue(current, j);
-
-        console.log(value);
-
         if(best.value === undefined || best.value < value) {
             best.value = value;
             best.array = current;
         }
     }
     array = best.array;
-
 
     const teams = [];
     const extras = [];
