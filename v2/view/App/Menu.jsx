@@ -5,7 +5,6 @@ import MenuOption from './Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang.js';
-import router from '../../service/router.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

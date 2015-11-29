@@ -26,6 +26,7 @@ gulp.task('lint:v1:js', () => gulp.src([
         'expr': true,
     }))
     .pipe(jshint.reporter('default', { verbose: true }))
+    .pipe(jshint.reporter('fail'))
 );
 gulp.task('lint:v1', [ 'lint:v1:js' ]);
 
@@ -37,6 +38,7 @@ gulp.task('lint:v2:js', () => gulp.src([
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 );
 gulp.task('lint:v2:css', () => gulp.src([
     './v2/**/*.scss',
@@ -53,6 +55,7 @@ gulp.task('lint:dev:js', () => gulp.src([
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 );
 gulp.task('lint:dev', [ 'lint:dev:js' ]);
 

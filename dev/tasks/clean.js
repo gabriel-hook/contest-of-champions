@@ -21,4 +21,4 @@ gulp.task('clean:all', () => del([
     force: true,
 }));
 
-gulp.task('clean', [ 'clean:js', 'clean:css' ]);
+gulp.task('clean', [ 'clean:all' ]);
