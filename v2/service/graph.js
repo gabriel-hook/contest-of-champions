@@ -3,6 +3,7 @@ import synergies from '../data/synergies';
 import router from '../service/router.js';
 import Graph from './graph/Graph.js';
 import ForceDirectedGraph from './graph/ForceDirectedGraph.js';
+import deepEqual from 'deep-equal';
 import m from 'mithril';
 
 const typeColors = {
@@ -27,6 +28,7 @@ const effectColors = {
     healthsteal:'#af0',
 };
 
+let lastSelected;
 const legends = {};
 const graphs = {};
 const fdg = new ForceDirectedGraph({
@@ -34,36 +36,43 @@ const fdg = new ForceDirectedGraph({
     repulsion: 1600,
     damping: 0.5,
     nodeSelected: (nodes, edges) => {
-        const legend = legends[ fdg.stars ];
-        if(nodes.length > 1) {
-            const amounts = {};
-            edges.forEach((edge) => {
-                const { effect, amount } = edge.data;
-                amounts[ effect ] = amount;
-            });
-            for(const effect of legend) {
-                effect.selected = Boolean(amounts[ effect.effectId ]);
-                effect.amount = amounts[ effect.effectId ];
+        const currentSelected = {
+            nodes,
+            edges,
+        };
+        if(!deepEqual(lastSelected, currentSelected)) {
+            const legend = legends[ fdg.stars ];
+            if (nodes.length > 1) {
+                const amounts = {};
+                edges.forEach((edge) => {
+                    const { effect, amount } = edge.data;
+                    amounts[ effect ] = amount;
+                });
+                for (const effect of legend) {
+                    effect.selected = Boolean(amounts[ effect.effectId ]);
+                    effect.amount = amounts[ effect.effectId ];
+                }
             }
-        }
-        else if(nodes.length === 1) {
-            const selected = {};
-            edges.forEach((edge) => {
-                const { effect } = edge.data;
-                selected[ effect ] = true;
-            });
-            for(const effect of legend) {
-                effect.selected = selected[ effect.effectId ];
-                effect.amount = null;
+            else if (nodes.length === 1) {
+                const selected = {};
+                edges.forEach((edge) => {
+                    const { effect } = edge.data;
+                    selected[ effect ] = true;
+                });
+                for (const effect of legend) {
+                    effect.selected = selected[ effect.effectId ];
+                    effect.amount = null;
+                }
             }
-        }
-        else {
-            for(const effect of legend) {
-                effect.selected = true;
-                effect.amount = null;
+            else {
+                for (const effect of legend) {
+                    effect.selected = true;
+                    effect.amount = null;
+                }
             }
+            lastSelected = currentSelected;
+            m.redraw();
         }
-        m.redraw();
     },
     effectSelected: (effectId) => {
         const legend = legends[ fdg.stars ];

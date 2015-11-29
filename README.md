@@ -11,20 +11,6 @@
   $ npm install
 ```
 
-  Update experimental packages
-    
-```
-  $ cd node_modules/babel-plugin-mjsx
-  $ npm install babel-cli -g
-  $ npm install
-  $ babel src --out-dir lib
-```
-    
-```
-  $ cd node_modules/simple-hot-loader
-  $ npm install
-```
-
 ### Publishing
 
   Delint v1 and v2 before publishing to ensure proper code styling.
