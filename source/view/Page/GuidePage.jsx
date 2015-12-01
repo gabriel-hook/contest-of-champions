@@ -39,9 +39,9 @@ const $synergy = (championId, effectId, stars) => {
     return (
         <div class="guide-synergy">
             {
-                $image(`../images/champions/portrait_${ championId }.png`)
+                $image(`images/champions/portrait_${ championId }.png`)
             }{
-                $image(`../${ effectImage(effectId) }`)
+                $image(`${ effectImage(effectId) }`)
             }
             <span class="champion-name" onclick={
                 () => router.setRoute(`/guide/${ championId }`)

@@ -23,7 +23,7 @@ const Champion = {
         const starImages = [];
         for(let i=0; i<stars; i++)
             starImages.push(
-                <img class="star" src="../images/icons/star.png" />
+                <img class="star" src="images/icons/star.png" />
             );
         const portraitImage = getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
