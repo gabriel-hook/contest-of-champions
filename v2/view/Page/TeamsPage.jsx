@@ -47,6 +47,7 @@ const TeamsPage = {
                 <div>
                     { extrasDiv }
                 </div>
+                <div class="clear" />
             </div>
         );
     },

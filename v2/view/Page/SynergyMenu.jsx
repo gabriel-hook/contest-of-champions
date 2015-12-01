@@ -21,15 +21,6 @@ const SynergyMenu = {
             />
         );
         options.push(
-            <MenuOption
-                title="legend-show"
-                selected={ synergy.legend === true }
-                onclick={ () => {
-                    synergy.legend = !synergy.legend;
-                }}
-            />
-        );
-        options.push(
             <MenuOptionGroup options={
                 [ '1', '2', '3', '4', '5' ].map((star) => (
                     <MenuOption
@@ -39,6 +30,15 @@ const SynergyMenu = {
                     />
                 ))
             } />
+        );
+        options.push(
+            <MenuOption
+                title="legend-show"
+                selected={ synergy.legend === true }
+                onclick={ () => {
+                    synergy.legend = !synergy.legend;
+                }}
+            />
         );
         return (
             <div>

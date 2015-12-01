@@ -118,7 +118,7 @@ router.on('/teams/settings', () => {
         <TeamsSettingsMenu />
     );
     app.button = {
-        icon: 'chevron-circle-left',
+        icon: 'cog',
         onclick: () => router.setRoute('/teams'),
     };
     m.redraw();

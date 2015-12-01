@@ -27,6 +27,13 @@ onmessage = function(event) {
             },
         });
         postMessage({
+            type: 'progress',
+            data: {
+                current: 1,
+                max: 1,
+            },
+        });
+        postMessage({
             type: 'result',
             data: result,
         });

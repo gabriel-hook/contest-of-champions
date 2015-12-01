@@ -18,8 +18,6 @@ function config(element, isInitialized) {
 const SynergyPage = {
     view(ctrl, args) {
         const stars = args.stars;
-        updateGraph(stars);
-
         const legend = getLegend(stars);
         const items = legend && legend.map(({ effectId, selected, amount }) => {
             return (

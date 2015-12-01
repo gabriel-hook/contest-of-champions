@@ -26,6 +26,10 @@ html {
     outline: none;
 }
 
+.clear {
+    clear: both;
+}
+
 @font-face {
     font-family: Hanzel;
     src: url("fonts/hanzel-normal-webfont.eot");

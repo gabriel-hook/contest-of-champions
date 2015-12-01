@@ -71,6 +71,7 @@ const TeamsSettingsPage = {
                     { lang.get('duplicate-weights') }
                 </h3>
                 { duplicateSliders }
+                <div class="clear" />
             </div>
         );
     },

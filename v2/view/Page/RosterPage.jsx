@@ -46,6 +46,7 @@ const RosterPage = {
                         onclick={ handleSelect.bind(this, champion.attr) }
                     />
                 )) }
+                <div class="clear" />
             </div>
         );
     },

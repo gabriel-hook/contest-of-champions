@@ -14,7 +14,7 @@ const TeamsMenu = {
         options.push(
             <MenuHeader
                 icon={(
-                    <Icon icon="users"/>
+                    <Icon icon="cog" spin={ teams.building } />
                 )}
                 title="teams"
             />
@@ -23,7 +23,7 @@ const TeamsMenu = {
             <MenuOption
                 title="build"
                 icon={(
-                    <Icon icon="cog" spin={ teams.building } />
+                    <Icon icon="users" />
                 )}
                 onclick={ buildTeams }
                 progress={ teams.building && teams.progress }

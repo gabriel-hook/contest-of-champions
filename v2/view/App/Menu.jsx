@@ -1,9 +1,11 @@
 import './Menu.scss';
 import classNames from 'classnames';
 import MenuSection from './Menu/MenuSection.jsx';
+import MenuOptionGroup from './Menu/MenuOptionGroup.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
+import router from '../../service/router.js'
 import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -19,10 +21,23 @@ const Menu = {
     view(ctrl, args) {
         const isOpen = ctrl.open;
         const options = [];
-        const { menu, button } = args;
+        const { tabs, tab: currentTab, menu, button } = args;
         const buttonLeft = button && (
-            <div class="menu-button menu-button-left" onclick={ button.onclick }>
+            <div class="menu-button menu-button-sub" onclick={ button.onclick }>
                 <Icon icon={ button.icon } />
+            </div>
+        );
+        options.push(
+            <div class="menu-tabs">
+                <MenuOptionGroup options={ tabs.map((tab) => (
+                    <MenuOption
+                        icon={(
+                            <Icon icon={ tab.icon } spin={ tab.spin } />
+                        )}
+                        selected={ currentTab === tab.id }
+                        onclick={ () => router.setRoute(`/${ tab.id }`) }
+                    />
+                )) } />
             </div>
         );
         if(menu) {
@@ -51,7 +66,6 @@ const Menu = {
             );
         }
         // share
-        /*
         options.push(
             <MenuSection title="share-to" />
         );
@@ -79,16 +93,17 @@ const Menu = {
                 title="twitter"
             />
         );
-        */
         return (
             <div class={ classNames('menu', { 'menu--open': isOpen }) }>
                 <div class="menu-background" onclick={ ctrl.toggle }></div>
-                <div class="wrapper">
+                <div class="menu-wrapper">
                     <ul class="menu-options">
                         { options }
                     </ul>
-                    <div class="menu-button menu-button-right" onclick={ ctrl.toggle }>
-                        <Icon icon="bars" />
+                    <div class="menu-button menu-button-main" onclick={ ctrl.toggle }>
+                        <div class="menu-button-bar" />
+                        <div class="menu-button-bar" />
+                        <div class="menu-button-bar" />
                     </div>
                 </div>
                 { buttonLeft }

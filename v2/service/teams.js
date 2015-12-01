@@ -4,7 +4,7 @@ import roster from './roster.js';
 import { fromStorage, toStorage } from '../util/storage.js';
 import Worker from 'webworker!./teams/worker.js';
 
-const presets = {
+const PRESETS = {
     'offensive': {
         'effect-attack': 0.6,
         'effect-stun': 0.5,
@@ -46,6 +46,27 @@ const presets = {
     },
 };
 
+const PRESETS_DUPLICATES = {
+    'all': {
+        'duplicates-2': 1,
+        'duplicates-3': 1,
+        'duplicates-4': 1,
+        'duplicates-5': 1,
+    },
+    'balanced': {
+        'duplicates-2': 0.8,
+        'duplicates-3': 0.4,
+        'duplicates-4': 0.2,
+        'duplicates-5': 0.1,
+    },
+    'none': {
+        'duplicates-2': 0,
+        'duplicates-3': 0,
+        'duplicates-4': 0,
+        'duplicates-5': 0,
+    },
+};
+
 const teams = {
     type: 'arena',
     size: 3,
@@ -57,11 +78,8 @@ const teams = {
         5: false,
     },
     weights: {
-        'duplicates-2': 0.8,
-        'duplicates-3': 0.4,
-        'duplicates-4': 0.2,
-        'duplicates-5': 0.1,
-        ...presets[ 'offensive' ],
+        ...PRESETS_DUPLICATES[ 'balanced' ],
+        ...PRESETS[ 'offensive' ],
     },
     progress: 0,
     building: false,
@@ -148,5 +166,5 @@ function buildTeams() {
     });
 }
 
-export { presets, update, buildTeams };
+export { PRESETS, PRESETS_DUPLICATES, update, buildTeams };
 export default teams;

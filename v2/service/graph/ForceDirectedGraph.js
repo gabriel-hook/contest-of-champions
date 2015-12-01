@@ -71,7 +71,6 @@ export default function({
 
             clearSelected();
         }
-
         if(width && height) {
             pixelRatio = window.devicePixelRatio || 1;
             nodeFont = new ScaledNodeFont();

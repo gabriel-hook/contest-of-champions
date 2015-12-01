@@ -5,40 +5,27 @@
         left: 0;
         width: 100%;
         height: 100%;
-        padding-bottom: 54px;
         box-sizing: border-box;
-        .wrapper {
-            position: relative;
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            opacity: 0.001;
+            overflow-y: auto;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            background: #ccc;
+            z-index: 0;
 
-            .page {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0.001;
-                overflow-y: auto;
-                pointer-events: none;
-                transition: opacity 0.25s;
-                background: #ccc;
-                z-index: 0;
-
-                &.page--current {
-                    opacity: 1;
-                    pointer-events: auto;
-                    z-index: 10;
-                }
+            &.page--current {
+                opacity: 1;
+                pointer-events: auto;
+                z-index: 10;
             }
         }
-    }
-
-    .tabs {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
     }
 
     .svg {

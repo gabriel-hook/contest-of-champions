@@ -160,6 +160,10 @@ export default {
     'preset-balanced-name': 'Balanced',
     'preset-defensive-name': 'Defensive',
 
+    'preset-duplicates-all-name': 'All',
+    'preset-duplicates-balanced-name': 'Balanced',
+    'preset-duplicates-none-name': 'None',
+
     //Listing words
     'of': 'of',
     'with': 'with',
@@ -288,5 +292,6 @@ export default {
 
     'email': 'E-mail',
 
+    'all': 'All',
     'none': 'None',
 };
