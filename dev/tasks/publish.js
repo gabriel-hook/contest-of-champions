@@ -6,15 +6,19 @@ import commit from 'gulp-gh-pages';
 
 const DEVELOPMENT = gutil.env.dev;
 
-gulp.task('gh-pages', () => {
-    return gulp.src([
-        './.build/**/*',
-        './docs/**/*',
-    ])
-        .pipe(plumber())
-        .pipe(commit({
-            push: DEVELOPMENT,
-        }));
-});
+gulp.task('assets', () => gulp.src([
+    './images/**/*',
+])
+    .pipe(plumber())
+    .pipe(gulp.dest('./.build/images/')));
 
-gulp.task('publish', [ 'lint:scripts', 'lint:styles' ], sequence('clean', 'webpack', 'gh-pages'));
+gulp.task('gh-pages', () => gulp.src([
+    './.build/**/*',
+    './dev/docs/**/*',
+])
+    .pipe(plumber())
+    .pipe(commit({
+        push: DEVELOPMENT,
+    })));
+
+gulp.task('publish', [ 'lint:scripts', 'lint:styles' ], sequence('clean', 'assets', 'webpack', 'gh-pages'));
