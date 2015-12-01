@@ -2,11 +2,11 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { config } from '../v2/webpack-config.js';
+import { config } from '../webpack/webpack-config.js';
 
 const DEVELOPMENT = gutil.env.dev;
 
-gulp.task('webpack-dev', (callback) => {
+gulp.task('dev', (callback) => {
     const domain = 'localhost';
     const port = 8080;
     const devConfig = config();

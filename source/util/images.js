@@ -13,7 +13,7 @@ function getImage(src) {
         image.addEventListener('error', () => {
             image[ src ] = null;
         });
-        image.src = `../${ src }`;
+        image.src = `${ src }`;
         images[ src ] = image;
     }
     return image.loaded && image;

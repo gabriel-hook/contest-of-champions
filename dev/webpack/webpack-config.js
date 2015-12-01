@@ -4,10 +4,10 @@ import path from 'path';
 function config() {
     return {
         entry: {
-            app: [ './v2/index.jsx' ],
+            app: [ './source/index.jsx' ],
         },
         output: {
-            path: path.resolve('./.build/v2/'),
+            path: path.resolve('./.build/'),
             filename: '[name]-[hash].js',
         },
         module: {
@@ -46,7 +46,7 @@ function config() {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './v2/index.html',
+                template: './source/index.html',
                 inject: 'body',
             }),
         ],
