@@ -1,4 +1,3 @@
-
 function shuffle(array) {
     let counter = array.length;
     while (counter > 0) {

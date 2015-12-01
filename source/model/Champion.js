@@ -1,4 +1,4 @@
-import Model from './Model.js';
+import Model from './Model';
 
 class Champion extends Model {
     constructor({ uid, stars, typeId, pi }) {

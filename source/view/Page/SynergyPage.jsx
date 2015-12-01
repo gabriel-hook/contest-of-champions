@@ -1,8 +1,8 @@
 import './SynergyPage.scss';
 import classNames from 'classnames';
-import graph, { getLegend, updateGraph } from '../../service/graph.js';
-import lang from '../../service/lang.js';
-import synergy from '../../service/synergy.js';
+import graph, { getLegend, updateGraph } from '../../service/graph';
+import lang from '../../service/lang';
+import synergy from '../../service/synergy';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

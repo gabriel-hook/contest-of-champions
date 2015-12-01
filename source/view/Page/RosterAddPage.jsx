@@ -1,8 +1,8 @@
 import './RosterAddPage.scss';
 import classNames from 'classnames';
+import roster from '../../service/roster';
+import lang from '../../service/lang';
 import Champion from '../Champion.jsx';
-import roster from '../../service/roster.js';
-import lang from '../../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

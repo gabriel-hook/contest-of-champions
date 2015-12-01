@@ -1,7 +1,7 @@
 import './Champion.scss';
 import classNames from 'classnames';
-import { getImage } from '../util/images.js';
-import lang from '../service/lang.js';
+import { getImage } from '../util/images';
+import lang from '../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

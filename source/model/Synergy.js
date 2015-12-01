@@ -1,4 +1,4 @@
-import Model from './Model.js';
+import Model from './Model';
 
 class Synergy extends Model {
     constructor({ fromId, fromStars, toId, effectId, effectAmount }) {

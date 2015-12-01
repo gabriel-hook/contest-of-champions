@@ -1,7 +1,7 @@
 import './App.scss';
 import classNames from 'classnames';
+import app from '../service/app';
 import Menu from './App/Menu.jsx';
-import app from '../service/app.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

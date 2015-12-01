@@ -1,10 +1,11 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import { uids } from './data/champions.js';
-import app from './service/app.js';
-import router from './service/router.js';
-import teams from './service/teams.js';
+import { requestRender } from './util/animation';
+import { uids } from './data/champions';
+import app from './service/app';
+import router from './service/router';
+import teams from './service/teams';
 import App from './view/App.jsx';
 import Card from './view/Card.jsx';
 import GuidePage from './view/Page/GuidePage.jsx';
@@ -19,7 +20,6 @@ import TeamsSettingsPage from './view/Page/TeamsSettingsPage.jsx';
 import TeamsSettingsMenu from './view/Page/TeamsSettingsMenu.jsx';
 import SynergyPage from './view/Page/SynergyPage.jsx';
 import SynergyMenu from './view/Page/SynergyMenu.jsx';
-import { requestRender } from './util/animation.js';
 import m from 'mithril';
 
 router.on('/guide', () => router.setRoute(`/guide/${ uids[ 0 ] }`));

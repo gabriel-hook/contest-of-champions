@@ -1,8 +1,8 @@
-import dataChampions from '../../data/champions.js';
-import dataSynergies from '../../data/synergies.js';
-import { uids as typeIds } from '../../data/types.js';
-import { effectBase } from '../../data/effects.js';
-import { combination } from '../../util/math.js';
+import dataChampions from '../../data/champions';
+import dataSynergies from '../../data/synergies';
+import { uids as typeIds } from '../../data/types';
+import { effectBase } from '../../data/effects';
+import { combination } from '../../util/math';
 
 function buildQuest({
     champions,

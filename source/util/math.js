@@ -1,4 +1,3 @@
-
 function factorial(n) {
     if(factorial.cache === undefined)
         factorial.cache = { 0:1, 1:1, length:1 };

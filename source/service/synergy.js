@@ -1,4 +1,3 @@
-
 const synergy = {
     legend: true,
 };

@@ -1,5 +1,5 @@
-import buildArena from './build-arena.js';
-import buildQuest from './build-quest.js';
+import buildArena from './build-arena';
+import buildQuest from './build-quest';
 
 function build({
     champions,

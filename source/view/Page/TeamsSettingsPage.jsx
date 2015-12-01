@@ -1,7 +1,7 @@
 import './TeamsSettingsPage.scss';
-import effects from '../../data/effects.js';
-import teams, { update } from '../../service/teams.js';
-import lang from '../../service/lang.js';
+import effects from '../../data/effects';
+import teams, { update } from '../../service/teams';
+import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

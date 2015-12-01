@@ -1,7 +1,7 @@
-import dataChampions from '../../data/champions.js';
-import dataSynergies from '../../data/synergies.js';
-import { effectBase } from '../../data/effects.js';
-import { shuffle } from '../../util/array.js';
+import dataChampions from '../../data/champions';
+import dataSynergies from '../../data/synergies';
+import { effectBase } from '../../data/effects';
+import { shuffle } from '../../util/array';
 
 function buildArena({
     champions,

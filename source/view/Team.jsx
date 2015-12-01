@@ -1,9 +1,10 @@
 import './Team.scss';
+import classNames from 'classnames';
+import { effectImage } from '../data/effects';
+import pure from '../util/pure';
+import lang from '../service/lang';
 import Champion from './Champion.jsx';
 import ImageIcon from './ImageIcon.jsx';
-import { effectImage } from '../data/effects.js';
-import classNames from 'classnames';
-import lang from '../service/lang.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -132,4 +133,4 @@ const Team = {
     },
 };
 
-export default Team;
+export default pure(Team);

@@ -1,8 +1,8 @@
 import champions from '../data/champions';
 import synergies from '../data/synergies';
-import router from '../service/router.js';
-import Graph from './graph/Graph.js';
-import ForceDirectedGraph from './graph/ForceDirectedGraph.js';
+import router from '../service/router';
+import Graph from './graph/Graph';
+import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
 import m from 'mithril';
 

@@ -1,10 +1,10 @@
-import lang from '../../service/lang.js';
-import { getImage } from '../../util/images.js';
-import Layout from './Layout.js';
-import Renderer from './Renderer.js';
-import Graph from './Graph.js';
-import Vector from './Vector.js';
-import Node from './Node.js';
+import lang from '../../service/lang';
+import { getImage } from '../../util/images';
+import Layout from './Layout';
+import Renderer from './Renderer';
+import Graph from './Graph';
+import Vector from './Vector';
+import Node from './Node';
 
 /* eslint-disable no-implicit-coercion */
 /* eslint-disable no-param-reassign */

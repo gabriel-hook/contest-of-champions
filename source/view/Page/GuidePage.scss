@@ -24,6 +24,13 @@
         text-shadow: 0 1px 0 #ccc;
     }
 
+    .text {
+        display: inline-block;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 1.0em;
+        margin-top: .5em;
+    }
+
     .guide-synergy {
         .champion-name {
             cursor: pointer;

@@ -1,8 +1,8 @@
+import dataSynergies from '../data/synergies';
+import roster from './roster';
+import { fromStorage, toStorage } from '../util/storage';
+import Worker from 'webworker!./teams/worker';
 import m from 'mithril';
-import dataSynergies from '../data/synergies.js';
-import roster from './roster.js';
-import { fromStorage, toStorage } from '../util/storage.js';
-import Worker from 'webworker!./teams/worker.js';
 
 const PRESETS = {
     'offensive': {

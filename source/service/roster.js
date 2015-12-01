@@ -1,6 +1,6 @@
-import Champion from '../model/Champion.js';
+import Champion from '../model/Champion';
 import champions from '../data/champions';
-import { fromStorage, toStorage } from '../util/storage.js';
+import { fromStorage, toStorage } from '../util/storage';
 
 
 let rosterMap;

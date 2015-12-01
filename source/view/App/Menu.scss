@@ -120,9 +120,7 @@ $menu-transition-time: .25s;
         overflow-y: auto;
         opacity: .001;
         background: #38c;
-        transition: opacity 0s ease $menu-transition-time,
-        max-height $menu-transition-time,
-        width $menu-transition-time;
+        transition: opacity $menu-transition-time, max-height $menu-transition-time, width $menu-transition-time;
 
         .icon {
             position: relative;
@@ -150,12 +148,16 @@ $menu-transition-time: .25s;
             color: #fff;
             text-shadow: 0 1px 0 #000;
             text-transform: uppercase;
-            background: rgba(255, 255, 255, .1);
         }
 
         .menu-section {
             line-height: 1.3em;
             padding: .5em .75em;
+            background: rgba(0, 0, 0, .1);
+        }
+
+        .menu-header {
+            background: rgba(255, 255, 255, .1);
         }
     }
 

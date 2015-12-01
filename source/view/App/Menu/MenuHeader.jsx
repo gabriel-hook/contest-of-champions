@@ -1,4 +1,4 @@
-import lang from '../../../service/lang.js';
+import lang from '../../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

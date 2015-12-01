@@ -1,4 +1,4 @@
-import Model from './Model.js';
+import Model from './Model';
 
 class Ability extends Model {
     constructor({ uid }) {

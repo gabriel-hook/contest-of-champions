@@ -1,9 +1,8 @@
+import router from '../../service/router';
+import synergy from '../../service/synergy';
 import MenuHeader from '../App/Menu/MenuHeader.jsx';
 import MenuOption from '../App/Menu/MenuOption.jsx';
 import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
-import Icon from '../Icon.jsx';
-import router from '../../service/router.js';
-import synergy from '../../service/synergy.js';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -13,12 +12,7 @@ const SynergyMenu = {
         const { stars } = args;
         const options = [];
         options.push(
-            <MenuHeader
-                icon={(
-                    <Icon icon="users"/>
-                )}
-                title="synergies"
-            />
+            <MenuHeader title="synergies" />
         );
         options.push(
             <MenuOptionGroup options={

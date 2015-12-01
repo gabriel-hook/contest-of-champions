@@ -1,6 +1,6 @@
-import en from '../lang/en.js';
-import es from '../lang/es.js';
-import ru from '../lang/ru.js';
+import en from '../lang/en';
+import es from '../lang/es';
+import ru from '../lang/ru';
 import m from 'mithril';
 
 const lang = {

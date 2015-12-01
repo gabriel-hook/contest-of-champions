@@ -6,10 +6,10 @@ import m from 'mithril';
 
 const MenuGroupOption = {
     view(ctrl, args) {
-        const { options } = args;
+        const { options, tabs } = args;
 
         return (
-            <div class={ classNames('menu-option--group', `menu-option--group-${ options.length }`) }>
+            <div class={ classNames('menu-option--group', `menu-option--group-${ options.length }`, { 'menu-option--group-tabs': tabs }) }>
                 { options }
             </div>
         );

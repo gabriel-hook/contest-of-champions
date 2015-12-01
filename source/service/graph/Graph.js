@@ -1,5 +1,5 @@
-import Node from './Node.js';
-import Edge from './Edge.js';
+import Node from './Node';
+import Edge from './Edge';
 
 class Graph {
     constructor() {
