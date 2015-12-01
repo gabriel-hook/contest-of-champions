@@ -13,10 +13,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.001;
+            opacity: .001;
             overflow-y: auto;
             pointer-events: none;
-            transition: opacity 0.25s;
+            transition: opacity .25s;
             background: #ccc;
             z-index: 0;
 

@@ -13,7 +13,7 @@ rules:
   nesting-depth:
     - 1
     -
-      max-depth: 3
+      max-depth: 5
 
   no-warn: 1
 
@@ -22,6 +22,8 @@ rules:
   no-ids: 2
 
   no-important: 2
+
+  no-color-literals: 0
 
   hex-notation:
     - 2
@@ -34,16 +36,7 @@ rules:
       size: 4
 
   property-sort-order:
-    - 1
-    -
-      order: smacss
-
-#  variable-for-property:
-#    - 2
-#    -
-#      properties:
-#        - margin
-#        - content
+    - 0
 
   quotes:
     - 2

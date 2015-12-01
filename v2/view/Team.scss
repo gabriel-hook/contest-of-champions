@@ -4,6 +4,7 @@
     margin: 10px auto;
 
     .champion {
+
         .container {
             padding: 0;
         }
@@ -13,12 +14,14 @@
         }
 
         &:first-child {
+
             .title {
                 border-top-left-radius: 5px;
             }
         }
 
         &:last-child {
+
             .title {
                 border-top-right-radius: 5px;
             }
@@ -27,9 +30,9 @@
 
     .team-synergies {
         clear: both;
-        padding: 20px 10px 10px 10px;
+        padding: 20px 10px 10px;
         margin-bottom: 10px;
-        background: rgba(0,0,0, 0.5);
+        background: rgba(0, 0, 0, .5);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         color: #fff;
@@ -56,8 +59,10 @@
             font-size: 1.0em;
         }
 
-        .effect-amount::before {
-            content: '- ';
+        .effect-amount {
+            &::before {
+                content: "- ";
+            }
         }
     }
 
@@ -91,12 +96,12 @@
     &.team--selected {
         .champion {
             .portrait {
-                opacity: 0.25;
+                opacity: .25;
             }
 
             &.champion--neighbor {
                 .portrait {
-                    opacity: 0.75;
+                    opacity: .75;
                 }
             }
 
@@ -106,11 +111,9 @@
                 }
             }
         }
-    }
 
-    &.team--selected {
         .team-synergy {
-            opacity: 0.5;
+            opacity: .5;
 
             &.team-synergy--selected {
                 opacity: 1;

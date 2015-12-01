@@ -2,13 +2,15 @@
     padding: 24px;
 
     .champion {
-        transition: opacity 0.25s;
+        transition: opacity .25s;
     }
 
     &.roster--editing {
+
         .champion {
-            opacity: 0.25;
+            opacity: .25;
         }
+
         .champion--selected {
             opacity: 1;
         }

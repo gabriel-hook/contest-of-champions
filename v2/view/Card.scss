@@ -1,4 +1,4 @@
-$transition-time: 0.333s;
+$transition-time: .333s;
 
 .card {
     position: relative;
@@ -29,7 +29,7 @@ $transition-time: 0.333s;
 
     .card-back {
         pointer-events: none;
-        opacity: 0.001;
+        opacity: .001;
         transform: scale(1.5) translate(100%, 0);
         z-index: 0;
     }
@@ -38,10 +38,11 @@ $transition-time: 0.333s;
 
         .card-front {
             pointer-events: none;
-            opacity: 0.001;
-            transform: scale(0.8) translate(-50%, 0);
+            opacity: .001;
+            transform: scale(.8) translate(-50%, 0);
             z-index: 0;
         }
+
         .card-back {
             pointer-events: auto;
             opacity: 1;

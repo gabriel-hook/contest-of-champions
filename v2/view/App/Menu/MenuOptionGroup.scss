@@ -3,10 +3,13 @@
 
     .menu-option {
         display: inline-block;
-        display: inline-table;
         box-sizing: border-box;
         text-align: center;
         padding: .5em 0;
+
+        & {
+            display: inline-table;
+        }
     }
 
     &.menu-option--group-2 {
@@ -14,21 +17,25 @@
             width: 50%;
         }
     }
+
     &.menu-option--group-3 {
         .menu-option {
             width: 33.333%;
         }
     }
+
     &.menu-option--group-4 {
         .menu-option {
             width: 25%;
         }
     }
+
     &.menu-option--group-5 {
         .menu-option {
             width: 20%;
         }
     }
+
     &.menu-menu-option--group-6 {
         .menu-option {
             width: 16.664%;

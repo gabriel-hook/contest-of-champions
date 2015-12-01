@@ -42,12 +42,14 @@ gulp.task('lint:v2:js', () => gulp.src([
 );
 gulp.task('lint:v2:css', () => gulp.src([
     './v2/**/*.scss',
+    '!./v2/index.scss',
+    '!./v2/util/input.scss',
 ])
     .pipe(sasslint())
     .pipe(sasslint.format())
     .pipe(sasslint.failOnError())
 );
-gulp.task('lint:v2', [ 'lint:v2:js' ]); //sequence('lint:v2:css', 'lint:v2:js'));
+gulp.task('lint:v2', sequence('lint:v2:css', 'lint:v2:js'));
 
 gulp.task('lint:dev:js', () => gulp.src([
     './dev/**/*.js',

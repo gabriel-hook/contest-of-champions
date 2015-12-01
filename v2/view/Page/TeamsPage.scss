@@ -46,9 +46,9 @@
 
         .synergies {
             clear: both;
-            padding: 20px 10px 10px 10px;
+            padding: 20px 10px 10px;
             margin-bottom: 10px;
-            background: rgba(0,0,0, 0.5);
+            background: rgba(0, 0, 0, .5);
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
             color: #fff;
@@ -75,8 +75,11 @@
                 font-size: 1.0em;
             }
 
-            .effect-amount::before {
-                content: '- ';
+            .effect-amount {
+
+                &::before {
+                    content: "- ";
+                }
             }
         }
 

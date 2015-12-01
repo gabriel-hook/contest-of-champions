@@ -1,47 +1,44 @@
-@mixin inputRange( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+@mixin input-range($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius) {
     -webkit-appearance: none;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none; // needed again for Chrome & Safari
-        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     &::-moz-range-thumb {
-        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     &::-ms-thumb {
-        @include rangeThumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
+        @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
     // Track
     &::-webkit-slider-runnable-track {
-        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
+        @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
     }
 
     &::-moz-range-track {
-        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
+        @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
     }
 
     &::-ms-track {
-        @include rangeTrack($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
-    }
-
-    &:focus { // override outline/background on focus
-        background: none;
-        outline: none;
-    }
-
-    &::-ms-track { // A little somethin' somethin' for IE
+        @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
         width: 100%;
         cursor: pointer;
         background: transparent;
         border-color: transparent;
         color: transparent;
     }
+
+    &:focus { // override outline/background on focus
+        background: none;
+        outline: none;
+    }
 }
 
-@mixin rangeTrack( $track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius ) {
+@mixin range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius) {
     width: $track-width;
     height: $track-height;
     cursor: pointer;
@@ -50,7 +47,7 @@
     background: $track-background;
 }
 
-@mixin rangeThumb( $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius ) {
+@mixin range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius) {
     width: $thumb-size;
     height: $thumb-size;
     border: $thumb-border;
