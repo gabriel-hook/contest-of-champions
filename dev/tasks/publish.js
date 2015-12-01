@@ -6,7 +6,7 @@ import commit from 'gulp-gh-pages';
 
 const DEVELOPMENT = gutil.env.dev;
 
-gulp.task('publish:commit', () => {
+gulp.task('gh-pages', () => {
     return gulp.src([
         './.build/**/*',
         './docs/**/*',
@@ -17,4 +17,4 @@ gulp.task('publish:commit', () => {
         }));
 });
 
-gulp.task('publish', sequence('clean', [ 'lint:scripts', 'lint:styles' ], [ 'webpack' ], 'publish:commit'));
+gulp.task('publish', [ 'lint:scripts', 'lint:styles' ], sequence('clean', 'webpack', 'gh-pages'));
