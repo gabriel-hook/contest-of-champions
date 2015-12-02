@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { config } from '../webpack/webpack-config.js';
+import { config } from '../config/webpack-config.js';
 
 const DEVELOPMENT = gutil.env.dev;
 
