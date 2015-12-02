@@ -1,18 +1,18 @@
-import lang from '../../../service/lang';
+import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const MenuSection = {
+const MenuHeader = {
     view(ctrl, args) {
         const { title, icon } = args;
 
         return (
-            <div class="menu-section">
+            <div class="menu-header">
                 <div>{ icon }{ lang.get(title) }</div>
             </div>
         );
     },
 };
 
-export default MenuSection;
+export default MenuHeader;

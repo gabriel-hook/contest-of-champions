@@ -1,8 +1,8 @@
 import teams, { buildTeams, update } from '../../service/teams';
-import MenuHeader from '../App/Menu/MenuHeader.jsx';
-import MenuSection from '../App/Menu/MenuSection.jsx';
-import MenuOption from '../App/Menu/MenuOption.jsx';
-import MenuOptionGroup from '../App/Menu/MenuOptionGroup.jsx';
+import MenuHeader from '../Menu/MenuHeader.jsx';
+import MenuSection from '../Menu/MenuSection.jsx';
+import MenuOption from '../Menu/MenuOption.jsx';
+import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

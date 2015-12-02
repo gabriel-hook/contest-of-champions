@@ -1,7 +1,7 @@
 import teams, { PRESETS, PRESETS_DUPLICATES, update } from '../../service/teams';
-import MenuHeader from '../App/Menu/MenuHeader.jsx';
-import MenuSection from '../App/Menu/MenuSection.jsx';
-import MenuOption from '../App/Menu/MenuOption.jsx';
+import MenuHeader from '../Menu/MenuHeader.jsx';
+import MenuSection from '../Menu/MenuSection.jsx';
+import MenuOption from '../Menu/MenuOption.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

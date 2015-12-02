@@ -17,7 +17,6 @@ gulp.task('lint:scripts', () => gulp.src([
 gulp.task('lint:styles', () => gulp.src([
     './source/**/*.scss',
     '!./source/index.scss',
-    '!./source/util/input.scss',
 ])
     .pipe(sasslint())
     .pipe(sasslint.format())

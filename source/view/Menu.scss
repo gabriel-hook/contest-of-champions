@@ -28,9 +28,7 @@ $menu-transition-time: .25s;
 
     .menu-tabs {
         position: relative;
-        height: 48px;
         width: 100%;
-        padding-right: 48px;
         box-sizing: border-box;
 
         .menu-option {
@@ -67,16 +65,15 @@ $menu-transition-time: .25s;
         pointer-events: auto;
         cursor: pointer;
         position: absolute;
-        background: #f6f6f6;
+        background: #eee;
         color: #000;
         font-size: 1.5em;
         text-shadow: 0 1px 0 #fff;
-        box-shadow: 0 0 2px 2px rgba(0, 0, 0, .25);
         box-sizing: border-box;
         transition: color $menu-transition-time, box-shadow $menu-transition-time, text-shadow $menu-transition-time, background $menu-transition-time;
 
         &:hover {
-            background: #eee;
+            background: #ddd;
         }
     }
 
@@ -86,6 +83,7 @@ $menu-transition-time: .25s;
         width: 48px;
         height: 48px;
         padding: 8px 12px;
+        box-shadow: -3px 3px 0 0 rgba(0, 0, 0, .25);
 
         .menu-button-bar {
             position: relative;
@@ -107,6 +105,7 @@ $menu-transition-time: .25s;
         margin: 8px;
         text-align: center;
         border-radius: 100px;
+        box-shadow: 0 3px 0 1px rgba(0, 0, 0, .25);
     }
 
     .menu-options {
@@ -215,7 +214,7 @@ $menu-transition-time: .25s;
             &,
             &:hover {
                 background: #38c;
-                box-shadow: 0 0 2px 2px rgba(0, 0, 0, .25);
+                box-shadow: 0 0 0 0 transparent;
             }
         }
 

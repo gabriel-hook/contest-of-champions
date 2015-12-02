@@ -1,12 +1,12 @@
 import './Menu.scss';
 import classNames from 'classnames';
-import router from '../../service/router';
-import lang from '../../service/lang';
+import router from '../service/router';
+import lang from '../service/lang';
 import MenuSection from './Menu/MenuSection.jsx';
 import MenuOptionGroup from './Menu/MenuOptionGroup.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
-import Icon from '../Icon.jsx';
-import ImageIcon from '../ImageIcon.jsx';
+import Icon from './Icon.jsx';
+import ImageIcon from './ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

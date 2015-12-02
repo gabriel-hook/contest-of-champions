@@ -1,8 +1,8 @@
 import { uidsByType } from '../../data/champions';
 import router from '../../service/router';
-import MenuHeader from '../App/Menu/MenuHeader.jsx';
-import MenuSection from '../App/Menu/MenuSection.jsx';
-import MenuOption from '../App/Menu/MenuOption.jsx';
+import MenuHeader from '../Menu/MenuHeader.jsx';
+import MenuSection from '../Menu/MenuSection.jsx';
+import MenuOption from '../Menu/MenuOption.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

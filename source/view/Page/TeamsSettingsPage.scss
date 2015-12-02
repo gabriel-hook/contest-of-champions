@@ -11,16 +11,27 @@
     }
 
     .field {
+        position: relative;
+
         .field-name {
             font-family: Hanzel, Verdana, Geneva, sans-serif;
             font-size: 1.0em;
             text-transform: uppercase;
             text-shadow: 0 1px 0 #ccc;
+            box-sizing: border-box;
+
+            @media (min-width: 500px) {
+                display: inline-block;
+                text-align: right;
+                padding-right: 5px;
+                width: 180px;
+            }
         }
 
         .field-input {
             position: relative;
             padding-right: 48px;
+            box-sizing: border-box;
 
             .field-value {
                 position: absolute;
@@ -41,8 +52,10 @@
             }
 
             @media (min-width: 500px) {
-                display: inline-block;
-                width: 400px;
+                position: absolute;
+                top: 0;
+                padding-left: 180px;
+                width: 100%;
             }
         }
     }

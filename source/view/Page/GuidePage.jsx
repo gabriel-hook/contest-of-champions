@@ -1,10 +1,10 @@
 import './GuidePage.scss';
+import { getImage } from '../../util/images';
 import { effectImage } from '../../data/effects';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';
 import router from '../../service/router';
 import lang from '../../service/lang';
-import pure from '../../util/pure';
 import ImageIcon from '../ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -29,7 +29,7 @@ const getSynergies = (uid, isFrom) => {
     });
 };
 
-const Synergy ={
+const GuideSynergy ={
     view(ctrl, args) {
         const { championId, effectId, stars } = args;
         const onclickChampion = () => router.setRoute(`/guide/${ championId }`);
@@ -49,26 +49,26 @@ const Synergy ={
     },
 };
 
-const Section = {
+const GuideSection = {
     view(ctrl, args) {
         const { title, subtitle, description, note } = args;
         const elements = [];
         elements.push(
-            <h3>{ title }</h3>
+            <div class="guide-section-title">{ title }</div>
         );
         if(subtitle) {
             elements.push(
-                <div class="text"><b>{ subtitle }</b></div>
+                <div class="guide-text selectable"><b>{ subtitle }</b></div>
             );
         }
         if(description) {
             elements.push(
-                <div class="text">{ description }</div>
+                <div class="guide-text selectable">{ description }</div>
             );
         }
         if(note) {
             elements.push(
-                <div class="text"><b>{ lang.get('note') }: </b>{ note }</div>
+                <div class="guide-text selectable"><b>{ lang.get('note') }: </b>{ note }</div>
             );
         }
         return (
@@ -87,7 +87,7 @@ const GuidePage = {
         if(guide) {
             if(guide.description) {
                 details.push(
-                    <Section
+                    <GuideSection
                         title={ lang.get('description') }
                         description={ guide.description }
                     />
@@ -95,7 +95,7 @@ const GuidePage = {
             }
             if(guide.gameplay) {
                 details.push(
-                    <Section
+                    <GuideSection
                         title={ lang.get('gameplay') }
                         subtitle={ guide.gameplay.style }
                         description={ guide.gameplay.description }
@@ -105,7 +105,7 @@ const GuidePage = {
             }
             if(guide.attack) {
                 details.push(
-                    <Section
+                    <GuideSection
                         title={ lang.get('attack') }
                         description={ guide.attack.heavy }
                         note={ guide.attack.note }
@@ -114,7 +114,7 @@ const GuidePage = {
             }
             if(guide.signature) {
                 details.push(
-                    <Section
+                    <GuideSection
                         title={ lang.get('signature') }
                         subtitle={ guide.signature.name }
                         description={ guide.signature.description }
@@ -122,13 +122,11 @@ const GuidePage = {
                     />
                 );
             }
-
-
             if(guide.specials) {
                 [ 1, 2, 3 ].forEach((index) => {
                     if(guide.specials[ index ]) {
                         details.push(
-                            <Section
+                            <GuideSection
                                 title={ `${ lang.get(`special`) } ${ index }` }
                                 subtitle={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
@@ -139,34 +137,53 @@ const GuidePage = {
                 });
             }
         }
+        const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
+        let background;
+        if(backgroundImage)
+            background = (
+                <img
+                    class="guide-background"
+                    style={ `background-image: url(${ backgroundImage.src }` }
+                />
+            );
 
         return (
             <div class="guide">
-                <h2>{ lang.get(`champion-${ uid }-name`) }</h2>
+                { background }
+                <div class="guide-title">{ lang.get(`champion-${ uid }-name`) }</div>
                 { details }
-                <h3>{ lang.get(`synergies`) }</h3>
-                <div>
-                    {getSynergies(uid, true).map(({ attr }) => (
-                        <Synergy
-                            championId={ attr.toId }
-                            effectId={ attr.effectId }
-                            stars={ attr.fromStars }
-                        />
-                    ))}
+                <div class="guide-section">
+                    <div class="guide-section-title">
+                        { lang.get(`synergies`) }
+                    </div>
+                    <div class="guide-synergies">
+                        {getSynergies(uid, true).map(({ attr }) => (
+                            <GuideSynergy
+                                championId={ attr.toId }
+                                effectId={ attr.effectId }
+                                stars={ attr.fromStars }
+                            />
+                        ))}
+                    </div>
                 </div>
-                <h3>{ lang.get(`synergies-external`) }</h3>
-                <div>
-                    {getSynergies(uid, false).map(({ attr }) => (
-                        <Synergy
-                            championId={ attr.fromId }
-                            effectId={ attr.effectId }
-                            stars={ attr.fromStars }
-                        />
-                    ))}
+                <div class="guide-section">
+                    <div class="guide-section-title">
+                        { lang.get(`synergies-external`) }
+                    </div>
+                    <div class="guide-synergies">
+                        {getSynergies(uid, false).map(({ attr }) => (
+                            <GuideSynergy
+                                championId={ attr.fromId }
+                                effectId={ attr.effectId }
+                                stars={ attr.fromStars }
+                            />
+                        ))}
+                    </div>
                 </div>
+                <div class="clear" />
             </div>
         );
     },
 };
 
-export default pure(GuidePage);
+export default GuidePage;
