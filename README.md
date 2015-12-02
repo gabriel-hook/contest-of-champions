@@ -13,39 +13,13 @@
 
 ### Publishing
 
-  Delint v1 and v2 before publishing to ensure proper code styling.
-
-```
-  $ gulp lint
-```
-
-  Build v1 and v2 and publish to gh-pages branch.
+  Lint, Build and publish to gh-pages branch.
 
 ```
   gulp publish
 ```
 
-### Testing v1
-
-  Install http-server if you want to test changes locally.
-
-```
-  $ npm install http-server -g
-```
-
-  Build scripts and stylesheets. The --dev option skips minification and is faster.
-  
-```
-  $ gulp build [--dev]
-```
-
-  Run a local server to test local changes and view at [localhost:9090](http://localhost:9090).
-  
-```
-  $ http-server ./.build -p9090
-```
-
-### Testing v2
+### Testing
 
   Run a webpack-dev-server for v2 and navigate to [localhost:8080](http://localhost:8080) test changes. 
 
