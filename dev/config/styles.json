@@ -1,0 +1,38 @@
+[{
+  "name": "app-roster-screen",
+  "files":[
+    "./src/styles/fonts.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./src/styles/coc-jquery-mobile-theme.css",
+    "./src/styles/coc.css",
+    "./src/styles/coc-champion.css",
+    "./src/styles/coc-guide.css",
+    "./src/styles/coc-crystal.css",
+    "./src/styles/coc-roster.css",
+    "./src/styles/coc-team.css"
+  ]
+},{
+  "name": "app-roster-print",
+  "files":[
+    "./src/styles/print.css"
+  ]
+},{
+  "name": "app-synergies-screen",
+  "files":[
+    "./src/styles/fonts.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./src/styles/coc-jquery-mobile-theme.css",
+    "./src/styles/coc-synergies.css"
+  ]
+},{
+  "name": "app-editor-screen",
+  "files":[
+    "./src/styles/fonts.css",
+    "./node_modules/jquery-mobile/dist/jquery.mobile.css",
+    "./src/styles/coc-jquery-mobile-theme.css",
+    "./node_modules/select2/dist/css/select2.css",
+    "./src/styles/coc.css",
+    "./src/styles/coc-guide.css",
+    "./src/styles/coc-editor.css"
+  ]
+}]

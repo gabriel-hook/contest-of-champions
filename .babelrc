@@ -1,9 +1,7 @@
 {
-	"presets": ["react", "stage-0", "es2015"],
+	"presets": ["stage-0", "es2015"],
 	"plugins": [
-		"mjsx",
-		"transform-es2015-modules-commonjs",
-		"transform-react-constant-elements"
+		"transform-es2015-modules-commonjs"
 	],
 	"ignore": [
 		"node-modules/**/*.js"

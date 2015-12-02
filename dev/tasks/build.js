@@ -13,8 +13,8 @@ import minifyCss from 'gulp-minify-css';
 import minifyHtml from 'gulp-htmlmin';
 import sourcemaps from 'gulp-sourcemaps';
 
-import scripts from '../v1/scripts.json';
-import styles from '../v1/styles.json';
+import scripts from '../config/scripts.json';
+import styles from '../config/styles.json';
 
 const DEVELOPMENT = gutil.env.dev;
 
@@ -32,7 +32,7 @@ function renamePaths(override, options = {}) {
     });
 }
 
-gulp.task('build:js', [ 'clean:js' ], () => {
+gulp.task('build:js', () => {
     //set up empty arrays for
     const streams = {};
     for (const { name } of scripts)
@@ -105,9 +105,9 @@ gulp.task('build:js', [ 'clean:js' ], () => {
     return eventstream.merge(combined);
 });
 
-gulp.task('build:css', [ 'clean:css' ], () => {
+gulp.task('build:css', () => {
     const streams = [];
-    streams.push(gulp.src('./v1/fonts/*.*')
+    streams.push(gulp.src('./src/fonts/*.*')
         .pipe(plumber())
         .pipe(gulp.dest(`${ distPath }/fonts`))
     );
@@ -138,16 +138,16 @@ gulp.task('build:css', [ 'clean:css' ], () => {
 gulp.task('build', [ 'build:js', 'build:css' ], () => {
     const streams = [];
     streams.push(gulp.src([
-        './v1/*',
-        '!./v1/fonts',
-        '!./v1/scripts',
-        '!./v1/styles',
-        '!./v1/templates',
+        './src/*',
+        '!./src/fonts',
+        '!./src/scripts',
+        '!./src/styles',
+        '!./src/templates',
     ])
         .pipe(plumber())
         .pipe(gulp.dest(distPath)));
     streams.push(gulp.src([
-        './images/**/*',
+        './src/images/**/*',
     ])
         .pipe(plumber())
         .pipe(gulp.dest(`${ distPath }/images`)));
