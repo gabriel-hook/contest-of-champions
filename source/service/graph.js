@@ -46,7 +46,10 @@ const fdg = new ForceDirectedGraph({
                 const amounts = {};
                 edges.forEach((edge) => {
                     const { effect, amount } = edge.data;
-                    amounts[ effect ] = amount;
+                    if(amounts[effect])
+                        amounts[ effect ] += amount;
+                    else
+                        amounts[ effect ] = amount;
                 });
                 for (const effect of legend) {
                     effect.selected = Boolean(amounts[ effect.effectId ]);

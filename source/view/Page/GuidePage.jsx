@@ -6,6 +6,7 @@ import guides from '../../data/guides';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import ImageIcon from '../ImageIcon.jsx';
+import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -138,18 +139,16 @@ const GuidePage = {
             }
         }
         const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
-        let background;
-        if(backgroundImage)
-            background = (
-                <img
-                    class="guide-background"
-                    style={ `background-image: url(${ backgroundImage.src }` }
-                />
-            );
-
+        let backgroundStyle;
+        if(backgroundImage) {
+            backgroundStyle = `background-image: url(${ backgroundImage.src }`;
+        }
         return (
             <div class="guide">
-                { background }
+                <img
+                    class={ classNames('guide-background', { 'guide-background--loaded': backgroundImage }) }
+                    style={ backgroundStyle }
+                />
                 <div class="guide-title">{ lang.get(`champion-${ uid }-name`) }</div>
                 { details }
                 <div class="guide-section">
