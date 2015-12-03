@@ -3,8 +3,6 @@ import champions from '../data/champions';
 import { uids as typeIds } from '../data/types';
 import { fromStorage, toStorage } from '../util/storage';
 
-
-let rosterMap;
 let roster = fromStorage('roster', []).map((champion) => new Champion(champion));
 
 function all() {
