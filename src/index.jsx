@@ -82,7 +82,7 @@ router.on('/roster/add/:stars', (stars) => {
         <RosterAddMenu stars={ stars } />
     );
     app.button = {
-        icon: 'th',
+        icon: 'share',
         onclick: () => router.setRoute('/roster'),
     };
     m.redraw();
@@ -107,7 +107,7 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
         <RosterEditMenu uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.button = {
-        icon: 'th',
+        icon: 'reply',
         onclick: () => router.setRoute('/roster'),
     };
     m.redraw();
@@ -131,7 +131,7 @@ router.on('/teams/settings', () => {
         <TeamsSettingsMenu />
     );
     app.button = {
-        icon: 'cog',
+        icon: 'reply',
         onclick: () => router.setRoute('/teams'),
     };
     m.redraw();
@@ -155,7 +155,7 @@ router.on('/teams', () => {
         <TeamsMenu />
     );
     app.button = {
-        icon: 'cogs',
+        icon: 'sliders',
         onclick: () => router.setRoute('/teams/settings'),
     };
     m.redraw();
