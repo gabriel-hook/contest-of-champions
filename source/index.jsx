@@ -14,6 +14,8 @@ import RosterPage from './view/Page/RosterPage.jsx';
 import RosterMenu from './view/Page/RosterMenu.jsx';
 import RosterAddPage from './view/Page/RosterAddPage.jsx';
 import RosterAddMenu from './view/Page/RosterAddMenu.jsx';
+import RosterEditPage from './view/Page/RosterEditPage.jsx';
+import RosterEditMenu from './view/Page/RosterEditMenu.jsx';
 import TeamsPage from './view/Page/TeamsPage.jsx';
 import TeamsMenu from './view/Page/TeamsMenu.jsx';
 import TeamsSettingsPage from './view/Page/TeamsSettingsPage.jsx';
@@ -38,14 +40,17 @@ router.on('/guide/:uid', (uid) => {
 
 router.on('/roster', () => {
     app.tab = 'roster';
-    app.pages[ 'roster-main' ] = (
+    app.pages[ 'roster-show' ] = (
         <RosterPage />
     );
     app.pages[ 'roster' ] = (
         <Card
-            front={ app.pages[ 'roster-main' ] }
-            back={ app.pages[ 'roster-add' ] }
-            flipped={ false }
+            cards={[
+                app.pages[ 'roster-add' ],
+                app.pages[ 'roster-show' ],
+                app.pages[ 'roster-edit' ],
+            ]}
+            current={ 1 }
         />
     );
     app.menu = (
@@ -65,9 +70,12 @@ router.on('/roster/add/:stars', (stars) => {
     );
     app.pages[ 'roster' ] = (
         <Card
-            front={ app.pages[ 'roster-main' ] }
-            back={ app.pages[ 'roster-add' ] }
-            flipped={ true }
+            cards={[
+                app.pages[ 'roster-add' ],
+                app.pages[ 'roster-show' ],
+                app.pages[ 'roster-edit' ],
+            ]}
+            current={ 0 }
         />
     );
     app.menu = (
@@ -82,22 +90,25 @@ router.on('/roster/add/:stars', (stars) => {
 
 router.on('/roster/:uid/:stars', (uid, stars) => {
     app.tab = 'roster';
-    app.pages[ 'roster-main' ] = (
-        <RosterPage selected={ { uid, stars: parseInt(stars, 10) } } />
+    app.pages[ 'roster-edit' ] = (
+        <RosterEditPage uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Card
-            front={ app.pages[ 'roster-main' ] }
-            back={ app.pages[ 'roster-add' ] }
-            flipped={ false }
+            cards={[
+                app.pages[ 'roster-add' ],
+                app.pages[ 'roster-show' ],
+                app.pages[ 'roster-edit' ],
+            ]}
+            current={ 2 }
         />
     );
     app.menu = (
-        <RosterMenu />
+        <RosterEditMenu uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.button = {
-        icon: 'user-plus',
-        onclick: () => router.setRoute('/roster/add/2'),
+        icon: 'th',
+        onclick: () => router.setRoute('/roster'),
     };
     m.redraw();
 });
@@ -109,9 +120,11 @@ router.on('/teams/settings', () => {
     );
     app.pages[ 'teams' ] = (
         <Card
-            front={ app.pages[ 'teams-main' ] }
-            back={ app.pages[ 'teams-settings' ] }
-            flipped={ true }
+            cards={[
+                app.pages[ 'teams-main' ],
+                app.pages[ 'teams-settings' ],
+            ]}
+            current={ 1 }
         />
     );
     app.menu = (
@@ -131,9 +144,11 @@ router.on('/teams', () => {
     );
     app.pages[ 'teams' ] = (
         <Card
-            front={ app.pages[ 'teams-main' ] }
-            back={ app.pages[ 'teams-settings' ] }
-            flipped={ false }
+            cards={[
+                app.pages[ 'teams-main' ],
+                app.pages[ 'teams-settings' ],
+            ]}
+            current={ 0 }
         />
     );
     app.menu = (

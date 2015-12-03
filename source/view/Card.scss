@@ -7,8 +7,7 @@ $transition-time: .333s;
     background: #fff;
     overflow: hidden;
 
-    .card-front,
-    .card-back {
+    .card {
         position: absolute;
         top: 0;
         left: 0;
@@ -20,34 +19,24 @@ $transition-time: .333s;
         transition: opacity $transition-time, transform $transition-time;
     }
 
-    .card-front {
+    .card-current {
         pointer-events: auto;
         opacity: 1;
         transform: scale(1) translate(0, 0);
         z-index: 100;
     }
 
-    .card-back {
+    .card-previous {
+        pointer-events: none;
+        opacity: .001;
+        transform: scale(.8) translate(-50%, 0);
+        z-index: 0;
+    }
+
+    .card-next {
         pointer-events: none;
         opacity: .001;
         transform: scale(1.5) translate(100%, 0);
         z-index: 0;
-    }
-
-    &.card--flipped {
-
-        .card-front {
-            pointer-events: none;
-            opacity: .001;
-            transform: scale(.8) translate(-50%, 0);
-            z-index: 0;
-        }
-
-        .card-back {
-            pointer-events: auto;
-            opacity: 1;
-            transform: scale(1) translate(0, 0);
-            z-index: 100;
-        }
     }
 }

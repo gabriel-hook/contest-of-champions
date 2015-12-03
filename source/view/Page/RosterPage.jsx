@@ -1,5 +1,4 @@
 import './RosterPage.scss';
-import classNames from 'classnames';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
@@ -16,35 +15,22 @@ const tab = {
 };
 
 const RosterPage = {
-    view(ctrl, args) {
+    view(/* ctrl, args */) {
         const total = roster.all().length;
         const champions = roster.all();
-        const { selected } = args;
-        const handleSelect = ({ uid, stars }, event) => {
-            event.stopPropagation();
-            if(selected && selected.uid === uid && selected.stars === stars)
-                router.setRoute('/roster');
-            else
-                router.setRoute(`/roster/${ uid }/${ stars }`);
-        };
-        const handleDeselect = (event) => {
-            event.stopPropagation();
-            router.setRoute('/roster');
-        };
-        const isSelected = ({ uid, stars }) => selected && selected.uid === uid && selected.stars === stars;
+        const handleSelect = ({ uid, stars }) => router.setRoute(`/roster/${ uid }/${ stars }`);
         return (
             <div
-                class={ classNames('roster', { 'roster--editing': selected }) }
-                onclick={ handleDeselect.bind(this) }
+                class="roster"
             >
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
-                { champions.map((champion) => (
-                    <Champion
-                        key={ champion.id() }
-                        champion={ champion }
-                        selected={ isSelected(champion.attr) }
-                        onclick={ handleSelect.bind(this, champion.attr) }
-                    />
+                { champions.map((champion, index) => (
+                    <div key={ `${ index }-${ champion.id() }` }>
+                        <Champion
+                            champion={ champion }
+                            onclick={ handleSelect.bind(this, champion.attr) }
+                        />
+                    </div>
                 )) }
                 <div class="clear" />
             </div>

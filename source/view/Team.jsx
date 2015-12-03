@@ -1,5 +1,6 @@
 import './Team.scss';
 import classNames from 'classnames';
+import { getImage } from '../util/images';
 import { effectImage } from '../data/effects';
 import pure from '../util/pure';
 import lang from '../service/lang';
@@ -87,6 +88,14 @@ const Team = {
     view(ctrl, args) {
         const { champions, synergies } = args;
         const size = champions.length;
+        ctrl.pure = champions.reduce((value, champion) => {
+            if(value) {
+                const image = getImage(`images/champions/portrait_${ champion.attr.uid }.png`);
+                if(!image)
+                    return false;
+            }
+            return value;
+        }, true);
         return(
             <div
                 class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }

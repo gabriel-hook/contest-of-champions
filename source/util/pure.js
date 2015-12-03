@@ -3,9 +3,10 @@ import lang from '../service/lang';
 
 const pure = (Component) => ({
     controller(args) {
+        this.pure = true;
         if(Component.controller)
             Component.controller.call(this, args);
-        this.state = {};
+        this.state = { };
     },
     view(ctrl, args) {
         let controller;

@@ -46,7 +46,7 @@ const fdg = new ForceDirectedGraph({
                 const amounts = {};
                 edges.forEach((edge) => {
                     const { effect, amount } = edge.data;
-                    if(amounts[effect])
+                    if(amounts[ effect ])
                         amounts[ effect ] += amount;
                     else
                         amounts[ effect ] = amount;

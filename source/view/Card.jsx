@@ -6,15 +6,21 @@ import m from 'mithril';
 
 const Card = {
     view(ctrl, args) {
-        const { front, back, flipped } = args;
+        const { cards, current } = args;
         return (
-            <div class={ classNames('card', { 'card--flipped': flipped }) }>
-                <div class="card-front">
-                    { front }
-                </div>
-                <div class="card-back">
-                    { back }
-                </div>
+            <div class={ classNames('card') }>
+                    { cards.map((card, index) => {
+
+                        return (
+                            <div class={ classNames('card', {
+                                'card-previous': index < current,
+                                'card-current': index === current,
+                                'card-next': index > current,
+                            }) }>
+                                { card }
+                            </div>
+                        );
+                    }) }
             </div>
         );
     },

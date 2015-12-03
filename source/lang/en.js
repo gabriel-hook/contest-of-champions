@@ -199,6 +199,8 @@ export default {
     'filter': 'Filter',
 
     //Roster Config
+    'reset': 'Reset',
+
     'stars': 'Stars',
     'type': 'Type',
     'name': 'Name',

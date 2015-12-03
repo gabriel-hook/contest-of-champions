@@ -1,5 +1,6 @@
 import Champion from '../model/Champion';
 import champions from '../data/champions';
+import { uids as typeIds } from '../data/types';
 import { fromStorage, toStorage } from '../util/storage';
 
 
@@ -8,6 +9,10 @@ let roster = fromStorage('roster', []).map((champion) => new Champion(champion))
 
 function all() {
     return roster.slice();
+}
+
+function find(fn) {
+    return roster.find(fn);
 }
 
 function filter(fn) {
@@ -22,43 +27,45 @@ function available(stars) {
 }
 
 function update() {
-    rosterMap = {};
-    for(const champion of roster)
-        rosterMap[ champion.id() ] = true;
+    roster.forEach((champion) => champion.typeIndex = typeIds.indexOf(champion.attr.typeId));
+    roster.sort((a, b) => {
+        const stars = b.attr.stars - a.attr.stars;
+        if(stars !== 0)
+            return stars;
+        const type = a.typeIndex - b.typeIndex;
+        if(type !== 0)
+            return type;
+        return -b.attr.uid.localeCompare(a.attr.uid);
+    });
+    toStorage('roster', roster);
 }
 
 function addAll(stars) {
-    const champions = available(stars);
-    for(const champion of champions)
-        roster.push(new Champion({ ...champion.attr }));
-    toStorage('roster', roster);
+    const champions = available(stars).map((champion) => new Champion({ ...champion.attr }));
+    roster = [
+        ...roster,
+        ...champions,
+    ];
     update();
 }
 
 function add(uid, stars) {
     const champion = champions.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
-    if(rosterMap[ champion.id() ])
-        return;
-    roster.push(new Champion({ ...champion.attr }));
-    toStorage('roster', roster);
+    roster = [
+        ...roster,
+        new Champion({ ...champion.attr }),
+    ];
     update();
 }
 
 function remove(uid, stars) {
-    const champion = roster.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
-    if(champion) {
-        const index = roster.indexOf(champion);
-        if(index) {
-            roster.splice(index, 1);
-            toStorage('roster', roster);
-        }
-    }
+    roster = roster.filter(({ attr }) => attr.uid !== uid || attr.stars !== stars);
     update();
+
 }
 
 function clear() {
     roster = [];
-    toStorage('roster', roster);
     update();
 }
 
@@ -67,6 +74,7 @@ update();
 export default {
     all,
     filter,
+    find,
     available,
     add,
     addAll,
