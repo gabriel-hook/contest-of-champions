@@ -32,9 +32,9 @@ const Menu = {
                 <MenuOptionGroup
                     options={ tabs.map((tab) => (
                         <MenuOption
-                            icon={(
+                            icon={
                                 <Icon icon={ tab.icon } spin={ tab.spin } />
-                            )}
+                            }
                             selected={ currentTab === tab.id }
                             onclick={ () => router.setRoute(`/${ tab.id }`) }
                         />
@@ -48,9 +48,9 @@ const Menu = {
         }
         options.push(
             <MenuSection
-                icon={(
+                icon={
                     <Icon icon="globe" />
-                )}
+                }
                 title="language"
             />
         );
@@ -59,9 +59,9 @@ const Menu = {
             options.push(
                 <MenuOption
                     selected={ lang.current === id }
-                    icon={(
+                    icon={
                         <ImageIcon src={ `images/lang/${ id }.png` } icon="flag" />
-                    )}
+                    }
                     title={ lang.messages[ id ].lang }
                     onclick={ selectLanguage }
                 />
@@ -70,9 +70,9 @@ const Menu = {
         // share
         options.push(
             <MenuSection
-                icon={(
+                icon={
                     <Icon icon="share-alt" />
-                )}
+                }
                 title="share-to"
             />
         );

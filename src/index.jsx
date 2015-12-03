@@ -5,7 +5,6 @@ import { requestRender } from './util/animation';
 import { uids } from './data/champions';
 import app from './service/app';
 import router from './service/router';
-import teams from './service/teams';
 import App from './view/App.jsx';
 import Card from './view/Card.jsx';
 import GuidePage from './view/Page/GuidePage.jsx';
@@ -192,7 +191,6 @@ app.tabs = [
         id: 'teams',
         title: 'teams',
         icon: 'cogs',
-        spin: () => teams.building,
     },
     {
         id: 'synergy',

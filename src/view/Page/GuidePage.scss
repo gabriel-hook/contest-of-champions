@@ -1,3 +1,9 @@
+$guide-value-5-color: #0c0;
+$guide-value-4-color: #6c0;
+$guide-value-3-color: #990;
+$guide-value-2-color: #c60;
+$guide-value-1-color: #c00;
+
 @mixin font-title($font-size) {
 
     font-size: $font-size;
@@ -26,7 +32,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0;
+        opacity: 0.001;
         background-position: bottom left;
         background-repeat: no-repeat;
         background-size: contain;
@@ -46,6 +52,12 @@
         z-index: 1;
     }
 
+    .guide-text {
+        display: inline-block;
+        padding: 10px;
+        @include font-text(1em);
+    }
+
     .guide-title {
         position: relative;
         padding: 16px 16px 0;
@@ -53,17 +65,72 @@
         z-index: 1;
     }
 
+    .guide-grade {
+        display: block;
+        padding: 10px 10px 0 10px;
+        @include font-text(1em);
+
+        .guide-grade--value-a {
+            color:$guide-value-5-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-grade--value-b {
+            color:$guide-value-4-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-grade--value-c {
+            color:$guide-value-3-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-grade--value-d {
+            color:$guide-value-2-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-grade--value-e,
+        .guide-grade--value-f {
+            color:$guide-value-1-color;
+            text-shadow: 0 1px 0 #666;
+        }
+    }
+
+    .guide-rating {
+        float: right;
+
+        .guide-rating--value-5 {
+            color:$guide-value-5-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-rating--value-4 {
+            color:$guide-value-4-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-rating--value-3 {
+            color:$guide-value-3-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-rating--value-2 {
+            color:$guide-value-2-color;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .guide-rating--value-1 {
+            color:$guide-value-1-color;
+            text-shadow: 0 1px 0 #666;
+        }
+    }
+
     .guide-section-title {
         padding: 5px 10px;
         @include font-title(1.1em);
         box-shadow: 0 1px 0 #ccc;
 
-    }
-
-    .guide-text {
-        display: inline-block;
-        padding: 10px;
-        @include font-text(1em);
     }
 
     .guide-synergies {

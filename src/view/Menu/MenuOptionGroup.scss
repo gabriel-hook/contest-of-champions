@@ -46,10 +46,12 @@
     }
 
     &.menu-option--group-tabs {
+        box-sizing: border-box;
+        padding-right: 48px;
+
         .menu-option {
-            padding-left: 24px;
-            padding-right: 24px;
-            width: inherit;
+            width: 25%;
+            min-width: 36px;
         }
     }
 }

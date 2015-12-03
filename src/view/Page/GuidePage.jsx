@@ -50,32 +50,99 @@ const GuideSynergy ={
     },
 };
 
+const GuideGrade = {
+    view(ctrl, args) {
+        const { title, grade } = args;
+        return (
+            <div class="guide-grade">
+                <b>{ lang.get(title) }:</b>
+                <span class={ `guide-grade--value-${ grade[ 0 ].toLowerCase() }` }>
+                    { grade }
+                </span>
+            </div>
+        );
+    },
+};
+
+const GuideRating = {
+    view(ctrl, args) {
+        const { rating } = args;
+        return (
+            <div class="guide-rating">
+                <span class={ `guide-rating--value-${ rating }` }>
+                    { rating }
+                </span> / 5
+            </div>
+        );
+    },
+};
+
 const GuideSection = {
     view(ctrl, args) {
-        const { title, subtitle, description, note } = args;
+        const {
+            title, subtitle, description, note,
+            rating, grade, gradeAwakened,
+        } = args;
         const elements = [];
         elements.push(
-            <div class="guide-section-title">{ title }</div>
+            <div class="guide-section-title">
+                { title }
+                { rating !== undefined && (
+                    <GuideRating rating={ rating } />
+                ) || null}
+            </div>
         );
+        if(grade) {
+            elements.push(
+                <GuideGrade title="grade" grade={ grade } />
+            );
+        }
+        if(gradeAwakened) {
+            elements.push(
+                <GuideGrade title="awakened" grade={ gradeAwakened } />
+            );
+        }
         if(subtitle) {
             elements.push(
-                <div class="guide-text selectable"><b>{ subtitle }</b></div>
+                <div class="guide-text"><b>{ subtitle }</b></div>
             );
         }
         if(description) {
             elements.push(
-                <div class="guide-text selectable">{ description }</div>
+                <div class="guide-text">{ description }</div>
             );
         }
         if(note) {
             elements.push(
-                <div class="guide-text selectable"><b>{ lang.get('note') }: </b>{ note }</div>
+                <div class="guide-text">
+                    <b>{ lang.get('note') }:</b>
+                    { note }
+                </div>
             );
         }
         return (
             <div class="guide-section">
                 { elements }
             </div>
+        );
+    },
+};
+
+const GuideBackground = {
+    view(ctrl, args) {
+        const { uid } = args;
+        const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
+        let backgroundStyle;
+        if(backgroundImage) {
+            backgroundStyle = `background-image: url("${ backgroundImage.src }");`;
+        }
+        return (
+            <img
+                class={ classNames('guide-background', {
+                    'guide-background--loaded': backgroundImage,
+                }) }
+                style={ backgroundStyle }
+            />
         );
     },
 };
@@ -90,6 +157,8 @@ const GuidePage = {
                 details.push(
                     <GuideSection
                         title={ lang.get('description') }
+                        grade={ guide.grades && guide.grades.normal }
+                        gradeAwakened={ guide.grades && guide.grades.awakened }
                         description={ guide.description }
                     />
                 );
@@ -98,6 +167,7 @@ const GuidePage = {
                 details.push(
                     <GuideSection
                         title={ lang.get('gameplay') }
+                        rating={ guide.gameplay.rating }
                         subtitle={ guide.gameplay.style }
                         description={ guide.gameplay.description }
                         note={ guide.gameplay.note }
@@ -108,6 +178,7 @@ const GuidePage = {
                 details.push(
                     <GuideSection
                         title={ lang.get('attack') }
+                        rating={ guide.attack.rating }
                         description={ guide.attack.heavy }
                         note={ guide.attack.note }
                     />
@@ -117,6 +188,7 @@ const GuidePage = {
                 details.push(
                     <GuideSection
                         title={ lang.get('signature') }
+                        rating={ guide.signature.rating }
                         subtitle={ guide.signature.name }
                         description={ guide.signature.description }
                         note={ guide.signature.note }
@@ -129,6 +201,7 @@ const GuidePage = {
                         details.push(
                             <GuideSection
                                 title={ `${ lang.get(`special`) } ${ index }` }
+                                rating={ guide.specials[ index ].rating }
                                 subtitle={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
                                 note={ guide.specials[ index ].note }
@@ -138,16 +211,11 @@ const GuidePage = {
                 });
             }
         }
-        const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
-        let backgroundStyle;
-        if(backgroundImage) {
-            backgroundStyle = `background-image: url("${ backgroundImage.src }");`;
-        }
         return (
             <div class="guide">
-                <img
-                    class={ classNames('guide-background', { 'guide-background--loaded': backgroundImage }) }
-                    style={ backgroundStyle }
+                <GuideBackground
+                    key={ `guide-background-${ uid }` }
+                    uid={ uid }
                 />
                 <div class="guide-title">{ lang.get(`champion-${ uid }-name`) }</div>
                 { details }

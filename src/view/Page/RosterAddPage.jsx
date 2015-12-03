@@ -19,7 +19,6 @@ const RosterAddPage = {
                 >
                     { lang.get('add-all') }
                 </button>
-                <div class="clear"></div>
                 { champions.map((champion) => (
                     <Champion
                         key={ champion.id() }
