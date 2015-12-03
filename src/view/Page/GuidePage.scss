@@ -32,7 +32,7 @@
         background-size: contain;
         filter: blur(4px);
         -webkit-filter: blur(4px);
-        transition: opacity .5s;
+        transition: opacity 1s;
 
         &.guide-background--loaded {
             opacity: .333;

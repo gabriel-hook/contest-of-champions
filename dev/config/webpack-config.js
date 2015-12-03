@@ -28,7 +28,7 @@ function config() {
                 // scss
                 {
                     test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    loaders: [ 'style', 'css', 'sass' ],
+                    loaders: [ 'style', 'css', 'autoprefixer', 'sass' ],
                     exclude: /node_modules/,
                     hot: true,
                 },
