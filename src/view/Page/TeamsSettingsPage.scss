@@ -58,6 +58,10 @@
                 width: 100%;
             }
         }
+
+        @media (min-width: 500px) {
+            margin: .2em 0;
+        }
     }
 
     .clear {
