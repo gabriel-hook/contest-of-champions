@@ -24,5 +24,5 @@
   Run a webpack-dev-server for v2 and navigate to [localhost:8080](http://localhost:8080) test changes. 
 
 ```
-  gulp webpack-dev
+  gulp dev
 ```
