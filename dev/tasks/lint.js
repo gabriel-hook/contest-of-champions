@@ -6,8 +6,8 @@ import sasslint from 'gulp-sass-lint';
 
 gulp.task('lint:scripts', () => gulp.src([
     './dev/**/*.js',
-    './source/**/*.js',
-    './source/**/*.jsx',
+    './src/**/*.js',
+    './src/**/*.jsx',
 ])
     .pipe(plumber())
     .pipe(eslint())
@@ -15,8 +15,8 @@ gulp.task('lint:scripts', () => gulp.src([
     .pipe(eslint.failAfterError())
 );
 gulp.task('lint:styles', () => gulp.src([
-    './source/**/*.scss',
-    '!./source/index.scss',
+    './src/**/*.scss',
+    '!./src/index.scss',
 ])
     .pipe(sasslint())
     .pipe(sasslint.format())

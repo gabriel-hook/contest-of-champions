@@ -1,6 +1,6 @@
 {
-  "name": "contest-of-champions",
-  "version": "1.0.0",
+  "name": "champions",
+  "version": "2.0.0",
   "description": "Contest of Champions HTML5 tool",
   "main": "index.html",
   "scripts": {
@@ -23,9 +23,9 @@
   "author": "Gabriel Hook",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/gabriel-hook/contest-of-champions/issues"
+    "url": "https://github.com/hook/champions/issues"
   },
-  "homepage": "https://github.com/gabriel-hook/contest-of-champions#readme",
+  "homepage": "https://github.com/hook/champions#readme",
   "devDependencies": {
     "babel-core": "^6.1.2",
     "babel-eslint": "^4.1.5",

@@ -20,9 +20,9 @@ function filter(fn) {
 }
 
 function available(stars) {
-    const available = champions.filter((champion) => (
-        champion.attr.stars === stars && !rosterMap[ champion.id() ]
-    ));
+    const has = {};
+    roster.forEach((champion) => has[ champion.id() ] = true);
+    const available = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id() ]);
     return available;
 }
 

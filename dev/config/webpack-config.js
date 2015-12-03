@@ -4,7 +4,7 @@ import path from 'path';
 function config() {
     return {
         entry: {
-            app: [ './source/index.jsx' ],
+            app: [ './src/index.jsx' ],
         },
         output: {
             path: path.resolve('./.build/'),
@@ -46,7 +46,7 @@ function config() {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './source/index.html',
+                template: './src/index.html',
                 inject: 'body',
             }),
         ],

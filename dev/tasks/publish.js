@@ -7,7 +7,7 @@ import commit from 'gulp-gh-pages';
 const DEVELOPMENT = gutil.env.dev;
 
 gulp.task('assets', () => gulp.src([
-    './source/images/**/*',
+    './src/images/**/*',
 ])
     .pipe(plumber())
     .pipe(gulp.dest('./.build/images/')));
