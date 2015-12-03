@@ -90,9 +90,14 @@
             position: relative;
             display: inline-block;
             margin: 0;
+            width: 20px;
+            height: 20px;
+            color: #666;
 
-            & img {    position: relative;
-                width: 1.2em;
+            & img {
+                position: relative;
+                width: 100%;
+                height: 100%;
                 margin-bottom: -.2em;
                 z-index: 1000;
             }

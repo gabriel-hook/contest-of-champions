@@ -23,7 +23,7 @@ const GuideMenu = {
             uids.map((uid) => options.push(
                 <MenuOption
                     icon={(
-                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } />
+                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
                     )}
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }

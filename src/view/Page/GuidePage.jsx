@@ -36,8 +36,8 @@ const GuideSynergy ={
         const onclickChampion = () => router.setRoute(`/guide/${ championId }`);
         return (
             <div class="guide-synergy">
-                <ImageIcon src={ `images/champions/portrait_${ championId }.png` } />
-                <ImageIcon src={ effectImage(effectId) } />
+                <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
+                <ImageIcon src={ effectImage(effectId) } icon="square" />
                 <span class="champion-name" onclick={ onclickChampion }>
                     { stars }★
                     { lang.get(`champion-${ championId }-name`) }

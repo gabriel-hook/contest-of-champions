@@ -60,7 +60,7 @@ const Menu = {
                 <MenuOption
                     selected={ lang.current === id }
                     icon={(
-                        <ImageIcon src={ `images/lang/${ id }.png` } />
+                        <ImageIcon src={ `images/lang/${ id }.png` } icon="flag" />
                     )}
                     title={ lang.messages[ id ].lang }
                     onclick={ selectLanguage }
@@ -71,7 +71,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={(
-                    <Icon icon="share-alt-square" />
+                    <Icon icon="share-alt" />
                 )}
                 title="share-to"
             />
