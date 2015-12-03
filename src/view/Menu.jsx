@@ -46,7 +46,6 @@ const Menu = {
         if(menu) {
             options.push(menu);
         }
-        // languages
         options.push(
             <MenuSection
                 icon={(
@@ -70,7 +69,12 @@ const Menu = {
         }
         // share
         options.push(
-            <MenuSection title="share-to" />
+            <MenuSection
+                icon={(
+                    <Icon icon="share-alt-square" />
+                )}
+                title="share-to"
+            />
         );
         options.push(
             <MenuOption
@@ -78,6 +82,7 @@ const Menu = {
                     <Icon icon="google" />
                 }
                 title="google"
+                href="https://plus.google.com/share?url=http://hook.github.io/champions"
             />
         );
         options.push(
@@ -86,6 +91,7 @@ const Menu = {
                     <Icon icon="facebook" />
                 }
                 title="facebook"
+                href="http://www.facebook.com/sharer/sharer.php?u=http://hook.github.io/champions"
             />
         );
         options.push(
@@ -94,6 +100,7 @@ const Menu = {
                     <Icon icon="twitter" />
                 }
                 title="twitter"
+                href="https://twitter.com/share?url=http://hook.github.io/champions"
             />
         );
         return (

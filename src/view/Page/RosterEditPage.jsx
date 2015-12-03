@@ -1,4 +1,4 @@
-import './RosterPage.scss';
+import './RosterEditPage.scss';
 import roster from '../../service/roster';
 import Champion from '../Champion.jsx';
 /* eslint-disable no-unused-vars */
@@ -24,6 +24,7 @@ const RosterPage = {
         return (
             <div class="roster-edit">
                 { elements }
+                Edit page, last one before I get analytics in and release!
                 <div class="clear" />
             </div>
         );
