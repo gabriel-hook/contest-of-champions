@@ -180,24 +180,24 @@ router.on('.*', () => router.setRoute('roster'));
 app.tabs = [
     {
         id: 'guide',
-        icon: 'user',
         title: 'guide',
+        icon: 'user',
     },
     {
         id: 'roster',
-        icon: 'th',
         title: 'roster',
+        icon: 'users',
     },
     {
         id: 'teams',
-        icon: 'cog',
-        spin: () => teams.building,
         title: 'teams',
+        icon: 'cogs',
+        spin: () => teams.building,
     },
     {
         id: 'synergy',
-        icon: 'users',
         title: 'synergy',
+        icon: 'area-chart',
     },
 ];
 

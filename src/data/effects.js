@@ -1,4 +1,4 @@
-import Effect from '../model/Effect';
+import Effect from './model/Effect';
 
 const effects = [
 

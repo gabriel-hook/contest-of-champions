@@ -1,4 +1,4 @@
-import Synergy from '../model/Synergy';
+import Synergy from './model/Synergy';
 
 const synergies = [
 

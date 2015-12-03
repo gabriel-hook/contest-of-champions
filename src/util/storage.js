@@ -1,10 +1,12 @@
 function fromStorage(id, initial) {
-    let array;
+    let object;
     if(localStorage) {
         const string = localStorage.getItem(id);
-        array = JSON.parse(string);
+        object = JSON.parse(string);
+        if(object === 'undefined' || object === 'null')
+            return initial;
     }
-    return array || initial;
+    return object || initial;
 }
 
 function toStorage(id, object) {

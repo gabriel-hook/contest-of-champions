@@ -2,7 +2,7 @@
     padding: 24px;
 
     .add-all {
-        cursor: pointer;
+        position: relative;
         display: block;
         margin: 0 auto 1em;
         padding: 16px;
@@ -16,13 +16,19 @@
         background: #38c;
         color: #fff;
         text-shadow: 0 1px 0 #000;
-        box-shadow: 0 0 16px rgba(0, 0, 0, .5);
+        box-shadow: 0 6px 0 -2px  rgba(0, 0, 0, .25);
         transition: background .25s, color .25s, text-shadow .25s;
+        cursor: pointer;
 
         &:hover {
             background: #eee;
             color: #000;
             text-shadow: 0 1px 0 #fff;
+        }
+
+        &:active {
+            top: 6px;
+            box-shadow: 0 0 0 rgba(0, 0, 0, .25);
         }
 
         &.disabled {
@@ -31,7 +37,8 @@
             background: #eee;
             color: #ccc;
             text-shadow: 0 1px 0 #fff;
-            box-shadow: 0 0 16px rgba(0, 0, 0, .25);
+            top: 6px;
+            box-shadow: 0 0 0 rgba(0, 0, 0, .25);
         }
     }
 

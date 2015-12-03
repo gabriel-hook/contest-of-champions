@@ -9,7 +9,7 @@ const MenuOption = {
     view(ctrl, args) {
         const { title, icon, onclick, selected, progress } = args;
         return (
-            <div
+            <a
                 class={ classNames('menu-option', { 'menu-option--selected': selected, 'menu-option--progress': progress }) }
                 onclick={ onclick }
                 disabled={ Boolean(onclick) }
@@ -21,7 +21,7 @@ const MenuOption = {
                     />
                 ) || null }
                 <div class="menu-option--label">{ icon }{ lang.get(title) }</div>
-            </div>
+            </a>
         );
     },
 };

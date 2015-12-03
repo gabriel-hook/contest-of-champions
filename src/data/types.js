@@ -1,4 +1,4 @@
-import Type from '../model/Type';
+import Type from './model/Type';
 
 const types = [
 

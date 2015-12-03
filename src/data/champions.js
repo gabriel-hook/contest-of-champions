@@ -1,4 +1,4 @@
-import Champion from '../model/Champion';
+import Champion from './model/Champion';
 
 const champions = [
 
@@ -240,7 +240,7 @@ const champions = [
 ].map((champion) => new Champion(champion));
 
 const uids = [ ...new Set(champions.map((champion) => champion.attr.uid)) ];
-
+const idMap = {};
 const uidsByType = [];
 champions.forEach((champion) => {
     const { uid, typeId } = champion.attr;
@@ -253,7 +253,8 @@ champions.forEach((champion) => {
     const uids = uidsByType[ uidsByType.length - 1 ].uids;
     if(uids[ uids.length - 1 ] !== uid)
         uids.push(uid);
+    idMap[ champion.id() ] = champion;
 });
 
 export default champions;
-export { uids, uidsByType };
+export { idMap, uids, uidsByType };

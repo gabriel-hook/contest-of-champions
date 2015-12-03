@@ -1,4 +1,4 @@
-import Ability from '../model/Ability';
+import Ability from './model/Ability';
 
 const abilities = [
 

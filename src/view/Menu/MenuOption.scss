@@ -1,6 +1,7 @@
 
 .menu-option {
     position: relative;
+    display: block;
     cursor: pointer;
     font-family: Hanzel, Verdana, Geneva, sans-serif;
     font-size: 1.1em;
@@ -25,11 +26,12 @@
         text-shadow: 0 1px 0 #fff;
     }
 
-    & .menu-option--label {
+    .menu-option--label {
         position: relative;
+        pointer-events: none;
     }
 
-    & .menu-option-progress-bar {
+    .menu-option-progress-bar {
         position: absolute;
         top: 0;
         left: 0;
