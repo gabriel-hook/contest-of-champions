@@ -141,7 +141,7 @@ const GuidePage = {
         const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
         let backgroundStyle;
         if(backgroundImage) {
-            backgroundStyle = `background-image: url(${ backgroundImage.src }`;
+            backgroundStyle = `background-image: url("${ backgroundImage.src }");`;
         }
         return (
             <div class="guide">
