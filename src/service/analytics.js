@@ -1,7 +1,5 @@
 
 function pageView() {
-    if(location.hostname === 'localhost')
-        return;
     /* eslint-disable no-undef */
     ga('send', 'pageview', {
         'page': location.pathname + location.hash,
@@ -9,4 +7,6 @@ function pageView() {
     /* eslint-disable no-undef */
 }
 
-export { pageView };
+export default {
+    pageView,
+};

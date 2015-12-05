@@ -1,11 +1,11 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import * as analytics from './service/analytics';
 import { requestRender } from './util/animation';
 import { uids } from './data/champions';
 import app from './service/app';
 import router from './service/router';
+import analytics from './service/analytics';
 import App from './view/App.jsx';
 import Card from './view/Card.jsx';
 import GuidePage from './view/Page/GuidePage.jsx';
