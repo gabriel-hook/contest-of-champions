@@ -2,6 +2,8 @@
     clear: both;
     text-align: center;
     margin: 10px auto;
+    box-sizing: border-box;
+    box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
 
     .champion {
 
@@ -10,33 +12,17 @@
         }
 
         .title {
-            border-radius: 0;
-        }
-
-        &:first-child {
-
-            .title {
-                border-top-left-radius: 5px;
-            }
-        }
-
-        &:last-child {
-
-            .title {
-                border-top-right-radius: 5px;
-            }
+            box-shadow: none;
         }
     }
 
     .team-synergies {
         clear: both;
-        padding: 20px 10px 10px;
+        padding: 20px 16px 16px;
         margin-bottom: 10px;
-        background: rgba(0, 0, 0, .5);
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        color: #fff;
-        text-shadow: 0 1px 0 #000;
+        background: #eee;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
         text-align: left;
 
         .icon {

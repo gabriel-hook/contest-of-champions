@@ -1,10 +1,10 @@
 @import "../../util/input";
 
-$guide-value-5-color: #0c0;
-$guide-value-4-color: #6c0;
-$guide-value-3-color: #990;
-$guide-value-2-color: #c60;
-$guide-value-1-color: #c00;
+$guide-value-5-color: #3f3;
+$guide-value-4-color: #9f3;
+$guide-value-3-color: #ff3;
+$guide-value-2-color: #f93;
+$guide-value-1-color: #f33;
 
 @mixin font-title($font-size) {
     font-size: $font-size;
@@ -62,28 +62,28 @@ $guide-value-1-color: #c00;
         .guide-grade--value-e,
         .guide-grade--value-f {
             font-family: Hanzel, Verdana, Geneva, sans-serif;
-            text-shadow: 0 1px 0 #000;
+            text-shadow: 0 1px 0 #fff;
         }
 
         .guide-grade--value-a {
-            color: $guide-value-5-color;
+            color: darken($guide-value-5-color, 33%);
         }
 
         .guide-grade--value-b {
-            color: $guide-value-4-color;
+            color: darken($guide-value-4-color, 33%);
         }
 
         .guide-grade--value-c {
-            color: $guide-value-3-color;
+            color: darken($guide-value-3-color, 33%);
         }
 
         .guide-grade--value-d {
-            color: $guide-value-2-color;
+            color: darken($guide-value-2-color, 33%);
         }
 
         .guide-grade--value-e,
         .guide-grade--value-f {
-            color: $guide-value-1-color;
+            color: darken($guide-value-1-color, 33%);
         }
     }
 

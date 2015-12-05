@@ -26,22 +26,6 @@
             .container {
                 padding: 0;
             }
-
-            .title {
-                border-radius: 0;
-            }
-
-            &:first-child {
-                .title {
-                    border-top-left-radius: 5px;
-                }
-            }
-
-            &:last-child {
-                .title {
-                    border-top-right-radius: 5px;
-                }
-            }
         }
 
         .synergies {
