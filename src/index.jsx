@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
+import * as analytics from './service/analytics';
 import { requestRender } from './util/animation';
 import { uids } from './data/champions';
 import app from './service/app';
@@ -34,10 +35,8 @@ router.on('/guide/:uid', (uid) => {
         <GuideMenu uid={ uid } />
     );
     app.button = null;
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/roster', () => {
@@ -62,10 +61,8 @@ router.on('/roster', () => {
         icon: 'user-plus',
         onclick: () => router.setRoute('/roster/add/2'),
     };
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/roster/add/:stars', (stars) => {
@@ -90,10 +87,8 @@ router.on('/roster/add/:stars', (stars) => {
         icon: 'share',
         onclick: () => router.setRoute('/roster'),
     };
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/roster/:uid/:stars', (uid, stars) => {
@@ -118,10 +113,8 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
         icon: 'reply',
         onclick: () => router.setRoute('/roster'),
     };
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/teams/settings', () => {
@@ -145,10 +138,8 @@ router.on('/teams/settings', () => {
         icon: 'reply',
         onclick: () => router.setRoute('/teams'),
     };
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/teams', () => {
@@ -172,10 +163,8 @@ router.on('/teams', () => {
         icon: 'sliders',
         onclick: () => router.setRoute('/teams/settings'),
     };
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('/synergy', () => router.setRoute(`/synergy/${ 2 }`));
@@ -189,10 +178,8 @@ router.on('/synergy/:stars', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
-    /* eslint-disable no-undef */
-    ga('send', 'pageview');
-    /* eslint-disable no-undef */
     m.redraw();
+    analytics.pageView();
 });
 
 router.on('.*', () => router.setRoute('roster'));
