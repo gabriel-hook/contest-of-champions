@@ -124,9 +124,26 @@ function clear() {
     update();
 }
 
+function set(uid, stars, attr = {}) {
+    const champion = champions.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
+    if(!champion)
+        return;
+    roster = [
+        ...roster,
+        new Champion({
+            ...champion.attr,
+            ...attr,
+            uid,
+            stars,
+        }),
+    ];
+    update();
+}
+
 update();
 
 export default {
+    set,
     all,
     filter,
     find,

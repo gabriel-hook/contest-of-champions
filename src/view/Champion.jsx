@@ -1,5 +1,6 @@
 import './Champion.scss';
 import classNames from 'classnames';
+import ImageIcon from './ImageIcon.jsx';
 import { getImage } from '../util/images';
 import lang from '../service/lang';
 /* eslint-disable no-unused-vars */
@@ -19,12 +20,21 @@ function addSVG(element, isInitialized) {
 const Champion = {
     view(ctrl, args) {
         const { events, onclick, selected, neighbor } = args;
-        const { uid, stars, typeId } = args.champion.toJSON();
+        const { uid, stars, typeId, awakened } = args.champion.toJSON();
+        const starIcon = awakened? (
+            <ImageIcon
+                src="images/icons/star-awakened.png"
+                icon="star"
+            />
+        ): (
+            <ImageIcon
+                src="images/icons/star.png"
+                icon="star"
+            />
+        );
         const starImages = [];
         for(let i=0; i<stars; i++)
-            starImages.push(
-                <img class="star" src="images/icons/star.png" />
-            );
+            starImages.push(starIcon);
         const portraitImage = getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
@@ -48,7 +58,7 @@ const Champion = {
                         <div class="title">
                             <span class="name">{ name }</span>
                         </div>
-                        <div class="stars">
+                        <div class={ classNames('stars', { 'stars--awakened': awakened }) }>
                             { starImages }
                         </div>
                     </div>

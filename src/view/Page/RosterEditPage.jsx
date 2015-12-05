@@ -20,11 +20,37 @@ const RosterPage = {
             elements.push(
                 <Champion champion={ champion } />
             );
+            elements.push(
+                <div class="clear" />
+            );
+            elements.push(
+                <div>
+                    <b>rank</b>: { champion.attr.rank }
+                </div>
+            );
+            elements.push(
+                <div>
+                    <b>level</b>: { champion.attr.level }
+                </div>
+            );
+            elements.push(
+                <div>
+                    <b>awakened</b>: { champion.attr.awakened }
+                </div>
+            );
         }
         return (
             <div class="roster-edit">
                 { elements }
-                Edit page, last one before I get analytics in and release!
+                <div class="clear" />
+                <button onclick={() => {
+                    roster.set(uid, stars, {
+                        awakened: champion.attr.awakened? 0: 1,
+                    });
+                    m.redraw();
+                }}>
+                    Awakened Toggle
+                </button>
                 <div class="clear" />
             </div>
         );

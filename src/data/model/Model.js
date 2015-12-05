@@ -1,6 +1,9 @@
 class Model {
     constructor(defaults = {}, definition) {
-        this.attr = { ...defaults, ...definition };
+        this.attr = {
+            ...defaults,
+            ...definition,
+        };
     }
 
     set(key, value) {

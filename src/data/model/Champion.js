@@ -1,17 +1,23 @@
 import Model from './Model';
 
 class Champion extends Model {
-    constructor({ uid, stars, typeId, pi }) {
+    constructor({ uid, stars, typeId, pi, rank, level, awakened }) {
         super({
             uid: 'champion',
             stars: 1,
             typeId: 'mutant',
             pi: 0,
+            rank: 1,
+            level: 1,
+            awakened: 0,
         }, {
             uid,
             stars,
             typeId,
             pi,
+            rank,
+            level,
+            awakened,
         });
     }
 
