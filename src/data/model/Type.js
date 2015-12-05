@@ -1,10 +1,10 @@
 import Model from './Model';
 
 class Type extends Model {
-    constructor({ uid }) {
+    constructor({
+        uid = 'type',
+    }) {
         super({
-            uid: 'type-uid',
-        }, {
             uid,
         });
     }

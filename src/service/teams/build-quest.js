@@ -34,7 +34,7 @@ function buildQuest({
             quest,
             type: typeIds.indexOf(typeId),
             synergies,
-            value: 1,
+            value: champion.attr.pi || champion.pi,
         };
     }).filter((champion) => {
         if(champion.quest) {

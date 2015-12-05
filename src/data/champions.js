@@ -253,7 +253,7 @@ champions.forEach((champion) => {
     const uids = uidsByType[ uidsByType.length - 1 ].uids;
     if(uids[ uids.length - 1 ] !== uid)
         uids.push(uid);
-    idMap[ champion.id() ] = champion;
+    idMap[ champion.id ] = champion;
 });
 
 export default champions;

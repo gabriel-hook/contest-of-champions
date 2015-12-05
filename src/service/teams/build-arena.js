@@ -19,14 +19,14 @@ function buildArena({
     champions.forEach((fid) => {
         /* eslint-disable eqeqeq */
         const [ uid, stars ] = fid.split('-');
-        const champion = dataChampions.filter(({ attr }) => attr.uid === uid && attr.stars == stars)[ 0 ];
+        const champion = dataChampions.find(({ attr }) => attr.uid === uid && attr.stars == stars);
         const { typeId } = champion.attr;
         //add hero
         heroMap[ fid ]={
             fid,
             uid,
             typeId,
-            value: 1,
+            value: champion.attr.pi || champion.pi,
         };
         synergyMap[ fid ] = {};
         dataSynergies

@@ -21,7 +21,7 @@ const RosterAddPage = {
                 </button>
                 { champions.map((champion) => (
                     <Champion
-                        key={ champion.id() }
+                        key={ champion.id }
                         champion={ champion }
                         onclick={ () => roster.add(champion.attr.uid, stars) }
                     />

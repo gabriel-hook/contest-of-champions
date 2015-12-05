@@ -20,7 +20,7 @@ const TeamsPage = {
             message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
             teamDivs = teams.map(({ champions, synergies }) => (
                 <Team
-                    key={ champions.map((c) => c.id()).join('-') }
+                    key={ champions.map((champion) => champion.id).join('-') }
                     champions={ champions }
                     synergies={ synergies }
                 />
@@ -31,7 +31,7 @@ const TeamsPage = {
                 );
                 extrasDiv = extras.map((champion, extrasIndex) => (
                     <Champion
-                        key={ `extras-${ extrasIndex }-${ champion.id() }` }
+                        key={ `extras-${ extrasIndex }-${ champion.id }` }
                         champion={ champion }
                     />
                 ));

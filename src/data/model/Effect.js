@@ -1,12 +1,12 @@
 import Model from './Model';
 
 class Effect extends Model {
-    constructor({ uid, base, amount }) {
+    constructor({
+        uid = 'effect',
+        base = 0,
+        amount = 0,
+    }) {
         super({
-            uid: 'effect-uid',
-            base: 0,
-            amount: 0,
-        }, {
             uid,
             base,
             amount,

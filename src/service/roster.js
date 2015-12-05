@@ -3,7 +3,7 @@ import champions, { idMap as championMap } from '../data/champions';
 import { uids as typeIds } from '../data/types';
 import { fromStorage, toStorage } from '../util/storage';
 
-let roster = fromStorage('roster', []).map((champion) => new Champion(champion));
+let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
 
 const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened';
 
@@ -54,7 +54,9 @@ function fromCSV(csv, filename = 'champions.csv') {
 }
 
 function all() {
-    return roster.slice();
+    return [
+        ...roster,
+    ];
 }
 
 function find(fn) {
@@ -67,8 +69,8 @@ function filter(fn) {
 
 function available(stars) {
     const has = {};
-    roster.forEach((champion) => has[ champion.id() ] = true);
-    const available = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id() ]);
+    roster.forEach((champion) => has[ champion.id ] = true);
+    const available = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
     return available;
 }
 
@@ -125,7 +127,7 @@ function clear() {
 }
 
 function set(uid, stars, attr = {}) {
-    const champion = champions.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
+    const champion = roster.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
     if(!champion)
         return;
     roster = [
@@ -137,6 +139,13 @@ function set(uid, stars, attr = {}) {
             stars,
         }),
     ];
+    console.log({
+        ...champion.attr,
+        ...attr,
+        uid,
+        stars,
+    })
+
     update();
 }
 
