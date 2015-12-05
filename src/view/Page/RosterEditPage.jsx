@@ -1,7 +1,12 @@
 import './RosterEditPage.scss';
 import { starRankLevels } from '../../data/model/Champion';
+import { getImage } from '../../util/images';
 import roster from '../../service/roster';
-import Champion from '../Champion.jsx';
+import router from '../../service/router';
+import lang from '../../service/lang';
+import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
+import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -10,6 +15,93 @@ const tab = {
     id: 'roster',
     icon: 'th',
     title: 'roster',
+};
+
+const Header = {
+    view(ctrl, args) {
+        const { champion } = args;
+        const { uid, stars, typeId, awakened } = champion.attr;
+        const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+        const starIcon = awakened? (
+            <ImageIcon
+                src="images/icons/star-awakened.png"
+                icon="star"
+            />
+        ): (
+            <ImageIcon
+                src="images/icons/star.png"
+                icon="star"
+            />
+        );
+        const starImages = [];
+        for(let i=0; i<stars; i++)
+            starImages.push(starIcon);
+        const image = getImage(`images/champions/fullsize_${ uid }.png`);
+        let imageStyle;
+        if(image) {
+            imageStyle = `background-image: url("${ image.src }");`;
+        }
+        const portrait = getImage(`images/champions/portrait_${ uid }.png`);
+        let portraitStyle;
+        if(portrait) {
+            portraitStyle = `background-image: url("${ portrait.src }");`;
+        }
+        return (
+            <div class="champion-header">
+                <div
+                    class={ classNames('champion-header-image',
+                        'champion-header-image-portrait', {
+                            'champion-header-image--loaded': portrait,
+                        }
+                    ) }
+                    style={ portraitStyle }
+                />
+                <div
+                    class={ classNames('champion-header-image', {
+                        'champion-header-image--loaded': image,
+                    }) }
+                    style={ imageStyle }
+                />
+                <div class="champion-header-name">{ name }</div>
+                <div
+                    class={ classNames('champion-header-stars',
+                           { 'champion-header-stars--awakened': awakened }
+                        ) }
+                >
+                    { starImages }
+                </div>
+                <div class={ classNames('champion-header-type', `champion--${ typeId }`)} />
+            </div>
+        );
+    },
+};
+
+const Label = {
+    view(ctrl, args) {
+        const { text } = args;
+        return (
+            <label class="champion-field-label">{ lang.get(text) }</label>
+        );
+    },
+};
+
+const Select = {
+    view(ctrl, args) {
+        const { value, min, max, onchange } = args;
+        const options = [];
+        for(let i = min; i <= max; i++)
+            options.push(
+                <option value={ i } selected={ value === i }>{ i }</option>
+            );
+        return (
+            <div class="champion-field-select">
+                <select onchange={ onchange }>
+                    { options }
+                </select>
+                <Icon icon="caret-down" />
+            </div>
+        );
+    },
 };
 
 const RosterPage = {
@@ -25,22 +117,18 @@ const RosterPage = {
                 && starRankLevels[ stars ][ rank ]
                 && starRankLevels[ stars ][ rank ].levels || 1;
             elements.push(
-                <Champion champion={ champion } />
+                <Header champion={ champion } />
             );
             elements.push(
-                <div class="clear" />
-            );
-            elements.push(
-                <div>
-                    <label>rank</label>
-                    <input
+                <div class="champion-field">
+                    <Label text="rank" />
+                    <Select
                         value={ rank }
-                        type="number"
-                        min="1"
+                        min={ 1 }
                         max={ rangeMax }
-                        oninput={(event) => {
-                            const { value, min, max } = event.target;
-                            const rank = Math.min(max, Math.max(min, parseInt(value, 10) || min));
+                        onchange={(event) => {
+                            const { value } = event.target;
+                            const rank = Math.min(rangeMax, Math.max(1, parseInt(value, 10) || 1));
                             roster.set(uid, stars, {
                                 rank,
                                 level: 1,
@@ -51,16 +139,15 @@ const RosterPage = {
                 </div>
             );
             elements.push(
-                <div>
-                    <label>level</label>
-                    <input
+                <div class="champion-field">
+                    <Label text="level" />
+                    <Select
                         value={ level }
-                        type="number"
-                        min="1"
+                        min={ 1 }
                         max={ levelMax }
-                        oninput={(event) => {
-                            const { value, min, max } = event.target;
-                            const level = Math.min(max, Math.max(min, parseInt(value, 10) || min));
+                        onchange={(event) => {
+                            const { value } = event.target;
+                            const level = Math.min(levelMax, Math.max(1, parseInt(value, 10) || 1));
                             roster.set(uid, stars, {
                                 level,
                             });
@@ -70,16 +157,15 @@ const RosterPage = {
                 </div>
             );
             elements.push(
-                <div>
-                    <label>awakened</label>
-                    <input
+                <div class="champion-field">
+                    <Label text="awakened" />
+                    <Select
                         value={ awakened }
-                        type="number"
-                        min="0"
-                        max="99"
-                        oninput={(event) => {
-                            const { value, min, max } = event.target;
-                            const awakened = Math.min(max, Math.max(min, parseInt(value, 10) || min));
+                        min={ 0 }
+                        max={ 99 }
+                        onchange={(event) => {
+                            const { value } = event.target;
+                            const awakened = Math.min(99, Math.max(0, parseInt(value, 10) || 0));
                             roster.set(uid, stars, {
                                 awakened,
                             });
@@ -89,24 +175,34 @@ const RosterPage = {
                 </div>
             );
             elements.push(
-                <div>
-                    <label>pi</label>
-                    <input
-                        value={ pi || '' }
-                        placeholder={ champion.pi }
-                        type="number"
-                        min="0"
-                        max="10000"
-                        oninput={(event) => {
-                            const { value, min, max } = event.target;
-                            const pi = Math.min(max, Math.max(min, parseInt(value, 10) || min));
-                            roster.set(uid, stars, {
-                                pi,
-                            });
-                            m.redraw();
-                        }}
-                    />
+                <div class="champion-field">
+                    <Label text="pi" />
+                    <div class="champion-field-input">
+                        <input
+                            value={ pi || '' }
+                            placeholder={ champion.pi }
+                            type="number"
+                            min="0"
+                            max="10000"
+                            oninput={(event) => {
+                                const { value, min, max } = event.target;
+                                const pi = Math.min(max, Math.max(min, parseInt(value, 10) || min));
+                                roster.set(uid, stars, {
+                                    pi,
+                                });
+                                m.redraw();
+                            }}
+                        />
+                    </div>
                 </div>
+            );
+            elements.push(
+                <button
+                    class={ classNames('champion-button') }
+                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
+                >
+                    { lang.get('view-guide') }
+                </button>
             );
         }
         return (

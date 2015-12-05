@@ -57,3 +57,35 @@
     cursor: pointer;
     margin-top: $thumb-margin;
 }
+
+@mixin styled-button($effects) {
+    position: relative;
+    display: block;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    font-family: Hanzel, Verdana, Geneva, sans-serif;
+    font-size: 18px;
+    background: #38c;
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    transition: background .25s, color .25s, text-shadow .25s;
+    outline: none;
+    cursor: pointer;
+
+    @if $effects {
+        &:hover {
+            background: #eee;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+        }
+
+        &.disabled {
+            pointer-events: none;
+            cursor: default;
+            background: #eee;
+            color: #ccc;
+            text-shadow: 0 1px 0 #fff;
+        }
+    }
+}

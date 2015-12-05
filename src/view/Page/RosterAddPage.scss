@@ -1,30 +1,15 @@
+@import "../../util/input";
+
 .roster-add {
     padding: 24px;
 
     .add-all {
-        position: relative;
-        display: block;
-        margin: 0 auto 1em;
-        padding: 16px;
-        border: 0;
-        border-radius: 0;
+        @include styled-button(true);
         width: 500px;
         max-width: 90%;
-        text-align: center;
-        font-family: Hanzel, Verdana, Geneva, sans-serif;
-        font-size: 18px;
-        background: #38c;
-        color: #fff;
-        text-shadow: 0 1px 0 #000;
+        padding: 16px;
+        margin: 0 auto 1em;
         box-shadow: 0 6px 0 -2px  rgba(0, 0, 0, .25);
-        transition: background .25s, color .25s, text-shadow .25s;
-        cursor: pointer;
-
-        &:hover {
-            background: #eee;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-        }
 
         &:active {
             top: 6px;
@@ -32,11 +17,6 @@
         }
 
         &.disabled {
-            pointer-events: none;
-            cursor: default;
-            background: #eee;
-            color: #ccc;
-            text-shadow: 0 1px 0 #fff;
             top: 6px;
             box-shadow: 0 0 0 rgba(0, 0, 0, .25);
         }
