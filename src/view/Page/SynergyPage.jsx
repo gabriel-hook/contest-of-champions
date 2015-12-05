@@ -13,7 +13,10 @@ function config(element, isInitialized) {
     updateGraph(stars, top, left, width, height);
     if(!isInitialized) {
         element.appendChild(graph.canvas);
-        setTimeout(() => m.redraw(), 250);
+        setTimeout(() => {
+            const { top, left, width, height } = element.getBoundingClientRect();
+            updateGraph(stars, top, left, width, height);
+        }, 250);
     }
 }
 
