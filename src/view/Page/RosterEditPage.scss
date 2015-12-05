@@ -44,7 +44,7 @@
                 -webkit-filter: blur(4px);
 
                 &.champion-header-image--loaded {
-                    opacity: 0.4;
+                    opacity: .4;
                 }
             }
         }
@@ -165,6 +165,7 @@
                 @include champion-field-style;
                 -webkit-appearance: none;
             }
+
             .icon {
                 position: absolute;
                 top: 16px;
@@ -173,8 +174,8 @@
                 transition: color .25s, text-shadow .25s;
             }
 
-
             &:hover {
+
                 .icon {
                     color: #000;
                     text-shadow: 0 1px 0 #fff;
@@ -182,6 +183,7 @@
             }
 
             &.disabled {
+
                 .icon {
                     color: #ccc;
                     text-shadow: 0 1px 0 #fff;
