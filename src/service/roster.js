@@ -39,7 +39,7 @@ function fromCSV(csv, filename = 'champions.csv') {
             /* eslint-disable no-console */
             continue;
         }
-        const champion = championMap[ Champion.prototype.id.call({ attr: { uid, stars } }) ];
+        const champion = championMap[ `${ uid }-${ stars }` ];
         if(champion === undefined) {
             console.error(`Champion not found "${ uid }" in ${ filename }:${ i + 1 }`);
             continue;
