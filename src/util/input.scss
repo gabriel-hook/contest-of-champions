@@ -71,9 +71,10 @@
     text-shadow: 0 1px 0 #000;
     transition: background .25s, color .25s, text-shadow .25s;
     outline: none;
-    cursor: pointer;
 
     @if $effects {
+        cursor: pointer;
+
         &:hover {
             background: #eee;
             color: #000;

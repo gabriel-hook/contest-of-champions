@@ -1,0 +1,126 @@
+.champion-header {
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    margin: 0 auto 1em;
+    padding-top: 103px;
+    box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+
+    .champion-header-image {
+        pointer-events: none;
+        position: absolute;
+        bottom: 16px;
+        right: 0;
+        width: 148px;
+        height: 148px;
+        opacity: .001;
+        background-position: -1px -1px;
+        background-size: 150px;
+        transition: opacity 1s;
+        border-width: 10px;
+
+        &.champion-header-image--loaded {
+            opacity: 1;
+        }
+
+        &.champion-header-image-portrait {
+            bottom: 5px;
+            right: inherit;
+            left: 0;
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+
+            &.champion-header-image--loaded {
+                opacity: .4;
+            }
+        }
+    }
+
+    .champion-header-name {
+        position: relative;
+        display: block;
+        padding: 16px;
+        box-sizing: border-box;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #000;
+        font-family: Hanzel, Verdana, Geneva, sans-serif;
+        font-size: 1.3em;
+        text-align: left;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 #fff;
+    }
+
+    .champion-header-stars {
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        display: block;
+        width: 100%;
+        text-align: left;
+        vertical-align: text-bottom;
+        pointer-events: none;
+        color: #fc0;
+        text-shadow: 0 1px 0 #000;
+        font-size: 120%;
+        padding-left: 16px;
+        box-sizing: border-box;
+        z-index: 2;
+
+        &.champion-header-stars--awakened {
+            color: #ddd;
+        }
+
+        .icon {
+            display: inline-block;
+            position: relative;
+            width: 32px;
+            margin-right: 1%;
+            padding: 0;
+
+            &.fa {
+                top: -2px;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .champion-header-type {
+        position: relative;
+        border-bottom: solid 16px;
+        z-index: 1;
+
+        &.champion--cosmic {
+            color: #3af;
+        }
+
+        &.champion--tech {
+            color: #23f;
+        }
+
+        &.champion--mutant {
+            color: #fa0;
+        }
+
+        &.champion--skill {
+            color: #f30;
+        }
+
+        &.champion--science {
+            color: #0a0;
+        }
+
+        &.champion--mystic {
+            color: #90f;
+        }
+    }
+}

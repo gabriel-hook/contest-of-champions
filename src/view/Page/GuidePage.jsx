@@ -1,4 +1,6 @@
 import './GuidePage.scss';
+import { idMap } from '../../data/champions';
+import Champion from '../../data/model/Champion';
 import { getImage } from '../../util/images';
 import { effectImage } from '../../data/effects';
 import synergies from '../../data/synergies';
@@ -6,7 +8,7 @@ import guides from '../../data/guides';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import ImageIcon from '../ImageIcon.jsx';
-import classNames from 'classnames';
+import ChampionHeader from '../ChampionHeader.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -128,30 +130,22 @@ const GuideSection = {
     },
 };
 
-const GuideBackground = {
-    view(ctrl, args) {
-        const { uid } = args;
-        const backgroundImage = getImage(`images/champions/fullsize_${ uid }.png`);
-        let backgroundStyle;
-        if(backgroundImage) {
-            backgroundStyle = `background-image: url("${ backgroundImage.src }");`;
-        }
-        return (
-            <img
-                class={ classNames('guide-background', {
-                    'guide-background--loaded': backgroundImage,
-                }) }
-                style={ backgroundStyle }
-            />
-        );
-    },
-};
-
 const GuidePage = {
     view(ctrl, args) {
         const { uid } = args;
         const guide = guides[ uid ];
         const details = [];
+        const champion = idMap[ `${ uid }-2` ] || idMap[ `${ uid }-3` ] || idMap[ `${ uid }-4` ] || idMap[ `${ uid }-5` ];
+        if(champion) {
+            details.push(
+                <ChampionHeader
+                    champion={ new Champion({
+                        ...champion.attr,
+                        stars: 0,
+                    }) }
+                />
+            );
+        }
         if(guide) {
             if(guide.description) {
                 details.push(
@@ -211,42 +205,41 @@ const GuidePage = {
                 });
             }
         }
+        details.push(
+            <div class="guide-section">
+                <div class="guide-section-title">
+                    { lang.get(`synergies`) }
+                </div>
+                <div class="guide-synergies">
+                    {getSynergies(uid, true).map(({ attr }) => (
+                    <GuideSynergy
+                        championId={ attr.toId }
+                        effectId={ attr.effectId }
+                        stars={ attr.fromStars }
+                    />
+                        ))}
+                </div>
+            </div>
+        );
+        details.push(
+            <div class="guide-section">
+                <div class="guide-section-title">
+                    { lang.get(`synergies-external`) }
+                </div>
+                <div class="guide-synergies">
+                    {getSynergies(uid, false).map(({ attr }) => (
+                    <GuideSynergy
+                        championId={ attr.fromId }
+                        effectId={ attr.effectId }
+                        stars={ attr.fromStars }
+                    />
+                        ))}
+                </div>
+            </div>
+        );
         return (
-            <div class="guide">
-                <GuideBackground
-                    key={ `guide-background-${ uid }` }
-                    uid={ uid }
-                />
-                <div class="guide-title">{ lang.get(`champion-${ uid }-name`) }</div>
+            <div class="guide" key={ 'guide-${ uid }' }>
                 { details }
-                <div class="guide-section">
-                    <div class="guide-section-title">
-                        { lang.get(`synergies`) }
-                    </div>
-                    <div class="guide-synergies">
-                        {getSynergies(uid, true).map(({ attr }) => (
-                            <GuideSynergy
-                                championId={ attr.toId }
-                                effectId={ attr.effectId }
-                                stars={ attr.fromStars }
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div class="guide-section">
-                    <div class="guide-section-title">
-                        { lang.get(`synergies-external`) }
-                    </div>
-                    <div class="guide-synergies">
-                        {getSynergies(uid, false).map(({ attr }) => (
-                            <GuideSynergy
-                                championId={ attr.fromId }
-                                effectId={ attr.effectId }
-                                stars={ attr.fromStars }
-                            />
-                        ))}
-                    </div>
-                </div>
                 <div class="clear" />
             </div>
         );

@@ -63,13 +63,13 @@ const TeamsSettingsPage = {
         ));
         return (
             <div class="teams-settings">
-                <h3 class="header">
+                <div class="header">
                     { lang.get('synergy-weights') }
-                </h3>
+                </div>
                 { effectSliders }
-                <h3 class="header">
+                <div class="header">
                     { lang.get('duplicate-weights') }
-                </h3>
+                </div>
                 { duplicateSliders }
                 <div class="clear" />
             </div>

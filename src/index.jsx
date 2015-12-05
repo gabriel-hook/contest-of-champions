@@ -34,6 +34,9 @@ router.on('/guide/:uid', (uid) => {
         <GuideMenu uid={ uid } />
     );
     app.button = null;
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -59,6 +62,9 @@ router.on('/roster', () => {
         icon: 'user-plus',
         onclick: () => router.setRoute('/roster/add/2'),
     };
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -84,6 +90,9 @@ router.on('/roster/add/:stars', (stars) => {
         icon: 'share',
         onclick: () => router.setRoute('/roster'),
     };
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -109,6 +118,9 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
         icon: 'reply',
         onclick: () => router.setRoute('/roster'),
     };
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -133,6 +145,9 @@ router.on('/teams/settings', () => {
         icon: 'reply',
         onclick: () => router.setRoute('/teams'),
     };
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -157,6 +172,9 @@ router.on('/teams', () => {
         icon: 'sliders',
         onclick: () => router.setRoute('/teams/settings'),
     };
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
@@ -171,6 +189,9 @@ router.on('/synergy/:stars', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
+    /* eslint-disable no-undef */
+    ga('send', 'pageview');
+    /* eslint-disable no-undef */
     m.redraw();
 });
 
