@@ -1,7 +1,6 @@
 import './GuidePage.scss';
 import { idMap } from '../../data/champions';
 import Champion from '../../data/model/Champion';
-import { getImage } from '../../util/images';
 import { effectImage } from '../../data/effects';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';

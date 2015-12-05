@@ -1,11 +1,9 @@
 import './RosterEditPage.scss';
 import { starRankLevels } from '../../data/model/Champion';
-import { getImage } from '../../util/images';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../ChampionHeader.jsx';
 import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
