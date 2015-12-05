@@ -41,7 +41,7 @@ class Champion extends Model {
     constructor({
         uid = 'champion',
         stars = 1,
-        typeId = 'mutant',
+        typeId = 'unknown',
         pi = 0,
         rank = 1,
         level = 1,

@@ -25,6 +25,7 @@ export default {
     'champion-warmachine-name': 'War Machine',
     'champion-colossus-name': 'Colossus',
     'champion-cyclops-name': 'Cyclops',
+    'champion-cyclops90s-name': 'Cyclops',
     'champion-deadpool-name': 'Deadpool',
     'champion-deadpoolxforce-name': 'Deadpool X-Force',
     'champion-magneto-name': 'Magneto',
@@ -54,12 +55,17 @@ export default {
     'champion-spidermanmorales-name': 'Spider-Man Morales',
     'champion-yellowjacket-name': 'YellowJacket',
     'champion-drstrange-name': 'Doctor Strange',
+    'champion-drstrangemarvelnow-name': 'Doctor Strange',
     'champion-ironfist-name': 'Iron Fist',
     'champion-guillotine-name': 'Guillotine',
     'champion-juggernaut-name': 'Juggernaut',
     'champion-magik-name': 'Magik',
     'champion-scarletwitch-name': 'Scarlet Witch',
     'champion-unstoppablecolossus-name': 'Unstoppable Colossus',
+
+    'champion-groot-name': 'Groot',
+    'champion-maestro-name': 'Maestro',
+    'champion-redskull-name': 'Red Skull',
 
     //Champion shortname
     'champion-captainmarvel-shortname': 'Cap. Marvel',
@@ -73,6 +79,7 @@ export default {
     'champion-captainamericawwii-shortname': 'Cap. America',
     'champion-spidermanmorales-shortname': 'Spider-Man',
     'champion-drstrange-shortname': 'Dr. Strange',
+    'champion-drstrangemarvelnow-shortname': 'Dr. Strange',
     'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
 
     //Ability name
@@ -127,6 +134,7 @@ export default {
     'type-skill-name': 'Skill',
     'type-science-name': 'Science',
     'type-mystic-name': 'Mystic',
+    'type-unknown-name': 'Unknown',
 
     //Crystal name
     'crystal-versus-name': 'Versus',

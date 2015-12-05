@@ -94,6 +94,10 @@ const champions = [
     { uid:'cyclops', typeId:'mutant', stars: 4 },
     { uid:'cyclops', typeId:'mutant', stars: 5 },
 
+    { uid:'cyclops90s', typeId:'mutant', stars: 3 },
+    { uid:'cyclops90s', typeId:'mutant', stars: 4 },
+    { uid:'cyclops90s', typeId:'mutant', stars: 5 },
+
     { uid:'deadpool', typeId:'mutant', stars: 2 },
     { uid:'deadpool', typeId:'mutant', stars: 3 },
     { uid:'deadpool', typeId:'mutant', stars: 4 },
@@ -184,6 +188,7 @@ const champions = [
 
     { uid:'lukecage', typeId:'science', stars: 3 },
     { uid:'lukecage', typeId:'science', stars: 4 },
+    { uid:'lukecage', typeId:'science', stars: 5 },
 
     { uid:'rhino', typeId:'science', stars: 2 },
     { uid:'rhino', typeId:'science', stars: 3 },
@@ -208,6 +213,10 @@ const champions = [
 
     { uid:'drstrange', typeId:'mystic', stars: 3 },
     { uid:'drstrange', typeId:'mystic', stars: 4 },
+
+    { uid:'drstrangemarvelnow', typeId:'mystic', stars: 3 },
+    { uid:'drstrangemarvelnow', typeId:'mystic', stars: 4 },
+    { uid:'drstrangemarvelnow', typeId:'mystic', stars: 5 },
 
     { uid:'guillotine', typeId:'mystic', stars: 2 },
     { uid:'guillotine', typeId:'mystic', stars: 3 },
@@ -236,6 +245,18 @@ const champions = [
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 2 },
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 3 },
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 4 },
+
+    { uid:'groot', stars: 3 },
+    { uid:'groot', stars: 4 },
+    { uid:'groot', stars: 5 },
+
+    { uid:'maestro', stars: 3 },
+    { uid:'maestro', stars: 4 },
+    { uid:'maestro', stars: 5 },
+
+    { uid:'redskull', stars: 3 },
+    { uid:'redskull', stars: 4 },
+    { uid:'redskull', stars: 5 },
 
 ].map((champion) => new Champion(champion));
 
