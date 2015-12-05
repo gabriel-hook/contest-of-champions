@@ -32,7 +32,7 @@ $guide-value-1-color: #c00;
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0.001;
+        opacity: .001;
         background-position: bottom left;
         background-repeat: no-repeat;
         background-size: contain;
@@ -67,32 +67,32 @@ $guide-value-1-color: #c00;
 
     .guide-grade {
         display: block;
-        padding: 10px 10px 0 10px;
+        padding: 10px 10px 0;
         @include font-text(1em);
 
         .guide-grade--value-a {
-            color:$guide-value-5-color;
+            color: $guide-value-5-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-grade--value-b {
-            color:$guide-value-4-color;
+            color: $guide-value-4-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-grade--value-c {
-            color:$guide-value-3-color;
+            color: $guide-value-3-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-grade--value-d {
-            color:$guide-value-2-color;
+            color: $guide-value-2-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-grade--value-e,
         .guide-grade--value-f {
-            color:$guide-value-1-color;
+            color: $guide-value-1-color;
             text-shadow: 0 1px 0 #666;
         }
     }
@@ -101,27 +101,27 @@ $guide-value-1-color: #c00;
         float: right;
 
         .guide-rating--value-5 {
-            color:$guide-value-5-color;
+            color: $guide-value-5-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-rating--value-4 {
-            color:$guide-value-4-color;
+            color: $guide-value-4-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-rating--value-3 {
-            color:$guide-value-3-color;
+            color: $guide-value-3-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-rating--value-2 {
-            color:$guide-value-2-color;
+            color: $guide-value-2-color;
             text-shadow: 0 1px 0 #666;
         }
 
         .guide-rating--value-1 {
-            color:$guide-value-1-color;
+            color: $guide-value-1-color;
             text-shadow: 0 1px 0 #666;
         }
     }

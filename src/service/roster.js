@@ -144,8 +144,7 @@ function set(uid, stars, attr = {}) {
         ...attr,
         uid,
         stars,
-    })
-
+    });
     update();
 }
 
