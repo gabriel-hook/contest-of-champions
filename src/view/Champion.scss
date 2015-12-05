@@ -87,7 +87,6 @@
             box-sizing: border-box;
             text-align: center;
             width: 100%;
-            padding: 0 3px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -98,19 +97,17 @@
             text-shadow: 0 1px 0 #000;
 
             @media (max-width: 355px) {
-                font-size: .6em;
-                line-height: 1.5em;
-            }
-
-            @media (max-width: 800px) and (min-width: 355px) {
                 font-size: .8em;
-                line-height: 1.5em;
+                padding: 4px 2px;
+            }
+            @media (max-width: 800px) and (min-width: 355px) {
+                font-size: 1em;
+                padding: 6px 3px;
             }
             @media (min-width: 800px) {
-                font-size: 1em;
-                line-height: 1.5em;
+                font-size: 1.1em;
+                padding: 8px 4px;
             }
-
         }
 
         @media (max-width: 355px) {
