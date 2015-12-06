@@ -89,7 +89,7 @@ const RosterMenu = {
             );
         }
         return (
-            <div>
+            <div key={ `roster-menu` }>
                 <MenuHeader title="roster" />
                 { options }
                 <MenuOption
@@ -98,6 +98,7 @@ const RosterMenu = {
                     )}
                     title="delete-all"
                     onclick={ () => roster.clear() }
+                    red="true"
                 />
             </div>
         );

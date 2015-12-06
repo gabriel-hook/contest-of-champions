@@ -58,7 +58,7 @@ const TeamsSettingsMenu = {
             );
         });
         return (
-            <div>
+            <div key={ `teams-settings-menu` }>
                 { options }
             </div>
         );

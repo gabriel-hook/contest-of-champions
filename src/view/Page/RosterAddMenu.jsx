@@ -10,7 +10,7 @@ const RosterAddMenu = {
     view(ctrl, args) {
         const { stars } = args;
         return (
-            <div>
+            <div key={ `roster-add-menu-${ stars }` }>
                 <MenuHeader title="add-champion" />
                 <MenuOptionGroup
                     options={ [ '1', '2', '3', '4', '5' ].map((star) => (

@@ -138,15 +138,18 @@ const RosterPage = {
             );
             elements.push(
                 <button
-                    class={ classNames('champion-button') }
-                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
+                    class={ classNames('champion-button', 'champion-button-delete') }
+                    onclick={() => {
+                        roster.remove(uid, stars);
+                        router.setRoute('/roster');
+                    }}
                 >
-                    { lang.get('view-guide') }
+                    { lang.get('delete') }
                 </button>
             );
         }
         return (
-            <div class="roster-edit">
+            <div key={ `roster-edit-${ uid }-${ stars }` } class="roster-edit">
                 { elements }
                 <div class="clear" />
             </div>

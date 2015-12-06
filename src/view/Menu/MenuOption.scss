@@ -21,6 +21,14 @@
         text-shadow: 0 1px 0 #fff;
     }
 
+    &.menu-option--red {
+        background: #c33;
+
+        &:hover {
+            background: rgba(255, 192, 192, .65);
+        }
+    }
+
     &.menu-option--selected {
         background: #eee;
         color: #000;

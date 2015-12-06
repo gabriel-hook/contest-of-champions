@@ -35,7 +35,7 @@ const SynergyMenu = {
             />
         );
         return (
-            <div>
+            <div key={ `teams-menu-${ stars }` }>
                 { options }
             </div>
         );

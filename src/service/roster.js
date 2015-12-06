@@ -36,12 +36,14 @@ function fromCSV(csv, filename = 'champions.csv') {
         if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)) {
             /* eslint-disable no-console */
             console.error(`Invalid line in ${ filename }:${ i + 1 }`);
-            /* eslint-disable no-console */
+            /* eslint-enable no-console */
             continue;
         }
         const champion = championMap[ `${ uid }-${ stars }` ];
         if(champion === undefined) {
+            /* eslint-disable no-console */
             console.error(`Champion not found "${ uid }" in ${ filename }:${ i + 1 }`);
+            /* eslint-enable no-console */
             continue;
         }
         array.push(new Champion({ ...champion.attr, rank, level, awakened }));
@@ -139,12 +141,6 @@ function set(uid, stars, attr = {}) {
             stars,
         }),
     ];
-    console.log({
-        ...champion.attr,
-        ...attr,
-        uid,
-        stars,
-    });
     update();
 }
 

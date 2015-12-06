@@ -11,23 +11,28 @@ const RosterMenu = {
     view(ctrl, args) {
         const { uid, stars } = args;
         return (
-            <div>
+            <div key={ `roster-edit-menu-${ uid }-${ stars }` }>
                 <MenuHeader title="roster" />
                 <MenuOption
                     icon={(
                         <Icon icon="refresh" />
                     )}
                     title="reset"
+                    onclick={() => {
+                        roster.set(uid, stars, {
+                            rank: 1,
+                            level: 1,
+                            awakened: 0,
+                            pi: 0,
+                        });
+                    }}
                 />
                 <MenuOption
                     icon={(
-                        <Icon icon="user-times" />
+                        <Icon icon="user" />
                     )}
-                    title="delete"
-                    onclick={() => {
-                        roster.remove(uid, stars);
-                        router.setRoute('/roster');
-                    }}
+                    title="view-guide"
+                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
                 />
             </div>
         );

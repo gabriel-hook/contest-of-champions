@@ -44,7 +44,11 @@ const Menu = {
             </div>
         );
         if(menu) {
-            options.push(menu);
+            options.push(
+                <div>
+                    { menu }
+                </div>
+            );
         }
         options.push(
             <MenuSection

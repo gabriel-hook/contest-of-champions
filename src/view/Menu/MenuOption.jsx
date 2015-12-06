@@ -7,7 +7,7 @@ import m from 'mithril';
 
 const MenuOption = {
     view(ctrl, args) {
-        const { title, icon, onclick, href, selected, progress } = args;
+        const { title, icon, onclick, href, selected, progress, red } = args;
         let link;
         if(href) {
             link = {
@@ -17,7 +17,11 @@ const MenuOption = {
         }
         return (
             <a
-                class={ classNames('menu-option', { 'menu-option--selected': selected, 'menu-option--progress': progress }) }
+                class={ classNames('menu-option', {
+                    'menu-option--selected': selected,
+                    'menu-option--progress': progress,
+                    'menu-option--red': red === true || red === 'true',
+                }) }
                 { ...link }
                 onclick={ onclick }
                 disabled={ !Boolean(onclick || link) }

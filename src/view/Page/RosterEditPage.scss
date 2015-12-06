@@ -78,8 +78,8 @@
         }
     }
 
-    .champion-button {
-        @include styled-button(true);
+    .champion-button-delete {
+        @include styled-button(true, #c33);
         width: 500px;
         max-width: 90%;
         padding: 16px;

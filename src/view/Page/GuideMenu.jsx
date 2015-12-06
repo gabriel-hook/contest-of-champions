@@ -32,7 +32,7 @@ const GuideMenu = {
             ));
         });
         return (
-            <div>
+            <div key={ `guide-menu` }>
                 { options }
             </div>
         );

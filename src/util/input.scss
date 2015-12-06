@@ -58,7 +58,7 @@
     margin-top: $thumb-margin;
 }
 
-@mixin styled-button($effects) {
+@mixin styled-button($effects, $background: #38c) {
     position: relative;
     display: block;
     border: 0;
@@ -66,7 +66,7 @@
     text-align: center;
     font-family: Hanzel, Verdana, Geneva, sans-serif;
     font-size: 18px;
-    background: #38c;
+    background: $background;
     color: #fff;
     text-shadow: 0 1px 0 #000;
     transition: background .25s, color .25s, text-shadow .25s;

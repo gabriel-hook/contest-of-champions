@@ -82,7 +82,7 @@ const TeamsMenu = {
             } />
         );
         return (
-            <div>
+            <div key={ `teams-menu` }>
                 { options }
             </div>
         );
