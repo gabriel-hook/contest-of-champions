@@ -1,6 +1,5 @@
 import Champion from '../data/model/Champion';
 import champions, { idMap as championMap } from '../data/champions';
-import { uids as typeIds } from '../data/types';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
@@ -124,9 +123,6 @@ function clear() {
 }
 
 function set(uid, stars, attr = {}) {
-
-    console.log({ uid, stars }, attr);
-
     const champion = roster.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
     if(!champion)
         return;
@@ -139,9 +135,6 @@ function set(uid, stars, attr = {}) {
             stars,
         }),
     ];
-
-    console.log(roster)
-
     update();
 }
 
