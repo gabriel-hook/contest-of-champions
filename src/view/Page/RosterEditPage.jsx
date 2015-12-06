@@ -149,8 +149,10 @@ const RosterPage = {
             );
         }
         return (
-            <div key={ `roster-edit-${ uid }-${ stars }` } class="roster-edit">
-                { elements }
+            <div class="roster-edit">
+                <div key={ `roster-edit-${ uid }-${ stars }` }>
+                    { elements }
+                </div>
                 <div class="clear" />
             </div>
         );

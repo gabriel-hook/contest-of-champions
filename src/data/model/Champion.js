@@ -1,3 +1,4 @@
+import { uids as typeIds } from '../types';
 import Model from './Model';
 
 const starRankLevels={
@@ -57,6 +58,7 @@ class Champion extends Model {
             awakened,
         });
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
+        this.typeIndex = typeIds.indexOf(this.attr.typeId);
         this.pi = 0;
         const range = starRankLevels[ stars ] && starRankLevels[ stars ][ rank ];
         if(range && level <= range.levels) {

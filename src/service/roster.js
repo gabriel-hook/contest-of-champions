@@ -77,7 +77,11 @@ function available(stars) {
 }
 
 function update() {
-    roster.forEach((champion) => champion.typeIndex = typeIds.indexOf(champion.attr.typeId));
+    const byId = {};
+    roster.forEach((champion) => byId[ champion.id ] = champion);
+    roster = [];
+    for(const id in byId)
+        roster.push(byId[ id ]);
     roster.sort((a, b) => {
         const stars = b.attr.stars - a.attr.stars;
         if(stars !== 0)
@@ -87,15 +91,6 @@ function update() {
             return type;
         return -b.attr.uid.localeCompare(a.attr.uid);
     });
-    roster = roster.reduce((array, champion) => {
-        const last = array[ array.length - 1 ];
-        if(last && champion.attr.uid === last.attr.uid && champion.attr.stars === last.attr.stars) {
-            array[ array.length - 1 ] = champion;
-        }
-        else
-            array.push(champion);
-        return array;
-    }, []);
     toStorage('roster', roster);
 }
 
@@ -129,6 +124,9 @@ function clear() {
 }
 
 function set(uid, stars, attr = {}) {
+
+    console.log({ uid, stars }, attr);
+
     const champion = roster.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
     if(!champion)
         return;
@@ -141,6 +139,9 @@ function set(uid, stars, attr = {}) {
             stars,
         }),
     ];
+
+    console.log(roster)
+
     update();
 }
 
