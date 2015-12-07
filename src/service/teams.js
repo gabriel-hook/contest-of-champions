@@ -114,6 +114,7 @@ worker.onmessage = (event) => {
         teams.result = {
             ...result,
             teams: result.teams.map((team) => {
+                team.sort();
                 const champions = team.map(fidToRosterChampion);
                 const synergies = dataSynergies.filter((synergy) => {
                     const { fromId, fromStars, toId } = synergy.attr;
