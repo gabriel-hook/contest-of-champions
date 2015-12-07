@@ -216,6 +216,7 @@ export default {
     'rank': 'Rank',
     'level': 'Level',
     'awakened': 'Awakened',
+    'pi': 'PI',
     'quest': 'Quest',
     'view-guide': 'View Guide',
 
