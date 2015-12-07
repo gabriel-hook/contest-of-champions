@@ -97,15 +97,15 @@
             text-shadow: 0 1px 0 #000;
 
             @media (max-width: 355px) {
-                font-size: .8em;
+                font-size: .75em;
                 padding: 4px 2px;
             }
             @media (max-width: 800px) and (min-width: 355px) {
-                font-size: 1em;
+                font-size: .8em;
                 padding: 6px 3px;
             }
             @media (min-width: 800px) {
-                font-size: 1.1em;
+                font-size: 1em;
                 padding: 8px 4px;
             }
         }

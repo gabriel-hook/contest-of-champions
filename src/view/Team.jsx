@@ -126,7 +126,7 @@ const Team = {
                             class={ classNames('team-synergy', { 'team-synergy--selected': selected }) }
                             onmouseenter={ () => selectSynergy(ctrl, synergies, champions, index) }
                         >
-                            <ImageIcon src={ effectImage(synergy.attr.effectId) }/>
+                            <ImageIcon src={ effectImage(synergy.attr.effectId) } icon="square"/>
                             <span class="effect-name">
                                 { lang.get(`effect-${ synergy.attr.effectId }-name`) }
                             </span>

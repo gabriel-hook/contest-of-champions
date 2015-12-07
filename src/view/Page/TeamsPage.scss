@@ -4,95 +4,15 @@
     background: #fff;
     box-sizing: border-box;
 
-    .teams-header {
-        max-width: 250px;
-        margin: auto;
-        padding: 16px;
-        border-radius: 5px;
-        background: rgba(0, 0, 0, .5);
-        color: #fff;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 1.1em;
-        text-align: center;
-        text-shadow: 0 1px 0 #000;
-    }
-
-    .team {
-        clear: both;
-        text-align: center;
-        margin: 10px auto;
-
-        .champion {
-            .container {
-                padding: 0;
-            }
-        }
-
-        .synergies {
-            clear: both;
-            padding: 20px 10px 10px;
-            margin-bottom: 10px;
-            background: rgba(0, 0, 0, .5);
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            color: #fff;
-            text-shadow: 0 1px 0 #000;
-            text-align: left;
-
-            .icon {
-                display: inline-block;
-                margin-right: .25em;
-
-
-                & img {
-                    position: relative;
-                    width: 1.5em;
-                    margin-bottom: -.3em;
-                    z-index: 100;
-                }
-            }
-
-            .effect-name,
-            .effect-amount {
-                display: inline-block;
-                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-                font-size: 1.0em;
-            }
-
-            .effect-amount {
-
-                &::before {
-                    content: "- ";
-                }
-            }
-        }
-
-        &.team--size-3 {
-            max-width: 450px;
-
-            .champion {
-                width: 33.334%;
-                padding-bottom: 33.334%;
-            }
-        }
-
-        &.team--size-4 {
-            max-width: 600px;
-
-            .champion {
-                width: 25%;
-                padding-bottom: 25%;
-            }
-        }
-
-        &.team--size-5 {
-            max-width: 750px;
-
-            .champion {
-                width: 20%;
-                padding-bottom: 20%;
-            }
-        }
+    .header {
+        width: 500px;
+        max-width: 90%;
+        padding: 20px 16px 16px;
+        font-size: 1.3em;
+        font-weight: normal;
+        font-family: Hanzel, Verdana, Geneva, sans-serif;
+        text-shadow: 0 1px 0 #ccc;
+        text-align: left;
     }
 
     .clear {

@@ -27,7 +27,7 @@ const TeamsPage = {
             ));
             if(extras.length) {
                 extrasHeader = (
-                    <h3>{ lang.get('extras') }</h3>
+                    <div class="header">{ lang.get('extras') }</div>
                 );
                 extrasDiv = extras.map((champion, extrasIndex) => (
                     <Champion

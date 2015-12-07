@@ -35,17 +35,25 @@ const GuideSynergy ={
     view(ctrl, args) {
         const { championId, effectId, stars } = args;
         const onclickChampion = () => router.setRoute(`/guide/${ championId }`);
+        const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
         return (
             <div class="guide-synergy">
-                <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
-                <ImageIcon src={ effectImage(effectId) } icon="square" />
-                <span class="champion-name" onclick={ onclickChampion }>
-                    { stars }★
-                    { lang.get(`champion-${ championId }-name`) }
-                </span>
-                <span class="effect-name">
-                    { lang.get(`effect-${ effectId }-name`) }
-                </span>
+                <div class="guide-synergy-parts">
+                    <div class="guide-synergy-part">
+                        <div class="champion-name" onclick={ onclickChampion }>
+                            <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
+                            { stars }★
+                            { name }
+                        </div>
+                    </div>
+                    <div class="guide-synergy-part">
+                        <div class="effect-name">
+                            <ImageIcon src={ effectImage(effectId) } icon="square" />
+                            { lang.get(`effect-${ effectId }-name`) }
+                        </div>
+                    </div>
+                    <div class="guide-synergy-clear" />
+                </div>
             </div>
         );
     },

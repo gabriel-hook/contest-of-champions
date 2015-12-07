@@ -19,6 +19,10 @@ const champions = [
     { uid:'gamora', typeId:'cosmic', stars: 3 },
     { uid:'gamora', typeId:'cosmic', stars: 4 },
 
+    { uid:'groot', typeId: 'cosmic', stars: 3 },
+    { uid:'groot', typeId: 'cosmic', stars: 4 },
+    { uid:'groot', typeId: 'cosmic', stars: 5 },
+
     { uid:'msmarvel', typeId:'cosmic', stars: 3 },
     { uid:'msmarvel', typeId:'cosmic', stars: 4 },
 
@@ -155,6 +159,10 @@ const champions = [
     { uid:'punisher', typeId:'skill', stars: 3 },
     { uid:'punisher', typeId:'skill', stars: 4 },
 
+    { uid:'redskull', typeId:'skill', stars: 3 },
+    { uid:'redskull', typeId:'skill', stars: 4 },
+    { uid:'redskull', typeId:'skill', stars: 5 },
+
     { uid:'wintersoldier', typeId:'skill', stars: 2 },
     { uid:'wintersoldier', typeId:'skill', stars: 3 },
     { uid:'wintersoldier', typeId:'skill', stars: 4 },
@@ -246,17 +254,9 @@ const champions = [
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 3 },
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 4 },
 
-    { uid:'groot', stars: 3 },
-    { uid:'groot', stars: 4 },
-    { uid:'groot', stars: 5 },
-
     { uid:'maestro', stars: 3 },
     { uid:'maestro', stars: 4 },
     { uid:'maestro', stars: 5 },
-
-    { uid:'redskull', stars: 3 },
-    { uid:'redskull', stars: 4 },
-    { uid:'redskull', stars: 5 },
 
 ].map((champion) => new Champion(champion));
 
