@@ -1,4 +1,5 @@
 import './Team.scss';
+import deepEqual from 'deep-equal';
 import classNames from 'classnames';
 import { getImage } from '../util/images';
 import effects, { effectImage } from '../data/effects';
@@ -55,7 +56,12 @@ function selectChampion(ctrl, synergies, champions, index) {
         });
         ctrl.champions[ index ] = selected;
     }
-    ctrl.selected = selected;
+    if(deepEqual(ctrl.selected, selected)) {
+        selectNone(ctrl);
+    }
+    else {
+        ctrl.selected = selected;
+    }
 }
 
 function selectSynergy(ctrl, synergies, champions, effectId) {
@@ -79,7 +85,12 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
             .filter((champion) => championIds[ champion.attr.uid ] || championIds[ champion.id ])
             .forEach((champion, index) => selected.champions[ index ] = CHAMPION_SELECTED);
     }
-    ctrl.selected = selected;
+    if(deepEqual(ctrl.selected, selected)) {
+        selectNone(ctrl);
+    }
+    else {
+        ctrl.selected = selected;
+    }
 }
 
 const Team = {
@@ -105,7 +116,6 @@ const Team = {
         return(
             <div
                 class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
-                onmouseleave={ () => selectNone(ctrl) }
             >
                 <div>
                 { champions.map((champion, index) => {
@@ -117,14 +127,7 @@ const Team = {
                             champion={ champion }
                             selected={ selected }
                             neighbor={ neighbor }
-                            events={{
-                                onmouseenter: () => selectChampion(ctrl, synergies, champions, index),
-                                ontouchstart: (e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    selectChampion(ctrl, synergies, champions, index);
-                                },
-                            }}
+                            onclick={ () => selectChampion(ctrl, synergies, champions, index) }
                         />
                     );
                 }) }
@@ -138,12 +141,10 @@ const Team = {
                     const amount = (!selected || selected === EFFECT_SELECTED)?
                         synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0):
                         selected;
-
-
                     return (
                         <div
                             class={ classNames('team-synergy', { 'team-synergy--selected': selected }) }
-                            onmouseenter={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
+                            onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
                         >
                             <ImageIcon src={ effectImage(effect.attr.uid) } icon="square"/>
                             <span class="effect-name">
