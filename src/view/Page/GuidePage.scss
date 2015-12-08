@@ -129,10 +129,15 @@ $guide-value-1-color: #f33;
 
         .guide-synergy-parts {
             position: relative;
+            padding-bottom: 8px;
 
-            @media all and (min-width: 400px) {
-                .guide-synergy-part {
-                    float: right;
+            .guide-synergy-part {
+                height: 24px;
+                margin: 0;
+                padding: 0;
+
+                @media all and (min-width: 400px) {
+                    float: left;
                     width: 50%;
                 }
             }
@@ -165,6 +170,7 @@ $guide-value-1-color: #f33;
         .icon {
             position: relative;
             display: inline-block;
+            top: 5px;
             margin: 0;
             width: 24px;
             height: 24px;
@@ -176,11 +182,12 @@ $guide-value-1-color: #f33;
             }
 
             img {
-                position: relative;
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
-                margin-bottom: -.2em;
-                z-index: 1000;
+                z-index: 1;
             }
         }
     }

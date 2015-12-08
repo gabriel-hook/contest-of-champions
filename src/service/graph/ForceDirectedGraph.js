@@ -93,8 +93,22 @@ export default function({
         }
     };
 
+    function isActive() {
+        let node = canvas;
+        while(node && node.parentNode) {
+            node = node.parentNode;
+            if(node && node.className && node.className.indexOf('page--current') !== -1)
+                return true;
+        }
+        return false;
+    }
+
     function addEventListeners(element, types, listener) {
-        types.split(' ').forEach((type) => element.addEventListener(type, listener, true));
+        types.split(' ').forEach((type) => element.addEventListener(type, function(...args) {
+            if(!isActive())
+                return;
+            listener.apply(this, args);
+        }, true));
     }
 
     this.graph = graph;

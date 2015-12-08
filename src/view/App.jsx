@@ -31,13 +31,11 @@ const App = {
         return (
             <div class="app">
                 <div class="pages" key={ 0 }>
-                    <div class="wrapper">
                     {tabs.map((tab) => (
                         <div class={ classNames('page', { 'page--current': currentPage === tab.id }) }>
                             { pages[ tab.id ] }
                         </div>
                     ))}
-                    </div>
                 </div>
                 <Menu tabs={ tabs } tab={ tab } menu={ menu } button={ button } key={ 2 } />
                 <div class="svg" config={ addSVG } />
