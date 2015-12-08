@@ -14,7 +14,7 @@ gulp.task('assets', () => gulp.src([
 
 gulp.task('gh-pages', () => gulp.src([
     './.build/**/*',
-    './dev/docs/**/*',
+    './dev/gh-pages/**/*',
 ])
     .pipe(plumber())
     .pipe(commit({
