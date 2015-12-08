@@ -1,7 +1,7 @@
 import './Team.scss';
 import classNames from 'classnames';
 import { getImage } from '../util/images';
-import { effectImage } from '../data/effects';
+import effects, { effectImage } from '../data/effects';
 import pure from '../util/pure';
 import lang from '../service/lang';
 import Champion from './Champion.jsx';
@@ -12,11 +12,11 @@ import m from 'mithril';
 
 const CHAMPION_SELECTED = 1;
 const CHAMPION_NEIGHBOR = 2;
-const SYNERGY_SELECTED = 1;
+const EFFECT_SELECTED = true;
 
 function selectNone(ctrl) {
     ctrl.selected = {
-        synergies: {},
+        effects: {},
         champions: {},
     };
     m.redraw();
@@ -30,23 +30,27 @@ function selectChampion(ctrl, synergies, champions, index) {
             champions: {
                 [ index ]: CHAMPION_SELECTED,
             },
-            synergies: {},
+            effects: {},
         };
         const champion = champions[ index ];
-        synergies.forEach((synergy, index) => {
+        synergies.forEach((synergy) => {
+            let amount;
             if(champion.attr.uid === synergy.attr.toId) {
-                selected.synergies[ index ] = SYNERGY_SELECTED;
                 champions.forEach((champion, index) => {
                     if(champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars)
                         selected.champions[ index ] = CHAMPION_NEIGHBOR;
                 });
+                amount = synergy.attr.effectAmount;
             }
             else if(champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars) {
-                selected.synergies[ index ] = SYNERGY_SELECTED;
                 champions.forEach((champion, index) => {
                     if(champion.attr.uid === synergy.attr.toId)
                         selected.champions[ index ] = CHAMPION_NEIGHBOR;
                 });
+                amount = synergy.attr.effectAmount;
+            }
+            if(amount) {
+                selected.effects[ synergy.attr.effectId ] = (selected.effects[ synergy.attr.effectId ] || 0) + amount;
             }
         });
         ctrl.champions[ index ] = selected;
@@ -54,24 +58,26 @@ function selectChampion(ctrl, synergies, champions, index) {
     ctrl.selected = selected;
 }
 
-function selectSynergy(ctrl, synergies, champions, index) {
-    let selected = ctrl.synergies[ index ];
+function selectSynergy(ctrl, synergies, champions, effectId) {
+    let selected = ctrl.effects[ effectId ];
     if(!selected) {
         selected = {
             active: true,
             champions: {},
-            synergies: {
-                [ index ]: SYNERGY_SELECTED,
+            effects: {
+                [ effectId ]: EFFECT_SELECTED,
             },
         };
-        const synergy = synergies[ index ];
-        champions.forEach((champion, index) => {
-            if (champion.attr.uid === synergy.attr.toId)
-                selected.champions[ index ] = CHAMPION_SELECTED;
-            else if (champion.attr.uid === synergy.attr.fromId && champion.attr.stars === synergy.attr.fromStars)
-                selected.champions[ index ] = CHAMPION_SELECTED;
-        });
-        ctrl.synergies[ index ] = selected;
+        const championIds = {};
+        synergies
+            .filter((synergy) => synergy.attr.effectId === effectId)
+            .forEach((synergy) => {
+                championIds[ synergy.attr.toId ] = true;
+                championIds[ `${ synergy.attr.fromId }-${ synergy.attr.fromStars }` ] = true;
+            });
+        champions
+            .filter((champion) => championIds[ champion.attr.uid ] || championIds[ champion.id ])
+            .forEach((champion, index) => selected.champions[ index ] = CHAMPION_SELECTED);
     }
     ctrl.selected = selected;
 }
@@ -79,11 +85,11 @@ function selectSynergy(ctrl, synergies, champions, index) {
 const Team = {
     controller() {
         this.selected = {
-            synergies: {},
+            effects: {},
             champions: {},
         };
         this.champions = {};
-        this.synergies = {};
+        this.effects = {};
     },
     view(ctrl, args) {
         const { champions, synergies } = args;
@@ -113,25 +119,38 @@ const Team = {
                             neighbor={ neighbor }
                             events={{
                                 onmouseenter: () => selectChampion(ctrl, synergies, champions, index),
+                                ontouchstart: (e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    selectChampion(ctrl, synergies, champions, index);
+                                },
                             }}
                         />
                     );
                 }) }
                 </div>
                 <div className="team-synergies">
-                { synergies.map((synergy, index) => {
-                    const selected = ctrl.selected.synergies[ index ] === SYNERGY_SELECTED;
+                { effects.map((effect) => {
+                    const synergy = synergies.filter((synergy) => synergy.attr.effectId === effect.attr.uid);
+                    if(synergy.length === 0)
+                        return null;
+                    const selected = ctrl.selected.effects[ effect.attr.uid ];
+                    const amount = (!selected || selected === EFFECT_SELECTED)?
+                        synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0):
+                        selected;
+
+
                     return (
                         <div
                             class={ classNames('team-synergy', { 'team-synergy--selected': selected }) }
-                            onmouseenter={ () => selectSynergy(ctrl, synergies, champions, index) }
+                            onmouseenter={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
                         >
-                            <ImageIcon src={ effectImage(synergy.attr.effectId) } icon="square"/>
+                            <ImageIcon src={ effectImage(effect.attr.uid) } icon="square"/>
                             <span class="effect-name">
-                                { lang.get(`effect-${ synergy.attr.effectId }-name`) }
+                                { lang.get(`effect-${ effect.attr.uid }-name`) }
                             </span>
                             <span class="effect-amount">
-                                { synergy.attr.effectAmount }%
+                                { amount }%
                             </span>
                         </div>
                     );
