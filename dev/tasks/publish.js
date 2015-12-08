@@ -9,7 +9,7 @@ const DEVELOPMENT = gutil.env.dev;
 gulp.task('publish:commit', () => {
     return gulp.src([
         './.build/**/*',
-        './dev/docs/**/*',
+        './dev/gh-pages/**/*',
     ])
         .pipe(plumber())
         .pipe(commit({
