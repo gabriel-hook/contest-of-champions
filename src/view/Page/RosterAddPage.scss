@@ -3,6 +3,40 @@
 .roster-add {
     padding: 24px;
 
+
+    .add-stars {
+        width: 500px;
+        max-width: 90%;
+        padding: 16px 0;
+        margin: 0 auto 1em;
+        box-sizing: border-box;
+
+        .add-stars-button {
+            @include styled-button(true);
+            display: inline-block;
+            width: 20%;
+            padding: 16px 0;
+            box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+
+            &:active {
+                top: 6px;
+                box-shadow: 0 0 0 rgba(0, 0, 0, .25);
+            }
+
+            &.disabled {
+                top: 6px;
+                box-shadow: 0 0 0 rgba(0, 0, 0, .25);
+            }
+
+            &.add-stars-button--selected {
+                @include styled-button(false, lighten(#38c, 10%));
+                display: inline-block;
+                top: 6px;
+                box-shadow: 0 0 0 rgba(0, 0, 0, .25);
+            }
+        }
+    }
+
     .add-all {
         @include styled-button(true);
         width: 500px;

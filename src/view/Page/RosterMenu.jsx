@@ -89,7 +89,7 @@ const RosterMenu = {
             );
         }
         return (
-            <div key={ `roster-menu` }>
+            <div key="roster-menu">
                 <MenuHeader title="roster" />
                 { options }
                 <MenuOption

@@ -15,6 +15,13 @@ const RosterMenu = {
                 <MenuHeader title="roster" />
                 <MenuOption
                     icon={(
+                        <Icon icon="user" />
+                    )}
+                    title="view-guide"
+                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
+                />
+                <MenuOption
+                    icon={(
                         <Icon icon="refresh" />
                     )}
                     title="reset"
@@ -26,13 +33,6 @@ const RosterMenu = {
                             pi: 0,
                         });
                     }}
-                />
-                <MenuOption
-                    icon={(
-                        <Icon icon="user" />
-                    )}
-                    title="view-guide"
-                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
                 />
             </div>
         );

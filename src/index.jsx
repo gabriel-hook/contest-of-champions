@@ -59,7 +59,7 @@ router.on('/roster', () => {
     );
     app.button = {
         icon: 'user-plus',
-        onclick: () => router.setRoute('/roster/add/2'),
+        onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
     };
     m.redraw();
     analytics.pageView();
@@ -81,12 +81,13 @@ router.on('/roster/add/:stars', (stars) => {
         />
     );
     app.menu = (
-        <RosterAddMenu stars={ stars } />
+        <RosterAddMenu />
     );
     app.button = {
         icon: 'share',
         onclick: () => router.setRoute('/roster'),
     };
+    app.lastAddStars = stars;
     m.redraw();
     analytics.pageView();
 });
