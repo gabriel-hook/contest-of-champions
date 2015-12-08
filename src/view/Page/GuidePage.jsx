@@ -40,16 +40,16 @@ const GuideSynergy ={
             <div class="guide-synergy">
                 <div class="guide-synergy-parts">
                     <div class="guide-synergy-part">
+                        <div class="effect-name">
+                            <ImageIcon src={ effectImage(effectId) } icon="square" />
+                            { lang.get(`effect-${ effectId }-name`) }
+                        </div>
+                    </div>
+                    <div class="guide-synergy-part">
                         <div class="champion-name" onclick={ onclickChampion }>
                             <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
                             { stars }★
                             { name }
-                        </div>
-                    </div>
-                    <div class="guide-synergy-part">
-                        <div class="effect-name">
-                            <ImageIcon src={ effectImage(effectId) } icon="square" />
-                            { lang.get(`effect-${ effectId }-name`) }
                         </div>
                     </div>
                     <div class="guide-synergy-clear" />

@@ -130,9 +130,11 @@ $guide-value-1-color: #f33;
         .guide-synergy-parts {
             position: relative;
 
-            .guide-synergy-part {
-                float: left;
-                width: 50%;
+            @media all and (min-width: 400px) {
+                .guide-synergy-part {
+                    float: right;
+                    width: 50%;
+                }
             }
 
             .guide-synergy-clear {
