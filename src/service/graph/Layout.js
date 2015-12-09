@@ -218,16 +218,22 @@ class Layout {
         setTimeout(tickLoop, milliseconds);
 
         //do renders every animation frame
-        requestRender('springy', function renderLoop() {
-            if(rendering) {
-                requestRender('springy', renderLoop);
-                if (render && !isNaN(totalEnergy) && totalEnergy > minEnergyThreshold) {
-                    render();
+        requestRender({
+            id: 'springy',
+            callback: function renderLoop() {
+                if(rendering) {
+                    requestRender({
+                        id: 'springy',
+                        callback: renderLoop,
+                    });
+                    if (render && !isNaN(totalEnergy) && totalEnergy > minEnergyThreshold) {
+                        render();
+                    }
                 }
-            }
-            else if (onRenderStop !== undefined) {
-                onRenderStop();
-            }
+                else if (onRenderStop !== undefined) {
+                    onRenderStop();
+                }
+            },
         });
     }
 

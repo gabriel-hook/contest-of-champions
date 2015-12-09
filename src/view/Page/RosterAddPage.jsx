@@ -4,6 +4,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Champion from '../Champion.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -19,7 +20,10 @@ const RosterAddPage = {
                 {[ 1, 2, 3, 4, 5 ].map((star) => (
                     <button
                         class={ classNames('add-stars-button', { 'add-stars-button--selected': stars === star }) }
-                        onclick={ () => router.setRoute(`/roster/add/${ star }`) }
+                        onclick={ () => {
+                            router.setRoute(`/roster/add/${ star }`);
+                            requestRedraw();
+                        }}
                     >
                         { `${ star }★` }
                     </button>
@@ -29,7 +33,10 @@ const RosterAddPage = {
 
                 <button
                     class={ classNames('add-all', { 'disabled': champions.length === 0 }) }
-                    onclick={ () => roster.addAll(stars) }
+                    onclick={ () => {
+                        roster.addAll(stars);
+                        requestRedraw();
+                    }}
                 >
                     { lang.get('add-all') }
                 </button>
@@ -39,7 +46,10 @@ const RosterAddPage = {
                         <Champion
                             key={ `${ index }-${ champion.id }` }
                             champion={ champion }
-                            onclick={ () => roster.add(champion.attr.uid, stars) }
+                            onclick={ () => {
+                                roster.add(champion.attr.uid, stars);
+                                requestRedraw();
+                            }}
                         />
                     )) }
                     <div class="clear"></div>

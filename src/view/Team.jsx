@@ -7,6 +7,7 @@ import pure from '../util/pure';
 import lang from '../service/lang';
 import Champion from './Champion.jsx';
 import ImageIcon from './ImageIcon.jsx';
+import { requestRedraw } from '../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -20,7 +21,7 @@ function selectNone(ctrl) {
         effects: {},
         champions: {},
     };
-    m.redraw();
+    requestRedraw(2);
 }
 
 function selectChampion(ctrl, synergies, champions, index) {
@@ -62,6 +63,7 @@ function selectChampion(ctrl, synergies, champions, index) {
     else {
         ctrl.selected = selected;
     }
+    requestRedraw(2);
 }
 
 function selectSynergy(ctrl, synergies, champions, effectId) {
@@ -91,6 +93,7 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
     else {
         ctrl.selected = selected;
     }
+    requestRedraw(2);
 }
 
 const Team = {

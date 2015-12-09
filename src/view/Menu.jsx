@@ -7,6 +7,7 @@ import MenuOptionGroup from './Menu/MenuOptionGroup.jsx';
 import MenuOption from './Menu/MenuOption.jsx';
 import Icon from './Icon.jsx';
 import ImageIcon from './ImageIcon.jsx';
+import { requestRedraw } from '../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -16,6 +17,8 @@ const Menu = {
         this.open = false;
         this.toggle = () => {
             this.open = !this.open;
+            requestRedraw(2);
+
         };
     },
     view(ctrl, args) {

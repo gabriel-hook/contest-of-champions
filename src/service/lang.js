@@ -1,7 +1,7 @@
 import en from './lang/en';
 import es from './lang/es';
 import ru from './lang/ru';
-import m from 'mithril';
+import { requestRedraw } from '../util/animation';
 
 const lang = {
     current: 'en',
@@ -13,7 +13,7 @@ const lang = {
     change(lang) {
         if(this.messages[ lang ]) {
             this.current = lang;
-            m.redraw();
+            requestRedraw();
         }
     },
     get(id, fallback = id) {

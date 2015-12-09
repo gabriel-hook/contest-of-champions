@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import { requestRender } from './util/animation';
 import { uids } from './data/champions';
 import app from './service/app';
 import router from './service/router';
@@ -22,6 +21,7 @@ import TeamsSettingsPage from './view/Page/TeamsSettingsPage.jsx';
 import TeamsSettingsMenu from './view/Page/TeamsSettingsMenu.jsx';
 import SynergyPage from './view/Page/SynergyPage.jsx';
 import SynergyMenu from './view/Page/SynergyMenu.jsx';
+import { requestRedraw } from './util/animation';
 import m from 'mithril';
 
 router.on('/guide', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
@@ -35,8 +35,8 @@ router.on('/guide/:uid', (uid) => {
         <GuideMenu uid={ uid } />
     );
     app.button = null;
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/roster', () => {
@@ -61,8 +61,8 @@ router.on('/roster', () => {
         icon: 'user-plus',
         onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
     };
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/roster/add/:stars', (stars) => {
@@ -88,8 +88,8 @@ router.on('/roster/add/:stars', (stars) => {
         onclick: () => router.setRoute('/roster'),
     };
     app.lastAddStars = stars;
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/roster/:uid/:stars', (uid, stars) => {
@@ -114,8 +114,8 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
         icon: 'reply',
         onclick: () => router.setRoute('/roster'),
     };
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/teams/settings', () => {
@@ -139,8 +139,8 @@ router.on('/teams/settings', () => {
         icon: 'reply',
         onclick: () => router.setRoute('/teams'),
     };
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/teams', () => {
@@ -164,8 +164,8 @@ router.on('/teams', () => {
         icon: 'sliders',
         onclick: () => router.setRoute('/teams/settings'),
     };
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('/synergy', () => router.setRoute(`/synergy/${ 2 }`));
@@ -179,8 +179,8 @@ router.on('/synergy/:stars', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
-    m.redraw();
     analytics.pageView();
+    requestRedraw();
 });
 
 router.on('.*', () => router.setRoute('roster'));
@@ -212,5 +212,5 @@ m.mount(document.body, (
     <App />
 ));
 router.init('/roster');
-document.addEventListener('hotreload', () => m.redraw());
-window.addEventListener('resize', () => requestRender('resize', m.redraw), true);
+document.addEventListener('hotreload', () => requestRedraw());
+window.addEventListener('resize', () => requestRedraw(0), true);

@@ -6,7 +6,7 @@ import Menu from './Menu.jsx';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-function addSVG(element, isInitialized) {
+function addRawHTML(element, isInitialized) {
     if(!isInitialized) {
         element.innerHTML = `
             <div style="display:none">
@@ -38,7 +38,7 @@ const App = {
                     ))}
                 </div>
                 <Menu tabs={ tabs } tab={ tab } menu={ menu } button={ button } key={ 2 } />
-                <div class="svg" config={ addSVG } />
+                <div class="raw-html" config={ addRawHTML } />
             </div>
         );
     },

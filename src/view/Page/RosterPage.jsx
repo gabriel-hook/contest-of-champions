@@ -4,6 +4,7 @@ import router from '../../service/router';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
 import Champion from '../Champion.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -18,7 +19,10 @@ const RosterPage = {
     view(/* ctrl, args */) {
         const total = roster.all().length;
         const champions = roster.all();
-        const handleSelect = ({ uid, stars }) => router.setRoute(`/roster/${ uid }/${ stars }`);
+        const handleSelect = ({ uid, stars }) => {
+            router.setRoute(`/roster/${ uid }/${ stars }`);
+            requestRedraw();
+        };
         return (
             <div
                 class="roster"

@@ -2,6 +2,7 @@ import teams, { PRESETS, PRESETS_DUPLICATES, update } from '../../service/teams'
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -33,7 +34,7 @@ const TeamsSettingsMenu = {
                             ...PRESETS[ id ],
                         };
                         update();
-                        m.redraw();
+                        requestRedraw();
                     } }
                 />
             );
@@ -52,7 +53,7 @@ const TeamsSettingsMenu = {
                             ...PRESETS_DUPLICATES[ id ],
                         };
                         update();
-                        m.redraw();
+                        requestRedraw();
                     } }
                 />
             );

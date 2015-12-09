@@ -4,6 +4,7 @@ import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -20,7 +21,10 @@ const TeamsMenu = {
                 icon={(
                     <Icon icon="cog" spin={ teams.building } />
                 )}
-                onclick={ buildTeams }
+                onclick={ () => {
+                    buildTeams();
+                    requestRedraw();
+                }}
                 progress={ teams.building && teams.progress }
             />
         );
@@ -38,6 +42,7 @@ const TeamsMenu = {
                         onclick={ () => {
                             teams.stars[ star ] = !teams.stars[ star ];
                             update();
+                            requestRedraw();
                         }}
                     />
                 ))
@@ -57,6 +62,7 @@ const TeamsMenu = {
                         onclick={ () => {
                             teams.size = size;
                             update();
+                            requestRedraw();
                         }}
                     />
                 ))
@@ -76,6 +82,7 @@ const TeamsMenu = {
                         onclick={ () => {
                             teams.type = type;
                             update();
+                            requestRedraw();
                         }}
                     />
                 ))

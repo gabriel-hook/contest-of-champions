@@ -3,6 +3,7 @@ import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -18,7 +19,10 @@ const RosterMenu = {
                         <Icon icon="user" />
                     )}
                     title="view-guide"
-                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
+                    onclick={ () => {
+                        router.setRoute(`/guide/${ uid }`);
+                        requestRedraw();
+                    }}
                 />
                 <MenuOption
                     icon={(
@@ -32,6 +36,7 @@ const RosterMenu = {
                             awakened: 0,
                             pi: 0,
                         });
+                        requestRedraw();
                     }}
                 />
             </div>

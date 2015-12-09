@@ -4,7 +4,7 @@ import router from '../service/router';
 import Graph from './graph/Graph';
 import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
-import m from 'mithril';
+import { requestRedraw } from '../util/animation';
 
 const typeColors = {
     cosmic:'#3af',
@@ -74,7 +74,7 @@ const fdg = new ForceDirectedGraph({
                 }
             }
             lastSelected = currentSelected;
-            m.redraw();
+            requestRedraw();
         }
     },
     effectSelected: (effectId) => {
@@ -83,7 +83,7 @@ const fdg = new ForceDirectedGraph({
             effect.selected = effectId === effect.effectId;
             effect.amount = null;
         }
-        m.redraw();
+        requestRedraw();
     },
 });
 

@@ -1,4 +1,4 @@
-import m from 'mithril';
+import { requestRedraw } from './animation';
 
 const images = {};
 
@@ -8,7 +8,7 @@ function getImage(src) {
         image = new Image();
         image.addEventListener('load', () => {
             image.loaded = true;
-            m.redraw();
+            requestRedraw(5);
         });
         image.addEventListener('error', () => {
             image[ src ] = null;

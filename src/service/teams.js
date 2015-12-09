@@ -2,7 +2,7 @@ import dataSynergies from '../data/synergies';
 import roster from './roster';
 import { fromStorage, toStorage } from '../util/storage';
 import Worker from 'webworker!./teams/worker';
-import m from 'mithril';
+import { requestRedraw } from '../util/animation';
 
 const PRESETS = {
     'offensive': {
@@ -137,12 +137,12 @@ worker.onmessage = (event) => {
             extras: result.extras.map(fidToRosterChampion),
         };
         teams.building = false;
-        m.redraw();
+        requestRedraw();
         break;
     case 'progress':
         const progress = event.data.data;
         teams.progress = progress.current / progress.max;
-        m.redraw();
+        requestRedraw();
         break;
     }
 };

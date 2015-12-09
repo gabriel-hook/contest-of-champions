@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import graph, { getLegend, updateGraph } from '../../service/graph';
 import lang from '../../service/lang';
 import synergy from '../../service/synergy';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -30,7 +31,10 @@ const SynergyPage = {
                     class={ classNames('legend-effect', `legend-effect--${ effectId }`,
                         { 'legend-effect--selected': selected }
                     ) }
-                    onclick={ () => graph.selectEdgeType(effectId) }
+                    onclick={ () => {
+                        graph.selectEdgeType(effectId);
+                        requestRedraw(5);
+                    }}
                 >
                     { lang.get(`effect-${ effectId }-name`) }
                     { amount && ` - ${ amount }%` }

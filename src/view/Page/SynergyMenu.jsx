@@ -3,6 +3,7 @@ import synergy from '../../service/synergy';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -20,7 +21,10 @@ const SynergyMenu = {
                     <MenuOption
                         title={ `${ star }★` }
                         selected={ stars === star }
-                        onclick={ () => router.setRoute(`/synergy/${ star }`) }
+                        onclick={ () => {
+                            router.setRoute(`/synergy/${ star }`);
+                            requestRedraw();
+                        }}
                     />
                 ))
             } />
@@ -31,6 +35,7 @@ const SynergyMenu = {
                 selected={ synergy.legend === true }
                 onclick={ () => {
                     synergy.legend = !synergy.legend;
+                    requestRedraw();
                 }}
             />
         );

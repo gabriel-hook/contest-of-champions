@@ -6,6 +6,7 @@ import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
 import ChampionHeader from '../ChampionHeader.jsx';
 import classNames from 'classnames';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -73,7 +74,7 @@ const RosterPage = {
                                 rank,
                                 level: 1,
                             });
-                            m.redraw();
+                            requestRedraw();
                         }}
                     />
                 </div>
@@ -91,7 +92,7 @@ const RosterPage = {
                             roster.set(uid, stars, {
                                 level,
                             });
-                            m.redraw();
+                            requestRedraw();
                         }}
                     />
                 </div>
@@ -109,7 +110,7 @@ const RosterPage = {
                             roster.set(uid, stars, {
                                 awakened,
                             });
-                            m.redraw();
+                            requestRedraw();
                         }}
                     />
                 </div>
@@ -130,7 +131,7 @@ const RosterPage = {
                                 roster.set(uid, stars, {
                                     pi,
                                 });
-                                m.redraw();
+                                requestRedraw();
                             }}
                         />
                     </div>
@@ -142,6 +143,7 @@ const RosterPage = {
                     onclick={() => {
                         roster.remove(uid, stars);
                         router.setRoute('/roster');
+                        requestRedraw();
                     }}
                 >
                     { lang.get('delete') }

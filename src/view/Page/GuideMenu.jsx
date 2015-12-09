@@ -4,6 +4,7 @@ import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import ImageIcon from '../ImageIcon.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -27,7 +28,10 @@ const GuideMenu = {
                     )}
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }
-                    onclick={ () => router.setRoute(`/guide/${ uid }`) }
+                    onclick={ () => {
+                        router.setRoute(`/guide/${ uid }`);
+                        requestRedraw();
+                    }}
                 />
             ));
         });

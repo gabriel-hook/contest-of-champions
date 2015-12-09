@@ -2,6 +2,7 @@ import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -21,7 +22,7 @@ function importCSV() {
         const reader = new FileReader();
         reader.onload = ({ target }) => {
             roster.fromCSV(target.result);
-            m.redraw();
+            requestRedraw(5);
         };
         reader.readAsText(file);
         importer.value = '';
@@ -51,6 +52,7 @@ const RosterMenu = {
                     const event = document.createEventObject();
                     importer.fireEvent('onclick', event);
                 }
+                requestRedraw(5);
             };
             options.push(
                 <MenuOption
@@ -88,6 +90,7 @@ const RosterMenu = {
                     target.setAttribute('download', 'champions.csv');
                     target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(csv) }`);
                 }
+                requestRedraw();
             };
             options.push(
                 <MenuOption
