@@ -34,12 +34,23 @@ const RosterMenu = {
         if (window.FileReader) {
             const importClick = () => {
                 const importer = document.getElementById('roster-importer');
-                const event = new MouseEvent('click', {
-                    'view': window,
-                    'bubbles': true,
-                    'cancelable': true,
-                });
-                importer.dispatchEvent(event);
+                if(ie) {
+                    const event = document.createEvent('MouseEvents');
+                    event.initMouseEvent('click', true, true, window);
+                    importer.dispatchEvent(event);
+                }
+                else if(MouseEvent) {
+                    const event = new MouseEvent('click', {
+                        'view': window,
+                        'bubbles': true,
+                        'cancelable': true,
+                    });
+                    importer.dispatchEvent(event);
+                }
+                else if( document.createEventObject ) {
+                    const event = document.createEventObject();
+                    importer.fireEvent('onclick', event);
+                }
             };
             options.push(
                 <MenuOption

@@ -4,6 +4,24 @@ import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
 
+function save() {
+    const byId = {};
+    roster.forEach((champion) => byId[ champion.id ] = champion);
+    roster = [];
+    for(const id in byId)
+        roster.push(byId[ id ]);
+    roster.sort((a, b) => {
+        const stars = b.attr.stars - a.attr.stars;
+        if(stars !== 0)
+            return stars;
+        const type = a.typeIndex - b.typeIndex;
+        if(type !== 0)
+            return type;
+        return -b.attr.uid.localeCompare(a.attr.uid);
+    });
+    toStorage('roster', roster);
+}
+
 const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened';
 
 function toCSV(separator = '\n') {
@@ -51,7 +69,7 @@ function fromCSV(csv, filename = 'champions.csv') {
         ...roster,
         ...array,
     ];
-    update();
+    save();
 }
 
 function all() {
@@ -60,12 +78,12 @@ function all() {
     ];
 }
 
-function find(fn) {
-    return roster.find(fn);
+function find(callback) {
+    return roster.find(callback);
 }
 
-function filter(fn) {
-    return roster.filter(fn);
+function filter(callback) {
+    return roster.filter(callback);
 }
 
 function available(stars) {
@@ -75,31 +93,13 @@ function available(stars) {
     return available;
 }
 
-function update() {
-    const byId = {};
-    roster.forEach((champion) => byId[ champion.id ] = champion);
-    roster = [];
-    for(const id in byId)
-        roster.push(byId[ id ]);
-    roster.sort((a, b) => {
-        const stars = b.attr.stars - a.attr.stars;
-        if(stars !== 0)
-            return stars;
-        const type = a.typeIndex - b.typeIndex;
-        if(type !== 0)
-            return type;
-        return -b.attr.uid.localeCompare(a.attr.uid);
-    });
-    toStorage('roster', roster);
-}
-
 function addAll(stars) {
     const champions = available(stars).map((champion) => new Champion({ ...champion.attr }));
     roster = [
         ...roster,
         ...champions,
     ];
-    update();
+    save();
 }
 
 function add(uid, stars) {
@@ -108,18 +108,18 @@ function add(uid, stars) {
         ...roster,
         new Champion({ ...champion.attr }),
     ];
-    update();
+    save();
 }
 
 function remove(uid, stars) {
     roster = roster.filter(({ attr }) => attr.uid !== uid || attr.stars !== stars);
-    update();
+    save();
 
 }
 
 function clear() {
     roster = [];
-    update();
+    save();
 }
 
 function set(uid, stars, attr = {}) {
@@ -135,10 +135,8 @@ function set(uid, stars, attr = {}) {
             stars,
         }),
     ];
-    update();
+    save();
 }
-
-update();
 
 export default {
     set,

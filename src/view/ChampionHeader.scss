@@ -123,4 +123,8 @@
             color: #90f;
         }
     }
+
+    @media print {
+        page-break-inside: avoid;
+    }
 }

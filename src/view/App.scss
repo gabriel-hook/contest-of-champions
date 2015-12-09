@@ -24,15 +24,32 @@
             background: #ccc;
             z-index: 0;
 
+            @media print {
+                visibility: hidden;
+            }
+
             &.page--current {
                 opacity: 1;
                 pointer-events: auto;
                 z-index: 10;
+
+                @media print {
+                    visibility: visible;
+                    width: 100%;
+                    height: auto;
+                    overflow: visible;
+                }
             }
         }
     }
 
     .svg {
         display: none;
+    }
+
+    @media print {
+        width: 100%;
+        height: auto;
+        overflow: visible;
     }
 }
