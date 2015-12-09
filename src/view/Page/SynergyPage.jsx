@@ -17,6 +17,7 @@ function config(element, isInitialized) {
         setTimeout(() => {
             const { top, left, width, height } = element.getBoundingClientRect();
             updateGraph(stars, top, left, width, height);
+            requestRedraw(5);
         }, 250);
     }
 }

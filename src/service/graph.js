@@ -74,7 +74,7 @@ const fdg = new ForceDirectedGraph({
                 }
             }
             lastSelected = currentSelected;
-            requestRedraw();
+            requestRedraw(5);
         }
     },
     effectSelected: (effectId) => {
@@ -83,7 +83,7 @@ const fdg = new ForceDirectedGraph({
             effect.selected = effectId === effect.effectId;
             effect.amount = null;
         }
-        requestRedraw();
+        requestRedraw(5);
     },
 });
 
