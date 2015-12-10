@@ -35,10 +35,8 @@ const RosterMenu = {
         if (window.FileReader) {
             const importClick = () => {
                 const importer = document.getElementById('roster-importer');
-                if(ie) {
-                    const event = document.createEvent('MouseEvents');
-                    event.initMouseEvent('click', true, true, window);
-                    importer.dispatchEvent(event);
+                if(document.createEventObject) {
+                    importer.target.fireEvent('onclick');
                 }
                 else if(MouseEvent) {
                     const event = new MouseEvent('click', {
@@ -48,9 +46,10 @@ const RosterMenu = {
                     });
                     importer.dispatchEvent(event);
                 }
-                else if( document.createEventObject ) {
-                    const event = document.createEventObject();
-                    importer.fireEvent('onclick', event);
+                else {
+                    const event = document.createEvent('MouseEvents');
+                    event.initMouseEvent('click', true, true, window);
+                    importer.dispatchEvent(event);
                 }
                 requestRedraw(5);
             };
