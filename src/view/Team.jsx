@@ -78,9 +78,11 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
                 championIds[ synergy.attr.toId ] = true;
                 championIds[ `${ synergy.attr.fromId }-${ synergy.attr.fromStars }` ] = true;
             });
-        champions
-            .filter((champion) => championIds[ champion.attr.uid ] || championIds[ champion.id ])
-            .forEach((champion, index) => selected.champions[ index ] = CHAMPION_SELECTED);
+        champions.forEach((champion, index) => {
+            if(championIds[ champion.attr.uid ] || championIds[ champion.id ])
+                selected.champions[ index ] = CHAMPION_SELECTED;
+        });
+        ctrl.effects[ effectId ] = selected;
     }
     if(deepEqual(ctrl.selected, selected)) {
         ctrl.selected = {
