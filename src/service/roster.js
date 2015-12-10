@@ -3,8 +3,10 @@ import champions, { idMap as championMap } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
+let availableCache = {};
 
 function save() {
+    availableCache = {};
     const byId = {};
     roster.forEach((champion) => byId[ champion.id ] = champion);
     roster = [];
@@ -87,9 +89,12 @@ function filter(callback) {
 }
 
 function available(stars) {
-    const has = {};
-    roster.forEach((champion) => has[ champion.id ] = true);
-    const available = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
+    let available = availableCache[ stars ];
+    if(available === undefined) {
+        const has = {};
+        roster.forEach((champion) => has[ champion.id ] = true);
+        available = availableCache[ stars ] = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
+    }
     return available;
 }
 
