@@ -99,7 +99,7 @@ export default function({
                     resizeTimeout = null;
                 }, 50);
 
-            if(isActive())
+            if(isActive() && this.stars === stars)
                 this.renderer.start();
             else
                 this.renderer.stop();
