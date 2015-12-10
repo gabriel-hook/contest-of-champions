@@ -29,7 +29,7 @@ const MenuOption = {
                 { progress && (
                     <div
                         class="menu-option-progress-bar"
-                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%;` }
+                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .05s linear' };` }
                     />
                 ) || null }
                 <div class="menu-option--label">{ icon }{ lang.get(title) }</div>

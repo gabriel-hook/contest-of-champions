@@ -109,34 +109,38 @@ worker.onmessage = (event) => {
     switch(event.data.type) {
     case 'result':
         const result = event.data.data;
-        let teamsCount = 0;
-        let synergiesCount = 0;
-        teams.result = {
-            ...result,
-            teams: result.teams.map((team) => {
-                team.sort();
-                const champions = team.map(fidToRosterChampion);
-                const synergies = dataSynergies.filter((synergy) => {
-                    const { fromId, fromStars, toId } = synergy.attr;
-                    if(!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
-                        return false;
-                    return Boolean(champions.find(({ attr }) => toId === attr.uid));
+        teams.progress = 1;
+        setTimeout(() => {
+            let teamsCount = 0;
+            let synergiesCount = 0;
+            teams.result = {
+                ...result,
+                teams: result.teams.map((team) => {
+                    team.sort();
+                    const champions = team.map(fidToRosterChampion);
+                    const synergies = dataSynergies.filter((synergy) => {
+                        const { fromId, fromStars, toId } = synergy.attr;
+                        if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
+                            return false;
+                        return Boolean(champions.find(({ attr }) => toId === attr.uid));
 
-                });
-                teamsCount++;
-                synergiesCount += synergies.length;
-                return {
-                    champions,
-                    synergies,
-                };
-            }),
-            counts: {
-                teams: teamsCount,
-                synergies: synergiesCount,
-            },
-            extras: result.extras.map(fidToRosterChampion),
-        };
-        teams.building = false;
+                    });
+                    teamsCount++;
+                    synergiesCount += synergies.length;
+                    return {
+                        champions,
+                        synergies,
+                    };
+                }),
+                counts: {
+                    teams: teamsCount,
+                    synergies: synergiesCount,
+                },
+                extras: result.extras.map(fidToRosterChampion),
+            };
+            teams.building = false;
+            requestRedraw();
+        }, 50);
         requestRedraw();
         break;
     case 'progress':
