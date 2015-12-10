@@ -3,10 +3,10 @@ import champions, { idMap as championMap } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
-let availableCache = {};
+let cache = {};
 
 function save() {
-    availableCache = {};
+    cache = {};
     const byId = {};
     roster.forEach((champion) => byId[ champion.id ] = champion);
     roster = [];
@@ -75,9 +75,23 @@ function fromCSV(csv, filename = 'champions.csv') {
 }
 
 function all() {
-    return [
-        ...roster,
-    ];
+    const key = `all`;
+    let all = cache[ key ];
+    if(!all) {
+        all = cache[ key ] = [
+            ...roster,
+        ];
+    }
+    return all;
+}
+
+function get(uid, stars) {
+    const key = `get-${ uid }-${ stars }`;
+    let champion = cache[ key ];
+    if(!champion) {
+        champion = cache[ key ] = roster.find(({ attr }) => uid === attr.uid && stars === attr.stars);
+    }
+    return champion;
 }
 
 function find(callback) {
@@ -89,11 +103,12 @@ function filter(callback) {
 }
 
 function available(stars) {
-    let available = availableCache[ stars ];
+    const key = `available-${ stars }`;
+    let available = cache[ key ];
     if(available === undefined) {
         const has = {};
         roster.forEach((champion) => has[ champion.id ] = true);
-        available = availableCache[ stars ] = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
+        available = cache[ key ] = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
     }
     return available;
 }
@@ -144,15 +159,22 @@ function set(uid, stars, attr = {}) {
 }
 
 export default {
-    set,
+    //getters
     all,
+    get,
+    available,
+    //searchers
     filter,
     find,
-    available,
+    //setter
+    set,
+    //adders
     add,
     addAll,
+    //removers
     remove,
     clear,
+    //io
     toCSV,
     fromCSV,
 };

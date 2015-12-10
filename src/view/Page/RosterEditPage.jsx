@@ -48,7 +48,7 @@ const Select = {
 const RosterPage = {
     view(ctrl, args) {
         const { uid, stars } = args;
-        const champion = roster.find(({ attr }) => attr.uid === uid && attr.stars === stars);
+        const champion = roster.get(uid, stars);
         const elements = [];
         if(champion) {
             const { rank, level, awakened, pi } = champion.attr;
