@@ -21,7 +21,7 @@ const MenuOption = {
                     'menu-option--selected': selected,
                     'menu-option--progress': progress,
                     'menu-option--red': red === true || red === 'true',
-                }) }
+                }, 'no-select') }
                 { ...link }
                 onclick={ onclick }
                 disabled={ !Boolean(onclick || link) }

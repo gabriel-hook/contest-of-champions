@@ -17,7 +17,12 @@ const lang = {
         }
     },
     get(id, fallback = id) {
-        return this.messages[ this.current ][ id ] || fallback;
+        return this.messages[ this.current ][ id ] || this.default(id, fallback) || fallback;
+    },
+    default(id, fallback) {
+        if(this.current === 'en' || !fallback)
+            return null;
+        return this.messages[ 'en' ][ id ];
     },
 };
 

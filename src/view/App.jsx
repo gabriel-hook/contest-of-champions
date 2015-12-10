@@ -30,14 +30,14 @@ const App = {
         const currentPage = tab;
         return (
             <div class="app">
-                <div class="pages" key={ 0 }>
+                <div class="pages">
                     {tabs.map((tab) => (
                         <div class={ classNames('page', { 'page--current': currentPage === tab.id }) }>
                             { pages[ tab.id ] }
                         </div>
                     ))}
                 </div>
-                <Menu tabs={ tabs } tab={ tab } menu={ menu } button={ button } key={ 2 } />
+                <Menu tabs={ tabs } tab={ tab } menu={ menu } button={ button } />
                 <div class="raw-html" config={ addRawHTML } />
             </div>
         );

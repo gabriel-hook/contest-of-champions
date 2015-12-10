@@ -18,7 +18,6 @@ const Menu = {
         this.toggle = () => {
             this.open = !this.open;
             requestRedraw(2);
-
         };
     },
     view(ctrl, args) {

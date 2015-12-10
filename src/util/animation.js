@@ -40,7 +40,10 @@ function requestRedraw(delay = 2) {
     const deferred = renderDeferredMap[ 'mithril' ];
     requestRender({
         id: 'mithril',
-        callback: m.redraw,
+        callback: () => {
+            m.redraw.strategy('diff');
+            m.redraw();
+        },
         delay: (deferred)? Math.min(deferred.delay, delay): delay,
     });
     m.redraw.strategy('none');

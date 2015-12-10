@@ -16,14 +16,6 @@ const CHAMPION_SELECTED = 1;
 const CHAMPION_NEIGHBOR = 2;
 const EFFECT_SELECTED = true;
 
-function selectNone(ctrl) {
-    ctrl.selected = {
-        effects: {},
-        champions: {},
-    };
-    requestRedraw(2);
-}
-
 function selectChampion(ctrl, synergies, champions, index) {
     let selected = ctrl.champions[ index ];
     if(!selected) {
@@ -58,12 +50,15 @@ function selectChampion(ctrl, synergies, champions, index) {
         ctrl.champions[ index ] = selected;
     }
     if(deepEqual(ctrl.selected, selected)) {
-        selectNone(ctrl);
+        ctrl.selected = {
+            effects: {},
+            champions: {},
+        };
     }
     else {
         ctrl.selected = selected;
     }
-    requestRedraw(2);
+    requestRedraw();
 }
 
 function selectSynergy(ctrl, synergies, champions, effectId) {
@@ -88,12 +83,15 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
             .forEach((champion, index) => selected.champions[ index ] = CHAMPION_SELECTED);
     }
     if(deepEqual(ctrl.selected, selected)) {
-        selectNone(ctrl);
+        ctrl.selected = {
+            effects: {},
+            champions: {},
+        };
     }
     else {
         ctrl.selected = selected;
     }
-    requestRedraw(2);
+    requestRedraw();
 }
 
 const Team = {
@@ -146,7 +144,7 @@ const Team = {
                         selected;
                     return (
                         <div
-                            class={ classNames('team-synergy', { 'team-synergy--selected': selected }) }
+                            class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
                             onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
                         >
                             <ImageIcon src={ effectImage(effect.attr.uid) } icon="square"/>

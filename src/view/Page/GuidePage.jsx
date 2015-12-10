@@ -1,4 +1,5 @@
 import './GuidePage.scss';
+import classNames from 'classnames';
 import { idMap } from '../../data/champions';
 import Champion from '../../data/model/Champion';
 import { effectImage } from '../../data/effects';
@@ -8,6 +9,7 @@ import router from '../../service/router';
 import lang from '../../service/lang';
 import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../ChampionHeader.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -34,13 +36,16 @@ const getSynergies = (uid, isFrom) => {
 const GuideSynergy ={
     view(ctrl, args) {
         const { championId, effectId, stars } = args;
-        const onclickChampion = () => router.setRoute(`/guide/${ championId }`);
+        const onclickChampion = () => {
+            router.setRoute(`/guide/${ championId }`);
+            requestRedraw();
+        };
         const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
         return (
             <div class="guide-synergy">
                 <div class="guide-synergy-parts">
                     <div class="guide-synergy-part">
-                        <div class="champion-name" onclick={ onclickChampion }>
+                        <div class={ classNames('champion-name', 'no-select') } onclick={ onclickChampion }>
                             <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
                             { stars }★
                             { name }

@@ -40,7 +40,7 @@ const Champion = {
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         return (
             <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected, 'champion--neighbor': neighbor }) }>
-                <div class="container">
+                <div class={ classNames('container', 'no-select') }>
                     <div
                         { ...events }
                         class={ classNames('inner', { 'clickable': onclick }) }
