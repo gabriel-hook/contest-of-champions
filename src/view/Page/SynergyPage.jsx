@@ -14,11 +14,6 @@ function config(element, isInitialized) {
     updateGraph(stars, top, left, width, height);
     if(!isInitialized) {
         element.appendChild(graph.canvas);
-        setTimeout(() => {
-            const { top, left, width, height } = element.getBoundingClientRect();
-            updateGraph(stars, top, left, width, height);
-            requestRedraw(5);
-        }, 250);
     }
 }
 

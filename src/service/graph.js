@@ -140,6 +140,7 @@ function getGraph(stars) {
                 });
         legends[ stars ] = legend;
         graphs[ stars ] = graph;
+        requestRedraw(5);
     }
     return graphs[ stars ];
 }
