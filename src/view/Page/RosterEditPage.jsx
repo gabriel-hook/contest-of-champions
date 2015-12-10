@@ -126,11 +126,13 @@ const RosterPage = {
                             min="0"
                             max="10000"
                             oninput={(event) => {
-                                const { value, min, max } = event.target;
+                                const { value, min, max, valueAsNumber } = event.target;
                                 const pi = Math.min(max, Math.max(min, parseInt(value, 10) || min));
                                 roster.set(uid, stars, {
                                     pi,
                                 });
+                                if(valueAsNumber !== undefined && isNaN(valueAsNumber))
+                                    event.target.value = '';
                                 requestRedraw();
                             }}
                         />
