@@ -257,24 +257,7 @@ export default {
     //Synergy Page
     'legend-show': 'Show Legend',
 
-    //Options
-    'options': 'Options',
-    'share-to': 'Share to',
-    'facebook': 'Facebook',
-    'twitter': 'Twitter',
-    'google': 'Google',
-    'tools': 'Tools',
-    'language': 'Language',
-    'synergy-map': 'Synergy Map',
-    'roster-manager': 'Roster Manager',
-
-    //Onboarding Messages
-    'onboarding-synergies': 'Use the roster manager tool to add more champions to your roster.',
-    'onboarding-roster': 'Use the options menu to add new champions',
-    'onboarding-teams': 'Use the Build menu create your teams!',
-
     //Guide
-    'coming-soon': 'Coming Soon...',
     'description': 'Description',
     'gameplay': 'Gameplay',
     'special': 'Special',
@@ -302,6 +285,13 @@ export default {
     'author-credit': 'This guide was written by',
 
     'email': 'E-mail',
+
+    //Menu
+    'language': 'Language',
+    'links': 'Links',
+    'link-github': 'Github',
+    'link-kabam': 'Kabam Forums',
+    'link-reddit': 'Reddit /r',
 
     'all': 'All',
     'none': 'None',

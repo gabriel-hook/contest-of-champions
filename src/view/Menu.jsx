@@ -52,6 +52,7 @@ const Menu = {
                 </div>
             );
         }
+        //language
         options.push(
             <MenuSection
                 icon={
@@ -73,40 +74,40 @@ const Menu = {
                 />
             );
         }
-        // share
+        // links
         options.push(
             <MenuSection
                 icon={
                     <Icon icon="share-alt" />
                 }
-                title="share-to"
+                title="links"
             />
         );
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="google" />
+                    <Icon icon="bomb" />
                 }
-                title="google"
-                href="https://plus.google.com/share?url=http://hook.github.io/champions"
+                title="link-kabam"
+                href="http://community.kabam.com/forums/forumdisplay.php?1239-Marvel-Contest-of-Champions"
             />
         );
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="facebook" />
+                    <Icon icon="reddit-alien" />
                 }
-                title="facebook"
-                href="http://www.facebook.com/sharer/sharer.php?u=http://hook.github.io/champions"
+                title="link-reddit"
+                href="http://reddit.com/r/ContestOfChampions"
             />
         );
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="twitter" />
+                    <Icon icon="github" />
                 }
-                title="twitter"
-                href="https://twitter.com/share?url=http://hook.github.io/champions"
+                title="link-github"
+                href="//github.com/hook/champions"
             />
         );
         return (

@@ -58,6 +58,16 @@ export default function({
     }
     let resizeTimeout;
 
+    function isActive() {
+        let node = canvas;
+        while(node && node.parentNode) {
+            node = node.parentNode;
+            if(node && node.className && node.className.indexOf('page--current') !== -1)
+                return true;
+        }
+        return false;
+    }
+
     this.update = (stars, graph, top, left, width, height) => {
         if(graph && this.stars !== stars) {
             this.stars = stars;
@@ -89,19 +99,12 @@ export default function({
                     resizeTimeout = null;
                 }, 50);
 
-            this.renderer.start();
+            if(isActive())
+                this.renderer.start();
+            else
+                this.renderer.stop();
         }
     };
-
-    function isActive() {
-        let node = canvas;
-        while(node && node.parentNode) {
-            node = node.parentNode;
-            if(node && node.className && node.className.indexOf('page--current') !== -1)
-                return true;
-        }
-        return false;
-    }
 
     function addEventListeners(element, types, listener) {
         types.split(' ').forEach((type) => element.addEventListener(type, function(...args) {

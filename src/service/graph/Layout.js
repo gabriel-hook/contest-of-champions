@@ -188,7 +188,8 @@ class Layout {
      * In case it's running then the call is ignored, and none of the callbacks passed is ever executed.
      */
     start(render, onRenderStop, onRenderStart) {
-        if (this._started) return;
+        if (this._started)
+            return;
         this._started = true;
         this._stop = false;
         if (onRenderStart !== undefined) {
@@ -238,6 +239,7 @@ class Layout {
     }
 
     stop() {
+        this._started = false;
         this._stop = true;
     }
 
