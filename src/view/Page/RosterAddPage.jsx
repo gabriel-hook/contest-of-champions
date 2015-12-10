@@ -15,7 +15,6 @@ const RosterAddPage = {
         const champions = roster.available(stars);
         return (
             <div class="roster-add">
-
                 <div class="add-stars">
                 {[ 1, 2, 3, 4, 5 ].map((star) => (
                     <button
@@ -29,8 +28,6 @@ const RosterAddPage = {
                     </button>
                 ))}
                 </div>
-
-
                 <button
                     class={ classNames('add-all', { 'disabled': champions.length === 0 }) }
                     onclick={ () => {
