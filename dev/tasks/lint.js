@@ -5,7 +5,6 @@ import eslint from 'gulp-eslint';
 import sasslint from 'gulp-sass-lint';
 
 gulp.task('lint:scripts', () => gulp.src([
-    './dev/**/*.js',
     './src/**/*.js',
     './src/**/*.jsx',
 ])

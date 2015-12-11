@@ -22,11 +22,11 @@ const Slider = {
                 class="field-slider"
                 type="range"
                 min="0"
-                max="1000"
+                max="100"
                 step="1"
-                value={ object[ field ] * 1000 }
+                value={ parseInt(object[ field ] * 100, 10) }
                 oninput={ (event) => {
-                    object[ field ] = event.target.value / 1000;
+                    object[ field ] = event.target.value / 100;
                     update();
                     requestRedraw(10);
                 } }

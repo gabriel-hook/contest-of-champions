@@ -17,7 +17,7 @@ const Menu = {
         this.open = false;
         this.toggle = () => {
             this.open = !this.open;
-            requestRedraw(2);
+            requestRedraw();
         };
     },
     view(ctrl, args) {
@@ -38,7 +38,10 @@ const Menu = {
                                 <Icon icon={ tab.icon } spin={ tab.spin } />
                             }
                             selected={ currentTab === tab.id }
-                            onclick={ () => router.setRoute(`/${ tab.id }`) }
+                            onclick={ () => {
+                                router.setRoute(`/${ tab.id }`);
+                                requestRedraw(2);
+                            }}
                         />
                     )) }
                     tabs="true"

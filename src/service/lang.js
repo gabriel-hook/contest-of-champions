@@ -13,8 +13,8 @@ const lang = {
     change(lang) {
         if(this.messages[ lang ]) {
             this.current = lang;
-            requestRedraw();
         }
+        requestRedraw();
     },
     get(id, fallback = id) {
         return this.messages[ this.current ][ id ] || this.default(id, fallback) || fallback;
