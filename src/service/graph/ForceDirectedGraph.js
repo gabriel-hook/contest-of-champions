@@ -110,7 +110,7 @@ export default function({
         types.split(' ').forEach((type) => element.addEventListener(type, function(...args) {
             if(!isActive())
                 return;
-            listener.apply(this, args);
+            return listener.apply(this, args);
         }, true));
     }
 
