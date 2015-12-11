@@ -5,7 +5,8 @@ const requestNextFrame = (() => {
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame;
+        window.msRequestAnimationFrame ||
+        function() { };
 })();
 
 const cancelNextFrame = (() => {
@@ -13,11 +14,20 @@ const cancelNextFrame = (() => {
         window.webkitCancelAnimationFrame ||
         window.mozCancelAnimationFrame ||
         window.oCancelAnimationFrame ||
-        window.msCancelAnimationFrame;
+        window.msCancelAnimationFrame ||
+        function() { };
 })();
 
 let requestId;
 let timeoutId;
+
+function queueRenderDeferred() {
+    if(!requestId && !timeoutId) {
+        requestId = requestNextFrame(renderDeferred);
+        timeoutId = setTimeout(renderDeferred, 50);
+    }
+}
+
 let renderDeferredArray = [];
 let renderDeferredMap = {};
 
@@ -34,10 +44,12 @@ function requestRender({ id, callback, delay = 0 }) {
             delay,
         });
     }
+    queueRenderDeferred();
 }
 
 function requestRedraw(delay = 2) {
     const deferred = renderDeferredMap[ 'mithril' ];
+    m.redraw.strategy('none');
     requestRender({
         id: 'mithril',
         callback: () => {
@@ -46,15 +58,18 @@ function requestRedraw(delay = 2) {
         },
         delay: (deferred)? Math.min(deferred.delay, delay): delay,
     });
-    m.redraw.strategy('none');
 }
 
-function doFrame() {
-    if(requestId && cancelNextFrame)
+function renderDeferred() {
+    if (requestId) {
         cancelNextFrame(requestId);
-    if(timeoutId)
+    }
+    if (timeoutId) {
         clearTimeout(timeoutId);
+    }
+    timeoutId = requestId = 0;
 
+    let hasDeferred = false;
     const deferredArray = renderDeferredArray;
     const deferredMap = renderDeferredMap;
     renderDeferredArray = [];
@@ -67,23 +82,7 @@ function doFrame() {
                     ...deferred,
                     delay: deferred.delay - 1,
                 });
-            }
-            else if(deferred.callback)
-                deferred.callback();
-        }
-        catch(error) {
-            /* eslint-disable no-console */
-            console.error(error);
-            /* eslint-enable no-console */
-        }
-    for(const id in deferredMap)
-        try {
-            const deferred = deferredMap[ id ];
-            if(deferred.delay && deferred.delay > 1) {
-                renderDeferredMap[ id ] = {
-                    ...deferred,
-                    delay: deferred.delay - 1,
-                };
+                hasDeferred = true;
             }
             else if(deferred.callback)
                 deferred.callback();
@@ -94,9 +93,27 @@ function doFrame() {
             /* eslint-enable no-console */
         }
 
-    requestId = requestNextFrame(doFrame);
-    timeoutId = setTimeout(doFrame, 50);
+    for(const id in deferredMap)
+        try {
+            const deferred = deferredMap[ id ];
+            if(deferred.delay && deferred.delay > 1) {
+                renderDeferredMap[ id ] = {
+                    ...deferred,
+                    delay: deferred.delay - 1,
+                };
+                hasDeferred = true;
+            }
+            else if(deferred.callback)
+                deferred.callback();
+        }
+        catch(error) {
+            /* eslint-disable no-console */
+            console.error(error);
+            /* eslint-enable no-console */
+        }
+    if(hasDeferred) {
+        queueRenderDeferred();
+    }
 }
-doFrame();
 
 export { requestRender, requestRedraw };
