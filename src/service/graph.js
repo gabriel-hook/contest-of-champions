@@ -106,6 +106,7 @@ function getGraph(stars) {
                     effects: {},
                     onOpen: () => {
                         router.setRoute(`/guide/${ uid }`);
+                        requestRedraw();
                     },
                 });
                 nodeMap[ uid ] = node;
