@@ -13,6 +13,7 @@ const lang = {
     change(lang) {
         if(this.messages[ lang ]) {
             this.current = lang;
+            document.title = this.get('champions');
         }
         requestRedraw();
     },

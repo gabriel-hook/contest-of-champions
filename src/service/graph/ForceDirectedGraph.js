@@ -450,12 +450,14 @@ export default function({
         clearTimeout(tapHold.timeout);
         clickSource = 'touch';
         pointerEnd(false, 'toggle');
+        return false;
     });
 
     addEventListeners(window, 'touchend', (/* e */) => {
         clearTimeout(tapHold.timeout);
         clickSource = 'touch';
         pointerEnd(false, 'toggle');
+        return false;
     });
 
     addEventListeners(canvas, 'mousedown', (e) => {
