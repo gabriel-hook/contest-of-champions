@@ -22,7 +22,9 @@ CoC.options.initialize = function(current){
   $("#popup-update").popup();
   if(doUpdatePopup) {
       setTimeout(function () {
-          $("#popup-update").popup('open');
+          $("#popup-update").popup('open', {
+              transition: "slideup"
+          });
       }, 1000);
   }
 
