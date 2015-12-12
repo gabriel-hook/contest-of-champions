@@ -14,6 +14,18 @@ CoC.options.initialize = function(current){
   });
   $(document.body).append(html);
 
+  var doUpdatePopup = !localStorage || '' + localStorage.getItem('update') !== 'false';
+  $('#checkbox-update').change(function(e) {
+    localStorage && localStorage.setItem('update', !e.target.checked);
+  });
+
+  $("#popup-update").popup();
+  if(doUpdatePopup) {
+      setTimeout(function () {
+          $("#popup-update").popup('open');
+      }, 1000);
+  }
+
   $("#panel-options").enhanceWithin().panel();
   $("#share-facebook").click(function(){
     CoC.tracking.event("share", "facebook");
