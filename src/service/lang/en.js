@@ -283,7 +283,6 @@ export default {
     'profile-reddit': 'Reddit /u/',
     'profile-kabam': 'Kabam Forums',
     'author-credit': 'This guide was written by',
-
     'email': 'E-mail',
 
     //Menu
@@ -292,7 +291,5 @@ export default {
     'link-github': 'Github',
     'link-kabam': 'Kabam Forums',
     'link-reddit': 'Reddit /r',
-
-    'all': 'All',
-    'none': 'None',
+    'share-to': 'Share',
 };

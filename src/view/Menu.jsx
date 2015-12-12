@@ -81,7 +81,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={
-                    <Icon icon="share-alt" />
+                    <Icon icon="share" />
                 }
                 title="links"
             />
@@ -111,6 +111,62 @@ const Menu = {
                 }
                 title="link-github"
                 href="//github.com/hook/champions"
+            />
+        );
+        // links
+        options.push(
+            <MenuSection
+                icon={
+                    <Icon icon="share-alt" />
+                }
+                title="share-to"
+            />
+        );
+        const escapedUrl = encodeURIComponent('http://hook.github.io/champions');
+        options.push(
+            <MenuOptionGroup
+                options={[
+                (
+                    <MenuOption
+                        icon={
+                            <Icon icon="google-plus" />
+                        }
+                       href={ `https://plus.google.com/share?url=${ escapedUrl }` }
+                    />
+                ),
+                (
+                    <MenuOption
+                        icon={
+                            <Icon icon="facebook" />
+                        }
+                       href={ `http://www.facebook.com/sharer/sharer.php?u=${ escapedUrl }` }
+                    />
+                ),
+                (
+                    <MenuOption
+                        icon={
+                            <Icon icon="twitter" />
+                        }
+                       href={ `https://twitter.com/share?url=${ escapedUrl }` }
+                    />
+                ),
+                (
+                    <MenuOption
+                        icon={
+                            <Icon icon="pinterest-p" />
+                        }
+                       href={ `http://pinterest.com/pin/create/link/?url=${ escapedUrl }` }
+                    />
+                ),
+                (
+                    <MenuOption
+                        icon={
+                            <Icon icon="linkedin-square" />
+                        }
+                       href={ `https://www.linkedin.com/cws/share?url=${ escapedUrl }` }
+                    />
+                ),
+                ]}
             />
         );
         return (
