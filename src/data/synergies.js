@@ -154,6 +154,7 @@ const synergies = [
     { fromId:'vision', fromStars:3, toId:'ironman', effectId:'perfectblock', effectAmount:4 },
     { fromId:'vision', fromStars:4, toId:'scarletwitch', effectId:'powergain', effectAmount:5 },
     { fromId:'vision', fromStars:4, toId:'ironman', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'vision', fromStars:4, toId:'magneto', effectId:'critrate', effectAmount:7 },
 
     { fromId:'thevision', fromStars:2, toId:'ironman', effectId:'health', effectAmount:4 },
     { fromId:'thevision', fromStars:2, toId:'scarletwitch', effectId:'perfectblock', effectAmount:3 },
