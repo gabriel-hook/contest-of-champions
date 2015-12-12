@@ -2,22 +2,48 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { config } from '../config/webpack-config.js';
+import webpackConfig from '../config/webpack-config.js';
 
 const DEVELOPMENT = gutil.env.dev;
 
 gulp.task('dev', (callback) => {
     const domain = 'localhost';
     const port = 8080;
-    const devConfig = config();
-    for (const key in devConfig.entry)
-        devConfig.entry[ key ].unshift(`webpack-dev-server/client?http://${ domain }:${ port }`, 'webpack/hot/only-dev-server');
-    for (const key in devConfig.module.loaders)
-        if(devConfig.module.loaders[ key ].hot)
-            devConfig.module.loaders[ key ].loaders.unshift('simple-hot');
-    devConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
-    devConfig.devtool = 'eval';
-    const compiler = webpack(devConfig);
+    const config = {
+        ...webpackConfig,
+        entry: ((entry) => {
+            const hotEntry = {};
+            for(const key in entry) {
+                hotEntry[ key ] = [
+                    `webpack-dev-server/client?http://${ domain }:${ port }`, 'webpack/hot/only-dev-server',
+                    ...entry[ key ],
+                ];
+            }
+            return hotEntry;
+        })(webpackConfig.entry),
+        module: {
+            ...webpackConfig.module,
+            loaders: webpackConfig.module.loaders.map((loader) => {
+                if(loader.hot) {
+                    return {
+                        ...loader,
+                        loaders: [
+                            'simple-hot',
+                            ...loader.loaders,
+                        ],
+                    };
+                }
+                return loader;
+            }),
+        },
+        plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            ...webpackConfig.plugins || [],
+        ],
+        devtool: 'eval',
+    };
+
+    const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, {
         contentBase: './src',
         hot: true,
@@ -34,17 +60,18 @@ gulp.task('dev', (callback) => {
 });
 
 gulp.task('webpack', (callback) => {
-    const buildConfig = config();
-
-    if(!DEVELOPMENT) {
-        buildConfig.plugins.unshift(
-            new webpack.optimize.DedupePlugin(),
-            new webpack.optimize.UglifyJsPlugin()
-        );
-    }
-
-    buildConfig.devtool = '#sourcemaps';
-    webpack(buildConfig, (err) => {
+    const config = {
+        ...webpackConfig,
+        plugins: [
+            ...(DEVELOPMENT)? []: [
+                new webpack.optimize.DedupePlugin(),
+                new webpack.optimize.UglifyJsPlugin(),
+            ],
+            ...webpackConfig.plugins || [],
+        ],
+        devtool: '#sourcemaps',
+    };
+    webpack(config, (err) => {
         if(err)
             throw new gutil.PluginError('webpack', err);
         callback();
