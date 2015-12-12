@@ -42,9 +42,6 @@ const champions = [
     { uid:'thor', typeId:'cosmic', stars: 3 },
     { uid:'thor', typeId:'cosmic', stars: 4 },
 
-    { uid:'thorjanefoster', typeId:'cosmic', stars: 3 },
-    { uid:'thorjanefoster', typeId:'cosmic', stars: 4 },
-
     { uid:'venom', typeId:'cosmic', stars: 3 },
     { uid:'venom', typeId:'cosmic', stars: 4 },
     { uid:'venom', typeId:'cosmic', stars: 5 },
@@ -249,6 +246,10 @@ const champions = [
     { uid:'scarletwitch', typeId:'mystic', stars: 2 },
     { uid:'scarletwitch', typeId:'mystic', stars: 3 },
     { uid:'scarletwitch', typeId:'mystic', stars: 4 },
+
+    { uid:'thorjanefoster', typeId:'mystic', stars: 3 },
+    { uid:'thorjanefoster', typeId:'mystic', stars: 4 },
+    { uid:'thorjanefoster', typeId:'mystic', stars: 5 },
 
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 2 },
     { uid:'unstoppablecolossus', typeId:'mystic', stars: 3 },

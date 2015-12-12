@@ -94,7 +94,7 @@ const GuideRating = {
 const GuideSection = {
     view(ctrl, args) {
         const {
-            title, subtitle, description, note,
+            title, subtitle, description, note, heavy,
             rating, grade, gradeAwakened,
         } = args;
         const elements = [];
@@ -124,6 +124,14 @@ const GuideSection = {
         if(description) {
             elements.push(
                 <div class="guide-text">{ description }</div>
+            );
+        }
+        if(heavy) {
+            elements.push(
+                <div class="guide-text">
+                    <b>{ lang.get('heavy-attack') }:</b>
+                    { heavy }
+                </div>
             );
         }
         if(note) {
@@ -185,7 +193,8 @@ const GuidePage = {
                     <GuideSection
                         title={ lang.get('attack') }
                         rating={ guide.attack.rating }
-                        description={ guide.attack.heavy }
+                        description={ guide.attack.description }
+                        heavy={ guide.attack.heavy }
                         note={ guide.attack.note }
                     />
                 );
