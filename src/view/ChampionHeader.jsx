@@ -11,7 +11,7 @@ const ChampionHeader = {
     view(ctrl, args) {
         const { champion } = args;
         const { uid, stars, typeId, awakened } = champion.attr;
-        const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+        const name = lang.get(`champion-${ uid }-name`);
         const starIcon = awakened? (
             <ImageIcon
                 src="images/icons/star-awakened.png"

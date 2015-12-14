@@ -1,3 +1,4 @@
+@import "../util/fonts";
 
 .message {
     width: 500px;
@@ -6,8 +7,7 @@
     margin: 0 auto 1em;
     background: rgba(0, 0, 0, .5);
     color: #fff;
+    @include font-text(1em);
     text-shadow: 0 1px 0 #000;
     text-align: center;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 1.0em;
 }

@@ -24,6 +24,7 @@
         display: block;
         padding: 16px 16px 0;
         @include font-text(1em);
+        text-shadow: 0 1px 0 #eee;
     }
 
     .champion-section-raw {

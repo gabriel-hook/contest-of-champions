@@ -1,3 +1,5 @@
+@import '../util/fonts';
+
 .champion-header {
     position: relative;
     width: 500px;
@@ -45,8 +47,7 @@
         white-space: nowrap;
         overflow: hidden;
         color: #000;
-        font-family: Hanzel, Verdana, Geneva, sans-serif;
-        font-size: 1.3em;
+        @include font-title(1.3em);
         text-align: left;
         text-overflow: ellipsis;
         text-transform: uppercase;

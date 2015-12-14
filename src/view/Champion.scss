@@ -1,3 +1,5 @@
+@import "../util/fonts";
+
 .champion {
     display: block;
     float: left;
@@ -91,8 +93,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             color: #f6f6f6;
-            font-family: Hanzel, Verdana, Geneva, sans-serif;
-            font-size: 1em;
+            @include font-title(1em);
             text-transform: uppercase;
             text-shadow: 0 1px 0 #000;
 

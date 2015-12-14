@@ -2,12 +2,12 @@
     font-size: $font-size;
     font-weight: normal;
     font-family: Hanzel, Verdana, Geneva, sans-serif;
-    text-shadow: 0 1px 0 #eee;
+    line-height: $font-size;
 }
 
 @mixin font-text($font-size) {
     font-size: $font-size;
     font-weight: normal;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    text-shadow: 0 1px 0 #eee;
+    line-height: $font-size;
 }

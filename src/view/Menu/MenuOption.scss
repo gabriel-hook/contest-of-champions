@@ -1,11 +1,10 @@
+@import '../../util/fonts';
 
 .menu-option {
     position: relative;
     display: block;
     cursor: pointer;
-    font-family: Hanzel, Verdana, Geneva, sans-serif;
-    font-size: 1.1em;
-    line-height: 1.1em;
+    @include font-title(1.1em);
     color: #fff;
     padding: .5em .5em .5em 1.5em;
     text-shadow: 0 1px 0 #000;
