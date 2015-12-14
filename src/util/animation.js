@@ -89,7 +89,7 @@ function renderDeferred() {
         }
         catch(error) {
             /* eslint-disable no-console */
-            console.error(error);
+            console.error('error', error);
             /* eslint-enable no-console */
         }
 

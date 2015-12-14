@@ -1,0 +1,33 @@
+@import "../util/ratings";
+
+.champion-rating {
+    float: right;
+
+    .champion-rating--value-5,
+    .champion-rating--value-4,
+    .champion-rating--value-3,
+    .champion-rating--value-2,
+    .champion-rating--value-1 {
+        text-shadow: 0 1px 0 #000;
+    }
+
+    .champion-rating--value-5 {
+        color: $rating-value-5-color;
+    }
+
+    .champion-rating--value-4 {
+        color: $rating-value-4-color;
+    }
+
+    .champion-rating--value-3 {
+        color: $rating-value-3-color;
+    }
+
+    .champion-rating--value-2 {
+        color: $rating-value-2-color;
+    }
+
+    .champion-rating--value-1 {
+        color: $rating-value-1-color;
+    }
+}

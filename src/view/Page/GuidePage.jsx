@@ -9,6 +9,7 @@ import router from '../../service/router';
 import lang from '../../service/lang';
 import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../ChampionHeader.jsx';
+import ChampionSection from '../ChampionSection.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -64,92 +65,6 @@ const GuideSynergy ={
     },
 };
 
-const GuideGrade = {
-    view(ctrl, args) {
-        const { title, grade } = args;
-        return (
-            <div class="guide-grade">
-                <b>{ lang.get(title) }:</b>
-                <span class={ `guide-grade--value-${ grade[ 0 ].toLowerCase() }` }>
-                    { grade }
-                </span>
-            </div>
-        );
-    },
-};
-
-const GuideRating = {
-    view(ctrl, args) {
-        const { rating } = args;
-        return (
-            <div class="guide-rating">
-                <span class={ `guide-rating--value-${ rating }` }>
-                    { rating }
-                </span> / 5
-            </div>
-        );
-    },
-};
-
-const GuideSection = {
-    view(ctrl, args) {
-        const {
-            title, subtitle, description, note, heavy,
-            rating, grade, gradeAwakened,
-        } = args;
-        const elements = [];
-        elements.push(
-            <div class="guide-section-title">
-                { title }
-                { rating !== undefined && (
-                    <GuideRating rating={ rating } />
-                ) || null}
-            </div>
-        );
-        if(grade) {
-            elements.push(
-                <GuideGrade title="grade" grade={ grade } />
-            );
-        }
-        if(gradeAwakened) {
-            elements.push(
-                <GuideGrade title="awakened" grade={ gradeAwakened } />
-            );
-        }
-        if(subtitle) {
-            elements.push(
-                <div class="guide-text"><b>{ subtitle }</b></div>
-            );
-        }
-        if(description) {
-            elements.push(
-                <div class="guide-text">{ description }</div>
-            );
-        }
-        if(heavy) {
-            elements.push(
-                <div class="guide-text">
-                    <b>{ lang.get('heavy-attack') }:</b>
-                    { heavy }
-                </div>
-            );
-        }
-        if(note) {
-            elements.push(
-                <div class="guide-text">
-                    <b>{ lang.get('note') }:</b>
-                    { note }
-                </div>
-            );
-        }
-        return (
-            <div class="guide-section">
-                { elements }
-            </div>
-        );
-    },
-};
-
 const GuidePage = {
     view(ctrl, args) {
         const { uid } = args;
@@ -169,7 +84,7 @@ const GuidePage = {
         if(guide) {
             if(guide.description) {
                 details.push(
-                    <GuideSection
+                    <ChampionSection
                         title={ lang.get('description') }
                         grade={ guide.grades && guide.grades.normal }
                         gradeAwakened={ guide.grades && guide.grades.awakened }
@@ -179,7 +94,7 @@ const GuidePage = {
             }
             if(guide.gameplay) {
                 details.push(
-                    <GuideSection
+                    <ChampionSection
                         title={ lang.get('gameplay') }
                         rating={ guide.gameplay.rating }
                         subtitle={ guide.gameplay.style }
@@ -190,7 +105,7 @@ const GuidePage = {
             }
             if(guide.attack) {
                 details.push(
-                    <GuideSection
+                    <ChampionSection
                         title={ lang.get('attack') }
                         rating={ guide.attack.rating }
                         description={ guide.attack.description }
@@ -201,7 +116,7 @@ const GuidePage = {
             }
             if(guide.signature) {
                 details.push(
-                    <GuideSection
+                    <ChampionSection
                         title={ lang.get('signature') }
                         rating={ guide.signature.rating }
                         subtitle={ guide.signature.name }
@@ -214,7 +129,7 @@ const GuidePage = {
                 [ 1, 2, 3 ].forEach((index) => {
                     if(guide.specials[ index ]) {
                         details.push(
-                            <GuideSection
+                            <ChampionSection
                                 title={ `${ lang.get(`special`) } ${ index }` }
                                 rating={ guide.specials[ index ].rating }
                                 subtitle={ guide.specials[ index ].name }
@@ -227,36 +142,28 @@ const GuidePage = {
             }
         }
         details.push(
-            <div class="guide-section">
-                <div class="guide-section-title">
-                    { lang.get(`synergies`) }
-                </div>
-                <div class="guide-synergies">
-                    {getSynergies(uid, true).map(({ attr }) => (
+            <ChampionSection
+                title={ lang.get('synergies') }
+                raw={ getSynergies(uid, true).map(({ attr }) => (
                     <GuideSynergy
                         championId={ attr.toId }
                         effectId={ attr.effectId }
                         stars={ attr.fromStars }
                     />
-                        ))}
-                </div>
-            </div>
+                )) }
+            />
         );
         details.push(
-            <div class="guide-section">
-                <div class="guide-section-title">
-                    { lang.get(`synergies-external`) }
-                </div>
-                <div class="guide-synergies">
-                    {getSynergies(uid, false).map(({ attr }) => (
+            <ChampionSection
+                title={ lang.get('synergies-external') }
+                raw={ getSynergies(uid, false).map(({ attr }) => (
                     <GuideSynergy
                         championId={ attr.fromId }
                         effectId={ attr.effectId }
                         stars={ attr.fromStars }
                     />
-                        ))}
-                </div>
-            </div>
+                )) }
+            />
         );
         return (
             <div class="guide" key={ 'guide-${ uid }' }>
