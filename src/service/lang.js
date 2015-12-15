@@ -1,5 +1,6 @@
 import en from './lang/en';
 import es from './lang/es';
+import br from './lang/br';
 import ru from './lang/ru';
 import { requestRedraw } from '../util/animation';
 
@@ -8,6 +9,7 @@ const lang = {
     messages: {
         en,
         es,
+        br,
         ru,
     },
     change(lang) {
