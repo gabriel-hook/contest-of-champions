@@ -91,12 +91,13 @@
     &.team--selected {
         .champion {
             .portrait {
-                opacity: .25;
+                opacity: .1;
+                transition: opacity .25s;
             }
 
             &.champion--neighbor {
                 .portrait {
-                    opacity: .75;
+                    opacity: .666;
                 }
             }
 
@@ -108,7 +109,8 @@
         }
 
         .team-synergy {
-            opacity: .25;
+            opacity: .5;
+            transition: opacity .25s;
 
             &.team-synergy--selected {
                 opacity: 1;

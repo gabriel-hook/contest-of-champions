@@ -79,7 +79,9 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
                 championIds[ `${ synergy.attr.fromId }-${ synergy.attr.fromStars }` ] = true;
             });
         champions.forEach((champion, index) => {
-            if(championIds[ champion.attr.uid ] || championIds[ champion.id ])
+            if(championIds[ champion.id ])
+                selected.champions[ index ] = CHAMPION_NEIGHBOR;
+            if(championIds[ champion.attr.uid ])
                 selected.champions[ index ] = CHAMPION_SELECTED;
         });
         ctrl.effects[ effectId ] = selected;
