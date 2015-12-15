@@ -25,7 +25,7 @@ const TeamsMenu = {
                     buildTeams();
                     requestRedraw();
                 }}
-                progress={ teams.building && teams.progress }
+                progress={ teams.progress }
             />
         );
         options.push(

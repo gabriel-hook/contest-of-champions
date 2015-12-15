@@ -26,10 +26,10 @@ const MenuOption = {
                 onclick={ onclick }
                 disabled={ !Boolean(onclick || link) }
             >
-                { progress && (
+                { (progress || progress === 0) && (
                     <div
                         class="menu-option-progress-bar"
-                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .05s linear' };` }
+                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .2s linear' };` }
                     />
                 ) || null }
                 <div class="menu-option--label">{ icon }{ lang.get(title) }</div>

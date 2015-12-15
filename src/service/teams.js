@@ -81,9 +81,9 @@ const teams = {
         ...PRESETS_DUPLICATES[ 'balanced' ],
         ...PRESETS[ 'offensive' ],
     },
+    ...fromStorage('teams', {}),
     progress: 0,
     building: false,
-    ...fromStorage('teams', {}),
 };
 
 function update() {
@@ -104,6 +104,7 @@ function fidToRosterChampion(fid) {
     /* eslint-enable eqeqeq */
 }
 
+let progressResetTimeout;
 const worker = new Worker();
 worker.onmessage = (event) => {
     switch(event.data.type) {
@@ -139,6 +140,10 @@ worker.onmessage = (event) => {
                 extras: result.extras.map(fidToRosterChampion),
             };
             teams.building = false;
+            progressResetTimeout = setTimeout(() => {
+                teams.progress = 0;
+                requestRedraw();
+            }, 250);
             requestRedraw();
         }, 50);
         requestRedraw();
@@ -146,7 +151,7 @@ worker.onmessage = (event) => {
     case 'progress':
         const progress = event.data.data;
         teams.progress = progress.current / progress.max;
-        requestRedraw();
+        requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
         break;
     }
 };
@@ -154,6 +159,7 @@ worker.onmessage = (event) => {
 function buildTeams() {
     if(teams.building)
         return;
+    clearTimeout(progressResetTimeout);
     teams.building = true;
     teams.progress = 0;
     worker.postMessage({

@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import build from './build';
 
-const PROGRESS_DEBOUNCE_TIME = 50;
+const PROGRESS_DEBOUNCE_TIME = 200;
 let lastProgressNow;
 
 /* eslint-disable no-undef */
@@ -14,7 +14,7 @@ onmessage = function(event) {
             ...event.data.data,
             progress(current, max) {
                 const now = Date.now();
-                if(lastProgressNow && now - lastProgressNow < PROGRESS_DEBOUNCE_TIME)
+                if(current > 0 && current < max && lastProgressNow && now - lastProgressNow < PROGRESS_DEBOUNCE_TIME)
                     return;
                 postMessage({
                     type: 'progress',
