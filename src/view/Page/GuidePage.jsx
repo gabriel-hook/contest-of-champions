@@ -7,6 +7,7 @@ import synergies from '../../data/synergies';
 import guides from '../../data/guides';
 import router from '../../service/router';
 import lang from '../../service/lang';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../ChampionHeader.jsx';
 import ChampionSection from '../ChampionSection.jsx';
@@ -165,6 +166,71 @@ const GuidePage = {
                 )) }
             />
         );
+        if(guide && guide.author) {
+            const name = guide.author.name;
+            let byline;
+            let icon;
+            let href;
+            if (guide.author.profile && guide.author.profile.type) {
+                switch(guide.author.profile.type) {
+                case 'reddit':
+                    byline = 'by';
+                    icon = (
+                        <Icon icon={ 'reddit-alien' } />
+                    );
+                    if(guide.author.profile.name)
+                        href = `http://reddit.com/u/${ guide.author.profile.name }`;
+                    break;
+                case 'kabam':
+                    byline = 'by';
+                    icon = (
+                        <Icon icon="bomb" />
+                    );
+                    if(guide.author.profile.name)
+                        href = `http://community.kabam.com/forums/member.php?${ guide.author.profile.name }`;
+                    break;
+                case 'spotlight':
+                    byline = 'spotlight by';
+                    icon = (
+                        <Icon icon="bomb" />
+                    );
+                    if(guide.author.profile.name)
+                        href = `http://community.kabam.com/forums/showthread.php?${ guide.author.profile.name }`;
+                    break;
+                case 'email':
+                    byline = 'by';
+                    icon = (
+                        <Icon icon="envelope" />
+                    );
+                    if(guide.author.profile.name)
+                        href = `mailto:${ guide.author.profile.name }`;
+                    break;
+                default:
+                    byline = 'by';
+                    break;
+                }
+            }
+            if(href) {
+                details.push(
+                    <div class="guide-author">
+                        { byline }
+                        <a href={ href } target="_blank">
+                            { icon }
+                            { name }
+                        </a>
+                    </div>
+                );
+            }
+            else {
+                details.push(
+                    <div class="guide-author">
+                        { byline }
+                        { icon }
+                        { name }
+                    </div>
+                );
+            }
+        }
         return (
             <div class="guide" key={ 'guide-${ uid }' }>
                 { details }

@@ -27,5 +27,12 @@
 		"description": "Jane’s extremely high damage output while the opponent is Stunned or Shocked allows aggressive players to take down strong opponent’s quickly as long as the pace is kept up.",
 		"note": "Shock deals a fair amount of damage, and can get around Bleed and Poison immunity, allowing Jane to deal chip damage to any opposing Champion.",
 		"style": "Offensive"
-	}
+	},
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "624199-Jane-Foster-(Thor)-Champion-Spotlight"
+        }
+    }
 }

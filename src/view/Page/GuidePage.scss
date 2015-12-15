@@ -77,6 +77,25 @@
         }
     }
 
+    .guide-author {
+        position: relative;
+        width: 500px;
+        max-width: 90%;
+        margin: 0 auto 1em;
+        background: #eee;
+        padding: 16px;
+        box-sizing: border-box;
+        box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+        @include font-text(1em);
+        text-align: center;
+
+        a {
+            @include font-title(1em);
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
     .clear {
         height: 32px;
     }
