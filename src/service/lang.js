@@ -2,10 +2,10 @@ import en from './lang/en';
 import es from './lang/es';
 import br from './lang/br';
 import ru from './lang/ru';
+import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
 
 const lang = {
-    current: 'en',
     messages: {
         en,
         es,
@@ -15,6 +15,7 @@ const lang = {
     change(lang) {
         if(this.messages[ lang ]) {
             this.current = lang;
+            toStorage('lang', lang);
             document.title = this.get('champions');
         }
         requestRedraw();
@@ -28,5 +29,7 @@ const lang = {
         return this.messages[ 'en' ][ id ];
     },
 };
+
+lang.change(fromStorage('lang', 'en'));
 
 export default lang;
