@@ -1,0 +1,31 @@
+{
+    "description": "James “Rhodey” Rhodes, decorated U.S. Air Force pilot and longtime ally of Tony Stark, combats evil and injustice as the armored War Machine. True to his codename, Rhodes’ armor delivers heavy metal power via its wrist-mounted machine guns and shoulder-mounted artillery cannon.",
+    "specials": {
+        "1": {
+            "name": "Blast Barrage",
+            "description": "59% chance to inflict Bleed, dealing 38% of your Attack as direct damage over 5 Seconds",
+            "note": "This has 5 potential triggers during the attack, allowing up to 5 stacks of Bleed"
+        },
+        "2": {
+            "description": "100% chance to Armor Break, removing enemy Armor and applying 52% Armor reduction for 12 seconds.",
+            "name": "Shoulder Artillery"
+        },
+        "3": {
+            "name": "Heavy Ordnance",
+            "description": "100% chance to Armor Break, removing enemy Armor and applying 52% Armor reduction for 12 seconds.78% chance to inflict Bleed, dealing 38% of your Attack as direct damage over 5 Seconds.",
+            "note": "This has 3 potential triggers during the attack, allowing up to 3 stacks of Bleed"
+        }
+    },
+    "signature": {
+        "name": "Empty the Clip",
+        "description": "War Machine readies all remaining ordnance if Health drops below 20%, granting up to 90% increased Armor and 161.6% increased Attack for the next 12 hits.",
+        "note": "War Machine gains 12 instances of Armor Up and Fury. Each instance is 1/12 of the total bonus. Each time War Machine is struck by an opponent, he loses one instance of Armor Up and each time War Machine hits an opponent he loses one instance of Fury."
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "548751-War-Machine-Champion-Spotlight-amp-Discussion&highlight=Champion+Spotlight"
+        }
+    }
+}
