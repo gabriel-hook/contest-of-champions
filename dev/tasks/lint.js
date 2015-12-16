@@ -5,8 +5,8 @@ import esLint from 'gulp-eslint';
 import sassLint from 'gulp-sass-lint';
 
 gulp.task('lint:dev', () => gulp.src([
-        './dev/**/*.js',
-    ])
+    './dev/**/*.js',
+])
     .pipe(plumber())
     .pipe(esLint())
     .pipe(esLint.format())
