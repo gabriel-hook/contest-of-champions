@@ -30,6 +30,42 @@ const lang = {
     },
 };
 
-lang.change(fromStorage('lang', 'en'));
+function checkLanguageEquals(language) {
+    for(const key in lang.messages)
+        if(language === key)
+            return key;
+}
+
+function checkLanguageHas(language) {
+    for(const key in lang.messages)
+        if(language.includes(key))
+            return key;
+}
+
+let current = fromStorage('lang');
+if(!current) {
+    if(navigator && navigator.language) {
+        current = checkLanguageEquals(navigator.language) || checkLanguageHas(navigator.language);
+    }
+    if(!current && navigator && navigator.languages && navigator.languages.length) {
+        for(const key in navigator.languages) {
+            current = checkLanguageEquals(key);
+            if(current)
+                break;
+        }
+        if(!current) {
+            for (const key in navigator.languages) {
+                current = checkLanguageHas(key);
+                if (current)
+                    break;
+            }
+        }
+    }
+    if(!current) {
+        current = 'en';
+    }
+}
+lang.change(current);
+
 
 export default lang;

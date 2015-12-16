@@ -173,9 +173,9 @@ const Menu = {
             <div class={ classNames('menu', { 'menu--open': isOpen }) }>
                 <div class="menu-background" onclick={ ctrl.toggle }></div>
                 <div class="menu-wrapper">
-                    <ul class="menu-options">
+                    <div class="menu-options">
                         { options }
-                    </ul>
+                    </div>
                     <div class="menu-button menu-button-main" onclick={ ctrl.toggle }>
                         <div class="menu-button-bar" />
                         <div class="menu-button-bar" />
