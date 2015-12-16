@@ -4,9 +4,9 @@
     "description": "Contest of Champions HTML5 tool",
     "main": "index.html",
     "scripts": {
-        "publish": "gulp publish",
-        "build": "gulp build",
+        "dev": "gulp dev",
         "lint": "gulp lint",
+        "publish": "gulp publish",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
