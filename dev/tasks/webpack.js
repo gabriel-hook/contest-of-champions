@@ -69,7 +69,7 @@ gulp.task('webpack', (callback) => {
             ],
             ...webpackConfig.plugins || [],
         ],
-        devtool: '#sourcemaps',
+        devtool: '#source-map',
     };
     webpack(config, (err) => {
         if(err)
