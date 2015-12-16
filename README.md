@@ -1,3 +1,6 @@
+[![GitHub version](https://badge.fury.io/gh/hook%2Fchampions.svg)](https://badge.fury.io/gh/hook%2Fchampions)
+[![Join the chat at https://gitter.im/hook/champions](https://badges.gitter.im/hook/champions.svg)](https://gitter.im/hook/champions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # Development
 
   Clone this repository with git.
