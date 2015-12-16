@@ -15,7 +15,8 @@ gulp.task('dev', (callback) => {
             const hotEntry = {};
             for(const key in entry) {
                 hotEntry[ key ] = [
-                    `webpack-dev-server/client?http://${ domain }:${ port }`, 'webpack/hot/only-dev-server',
+                    `webpack-dev-server/client?http://${ domain }:${ port }`,
+                    'webpack/hot/only-dev-server',
                     ...entry[ key ],
                 ];
             }
@@ -42,7 +43,6 @@ gulp.task('dev', (callback) => {
         ],
         devtool: 'eval',
     };
-
     const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, {
         contentBase: './src',
@@ -65,7 +65,7 @@ gulp.task('webpack', (callback) => {
         plugins: [
             ...(DEVELOPMENT)? []: [
                 new webpack.optimize.DedupePlugin(),
-                new webpack.optimize.UglifyJsPlugin(),
+                new webpack.optimize.UglifyJsPlugin({ minimize: true }),
             ],
             ...webpackConfig.plugins || [],
         ],
