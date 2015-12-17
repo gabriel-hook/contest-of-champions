@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "4.0"
+env:
+  - NODE_ENV=TEST
+cache:
+  directories:
+  - node_modules
+sudo: false
