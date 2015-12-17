@@ -19,6 +19,14 @@ const pure = (Component) => ({
             ctrl.state.args = args;
             ctrl.state.view = Component.view.call(this, ctrl, args);
         }
+        else {
+            return {
+                ...ctrl.state.view,
+                children: {
+                    subtree: 'retain',
+                },
+            };
+        }
         return ctrl.state.view;
     },
 });
