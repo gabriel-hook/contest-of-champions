@@ -11,7 +11,6 @@ export default {
     'champion-spidermanblack-name': 'Черный Человек-Паук',
     'champion-superiorironman-name': 'Высший Железный Человек',
     'champion-thor-name': 'Тор',
-    'champion-thorjanefoster-name': 'Джейн Фостер',
     'champion-venom-name': 'Веном',
     'champion-ironman-name': 'Железный Человек',
     'champion-ironpatriot-name': 'Железный Патриот',
@@ -48,7 +47,7 @@ export default {
     'champion-hulk-name': 'Халк',
     'champion-joefixit-name': 'Джо Фиксит',
     'champion-rhino-name': 'Носорог',
-    'champion-spidergwen-name': 'Спайдер Гвен',
+    'champion-spidergwen-name': 'Паук-Гвен',
     'champion-spiderman-name': 'Человек-Паук',
     'champion-spidermanmorales-name': 'Человек-Паук Моралес',
     'champion-yellowjacket-name': 'Желтый Шершень',
@@ -58,6 +57,12 @@ export default {
     'champion-magik-name': 'Мэджик',
     'champion-scarletwitch-name': 'Алая Ведьма',
     'champion-unstoppablecolossus-name': 'Неудержимый Колосс',
+    'champion-maestro-name': 'Маэстро',
+    'champion-redskull-name': 'Красный Череп',
+    'champion-guillotine-name': 'Гильотина',
+    'champion-thorjanefoster-name': 'Тор (Джейн Фостер)',
+    'champion-drstrangemarvelnow-name': 'Доктор Стрэндж Marvel Now',
+    'champion-groot-name': 'Грут',
 
     //Champion shortnames
     'champion-blackbolt-shortname': 'Гром',
@@ -68,8 +73,6 @@ export default {
     'champion-ronan-shortname': 'Ронан',
     'champion-spidermanblack-shortname': 'Черный Паук',
     'champion-superiorironman-shortname': 'СЖЧ',
-    'champion-thor-shortname': 'Тор',
-    'champion-thorjanefoster-shortname': 'Джейн Фостер',
     'champion-venom-shortname': 'Веном',
     'champion-ironman-shortname': 'ЖЧ',
     'champion-ironpatriot-shortname': 'ЖП',
@@ -116,6 +119,10 @@ export default {
     'champion-magik-shortname': 'Мэджик',
     'champion-scarletwitch-shortname': 'Ведьма',
     'champion-unstoppablecolossus-shortname': 'Неуд',
+    'champion-redskull-shortname': 'Череп',
+    'champion-guillotine-shortname': 'Гиля',
+    'champion-thorjanefoster-shortname': 'Ториха',
+    'champion-drstrangemarvelnow-shortname': 'Черный Док',
 
     //Effect name
     'effect-attack-name': 'Атака',
@@ -129,6 +136,21 @@ export default {
     'effect-armor-name': 'Броня',
     'effect-health-name': 'Здоровье',
     'effect-healthsteal-name': 'Кража здоровья',
+
+    'ability-fatigue-name': 'Усталось',
+    'ability-bleed-name': 'Кровотечение',
+    'ability-cauterize-name': 'Прижигание',
+    'ability-armorbreak-name': 'Пробитие брони',
+    'ability-fury-name': 'Ярость',
+    'ability-regeneration-name': 'Регенерация',
+    'ability-unstoppable-name': 'Неудержимый',
+    'ability-poison-name': 'Отравление',
+    'ability-armorup-name': 'Укрепление брони',
+    'ability-plusdamage-name': 'Увеличение урона',
+    'ability-pluscritrate-name': 'Увеличение шанса критического урона',
+    'ability-pluscritdamage-name': 'Увеличение урона',
+    'ability-poisonimmunity-name': 'Иммунитет к отравлению',
+    'ability-bleedimmunity-name': 'Иммунитет к кровотечению',
 
     //Effect description
     'effect-attack-description': 'Увеличение урона на все атаки.',
@@ -150,6 +172,7 @@ export default {
     'type-skill-name': 'Способности',
     'type-science-name': 'Наука',
     'type-mystic-name': 'Мистика',
+    'type-unknown-name': 'Неизвестно',
 
     //Crystal name
     'crystal-versus-name': 'Кристалл за битвы',
@@ -170,14 +193,6 @@ export default {
     'crystal-3star-description': 'Покупается за 400 $UNITS$, редкая акция.',
     'crystal-4star-description': 'Покупается за 2500 $UNITS$, очень редкая акция.',
 
-    //Algorithm name
-    'algorithm-greedy-name': 'Greedy',
-    'algorithm-shuffle-name': 'Смешанный',
-
-    //Algorithm description
-    'algorithm-greedy-description': 'МЕДЛЕННЫЙ. Выбирает команды, используя математический просчет на основе введенных апраметров.',
-    'algorithm-shuffle-description': 'БЫСТРЫЙ. Выбирает лучшую возможную комбинацию команды.',
-
     //Listing words
     'of': 'из',
     'with': 'с',
@@ -193,6 +208,7 @@ export default {
     'champions': 'Чемпионы',
     'synergy': 'Синергия',
     'synergies': 'Синергии',
+    'synergies-external': 'Синергия от других чемпионов',
     'crystal': 'Кристалл',
     'crystals': 'Кристаллы',
     'roster': 'Список',
@@ -207,6 +223,11 @@ export default {
     'filter': 'Фильтр',
 
     //Roster Config
+    'view-guide': 'Посмотреть руководство',
+    'reset': 'Сбросить',
+    'delete': 'Удалить',
+    'cancel': 'Отмена',
+
     'stars': 'Категория',
     'type': 'Класс',
     'name': 'Имя',
@@ -214,33 +235,21 @@ export default {
     'rank': 'Ранг',
     'level': 'Уровень',
     'awakened': 'Дубль',
-    'quest': 'Задание',
-    'view-guide': 'Посмотреть руководство',
+    'pi': 'Рейтинг',
 
-    'delete': 'Удалить',
-    'cancel': 'Отмена',
-
-    'ask-delete': 'Вы уверены, что хотите удалить?',
-    'ask-delete-all': 'Вы уверены, что хотите удалить всех чемпионов?',
-    'cannot-undo': 'Это действие не может быть отменено.',
 
     //Team Panel
-    'advanced-settings': 'Дополнительные настройки',
     'team-size': 'Размер команды',
-    'algorithm': 'Алгоритм',
-    'quest-group': 'Группа задания',
+    'quest': 'Задание',
+    'arena': 'Arena',
     'build': 'Построить',
 
     //Add Champion Page
     'add-all': 'Добавить всех',
 
     //Advanced Settings Page
-    'reset-defaults': 'Восстановить стандартные настройки',
-    'champion-weights': 'Уровни чемпионов',
     'synergy-weights': 'Уровни синергии',
     'duplicate-weights': 'Уровни дублей',
-    'choose-preset': 'Выберите предустановку...',
-    'use-levels': 'Просчитать используя звезды / ранги / уровни',
 
     //Tuples
     'double': 'Двойной',
@@ -248,42 +257,32 @@ export default {
     'quadruple': 'Четверной',
     'quintuple': 'Пятерной',
 
-    //Guide Page
-    'choose-guide': 'Выберите руководство',
-
-    //Options
-    'options': 'Опции',
-    'share-to': 'Поделиться',
-    'facebook': 'Facebook',
-    'twitter': 'Twitter',
-    'google': 'Google',
-    'language': 'Язык',
-    'tools': 'Опции',
-    'synergy-map': 'Карта синергии',
-    'roster-manager': 'Манеджер списка',
-
-    //Onboarding Messages
-    'onboarding-synergies': 'Используейте меню настройки списка, чтобы добавить еще чемпионов.',
-    'onboarding-roster': 'Откройте настройки, чтобы добавить нового чемпиона',
-    'onboarding-teams': 'Используйте меню строителя, чтобы создать свою команду!',
+    //Synergy Page
+    'legend-show': 'Показать легенду',
 
     //Guide
-    'coming-soon': 'Скоро обновление...',
     'gameplay': 'Геймплей',
     'special': 'Специальные атаки',
     'signature': 'Коронная способность',
+    'attack': 'Атака',
     'heavy-attack': 'Тяжелая атака',
     'abilities': 'Способности',
+    'passive-abilities': 'Пассивные навыки',
 
+    'rating': 'Рейтинг',
     'grade': 'Оценка',
     'strategy': 'Стратегия',
+    'style': 'Стиль',
 
     'damage-type': 'Тип урона',
     'range': 'Дальний',
     'note': 'Заметка',
 
-    'synergies-external': 'Синергия от других чемпионов',
-
-    'none': 'Отсутствует',
+    //Options
+    'language': 'Язык',
+    'links': 'Ссылки',
+    'link-github': 'Github',
+    'link-kabam': 'Форум Kabam',
+    'link-reddit': 'Reddit /r',
+    'share-to': 'Поделиться',
 };
-// http://collabedit.com/uuf57

@@ -154,10 +154,6 @@ export default {
     'crystal-3star-description': 'Buy for 400 $UNITS$, rare event.',
     'crystal-4star-description': 'Buy for 2500 $UNITS$, very rare event.',
 
-    //Algorithm name
-    'algorithm-quest-name': 'Quest',
-    'algorithm-arena-name': 'Arena',
-
     //Preset name
     'preset-offensive-name': 'Offensive',
     'preset-balanced-name': 'Balanced',
