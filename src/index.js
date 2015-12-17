@@ -3,7 +3,7 @@ import './index.jsx';
 import PACKAGE from '../package.json';
 
 /* eslint-disable no-console */
-console.info(`Contest of Champions Companion App v${ PACKAGE.version }`);
+console.info(`${ PACKAGE.description } v${ PACKAGE.version }`);
 /* eslint-enable no-console */
 
 document.addEventListener('hotreload', () => requestRedraw(), true);

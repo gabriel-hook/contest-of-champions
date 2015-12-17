@@ -9,8 +9,8 @@ import router from '../../service/router';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
-import ChampionHeader from '../ChampionHeader.jsx';
-import ChampionSection from '../ChampionSection.jsx';
+import ChampionHeader from '../Champion/ChampionHeader.jsx';
+import ChampionSection from '../Champion/ChampionSection.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

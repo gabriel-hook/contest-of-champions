@@ -1,8 +1,8 @@
-import './Champion.scss';
+import './ChampionPortrait.scss';
 import classNames from 'classnames';
-import ImageIcon from './ImageIcon.jsx';
-import { getImage } from '../util/images';
-import lang from '../service/lang';
+import ImageIcon from '../ImageIcon.jsx';
+import { getImage } from '../../util/images';
+import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -17,7 +17,7 @@ function addSVG(element, isInitialized) {
     }
 }
 
-const Champion = {
+const ChampionPortrait = {
     view(ctrl, args) {
         const { events, onclick, selected, neighbor } = args;
         const { uid, stars, typeId, awakened } = args.champion.toJSON();
@@ -68,4 +68,4 @@ const Champion = {
     },
 };
 
-export default Champion;
+export default ChampionPortrait;

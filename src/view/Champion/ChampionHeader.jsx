@@ -1,8 +1,8 @@
 import './ChampionHeader.scss';
 import classNames from 'classnames';
-import ImageIcon from './ImageIcon.jsx';
-import { getImage } from '../util/images';
-import lang from '../service/lang';
+import ImageIcon from '../ImageIcon.jsx';
+import { getImage } from '../../util/images';
+import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

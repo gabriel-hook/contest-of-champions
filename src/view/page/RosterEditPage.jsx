@@ -4,7 +4,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
-import ChampionHeader from '../ChampionHeader.jsx';
+import ChampionHeader from '../Champion/ChampionHeader.jsx';
 import classNames from 'classnames';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */

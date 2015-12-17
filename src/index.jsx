@@ -6,21 +6,21 @@ import app from './service/app';
 import router from './service/router';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
-import Card from './view/Card.jsx';
-import GuidePage from './view/Page/GuidePage.jsx';
-import GuideMenu from './view/Page/GuideMenu.jsx';
-import RosterPage from './view/Page/RosterPage.jsx';
-import RosterMenu from './view/Page/RosterMenu.jsx';
-import RosterAddPage from './view/Page/RosterAddPage.jsx';
-import RosterAddMenu from './view/Page/RosterAddMenu.jsx';
-import RosterEditPage from './view/Page/RosterEditPage.jsx';
-import RosterEditMenu from './view/Page/RosterEditMenu.jsx';
-import TeamsPage from './view/Page/TeamsPage.jsx';
-import TeamsMenu from './view/Page/TeamsMenu.jsx';
-import TeamsSettingsPage from './view/Page/TeamsSettingsPage.jsx';
-import TeamsSettingsMenu from './view/Page/TeamsSettingsMenu.jsx';
-import SynergyPage from './view/Page/SynergyPage.jsx';
-import SynergyMenu from './view/Page/SynergyMenu.jsx';
+import Cards from './view/Cards.jsx';
+import GuidePage from './view/page/GuidePage.jsx';
+import GuideMenu from './view/page/GuideMenu.jsx';
+import RosterPage from './view/page/RosterPage.jsx';
+import RosterMenu from './view/page/RosterMenu.jsx';
+import RosterAddPage from './view/page/RosterAddPage.jsx';
+import RosterAddMenu from './view/page/RosterAddMenu.jsx';
+import RosterEditPage from './view/page/RosterEditPage.jsx';
+import RosterEditMenu from './view/page/RosterEditMenu.jsx';
+import TeamsPage from './view/page/TeamsPage.jsx';
+import TeamsMenu from './view/page/TeamsMenu.jsx';
+import TeamsSettingsPage from './view/page/TeamsSettingsPage.jsx';
+import TeamsSettingsMenu from './view/page/TeamsSettingsMenu.jsx';
+import SynergyPage from './view/page/SynergyPage.jsx';
+import SynergyMenu from './view/page/SynergyMenu.jsx';
 import { requestRedraw } from './util/animation';
 import m from 'mithril';
 
@@ -53,7 +53,7 @@ router.on('/roster', () => {
         <RosterPage />
     );
     app.pages[ 'roster' ] = (
-        <Card
+        <Cards
             cards={[
                 app.pages[ 'roster-add' ],
                 app.pages[ 'roster-show' ],
@@ -79,7 +79,7 @@ router.on('/roster/add/:stars', (stars) => {
         <RosterAddPage stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
-        <Card
+        <Cards
             cards={[
                 app.pages[ 'roster-add' ],
                 app.pages[ 'roster-show' ],
@@ -106,7 +106,7 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
         <RosterEditPage uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
-        <Card
+        <Cards
             cards={[
                 app.pages[ 'roster-add' ],
                 app.pages[ 'roster-show' ],
@@ -132,7 +132,7 @@ router.on('/teams/settings', () => {
         <TeamsSettingsPage />
     );
     app.pages[ 'teams' ] = (
-        <Card
+        <Cards
             cards={[
                 app.pages[ 'teams-main' ],
                 app.pages[ 'teams-settings' ],
@@ -157,7 +157,7 @@ router.on('/teams', () => {
         <TeamsPage />
     );
     app.pages[ 'teams' ] = (
-        <Card
+        <Cards
             cards={[
                 app.pages[ 'teams-main' ],
                 app.pages[ 'teams-settings' ],

@@ -1,10 +1,10 @@
-import './Card.scss';
+import './Cards.scss';
 import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const Card = {
+const Cards = {
     view(ctrl, args) {
         const { cards, current } = args;
         return (
@@ -26,4 +26,4 @@ const Card = {
     },
 };
 
-export default Card;
+export default Cards;

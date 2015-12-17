@@ -3,7 +3,7 @@ import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
 import Team from '../Team.jsx';
-import Champion from '../Champion.jsx';
+import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -30,7 +30,7 @@ const TeamsPage = {
                     <div class="header">{ lang.get('extras') }</div>
                 );
                 extrasDiv = extras.map((champion, extrasIndex) => (
-                    <Champion
+                    <ChampionPortrait
                         key={ `extras-${ extrasIndex }-${ champion.id }` }
                         champion={ champion }
                     />

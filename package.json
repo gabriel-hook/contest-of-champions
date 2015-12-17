@@ -1,7 +1,7 @@
 {
     "name": "champions",
     "version": "2.0.0",
-    "description": "Contest of Champions HTML5 tool",
+    "description": "Contest of Champions Companion App",
     "main": "index.html",
     "scripts": {
         "dev": "gulp dev",

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
-import Champion from '../Champion.jsx';
+import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -40,7 +40,7 @@ const RosterAddPage = {
                 <div style="clear:both" />
                 <div>
                     { champions.map((champion, index) => (
-                        <Champion
+                        <ChampionPortrait
                             key={ `${ index }-${ champion.id }` }
                             champion={ champion }
                             onclick={ () => {

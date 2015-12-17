@@ -3,7 +3,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
-import Champion from '../Champion.jsx';
+import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -30,7 +30,7 @@ const RosterPage = {
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
                 { champions.map((champion, index) => (
                     <div key={ `${ index }-${ champion.id }` }>
-                        <Champion
+                        <ChampionPortrait
                             champion={ champion }
                             onclick={ handleSelect.bind(this, champion.attr) }
                         />

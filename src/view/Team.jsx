@@ -5,7 +5,7 @@ import { getImage } from '../util/images';
 import effects, { effectImage } from '../data/effects';
 import pure from '../util/pure';
 import lang from '../service/lang';
-import Champion from './Champion.jsx';
+import ChampionPortrait from './Champion/ChampionPortrait.jsx';
 import ImageIcon from './ImageIcon.jsx';
 import { requestRedraw } from '../util/animation';
 /* eslint-disable no-unused-vars */
@@ -127,7 +127,7 @@ const Team = {
                     const selected = ctrl.selected.champions[ index ] === CHAMPION_SELECTED;
                     const neighbor = ctrl.selected.champions[ index ] === CHAMPION_NEIGHBOR;
                     return (
-                        <Champion
+                        <ChampionPortrait
                             key={ `champion-${ index }` }
                             champion={ champion }
                             selected={ selected }

@@ -1,5 +1,5 @@
 import './ChampionSection.scss';
-import lang from '../service/lang';
+import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
 /* eslint-disable no-unused-vars */
