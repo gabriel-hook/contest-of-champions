@@ -3,7 +3,7 @@ import path from 'path';
 
 export default {
     entry: {
-        app: [ './src/index.jsx' ],
+        app: [ './src/index.js' ],
     },
     output: {
         path: path.resolve('./.build/'),

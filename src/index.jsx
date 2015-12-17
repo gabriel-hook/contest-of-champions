@@ -24,6 +24,14 @@ import SynergyMenu from './view/Page/SynergyMenu.jsx';
 import { requestRedraw } from './util/animation';
 import m from 'mithril';
 
+/**
+ * Reset router if we are hot loading so we only get new routes.
+ */
+if(router._invoked) {
+    router.destroy();
+    router.routes = {};
+}
+
 router.on('/guide', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
 
 router.on('/guide/:uid', (uid) => {
@@ -211,6 +219,5 @@ app.tabs = [
 m.mount(document.body, (
     <App />
 ));
+
 router.init('/roster');
-document.addEventListener('hotreload', () => requestRedraw());
-window.addEventListener('resize', () => requestRedraw(0), true);
