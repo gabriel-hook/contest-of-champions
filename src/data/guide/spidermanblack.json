@@ -26,10 +26,10 @@
 			"rating": "3",
 			"description": "This is one of his weaker attacks, as it does not give any detrimental abilities like the regular Spider-Man's does. When Precision is active, it can be good for dealing high damage, though.",
 			"damagetypes": [
-				"Physical"
+				"physical"
 			],
 			"ranges": [
-				"Long"
+				"long"
 			],
 			"name": "Web-Slinger"
 		},
@@ -40,17 +40,17 @@
 				"pluscritrate"
 			],
 			"damagetypes": [
-				"Physical"
+				"physical"
 			],
 			"ranges": [
-				"Medium"
+				"medium"
 			],
 			"note": "Much like with the Heavy Attack, timing is key. The best time to use this special is when an enemy is charging towards you to ensure it won't be blocked.",
 			"name": "Swingin'"
 		},
 		"3": {
 			"damagetypes": [
-				"Physical"
+				"physical"
 			],
 			"description": "This attack is great for dealing high damage, but nothing in comparison to his second special when unblocked. However, this may be the better attack against frequent blockers such as Captain America.",
 			"name": "Thwip, Thwip, Pow!"

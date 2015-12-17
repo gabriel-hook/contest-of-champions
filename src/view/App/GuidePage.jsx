@@ -118,6 +118,9 @@ const GuidePage = {
                         rating={ guide.attack.rating }
                         description={ guide.attack.description }
                         heavy={ guide.attack.heavy }
+                        ranges={ guide.attack.ranges }
+                        damagetypes={ guide.attack.damagetypes }
+                        abilities={ guide.attack.abilities }
                         note={ guide.attack.note }
                     />
                 );
@@ -142,6 +145,9 @@ const GuidePage = {
                                 rating={ guide.specials[ index ].rating }
                                 subtitle={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
+                                ranges={ guide.specials[ index ].ranges }
+                                damagetypes={ guide.specials[ index ].damagetypes }
+                                abilities={ guide.specials[ index ].abilities }
                                 note={ guide.specials[ index ].note }
                             />
                         );

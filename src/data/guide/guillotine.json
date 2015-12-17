@@ -6,7 +6,7 @@
         },
         "2": {
             "description": "Guillotine’s ancestral sword consumes 2 Souls to place a phantasm on the opponent, reversing all active Healing effects for 10 seconds.",
-            "name": " Coup De Massue",
+            "name": "Coup De Massue",
             "note": "This effect reverses any Healing effects on the opponent. If the opponent is healing 10 health per second, they will instead take 10 damage per second. This can be extremely powerful against foes with predictable healing effects such as Deadpool, Ultron or Iron Man."
         },
         "3": {

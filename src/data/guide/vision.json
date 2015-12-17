@@ -16,7 +16,9 @@
 	"heavy": {
 		"rating": 5,
 		"description": "The Vision drops one of the coolest heavy attacks in the game. Not only is it quick to deploy, but it packs a punch and looks sleek as it's unleashed.",
-		"range": "Short"
+		"ranges": [
+            "short"
+        ]
 	},
 	"specials": {
 		"1": {
@@ -26,10 +28,10 @@
 				"powerburn"
 			],
 			"damagetypes": [
-				"Energy"
+				"energy"
 			],
 			"ranges": [
-				"Long"
+				"long"
 			],
 			"name": "Infrared Beam"
 		},
@@ -40,11 +42,11 @@
 				"powerburn"
 			],
 			"damagetypes": [
-				"Energy",
-				"Physical"
+				"energy",
+				"physical"
 			],
 			"ranges": [
-				"Short"
+				"short"
 			],
 			"name": "Power Crush"
 		},
@@ -52,7 +54,7 @@
 			"rating": 3,
 			"description": "Although it looks pretty awesome, you're better off and more effective using your L2 followed by dropping an L1.",
 			"damagetypes": [
-				"Physical"
+				"physical"
 			],
 			"name": "Physical Disruption",
 			"abilities": [

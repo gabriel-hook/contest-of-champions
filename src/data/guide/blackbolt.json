@@ -26,7 +26,7 @@
 				"Energy"
 			],
 			"ranges": [
-				"Long"
+				"long"
 			],
 			"description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
 			"abilities": [
@@ -42,10 +42,10 @@
 				"stun"
 			],
 			"damagetypes": [
-				"Physical"
+				"physical"
 			],
 			"ranges": [
-				"Medium"
+				"medium"
 			],
 			"name": "Corkscrew"
 		},

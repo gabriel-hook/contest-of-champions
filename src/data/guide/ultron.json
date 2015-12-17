@@ -19,7 +19,9 @@
 	"heavy": {
 		"rating": 5,
 		"description": "Ultron dishes out underhand uppercuts like the big boys (Jugg, Hulk, etc). These attacks deal solid damage and ultron unleashes them very quickly. Additionally, his uppercut has great range for his size.",
-		"range": "Long"
+		"ranges": [
+            "long"
+        ]
 	},
 	"specials": {
 		"1": {
@@ -30,10 +32,10 @@
 				"cauterize"
 			],
 			"damagetypes": [
-				"Energy"
+				"energy"
 			],
 			"ranges": [
-				"Long"
+				"long"
 			],
 			"name": "Encaphalo-Ray"
 		},
@@ -45,12 +47,12 @@
 				"cauterize"
 			],
 			"damagetypes": [
-				"Energy",
-				"Physical"
+				"energy",
+				"physical"
 			],
 			"ranges": [
-				"Long",
-				"Short"
+                "melee",
+				"long"
 			],
 			"name": "Attack Routine 11010100"
 		},
@@ -62,7 +64,7 @@
 				"cauterize"
 			],
 			"damagetypes": [
-				"Energy"
+				"energy"
 			],
 			"name": "Eradication"
 		}

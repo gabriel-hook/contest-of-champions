@@ -10,6 +10,7 @@ const ChampionSection = {
     view(ctrl, args) {
         const {
             title, subtitle, description, note, heavy,
+            ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
             raw,
         } = args;
@@ -47,6 +48,48 @@ const ChampionSection = {
                 <div class="champion-section-text">
                     <b>{ lang.get('heavy-attack') }:</b>
                     { heavy }
+                </div>
+            );
+        }
+        if(ranges && ranges.length) {
+            elements.push(
+                <div class="champion-section-text">
+                    <b>{ lang.get('range') }:</b>
+                    { ranges.map((range, index) => (
+                        <span class={ `champion-section-range-${ range }` }>{
+                            (index < ranges.length - 1)?
+                                `${ lang.get(`range-${ range }`) }, `:
+                                lang.get(`range-${ range }`)
+                        }</span>
+                    )) }
+                </div>
+            );
+        }
+        if(damagetypes && damagetypes.length) {
+            elements.push(
+                <div class="champion-section-text">
+                    <b>{ lang.get('damage-type') }:</b>
+                    { damagetypes.map((damage, index) => (
+                        <span class={ `champion-section-damage-${ damage }` }>{
+                            (index < damagetypes.length - 1)?
+                                `${ lang.get(`damage-${ damage }`) }, `:
+                                lang.get(`damage-${ damage }`)
+                        }</span>
+                    )) }
+                </div>
+            );
+        }
+        if(abilities && abilities.length) {
+            elements.push(
+                <div class="champion-section-text">
+                    <b>{ lang.get('abilities') }:</b>
+                    { abilities.map((ability, index) => (
+                    <span class={ `champion-section-ability-${ ability }` }>{
+                        (index < abilities.length - 1)?
+                            `${ lang.get(`ability-${ ability }`) }, `:
+                            lang.get(`ability-${ ability }`)
+                        }</span>
+                        )) }
                 </div>
             );
         }
