@@ -45,6 +45,7 @@ const ChampionPortrait = {
                         { ...events }
                         class={ classNames('inner', { 'clickable': onclick }) }
                         onclick={ onclick }
+                        title={ lang.get(`champion-${ uid }-name`) }
                     >
                         <div class="portrait">
                             <div

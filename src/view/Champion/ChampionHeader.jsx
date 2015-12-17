@@ -37,7 +37,10 @@ const ChampionHeader = {
             portraitStyle = `background-image: url("${ portrait.src }");`;
         }
         return (
-            <div class="champion-header">
+            <div
+                class="champion-header"
+                title={ lang.get(`champion-${ uid }-name`) }
+            >
                 <div
                     class={ classNames('champion-header-image',
                         'champion-header-image-portrait', {

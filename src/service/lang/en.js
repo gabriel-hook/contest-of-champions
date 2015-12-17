@@ -6,12 +6,12 @@ export default {
     'champion-captainmarvel-name': 'Captain Marvel',
     'champion-drax-name': 'Drax',
     'champion-gamora-name': 'Gamora',
+    'champion-groot-name': 'Groot',
     'champion-msmarvel-name': 'Ms. Marvel',
     'champion-ronan-name': 'Ronan',
     'champion-spidermanblack-name': 'Spider-Man Symbiote',
     'champion-superiorironman-name': 'Superior Iron Man',
     'champion-thor-name': 'Thor',
-    'champion-thorjanefoster-name': 'Thor Jane Foster',
     'champion-venom-name': 'Venom',
     'champion-ironman-name': 'Iron Man',
     'champion-ironpatriot-name': 'Iron Patriot',
@@ -40,6 +40,7 @@ export default {
     'champion-hawkeye-name': 'Hawkeye',
     'champion-moonknight-name': 'Moon Knight',
     'champion-punisher-name': 'Punisher',
+    'champion-redskull-name': 'Red Skull',
     'champion-wintersoldier-name': 'Winter Soldier',
     'champion-abomination-name': 'Abomination',
     'champion-antman-name': 'Ant-Man',
@@ -61,17 +62,14 @@ export default {
     'champion-juggernaut-name': 'Juggernaut',
     'champion-magik-name': 'Magik',
     'champion-scarletwitch-name': 'Scarlet Witch',
+    'champion-thorjanefoster-name': 'Thor Jane Foster',
     'champion-unstoppablecolossus-name': 'Unstoppable Colossus',
-
-    'champion-groot-name': 'Groot',
     'champion-maestro-name': 'Maestro',
-    'champion-redskull-name': 'Red Skull',
 
     //Champion shortname
     'champion-captainmarvel-shortname': 'Cap. Marvel',
     'champion-spidermanblack-shortname': 'Spider-Man',
     'champion-superiorironman-shortname': 'Sup. Iron Man',
-    'champion-thorjanefoster-shortname': 'Thor',
     'champion-rocket-shortname': 'Rocket',
     'champion-deadpoolxforce-shortname': 'Deadpool',
     'champion-magnetomarvelnow-shortname': 'Magneto',
@@ -80,6 +78,7 @@ export default {
     'champion-spidermanmorales-shortname': 'Spider-Man',
     'champion-drstrange-shortname': 'Dr. Strange',
     'champion-drstrangemarvelnow-shortname': 'Dr. Strange',
+    'champion-thorjanefoster-shortname': 'Thor',
     'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
 
     //Ability name
@@ -159,10 +158,6 @@ export default {
     'algorithm-quest-name': 'Quest',
     'algorithm-arena-name': 'Arena',
 
-    //Algorithm description
-    'algorithm-quest-description': 'SLOW. This picks the best team mathematically given all parameters.',
-    'algorithm-arena-description': 'FAST. This chooses the best combinations of teams possible.',
-
     //Preset name
     'preset-offensive-name': 'Offensive',
     'preset-balanced-name': 'Balanced',
@@ -190,6 +185,7 @@ export default {
 
     'synergy': 'Synergy',
     'synergies': 'Synergies',
+    'synergies-external': 'External Synergies',
 
     'crystal': 'Crystal',
     'crystals': 'Crystals',
@@ -207,30 +203,23 @@ export default {
     'filter': 'Filter',
 
     //Roster Config
+    'view-guide': 'View Guide',
     'reset': 'Reset',
+    'delete': 'Delete',
+    'cancel': 'Cancel',
 
     'stars': 'Stars',
     'type': 'Type',
     'name': 'Name',
-
     'rank': 'Rank',
     'level': 'Level',
     'awakened': 'Awakened',
     'pi': 'PI',
-    'quest': 'Quest',
-    'view-guide': 'View Guide',
 
-    'delete': 'Delete',
-    'cancel': 'Cancel',
-
-    'ask-delete': 'Are you sure you want to delete',
-    'ask-delete-all': 'Are you sure you want to delete all of your champions?',
-    'cannot-undo': 'This action cannot be undone.',
 
     //Team Panel
-    'advanced-settings': 'Advanced Settings',
     'team-size': 'Team Size',
-    'algorithm': 'Algorithm',
+    'quest': 'Quest',
     'arena': 'Arena',
     'build': 'Build',
 
@@ -238,21 +227,14 @@ export default {
     'add-all': 'Add All',
 
     //Advanced Settings Page
-    'reset-defaults': 'Reset to Defaults',
-    'champion-weights': 'Champion Weights',
     'synergy-weights': 'Synergy Weights',
     'duplicate-weights': 'Duplicate Class Weights',
-    'choose-preset': 'Choose a preset...',
-    'use-levels': 'Calculate using stars / ranks / levels',
 
     //Tuples
     'double': 'Double',
     'triple': 'Triple',
     'quadruple': 'Quadruple',
     'quintuple': 'Quintuple',
-
-    //Guide Page
-    'choose-guide': 'Choose a guide',
 
     //Synergy Page
     'legend-show': 'Show Legend',
@@ -275,15 +257,6 @@ export default {
     'damage-type': 'Damage Type',
     'range': 'Range',
     'note': 'Note',
-
-    'synergies-external': 'External Synergies',
-
-    'author': 'Author',
-    'profile': 'Profile',
-    'profile-reddit': 'Reddit /u/',
-    'profile-kabam': 'Kabam Forums',
-    'author-credit': 'This guide was written by',
-    'email': 'E-mail',
 
     //Menu
     'language': 'Language',

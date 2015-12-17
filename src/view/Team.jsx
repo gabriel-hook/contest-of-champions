@@ -150,6 +150,7 @@ const Team = {
                         <div
                             class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
                             onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
+                            title={ lang.get(`effect-${ effect.attr.uid }-description`) }
                         >
                             <ImageIcon src={ effectImage(effect.attr.uid) } icon="square"/>
                             <span class="effect-name">

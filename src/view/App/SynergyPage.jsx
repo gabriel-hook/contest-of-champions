@@ -31,6 +31,7 @@ const SynergyPage = {
                         graph.selectEdgeType(effectId);
                         requestRedraw(5);
                     }}
+                    title={ lang.get(`effect-${ effectId }-description`) }
                 >
                     { lang.get(`effect-${ effectId }-name`) }
                     { amount && ` - ${ amount }%` }
