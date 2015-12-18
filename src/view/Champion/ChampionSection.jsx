@@ -6,48 +6,117 @@ import ChampionRating from './ChampionRating.jsx';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+const POSSIBLE_RATINGS = [ 1, 2, 3, 4, 5 ];
+const POSSIBLE_GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
+
 const ChampionSection = {
     view(ctrl, args) {
         const {
             title, subtitle, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
-            raw,
+            raw, onEdit,
         } = args;
+        const editableText = (key) => (onEdit)? {
+            contenteditable: true,
+            class: 'champion-section-textarea',
+            oninput: (event) => onEdit(key, event.target.innerText),
+        }: {};
+        const editableValue = (value) => value === true? '': value;
+        const gradeSelect = (key, grade) => (
+            <select
+                class="champion-section-select"
+                onchange={ (event) => onEdit(key, event.target.selectedOptions[ 0 ].value) }
+            >
+                <option value=""></option>
+                {
+                    POSSIBLE_GRADES.map((value) => (
+                        <option
+                            value={ `${ value }` }
+                            selected={ grade && value === grade }
+                        >{
+                            value
+                        }</option>
+                    ))
+                }
+            </select>
+        );
+        const ratingSelect = (key, rating) => (
+            <select
+                class="champion-section-select"
+                onchange={ (event) => onEdit(key, event.target.selectedOptions[ 0 ].value) }
+            >
+                <option value=""></option>
+                {
+                    POSSIBLE_RATINGS.map((value) => (
+                        <option
+                            value={ `${ value }` }
+                            selected={ rating && value === rating }
+                        >{
+                            value
+                        }</option>
+                    ))
+                }
+            </select>
+        );
+
         const elements = [];
         elements.push(
             <div class="champion-section-title">
                 { title }
-                { rating !== undefined && (
+                { rating !== undefined && (onEdit? (
+                    <div style="float:right;">
+                        { ratingSelect('rating', rating) }
+                        / 5
+                    </div>
+                ): (
                     <ChampionRating rating={ rating } />
-                ) || null}
+                )) || null}
             </div>
         );
         if(grade) {
             elements.push(
-                <ChampionGrade title="grade" grade={ grade } />
+                onEdit? (
+                    <div class="champion-section-text">
+                        <b>{ lang.get('grade') }:</b>
+                        { gradeSelect('grades.normal', grade) }
+                    </div>
+                ): (
+                    <ChampionGrade title="grade" grade={ grade }/>
+                )
             );
         }
         if(gradeAwakened) {
             elements.push(
-                <ChampionGrade title="awakened" grade={ gradeAwakened } />
+                onEdit? (
+                    <div class="champion-section-text">
+                        <b>{ lang.get('awakened') }:</b>
+                        { gradeSelect('grades.awakened', gradeAwakened) }
+                    </div>
+                ): (
+                    <ChampionGrade title="awakened" grade={ gradeAwakened } />
+                )
             );
         }
         if(subtitle) {
             elements.push(
-                <div class="champion-section-text"><b>{ subtitle }</b></div>
+                <div class="champion-section-text">
+                    <b {...editableText('subtitle')}>{ editableValue(subtitle) }</b>
+                </div>
             );
         }
         if(description) {
             elements.push(
-                <div class="champion-section-text">{ description }</div>
+                <div class="champion-section-text">
+                    <div {...editableText('description')}>{ editableValue(description) }</div>
+                </div>
             );
         }
         if(heavy) {
             elements.push(
                 <div class="champion-section-text">
                     <b>{ lang.get('heavy-attack') }:</b>
-                    { heavy }
+                    <span {...editableText('heavy')}>{ editableValue(heavy) }</span>
                 </div>
             );
         }
@@ -97,7 +166,7 @@ const ChampionSection = {
             elements.push(
                 <div class="champion-section-text">
                     <b>{ lang.get('note') }:</b>
-                    { note }
+                    <span {...editableText('note')}>{ editableValue(note) }</span>
                 </div>
             );
         }

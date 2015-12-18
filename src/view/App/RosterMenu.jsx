@@ -3,15 +3,10 @@ import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
+import isIE from '../../util/ie';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
-
-const ie = (
-    window.navigator.userAgent.indexOf('MSIE ') !== -1 ||
-    window.navigator.userAgent.indexOf('Edge ') !== -1 ||
-    navigator.userAgent.match(/Trident.*rv\:11\./)
-)? true: false;
 
 function importCSV() {
     /* eslint-disable no-invalid-this */
@@ -72,35 +67,33 @@ const RosterMenu = {
                 />
             );
         }
-        if(window) {
-            const exportCSV = (event) => {
-                if(ie) {
-                    const csv = roster.toCSV('\r\n');
-                    const exporter = document.getElementById('roster-exporter');
-                    exporter.document.open('text/html', 'replace');
-                    exporter.document.write(`sep=,\r\n${ csv }`);
-                    exporter.document.close();
-                    exporter.focus();
-                    exporter.document.execCommand('SaveAs', true, 'champions.csv');
-                }
-                else {
-                    const { target } = event;
-                    const csv = roster.toCSV();
-                    target.setAttribute('download', 'champions.csv');
-                    target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(csv) }`);
-                }
-                requestRedraw();
-            };
-            options.push(
-                <MenuOption
-                    icon={(
-                            <Icon icon="floppy-o" />
-                        )}
-                    title="export-csv"
-                    onclick={ exportCSV }
-                />
-            );
-        }
+        const exportCSV = (event) => {
+            if(isIE) {
+                const csv = roster.toCSV('\r\n');
+                const exporter = document.getElementById('roster-exporter');
+                exporter.document.open('text/html', 'replace');
+                exporter.document.write(`sep=,\r\n${ csv }`);
+                exporter.document.close();
+                exporter.focus();
+                exporter.document.execCommand('SaveAs', true, 'champions.csv');
+            }
+            else {
+                const { target } = event;
+                const csv = roster.toCSV();
+                target.setAttribute('download', 'champions.csv');
+                target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(csv) }`);
+            }
+            requestRedraw();
+        };
+        options.push(
+            <MenuOption
+                icon={(
+                        <Icon icon="floppy-o" />
+                    )}
+                title="export-csv"
+                onclick={ exportCSV }
+            />
+        );
         return (
             <div key="roster-menu">
                 <MenuHeader title="roster" />

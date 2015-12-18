@@ -193,6 +193,7 @@ export default {
     'add-champion': 'Add a Champion',
     'import-csv': 'Import .csv',
     'export-csv': 'Export .csv',
+    'export-json': 'Export .json',
     'delete-all': 'Delete All',
 
     'sort': 'Sort',

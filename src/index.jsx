@@ -9,6 +9,8 @@ import App from './view/App.jsx';
 import Cards from './view/Cards.jsx';
 import GuidePage from './view/App/GuidePage.jsx';
 import GuideMenu from './view/App/GuideMenu.jsx';
+import GuideEditPage from './view/App/GuideEditPage.jsx';
+import GuideEditMenu from './view/App/GuideEditMenu.jsx';
 import RosterPage from './view/App/RosterPage.jsx';
 import RosterMenu from './view/App/RosterMenu.jsx';
 import RosterAddPage from './view/App/RosterAddPage.jsx';
@@ -41,6 +43,19 @@ router.on('/guide/:uid', (uid) => {
     );
     app.menu = (
         <GuideMenu uid={ uid } />
+    );
+    app.button = null;
+    analytics.pageView();
+    requestRedraw();
+});
+
+router.on('/guide/:uid/edit', (uid) => {
+    app.tab = 'guide';
+    app.pages[ 'guide' ] = (
+        <GuideEditPage uid={ uid } />
+    );
+    app.menu = (
+        <GuideEditMenu uid={ uid } />
     );
     app.button = null;
     analytics.pageView();

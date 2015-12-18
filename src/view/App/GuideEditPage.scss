@@ -1,0 +1,102 @@
+@import "../../util/fonts";
+
+.guide {
+    background: #fff;
+    min-height: 100%;
+
+    .guide-synergies {
+        padding: 16px 16px 0;
+    }
+
+    .guide-synergy {
+        padding: 0;
+        box-sizing: border-box;
+
+        .guide-synergy-parts {
+            position: relative;
+            padding-bottom: 8px;
+
+            .guide-synergy-part {
+                height: 24px;
+                margin: 0;
+                padding: 0;
+
+                @media all and (min-width: 400px) {
+                    float: left;
+                    width: 50%;
+                }
+            }
+
+            .guide-synergy-clear {
+                clear: both;
+            }
+        }
+
+        .champion-name {
+            width: 100%;
+            cursor: pointer;
+            display: inline-block;
+            @include font-title(1em);
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .effect-name {
+            width: 100%;
+            display: inline-block;
+            @include font-text(1em);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .icon {
+            position: relative;
+            display: inline-block;
+            top: 5px;
+            margin: 0;
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+            color: #666;
+
+            &.fa-square {
+                color: #38c;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+        }
+    }
+
+    .guide-author {
+        position: relative;
+        width: 500px;
+        max-width: 90%;
+        margin: 0 auto 1em;
+        background: #eee;
+        padding: 16px;
+        box-sizing: border-box;
+        box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+        @include font-text(1em);
+        text-align: center;
+
+        a {
+            @include font-title(1em);
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    .clear {
+        height: 32px;
+    }
+}

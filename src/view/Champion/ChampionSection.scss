@@ -18,6 +18,13 @@
         text-align: left;
         padding: 16px;
         z-index: 1;
+
+        .champion-section-input,
+        .champion-section-select,
+        .champion-section-textarea {
+            text-shadow: 0 0 0 #000;
+            border: dashed 1px #fff;
+        }
     }
 
     .champion-section-text {
@@ -25,6 +32,39 @@
         padding: 16px 16px 0;
         @include font-text(1em);
         text-shadow: 0 1px 0 #eee;
+    }
+
+    .champion-section-editor {
+        display: block;
+        padding: 16px 16px 0;
+
+    }
+
+    .champion-section-input,
+    .champion-section-select,
+    .champion-section-textarea {
+        background: rgba(0, 0, 0, 0);
+        box-sizing: border-box;
+        border: dashed 1px #666;
+    }
+
+    .champion-section-select {
+        @include font-title(1em);
+    }
+
+    .champion-section-textarea {
+        display: block;
+        width: 100%;
+        @include font-text(1em);
+        padding: 16px;
+        text-shadow: 0 1px 0 #eee;
+        height: auto;
+    }
+
+    b {
+        .champion-section-textarea {
+            font-weight: bold;
+        }
     }
 
     .champion-section-raw {
