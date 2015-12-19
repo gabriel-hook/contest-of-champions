@@ -46,9 +46,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "568694-Deadpool-X-Force-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "568694-Deadpool-X-Force-Champion-Spotlight"
     }
 }

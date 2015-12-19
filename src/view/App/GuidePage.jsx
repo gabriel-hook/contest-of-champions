@@ -73,6 +73,52 @@ const GuideSynergy ={
     },
 };
 
+const GuideAuthor = {
+    view(ctrl, args) {
+        const { name, type, profile } = args;
+        let byline = 'by';
+        let href;
+        let icon;
+        if (type) {
+            switch(type) {
+            case 'reddit':
+                icon = 'reddit-alien';
+                if(profile)
+                    href = `http://reddit.com/u/${ profile }`;
+                break;
+            case 'kabam':
+                icon = 'bomb';
+                if(profile)
+                    href = `http://community.kabam.com/forums/member.php?${ profile }`;
+                break;
+            case 'spotlight':
+                byline = 'spotlight by';
+                icon = 'bomb';
+                if(profile)
+                    href = `http://community.kabam.com/forums/showthread.php?${ profile }`;
+                break;
+            case 'email':
+                icon = 'envelope';
+                if(profile)
+                    href = `mailto:${ profile }`;
+                break;
+            }
+        }
+
+        return (
+            <div class="guide-author">
+                { byline }
+                <a href={ href } target="_blank">
+                    { icon && (
+                        <Icon icon={ icon } />
+                    ) }
+                    { name }
+                </a>
+            </div>
+        );
+    },
+};
+
 const GuidePage = {
     view(ctrl, args) {
         const { uid } = args;
@@ -179,69 +225,13 @@ const GuidePage = {
             />
         );
         if(guide && guide.author) {
-            const name = guide.author.name;
-            let byline;
-            let icon;
-            let href;
-            if (guide.author.profile && guide.author.profile.type) {
-                switch(guide.author.profile.type) {
-                case 'reddit':
-                    byline = 'by';
-                    icon = (
-                        <Icon icon={ 'reddit-alien' } />
-                    );
-                    if(guide.author.profile.name)
-                        href = `http://reddit.com/u/${ guide.author.profile.name }`;
-                    break;
-                case 'kabam':
-                    byline = 'by';
-                    icon = (
-                        <Icon icon="bomb" />
-                    );
-                    if(guide.author.profile.name)
-                        href = `http://community.kabam.com/forums/member.php?${ guide.author.profile.name }`;
-                    break;
-                case 'spotlight':
-                    byline = 'spotlight by';
-                    icon = (
-                        <Icon icon="bomb" />
-                    );
-                    if(guide.author.profile.name)
-                        href = `http://community.kabam.com/forums/showthread.php?${ guide.author.profile.name }`;
-                    break;
-                case 'email':
-                    byline = 'by';
-                    icon = (
-                        <Icon icon="envelope" />
-                    );
-                    if(guide.author.profile.name)
-                        href = `mailto:${ guide.author.profile.name }`;
-                    break;
-                default:
-                    byline = 'by';
-                    break;
-                }
-            }
-            if(href) {
-                details.push(
-                    <div class="guide-author">
-                        { byline }
-                        <a href={ href } target="_blank">
-                            { icon }
-                            { name }
-                        </a>
-                    </div>
-                );
-            }
-            else {
-                details.push(
-                    <div class="guide-author">
-                        { byline }
-                        { icon }
-                        { name }
-                    </div>
-                );
-            }
+            details.push(
+                <GuideAuthor
+                    name={ guide.author.name }
+                    type={ guide.author.type }
+                    profile={ guide.author.profile }
+                />
+            );
         }
         return (
             <div class="guide" key={ 'guide-${ uid }' }>

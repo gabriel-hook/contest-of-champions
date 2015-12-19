@@ -61,9 +61,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "559816-Magneto-%28Marvel-Now%29-Champion-Spotlight-amp-Discussion"
-        }
+        "type": "spotlight",
+        "profile": "559816-Magneto-%28Marvel-Now%29-Champion-Spotlight-amp-Discussion"
     }
 }

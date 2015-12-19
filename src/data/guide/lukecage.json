@@ -40,9 +40,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "620945-Luke-Cage-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "620945-Luke-Cage-Champion-Spotlight"
     }
 }

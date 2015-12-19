@@ -184,7 +184,6 @@ const ChampionSection = {
             }
         }
         else {
-
             elements.push(
                 <div class="champion-section-title">
                     { title }
@@ -206,14 +205,14 @@ const ChampionSection = {
             if (name) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ name }</b>
+                        <b>{ name.replace('\n', '').trim() }</b>
                     </div>
                 );
             }
             if (description) {
                 elements.push(
                     <div class="champion-section-text champion-section-text-description">
-                        <div>{ description }</div>
+                        <div>{ description.trim() }</div>
                     </div>
                 );
             }
@@ -221,7 +220,7 @@ const ChampionSection = {
                 elements.push(
                     <div class="champion-section-text">
                         <b>{ lang.get('heavy-attack') }:</b>
-                        <span>{ heavy }</span>
+                        <span>{ heavy.replace('\n', '').trim() }</span>
                     </div>
                 );
             }
@@ -271,7 +270,7 @@ const ChampionSection = {
                 elements.push(
                     <div class="champion-section-text">
                         <b>{ lang.get('note') }:</b>
-                        <span>{ note }</span>
+                        <span>{ note.replace('\n', '').trim() }</span>
                     </div>
                 );
             }

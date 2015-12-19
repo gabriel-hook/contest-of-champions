@@ -36,9 +36,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "588478-Joe-Fixit-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "588478-Joe-Fixit-Champion-Spotlight"
     }
 }

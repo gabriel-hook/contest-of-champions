@@ -248,6 +248,16 @@
     "ability-poisonimmunity": "Poison Immunity",
     "ability-bleedimmunity": "Bleed Immunity",
 
+    "profile-email": "E-Mail",
+    "profile-reddit": "Reddit User",
+    "profile-kabam": "Kabam Forums User",
+    "profile-spotlight": "Official Kabam Forum Spotlight",
+
+    "author": "Author",
+    "profile": "Profile",
+    "email": "E-Mail",
+    "thread": "Forum Thread",
+
     "language": "Language",
     "links": "Links",
     "link-github": "Github",

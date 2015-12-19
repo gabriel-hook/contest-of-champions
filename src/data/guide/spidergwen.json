@@ -26,9 +26,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "614107-Spider-Gwen-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "614107-Spider-Gwen-Champion-Spotlight"
     }
 }

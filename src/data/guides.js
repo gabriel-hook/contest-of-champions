@@ -72,5 +72,12 @@ const ABILITIES = [
     'bleedimmunity',
 ];
 
-export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES };
+const PROFILE_TYPES = [
+    'email',
+    'reddit',
+    'kabam',
+    'spotlight',
+];
+
+export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES, PROFILE_TYPES };
 export default guides;

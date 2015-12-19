@@ -48,9 +48,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "548751-War-Machine-Champion-Spotlight-amp-Discussion&highlight=Champion+Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "548751-War-Machine-Champion-Spotlight-amp-Discussion"
     }
 }

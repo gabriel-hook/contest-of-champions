@@ -40,9 +40,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "573378-Moon-Knight-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "573378-Moon-Knight-Champion-Spotlight"
     }
 }

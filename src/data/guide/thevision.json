@@ -66,9 +66,7 @@
 	},
 	"author": {
 		"name": "/u/dat_frisson",
-		"profile": {
-			"name": "dat_frisson",
-			"type": "reddit"
-		}
+        "type": "reddit",
+		"profile": "dat_frisson"
 	}
 }

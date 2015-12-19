@@ -49,9 +49,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "600063-Venom-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "600063-Venom-Champion-Spotlight"
     }
 }

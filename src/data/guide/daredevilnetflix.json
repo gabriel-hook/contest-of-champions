@@ -55,9 +55,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "619359-Daredevil-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "619359-Daredevil-Champion-Spotlight"
     }
 }

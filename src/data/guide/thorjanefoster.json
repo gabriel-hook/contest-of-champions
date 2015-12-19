@@ -58,9 +58,7 @@
     },
     "author": {
         "name": "Kabam",
-        "profile": {
-            "type": "spotlight",
-            "name": "624199-Jane-Foster-(Thor)-Champion-Spotlight"
-        }
+        "type": "spotlight",
+        "profile": "624199-Jane-Foster-(Thor)-Champion-Spotlight"
     }
 }
