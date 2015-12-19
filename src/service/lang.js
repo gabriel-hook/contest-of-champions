@@ -1,7 +1,7 @@
-import en from './lang/en';
-import es from './lang/es';
-import br from './lang/br';
-import ru from './lang/ru';
+import en from './lang/en.json';
+import es from './lang/es.json';
+import br from './lang/br.json';
+import ru from './lang/ru.json';
 import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
 

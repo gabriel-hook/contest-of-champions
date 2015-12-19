@@ -1,12 +1,12 @@
-import blackbolt from './guide/blackbolt.json';
-import elektra from './guide/elektra.json';
-import guillotine from './guide/guillotine.json';
-import spidermanblack from './guide/spidermanblack.json';
-import thorjanefoster from './guide/thorjanefoster.json';
-import thevision from './guide/thevision.json';
-import ultron from './guide/ultron.json';
-import vision from './guide/vision.json';
-import warmachine from './guide/warmachine.json';
+import blackbolt from './guide/blackbolt';
+import elektra from './guide/elektra';
+import guillotine from './guide/guillotine';
+import spidermanblack from './guide/spidermanblack';
+import thorjanefoster from './guide/thorjanefoster';
+import thevision from './guide/thevision';
+import ultron from './guide/ultron';
+import vision from './guide/vision';
+import warmachine from './guide/warmachine';
 
 const guides = {
     blackbolt,

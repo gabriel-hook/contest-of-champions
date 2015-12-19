@@ -22,6 +22,11 @@ const ChampionSection = {
                 'contenteditable': true,
                 'class': 'champion-section-textarea',
                 'oninput': (event) => onEdit(key, event.target.innerText),
+                'onpaste': (event) => {
+                    event.preventDefault();
+                    const text = (event.originalEvent || event).clipboardData.getData('text/plain');
+                    document.execCommand('insertHTML', false, text);
+                },
             });
             const editableValue = (value) => value === true? '': value;
             const editableSelect = (list, key, initialValue) => (
