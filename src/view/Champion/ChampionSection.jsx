@@ -212,7 +212,7 @@ const ChampionSection = {
             }
             if (description) {
                 elements.push(
-                    <div class="champion-section-text">
+                    <div class="champion-section-text champion-section-text-description">
                         <div>{ description }</div>
                     </div>
                 );
