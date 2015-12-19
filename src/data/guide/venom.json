@@ -1,0 +1,57 @@
+{
+    "description": "After Peter Parker rejected a sinister alien symbiote, the extra-terrestrial threat sought revenge by bonding with Eddie Brock, ex-photographer for the Daily Bugle and Peter’s longtime rival. Fueled by their shared hatred of Spider-Man, Brock and the symbiote now use their immense strength and deadly abilities to gain revenge as the fearful Venom.",
+    "gameplay": {
+        "description": "Once every 10 seconds, the symbiote known as Venom calls upon its collective hive mind and grants its host a permanent beneficial effect from its genetic memory pool. Venom can only host 5 effects at a time. \n\nSymbiote Rage: 9% increased Attack. \nSymbiote Durability: 9% increased Physical Resistance. \nSymbiote Shield: 6% increased Armor. \nSymbiote Cruelty: 47% increased Critical Damage. \nSymbiote Frenzy: 17% increased Critical Hit Rate.\n"
+    },
+    "specials": {
+        "1": {
+            "description": "The symbiote attempts to replicate the opponent’s beneficial effects, with a 45% chance to copy up to 1 effect(s). This effect can be used to copy any beneficial effect the opponent has, such as Armor Up, Fury or even Regeneration. ",
+            "note": "The effect will be at the same strength as the original effect but will have its duration set to 7 seconds.",
+            "name": "Constituent Lash",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
+        },
+        "2": {
+            "name": "Constituent Carnage",
+            "description": "The symbiote attempts to replicate the opponent’s beneficial effects, with a 75% chance to copy up to 1 effect(s). ",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
+        },
+        "3": {
+            "description": "The symbiote attempts to replicate the opponent’s beneficial effects, with a 100% chance to copy up to 2 effect(s). ",
+            "name": "Hide-And-Seek",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "signature": {
+        "name": "Bloodlust",
+        "description": "Venom’s bloodlust triggers whenever the opponent bleeds, increasing Critical Hit Rate by 20% and Critical Damage by (15% - 115%) for as long as the enemy continues bleeding. This effect stacks with all benefits from Genetic Memory.",
+        "note": "This effect also triggers off of enemy Self Bleed effects such as Double Edge."
+    },
+    "attack": {
+        "description": "7% chance to inflict Bleed, dealing 34% of your Attack as direct damage over 5 seconds.",
+        "abilities": [
+            "bleed"
+        ],
+        "damagetypes": [
+            "physical"
+        ]
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "600063-Venom-Champion-Spotlight"
+        }
+    }
+}

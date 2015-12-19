@@ -105,7 +105,7 @@ const GuidePage = {
                     <ChampionSection
                         title={ lang.get('gameplay') }
                         rating={ guide.gameplay.rating }
-                        subtitle={ guide.gameplay.style }
+                        name={ guide.gameplay.style }
                         description={ guide.gameplay.description }
                         note={ guide.gameplay.note }
                     />
@@ -130,7 +130,7 @@ const GuidePage = {
                     <ChampionSection
                         title={ lang.get('signature') }
                         rating={ guide.signature.rating }
-                        subtitle={ guide.signature.name }
+                        name={ guide.signature.name }
                         description={ guide.signature.description }
                         note={ guide.signature.note }
                     />
@@ -143,7 +143,7 @@ const GuidePage = {
                             <ChampionSection
                                 title={ `${ lang.get(`special`) } ${ index }` }
                                 rating={ guide.specials[ index ].rating }
-                                subtitle={ guide.specials[ index ].name }
+                                name={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
                                 ranges={ guide.specials[ index ].ranges }
                                 damagetypes={ guide.specials[ index ].damagetypes }

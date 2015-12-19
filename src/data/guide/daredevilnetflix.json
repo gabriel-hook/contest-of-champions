@@ -1,0 +1,63 @@
+{
+    "description": "Matt Murdock grew up around crime, corruption and violence. After a freak accident involving radioactive waste took his sight, Matt was trained by the mysterious martial artist Stick to condition his body to near perfection and hone his remaining senses to superhuman levels. Play as the Man Without Fear equipped with the red suit inspired by Marvel’s Daredevil, a Netflix Original Series. ",
+    "specials": {
+        "1": {
+            "name": "Condemn",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "melee"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "note": "Critical Hits have a 100% chance to Stun opponents for 2.5 seconds."
+        },
+        "2": {
+            "name": "Swift Justice",
+            "note": "Critical Hits have a 100% chance to Stun opponents for 2.5 seconds.",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "3": {
+            "note": "Critical Hits have a 100% chance to Stun opponents for 2.5 seconds.",
+            "name": "Deliverance",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        }
+    },
+    "attack": {
+        "heavy": "Striking with honed precision, Daredevil has a 85% chance to Armor Break stunned opponents with Heavy and Medium attacks, reducing their Armor by 11% for 15 seconds. Heavy attacks result in longer Armor Breaks. This effect stacks infinitely.",
+        "abilities": [
+            "armorbreak"
+        ]
+    },
+    "gameplay": {
+        "description": "The fantastic suit crafted by Mr. Potter can turn aside knives and gunfire, granting Daredevil 5% Physical Resistance against all attacks. 33% chance that a Block reduces all damage. Daredevil’s enhanced senses grant him a 15% chance to dodge projectile attacks\n",
+        "note": "10% increased base Critical Hit Rate"
+    },
+    "signature": {
+        "name": "World on Fire",
+        "description": "The son of Battlin’ Jack Murdock only becomes more determined as he takes punishment, granting him (15% - 40%) increased Critical Hit Rate for 6 seconds each time the opponent places a detrimental effect on him.",
+        "note": "The Critical Hit Rate buff does not stack with itself."
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "619359-Daredevil-Champion-Spotlight"
+        }
+    }
+}

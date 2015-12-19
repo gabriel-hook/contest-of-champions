@@ -1,0 +1,48 @@
+{
+    "description": "Avatar? Executioner? Mercenary Marc Spector died in Egypt, under the statue of the ancient deity Khonshu. He returned to life in the shadow of the moon god, and wears his mantle to fight crime for his own redemption. Is he crazy? How would you feel after being resurrected? Listen, sometimes you have to go with the voices in your head.",
+    "gameplay": {
+        "description": "Withheld from Death herself by the Egyptian Moon-god Khonshu, Marc Spector’s power ebbs and flows based on the phase of the Moon. Under the light of the Full Moon, Critical Hits have a chance to Stun. As the Moon wanes, there’s a chance to gain Fury. The chance increases nearer to the New Moon. In the darkness of a New Moon, there’s a chance to evade attacks. As the Moon waxes, there’s a chance to boost Critical Rate. The chance increases nearer to the Full Moon.",
+        "note": "Critical Hits have a chance to Bleed during any lunar phase; however, Moon Knight’s base Critical Rate drops to zero during the New Moon."
+    },
+    "signature": {
+        "name": "Synodic Tide",
+        "description": "Power Gain in both Champions is influenced by the position of the Moon. Either Moon Knight’s Power Gain is increased, or the opponent’s is decreased. At least one of the effects is always active.",
+        "note": "Which effect is active switches every six hours."
+    },
+    "specials": {
+        "1": {
+            "name": "Waxing Crescents",
+            "description": "Throws two Crescent Darts, each with a +20% Critical Hit Chance.",
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "2": {
+            "name": "Divine Justice",
+            "note": "If this attack would inflict Bleed, that Bleed lasts 50% longer.",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "3": {
+            "name": "Knight of Vengeance",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "573378-Moon-Knight-Champion-Spotlight"
+        }
+    }
+}

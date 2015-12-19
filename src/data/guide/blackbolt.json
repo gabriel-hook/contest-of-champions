@@ -23,7 +23,7 @@
 		"1": {
 			"rating": "5",
 			"damagetypes": [
-				"Energy"
+				"energy"
 			],
 			"ranges": [
 				"long"
@@ -56,7 +56,7 @@
 				"stun"
 			],
 			"damagetypes": [
-				"Energy"
+				"energy"
 			],
 			"name": "Hypersonic Whisper"
 		}

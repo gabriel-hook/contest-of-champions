@@ -1,0 +1,69 @@
+{
+    "description": "The Master of Magnetism has embraced a self-proclaimed role of detective, judge, jury, and executioner against those who harm mutants. One of the greatest Marvel anti-heroes ever, Magneto exacts his own form of mutant justice, by any means necessary.",
+    "gameplay": {
+        "note": " Ability Accuracy is the chance to trigger abilities such as Armor Up or Regeneration (sometimes refereed to as Proc Chance by the community).",
+        "description": "Magnetized reduces the Ability Accuracy of all metal opponents."
+    },
+    "attack": {
+        "damagetypes": [
+            "energy"
+        ]
+    },
+    "signature": {
+        "name": "Urgent Refraction",
+        "description": "Triggered when his health is low, Magneto bends a dense electromagnetic field around his body to create a personal force field, preventing him from losing more than 7% Health from a single source. Magneto triggers this ability any time he is below 60% health and it prevents him from losing more than 7% of his total health from any single attack.",
+        "note": "Due to the nature of how Special 3 attacks work, this also works on all enemy Special 3 attacks. This is because the Special 3 damage only calculates once, and is then split between the various attacks during the animation. Even multi hit attacks like Cyclops’s are considered to come from a “single source” of damage, and are reduced by Refraction."
+    },
+    "specials": {
+        "1": {
+            "name": "Bloody Shrapnel",
+            "description": "50% chance to inflict Bleed, dealing 200% of your Attack as direct damage over 10 Seconds.",
+            "note": "This has 2 potential triggers during the attack, allowing up to 2 stacks of Bleed.",
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "2": {
+            "description": "50% chance to inflict Bleed, dealing 200% of your Attack as direct damage over 10 Seconds. 100% chance to inflict Heal Block, preventing the target from recovering Health for 10 seconds.",
+            "note": "This has 1 potential trigger during the attack, allowing up to 1 stack of Bleed.",
+            "name": "Bleeding Fracture",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed",
+                "healblock"
+            ]
+        },
+        "3": {
+            "description": "50% chance to inflict Bleed, dealing 200% of your Attack as direct damage over 10 Seconds. 100% chance to inflict Heal Block, preventing the target from recovering Health for 10 seconds. 100% chance to Armor Break, removing enemy Armor and applying 10% Armor reduction for 8 seconds.",
+            "note": "This has 1 potential trigger during the attack, allowing up to 1 stack of Bleed.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed",
+                "healblock",
+                "armorbreak"
+            ],
+            "name": "Cold-Blooded Fusion"
+        }
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "559816-Magneto-%28Marvel-Now%29-Champion-Spotlight-amp-Discussion"
+        }
+    }
+}

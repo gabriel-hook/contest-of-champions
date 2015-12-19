@@ -1,0 +1,54 @@
+{
+    "description": "Wade Winston Wilson (a.k.a Deadpool) joined X-Force, a black ops team running covert missions to eliminate threats to the muta-- Hold up -- didn’t we do this whole bio thing already? You know, with the other, less-cool version of me? I’m the hot one! That red-suited scab factory just copies Spider-Man! I’ve got skills, suckahs!",
+    "signature": {
+        "description": "Permanently bleeding the opponent was granted after poking enemies right in the duodenum, guaranteed to cause Bleed for 50% Attack over 4 seconds.",
+        "note": "The Bleed is quite weak, but since it is guaranteed, it essentially remains on the opponent throughout the entire fight. ",
+        "name": "Duodenum Poke"
+    },
+    "specials": {
+        "1": {
+            "name": "Spinnin' Groin Punch",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "2": {
+            "name": "Spinny Sword Attack",
+            "description": "100% chance to inflict Bleed, dealing 284% of your attack as direct damage over 4 seconds.",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "3": {
+            "description": "100% chance to inflict Bleed, dealing 245% of your attack as direct damage over 3 seconds.",
+            "name": "Hold Up",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        }
+    },
+    "gameplay": {
+        "note": "This version of Deadpool lacks regeneration, making him more fragile.",
+        "description": "Deadpool’s consistent and powerful Bleed effects allow him to quickly tear through heavily armored enemies such as Rhino, Juggernaut and Superior Iron Man.",
+        "name": "Offensive"
+    },
+    "author": {
+        "name": "Kabam",
+        "profile": {
+            "type": "spotlight",
+            "name": "568694-Deadpool-X-Force-Champion-Spotlight"
+        }
+    }
+}

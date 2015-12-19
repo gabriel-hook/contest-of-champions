@@ -128,7 +128,7 @@ const GuidePage = {
             <ChampionSection
                 title={ lang.get('gameplay') }
                 rating={ gameplay && guide.gameplay.rating || true }
-                subtitle={ gameplay && guide.gameplay.style || true }
+                name={ gameplay && guide.gameplay.style || true }
                 description={ gameplay && guide.gameplay.description || true }
                 note={ gameplay && guide.gameplay.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'gameplay' ], key, value) }
@@ -155,7 +155,7 @@ const GuidePage = {
             <ChampionSection
                 title={ lang.get('signature') }
                 rating={ signature && guide.signature.rating || true }
-                subtitle={ signature && guide.signature.name || true }
+                name={ signature && guide.signature.name || true }
                 description={ signature && guide.signature.description || true }
                 note={ signature && guide.signature.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
@@ -168,7 +168,7 @@ const GuidePage = {
                 <ChampionSection
                     title={ `${ lang.get(`special`) } ${ index }` }
                     rating={ special && special.rating || true }
-                    subtitle={ special && special.name || true }
+                    name={ special && special.name || true }
                     description={ special && special.description || true }
                     ranges={ special && special.ranges || true }
                     damagetypes={ special && special.damagetypes || true }

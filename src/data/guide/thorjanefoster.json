@@ -1,33 +1,61 @@
 {
-	"description": "Born a mortal on Midgard, Dr. Jane Foster - a frequent ally of Thor and consulting physician for Tony Stark - has proven herself worthy of wielding the mighty hammer Mjölnir. Taking up the mantle of Thor, Jane now fights to protect the realms from all who would seek to destroy them.",
-	"specials": {
-		"1": {
-			"name": "Mjölnir's Rage",
-			"description": "79% chance to Shock your opponent, dealing 122% of your attack as Energy damage over 9 seconds. Shocks ignore Physical Resistance but not Armor."
-		},
-		"2": {
-			"name": "Fury of Asgard",
-			"description": "81% chance to Shock your opponent, dealing 122% of your attack as Energy damage over 9 seconds. Shocks ignore Physical Resistance but not Armor."
-		},
-		"3": {
-			"description": "89% chance to Shock your opponent, dealing 200% of your attack as Energy damage over 9 seconds. Shocks ignore Physical Resistance but not Armor.",
-			"name": "Freyja's Wrath"
-		}
-	},
-	"signature": {
-		"description": "With Freyja's guidance and Mjölnir's power, Thor lets loose \"That Which Smashes\", dealing guaranteed Critical Hits and dealing (17% - 170%) Critical Damage against stunned opponents.",
-		"name": "All-Mother’s Blessing",
-		"note": "The effect counts as 100% Critical Hit Rate and can still be altered by effects like Fatigue and Ant-Man’s Glancing Hit. This effect will work for any Stun effect, not just Stuns gained from Lightning Arc."
-	},
-	"attack": {
-		"description": "Striking an opponent that has been Shocked has a 19% chance to Stun them for 2.1 seconds.",
-		"heavy": "85% chance to Stagger the enemy for 9 seconds. A Staggered enemy cannot gain their next beneficial effect."
-	},
-	"gameplay": {
-		"description": "Jane’s extremely high damage output while the opponent is Stunned or Shocked allows aggressive players to take down strong opponent’s quickly as long as the pace is kept up.",
-		"note": "Shock deals a fair amount of damage, and can get around Bleed and Poison immunity, allowing Jane to deal chip damage to any opposing Champion.",
-		"style": "Offensive"
-	},
+    "description": "Born a mortal on Midgard, Dr. Jane Foster - a frequent ally of Thor and consulting physician for Tony Stark - has proven herself worthy of wielding the mighty hammer Mjölnir. Taking up the mantle of Thor, Jane now fights to protect the realms from all who would seek to destroy them.",
+    "specials": {
+        "1": {
+            "name": "Mjölnir's Rage",
+            "description": "79% chance to Shock your opponent, dealing 122% of your attack as Energy damage over 9 seconds.",
+            "note": "Shocks ignore Physical Resistance but not Armor.",
+            "abilities": [
+                "shock"
+            ],
+            "damagetypes": [
+                "physical",
+                "shock"
+            ]
+        },
+        "2": {
+            "name": "Fury of Asgard",
+            "description": "81% chance to Shock your opponent, dealing 122% of your attack as Energy damage over 9 seconds.",
+            "note": "Shocks ignore Physical Resistance but not Armor.",
+            "damagetypes": [
+                "physical",
+                "shock"
+            ],
+            "abilities": [
+                "shock"
+            ]
+        },
+        "3": {
+            "description": "89% chance to Shock your opponent, dealing 200% of your attack as Energy damage over 9 seconds.",
+            "name": "Freyja's Wrath",
+            "note": "Shocks ignore Physical Resistance but not Armor.",
+            "damagetypes": [
+                "physical",
+                "shock"
+            ],
+            "abilities": [
+                "shock"
+            ]
+        }
+    },
+    "signature": {
+        "description": "With Freyja's guidance and Mjölnir's power, Thor lets loose \"That Which Smashes\", dealing guaranteed Critical Hits and dealing (17% - 170%) Critical Damage against stunned opponents.",
+        "name": "All-Mother’s Blessing",
+        "note": "The effect counts as 100% Critical Hit Rate and can still be altered by effects like Fatigue and Ant-Man’s Glancing Hit. This effect will work for any Stun effect, not just Stuns gained from Lightning Arc."
+    },
+    "attack": {
+        "description": "Striking an opponent that has been Shocked has a 19% chance to Stun them for 2.1 seconds.",
+        "heavy": "85% chance to Stagger the enemy for 9 seconds. A Staggered enemy cannot gain their next beneficial effect.",
+        "abilities": [
+            "stun",
+            "stagger"
+        ]
+    },
+    "gameplay": {
+        "description": "Jane’s extremely high damage output while the opponent is Stunned or Shocked allows aggressive players to take down strong opponent’s quickly as long as the pace is kept up.",
+        "note": "Shock deals a fair amount of damage, and can get around Bleed and Poison immunity, allowing Jane to deal chip damage to any opposing Champion.",
+        "style": "Offensive"
+    },
     "author": {
         "name": "Kabam",
         "profile": {

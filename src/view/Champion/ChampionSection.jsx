@@ -11,7 +11,7 @@ import m from 'mithril';
 const ChampionSection = {
     view(ctrl, args) {
         const {
-            title, subtitle, description, note, heavy,
+            title, name, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
             raw, onEdit,
@@ -113,10 +113,10 @@ const ChampionSection = {
                     </div>
                 );
             }
-            if (subtitle) {
+            if (name) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b {...editableText('subtitle')}>{ editableValue(subtitle) }</b>
+                        <b {...editableText('name')}>{ editableValue(name) }</b>
                     </div>
                 );
             }
@@ -203,10 +203,10 @@ const ChampionSection = {
                     <ChampionGrade title="awakened" grade={ gradeAwakened }/>
                 );
             }
-            if (subtitle) {
+            if (name) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ subtitle }</b>
+                        <b>{ name }</b>
                     </div>
                 );
             }

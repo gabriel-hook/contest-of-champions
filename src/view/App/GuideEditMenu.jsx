@@ -40,7 +40,7 @@ const GuideMenu = {
             if(isIE) {
                 const exporter = document.getElementById('roster-exporter');
                 exporter.document.open('text/html', 'replace');
-                exporter.document.write(`sep=,\r\n${ json }`);
+                exporter.document.write(`sep=,\r\n${ json }\n`);
                 exporter.document.close();
                 exporter.focus();
                 exporter.document.execCommand('SaveAs', true, filename);
