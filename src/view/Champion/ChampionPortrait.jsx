@@ -53,7 +53,7 @@ const ChampionPortrait = {
                                 config={ addSVG }
                             />
                             <div class={ classNames('portrait-image', { 'portrait-image--hidden': !hasPortraitImage }) }>
-                                <img src={ portraitImage && portraitImage.src } />
+                                <img src={ portraitImage && portraitImage.src || null } />
                             </div>
                         </div>
                         <div class="title">
