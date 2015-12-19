@@ -21,7 +21,7 @@ const ChampionSection = {
             const editableText = (key) => ({
                 'contenteditable': true,
                 'class': 'champion-section-textarea',
-                'oninput': (event) => onEdit(key, event.target.innerText),
+                'oninput': (event) => onEdit(key, event.target.innerText.trim()),
                 'onpaste': (event) => {
                     event.preventDefault();
                     const text = (event.originalEvent || event).clipboardData.getData('text/plain');
@@ -122,7 +122,7 @@ const ChampionSection = {
             }
             if (description) {
                 elements.push(
-                    <div class="champion-section-text">
+                    <div class="champion-section-text champion-section-text-description">
                         <div {...editableText('description')}>{ editableValue(description) }</div>
                     </div>
                 );
