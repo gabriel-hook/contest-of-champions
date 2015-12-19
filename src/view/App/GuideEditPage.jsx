@@ -128,7 +128,6 @@ const GuidePage = {
             <ChampionSection
                 title={ lang.get('gameplay') }
                 rating={ gameplay && guide.gameplay.rating || true }
-                name={ gameplay && guide.gameplay.style || true }
                 description={ gameplay && guide.gameplay.description || true }
                 note={ gameplay && guide.gameplay.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'gameplay' ], key, value) }

@@ -105,7 +105,6 @@ const GuidePage = {
                     <ChampionSection
                         title={ lang.get('gameplay') }
                         rating={ guide.gameplay.rating }
-                        name={ guide.gameplay.style }
                         description={ guide.gameplay.description }
                         note={ guide.gameplay.note }
                     />
