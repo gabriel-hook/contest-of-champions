@@ -1,8 +1,6 @@
-import router from '../../service/router';
 import guides from '../../data/guides';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import Icon from '../Icon.jsx';
 import isIE from '../../util/ie';
 import { requestRedraw } from '../../util/animation';
@@ -10,30 +8,14 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const GuideMenu = {
+const GuideEditMenu = {
     view(ctrl, args) {
         const { uid } = args;
         const options = [];
         options.push(
-            <MenuHeader
-                icon={(
-                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
-                    )}
-                title={ `champion-${ uid }-name` }
-            />
+            <MenuHeader title={ `champion-${ uid }-name` } />
         );
-        options.push(
-            <MenuOption
-                icon={(
-                    <Icon icon="user" />
-                )}
-                title="view-guide"
-                onclick={ () => {
-                    router.setRoute(`/guide/${ uid }`);
-                    requestRedraw();
-                }}
-            />
-        );
+
         const exportJSON = (event) => {
             const filename = `${ uid }.json`;
             const json = JSON.stringify(guides[ uid ] || {}, null, 4);
@@ -61,6 +43,7 @@ const GuideMenu = {
                 onclick={ exportJSON }
             />
         );
+
         return (
             <div key={ `guide-menu` }>
                 { options }
@@ -69,4 +52,4 @@ const GuideMenu = {
     },
 };
 
-export default GuideMenu;
+export default GuideEditMenu;
