@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/hook/champions.svg?branch=master)](https://travis-ci.org/hook/champions)
-[![Join the chat at https://gitter.im/hook/champions](https://badges.gitter.im/hook/champions.svg)](https://gitter.im/hook/champions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/baba36c6f40645d78a4479a2d5e51e8f)](https://www.codacy.com/app/gabrielhook/champions)
+[![Join the chat at https://gitter.im/hook/champions](https://img.shields.io/gitter/room/hook/champions.svg)](https://gitter.im/hook/champions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 # Development
 
