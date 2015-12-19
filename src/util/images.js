@@ -19,4 +19,6 @@ function getImage(src) {
     return image.loaded && image;
 }
 
-export { getImage };
+const DATA_IMAGE_EMPTY = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+
+export { getImage, DATA_IMAGE_EMPTY };

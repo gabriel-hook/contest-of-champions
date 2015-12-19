@@ -1,7 +1,7 @@
 import './ChampionPortrait.scss';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
-import { getImage } from '../../util/images';
+import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
 import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -53,7 +53,7 @@ const ChampionPortrait = {
                                 config={ addSVG }
                             />
                             <div class={ classNames('portrait-image', { 'portrait-image--hidden': !hasPortraitImage }) }>
-                                <img src={ portraitImage && portraitImage.src || null } />
+                                <img src={ portraitImage && portraitImage.src || DATA_IMAGE_EMPTY } />
                             </div>
                         </div>
                         <div class="title">
