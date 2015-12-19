@@ -12,7 +12,6 @@
   Install all [NPM](https://www.npmjs.com/) packages and update packages that need it.
 
 ```
-  $ npm install gulp -g
   $ npm install
 ```
 
@@ -21,7 +20,7 @@
   Lint, Build and publish to gh-pages branch.
 
 ```
-  gulp publish
+  npm run deploy
 ```
 
 ### Testing
@@ -29,5 +28,5 @@
   Run a webpack-dev-server for v2 and navigate to [localhost:8080](http://localhost:8080) test changes. 
 
 ```
-  gulp dev
+  npm run server
 ```

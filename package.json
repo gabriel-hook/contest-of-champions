@@ -4,10 +4,10 @@
     "description": "Contest of Champions Companion App",
     "main": "index.html",
     "scripts": {
-        "server": "gulp server",
-        "lint": "gulp lint",
-        "deploy": "gulp lint && gulp deploy",
-        "test": "gulp lint && gulp deploy"
+        "server": "./node_modules/.bin/gulp server",
+        "lint": "./node_modules/.bin/gulp lint",
+        "deploy": "npm run lint && ./node_modules/.bin/gulp deploy",
+        "test": "npm run lint"
     },
     "repository": {
         "type": "git",
