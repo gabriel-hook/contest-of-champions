@@ -34,9 +34,9 @@ if(router._invoked) {
     router.routes = {};
 }
 
-router.on('/guide', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
+router.on('/guide/?', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
 
-router.on('/guide/:uid', (uid) => {
+router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
     app.pages[ 'guide' ] = (
         <GuidePage uid={ uid } />
@@ -54,7 +54,7 @@ router.on('/guide/:uid', (uid) => {
     requestRedraw();
 });
 
-router.on('/guide/:uid/edit', (uid) => {
+router.on('/guide/:uid/edit/?', (uid) => {
     app.edit = true;
     app.tab = 'guide';
     app.pages[ 'guide' ] = (
@@ -71,7 +71,7 @@ router.on('/guide/:uid/edit', (uid) => {
     requestRedraw();
 });
 
-router.on('/roster', () => {
+router.on('/roster/?', () => {
     app.tab = 'roster';
     app.pages[ 'roster-show' ] = (
         <RosterPage />
@@ -97,7 +97,7 @@ router.on('/roster', () => {
     requestRedraw();
 });
 
-router.on('/roster/add/:stars', (stars) => {
+router.on('/roster/add/:stars/?', (stars) => {
     app.tab = 'roster';
     app.pages[ 'roster-add' ] = (
         <RosterAddPage stars={ parseInt(stars, 10) } />
@@ -124,7 +124,7 @@ router.on('/roster/add/:stars', (stars) => {
     requestRedraw();
 });
 
-router.on('/roster/:uid/:stars', (uid, stars) => {
+router.on('/roster/:uid/:stars/?', (uid, stars) => {
     app.tab = 'roster';
     app.pages[ 'roster-edit' ] = (
         <RosterEditPage uid={ uid } stars={ parseInt(stars, 10) } />
@@ -150,7 +150,7 @@ router.on('/roster/:uid/:stars', (uid, stars) => {
     requestRedraw();
 });
 
-router.on('/teams/settings', () => {
+router.on('/teams/settings/?', () => {
     app.tab = 'teams';
     app.pages[ 'teams-settings' ] = (
         <TeamsSettingsPage />
@@ -175,7 +175,7 @@ router.on('/teams/settings', () => {
     requestRedraw();
 });
 
-router.on('/teams', () => {
+router.on('/teams/?', () => {
     app.tab = 'teams';
     app.pages[ 'teams-main' ] = (
         <TeamsPage />
@@ -200,9 +200,9 @@ router.on('/teams', () => {
     requestRedraw();
 });
 
-router.on('/synergy', () => router.setRoute(`/synergy/${ 2 }`));
+router.on('/synergy/?', () => router.setRoute(`/synergy/${ 2 }`));
 
-router.on('/synergy/:stars', (stars) => {
+router.on('/synergy/:stars/?', (stars) => {
     app.tab = 'synergy';
     app.pages[ 'synergy' ] = (
         <SynergyPage stars={ parseInt(stars, 10) } />

@@ -168,18 +168,6 @@ const ChampionSection = {
                         ) }
                     </div>
                 );
-                elements.push(
-                    <div class="champion-section-text">
-                        <b>{ lang.get('abilities') }:</b>
-                        { abilities.map((ability, index) => (
-                        <span class={ `champion-section-ability-${ ability }` }>{
-                            (index < abilities.length - 1)?
-                                `${ lang.get(`ability-${ ability }`) }, `:
-                                lang.get(`ability-${ ability }`)
-                            }</span>
-                            )) }
-                    </div>
-                );
             }
             if (note) {
                 elements.push(
