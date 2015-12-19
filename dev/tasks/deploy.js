@@ -21,4 +21,4 @@ gulp.task('gh-pages', () => gulp.src([
         push: DEVELOPMENT,
     })));
 
-gulp.task('publish', [ 'lint' ], sequence('clean', 'assets', 'webpack', 'gh-pages'));
+gulp.task('deploy', sequence('clean', 'assets', 'webpack', 'gh-pages'));

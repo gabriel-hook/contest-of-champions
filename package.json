@@ -4,10 +4,10 @@
     "description": "Contest of Champions Companion App",
     "main": "index.html",
     "scripts": {
-        "dev": "gulp dev",
+        "server": "gulp server",
         "lint": "gulp lint",
-        "publish": "gulp publish",
-        "test": "gulp lint"
+        "deploy": "gulp lint && gulp deploy",
+        "test": "gulp lint && gulp deploy"
     },
     "repository": {
         "type": "git",

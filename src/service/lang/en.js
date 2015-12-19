@@ -81,25 +81,6 @@ export default {
     'champion-thorjanefoster-shortname': 'Thor',
     'champion-unstoppablecolossus-shortname': 'Unst. Colossus',
 
-    //Ability name
-    'ability-stun-name': 'Stun',
-    'ability-fatigue-name': 'Fatigue',
-    'ability-powerdrain-name': 'Power Drain',
-    'ability-powerburn-name': 'Power Burn',
-    'ability-bleed-name': 'Bleed',
-    'ability-cauterize-name': 'Cauterize',
-    'ability-armorbreak-name': 'Armor Break',
-    'ability-fury-name': 'Fury',
-    'ability-regeneration-name': 'Regeneration',
-    'ability-unstoppable-name': 'Unstoppable',
-    'ability-poison-name': 'Poison',
-    'ability-armorup-name': 'Armor Up',
-    'ability-plusdamage-name': 'Increased Damage',
-    'ability-pluscritrate-name': 'Increased Critical Rate',
-    'ability-pluscritdamage-name': 'Increased Critical Damage',
-    'ability-poisonimmunity-name': 'Poison Immunity',
-    'ability-bleedimmunity-name': 'Bleed Immunity',
-
     //Effect name
     'effect-attack-name': 'Attack',
     'effect-stun-name': 'Stun',
@@ -275,9 +256,9 @@ export default {
     'ability-unstoppable': 'Unstoppable',
     'ability-poison': 'Poison',
     'ability-armorup': 'Armor Up',
-    'ability-plusdamage': '+Damage',
-    'ability-pluscritrate': 'Critical Rate',
-    'ability-pluscritdamage': '+Critical Damage',
+    'ability-plusdamage': 'Increased Damage',
+    'ability-pluscritrate': 'Increased Critical Rate',
+    'ability-pluscritdamage': 'Increased Critical Damage',
     'ability-poisonimmunity': 'Poison Immunity',
     'ability-bleedimmunity': 'Bleed Immunity',
 

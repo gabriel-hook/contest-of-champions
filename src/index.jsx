@@ -45,11 +45,17 @@ router.on('/guide/:uid', (uid) => {
         <GuideMenu uid={ uid } />
     );
     app.button = null;
+
+    app.button = app.edit? {
+        icon: 'pencil',
+        onclick: () => router.setRoute(`/guide/${ uid }/edit`),
+    }: null;
     analytics.pageView();
     requestRedraw();
 });
 
 router.on('/guide/:uid/edit', (uid) => {
+    app.edit = true;
     app.tab = 'guide';
     app.pages[ 'guide' ] = (
         <GuideEditPage uid={ uid } />
@@ -57,7 +63,10 @@ router.on('/guide/:uid/edit', (uid) => {
     app.menu = (
         <GuideEditMenu uid={ uid } />
     );
-    app.button = null;
+    app.button = {
+        icon: 'reply',
+        onclick: () => router.setRoute(`/guide/${ uid }`),
+    };
     analytics.pageView();
     requestRedraw();
 });

@@ -20,4 +20,38 @@ const guides = {
     warmachine,
 };
 
+const RATINGS = [ 1, 2, 3, 4, 5 ];
+const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
+const RANGES = [
+    'melee',
+    'short',
+    'medium',
+    'long',
+];
+const DAMAGE_TYPES = [
+    'physical',
+    'energy',
+    'shock',
+];
+const ABILITIES = [
+    'stun',
+    'fatigue',
+    'powerdrain',
+    'powerburn',
+    'bleed',
+    'cauterize',
+    'armorbreak',
+    'fury',
+    'regeneration',
+    'unstoppable',
+    'poison',
+    'armorup',
+    'plusdamage',
+    'pluscritrate',
+    'pluscritdamage',
+    'poisonimmunity',
+    'bleedimmunity',
+];
+
+export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES };
 export default guides;

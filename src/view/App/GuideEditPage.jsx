@@ -174,11 +174,10 @@ const GuidePage = {
                     damagetypes={ special && special.damagetypes || true }
                     abilities={ special && special.abilities || true }
                     note={ special && special.note || true }
-                    onEdit={ (key, value) => editGuide(uid, [ 'special', index ], key, value) }
+                    onEdit={ (key, value) => editGuide(uid, [ 'specials', index ], key, value) }
                 />
             );
         });
-
         details.push(
             <ChampionSection
                 title={ lang.get('synergies') }

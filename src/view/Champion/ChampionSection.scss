@@ -19,7 +19,7 @@
         padding: 16px;
         z-index: 1;
 
-        .champion-section-input,
+        .champion-section-item,
         .champion-section-select,
         .champion-section-textarea {
             text-shadow: 0 0 0 #000;
@@ -40,7 +40,7 @@
 
     }
 
-    .champion-section-input,
+    .champion-section-item,
     .champion-section-select,
     .champion-section-textarea {
         background: rgba(0, 0, 0, 0);
@@ -48,8 +48,23 @@
         border: dashed 1px #666;
     }
 
+    .champion-section-items {
+        padding: 16px 0 8px;
+    }
+
+    .champion-section-item {
+        @include font-title(1em);
+        padding: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
     .champion-section-select {
         @include font-title(1em);
+
+        &.champion-section-select-item {
+            width: 36px;
+        }
     }
 
     .champion-section-textarea {
