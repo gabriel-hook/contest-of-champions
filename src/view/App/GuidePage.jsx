@@ -152,6 +152,7 @@ const GuidePage = {
                         title={ lang.get('gameplay') }
                         rating={ guide.gameplay.rating }
                         description={ guide.gameplay.description }
+                        abilities={ guide.gameplay.abilities }
                         note={ guide.gameplay.note }
                     />
                 );

@@ -137,6 +137,7 @@ const GuideEditPage = {
                 title={ lang.get('gameplay') }
                 rating={ gameplay && guide.gameplay.rating || true }
                 description={ gameplay && guide.gameplay.description || true }
+                abilities={ gameplay && guide.gameplay.abilities || true }
                 note={ gameplay && guide.gameplay.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'gameplay' ], key, value) }
             />

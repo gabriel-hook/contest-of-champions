@@ -2,6 +2,7 @@ import blackbolt from './guide/blackbolt';
 import daredevilnetflix from './guide/daredevilnetflix';
 import deadpoolxforce from './guide/deadpoolxforce';
 import elektra from './guide/elektra';
+import groot from './guide/groot';
 import guillotine from './guide/guillotine';
 import joefixit from './guide/joefixit';
 import lukecage from './guide/lukecage';
@@ -21,6 +22,7 @@ const guides = {
     daredevilnetflix,
     deadpoolxforce,
     elektra,
+    groot,
     guillotine,
     joefixit,
     lukecage,

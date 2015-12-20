@@ -1,0 +1,37 @@
+{
+    "description": "“I am...Groot. I am Groot! I am…”\n Yeah, thanks for that – listen, Rocket here. There’s only four things you gotta know about Groot. Number one, he’s a walking tree from some far away planet…”\n “I am Groot!”\n “Sorry, ‘Flora Colossus’, not ‘tree person’. Geez. Number two, he’s real kind and passive until you make him mad. Three, he can only say three words; try and guess which ones? And four, me and him have been together forever. You mess with him, and you mess with me, and my really big gun.”",
+    "specials": {
+        "1": {
+            "name": "I am Groot",
+            "note": "This attack pierces 50% of the enemy’s Armor."
+        },
+        "2": {
+            "name": "I AM GROOT!",
+            "description": "Advanced cellular regeneration allows up to 13% Health to be recovered over 6 seconds, based on lost Health\n The more health Groot has lost at the time of activation, the more Health he will Regenerate from this attack.",
+            "note": "This attack is unblockable but deals reduced damage."
+        },
+        "3": {
+            "name": "WE ARE GROOT!",
+            "abilities": [
+                "bleed"
+            ],
+            "note": "100% chance to inflict Bleed, dealing 95% of your Attack as direct damage over 3 seconds."
+        }
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "626306-Groot-Champion-Spotlight-Early-View"
+    },
+    "signature": {
+        "name": "Gentle Giant",
+        "description": "Groot grows tired of watching his friends get hurt in combat and begins the fight with 2 Pacifism charges. Additionally, each Fury stack gained from throwing off his gentle nature has a (20% - 60%) chance to activate a charge of Cruelty, increasing Critical Hit Damage by 25% each.\n The two charges of Pacifism gained at the start of the fight cannot cause Groot to immediately snap. He will have to gain at least one more charge to snap."
+    },
+    "gameplay": {
+        "description": "Groot’s gentle nature is put to the test any time the opponent strikes with a Critical Hit or uses a Special Attack against him, with a 100% chance to gain a Pacifism charge. Each time a charge is gained, Groot has a 10% chance per charge to throw off his gentle nature.\n When Groot throws off his gentle nature, he gains one Fury and one Resist Physical effect for each Pacifism charge, increasing Attack by 19% for 10 seconds.\n Groot gains Pacifism charges whenever an opponent activates a Special Attack, regardless of whether or not he is struck by it.\n The chance to throw off his gentle nature climbs as he gains charges. It goes 10%, 20%, 30% etc, until he finally snaps.",
+        "abilities": [
+            "bleedimmunity"
+        ],
+        "note": "Unique physiology allows detrimental effects to be shrugged off 53% faster than normal."
+    }
+}

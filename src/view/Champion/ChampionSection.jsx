@@ -211,9 +211,9 @@ const ChampionSection = {
             }
             if (description) {
                 elements.push(
-                    <div class="champion-section-text champion-section-text-description">
-                        <div>{ description.trim() }</div>
-                    </div>
+                    <div class="champion-section-text champion-section-text-description">{
+                        description.trim()
+                    }</div>
                 );
             }
             if (heavy) {
@@ -277,15 +277,11 @@ const ChampionSection = {
         }
         if(raw) {
             elements.push(
-                <div class="champion-section-raw">
-                    { raw }
-                </div>
+                <div class="champion-section-raw">{ raw }</div>
             );
         }
         return (
-            <div class="champion-section">
-                { elements }
-            </div>
+            <div class="champion-section">{ elements }</div>
         );
     },
 };
