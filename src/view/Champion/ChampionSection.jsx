@@ -212,7 +212,7 @@ const ChampionSection = {
             if (description) {
                 elements.push(
                     <div class="champion-section-text champion-section-text-description">{
-                        description.trim()
+                        description.replace(/(\s*\n\s*)+/g, '\n\n').trim()
                     }</div>
                 );
             }
