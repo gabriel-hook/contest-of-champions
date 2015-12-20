@@ -80,7 +80,7 @@ const GuideEditAuthor = {
             </div>
         );
 
-        if(type) {
+        if(type && type !== true) {
             elements.push(
                 <div class="champion-section-text">
                     <b>{ lang.get(
@@ -189,9 +189,9 @@ const GuideEditPage = {
         const author = guide && guide.author;
         details.push(
             <GuideEditAuthor
-                name={ author.name }
-                type={ author.type }
-                profile={ author.profile }
+                name={ author && author.name || true }
+                type={ author && author.type || true }
+                profile={ author && author.profile || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'author' ], key, value) }
             />
         );
