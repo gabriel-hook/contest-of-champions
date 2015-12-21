@@ -42,6 +42,10 @@
             position: relative;
             box-sizing: border-box;
 
+            &.field-input-large {
+                padding-right: 96px;
+            }
+
             .field-value {
                 position: absolute;
                 right: 0;

@@ -16,17 +16,17 @@ const DUPLICATE_TITLES = {
 
 const Slider = {
     view(ctrl, args) {
-        const { object, field } = args;
+        const { object, field, scale = 1, max = 100 } = args;
         return (
             <input
                 class="field-slider"
                 type="range"
                 min="0"
-                max="100"
+                max={ max }
                 step="1"
-                value={ parseInt(object[ field ] * 100, 10) }
+                value={ parseInt(object[ field ] * scale, 10) }
                 oninput={ (event) => {
-                    object[ field ] = event.target.value / 100;
+                    object[ field ] = event.target.value / scale;
                     update();
                     requestRedraw(10);
                 } }
@@ -41,7 +41,7 @@ const TeamsSettingsPage = {
             <div class="field">
                 <label class="field-name">{ lang.get(`effect-${ attr.uid }-name`) }</label>
                 <div class="field-input">
-                    <Slider object={ teams.weights } field={ `effect-${ attr.uid }` } />
+                    <Slider object={ teams.weights } field={ `effect-${ attr.uid }` } scale={ 100 } />
                     <span class="field-value">
                         { (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
                     </span>
@@ -55,13 +55,31 @@ const TeamsSettingsPage = {
                     { `(${ count }x)` }
                 </label>
                 <div class="field-input">
-                    <Slider object={ teams.weights } field={ `duplicates-${ count }` } />
+                    <Slider object={ teams.weights } field={ `duplicates-${ count }` } scale={ 100 } />
                     <span class="field-value">
                         { (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
                     </span>
                 </div>
             </div>
         ));
+
+        const piRangeSliders = [
+            'minimum',
+            'maximum',
+        ].map((which) => (
+            <div class="field">
+                <label class="field-name">
+                    { lang.get(`pi-range-${ which }`) }
+                </label>
+                <div class="field-input field-input-large">
+                    <Slider object={ teams.range } field={ which } max={ 10000 } />
+                    <span class="field-value">
+                        { (teams.range[ which ] | 0) }
+                    </span>
+                </div>
+            </div>
+        ));
+
         return (
             <div class="teams-settings">
                 <div class="header">
@@ -72,6 +90,10 @@ const TeamsSettingsPage = {
                     { lang.get('duplicate-weights') }
                 </div>
                 { duplicateSliders }
+                <div class="header">
+                    { lang.get('pi-range') }
+                </div>
+                { piRangeSliders }
                 <div class="clear" />
             </div>
         );

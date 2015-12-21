@@ -108,7 +108,13 @@ function available(stars) {
     if(available === undefined) {
         const has = {};
         roster.forEach((champion) => has[ champion.id ] = true);
-        available = cache[ key ] = champions.filter((champion) => stars === champion.attr.stars && !has[ champion.id ]);
+        available = cache[ key ] = champions
+            .filter((champion) => stars === champion.attr.stars && !has[ champion.id ])
+            .map((champion) => new Champion({
+                ...champion.attr,
+                rank: 0,
+                level: 0,
+            }));
     }
     return available;
 }

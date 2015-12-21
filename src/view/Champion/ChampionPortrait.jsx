@@ -19,8 +19,8 @@ function addSVG(element, isInitialized) {
 
 const ChampionPortrait = {
     view(ctrl, args) {
-        const { events, onclick, selected, neighbor } = args;
-        const { uid, stars, typeId, awakened } = args.champion.toJSON();
+        const { champion, events, onclick, selected, neighbor } = args;
+        const { uid, stars, pi, typeId, awakened } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
                 src="images/icons/star-awakened.png"
@@ -38,6 +38,19 @@ const ChampionPortrait = {
         const portraitImage = getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+        const title = [];
+        if(pi || champion.pi) {
+            title.push(
+                <div
+                    class={ classNames('title-field', 'title-field-pi', {
+                        'title-field-pi-custom': pi && pi > 0,
+                    }) }
+                >{ pi || champion.pi }</div>
+            );
+        }
+        title.push(
+            <div class="title-field title-field-name">{ name }</div>
+        );
         return (
             <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected, 'champion--neighbor': neighbor }) }>
                 <div class={ classNames('container', 'no-select') }>
@@ -56,9 +69,7 @@ const ChampionPortrait = {
                                 <img src={ portraitImage && portraitImage.src || DATA_IMAGE_EMPTY } />
                             </div>
                         </div>
-                        <div class="title">
-                            <span class="name">{ name }</span>
-                        </div>
+                        <div class="title">{ title }</div>
                         <div class={ classNames('stars', { 'stars--awakened': awakened }) }>
                             { starImages }
                         </div>

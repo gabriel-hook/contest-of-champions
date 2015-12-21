@@ -84,7 +84,7 @@
         border-bottom: solid 10px;
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
 
-        .name {
+        .title-field {
             display: block;
             box-sizing: border-box;
             text-align: center;
@@ -92,7 +92,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #f6f6f6;
+            color: #eee;
             @include font-title(1em);
             text-transform: uppercase;
             text-shadow: 0 1px 0 #000;
@@ -109,6 +109,15 @@
                 font-size: 1em;
                 padding: 8px 4px;
             }
+
+            &.title-field-pi {
+                color: #999;
+                padding-bottom: 0;
+            }
+
+            &.title-field-pi-custom {
+                color: #eee;
+            }
         }
 
         @media (max-width: 355px) {
@@ -123,7 +132,7 @@
             top: 100%;
             background: #fff;
 
-            .name {
+            .title-field {
                 color: #000;
                 text-shadow: none;
             }

@@ -81,6 +81,10 @@ const teams = {
         ...PRESETS_DUPLICATES[ 'balanced' ],
         ...PRESETS[ 'offensive' ],
     },
+    range: {
+        minimum: 0,
+        maximum: 10000,
+    },
     ...fromStorage('teams', {}),
     progress: 0,
     building: false,
