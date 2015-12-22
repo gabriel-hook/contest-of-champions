@@ -17,7 +17,6 @@ const GuideEditMenu = {
         );
 
         const exportJSON = (event) => {
-            const filename = `${ uid }.json`;
             const json = JSON.stringify(guides[ uid ] || {}, null, 4);
             if(isIE) {
                 const exporter = document.getElementById('roster-exporter');
@@ -29,7 +28,6 @@ const GuideEditMenu = {
             }
             else {
                 const { target } = event;
-                target.setAttribute('download', filename);
                 target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(json) }`);
             }
             requestRedraw();
@@ -40,6 +38,7 @@ const GuideEditMenu = {
                         <Icon icon="floppy-o" />
                     )}
                 title="export-json"
+                download={ `${ uid }.json` }
                 onclick={ exportJSON }
             />
         );

@@ -7,12 +7,20 @@ import m from 'mithril';
 
 const MenuOption = {
     view(ctrl, args) {
-        const { title, icon, onclick, href, selected, progress, red } = args;
-        let link;
+        const { title, icon, onclick, href, download, selected, progress, red } = args;
+        let link = {};
         if(href) {
             link = {
+                ...link,
                 href,
                 target: '_blank',
+            };
+        }
+        if(download) {
+            link = {
+                ...link,
+                download,
+                href: 'data:text/csv;charset=utf-8,',
             };
         }
         return (

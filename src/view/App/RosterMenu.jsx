@@ -80,7 +80,6 @@ const RosterMenu = {
             else {
                 const { target } = event;
                 const csv = roster.toCSV();
-                target.setAttribute('download', 'champions.csv');
                 target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(csv) }`);
             }
             requestRedraw();
@@ -91,6 +90,7 @@ const RosterMenu = {
                         <Icon icon="floppy-o" />
                     )}
                 title="export-csv"
+                download="champions.csv"
                 onclick={ exportCSV }
             />
         );
