@@ -110,14 +110,6 @@ const Team = {
     view(ctrl, args) {
         const { champions, synergies } = args;
         const size = champions.length;
-        ctrl.pure = champions.reduce((value, champion) => {
-            if(value) {
-                const image = getImage(`images/champions/portrait_${ champion.attr.uid }.png`);
-                if(!image)
-                    return false;
-            }
-            return value;
-        }, true);
         return(
             <div
                 class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
@@ -168,4 +160,4 @@ const Team = {
     },
 };
 
-export default pure(Team);
+export default Team;

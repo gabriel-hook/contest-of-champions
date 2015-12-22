@@ -67,6 +67,17 @@ const PRESETS_DUPLICATES = {
     },
 };
 
+const PRESETS_RANGE = {
+    'all': {
+        'minimum': 0,
+        'maximum': 10000,
+    },
+    'streak': {
+        'minimum': 2400,
+        'maximum': 2600,
+    },
+};
+
 const teams = {
     type: 'arena',
     size: 3,
@@ -185,5 +196,5 @@ function buildTeams() {
     });
 }
 
-export { PRESETS, PRESETS_DUPLICATES, update, buildTeams };
+export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, update, buildTeams };
 export default teams;

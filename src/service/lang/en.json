@@ -136,6 +136,9 @@
     "preset-duplicates-balanced-name": "Balanced",
     "preset-duplicates-none-name": "None",
 
+    "preset-range-all-name": "All",
+    "preset-range-streak-name": "4* Streak",
+
     "of": "of",
     "with": "with",
     "found": "Found",
@@ -192,6 +195,10 @@
 
     "synergy-weights": "Synergy Weights",
     "duplicate-weights": "Duplicate Class Weights",
+
+    "pi-range": "PI Range",
+    "pi-range-minimum": "Minimum",
+    "pi-range-maximum": "Maximum",
 
     "double": "Double",
     "triple": "Triple",
