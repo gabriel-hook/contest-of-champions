@@ -73,8 +73,8 @@ const PRESETS_RANGE = {
         'maximum': 10000,
     },
     'streak': {
-        'minimum': 2400,
-        'maximum': 2600,
+        'minimum': 4000,
+        'maximum': 4500,
     },
 };
 
