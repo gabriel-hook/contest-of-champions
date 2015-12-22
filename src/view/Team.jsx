@@ -1,9 +1,7 @@
 import './Team.scss';
 import deepEqual from 'deep-equal';
 import classNames from 'classnames';
-import { getImage } from '../util/images';
 import effects, { effectImage } from '../data/effects';
-import pure from '../util/pure';
 import lang from '../service/lang';
 import ChampionPortrait from './Champion/ChampionPortrait.jsx';
 import ImageIcon from './ImageIcon.jsx';
