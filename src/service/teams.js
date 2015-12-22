@@ -96,6 +96,7 @@ function update() {
         size: teams.size,
         stars: teams.stars,
         weights: teams.weights,
+        range: teams.range,
     });
 }
 
@@ -176,6 +177,9 @@ function buildTeams() {
             size: teams.size,
             weights: {
                 ...teams.weights,
+            },
+            range: {
+                ...teams.range,
             },
         },
     });

@@ -8,6 +8,7 @@ function buildQuest({
     champions,
     size,
     weights,
+    range,
     progress,
 }) {
     const preselect = [];
@@ -34,7 +35,7 @@ function buildQuest({
             quest,
             type: typeIds.indexOf(typeId),
             synergies,
-            value: champion.attr.pi || champion.pi,
+            pi: champion.attr.pi || champion.pi,
         };
     }).filter((champion) => {
         if(champion.quest) {
@@ -52,9 +53,9 @@ function buildQuest({
     };
 
     const team = (preselect.length > 0)? ((preselect.length > size)?
-        getTopPartner(preselect, 0, size, typeWeights, progressIncrement):
-        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, progressIncrement)
-    ): getTopPartner(list, 0, size, typeWeights, progressIncrement);
+        getTopPartner(preselect, 0, size, typeWeights, range, progressIncrement):
+        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, range, progressIncrement)
+    ): getTopPartner(list, 0, size, typeWeights, range, progressIncrement);
 
     if(team.value > 0) {
         return {
@@ -70,7 +71,7 @@ function buildQuest({
     };
 }
 
-function getTopPartner(list, index, depth, typeWeights, progressIncrement) {
+function getTopPartner(list, index, depth, typeWeights, range, progressIncrement) {
     if(index >= list.length)
         return null;
     const current = getNextPartner(
@@ -81,21 +82,25 @@ function getTopPartner(list, index, depth, typeWeights, progressIncrement) {
         index + 1,
         depth,
         typeWeights,
+        range,
         progressIncrement
     );
     if(current === null)
         return null;
-    const next = getTopPartner(list, index+1, depth, typeWeights, progressIncrement);
+    const next = getTopPartner(list, index+1, depth, typeWeights, range, progressIncrement);
     return (compareTeams(current, next) >= 0)? current: next;
 }
 
-function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, progressIncrement) {
+function getNextPartner(list, champions, synergies, types, index, depth, typeWeights, range, progressIncrement) {
     if(champions.length === depth) {
         progressIncrement();
+        const pi = champions.reduce((value, { pi }) => value + pi, 0);
+        const value = (pi && pi >= range.minimum && pi <= range.maximum)?
+            getTeamValue(champions, synergies, types, typeWeights): 0;
         return {
             champions,
             synergies,
-            value: getTeamValue(champions, synergies, types, typeWeights),
+            value,
         };
     }
     if(index === list.length)
@@ -108,9 +113,10 @@ function getNextPartner(list, champions, synergies, types, index, depth, typeWei
         index + 1,
         depth,
         typeWeights,
+        range,
         progressIncrement
     );
-    const next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, progressIncrement);
+    const next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, range, progressIncrement);
 
     return (compareTeams(current, next) >= 0)? current: next;
 }
@@ -148,7 +154,7 @@ function addPartnerSynergies(oldSynergies, list, next) {
 
 function getTeamValue(champions, synergies, types, typeWeights) {
     return types.reduce((value, typeAmount) => (typeAmount > 1)? value * typeWeights[ typeAmount ]: value, 1)
-        * champions.reduce((value, champion) => value + champion.value, 0)
+        * champions.reduce((value, champion) => value + champion.pi, 0)
         * synergies.reduce((value, synergy) => value + synergy.value, 0);
 }
 

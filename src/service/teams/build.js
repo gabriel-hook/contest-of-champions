@@ -2,14 +2,15 @@ import buildArena from './build-arena';
 import buildQuest from './build-quest';
 
 function build({
+    type,
     champions,
     size,
-    type,
     weights,
+    range,
     progress,
 }) {
-    return (type === 'arena')? buildArena({ champions, size, weights, progress }):
-        (type === 'quest')? buildQuest({ champions, size, weights, progress }):
+    return (type === 'arena')? buildArena({ champions, size, weights, range, progress }):
+        (type === 'quest')? buildQuest({ champions, size, weights, range, progress }):
         { teams: [], extras: [] };
 }
 

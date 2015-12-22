@@ -7,6 +7,7 @@ function buildArena({
     champions,
     size,
     weights,
+    range,
     progress,
 }) {
     const maxTeams = Math.floor(champions.length/size);
@@ -26,7 +27,7 @@ function buildArena({
             fid,
             uid,
             typeId,
-            value: champion.attr.pi || champion.pi,
+            pi: champion.attr.pi || champion.pi,
         };
         synergyMap[ fid ] = {};
         dataSynergies
@@ -63,6 +64,7 @@ function buildArena({
     }
 
     const teamValues = {};
+    const teamPis = {};
     function getTeamValue(array, index, swap) {
         if(index >= forceExtras)
             return 0;
@@ -73,6 +75,7 @@ function buildArena({
 
         const tid = getTeamId(team);
         let value = teamValues[ tid ];
+        let pi = teamPis[ tid ];
         if(value === undefined) {
             const types = {};
             let championValue = 0;
@@ -80,7 +83,7 @@ function buildArena({
             for(let i=0; i<team.length; i++) {
                 const champion = team[ i ];
                 //get my value
-                championValue += champion.value;
+                championValue += champion.pi;
                 //get my synergies
                 const synergies = synergyMap[ champion.fid ];
                 for(let j=0; j<team.length; j++) {
@@ -97,9 +100,10 @@ function buildArena({
             }
 
             //combine them
+            teamPis[ tid ] = pi = championValue;
             teamValues[ tid ] = value = championValue * synergyValue * typeValue;
         }
-        return value;
+        return (pi && pi <= range.maximum && pi >= range.minimum)? value: 0;
     }
 
     const progressMax = 24;

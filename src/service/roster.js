@@ -2,7 +2,11 @@ import Champion from '../data/model/Champion';
 import champions, { idMap as championMap } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
-let roster = fromStorage('roster', []).map((attr) => new Champion(attr));
+let roster = fromStorage('roster', []).map((attr) => new Champion({
+    ...attr,
+    level: Math.max(1, attr.level),
+    rank: Math.max(1, attr.rank),
+}));
 let cache = {};
 
 function save() {
@@ -120,7 +124,11 @@ function available(stars) {
 }
 
 function addAll(stars) {
-    const champions = available(stars).map((champion) => new Champion({ ...champion.attr }));
+    const champions = available(stars).map((champion) => new Champion({
+        ...champion.attr,
+        level: 1,
+        rank: 1,
+    }));
     roster = [
         ...roster,
         ...champions,
@@ -132,7 +140,11 @@ function add(uid, stars) {
     const champion = champions.find((champion) => (champion.attr.uid === uid && champion.attr.stars === stars));
     roster = [
         ...roster,
-        new Champion({ ...champion.attr }),
+        new Champion({
+            ...champion.attr,
+            level: 1,
+            rank: 1,
+        }),
     ];
     save();
 }
