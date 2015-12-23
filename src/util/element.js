@@ -19,4 +19,4 @@ function clickElementById(id) {
     }
 }
 
-export { clickElementById }
+export { clickElementById };

@@ -3,7 +3,6 @@ import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
-import isIE from '../../util/ie';
 import { clickElementById } from '../../util/element';
 import { loadFileFromInput, saveFileEventHandler } from '../../util/io';
 /* eslint-disable no-unused-vars */

@@ -19,7 +19,6 @@ function saveFileEventHandler(event, type, filename, data) {
     }
     else {
         const { target } = event;
-        console.log(filename, data)
         target.setAttribute('href', `data:${ type };charset=utf-8,${ encodeURIComponent(data) }`);
     }
 }
