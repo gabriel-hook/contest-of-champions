@@ -2,7 +2,8 @@ import guides from '../../data/guides';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
-import isIE from '../../util/ie';
+import { clickElementById } from '../../util/element';
+import { loadFileFromInput, saveFileEventHandler } from '../../util/io';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -16,33 +17,50 @@ const GuideEditMenu = {
             <MenuHeader title={ `champion-${ uid }-name` } />
         );
 
-        const exportJSON = (event) => {
-            const json = JSON.stringify(guides[ uid ] || {}, null, 4);
-            if(isIE) {
-                const exporter = document.getElementById('roster-exporter');
-                exporter.document.open('text/html', 'replace');
-                exporter.document.write(`sep=,\r\n${ json }\n`);
-                exporter.document.close();
-                exporter.focus();
-                exporter.document.execCommand('SaveAs', true, filename);
-            }
-            else {
-                const { target } = event;
-                target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(json) }`);
-            }
-            requestRedraw();
-        };
+        if (window.FileReader) {
+            const handleTextInput = (text) => guides[ uid ] = JSON.parse(text);
+            options.push(
+                <MenuOption
+                    icon={(
+                        <Icon icon="clipboard" />
+                    )}
+                    title="import-json"
+                    onclick={ () => {
+                        clickElementById('guide-importer');
+                        requestRedraw(5);
+                    } }
+                />
+            );
+            options.push(
+                <input
+                    id="guide-importer"
+                    style="display:none"
+                    type="file"
+                    accept=".json"
+                    value=""
+                    onchange={ function() {
+                        /* eslint-disable no-invalid-this */
+                        loadFileFromInput((this.files && this.files[ 0 ]), handleTextInput);
+                        /* eslint-enable no-invalid-this */
+                    } }
+                />
+            );
+        }
+
+        const filename = `${ uid }.json`;
         options.push(
             <MenuOption
                 icon={(
                         <Icon icon="floppy-o" />
                     )}
                 title="export-json"
-                download={ `${ uid }.json` }
-                onclick={ exportJSON }
+                download={ filename }
+                onclick={ (event) => {
+                    saveFileEventHandler(event, 'text/csv', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
+                    requestRedraw(5);
+                }}
             />
         );
-
         return (
             <div key={ `guide-menu` }>
                 { options }

@@ -4,57 +4,27 @@ import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 import isIE from '../../util/ie';
+import { clickElementById } from '../../util/element';
+import { loadFileFromInput, saveFileEventHandler } from '../../util/io';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
-
-function importCSV() {
-    /* eslint-disable no-invalid-this */
-    const file = this.files && this.files[ 0 ];
-    /* eslint-enable no-invalid-this */
-    if (file) {
-        const importer = document.getElementById('roster-importer');
-        const reader = new FileReader();
-        reader.onload = ({ target }) => {
-            roster.fromCSV(target.result);
-            requestRedraw(5);
-        };
-        reader.readAsText(file);
-        importer.value = '';
-    }
-}
 
 const RosterMenu = {
     view(/* ctrl, args */) {
         const options = [];
         if (window.FileReader) {
-            const importClick = () => {
-                const importer = document.getElementById('roster-importer');
-                if(document.createEventObject) {
-                    importer.target.fireEvent('onclick');
-                }
-                else if(MouseEvent) {
-                    const event = new MouseEvent('click', {
-                        'view': window,
-                        'bubbles': true,
-                        'cancelable': true,
-                    });
-                    importer.dispatchEvent(event);
-                }
-                else {
-                    const event = document.createEvent('MouseEvents');
-                    event.initMouseEvent('click', true, true, window);
-                    importer.dispatchEvent(event);
-                }
-                requestRedraw(5);
-            };
+            const handleTextInput = (text) => roster.fromCSV(text);
             options.push(
                 <MenuOption
                     icon={(
                         <Icon icon="clipboard" />
                     )}
                     title="import-csv"
-                    onclick={ importClick }
+                    onclick={ () => {
+                        clickElementById('roster-importer');
+                        requestRedraw(5);
+                    }}
                 />
             );
             options.push(
@@ -63,27 +33,14 @@ const RosterMenu = {
                     style="display:none"
                     type="file"
                     accept=".csv"
-                    onchange={ importCSV }
+                    onchange={ function() {
+                        /* eslint-disable no-invalid-this */
+                        loadFileFromInput((this.files && this.files[ 0 ]), handleTextInput);
+                        /* eslint-enable no-invalid-this */
+                    }}
                 />
             );
         }
-        const exportCSV = (event) => {
-            if(isIE) {
-                const csv = roster.toCSV('\r\n');
-                const exporter = document.getElementById('roster-exporter');
-                exporter.document.open('text/html', 'replace');
-                exporter.document.write(`sep=,\r\n${ csv }`);
-                exporter.document.close();
-                exporter.focus();
-                exporter.document.execCommand('SaveAs', true, 'champions.csv');
-            }
-            else {
-                const { target } = event;
-                const csv = roster.toCSV();
-                target.setAttribute('href', `data:text/csv;charset=utf-8,${ encodeURIComponent(csv) }`);
-            }
-            requestRedraw();
-        };
         options.push(
             <MenuOption
                 icon={(
@@ -91,7 +48,10 @@ const RosterMenu = {
                     )}
                 title="export-csv"
                 download="champions.csv"
-                onclick={ exportCSV }
+                onclick={ (event) => {
+                    saveFileEventHandler(event, 'text/csv', 'champions.csv', roster.toCSV('\r\n'));
+                    requestRedraw(5);
+                }}
             />
         );
         return (
