@@ -6,6 +6,14 @@ import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
 import { requestRedraw } from '../util/animation';
 
+const unreleasedChampions = {
+    'redskull': true,
+    'maestro': true,
+    'drstrangemarvelnow': true,
+    'cyclops90s': true,
+    'spidermanmorales': true,
+};
+
 const typeColors = {
     cosmic:'#3af',
     tech:'#23f',
@@ -94,7 +102,7 @@ function getGraph(stars) {
         const effectMap = {};
         const legend = [];
         champions
-            .filter((champion) => champion.attr.stars === stars)
+            .filter((champion) => champion.attr.stars === stars && !unreleasedChampions[ champion.attr.uid ])
             .map((champion) => {
                 const { typeId, uid } = champion.attr;
                 const node = graph.newNode({

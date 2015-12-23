@@ -33,9 +33,10 @@ let renderDeferredMap = {};
 
 function requestRender({ id, callback, delay = 0 }) {
     if(id) {
+        const previous = renderDeferredMap[ id ];
         renderDeferredMap[ id ] = {
             callback,
-            delay,
+            delay: (previous)? Math.min(delay, previous.delay): delay,
         };
     }
     else {

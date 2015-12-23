@@ -9,8 +9,11 @@ function resetSnowflake(element) {
         element,
         opacity: Math.random() * 0.5 + 0.5,
         size: 1 + Math.random(),
+        rotateX: Math.random(),
+        rotateY: Math.random(),
+        rotateZ: Math.random(),
         rotate: Math.random() * 360 | 0,
-        rotateDirection: (Math.random() - 0.5) * 2,
+        rotateDelta: (Math.random() - 0.5) * 2,
         xScale: 0.5 + Math.random() * 0.5,
         xOffset: Math.random() * 360,
         x: Math.random() * 100,
@@ -24,7 +27,7 @@ function resetSnowflake(element) {
 /**
  * Create the snowflake elements and attach to the overlay
  */
-const SNOWFLAKE_COUNT = 66;
+const SNOWFLAKE_COUNT = 33;
 const overlay = document.createElement('div');
 overlay.className = 'xmas-snow';
 
@@ -48,16 +51,16 @@ let currentTime = 0;
 function tick() {
     currentTime += DELTA_TIME;
     snowflakes = snowflakes.map((snowflake) => {
-        const { element, rotateDirection, xScale, xOffset } = snowflake;
+        const { element, rotateX, rotateY, rotateZ, rotateDelta, xScale, xOffset } = snowflake;
         let { x, y, rotate } = snowflake;
         //move and rotate
-        rotate += rotateDirection;
+        rotate += rotateDelta;
         x += Math.cos(currentTime / 360 + xOffset) * 0.25 * xScale;
         y += (DELTA_TIME) / 100;
         //apply the styles
         element.style.left = `${ x }%`;
         element.style.top = `${ y }%`;
-        element.style.transform = `rotate(${ rotate }deg)`;
+        element.style.transform = `rotate3d(${ rotateX },${ rotateY },${ rotateZ },${ rotate }deg)`;
         //return the moved element or reset
         return (y > 100)? {
             ...resetSnowflake(element),
@@ -77,7 +80,7 @@ function letItSnow() {
         id: 'snow',
         callback: function animateSnow() {
             tick();
-            requestRender({ id: 'snow', callback: animateSnow });
+            requestRender({ id: 'snow', callback: animateSnow, delay: 2 });
         },
     });
 }
