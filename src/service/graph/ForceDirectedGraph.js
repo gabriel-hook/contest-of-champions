@@ -6,6 +6,8 @@ import Graph from './Graph';
 import Vector from './Vector';
 import Node from './Node';
 
+const EDGE_HISTORY_TRAIL_LENGTH = 8;
+
 /* eslint-disable no-implicit-coercion */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-invalid-this */
@@ -875,7 +877,7 @@ export default function({
                     start: lineStart,
                     end: lineEnd,
                 });
-                if(edge.history.length > 8)
+                if(edge.history.length > EDGE_HISTORY_TRAIL_LENGTH)
                     edge.history.pop();
                 const trailing = edge.history[ edge.history.length - 1 ];
                 ctx.beginPath();
