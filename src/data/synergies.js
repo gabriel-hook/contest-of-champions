@@ -137,6 +137,8 @@ const synergies = [
     { fromId:'hulkbuster', fromStars:4, toId:'ironman', effectId:'perfectblock', effectAmount:6 },
     { fromId:'hulkbuster', fromStars:4, toId:'superiorironman', effectId:'perfectblock', effectAmount:6 },
 
+    { fromId:'rocket', fromStars:2, toId:'starlord', effectId:'armor', effectAmount:4 },
+    { fromId:'rocket', fromStars:2, toId:'gamora', effectId:'perfectblock', effectAmount:3 },
     { fromId:'rocket', fromStars:3, toId:'starlord', effectId:'armor', effectAmount:5 },
     { fromId:'rocket', fromStars:3, toId:'ronan', effectId:'critrate', effectAmount:6 },
     { fromId:'rocket', fromStars:3, toId:'gamora', effectId:'perfectblock', effectAmount:4 },
