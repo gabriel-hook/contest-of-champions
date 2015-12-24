@@ -7,6 +7,8 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+const MAX_PI_RANGE = 50000;
+
 const DUPLICATE_TITLES = {
     2: 'double',
     3: 'triple',
@@ -16,17 +18,17 @@ const DUPLICATE_TITLES = {
 
 const Slider = {
     view(ctrl, args) {
-        const { object, field, scale = 1, max = 100 } = args;
+        const { object, field, toInputValue, fromInputValue } = args;
         return (
             <input
                 class="field-slider"
                 type="range"
                 min="0"
-                max={ max }
+                max="1000"
                 step="1"
-                value={ parseInt(object[ field ] * scale, 10) }
+                value={ toInputValue(object[ field ]) }
                 oninput={ (event) => {
-                    object[ field ] = event.target.value / scale;
+                    object[ field ] = fromInputValue(event.target.value);
                     update();
                     requestRedraw(10);
                 } }
@@ -41,7 +43,12 @@ const TeamsSettingsPage = {
             <div class="field">
                 <label class="field-name">{ lang.get(`effect-${ attr.uid }-name`) }</label>
                 <div class="field-input">
-                    <Slider object={ teams.weights } field={ `effect-${ attr.uid }` } scale={ 100 } />
+                    <Slider
+                        object={ teams.weights }
+                        field={ `effect-${ attr.uid }` }
+                        toInputValue={ (value) => value * 1000 }
+                        fromInputValue={ (value) => value / 1000 }
+                    />
                     <span class="field-value">
                         { (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
                     </span>
@@ -55,14 +62,18 @@ const TeamsSettingsPage = {
                     { `(${ count }x)` }
                 </label>
                 <div class="field-input">
-                    <Slider object={ teams.weights } field={ `duplicates-${ count }` } scale={ 100 } />
+                    <Slider
+                        object={ teams.weights }
+                        field={ `duplicates-${ count }` }
+                        toInputValue={ (value) => value * 1000 }
+                        fromInputValue={ (value) => value / 1000 }
+                    />
                     <span class="field-value">
                         { (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
                     </span>
                 </div>
             </div>
         ));
-
         const piRangeSliders = [
             'minimum',
             'maximum',
@@ -72,7 +83,12 @@ const TeamsSettingsPage = {
                     { lang.get(`pi-range-${ which }`) }
                 </label>
                 <div class="field-input field-input-large">
-                    <Slider object={ teams.range } field={ which } max={ 10000 } />
+                    <Slider
+                        object={ teams.range }
+                        field={ which }
+                        toInputValue={ (value) => 1000 * value / MAX_PI_RANGE }
+                        fromInputValue={ (value) => MAX_PI_RANGE * value / 1000 }
+                    />
                     <span class="field-value">
                         { (teams.range[ which ] | 0) }
                     </span>

@@ -70,7 +70,7 @@ const PRESETS_DUPLICATES = {
 const PRESETS_RANGE = {
     'all': {
         'minimum': 0,
-        'maximum': 10000,
+        'maximum': 50000,
     },
     'streak': {
         'minimum': 4000,
