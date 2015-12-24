@@ -4,6 +4,7 @@ class Edge {
         this.source = source;
         this.target = target;
         this.data = data;
+        this.history = [];
 
         const nodes = [ this.source.id, this.target.id ];
         nodes.sort();

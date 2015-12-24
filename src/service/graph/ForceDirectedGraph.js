@@ -870,14 +870,25 @@ export default function({
             ctx.globalAlpha = alpha;
 
             //line
-
             if (ldelta.dot(sdelta) > 0) {
+                edge.history.unshift({
+                    start: lineStart,
+                    end: lineEnd,
+                });
+                if(edge.history.length > 8)
+                    edge.history.pop();
+                const trailing = edge.history[ edge.history.length - 1 ];
                 ctx.beginPath();
                 ctx.moveTo(lineStart.x, lineStart.y);
-                ctx.lineTo(lineEnd.x, lineEnd.y);
-                ctx.closePath();
+                ctx.bezierCurveTo(
+                    trailing.start.x, trailing.start.y,
+                    trailing.end.x, trailing.end.y,
+                    lineEnd.x, lineEnd.y
+                );
                 ctx.stroke();
             }
+            else
+                edge.history = [];
 
             // arrow
             ctx.translate(arrowStart.x, arrowStart.y);
