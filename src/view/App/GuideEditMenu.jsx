@@ -18,7 +18,10 @@ const GuideEditMenu = {
         );
 
         if (window.FileReader) {
-            const handleTextInput = (text) => guides[ uid ] = JSON.parse(text);
+            const handleTextInput = (text) => {
+                guides[ uid ] = JSON.parse(text);
+                requestRedraw(5);
+            };
             options.push(
                 <MenuOption
                     icon={(
@@ -27,7 +30,7 @@ const GuideEditMenu = {
                     title="import-json"
                     onclick={ () => {
                         clickElementById('guide-importer');
-                        requestRedraw(5);
+                        m.redraw.strategy('none');
                     } }
                 />
             );
@@ -40,7 +43,7 @@ const GuideEditMenu = {
                     value=""
                     onchange={ function() {
                         /* eslint-disable no-invalid-this */
-                        loadFileFromInput((this.files && this.files[ 0 ]), handleTextInput);
+                        loadFileFromInput(this, handleTextInput);
                         /* eslint-enable no-invalid-this */
                     } }
                 />

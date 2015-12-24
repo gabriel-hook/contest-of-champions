@@ -28,14 +28,23 @@ function save() {
     toStorage('roster', roster);
 }
 
-const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened';
+const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi';
+const CSV_HEADER_SHORT = 'Id,Stars';
 
 function toCSV(separator = '\n') {
     const csv = [
         CSV_HEADER,
-        ...roster.map(({ attr }) => (
-            `"${ attr.uid }",${ attr.stars || 1 },${ attr.rank || 1 },${ attr.level || 1 },${ attr.awakened || 0 }`
-        )),
+        ...roster.map(({ attr }) => [
+            `"${ attr.uid }"`,
+            `${ attr.stars || 1 }`,
+            `${ attr.rank || 1 }`,
+            `${ attr.level || 1 }`,
+            `${ attr.awakened || 0 }`,
+            ...(attr.pi !== undefined?
+                [ `${ attr.pi }` ]:
+                []
+            ),
+        ]),
     ];
     return csv.join(separator);
 }
@@ -44,18 +53,19 @@ function fromCSV(csv, filename = 'champions.csv') {
     const lines = csv.match(/[^\r\n]+/g);
     const array = [];
     for(let i=0; i<lines.length; i++) {
-        if(i===0 && lines[ i ].replace(/["]/g, '') === CSV_HEADER)
+        if(i===0 && lines[ i ].replace(/["]/g, '').startsWith(CSV_HEADER_SHORT))
             continue;
 
         const values = lines[ i ].split(',');
-        if(values.length !== 5)
+        if(values.length < 2 || values.length > 6)
             throw 'Invalid roster CSV';
 
         const uid = values[ 0 ].replace(/["]/g, '').toLowerCase();
         const stars = parseInt(values[ 1 ].replace(/["]/g, ''), 10);
-        const rank = parseInt(values[ 2 ].replace(/["]/g, ''), 10);
-        const level = parseInt(values[ 3 ].replace(/["]/g, ''), 10);
-        const awakened = parseInt(values[ 4 ].replace(/["]/g, ''), 10);
+        const rank = parseInt(values[ 2 ].replace(/["]/g, ''), 10) || 1;
+        const level = values > 3 && parseInt(values[ 3 ].replace(/["]/g, ''), 10) || 1;
+        const awakened = values > 4 && parseInt(values[ 4 ].replace(/["]/g, ''), 10) || 0;
+        const pi = values > 5 && parseInt(values[ 5 ].replace(/["]/g, ''), 10) || 0;
         if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)) {
             /* eslint-disable no-console */
             console.error(`Invalid line in ${ filename }:${ i + 1 }`);
@@ -69,7 +79,7 @@ function fromCSV(csv, filename = 'champions.csv') {
             /* eslint-enable no-console */
             continue;
         }
-        array.push(new Champion({ ...champion.attr, rank, level, awakened }));
+        array.push(new Champion({ ...champion.attr, rank, level, awakened, pi }));
     }
     roster = [
         ...roster,
@@ -152,7 +162,6 @@ function add(uid, stars) {
 function remove(uid, stars) {
     roster = roster.filter(({ attr }) => attr.uid !== uid || attr.stars !== stars);
     save();
-
 }
 
 function clear() {

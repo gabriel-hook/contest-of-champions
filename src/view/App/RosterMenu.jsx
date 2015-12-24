@@ -13,7 +13,10 @@ const RosterMenu = {
     view(/* ctrl, args */) {
         const options = [];
         if (window.FileReader) {
-            const handleTextInput = (text) => roster.fromCSV(text);
+            const handleTextInput = (text) => {
+                roster.fromCSV(text);
+                requestRedraw(5);
+            };
             options.push(
                 <MenuOption
                     icon={(
@@ -22,7 +25,7 @@ const RosterMenu = {
                     title="import-csv"
                     onclick={ () => {
                         clickElementById('roster-importer');
-                        requestRedraw(5);
+                        m.redraw.strategy('none');
                     }}
                 />
             );
@@ -34,7 +37,7 @@ const RosterMenu = {
                     accept=".csv"
                     onchange={ function() {
                         /* eslint-disable no-invalid-this */
-                        loadFileFromInput((this.files && this.files[ 0 ]), handleTextInput);
+                        loadFileFromInput(this, handleTextInput);
                         /* eslint-enable no-invalid-this */
                     }}
                 />

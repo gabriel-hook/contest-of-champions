@@ -2,7 +2,7 @@ import './snow.scss';
 import { requestRender } from '../util/animation';
 
 const SNOWFLAKE_CHARS = [ '❄', '❅', '❆' ];
-const SNOWFLAKE_COUNT = 33;
+const SNOWFLAKE_COUNT = 25;
 const DELTA_TIME = 16;
 
 /**
