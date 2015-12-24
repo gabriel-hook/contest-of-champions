@@ -39,10 +39,13 @@ const synergies = [
 
     { fromId:'groot', fromStars:3, toId:'starlord', effectId:'armor', effectAmount:5 },
     { fromId:'groot', fromStars:3, toId:'drax', effectId:'perfectblock', effectAmount:4 },
+    { fromId:'groot', fromStars:3, toId:'rocket', effectId:'inseparable', effectAmount:8 },
     { fromId:'groot', fromStars:4, toId:'starlord', effectId:'armor', effectAmount:6 },
     { fromId:'groot', fromStars:4, toId:'drax', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'groot', fromStars:4, toId:'rocket', effectId:'inseparable', effectAmount:9 },
     { fromId:'groot', fromStars:5, toId:'starlord', effectId:'armor', effectAmount:6 },
     { fromId:'groot', fromStars:5, toId:'drax', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'groot', fromStars:5, toId:'rocket', effectId:'inseparable', effectAmount:9 },
 
     { fromId:'msmarvel', fromStars:3, toId:'captainamerica', effectId:'armor', effectAmount:5 },
     { fromId:'msmarvel', fromStars:3, toId:'ironman', effectId:'perfectblock', effectAmount:4 },

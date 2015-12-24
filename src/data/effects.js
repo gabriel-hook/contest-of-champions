@@ -11,6 +11,7 @@ const effects = [
     { uid:'attack', base:5 },
     { uid:'stun', base:15 },
     { uid:'mutantagenda', base:8 },
+    { uid:'inseparable', base:8 },
     { uid:'critrate', base:5 },
     { uid:'critdamage', base:15 },
     { uid:'powergain', base:3 },
@@ -28,6 +29,8 @@ const effects = [
 const imageMap = {
     'attack':'attack',
     'stun':'stun',
+    'mutantagenda': 'mana_steal',
+    'inseparable': 'mana_steal',
     'critrate':'critical',
     'critdamage':'critical',
     'powergain':'mana',
@@ -37,7 +40,6 @@ const imageMap = {
     'armor':'armor',
     'health':'health',
     'healthsteal':'health_steal',
-    'mutantagenda': 'mana_steal',
     'heroesforhire': 'block',
     'thunderbolts': 'armor',
 };

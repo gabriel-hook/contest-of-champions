@@ -27,6 +27,7 @@ const EFFECT_COLORS = {
     attack:'#f00',
     stun:'#f60',
     mutantagenda:'#ff0',
+    inseparable:'#a00',
     critrate:'#fa0',
     critdamage:'#a60',
     powergain:'#a0f',
