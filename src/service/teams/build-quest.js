@@ -1,7 +1,7 @@
 import dataChampions from '../../data/champions';
 import dataSynergies from '../../data/synergies';
 import { uids as typeIds } from '../../data/types';
-import { effectBase } from '../../data/effects';
+import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
 import { combination } from '../../util/math';
 
 function buildQuest({
@@ -25,6 +25,7 @@ function buildQuest({
             .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars )
             .forEach(({ attr }) => synergies[ attr.toId ] = {
                 id: attr.toId,
+                special: SPECIAL_EFFECTS[ attr.effectId ] && `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`,
                 value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
             });
         /* eslint-enable eqeqeq */
@@ -117,7 +118,6 @@ function getNextPartner(list, champions, synergies, types, index, depth, typeWei
         progressIncrement
     );
     const next = getNextPartner(list, champions, synergies, types, index+1, depth, typeWeights, range, progressIncrement);
-
     return (compareTeams(current, next) >= 0)? current: next;
 }
 
@@ -153,9 +153,18 @@ function addPartnerSynergies(oldSynergies, list, next) {
 }
 
 function getTeamValue(champions, synergies, types, typeWeights) {
+    const specials = {};
     return types.reduce((value, typeAmount) => (typeAmount > 1)? value * typeWeights[ typeAmount ]: value, 1)
         * champions.reduce((value, champion) => value + champion.pi, 0)
-        * synergies.reduce((value, synergy) => value + synergy.value, 0);
+        * synergies.reduce((value, synergy) => {
+            if(synergy.special) {
+                if(specials[ synergy.special ]) {
+                    return 0;
+                }
+                specials[ synergy.special ] = true;
+            }
+            return value + synergy.value;
+        }, 0);
 }
 
 function compareTeams(a, b) {

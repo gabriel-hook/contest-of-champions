@@ -1,6 +1,6 @@
 import dataChampions from '../../data/champions';
 import dataSynergies from '../../data/synergies';
-import { effectBase } from '../../data/effects';
+import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
 import { shuffle } from '../../util/array';
 
 function buildArena({
@@ -34,6 +34,8 @@ function buildArena({
             .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars)
             .forEach(({ attr }) => {
                 synergyMap[ fid ][ attr.toId ] = {
+                    effectId: attr.effectId,
+                    special: SPECIAL_EFFECTS[ attr.effectId ] === true,
                     value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
                 };
             });
@@ -85,11 +87,21 @@ function buildArena({
                 //get my value
                 championValue += champion.pi;
                 //get my synergies
+                const specials = {};
                 const synergies = synergyMap[ champion.fid ];
                 for(let j=0; j<team.length; j++) {
                     const synergy = synergies[ team[ j ].uid ];
-                    if(synergy)
-                        synergyValue += synergy.value;
+                    if(synergy) {
+                        if(synergy.special) {
+                            if(!specials[ synergy.effectId ]) {
+                                specials[ synergy.effectId ] = true;
+                                synergyValue += synergy.value;
+                            }
+                        }
+                        else {
+                            synergyValue += synergy.value;
+                        }
+                    }
                 }
                 //get my type dupes
                 types[ champion.typeId ] = (types[ champion.typeId ] || 0) + 1;
@@ -106,7 +118,7 @@ function buildArena({
         return (pi && pi <= range.maximum && pi >= range.minimum)? value: 0;
     }
 
-    const progressMax = 24;
+    const progressMax = 16;
     let didExtrasShuffle;
     let array;
     const arrays = [];

@@ -33,7 +33,7 @@ const SynergyPage = {
                     }}
                     title={ lang.get(`effect-${ effectId }-description`) }
                 >
-                    { lang.get(`effect-${ effectId }-name`) }
+                    { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
                     { amount && ` - ${ amount }%` }
                 </div>
             );

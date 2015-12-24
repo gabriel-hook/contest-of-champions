@@ -6,7 +6,7 @@ import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
 import { requestRedraw } from '../util/animation';
 
-const unreleasedChampions = {
+const UNRELEASED_CHAMPIONS = {
     'redskull': true,
     'maestro': true,
     'drstrangemarvelnow': true,
@@ -14,7 +14,7 @@ const unreleasedChampions = {
     'spidermanmorales': true,
 };
 
-const typeColors = {
+const TYPE_COLORS = {
     cosmic:'#3af',
     tech:'#23f',
     mutant:'#fa0',
@@ -22,9 +22,11 @@ const typeColors = {
     science:'#0a0',
     mystic:'#90f',
 };
-const effectColors = {
+
+const EFFECT_COLORS = {
     attack:'#f00',
     stun:'#f60',
+    mutantagenda:'#ff0',
     critrate:'#fa0',
     critdamage:'#a60',
     powergain:'#a0f',
@@ -34,6 +36,8 @@ const effectColors = {
     armor:'#0af',
     health:'#0f0',
     healthsteal:'#af0',
+    heroesforhire:'#0a6',
+    thunderbolts:'#a6a',
 };
 
 let lastSelected;
@@ -102,14 +106,14 @@ function getGraph(stars) {
         const effectMap = {};
         const legend = [];
         champions
-            .filter((champion) => champion.attr.stars === stars && !unreleasedChampions[ champion.attr.uid ])
+            .filter((champion) => champion.attr.stars === stars && !UNRELEASED_CHAMPIONS[ champion.attr.uid ])
             .map((champion) => {
                 const { typeId, uid } = champion.attr;
                 const node = graph.newNode({
                     label: uid,
                     image: `images/champions/portrait_${ uid }.png`,
                     type: typeId,
-                    color: typeColors[ typeId ],
+                    color: TYPE_COLORS[ typeId ],
                     neighbors: {},
                     effects: {},
                     onOpen: () => {
@@ -138,10 +142,10 @@ function getGraph(stars) {
                     nodeMap[ toId ], {
                         effect: effectId,
                         amount: effectAmount,
-                        color: effectColors[ effectId ],
+                        color: EFFECT_COLORS[ effectId ],
                     });
             });
-        for(const effectId in effectColors)
+        for(const effectId in EFFECT_COLORS)
             if(effectMap[ effectId ])
                 legend.push({
                     effectId,
@@ -164,5 +168,4 @@ function updateGraph(stars, top, left, width, height) {
 
 export { getLegend };
 export { updateGraph };
-export { typeColors, effectColors };
 export default fdg;

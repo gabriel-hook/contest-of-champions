@@ -1,4 +1,5 @@
 import dataSynergies from '../data/synergies';
+import { SPECIAL_EFFECTS } from '../data/effects';
 import roster from './roster';
 import { fromStorage, toStorage } from '../util/storage';
 import Worker from 'webworker!./teams/worker';
@@ -8,6 +9,7 @@ const PRESETS = {
     'offensive': {
         'effect-attack': 0.6,
         'effect-stun': 0.5,
+        'effect-mutantagenda': 0.6,
         'effect-critrate': 0.4,
         'effect-critdamage': 0.4,
         'effect-powergain': 0.2,
@@ -17,10 +19,13 @@ const PRESETS = {
         'effect-armor': 0.1,
         'effect-health': 0.1,
         'effect-healthsteal': 0.2,
+        'effect-heroesforhire': 0.2,
+        'effect-thunderbolts': 0.2,
     },
     'balanced': {
         'effect-attack': 0.5,
         'effect-stun': 0.5,
+        'effect-mutantagenda': 0.5,
         'effect-critrate': 0.5,
         'effect-critdamage': 0.5,
         'effect-powergain': 0.5,
@@ -30,10 +35,13 @@ const PRESETS = {
         'effect-armor': 0.5,
         'effect-health': 0.5,
         'effect-healthsteal': 0.5,
+        'effect-heroesforhire': 0.5,
+        'effect-thunderbolts': 0.5,
     },
     'defensive': {
         'effect-attack': 0.1,
         'effect-stun': 0.5,
+        'effect-mutantagenda': 0.1,
         'effect-critrate': 0.1,
         'effect-critdamage': 0.1,
         'effect-powergain': 0.3,
@@ -43,6 +51,8 @@ const PRESETS = {
         'effect-armor': 0.7,
         'effect-health': 0.5,
         'effect-healthsteal': 0.5,
+        'effect-heroesforhire': 0.5,
+        'effect-thunderbolts': 0.6,
     },
 };
 
@@ -135,12 +145,22 @@ worker.onmessage = (event) => {
                 teams: result.teams.map((team) => {
                     team.sort();
                     const champions = team.map(fidToRosterChampion);
+                    const specials = {};
                     const synergies = dataSynergies.filter((synergy) => {
                         const { fromId, fromStars, toId } = synergy.attr;
                         if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
                             return false;
                         return Boolean(champions.find(({ attr }) => toId === attr.uid));
 
+                    }).filter(({ attr }) => {
+                        if(SPECIAL_EFFECTS[ attr.effectId ]) {
+                            const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
+                            if(specials[ specialId ]) {
+                                return false;
+                            }
+                            specials[ specialId ] = true;
+                        }
+                        return true;
                     });
                     teamsCount++;
                     synergiesCount += synergies.length;

@@ -90,6 +90,13 @@
     "effect-armor-name": "Armor",
     "effect-health-name": "Health",
     "effect-healthsteal-name": "Health Steal",
+    "effect-mutantagenda-name": "Special Attack Damage",
+    "effect-heroesforhire-name": "Block Proficiency and Physical Resistance",
+    "effect-thunderbolts-name": "Reduced Special Damage",
+
+    "effect-mutantagenda-shortname": "Mutant Agenda",
+    "effect-heroesforhire-shortname": "Heroes for Hire",
+    "effect-thunderbolts-shortname": "Thunderbolts",
 
     "effect-attack-description": "Increases damage on all attacks.",
     "effect-stun-description": "Chance to Stun on special attacks.",
@@ -102,6 +109,9 @@
     "effect-armor-description": "Increases Armor so that all damage taken is decreased.",
     "effect-health-description": "Increases champion Health.",
     "effect-healthsteal-description": "Gain Health when attacking.",
+    "effect-mutantagenda-description": "Increased Special Attack Damage",
+    "effect-heroesforhire-description": "Increased Block Proficiency and Physical Resistance",
+    "effect-thunderbolts-description": "Take less Special Damage",
 
     "type-cosmic-name": "Cosmic",
     "type-tech-name": "Tech",

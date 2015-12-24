@@ -37,6 +37,9 @@
         position: absolute;
         top: 0;
         left: 0;
+        max-height: 100%;
+        overflow-y: auto;
+        box-sizing: border-box;
         background: rgba(0, 0, 0, .5);
         color: #fff;
         text-shadow: 0 1px 0 #000;
@@ -77,6 +80,10 @@
             border-color: #f60;
         }
 
+        .legend-effect--mutantagenda {
+            border-color: #ff0;
+        }
+
         .legend-effect--critrate {
             border-color: #fa0;
         }
@@ -111,6 +118,14 @@
 
         .legend-effect--healthsteal {
             border-color: #af0;
+        }
+
+        .legend-effect--heroesforhire {
+            border-color: #0a6;
+        }
+
+        .legend-effect--thunderbolts {
+            border-color: #a6a;
         }
     }
 }
