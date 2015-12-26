@@ -44,7 +44,7 @@ const GuideSynergy ={
         };
         const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
         return (
-            <div class="guide-synergy">
+            <div m="GuideSynergy" class="guide-synergy">
                 <div class="guide-synergy-parts">
                     <div class="guide-synergy-part">
                         <div
@@ -106,7 +106,7 @@ const GuideAuthor = {
         }
 
         return (
-            <div class="guide-author">
+            <div m="GuideAuthor" class="guide-author">
                 { byline }
                 <a href={ href } target="_blank">
                     { icon && (
@@ -235,7 +235,7 @@ const GuidePage = {
             );
         }
         return (
-            <div class="guide" key={ 'guide-${ uid }' }>
+            <div m="GuidePage" class="guide" key={ 'guide-${ uid }' }>
                 { details }
                 <div class="clear" />
             </div>

@@ -6,7 +6,7 @@ import m from 'mithril';
 const RosterAddMenu = {
     view(/* ctrl, args */) {
         return (
-            <div key="roster-add-menu">
+            <div m="RosterAddMenu" key="roster-add-menu">
                 <MenuHeader title="roster" />
             </div>
         );

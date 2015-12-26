@@ -25,6 +25,7 @@ const MenuOption = {
         }
         return (
             <a
+                m="MenuOption"
                 class={ classNames('menu-option', {
                     'menu-option--selected': selected,
                     'menu-option--progress': progress,

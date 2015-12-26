@@ -8,7 +8,7 @@ const ChampionGrade = {
     view(ctrl, args) {
         const { title, grade } = args;
         return (
-            <div class="champion-grade">
+            <div m="ChampionGrade" class="champion-grade">
                 <b>{ lang.get(title) }:</b>
                 <span class={ `champion-grade--value-${ grade[ 0 ].toLowerCase() }` }>
                     { grade }

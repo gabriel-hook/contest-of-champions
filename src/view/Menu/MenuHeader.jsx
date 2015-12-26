@@ -8,7 +8,7 @@ const MenuHeader = {
         const { title, icon } = args;
 
         return (
-            <div class="menu-header">
+            <div m="MenuHeader" class="menu-header">
                 <div>{ icon }{ lang.get(title) }</div>
             </div>
         );

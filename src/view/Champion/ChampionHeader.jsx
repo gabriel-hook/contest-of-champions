@@ -38,6 +38,7 @@ const ChampionHeader = {
         }
         return (
             <div
+                m="ChampionHeader"
                 class="champion-header"
                 title={ lang.get(`champion-${ uid }-name`) }
             >

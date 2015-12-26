@@ -170,7 +170,7 @@ const Menu = {
             />
         );
         return (
-            <div class={ classNames('menu', { 'menu--open': isOpen }) }>
+            <div m="Menu" class={ classNames('menu', { 'menu--open': isOpen }) }>
                 <div class="menu-background" onclick={ ctrl.toggle }></div>
                 <div class="menu-wrapper">
                     <div class="menu-options">

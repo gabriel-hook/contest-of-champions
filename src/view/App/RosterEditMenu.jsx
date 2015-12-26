@@ -12,7 +12,7 @@ const RosterMenu = {
     view(ctrl, args) {
         const { uid, stars } = args;
         return (
-            <div key={ `roster-edit-menu-${ uid }-${ stars }` }>
+            <div m="RosterMenu" key={ `roster-edit-menu-${ uid }-${ stars }` }>
                 <MenuHeader title="roster" />
                 <MenuOption
                     icon={(

@@ -52,7 +52,12 @@ const ChampionPortrait = {
             <div class="title-field title-field-name">{ name }</div>
         );
         return (
-            <div class={ classNames('champion', `champion--${ typeId }`, { 'champion--selected': selected, 'champion--neighbor': neighbor }) }>
+            <div
+                m="ChampionPortrait"
+                class={ classNames('champion', `champion--${ typeId }`,
+                    { 'champion--selected': selected, 'champion--neighbor': neighbor }
+                ) }
+            >
                 <div class={ classNames('container', 'no-select') }>
                     <div
                         { ...events }

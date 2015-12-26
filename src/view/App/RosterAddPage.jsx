@@ -14,7 +14,7 @@ const RosterAddPage = {
         const { stars } = args;
         const champions = roster.available(stars);
         return (
-            <div class="roster-add">
+            <div m="RosterAddPage" class="roster-add">
                 <div class="add-stars">
                 {[ 1, 2, 3, 4, 5 ].map((star) => (
                     <button

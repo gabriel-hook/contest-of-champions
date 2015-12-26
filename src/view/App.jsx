@@ -27,7 +27,7 @@ const App = {
         const { tabs, tab, pages, menu, button } = app;
         const currentPage = tab;
         return (
-            <div class="app">
+            <div m="App" class="app">
                 <div class="pages">
                     {tabs.map((tab) => (
                         <div class={ classNames('page', { 'page--current': currentPage === tab.id }) }>

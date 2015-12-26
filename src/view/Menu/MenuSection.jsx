@@ -8,7 +8,7 @@ const MenuSection = {
         const { title, icon } = args;
 
         return (
-            <div class="menu-section">
+            <div m="MenuSection" class="menu-section">
                 <div>{ icon }{ lang.get(title) }</div>
             </div>
         );

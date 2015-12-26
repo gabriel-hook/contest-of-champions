@@ -281,7 +281,7 @@ const ChampionSection = {
             );
         }
         return (
-            <div class="champion-section">{ elements }</div>
+            <div m="ChampionSection" class="champion-section">{ elements }</div>
         );
     },
 };

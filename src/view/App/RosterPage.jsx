@@ -24,18 +24,17 @@ const RosterPage = {
             requestRedraw();
         };
         return (
-            <div
-                class="roster"
-            >
+            <div m="RosterPage" class="roster">
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
-                { champions.map((champion, index) => (
-                    <div key={ `${ index }-${ champion.id }` }>
+                <div>
+                    { champions.map((champion, index) => (
                         <ChampionPortrait
+                            key={ `${ index }-${ champion.id }` }
                             champion={ champion }
                             onclick={ handleSelect.bind(this, champion.attr) }
                         />
-                    </div>
-                )) }
+                    )) }
+                </div>
                 <div class="clear" />
             </div>
         );

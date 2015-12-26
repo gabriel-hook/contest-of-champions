@@ -153,7 +153,7 @@ const RosterPage = {
             );
         }
         return (
-            <div class="roster-edit">
+            <div m="RosterPage" class="roster-edit">
                 <div key={ `roster-edit-${ uid }-${ stars }` }>
                     { elements }
                 </div>

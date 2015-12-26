@@ -8,7 +8,10 @@ const Icon = {
         const { icon, spin } = args;
         const isSpinning = spin && (typeof spin === 'function')? spin(): spin;
         return icon && (
-            <i class={ classNames('icon', 'fa', `fa-${ icon }`, { 'fa-spin': isSpinning }) } />
+            <i
+                m="Icon"
+                class={ classNames('icon', 'fa', `fa-${ icon }`, { 'fa-spin': isSpinning }) }
+            />
         );
     },
 };

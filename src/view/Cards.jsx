@@ -8,7 +8,7 @@ const Cards = {
     view(ctrl, args) {
         const { cards, current } = args;
         return (
-            <div class="cards">
+            <div m="Cards" class="cards">
                     { cards.map((card, index) => {
 
                         return (

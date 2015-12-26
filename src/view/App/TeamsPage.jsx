@@ -38,7 +38,7 @@ const TeamsPage = {
             }
         }
         return (
-            <div class="teams">
+            <div m="TeamsPage" class="teams">
                 <Message value={ message } />
                 <div>
                     { teamDivs }

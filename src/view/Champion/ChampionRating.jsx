@@ -7,7 +7,10 @@ const ChampionRating = {
     view(ctrl, args) {
         const { rating } = args;
         return (
-            <div class="champion-rating">
+            <div
+                m="ChampionRating"
+                class="champion-rating"
+            >
                 <span class={ `champion-rating--value-${ rating }` }>
                     { rating }
                 </span> / 5

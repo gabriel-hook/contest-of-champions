@@ -8,7 +8,7 @@ const Message = {
     view(ctrl, args) {
         const { value } = args;
         return (
-            <div class="message">
+            <div m="Message" class="message">
                 { value }
             </div>
         );

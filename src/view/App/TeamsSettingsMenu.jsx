@@ -24,18 +24,19 @@ const TeamsSettingsMenu = {
             <MenuSection title="presets" />
         );
         Object.keys(PRESETS).forEach((id) => {
+            const handleClick = () => {
+                teams.weights = {
+                    ...teams.weights,
+                    ...PRESETS[ id ],
+                };
+                update();
+                requestRedraw();
+            };
             options.push(
                 <MenuOption
                     title={ `preset-${ id }-name` }
                     selected={ isActivePreset(PRESETS[ id ]) }
-                    onclick={ () => {
-                        teams.weights = {
-                            ...teams.weights,
-                            ...PRESETS[ id ],
-                        };
-                        update();
-                        requestRedraw();
-                    } }
+                    onclick={ handleClick }
                 />
             );
         });
@@ -43,18 +44,19 @@ const TeamsSettingsMenu = {
             <MenuSection title="duplicate-weights" />
         );
         Object.keys(PRESETS_DUPLICATES).forEach((id) => {
+            const handleClick = () => {
+                teams.weights = {
+                    ...teams.weights,
+                    ...PRESETS_DUPLICATES[ id ],
+                };
+                update();
+                requestRedraw();
+            };
             options.push(
                 <MenuOption
                     title={ `preset-duplicates-${ id }-name` }
                     selected={ isActivePreset(PRESETS_DUPLICATES[ id ]) }
-                    onclick={ () => {
-                        teams.weights = {
-                            ...teams.weights,
-                            ...PRESETS_DUPLICATES[ id ],
-                        };
-                        update();
-                        requestRedraw();
-                    } }
+                    onclick={ handleClick }
                 />
             );
         });
@@ -62,23 +64,24 @@ const TeamsSettingsMenu = {
             <MenuSection title="pi-range" />
         );
         Object.keys(PRESETS_RANGE).forEach((id) => {
+            const handleClick = () => {
+                teams.range = {
+                    ...teams.range,
+                    ...PRESETS_RANGE[ id ],
+                };
+                update();
+                requestRedraw();
+            };
             options.push(
                 <MenuOption
                     title={ `preset-range-${ id }-name` }
                     selected={ isActivePreset(PRESETS_RANGE[ id ], teams.range) }
-                    onclick={ () => {
-                        teams.range = {
-                            ...teams.range,
-                            ...PRESETS_RANGE[ id ],
-                        };
-                        update();
-                        requestRedraw();
-                    } }
+                    onclick={ handleClick }
                 />
             );
         });
         return (
-            <div key={ `teams-settings-menu` }>
+            <div m="TeamsSettingsMenu" key={ `teams-settings-menu` }>
                 { options }
             </div>
         );

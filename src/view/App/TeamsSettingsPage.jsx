@@ -97,7 +97,7 @@ const TeamsSettingsPage = {
         ));
 
         return (
-            <div class="teams-settings">
+            <div m="TeamsSettingsPage" class="teams-settings">
                 <div class="header">
                     { lang.get('synergy-weights') }
                 </div>

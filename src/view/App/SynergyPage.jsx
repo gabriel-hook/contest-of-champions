@@ -40,7 +40,7 @@ const SynergyPage = {
         });
 
         return (
-            <div class="synergy" stars={ stars } config={ config }>
+            <div m="SynergyPage" class="synergy" stars={ stars } config={ config }>
                 <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
                     { items }
                 </div>

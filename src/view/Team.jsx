@@ -110,6 +110,7 @@ const Team = {
         const size = champions.length;
         return(
             <div
+                m="Team"
                 class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
             >
                 <div>
