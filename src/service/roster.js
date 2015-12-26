@@ -28,8 +28,8 @@ function save() {
     toStorage('roster', roster);
 }
 
-const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi';
 const CSV_HEADER_SHORT = 'Id,Stars';
+const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi';
 
 function toCSV(separator = '\n') {
     const csv = [
@@ -40,10 +40,7 @@ function toCSV(separator = '\n') {
             `${ attr.rank || 1 }`,
             `${ attr.level || 1 }`,
             `${ attr.awakened || 0 }`,
-            ...(attr.pi !== undefined?
-                [ `${ attr.pi }` ]:
-                []
-            ),
+            `${ attr.pi || 0 }`,
         ]),
     ];
     return csv.join(separator);
@@ -52,6 +49,13 @@ function toCSV(separator = '\n') {
 function fromCSV(csv, filename = 'champions.csv') {
     const lines = csv.match(/[^\r\n]+/g);
     const array = [];
+    const getIntegerValue = (array, index, defaultValue) => {
+        let value;
+        if(array.length > index) {
+            value = parseInt(array[ index ].replace(/["]/g, ''), 10);
+        }
+        return (value === undefined)? defaultValue: value;
+    };
     for(let i=0; i<lines.length; i++) {
         if(i===0 && lines[ i ].replace(/["]/g, '').startsWith(CSV_HEADER_SHORT))
             continue;
@@ -61,12 +65,12 @@ function fromCSV(csv, filename = 'champions.csv') {
             throw 'Invalid roster CSV';
 
         const uid = values[ 0 ].replace(/["]/g, '').toLowerCase();
-        const stars = parseInt(values[ 1 ].replace(/["]/g, ''), 10);
-        const rank = parseInt(values[ 2 ].replace(/["]/g, ''), 10) || 1;
-        const level = values > 3 && parseInt(values[ 3 ].replace(/["]/g, ''), 10) || 1;
-        const awakened = values > 4 && parseInt(values[ 4 ].replace(/["]/g, ''), 10) || 0;
-        const pi = values > 5 && parseInt(values[ 5 ].replace(/["]/g, ''), 10) || 0;
-        if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened)) {
+        const stars = getIntegerValue(values, 1, 1);
+        const rank = getIntegerValue(values, 2, 1);
+        const level = getIntegerValue(values, 3, 1);
+        const awakened = getIntegerValue(values, 4, 0);
+        const pi = getIntegerValue(values, 5, 0);
+        if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened) || isNaN(pi)) {
             /* eslint-disable no-console */
             console.error(`Invalid line in ${ filename }:${ i + 1 }`);
             /* eslint-enable no-console */

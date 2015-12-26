@@ -10,6 +10,7 @@ const PRESETS = {
         'effect-attack': 0.6,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.6,
+        'effect-inseparable': 0.6,
         'effect-critrate': 0.4,
         'effect-critdamage': 0.4,
         'effect-powergain': 0.2,
@@ -26,6 +27,7 @@ const PRESETS = {
         'effect-attack': 0.5,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.5,
+        'effect-inseparable': 0.5,
         'effect-critrate': 0.5,
         'effect-critdamage': 0.5,
         'effect-powergain': 0.5,
@@ -42,6 +44,7 @@ const PRESETS = {
         'effect-attack': 0.1,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.1,
+        'effect-inseparable': 0.1,
         'effect-critrate': 0.1,
         'effect-critdamage': 0.1,
         'effect-powergain': 0.3,
@@ -88,6 +91,11 @@ const PRESETS_RANGE = {
     },
 };
 
+const DEFAULT_WEIGHTS = {
+    ...PRESETS_DUPLICATES[ 'balanced' ],
+    ...PRESETS[ 'offensive' ],
+};
+
 const teams = {
     type: 'arena',
     size: 3,
@@ -99,17 +107,23 @@ const teams = {
         5: false,
     },
     weights: {
-        ...PRESETS_DUPLICATES[ 'balanced' ],
-        ...PRESETS[ 'offensive' ],
+        ...DEFAULT_WEIGHTS,
     },
     range: {
         minimum: 0,
-        maximum: 10000,
+        maximum: 50000,
     },
     ...fromStorage('teams', {}),
     progress: 0,
     building: false,
 };
+
+//assign missing fields a default value.
+for(const key in DEFAULT_WEIGHTS) {
+    if(teams.weights[ key ] === undefined) {
+        teams.weights[ key ] = DEFAULT_WEIGHTS[ key ];
+    }
+}
 
 function update() {
     toStorage('teams', {
