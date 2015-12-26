@@ -7,9 +7,9 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-function isActivePreset(preset, check = teams.weights) {
+function isActivePreset(preset, currentValues) {
     for(const id in preset)
-        if(preset[ id ] !== check[ id ])
+        if(preset[ id ] !== currentValues[ id ])
             return false;
     return true;
 }
@@ -35,7 +35,7 @@ const TeamsSettingsMenu = {
             options.push(
                 <MenuOption
                     title={ `preset-${ id }-name` }
-                    selected={ isActivePreset(PRESETS[ id ]) }
+                    selected={ isActivePreset(PRESETS[ id ], teams.weights) }
                     onclick={ handleClick }
                 />
             );
@@ -55,7 +55,7 @@ const TeamsSettingsMenu = {
             options.push(
                 <MenuOption
                     title={ `preset-duplicates-${ id }-name` }
-                    selected={ isActivePreset(PRESETS_DUPLICATES[ id ]) }
+                    selected={ isActivePreset(PRESETS_DUPLICATES[ id ], teams.weights) }
                     onclick={ handleClick }
                 />
             );
