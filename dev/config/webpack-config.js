@@ -36,7 +36,7 @@ export default {
                 test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'file?name=fonts/[name].[ext]&limit=0' ],
             },
-            // fonts & svg
+            // json
             {
                 test: /\.json$/,
                 loaders: [ 'json' ],

@@ -13,6 +13,16 @@ gulp.task('lint:dev', () => gulp.src([
     .pipe(esLint.failAfterError())
 );
 
+gulp.task('lint:test', () => gulp.src([
+    './test/**/*.js',
+    './test/**/*.jsx',
+])
+    .pipe(plumber())
+    .pipe(esLint())
+    .pipe(esLint.format())
+    .pipe(esLint.failAfterError())
+);
+
 gulp.task('lint:scripts', () => gulp.src([
     './src/**/*.js',
     './src/**/*.jsx',
@@ -31,4 +41,4 @@ gulp.task('lint:styles', () => gulp.src([
     .pipe(sassLint.failOnError())
 );
 
-gulp.task('lint', sequence('lint:dev', 'lint:scripts', 'lint:styles'));
+gulp.task('lint', sequence('lint:dev', 'lint:test', 'lint:scripts', 'lint:styles'));
