@@ -1,4 +1,4 @@
-.team {
+.champion-team {
     clear: both;
     text-align: center;
     margin: 10px auto;
@@ -49,7 +49,6 @@
 
         .effect-name,
         .effect-amount {
-            display: inline-block;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 1em;
         }
@@ -61,7 +60,7 @@
         }
     }
 
-    &.team--size-3 {
+    &.champion-team--size-3 {
         max-width: 450px;
 
         .champion {
@@ -70,7 +69,7 @@
         }
     }
 
-    &.team--size-4 {
+    &.champion-team--size-4 {
         max-width: 600px;
 
         .champion {
@@ -79,7 +78,7 @@
         }
     }
 
-    &.team--size-5 {
+    &.champion-team--size-5 {
         max-width: 750px;
 
         .champion {

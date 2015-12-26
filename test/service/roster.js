@@ -2,7 +2,7 @@ import roster from '../../src/service/roster';
 
 describe('service/roster', () => {
 
-    describe('toCSV', () => it('should return the expected CSV', () => {
+    describe('.toCSV', () => it('should return the expected CSV', () => {
         roster.clear();
         roster.add('blackbolt', 2);
         roster.add('drax', 2);
@@ -17,7 +17,7 @@ describe('service/roster', () => {
         expect(csv).to.equal('Id,Stars,Rank,Level,Awakened,Pi\n"blackbolt",2,1,1,0,0\n"drax",2,3,30,16,500');
     }));
 
-    describe('fromCSV', () => it('should build an expected roster from given CSV', () => {
+    describe('.fromCSV', () => it('should build an expected roster from given CSV', () => {
         const csv = 'Id,Stars,Rank,Level,Awakened,Pi\n"blackbolt",2,1,1,0,0\n"drax",2,3,30,16,500';
         roster.clear();
         roster.fromCSV(csv);

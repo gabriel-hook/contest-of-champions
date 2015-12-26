@@ -18,7 +18,7 @@
 
 ### Publishing
 
-  Lint, Build and publish to gh-pages branch.
+  Lint, Test, Build and publish to gh-pages branch.
 
 ```
   npm run deploy

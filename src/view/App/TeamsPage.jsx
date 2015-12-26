@@ -2,7 +2,7 @@ import './TeamsPage.scss';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
-import Team from '../Team.jsx';
+import ChampionTeam from '../Champion/ChampionTeam.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -19,7 +19,7 @@ const TeamsPage = {
             const { counts, teams, extras } = result;
             message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
             teamDivs = teams.map(({ champions, synergies }) => (
-                <Team
+                <ChampionTeam
                     key={ champions.map((champion) => champion.id).join('-') }
                     champions={ champions }
                     synergies={ synergies }

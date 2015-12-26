@@ -15,7 +15,17 @@ export default {
     preprocessors: {
         './test/**/*.js*': [ 'webpack', 'sourcemap' ],
     },
-    reporters: [ 'dots' ],
+
+    // reporter options
+    reporters: [ 'mocha' ],
+    mochaReporter: {
+        colors: {
+            success: 'green',
+            info: 'grey',
+            warning: 'yellow',
+            error: 'red',
+        },
+    },
 
     // webpack config object
     webpack: {
@@ -28,6 +38,7 @@ export default {
 
     plugins: [
         'karma-phantomjs-launcher',
+        'karma-mocha-reporter',
         'karma-chai',
         'karma-mocha',
         'karma-sourcemap-loader',

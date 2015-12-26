@@ -1,11 +1,11 @@
-import './Team.scss';
+import './ChampionTeam.scss';
 import deepEqual from 'deep-equal';
 import classNames from 'classnames';
-import effects, { effectImage } from '../data/effects';
-import lang from '../service/lang';
-import ChampionPortrait from './Champion/ChampionPortrait.jsx';
-import ImageIcon from './ImageIcon.jsx';
-import { requestRedraw } from '../util/animation';
+import effects, { effectImage } from '../../data/effects';
+import lang from '../../service/lang';
+import ChampionPortrait from './ChampionPortrait.jsx';
+import ImageIcon from '../ImageIcon.jsx';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -96,7 +96,7 @@ function selectSynergy(ctrl, synergies, champions, effectId) {
     requestRedraw();
 }
 
-const Team = {
+const ChampionTeam = {
     controller() {
         this.selected = {
             effects: {},
@@ -111,7 +111,7 @@ const Team = {
         return(
             <div
                 m="Team"
-                class={ classNames('team', `team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
+                class={ classNames('champion-team', ` champion-team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
             >
                 <div>
                 { champions.map((champion, index) => {
@@ -159,4 +159,4 @@ const Team = {
     },
 };
 
-export default Team;
+export default ChampionTeam;
