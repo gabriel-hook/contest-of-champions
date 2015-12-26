@@ -6,8 +6,9 @@
   "scripts": {
     "server": "./node_modules/.bin/gulp server",
     "lint": "./node_modules/.bin/gulp lint",
-    "deploy": "npm run lint && ./node_modules/.bin/gulp deploy",
-    "test": "npm run lint"
+    "karma": "./node_modules/.bin/karma start",
+    "deploy": "npm run lint && npm run karma && ./node_modules/.bin/gulp deploy",
+    "test": "npm run lint && npm run karma"
   },
   "repository": {
     "type": "git",
