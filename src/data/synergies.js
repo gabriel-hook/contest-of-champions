@@ -528,4 +528,18 @@ const synergies = [
 
 ].map((synergy) => new Synergy(synergy));
 
+function synergiesFromChampions(champions) {
+    const ids = {};
+    champions.forEach((champion) => ids[ champion.attr.uid ] = true);
+    return champions
+        .map((champion) => synergies.filter((synergy) => {
+            const { fromId, fromStars, toId } = synergy.attr;
+            if(fromId !== champion.attr.uid || fromStars !== champion.attr.stars)
+                return false;
+            return ids[ toId ];
+        }))
+        .reduce((array, current) => array.concat(current), []);
+}
+
+export { synergiesFromChampions };
 export default synergies;
