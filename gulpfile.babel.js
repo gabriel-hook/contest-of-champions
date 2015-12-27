@@ -1,4 +1,4 @@
-import './dev/tasks/clean.js';
-import './dev/tasks/deploy.js';
-import './dev/tasks/lint.js';
-import './dev/tasks/webpack.js';
+import './dev/task/clean.js';
+import './dev/task/lint.js';
+import './dev/task/webpack.js';
+import './dev/task/build.js';
