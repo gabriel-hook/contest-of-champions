@@ -9,5 +9,5 @@ env:
   - GH_REF: github.com/hook/champions.git
   - secure: "sIuuGaTZDzN+b7Szw8s6wOHtrLtZCPHYlTXQSL3bjxU8TLHgyb63qii1HUcLeDmQFPTq4sTSP0P2vVWCRlktYqo7rg4SdGnYzw+6T2AvBMB3MoIK8xninPr0hf/J/XpsZwgns7uiAjhueMGdne0r211amCMqCssj7v0HsQ6cPIGSwGeU4yzMmtp2ppiddIfOW/tS4z5GcJFV+tW6WfZjUWVewm3xRJ5TY7Ih9byyCkaW1XMLGujDz3wPO5XQNaOD95ZsXPIxiJpV7YXGF14TKiU2P2/vOz/IDA0FwIQQQAllGSbXMof3iQl2+UMig7Xr3xUa0TDiy+NbeEPA6w7RLWkWgr/08DL0L0ph2ZAGHtPPejn/uAnZca53WZ1uuzv7dl9Wg/7x7mXK3DvlpCZnbFLHVRESqWgKV7SnOm2p7QOhLx7XsJWCBrEtCJK4DK1ngPRwioN8x02y+LaaDf2Cx4vXQQ1AEvNWIKW0b9vN2SZak3iuQx1rm8Hspcx1ByfuouxOlgqEGiU9AayxE5K0p/+zB06LdMtxyVGsNlXmiiInjftRqHRGxq5jlqt0A6+TFslZgH0i8xiBBp7TywxnldNB4c5bl23VpSB6oVzSA+jFWw7srzdiK8C+sp/ez6PHX5y2spZPolBJqbW4XD4THMhsiHjWAw3T5wxMCAkAoiE="
 script:
-  - "npm test && (TRAVIS_PULL_REQUEST || npm run deploy)"
+  - "npm test && (${TRAVIS_PULL_REQUEST} || npm run deploy)"
 sudo: false
