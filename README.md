@@ -26,8 +26,5 @@
 ```
 ### Deploying
 
-  Lint, Test, Build and publish to gh-pages branch.
+  Lint, Test, Build and publish to gh-pages branch is done automatically by Travis-CI on `git push`.
 
-```
-  npm run deploy
-```
