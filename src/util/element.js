@@ -1,4 +1,3 @@
-
 function clickElementById(id) {
     const element = document.getElementById(id);
     if(document.createEventObject) {

@@ -22,7 +22,7 @@ export default function({
     maxTeamSize = 5,
     activeMass = 500,
     graph = new Graph(),
-    }) {
+}) {
     const canvas = this.canvas = document.createElement('canvas');
     const ctx = this.ctx = canvas.getContext('2d');
 
@@ -72,6 +72,7 @@ export default function({
 
     this.update = (stars, graph, top, left, width, height) => {
         if(graph && this.stars !== stars) {
+            this.update.init = true;
             this.stars = stars;
 
             this.layout.graph = graph;

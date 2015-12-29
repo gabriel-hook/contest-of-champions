@@ -1,4 +1,3 @@
-
 export default (
     window.navigator.userAgent.indexOf('MSIE ') !== -1 ||
     window.navigator.userAgent.indexOf('Edge ') !== -1 ||
