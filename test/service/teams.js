@@ -1,3 +1,4 @@
+import { idMap as championsById } from '../../src/data/champions';
 import buildArena from '../../src/service/teams/build-arena';
 import buildQuest from '../../src/service/teams/build-quest';
 import { PRESETS, PRESETS_DUPLICATES } from '../../src/service/teams';
@@ -12,7 +13,7 @@ describe('service/teams', () => {
                 'wolverine-2',
                 'antman-2',
                 'yellowjacket-2',
-            ],
+            ].map((id) => championsById[ id ].attr),
             size: 3,
             weights: {
                 ...PRESETS[ 'offensive' ],
@@ -35,7 +36,7 @@ describe('service/teams', () => {
                 'wolverine-2',
                 'antman-2',
                 'yellowjacket-2',
-            ],
+            ].map((id) => championsById[ id ].attr),
             size: 3,
             weights: {
                 ...PRESETS[ 'offensive' ],

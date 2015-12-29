@@ -218,7 +218,7 @@ function buildTeams() {
             type: teams.type,
             champions: roster
                 .filter((champion) => teams.stars[ champion.attr.stars ])
-                .map((champion) => champion.id),
+                .map((champion) => champion.attr),
             size: teams.size,
             weights: {
                 ...teams.weights,

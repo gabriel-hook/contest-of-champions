@@ -17,11 +17,11 @@ function buildArena({
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
-    champions.forEach((fid) => {
+    champions.forEach((attr) => {
         /* eslint-disable eqeqeq */
-        const [ uid, stars ] = fid.split('-');
+        const { uid, stars, typeId } = attr;
         const champion = dataChampions.find(({ attr }) => attr.uid === uid && attr.stars == stars);
-        const { typeId } = champion.attr;
+        const fid = champion.id;
         //add hero
         heroMap[ fid ]={
             fid,
