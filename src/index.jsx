@@ -236,7 +236,7 @@ app.tabs = [
     {
         id: 'synergy',
         title: 'synergy',
-        icon: 'area-chart',
+        icon: 'sitemap',
     },
 ];
 
