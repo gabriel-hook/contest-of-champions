@@ -120,7 +120,7 @@ function save() {
     roster = [];
     for(const id in byId)
         roster.push(byId[ id ]);
-    let sort;
+    let sort = SORT_STARS_DESC;
     if(rosterOptions.sort.key === 'stars') {
         sort = (rosterOptions.sort.direction === 'desc')? SORT_STARS_DESC: SORT_STARS_ASC;
     }
