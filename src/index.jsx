@@ -38,8 +38,17 @@ router.on('/guide/?', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
-    app.pages[ 'guide' ] = (
+    app.pages[ 'guide-show' ] = (
         <GuidePage uid={ uid } />
+    );
+    app.pages[ 'guide' ] = (
+        <Cards
+            cards={[
+                app.pages[ 'guide-show' ],
+                app.pages[ 'guide-edit' ],
+            ]}
+            current={ 0 }
+        />
     );
     app.menu = (
         <GuideMenu uid={ uid } />
@@ -57,8 +66,17 @@ router.on('/guide/:uid/?', (uid) => {
 router.on('/guide/:uid/edit/?', (uid) => {
     app.edit = true;
     app.tab = 'guide';
-    app.pages[ 'guide' ] = (
+    app.pages[ 'guide-edit' ] = (
         <GuideEditPage uid={ uid } />
+    );
+    app.pages[ 'guide' ] = (
+        <Cards
+            cards={[
+                app.pages[ 'guide-show' ],
+                app.pages[ 'guide-edit' ],
+            ]}
+            current={ 1 }
+        />
     );
     app.menu = (
         <GuideEditMenu uid={ uid } />
