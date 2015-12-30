@@ -1,6 +1,8 @@
 import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
+import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
+import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 import { clickElementById } from '../../util/element';
@@ -46,8 +48,8 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                        <Icon icon="floppy-o" />
-                    )}
+                    <Icon icon="floppy-o" />
+                )}
                 title="export-csv"
                 download="champions.csv"
                 onclick={ (event) => {
@@ -56,18 +58,87 @@ const RosterMenu = {
                 }}
             />
         );
+        options.push(
+            <MenuOption
+                icon={(
+                    <Icon icon="user-times" />
+                )}
+                title="delete-all"
+                onclick={ () => {
+                    roster.clear();
+                    requestRedraw();
+                }}
+                red="true"
+            />
+        );
+        const sort = roster.getSort();
+        options.push(
+            <MenuSection
+                title="sort"
+            />
+        );
+        options.push(
+            <MenuOption
+                icon={(
+                    <Icon icon={ (sort.key === 'stars' && sort.direction === 'asc')? 'sort-amount-asc': 'sort-amount-desc' } />
+                )}
+                title="stars"
+                selected={ sort.key === 'stars' }
+                onclick={ () => {
+                    roster.setSort('stars', (sort.key === 'stars' && sort.direction === 'desc')? 'asc': 'desc');
+                    requestRedraw();
+                }}
+            />
+        );
+        options.push(
+            <MenuOption
+                icon={(
+                    <Icon icon={ (sort.key === 'pi' && sort.direction === 'asc')? 'sort-numeric-asc': 'sort-numeric-desc' } />
+                )}
+                title="pi"
+                selected={ sort.key === 'pi' }
+                onclick={ () => {
+                    roster.setSort('pi', (sort.key === 'pi' && sort.direction === 'desc')? 'asc': 'desc');
+                    requestRedraw();
+                }}
+            />
+        );
+        options.push(
+            <MenuOption
+                icon={(
+                    <Icon icon={ (sort.key === 'name' && sort.direction === 'desc')? 'sort-alpha-desc': 'sort-alpha-asc' } />
+                )}
+                title="name"
+                selected={ sort.key === 'name' }
+                onclick={ () => {
+                    roster.setSort('name', (sort.key === 'name' && sort.direction === 'asc')? 'desc': 'asc');
+                    requestRedraw();
+                }}
+            />
+        );
+        options.push(
+            <MenuSection
+                title="filter"
+            />
+        );
+        options.push(
+            <MenuOptionGroup options={
+                [ 1, 2, 3, 4, 5 ].map((star) => (
+                    <MenuOption
+                        title={ `${ star }★` }
+                        selected={ roster.getFilter(star) }
+                        onclick={ () => {
+                            roster.setFilter(star, !roster.getFilter(star));
+                            requestRedraw();
+                        }}
+                    />
+                ))
+            } />
+        );
         return (
             <div m="RosterMenu" key="roster-menu">
                 <MenuHeader title="roster" />
                 { options }
-                <MenuOption
-                    icon={(
-                        <Icon icon="user-times" />
-                    )}
-                    title="delete-all"
-                    onclick={ () => roster.clear() }
-                    red="true"
-                />
             </div>
         );
     },

@@ -1,3 +1,4 @@
+import lang from './lang';
 import Champion from '../data/model/Champion';
 import champions, { idMap as championMap } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
@@ -7,7 +8,110 @@ let roster = fromStorage('roster', []).map((attr) => new Champion({
     level: Math.max(1, attr.level),
     rank: Math.max(1, attr.rank),
 }));
+let rosterOptions = fromStorage('roster-options', {
+    sort: {
+        key: 'stars',
+        direction: 'asc',
+    },
+    filter: {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+    },
+});
 let cache = {};
+
+function setFilter(stars, value) {
+    rosterOptions = {
+        ...rosterOptions,
+        filter: {
+            ...rosterOptions.filter,
+            [ stars ]: value,
+        },
+    };
+    toStorage('roster-options', rosterOptions);
+}
+function getFilter(stars) {
+    return rosterOptions.filter[ stars ];
+}
+
+function setSort(key, direction) {
+    rosterOptions = {
+        ...rosterOptions,
+        sort: {
+            key,
+            direction,
+        },
+    };
+    toStorage('roster-options', rosterOptions);
+    save();
+}
+function getSort() {
+    return rosterOptions.sort;
+}
+
+const SORT_STARS_DESC = (a, b) => {
+    const stars = b.attr.stars - a.attr.stars;
+    if(stars !== 0)
+        return stars;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return -b.attr.uid.localeCompare(a.attr.uid);
+};
+const SORT_STARS_ASC = (a, b) => {
+    const stars = a.attr.stars - b.attr.stars;
+    if(stars !== 0)
+        return stars;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return -b.attr.uid.localeCompare(a.attr.uid);
+};
+const SORT_PI_DESC = (a, b) => {
+    const pi = (b.attr.pi || b.pi) - (a.attr.pi || a.pi);
+    if(pi !== 0)
+        return pi;
+    const stars = b.attr.stars - a.attr.stars;
+    if(stars !== 0)
+        return stars;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return -b.attr.uid.localeCompare(a.attr.uid);
+};
+const SORT_PI_ASC = (a, b) => {
+    const pi = (a.attr.pi || a.pi) - (b.attr.pi || b.pi);
+    if(pi !== 0)
+        return pi;
+    const stars = b.attr.stars - a.attr.stars;
+    if(stars !== 0)
+        return stars;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return -b.attr.uid.localeCompare(a.attr.uid);
+};
+const SORT_NAME_DESC = (a, b) => {
+    const name = -lang.get(a.attr.uid).localeCompare(lang.get(b.attr.uid));
+    if(name !== 0)
+        return name;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return b.attr.stars - a.attr.stars;
+};
+const SORT_NAME_ASC = (a, b) => {
+    const name = lang.get(a.attr.uid).localeCompare(lang.get(b.attr.uid));
+    if(name !== 0)
+        return name;
+    const type = a.typeIndex - b.typeIndex;
+    if(type !== 0)
+        return type;
+    return b.attr.stars - a.attr.stars;
+};
 
 function save() {
     cache = {};
@@ -16,15 +120,17 @@ function save() {
     roster = [];
     for(const id in byId)
         roster.push(byId[ id ]);
-    roster.sort((a, b) => {
-        const stars = b.attr.stars - a.attr.stars;
-        if(stars !== 0)
-            return stars;
-        const type = a.typeIndex - b.typeIndex;
-        if(type !== 0)
-            return type;
-        return -b.attr.uid.localeCompare(a.attr.uid);
-    });
+    let sort;
+    if(rosterOptions.sort.key === 'stars') {
+        sort = (rosterOptions.sort.direction === 'desc')? SORT_STARS_DESC: SORT_STARS_ASC;
+    }
+    else if(rosterOptions.sort.key === 'pi') {
+        sort = (rosterOptions.sort.direction === 'desc')? SORT_PI_DESC: SORT_PI_ASC;
+    }
+    else if(rosterOptions.sort.key === 'name') {
+        sort = (rosterOptions.sort.direction === 'desc')? SORT_NAME_DESC: SORT_NAME_ASC;
+    }
+    roster.sort(sort);
     toStorage('roster', roster);
 }
 
@@ -208,4 +314,9 @@ export default {
     //io
     toCSV,
     fromCSV,
+    //options
+    setFilter,
+    getFilter,
+    setSort,
+    getSort,
 };
