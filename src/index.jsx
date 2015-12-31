@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import { notify, denotify } from './util/notification';
+import { notify } from './util/notification';
 import { uids } from './data/champions';
 import lang from './service/lang';
 import app from './service/app';
@@ -93,17 +93,6 @@ router.on('/guide/:uid/edit/?', (uid) => {
 });
 
 router.on('/roster/?', () => {
-    if(roster.all().length === 0) {
-        notify({
-            message: lang.get('notification-roster-empty'),
-            tag: 'roster-empty',
-            onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
-        });
-    }
-    else {
-        denotify('roster-empty');
-    }
-
     app.tab = 'roster';
     app.pages[ 'roster-show' ] = (
         <RosterPage />
@@ -127,6 +116,14 @@ router.on('/roster/?', () => {
     };
     analytics.pageView();
     requestRedraw();
+
+    if(roster.all().length === 0) {
+        notify({
+            message: lang.get('notification-roster-empty'),
+            tag: 'roster-empty',
+            onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
+        });
+    }
 });
 
 router.on('/roster/add/:stars/?', (stars) => {

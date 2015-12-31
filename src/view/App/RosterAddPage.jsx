@@ -4,6 +4,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
+import { denotify } from '../../util/notification';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -33,6 +34,7 @@ const RosterAddPage = {
                     onclick={ () => {
                         roster.addAll(stars);
                         requestRedraw();
+                        denotify({ tag: 'roster-empty' });
                     }}
                 >
                     { lang.get('add-all') }
@@ -46,6 +48,7 @@ const RosterAddPage = {
                             onclick={ () => {
                                 roster.add(champion.attr.uid, stars);
                                 requestRedraw();
+                                denotify({ tag: 'roster-empty' });
                             }}
                         />
                     )) }

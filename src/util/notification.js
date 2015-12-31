@@ -3,6 +3,8 @@ import lang from '../service/lang';
 let notify = function() { };
 let denotify = function() { };
 
+const notifications = {};
+
 if('Notification' in window) {
 
     if (window.Notification && Notification.permission !== 'granted') {
@@ -13,47 +15,54 @@ if('Notification' in window) {
         });
     }
 
-    const removeNotification = (tag) => {
-        const notification = new Notification('', { tag });
-        setTimeout(() => notification.close());
+    const removeNotification = ({ tag = 'default' }) => {
+        if(notifications[ tag ]) {
+            notifications[ tag ].forEach((notification) => notification.close());
+            notifications[ tag ] = [];
+        }
     };
 
-    const createNotification = ({ message, tag, onclick }) => {
-        const notification = new Notification(`${ lang.get('champions') }\n${ message }`, {
-            tag,
-            icon: 'images/icon.png',
-        });
+    const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
+        const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
         if(onclick) {
             notification.onclick = function() {
                 onclick();
                 notification.close();
             };
         }
+        notifications[ tag ] = [
+            ...(notifications[ tag ] || []),
+            notification,
+        ];
     };
 
-    denotify = (tag) => {
+    denotify = (notification) => {
+        let ran = false;
         if(Notification.permission === 'granted') {
-            removeNotification(tag);
+            removeNotification(notification);
+            ran = true;
         }
         Notification.requestPermission((status) => {
             if (Notification.permission !== status) {
                 Notification.permission = status;
             }
-            if(Notification.permission === 'granted') {
-                removeNotification(tag);
+            if(Notification.permission === 'granted' && !ran) {
+                removeNotification(notification);
             }
         });
     };
 
     notify = (notification) => {
+        let ran = false;
         if(Notification.permission === 'granted') {
+            ran = true;
             createNotification(notification);
         }
         Notification.requestPermission((status) => {
             if (Notification.permission !== status) {
                 Notification.permission = status;
             }
-            if(Notification.permission === 'granted') {
+            if(Notification.permission === 'granted' && !ran) {
                 createNotification(notification);
             }
         });
