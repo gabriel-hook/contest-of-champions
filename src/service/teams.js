@@ -195,12 +195,12 @@ worker.onmessage = (event) => {
             teams.building = false;
             progressResetTimeout = setTimeout(() => {
                 teams.progress = 0;
+                requestRedraw();
                 notify({
                     message: lang.get('notification-team-built'),
                     tag: 'team-built',
                     onclick: () => router.setRoute('/teams'),
                 });
-                requestRedraw();
             }, 250);
             requestRedraw();
         }, 50);
