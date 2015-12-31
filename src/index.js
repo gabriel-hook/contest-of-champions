@@ -8,4 +8,3 @@ console.info(`${ PACKAGE.description } v${ PACKAGE.version }`);
 
 document.addEventListener('hotreload', () => requestRedraw(), true);
 window.addEventListener('resize', () => requestRedraw(10), true);
-
