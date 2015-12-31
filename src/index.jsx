@@ -1,9 +1,12 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
+import { notify } from './util/notification';
 import { uids } from './data/champions';
+import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
+import roster from './service/roster';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
 import Cards from './view/Cards.jsx';
@@ -90,6 +93,14 @@ router.on('/guide/:uid/edit/?', (uid) => {
 });
 
 router.on('/roster/?', () => {
+    if(roster.all().length === 0) {
+        notify({
+            message: lang.get('notification-roster-empty'),
+            tag: 'roster-empty',
+            onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
+        });
+    }
+
     app.tab = 'roster';
     app.pages[ 'roster-show' ] = (
         <RosterPage />

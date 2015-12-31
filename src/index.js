@@ -1,4 +1,5 @@
 import { requestRedraw } from './util/animation';
+import './util/notification';
 import './index.jsx';
 import PACKAGE from '../package.json';
 

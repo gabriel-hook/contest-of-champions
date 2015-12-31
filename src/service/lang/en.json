@@ -284,5 +284,8 @@
     "link-github": "Github",
     "link-kabam": "Kabam Forums",
     "link-reddit": "Reddit /r",
-    "share-to": "Share"
+    "share-to": "Share",
+
+    "notification-roster-empty": "Add Champions to your to your roster.",
+    "notification-team-built": "Team Built"
 }

@@ -1,0 +1,21 @@
+{
+    "short_name": "Champions",
+    "name": "Champions Companion App",
+    "icons": [
+        {
+            "src": "images/icon.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#3388cc",
+    "permissions": {
+        "desktop-notification": {
+            "description": "Needed for creating system notifications."
+        }
+    },
+    "messages": [{"notification": "index.html"}]
+}
