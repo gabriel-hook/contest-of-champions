@@ -5,6 +5,21 @@ let denotify = function() { };
 
 const notifications = {};
 
+function isNewNotificationSupported() {
+    if (!window.Notification || !Notification.requestPermission)
+        return false;
+    if (Notification.permission === 'granted')
+        throw new Error('You must only call this *before* calling Notification.requestPermission(), otherwise this feature detect would bug the user with an actual notification!');
+    try {
+        new Notification('');
+    }
+    catch (e) {
+        if (e.name === 'TypeError')
+            return false;
+    }
+    return true;
+}
+
 if('Notification' in window) {
 
     if (window.Notification && Notification.permission !== 'granted') {
@@ -23,7 +38,10 @@ if('Notification' in window) {
     };
 
     const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
-        try {
+        if('ServiceWorkerRegistration' in window && ServiceWorkerRegistration.showNotification) {
+            ServiceWorkerRegistration.showNotification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
+        }
+        else {
             const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
             if (onclick) {
                 notification.onclick = function() {
@@ -36,11 +54,6 @@ if('Notification' in window) {
                 notification,
             ];
         }
-        catch (e) {
-            /* eslint-disable no-alert */
-            alert(e);
-            /* eslint-enable no-alert */
-        }
     };
 
     denotify = (notification) => {
@@ -49,21 +62,14 @@ if('Notification' in window) {
             removeNotification(notification);
             ran = true;
         }
-        try {
-            Notification.requestPermission((status) => {
-                if (Notification.permission !== status) {
-                    Notification.permission = status;
-                }
-                if(Notification.permission === 'granted' && !ran) {
-                    removeNotification(notification);
-                }
-            });
-        }
-        catch (e) {
-            /* eslint-disable no-alert */
-            alert(e);
-            /* eslint-enable no-alert */
-        }
+        Notification.requestPermission((status) => {
+            if (Notification.permission !== status) {
+                Notification.permission = status;
+            }
+            if(Notification.permission === 'granted' && !ran) {
+                removeNotification(notification);
+            }
+        });
     };
 
     notify = (notification) => {
@@ -72,21 +78,14 @@ if('Notification' in window) {
             ran = true;
             createNotification(notification);
         }
-        try {
-            Notification.requestPermission((status) => {
-                if (Notification.permission !== status) {
-                    Notification.permission = status;
-                }
-                if (Notification.permission === 'granted' && !ran) {
-                    createNotification(notification);
-                }
-            });
-        }
-        catch(e) {
-            /* eslint-disable no-alert */
-            alert(e);
-            /* eslint-enable no-alert */
-        }
+        Notification.requestPermission((status) => {
+            if (Notification.permission !== status) {
+                Notification.permission = status;
+            }
+            if(Notification.permission === 'granted' && !ran) {
+                createNotification(notification);
+            }
+        });
     };
 }
 
