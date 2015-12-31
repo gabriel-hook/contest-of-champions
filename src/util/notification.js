@@ -1,6 +1,7 @@
 import lang from '../service/lang';
 
 let notify = function() { };
+let denotify = function() { };
 
 if('Notification' in window) {
 
@@ -11,6 +12,11 @@ if('Notification' in window) {
             }
         });
     }
+
+    const removeNotification = (tag) => {
+        const notification = new Notification('', { tag });
+        setTimeout(() => notification.close());
+    };
 
     const createNotification = ({ message, tag, onclick }) => {
         const notification = new Notification(`${ lang.get('champions') }\n${ message }`, {
@@ -23,6 +29,20 @@ if('Notification' in window) {
                 notification.close();
             };
         }
+    };
+
+    denotify = (tag) => {
+        if(Notification.permission === 'granted') {
+            removeNotification(tag);
+        }
+        Notification.requestPermission((status) => {
+            if (Notification.permission !== status) {
+                Notification.permission = status;
+            }
+            if(Notification.permission === 'granted') {
+                removeNotification(tag);
+            }
+        });
     };
 
     notify = (notification) => {
@@ -40,4 +60,4 @@ if('Notification' in window) {
     };
 }
 
-export { notify };
+export { notify, denotify };

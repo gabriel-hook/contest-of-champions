@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
-import { notify } from './util/notification';
+import { notify, denotify } from './util/notification';
 import { uids } from './data/champions';
 import lang from './service/lang';
 import app from './service/app';
@@ -99,6 +99,9 @@ router.on('/roster/?', () => {
             tag: 'roster-empty',
             onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
         });
+    }
+    else {
+        denotify('roster-empty');
     }
 
     app.tab = 'roster';
