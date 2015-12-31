@@ -23,10 +23,7 @@ if('Notification' in window) {
     };
 
     const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
-        if('ServiceWorkerRegistration' in window && ServiceWorkerRegistration.showNotification) {
-            ServiceWorkerRegistration.showNotification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
-        }
-        else {
+        try {
             const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
             if (onclick) {
                 notification.onclick = function() {
@@ -39,6 +36,7 @@ if('Notification' in window) {
                 notification,
             ];
         }
+        catch(e) { /* do nothing */ }
     };
 
     denotify = (notification) => {
