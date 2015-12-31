@@ -17,23 +17,30 @@ if('Notification' in window) {
 
     const removeNotification = ({ tag = 'default' }) => {
         if(notifications[ tag ]) {
-            notifications[ tag ].forEach((notification) => notification.close());
+            notifications[ tag ].forEach((notification) => notification.close && notification.close());
             notifications[ tag ] = [];
         }
     };
 
     const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
-        const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
-        if(onclick) {
-            notification.onclick = function() {
-                onclick();
-                notification.close();
-            };
+        try {
+            const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
+            if (onclick) {
+                notification.onclick = function() {
+                    onclick();
+                    notification.close();
+                };
+            }
+            notifications[ tag ] = [
+                ...(notifications[ tag ] || []),
+                notification,
+            ];
         }
-        notifications[ tag ] = [
-            ...(notifications[ tag ] || []),
-            notification,
-        ];
+        catch (e) {
+            /* eslint-disable no-alert */
+            alert(e);
+            /* eslint-enable no-alert */
+        }
     };
 
     denotify = (notification) => {
@@ -42,14 +49,21 @@ if('Notification' in window) {
             removeNotification(notification);
             ran = true;
         }
-        Notification.requestPermission((status) => {
-            if (Notification.permission !== status) {
-                Notification.permission = status;
-            }
-            if(Notification.permission === 'granted' && !ran) {
-                removeNotification(notification);
-            }
-        });
+        try {
+            Notification.requestPermission((status) => {
+                if (Notification.permission !== status) {
+                    Notification.permission = status;
+                }
+                if(Notification.permission === 'granted' && !ran) {
+                    removeNotification(notification);
+                }
+            });
+        }
+        catch (e) {
+            /* eslint-disable no-alert */
+            alert(e);
+            /* eslint-enable no-alert */
+        }
     };
 
     notify = (notification) => {
@@ -58,14 +72,21 @@ if('Notification' in window) {
             ran = true;
             createNotification(notification);
         }
-        Notification.requestPermission((status) => {
-            if (Notification.permission !== status) {
-                Notification.permission = status;
-            }
-            if(Notification.permission === 'granted' && !ran) {
-                createNotification(notification);
-            }
-        });
+        try {
+            Notification.requestPermission((status) => {
+                if (Notification.permission !== status) {
+                    Notification.permission = status;
+                }
+                if (Notification.permission === 'granted' && !ran) {
+                    createNotification(notification);
+                }
+            });
+        }
+        catch(e) {
+            /* eslint-disable no-alert */
+            alert(e);
+            /* eslint-enable no-alert */
+        }
     };
 }
 
