@@ -7,10 +7,11 @@ function build({
     size,
     weights,
     range,
+    options,
     progress,
 }) {
-    return (type === 'arena')? buildArena({ champions, size, weights, range, progress }):
-        (type === 'quest')? buildQuest({ champions, size, weights, range, progress }):
+    return (type === 'arena')? buildArena({ champions, size, weights, range, options, progress }):
+        (type === 'quest')? buildQuest({ champions, size, weights, range, options, progress }):
         { teams: [], extras: [] };
 }
 

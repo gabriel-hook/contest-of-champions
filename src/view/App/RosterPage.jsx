@@ -23,7 +23,7 @@ const RosterPage = {
             router.setRoute(`/roster/${ uid }/${ stars }`);
             requestRedraw();
         };
-        return (
+        const view = (
             <div m="RosterPage" class="roster">
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
                 <div>
@@ -38,6 +38,8 @@ const RosterPage = {
                 <div class="clear" />
             </div>
         );
+        console.dir(view);
+        return view;
     },
 };
 

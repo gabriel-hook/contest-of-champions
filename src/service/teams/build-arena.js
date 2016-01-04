@@ -27,7 +27,7 @@ function buildArena({
             fid,
             uid,
             typeId,
-            pi: champion.attr.pi || champion.pi,
+            pi: attr.pi || champion.pi,
         };
         synergyMap[ fid ] = {};
         dataSynergies
