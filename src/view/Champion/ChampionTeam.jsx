@@ -105,8 +105,7 @@ const ChampionTeam = {
         this.champions = {};
         this.effects = {};
     },
-    view(ctrl, args) {
-        const { champions, synergies } = args;
+    view(ctrl, { champions, synergies }) {
         const size = champions.length;
         return(
             <div

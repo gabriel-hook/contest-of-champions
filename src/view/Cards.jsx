@@ -5,8 +5,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const Cards = {
-    view(ctrl, args) {
-        const { cards, current } = args;
+    view(ctrl, { cards, current }) {
         return (
             <div m="Cards" class="cards">
                     { cards.map((card, index) => {

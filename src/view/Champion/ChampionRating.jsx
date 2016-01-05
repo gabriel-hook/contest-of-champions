@@ -4,8 +4,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionRating = {
-    view(ctrl, args) {
-        const { rating } = args;
+    view(ctrl, { rating }) {
         return (
             <div
                 m="ChampionRating"

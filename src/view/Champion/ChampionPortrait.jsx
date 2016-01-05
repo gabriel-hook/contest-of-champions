@@ -18,8 +18,7 @@ function addSVG(element, isInitialized) {
 }
 
 const ChampionPortrait = {
-    view(ctrl, args) {
-        const { champion, events, onclick, selected, neighbor } = args;
+    view(ctrl, { champion, events, onclick, selected, neighbor }) {
         const { uid, stars, pi, typeId, awakened } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon

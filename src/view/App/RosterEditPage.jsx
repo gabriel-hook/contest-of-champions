@@ -18,17 +18,15 @@ const tab = {
 };
 
 const Label = {
-    view(ctrl, args) {
-        const { text } = args;
+    view(ctrl, { id, text }) {
         return (
-            <label class="champion-field-label">{ lang.get(text) }</label>
+            <label for={ id } class="champion-field-label">{ lang.get(text) }</label>
         );
     },
 };
 
 const Select = {
-    view(ctrl, args) {
-        const { value, min, max, onchange } = args;
+    view(ctrl, { id, value, min, max, onchange }) {
         const options = [];
         for(let i = min; i <= max; i++)
             options.push(
@@ -36,7 +34,7 @@ const Select = {
             );
         return (
             <div class="champion-field-select">
-                <select onchange={ onchange }>
+                <select id={ id } name={ id } onchange={ onchange }>
                     { options }
                 </select>
                 <Icon icon="caret-down" />
@@ -45,9 +43,26 @@ const Select = {
     },
 };
 
+const Number = {
+    view(ctrl, { id, value, placeholder, min, max, onchange }) {
+        return (
+            <div class="champion-field-input">
+                <input
+                    id={ id }
+                    value={ value || '' }
+                    placeholder={ placeholder }
+                    type="number"
+                    min={ min }
+                    max={ max }
+                    oninput={ onchange }
+                />
+            </div>
+        );
+    },
+};
+
 const RosterPage = {
-    view(ctrl, args) {
-        const { uid, stars } = args;
+    view(ctrl, { uid, stars }) {
         const champion = roster.get(uid, stars);
         const elements = [];
         if(champion) {
@@ -62,8 +77,12 @@ const RosterPage = {
             );
             elements.push(
                 <div class="champion-field">
-                    <Label text="rank" />
+                    <Label
+                        id={ `${ champion.id }-edit-rank` }
+                        text="rank"
+                    />
                     <Select
+                        id={ `${ champion.id }-edit-rank` }
                         value={ rank }
                         min={ 1 }
                         max={ rangeMax }
@@ -81,8 +100,12 @@ const RosterPage = {
             );
             elements.push(
                 <div class="champion-field">
-                    <Label text="level" />
+                    <Label
+                        id={ `${ champion.id }-edit-level` }
+                        text="level"
+                    />
                     <Select
+                        id={ `${ champion.id }-edit-level` }
                         value={ level }
                         min={ 1 }
                         max={ levelMax }
@@ -99,8 +122,12 @@ const RosterPage = {
             );
             elements.push(
                 <div class="champion-field">
-                    <Label text="awakened" />
+                    <Label
+                        id={ `${ champion.id }-edit-awakened` }
+                        text="awakened"
+                    />
                     <Select
+                        id={ `${ champion.id }-edit-awakened` }
                         value={ awakened }
                         min={ 0 }
                         max={ 99 }
@@ -117,26 +144,27 @@ const RosterPage = {
             );
             elements.push(
                 <div class="champion-field">
-                    <Label text="pi" />
-                    <div class="champion-field-input">
-                        <input
-                            value={ pi || '' }
-                            placeholder={ champion.pi }
-                            type="number"
-                            min="0"
-                            max="10000"
-                            oninput={(event) => {
-                                const { value, min, max, valueAsNumber } = event.target;
-                                const pi = Math.min(max, Math.max(min, parseInt(value, 10) || min));
-                                roster.set(uid, stars, {
-                                    pi,
-                                });
-                                if(valueAsNumber !== undefined && isNaN(valueAsNumber))
-                                    event.target.value = '';
-                                requestRedraw();
-                            }}
-                        />
-                    </div>
+                    <Label
+                        id={ `${ champion.id }-edit-pi` }
+                        text="pi"
+                    />
+                    <Number
+                        id={ `${ champion.id }-edit-pi` }
+                        value={ pi || '' }
+                        placeholder={ champion.pi }
+                        min={ 0 }
+                        max={ 10000 }
+                        onchange={(event) => {
+                            const { value, min, max, valueAsNumber } = event.target;
+                            const pi = Math.min(max, Math.max(min, parseInt(value, 10) || min));
+                            roster.set(uid, stars, {
+                                pi,
+                            });
+                            if(valueAsNumber !== undefined && isNaN(valueAsNumber))
+                                event.target.value = '';
+                            requestRedraw();
+                        }}
+                    />
                 </div>
             );
             elements.push(

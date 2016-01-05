@@ -36,8 +36,7 @@ const getSynergies = (uid, isFrom) => {
 };
 
 const GuideSynergy ={
-    view(ctrl, args) {
-        const { championId, effectId, stars } = args;
+    view(ctrl, { championId, effectId, stars }) {
         const onclickChampion = () => {
             router.setRoute(`/guide/${ championId }`);
             requestRedraw();
@@ -74,8 +73,7 @@ const GuideSynergy ={
 };
 
 const GuideAuthor = {
-    view(ctrl, args) {
-        const { name, type, profile } = args;
+    view(ctrl, { name, type, profile }) {
         let byline = 'by';
         let href;
         let icon;
@@ -120,8 +118,7 @@ const GuideAuthor = {
 };
 
 const GuidePage = {
-    view(ctrl, args) {
-        const { uid } = args;
+    view(ctrl, { uid }) {
         const guide = guides[ uid ];
         const details = [];
         const champion = idMap[ `${ uid }-2` ] || idMap[ `${ uid }-3` ] || idMap[ `${ uid }-4` ] || idMap[ `${ uid }-5` ];

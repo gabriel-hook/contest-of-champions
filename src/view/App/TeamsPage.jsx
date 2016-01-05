@@ -9,7 +9,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const TeamsPage = {
-    view(/* ctrl, args */) {
+    view() {
         const result = teams.result;
         let message = `0 ${ lang.get('teams') }`;
         let teamDivs;

@@ -4,7 +4,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const RosterAddMenu = {
-    view(/* ctrl, args */) {
+    view() {
         return (
             <div m="RosterAddMenu" key="roster-add-menu">
                 <MenuHeader title="roster" />

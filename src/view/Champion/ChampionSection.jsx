@@ -9,13 +9,12 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionSection = {
-    view(ctrl, args) {
-        const {
+    view(ctrl, {
             title, name, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
             raw, onEdit,
-        } = args;
+        }) {
         const elements = [];
         if(onEdit) {
             const editableText = (key) => ({

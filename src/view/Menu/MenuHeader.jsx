@@ -4,9 +4,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const MenuHeader = {
-    view(ctrl, args) {
-        const { title, icon } = args;
-
+    view(ctrl, { title, icon }) {
         return (
             <div m="MenuHeader" class="menu-header">
                 <div>{ icon }{ lang.get(title) }</div>

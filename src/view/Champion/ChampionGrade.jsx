@@ -5,8 +5,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionGrade = {
-    view(ctrl, args) {
-        const { title, grade } = args;
+    view(ctrl, { title, grade }) {
         return (
             <div m="ChampionGrade" class="champion-grade">
                 <b>{ lang.get(title) }:</b>

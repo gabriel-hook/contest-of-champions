@@ -4,8 +4,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const Icon = {
-    view(ctrl, args) {
-        const { icon, spin } = args;
+    view(ctrl, { icon, spin }) {
         const isSpinning = spin && (typeof spin === 'function')? spin(): spin;
         return icon && (
             <i

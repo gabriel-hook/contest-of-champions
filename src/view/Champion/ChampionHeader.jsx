@@ -8,8 +8,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionHeader = {
-    view(ctrl, args) {
-        const { champion } = args;
+    view(ctrl, { champion }) {
         const { uid, stars, typeId, awakened } = champion.attr;
         const name = lang.get(`champion-${ uid }-name`);
         const starIcon = awakened? (

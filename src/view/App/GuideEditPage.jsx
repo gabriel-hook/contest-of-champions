@@ -33,8 +33,7 @@ function editGuide(uid, initialSelectors, initialKey, value) {
 }
 
 const GuideEditAuthor = {
-    view(ctrl, args) {
-        const { name, type, profile, onEdit } = args;
+    view(ctrl, { name, type, profile, onEdit }) {
         const editableText = (key) => ({
             'contenteditable': true,
             'class': 'champion-section-textarea',
@@ -65,21 +64,18 @@ const GuideEditAuthor = {
             </select>
         );
         const elements = [];
-
         elements.push(
             <div class="champion-section-text">
                 <b>{ lang.get('author') }:</b>
                 <span {...editableText('name')}>{ editableValue(name) }</span>
             </div>
         );
-
         elements.push(
             <div class="champion-section-text">
                 <b>{ lang.get('type') }:</b>
                 { editableSelect(PROFILE_TYPES, 'type', type) }
             </div>
         );
-
         if(type && type !== true) {
             elements.push(
                 <div class="champion-section-text">
@@ -94,7 +90,6 @@ const GuideEditAuthor = {
                 </div>
             );
         }
-
         return (
             <div class="champion-section">
                 { elements }
@@ -104,8 +99,7 @@ const GuideEditAuthor = {
 };
 
 const GuideEditPage = {
-    view(ctrl, args) {
-        const { uid } = args;
+    view(ctrl, { uid }) {
         const guide = guides[ uid ];
         const details = [];
         const champion = idMap[ `${ uid }-2` ] || idMap[ `${ uid }-3` ] || idMap[ `${ uid }-4` ] || idMap[ `${ uid }-5` ];
@@ -119,7 +113,6 @@ const GuideEditPage = {
                 />
             );
         }
-
         const grades = guide && guide.grades;
         details.push(
             <ChampionSection
@@ -130,7 +123,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ ], key, value) }
             />
         );
-
         const gameplay = guide && guide.gameplay;
         details.push(
             <ChampionSection
@@ -142,7 +134,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ 'gameplay' ], key, value) }
             />
         );
-
         const attack = guide && guide.attack;
         details.push(
             <ChampionSection
@@ -157,7 +148,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ 'attack' ], key, value) }
             />
         );
-
         const signature = guide && guide.signature;
         details.push(
             <ChampionSection
@@ -169,7 +159,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
             />
         );
-
         [ 1, 2, 3 ].forEach((index) => {
             const special = guide && guide.specials && guide.specials[ index ];
             details.push(
@@ -186,7 +175,6 @@ const GuideEditPage = {
                 />
             );
         });
-
         const author = guide && guide.author;
         details.push(
             <GuideEditAuthor
@@ -196,7 +184,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ 'author' ], key, value) }
             />
         );
-
         return (
             <div m="GuideEditPage" class="guide" key={ 'guide-${ uid }' }>
                 { details }

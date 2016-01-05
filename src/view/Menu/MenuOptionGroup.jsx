@@ -5,9 +5,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const MenuGroupOption = {
-    view(ctrl, args) {
-        const { options, tabs } = args;
-
+    view(ctrl, { options, tabs }) {
         return (
             <div
                 m="MenuGroupOption"

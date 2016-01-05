@@ -6,8 +6,10 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const MenuOption = {
-    view(ctrl, args) {
-        const { title, icon, onclick, href, download, selected, progress, red } = args;
+    view(ctrl, {
+        title, icon, onclick, href,
+        download, selected, progress, red,
+    }) {
         let link = {};
         if(href) {
             link = {

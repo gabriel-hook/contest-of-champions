@@ -16,7 +16,7 @@ const tab = {
 };
 
 const RosterPage = {
-    view(/* ctrl, args */) {
+    view() {
         const total = roster.all().length;
         const champions = roster.filter((champion) => roster.getFilter(champion.attr.stars));
         const handleSelect = ({ uid, stars }) => {

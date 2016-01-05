@@ -10,13 +10,11 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const GuideEditMenu = {
-    view(ctrl, args) {
-        const { uid } = args;
+    view(ctrl, { uid }) {
         const options = [];
         options.push(
             <MenuHeader title={ `champion-${ uid }-name` } />
         );
-
         if (window.FileReader) {
             const handleTextInput = (text) => {
                 guides[ uid ] = JSON.parse(text);
@@ -49,7 +47,6 @@ const GuideEditMenu = {
                 />
             );
         }
-
         const filename = `${ uid }.json`;
         options.push(
             <MenuOption

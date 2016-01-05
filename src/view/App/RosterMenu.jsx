@@ -12,7 +12,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const RosterMenu = {
-    view(/* ctrl, args */) {
+    view() {
         const options = [];
         if (window.FileReader) {
             const handleTextInput = (text) => {

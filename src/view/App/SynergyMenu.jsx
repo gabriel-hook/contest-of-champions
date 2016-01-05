@@ -9,8 +9,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const SynergyMenu = {
-    view(ctrl, args) {
-        const { stars } = args;
+    view(ctrl, { stars }) {
         const options = [];
         options.push(
             <MenuHeader title="synergies" />

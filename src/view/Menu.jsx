@@ -20,15 +20,9 @@ const Menu = {
             requestRedraw();
         };
     },
-    view(ctrl, args) {
+    view(ctrl, { tabs, tab: currentTab, menu, button }) {
         const isOpen = ctrl.open;
         const options = [];
-        const { tabs, tab: currentTab, menu, button } = args;
-        const buttonLeft = button && (
-            <div class="menu-button menu-button-sub" onclick={ button.onclick }>
-                <Icon icon={ button.icon } />
-            </div>
-        );
         options.push(
             <div class="menu-tabs">
                 <MenuOptionGroup
@@ -182,7 +176,11 @@ const Menu = {
                         <div class="menu-button-bar" />
                     </div>
                 </div>
-                { buttonLeft }
+                { button && (
+                    <div class="menu-button menu-button-sub" onclick={ button.onclick }>
+                        <Icon icon={ button.icon } />
+                    </div>
+                ) }
             </div>
         );
     },

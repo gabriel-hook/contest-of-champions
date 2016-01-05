@@ -11,8 +11,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const RosterAddPage = {
-    view(ctrl, args) {
-        const { stars } = args;
+    view(ctrl, { stars }) {
         const champions = roster.available(stars);
         return (
             <div m="RosterAddPage" class="roster-add">

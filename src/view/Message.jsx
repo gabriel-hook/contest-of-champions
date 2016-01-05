@@ -5,8 +5,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const Message = {
-    view(ctrl, args) {
-        const { value } = args;
+    view(ctrl, { value }) {
         return (
             <div m="Message" class="message">
                 { value }

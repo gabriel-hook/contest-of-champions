@@ -15,7 +15,7 @@ function isActivePreset(preset, currentValues) {
 }
 
 const TeamsSettingsMenu = {
-    view(/* ctrl, args */) {
+    view() {
         const options = [];
         options.push(
             <MenuHeader title="settings" />

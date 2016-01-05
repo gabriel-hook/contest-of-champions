@@ -10,8 +10,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const GuideMenu = {
-    view(ctrl, args) {
-        const { uid } = args;
+    view(ctrl, { uid }) {
         const currentUid = uid;
         const options = [];
         options.push(

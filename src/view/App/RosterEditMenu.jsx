@@ -9,8 +9,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const RosterMenu = {
-    view(ctrl, args) {
-        const { uid, stars } = args;
+    view(ctrl, { uid, stars }) {
         return (
             <div m="RosterMenu" key={ `roster-edit-menu-${ uid }-${ stars }` }>
                 <MenuHeader title="roster" />

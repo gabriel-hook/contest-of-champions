@@ -5,8 +5,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ImageIcon = {
-    view(ctrl, args) {
-        const { src, icon } = args;
+    view(ctrl, { src, icon }) {
         const image = getImage(src);
         if(!image && icon) {
             return (

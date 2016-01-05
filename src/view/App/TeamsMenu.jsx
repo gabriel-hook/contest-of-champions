@@ -10,7 +10,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const TeamsMenu = {
-    view(/* ctrl, args */) {
+    view() {
         const options = [];
         options.push(
             <MenuHeader title="teams" />
