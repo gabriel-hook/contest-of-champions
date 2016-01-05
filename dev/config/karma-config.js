@@ -8,9 +8,10 @@ export default {
     files: [
         './node_modules/babel-polyfill/dist/polyfill.js',
         './test/**/*.js*',
+        { pattern: './src/images/**/*', watched: false, included: false, served: true },
     ],
     proxies: {
-        '/images/': 'src/images/',
+        '/images/': './src/images/',
     },
     frameworks: [ 'chai', 'mocha' ],
 
