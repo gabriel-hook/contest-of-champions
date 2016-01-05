@@ -40,9 +40,9 @@ const RosterAddPage = {
                 </button>
                 <div style="clear:both" />
                 <div>
-                    { champions.map((champion, index) => (
+                    { champions.map((champion) => (
                         <ChampionPortrait
-                            key={ `${ index }-${ champion.id }` }
+                            key={ `roster-add-${ stars }-${ champion.id }` }
                             champion={ champion }
                             onclick={ () => {
                                 roster.add(champion.attr.uid, stars);

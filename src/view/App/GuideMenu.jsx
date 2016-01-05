@@ -22,6 +22,7 @@ const GuideMenu = {
             );
             uids.map((uid) => options.push(
                 <MenuOption
+                    key={ `guide-champion-${ uid }` }
                     icon={(
                         <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
                     )}

@@ -27,9 +27,9 @@ const RosterPage = {
             <div m="RosterPage" class="roster">
                 <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
                 <div>
-                    { champions.map((champion, index) => (
+                    { champions.map((champion) => (
                         <ChampionPortrait
-                            key={ `${ index }-${ champion.id }` }
+                            key={ `roster-${ champion.id }` }
                             champion={ champion }
                             onclick={ handleSelect.bind(this, champion.attr) }
                         />

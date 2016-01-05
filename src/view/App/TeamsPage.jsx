@@ -20,7 +20,7 @@ const TeamsPage = {
             message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
             teamDivs = teams.map(({ champions, synergies }) => (
                 <ChampionTeam
-                    key={ champions.map((champion) => champion.id).join('-') }
+                    key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
                     champions={ champions }
                     synergies={ synergies }
                 />
@@ -29,9 +29,9 @@ const TeamsPage = {
                 extrasHeader = (
                     <div class="header">{ lang.get('extras') }</div>
                 );
-                extrasDiv = extras.map((champion, extrasIndex) => (
+                extrasDiv = extras.map((champion) => (
                     <ChampionPortrait
-                        key={ `extras-${ extrasIndex }-${ champion.id }` }
+                        key={ `teams-extras-${ champion.id }` }
                         champion={ champion }
                     />
                 ));
