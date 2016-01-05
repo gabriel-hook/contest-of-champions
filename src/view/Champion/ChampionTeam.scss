@@ -118,6 +118,7 @@
     }
 
     @media print {
+        box-shadow: none;
         page-break-inside: avoid;
     }
 }

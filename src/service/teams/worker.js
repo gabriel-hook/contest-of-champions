@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import build from './build';
 
-const PROGRESS_DEBOUNCE_TIME = 200;
+const PROGRESS_DEBOUNCE_TIME = 300;
 let lastProgressNow;
 
 /* eslint-disable no-undef */
