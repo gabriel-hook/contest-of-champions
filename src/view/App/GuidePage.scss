@@ -94,6 +94,10 @@
             text-decoration: none;
             color: #000;
         }
+
+        @media print {
+            box-shadow: none;
+        }
     }
 
     .clear {
