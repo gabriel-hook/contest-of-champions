@@ -6,7 +6,7 @@ import webpackConfig from '../config/webpack-config.js';
 
 const DEVELOPMENT = gutil.env.dev;
 
-gulp.task('server', (callback) => {
+gulp.task('develop', (callback) => {
     const domain = 'localhost';
     const port = 8080;
     const config = {

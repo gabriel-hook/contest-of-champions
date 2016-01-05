@@ -22,7 +22,7 @@
   Run a webpack-dev-server and navigate to [localhost:8080](http://localhost:8080) test changes. 
 
 ```
-  npm run server
+  npm run develop
 ```
 ### Deploying
 
