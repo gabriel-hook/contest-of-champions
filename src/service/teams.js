@@ -1,4 +1,5 @@
 import lang from '../service/lang';
+import app from '../service/app';
 import { notify } from '../util/notification';
 import dataSynergies from '../data/synergies';
 import { SPECIAL_EFFECTS } from '../data/effects';
@@ -199,7 +200,11 @@ worker.onmessage = (event) => {
                 notify({
                     message: lang.get('notification-team-built'),
                     tag: 'team-built',
-                    onclick: () => router.setRoute('/teams'),
+                    onclick: () => {
+                        app.menuOpen = false;
+                        router.setRoute('/teams');
+                        requestRedraw();
+                    },
                 });
             }, 250);
             requestRedraw();

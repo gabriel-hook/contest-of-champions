@@ -1,4 +1,5 @@
 import './Menu.scss';
+import app from '../service/app';
 import classNames from 'classnames';
 import router from '../service/router';
 import lang from '../service/lang';
@@ -13,15 +14,8 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const Menu = {
-    controller(/* args */) {
-        this.open = false;
-        this.toggle = () => {
-            this.open = !this.open;
-            requestRedraw();
-        };
-    },
     view(ctrl, { tabs, tab: currentTab, menu, button }) {
-        const isOpen = ctrl.open;
+        const { menuOpen } = app;
         const options = [];
         options.push(
             <div class="menu-tabs">
@@ -164,13 +158,19 @@ const Menu = {
             />
         );
         return (
-            <div m="Menu" class={ classNames('menu', { 'menu--open': isOpen }) }>
-                <div class="menu-background" onclick={ ctrl.toggle }></div>
+            <div m="Menu" class={ classNames('menu', { 'menu--open': menuOpen }) }>
+                <div class="menu-background" onclick={ () => {
+                    app.menuOpen = !menuOpen;
+                    requestRedraw(2);
+                }}></div>
                 <div class="menu-wrapper">
                     <div class="menu-options">
                         { options }
                     </div>
-                    <div class="menu-button menu-button-main" onclick={ ctrl.toggle }>
+                    <div class="menu-button menu-button-main" onclick={ () => {
+                        app.menuOpen = !menuOpen;
+                        requestRedraw(2);
+                    }}>
                         <div class="menu-button-bar" />
                         <div class="menu-button-bar" />
                         <div class="menu-button-bar" />

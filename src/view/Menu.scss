@@ -113,7 +113,7 @@ $menu-transition-time: .25s;
         pointer-events: auto;
         position: absolute;
         overflow: hidden;
-        top: -100%;
+        top: 0;
         right: -100%;
         width: 100%;
         max-height: 100%;
@@ -220,7 +220,6 @@ $menu-transition-time: .25s;
         }
 
         .menu-options {
-            top: 0;
             right: 0;
         }
 
