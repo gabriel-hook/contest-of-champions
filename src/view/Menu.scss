@@ -113,14 +113,14 @@ $menu-transition-time: .25s;
         pointer-events: auto;
         position: absolute;
         overflow: hidden;
-        top: 0;
+        top: -100%;
         right: -100%;
         width: 100%;
         max-height: 100%;
         overflow-y: auto;
         opacity: 1;
         background: #38c;
-        transition: right $menu-transition-time;
+        transition: top $menu-transition-time, right $menu-transition-time;
 
         .icon {
             position: relative;
@@ -220,6 +220,7 @@ $menu-transition-time: .25s;
         }
 
         .menu-options {
+            top: 0;
             right: 0;
         }
 
