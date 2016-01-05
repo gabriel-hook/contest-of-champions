@@ -149,79 +149,85 @@ function fidToRosterChampion(fid) {
 }
 
 let progressResetTimeout;
-const worker = new Worker();
-worker.onmessage = (event) => {
-    switch(event.data.type) {
-    case 'result':
-        const result = event.data.data;
-        teams.progress = 1;
-        setTimeout(() => {
-            let teamsCount = 0;
-            let synergiesCount = 0;
-            teams.result = {
-                ...result,
-                teams: result.teams.map((team) => {
-                    team.sort();
-                    const champions = team.map(fidToRosterChampion);
-                    const specials = {};
-                    const synergies = dataSynergies.filter((synergy) => {
-                        const { fromId, fromStars, toId } = synergy.attr;
-                        if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
-                            return false;
-                        return Boolean(champions.find(({ attr }) => toId === attr.uid));
 
-                    }).filter(({ attr }) => {
-                        if(SPECIAL_EFFECTS[ attr.effectId ]) {
-                            const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
-                            if(specials[ specialId ]) {
+let worker;
+function workerFactory() {
+    if(worker)
+        worker.terminate();
+    worker = new Worker();
+    worker.onmessage = (event) => {
+        switch(event.data.type) {
+        case 'result':
+            const result = event.data.data;
+            teams.progress = 1;
+            setTimeout(() => {
+                let teamsCount = 0;
+                let synergiesCount = 0;
+                teams.result = {
+                    ...result,
+                    teams: result.teams.map((team) => {
+                        team.sort();
+                        const champions = team.map(fidToRosterChampion);
+                        const specials = {};
+                        const synergies = dataSynergies.filter((synergy) => {
+                            const { fromId, fromStars, toId } = synergy.attr;
+                            if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
                                 return false;
+                            return Boolean(champions.find(({ attr }) => toId === attr.uid));
+
+                        }).filter(({ attr }) => {
+                            if(SPECIAL_EFFECTS[ attr.effectId ]) {
+                                const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
+                                if(specials[ specialId ]) {
+                                    return false;
+                                }
+                                specials[ specialId ] = true;
                             }
-                            specials[ specialId ] = true;
-                        }
-                        return true;
-                    });
-                    teamsCount++;
-                    synergiesCount += synergies.length;
-                    return {
-                        champions,
-                        synergies,
-                    };
-                }),
-                counts: {
-                    teams: teamsCount,
-                    synergies: synergiesCount,
-                },
-                extras: result.extras.map(fidToRosterChampion),
-            };
-            teams.building = false;
-            progressResetTimeout = setTimeout(() => {
-                teams.progress = 0;
-                requestRedraw();
-                notify({
-                    message: lang.get('notification-team-built'),
-                    tag: 'team-built',
-                    onclick: () => {
-                        app.menuOpen = false;
-                        router.setRoute('/teams');
-                        requestRedraw();
+                            return true;
+                        });
+                        teamsCount++;
+                        synergiesCount += synergies.length;
+                        return {
+                            champions,
+                            synergies,
+                        };
+                    }),
+                    counts: {
+                        teams: teamsCount,
+                        synergies: synergiesCount,
                     },
-                });
-            }, 250);
+                    extras: result.extras.map(fidToRosterChampion),
+                };
+                teams.building = false;
+                progressResetTimeout = setTimeout(() => {
+                    teams.progress = 0;
+                    requestRedraw();
+                    notify({
+                        message: lang.get('notification-team-built'),
+                        tag: 'team-built',
+                        onclick: () => {
+                            app.menuOpen = false;
+                            router.setRoute('/teams');
+                            requestRedraw();
+                        },
+                    });
+                }, 250);
+                requestRedraw();
+            }, 50);
             requestRedraw();
-        }, 50);
-        requestRedraw();
-        break;
-    case 'progress':
-        const progress = event.data.data;
-        teams.progress = progress.current / progress.max;
-        requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
-        break;
-    }
-};
+            break;
+        case 'progress':
+            const progress = event.data.data;
+            teams.progress = progress.current / progress.max;
+            requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
+            break;
+        }
+    };
+    return worker;
+}
 
 function buildTeams() {
-    if(teams.building)
-        return;
+    const worker = workerFactory();
     clearTimeout(progressResetTimeout);
     teams.building = true;
     teams.progress = 0;
