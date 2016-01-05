@@ -10,7 +10,7 @@ export default {
         './test/**/*.js*',
     ],
     proxies: {
-        '/images/': './src/images/',
+        '/images/': 'src/images/',
     },
     frameworks: [ 'chai', 'mocha' ],
 

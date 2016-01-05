@@ -45,7 +45,7 @@ gulp.task('server', (callback) => {
     };
     const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, {
-        contentBase: 'src',
+        contentBase: './src',
         hot: true,
         inline: true,
         headers: { 'Access-Control-Allow-Origin': '*' },
