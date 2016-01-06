@@ -24,7 +24,7 @@ if('Notification' in window) {
 
     const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
         try {
-            const notification = new Notification(`${ lang.get('champions') }\n${ message }`, { tag, icon });
+            const notification = new Notification(lang.get('champions'), { tag, icon, body: message });
             if (onclick) {
                 notification.onclick = function() {
                     onclick();
