@@ -454,6 +454,13 @@ const synergies = [
     { fromId:'spidergwen', fromStars:5, toId:'spiderman', effectId:'powergain', effectAmount:5 },
     { fromId:'spidergwen', fromStars:5, toId:'punisher', effectId:'critdamage', effectAmount:25 },
 
+    { fromId:'spidermanmorales', fromStars:3, toId:'venom', effectId:'attack', effectAmount:5 },
+    { fromId:'spidermanmorales', fromStars:3, toId:'spidergwen', effectId:'perfectblock', effectAmount:4 },
+    { fromId:'spidermanmorales', fromStars:4, toId:'electro', effectId:'critrate', effectAmount:6 },
+    { fromId:'spidermanmorales', fromStars:4, toId:'ironpatriot', effectId:'critrate', effectAmount:7 },
+    { fromId:'spidermanmorales', fromStars:4, toId:'venom', effectId:'attack', effectAmount:6 },
+    { fromId:'spidermanmorales', fromStars:4, toId:'spidergwen', effectId:'perfectblock', effectAmount:6 },
+
     { fromId:'yellowjacket', fromStars:2, toId:'antman', effectId:'attack', effectAmount:4 },
     { fromId:'yellowjacket', fromStars:2, toId:'ultron', effectId:'critdamage', effectAmount:15 },
     { fromId:'yellowjacket', fromStars:3, toId:'antman', effectId:'attack', effectAmount:5 },
