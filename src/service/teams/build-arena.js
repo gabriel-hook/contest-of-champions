@@ -1,5 +1,5 @@
-import dataChampions from '../../data/champions';
-import dataSynergies from '../../data/synergies';
+import Champion from '../../data/model/Champion';
+import synergies from '../../data/synergies';
 import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
 import { shuffle } from '../../util/array';
 
@@ -12,28 +12,28 @@ function buildArena({
 }) {
     const maxTeams = Math.floor(champions.length/size);
     const forceExtras = maxTeams * size;
-    const heroMap = {};
+    const championMap = {};
     const synergyMap = {};
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     champions.forEach((attr) => {
         /* eslint-disable eqeqeq */
-        const { uid, stars, typeId } = attr;
-        const champion = dataChampions.find(({ attr }) => attr.uid === uid && attr.stars == stars);
-        const fid = champion.id;
-        //add hero
-        heroMap[ fid ]={
-            fid,
+        const champion = new Champion(attr);
+        const { id } = champion;
+        const { uid, stars, typeId, pi } = attr;
+        championMap[ id ]={
+            id,
             uid,
             typeId,
-            pi: attr.pi || champion.pi,
+            pi: pi || champion.pi,
         };
-        synergyMap[ fid ] = {};
-        dataSynergies
+
+        synergyMap[ id ] = {};
+        synergies
             .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars)
             .forEach(({ attr }) => {
-                synergyMap[ fid ][ attr.toId ] = {
+                synergyMap[ id ][ attr.toId ] = {
                     effectId: attr.effectId,
                     special: SPECIAL_EFFECTS[ attr.effectId ] === true,
                     value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
@@ -76,19 +76,21 @@ function buildArena({
             team[ index % size ] = array[ swap ];
 
         const tid = getTeamId(team);
-        let value = teamValues[ tid ];
+
         let pi = teamPis[ tid ];
+        if(pi === undefined) {
+            pi = teamPis[ tid ] = team.reduce((sum, { pi }) => sum + pi, 0);
+        }
+
+        let value = teamValues[ tid ];
         if(value === undefined) {
             const types = {};
-            let championValue = 0;
             let synergyValue = 0;
             for(let i=0; i<team.length; i++) {
                 const champion = team[ i ];
-                //get my value
-                championValue += champion.pi;
                 //get my synergies
                 const specials = {};
-                const synergies = synergyMap[ champion.fid ];
+                const synergies = synergyMap[ champion.id ];
                 for(let j=0; j<team.length; j++) {
                     const synergy = synergies[ team[ j ].uid ];
                     if(synergy) {
@@ -106,15 +108,16 @@ function buildArena({
                 //get my type dupes
                 types[ champion.typeId ] = (types[ champion.typeId ] || 0) + 1;
             }
+
             let typeValue = 1;
             for(const typeId in types) {
                 typeValue *= typeWeights[ types[ typeId ] ];
             }
 
             //combine them
-            teamPis[ tid ] = pi = championValue;
-            teamValues[ tid ] = value = championValue * synergyValue * typeValue;
+            teamValues[ tid ] = value = pi * synergyValue * typeValue;
         }
+
         return (pi && pi <= range.maximum && pi >= range.minimum)? value: 0;
     }
 
@@ -125,8 +128,8 @@ function buildArena({
 
     function addArray() {
         array = [];
-        for(const uid in heroMap)
-            array.push(heroMap[ uid ]);
+        for(const uid in championMap)
+            array.push(championMap[ uid ]);
         shuffle(array);
         arrays.push(array);
         didExtrasShuffle = false;
@@ -203,7 +206,7 @@ function buildArena({
         if(value > 0) {
             const team = [];
             for(let j=0; j<size; j++)
-                team.push(array[ i+j ].fid);
+                team.push(array[ i+j ].id);
 
             //sort so same teams don't shuffle around
             team.sort();
@@ -211,7 +214,7 @@ function buildArena({
         }
         else
             for(let j=0; j<size && i+j<array.length; j++)
-                extras.push(array[ i+j ].fid);
+                extras.push(array[ i+j ].id);
     }
 
     //best teams will be first
@@ -226,7 +229,7 @@ function buildArena({
 function getTeamId(team) {
     const ids = [];
     for(const uid in team)
-        ids.push(team[ uid ].fid);
+        ids.push(team[ uid ].id);
     ids.sort();
     return ids.join('-');
 }

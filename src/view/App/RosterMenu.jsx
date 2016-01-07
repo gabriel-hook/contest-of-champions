@@ -80,12 +80,12 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon={ (sort.key === 'stars' && sort.direction === 'asc')? 'sort-amount-asc': 'sort-amount-desc' } />
+                    <Icon icon={ (sort.key === 'pi' && sort.direction === 'asc')? 'sort-numeric-asc': 'sort-numeric-desc' } />
                 )}
-                title="stars"
-                selected={ sort.key === 'stars' }
+                title="pi"
+                selected={ sort.key === 'pi' }
                 onclick={ () => {
-                    roster.setSort('stars', (sort.key === 'stars' && sort.direction === 'desc')? 'asc': 'desc');
+                    roster.setSort('pi', (sort.key === 'pi' && sort.direction === 'desc')? 'asc': 'desc');
                     requestRedraw();
                 }}
             />
@@ -93,12 +93,12 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon={ (sort.key === 'pi' && sort.direction === 'asc')? 'sort-numeric-asc': 'sort-numeric-desc' } />
+                    <Icon icon={ (sort.key === 'stars' && sort.direction === 'asc')? 'sort-amount-asc': 'sort-amount-desc' } />
                 )}
-                title="pi"
-                selected={ sort.key === 'pi' }
+                title="stars"
+                selected={ sort.key === 'stars' }
                 onclick={ () => {
-                    roster.setSort('pi', (sort.key === 'pi' && sort.direction === 'desc')? 'asc': 'desc');
+                    roster.setSort('stars', (sort.key === 'stars' && sort.direction === 'desc')? 'asc': 'desc');
                     requestRedraw();
                 }}
             />

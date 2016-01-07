@@ -9,8 +9,7 @@
                 "shock"
             ],
             "damagetypes": [
-                "physical",
-                "shock"
+                "energy"
             ]
         },
         "2": {
@@ -18,8 +17,7 @@
             "description": "81% chance to Shock your opponent, dealing 122% of your attack as Energy damage over 9 seconds.",
             "note": "Shocks ignore Physical Resistance but not Armor.",
             "damagetypes": [
-                "physical",
-                "shock"
+                "physical"
             ],
             "abilities": [
                 "shock"

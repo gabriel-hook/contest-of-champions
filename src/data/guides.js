@@ -10,6 +10,7 @@ import magnetomarvelnow from './guide/magnetomarvelnow';
 import moonknight from './guide/moonknight';
 import spidergwen from './guide/spidergwen';
 import spidermanblack from './guide/spidermanblack';
+import spidermanmorales from './guide/spidermanmorales';
 import thevision from './guide/thevision';
 import thorjanefoster from './guide/thorjanefoster';
 import ultron from './guide/ultron';
@@ -30,6 +31,7 @@ const guides = {
     moonknight,
     spidergwen,
     spidermanblack,
+    spidermanmorales,
     thevision,
     thorjanefoster,
     ultron,
@@ -55,6 +57,7 @@ const ABILITIES = [
     'stun',
     'stagger',
     'fatigue',
+    'weakness',
     'powerdrain',
     'powerburn',
     'shock',

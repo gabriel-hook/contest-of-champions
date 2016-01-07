@@ -308,8 +308,10 @@ const synergies = [
 
     { fromId:'hawkeye', fromStars:2, toId:'scarletwitch', effectId:'powergain', effectAmount:3 },
     { fromId:'hawkeye', fromStars:3, toId:'scarletwitch', effectId:'powergain', effectAmount:4 },
+    { fromId:'hawkeye', fromStars:3, toId:'moonknight', effectId:'armor', effectAmount:5 },
     { fromId:'hawkeye', fromStars:3, toId:'ironman', effectId:'armor', effectAmount:5 },
     { fromId:'hawkeye', fromStars:4, toId:'scarletwitch', effectId:'powergain', effectAmount:5 },
+    { fromId:'hawkeye', fromStars:4, toId:'moonknight', effectId:'armor', effectAmount:6 },
     { fromId:'hawkeye', fromStars:4, toId:'ironman', effectId:'armor', effectAmount:6 },
     { fromId:'hawkeye', fromStars:4, toId:'hulk', effectId:'armor', effectAmount:6 },
 

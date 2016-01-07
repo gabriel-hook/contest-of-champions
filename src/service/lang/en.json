@@ -244,12 +244,12 @@
     "damage-type": "Damage Type",
     "damage-physical": "Physical",
     "damage-energy": "Energy",
-    "damage-shock": "Shock",
 
     "abilities": "Abilities",
     "ability-stun": "Stun",
     "ability-stagger": "Stagger",
     "ability-fatigue": "Fatigue",
+    "ability-weakness": "Weakness",
     "ability-powerdrain": "Power Drain",
     "ability-powerburn": "Power Burn",
     "ability-shock": "Shock",

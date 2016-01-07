@@ -1,0 +1,48 @@
+{
+    "specials": {
+        "1": {
+            "name": "Triple Web Shot",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "long",
+                "short"
+            ],
+            "description": "53% chance to inflict Weakness, decreasing the target's Attack by 28% for 6.5 seconds.",
+            "note": "This attack has three potential triggers for Weakness, all of which stack.",
+            "abilities": [
+                "weakness"
+            ]
+        },
+        "2": {
+            "name": "Pow! Thwack! Sizzle!",
+            "damagetypes": [
+                "physical"
+            ],
+            "note": "Science & Cosmic Champions: 65% chance to Stun the opponent for 2.5 seconds.\n\nTech & Skill Champions: 60% chance to Power Drain the opponent, removing 28% of the opponent’s Max Power.\n\nMystic & Mutant Champions: 70% Chance to Fatigue the opponent, reducing Critical Hit Rate by 18% for 7 seconds.",
+            "description": "Miles’ unpredictable Venom Blast has varying effects based on Champion Class. The chance to activate a Venom blast is increased by up to 12% the smaller the target is."
+        },
+        "3": {
+            "name": "Flurry of Blows",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "author": {
+        "type": "spotlight",
+        "profile": "629791-Spider-Man-(Miles-Morales)-Champion-Spotlight",
+        "name": "Kabam"
+    },
+    "gameplay": {
+        "description": "Miles’ undeveloped Spider Senses grant him 5 charges of Evasion at the beginning of the fight. Each charge grants him a 6% chance to Dodge incoming attacks at the cost of 1 charge.",
+        "note": "Whenever an opponent uses a Special Attack, Miles gains 2 charges of Evasion to help him better avoid imminent danger."
+    },
+    "description": "In an alternate reality where Peter Parker died while protecting his friends and family, teenager Miles Morales was bitten by a genetically enhanced spider and discovered that he now possessed the same powers as his fallen idol. With the world mourning the loss of one of their greatest heroes, Miles decided to take on the mantle of Spider-Man. Miles knows that with great power must come great responsibility, but can he live up to the legacy set before him?",
+    "signature": {
+        "name": "Venom Blast",
+        "description": "Miles’ self-training and newfound experience in the Contest grants a (5 - 15%) chance to trigger an additional Venom Blast after using a Light or Medium Combo-ender. Longer combos grant a higher chance to trigger a Venom Blast, up to a max of 5 hits.\n Combo-ender attacks are attacks that end a combo. Either the second medium attack, or the fourth light attack in a row.\n This chance to trigger Venom Blast also increases against smaller champions.",
+        "note": "The effect that triggers mirrors the effects of the Venom Blast on Special 2."
+    }
+}

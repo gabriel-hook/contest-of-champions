@@ -1,4 +1,5 @@
 import { uidsByType } from '../../data/champions';
+import guides from '../../data/guides';
 import router from '../../service/router';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -26,6 +27,7 @@ const GuideMenu = {
                     icon={(
                         <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
                     )}
+                    invalid={ !guides[ uid ] }
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }
                     onclick={ () => {

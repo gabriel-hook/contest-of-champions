@@ -13,7 +13,6 @@
     white-space: nowrap;
     overflow: hidden;
 
-
     &.menu-option--progress,
     &:hover {
         background: rgba(255, 255, 255, .65);
@@ -47,5 +46,13 @@
         height: 100%;
         max-width: 100%;
         background: #fff;
+    }
+
+    &.menu-option--invalid {
+        color: #ccc;
+
+        &:hover {
+            color: #333;
+        }
     }
 }

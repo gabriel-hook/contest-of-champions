@@ -1,4 +1,4 @@
-import dataChampions from '../../data/champions';
+import Champion from '../../data/model/Champion';
 import dataSynergies from '../../data/synergies';
 import { uids as typeIds } from '../../data/types';
 import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
@@ -17,9 +17,9 @@ function buildQuest({
 
     const list = champions.map((attr) => {
         /* eslint-disable eqeqeq */
-        const { uid, stars, typeId, quest } = attr;
-        const champion = dataChampions.find(({ attr }) => attr.uid === uid && attr.stars == stars);
-        const fid = champion.id;
+        const champion = new Champion(attr);
+        const { id } = champion;
+        const { uid, stars, typeId, quest, pi } = attr;
         const synergies = {};
         dataSynergies
             .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars )
@@ -30,13 +30,13 @@ function buildQuest({
             });
         /* eslint-enable eqeqeq */
         return {
-            fid,
+            id,
             uid,
             stars,
             quest,
             type: typeIds.indexOf(typeId),
             synergies,
-            pi: attr.pi || champion.pi,
+            pi: pi || champion.pi,
         };
     }).filter((champion) => {
         if(champion.quest) {
@@ -61,7 +61,7 @@ function buildQuest({
     if(team.value > 0) {
         return {
             teams:[
-                team.champions.map((champion) => champion.fid),
+                team.champions.map((champion) => champion.id),
             ],
             extras:[],
         };

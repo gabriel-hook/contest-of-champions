@@ -8,7 +8,7 @@ import m from 'mithril';
 const MenuOption = {
     view(ctrl, {
         title, icon, onclick, href,
-        download, selected, progress, red,
+        download, selected, invalid, progress, red,
     }) {
         let link = {};
         if(href) {
@@ -29,6 +29,7 @@ const MenuOption = {
             <a
                 m="MenuOption"
                 class={ classNames('menu-option', {
+                    'menu-option--invalid': invalid,
                     'menu-option--selected': selected,
                     'menu-option--progress': progress,
                     'menu-option--red': red === true || red === 'true',
