@@ -89,6 +89,14 @@ const fdg = new ForceDirectedGraph({
             lastSelected = currentSelected;
             requestRedraw(5);
         }
+        else if(!nodes.length && !edges.length) {
+            const legend = legends[ fdg.stars ];
+            for(const effect of legend) {
+                effect.selected = true;
+                effect.amount = null;
+            }
+            requestRedraw(5);
+        }
     },
     effectSelected: (effectId) => {
         const legend = legends[ fdg.stars ];

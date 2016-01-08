@@ -20,28 +20,24 @@ function config(element, isInitialized) {
 const SynergyPage = {
     view(ctrl, { stars }) {
         const legend = getLegend(stars);
-        const items = legend && legend.map(({ effectId, selected, amount }) => {
-            return (
-                <div
-                    class={ classNames('legend-effect', `legend-effect--${ effectId }`,
-                        { 'legend-effect--selected': selected }
-                    ) }
-                    onclick={ () => {
-                        graph.selectEdgeType(effectId);
-                        requestRedraw(5);
-                    }}
-                    title={ lang.get(`effect-${ effectId }-description`) }
-                >
-                    { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
-                    { amount && ` - ${ amount }%` }
-                </div>
-            );
-        });
-
         return (
             <div m="SynergyPage" class="synergy" stars={ stars } config={ config }>
                 <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
-                    { items }
+                    { legend && legend.map(({ effectId, selected, amount }) => (
+                        <div
+                            class={ classNames('legend-effect', `legend-effect--${ effectId }`,
+                                { 'legend-effect--selected': selected }
+                            ) }
+                            onclick={ () => {
+                                graph.selectEdgeType(effectId);
+                                requestRedraw(5);
+                            }}
+                            title={ lang.get(`effect-${ effectId }-description`) }
+                        >
+                            { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
+                            { amount && ` - ${ amount }%` }
+                        </div>
+                    )) }
                 </div>
             </div>
         );
