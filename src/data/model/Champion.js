@@ -1,7 +1,54 @@
 import { uids as typeIds } from '../types';
 import Model from './Model';
 
-const starRankLevels={
+const CATALYSTS = {
+    2:{
+        1: [
+            { tier: 1, type: 'basic', amount: 2 },
+        ],
+        2: [
+            { tier: 1, type: 'basic', amount: 3 },
+            { tier: 1, type: 'class', amount: 1 },
+        ],
+    },
+    3:{
+        1: [
+            { tier: 2, type: 'basic', amount: 3 },
+            { tier: 1, type: 'class', amount: 2 },
+        ],
+        2: [
+            { tier: 2, type: 'basic', amount: 5 },
+            { tier: 2, type: 'class', amount: 1 },
+        ],
+        3: [
+            { tier: 3, type: 'basic', amount: 3 },
+            { tier: 2, type: 'class', amount: 2 },
+        ],
+    },
+    4:{
+        1: [
+            { tier: 3, type: 'basic', amount: 4 },
+            { tier: 2, type: 'class', amount: 3 },
+        ],
+        2: [
+            { tier: 3, type: 'basic', amount: 5 },
+            { tier: 3, type: 'class', amount: 1 },
+            { tier: 1, type: 'alpha', amount: 1 },
+        ],
+        3: [
+            { tier: 4, type: 'basic', amount: 3 },
+            { tier: 3, type: 'class', amount: 2 },
+            { tier: 1, type: 'alpha', amount: 1 },
+        ],
+        4: [
+            { tier: 4, type: 'basic', amount: 5 },
+            { tier: 4, type: 'class', amount: 3 },
+            { tier: 1, type: 'alpha', amount: 2 },
+        ],
+    },
+};
+
+const STAR_RANK_LEVEL={
     1:{
         1:{ levels: 10, min:100, max:175 },
         2:{ levels: 20, min:175, max:250 },
@@ -60,7 +107,7 @@ class Champion extends Model {
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = typeIds.indexOf(this.attr.typeId);
         this.pi = 0;
-        const range = starRankLevels[ stars ] && starRankLevels[ stars ][ rank ];
+        const range = STAR_RANK_LEVEL[ stars ] && STAR_RANK_LEVEL[ stars ][ rank ];
         if(range && level <= range.levels) {
             this.pi = range.min + (level / range.levels) * (range.max - range.min);
             if(awakened > 0)
@@ -75,4 +122,4 @@ class Champion extends Model {
 }
 
 export default Champion;
-export { starRankLevels };
+export { STAR_RANK_LEVEL, CATALYSTS };

@@ -1,10 +1,11 @@
 import './RosterEditPage.scss';
-import { starRankLevels } from '../../data/model/Champion';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
 import ChampionHeader from '../Champion/ChampionHeader.jsx';
+import ChampionUpgrade from '../Champion/ChampionUpgrade.jsx';
 import classNames from 'classnames';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -67,13 +68,16 @@ const RosterPage = {
         const elements = [];
         if(champion) {
             const { rank, level, awakened, pi } = champion.attr;
-            const rangeMax = starRankLevels[ stars ]
-                && starRankLevels[ stars ].ranks || 1;
-            const levelMax = starRankLevels[ stars ]
-                && starRankLevels[ stars ][ rank ]
-                && starRankLevels[ stars ][ rank ].levels || 1;
+            const rangeMax = STAR_RANK_LEVEL[ stars ]
+                && STAR_RANK_LEVEL[ stars ].ranks || 1;
+            const levelMax = STAR_RANK_LEVEL[ stars ]
+                && STAR_RANK_LEVEL[ stars ][ rank ]
+                && STAR_RANK_LEVEL[ stars ][ rank ].levels || 1;
             elements.push(
                 <ChampionHeader champion={ champion } />
+            );
+            elements.push(
+                <ChampionUpgrade stars={ stars } rank={ rank } level={ level } />
             );
             elements.push(
                 <div class="champion-field">
