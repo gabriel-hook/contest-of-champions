@@ -148,11 +148,11 @@
         text-align: right;
 
         &.upgrade-max {
-            color: #006600;
+            color: #060;
         }
 
         &.upgrade-rank-up {
-            color: #000066;
+            color: #006;
         }
 
         .icon {
@@ -160,7 +160,7 @@
             height: 100%;
 
             img {
-                position:relative;
+                position: relative;
                 top: -25%;
                 right: -25%;
                 width: 100%;
