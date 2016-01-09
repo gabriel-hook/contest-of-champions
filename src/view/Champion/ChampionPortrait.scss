@@ -139,6 +139,39 @@
         }
     }
 
+    .upgrade {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 33%;
+        height: 33%;
+        text-align: right;
+
+        &.upgrade-max {
+            color: #006600;
+        }
+
+        &.upgrade-rank-up {
+            color: #000066;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+
+            img {
+                position:relative;
+                top: -25%;
+                right: -25%;
+                width: 100%;
+            }
+
+            &.fa {
+                font-size: 6vmin;
+            }
+        }
+    }
+
     .stars {
         position: absolute;
         right: 0;
@@ -164,6 +197,7 @@
 
             &.fa {
                 top: -2px;
+                font-size: 4vmin;
             }
 
             img {

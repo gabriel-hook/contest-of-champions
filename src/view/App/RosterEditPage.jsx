@@ -67,7 +67,7 @@ const RosterPage = {
         const champion = roster.get(uid, stars);
         const elements = [];
         if(champion) {
-            const { rank, level, awakened, pi } = champion.attr;
+            const { rank, level, typeId, awakened, pi } = champion.attr;
             const rangeMax = STAR_RANK_LEVEL[ stars ]
                 && STAR_RANK_LEVEL[ stars ].ranks || 1;
             const levelMax = STAR_RANK_LEVEL[ stars ]
@@ -77,7 +77,7 @@ const RosterPage = {
                 <ChampionHeader champion={ champion } />
             );
             elements.push(
-                <ChampionUpgrade stars={ stars } rank={ rank } level={ level } />
+                <ChampionUpgrade stars={ stars } rank={ rank } level={ level } typeId={ typeId } />
             );
             elements.push(
                 <div class="champion-field">

@@ -1,4 +1,5 @@
 import './ChampionPortrait.scss';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
 import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
@@ -19,7 +20,7 @@ function addSVG(element, isInitialized) {
 
 const ChampionPortrait = {
     view(ctrl, { champion, events, onclick, selected, neighbor }) {
-        const { uid, stars, pi, typeId, awakened } = champion.toJSON();
+        const { uid, stars, rank, level, pi, typeId, awakened } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
                 src="images/icons/star-awakened.png"
@@ -50,6 +51,23 @@ const ChampionPortrait = {
         title.push(
             <div class="title-field title-field-name">{ name }</div>
         );
+        const isMaxed = STAR_RANK_LEVEL[ stars ] &&
+            STAR_RANK_LEVEL[ stars ].ranks === rank &&
+            STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
+        const isRankUp = !isMaxed && STAR_RANK_LEVEL[ stars ] &&
+            STAR_RANK_LEVEL[ stars ].ranks > rank &&
+            STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
+        const upgrade = isMaxed? (
+            <ImageIcon
+                src="images/icons/max.png"
+                icon="check-circle"
+            />
+        ): isRankUp? (
+            <ImageIcon
+                src="images/icons/rank-up.png"
+                icon="chevron-circle-up"
+            />
+        ): null;
         return (
             <div
                 m="ChampionPortrait"
@@ -76,6 +94,9 @@ const ChampionPortrait = {
                         <div class="title">{ title }</div>
                         <div class={ classNames('stars', { 'stars--awakened': awakened }) }>
                             { starImages }
+                        </div>
+                        <div class={ classNames('upgrade', { 'upgrade-max': isMaxed, 'upgrade-rank-up': isRankUp }) }>
+                            { upgrade }
                         </div>
                     </div>
                 </div>

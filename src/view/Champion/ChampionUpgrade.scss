@@ -5,14 +5,36 @@
     position: relative;
     @include styled-button(false);
     width: 500px;
+    height: 52px;
     max-width: 90%;
     margin: 0 auto 1em;
     padding: 16px;
     box-sizing: border-box;
     box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+    background: #888;
+
+    &.champion-upgrade-rank-up {
+        background: #33c;
+    }
 
     &.champion-upgrade-max {
-        background: #66aa66;
+        background: #3c8;
+    }
+
+    .icon {
+        display: inline-block;
+        position:relative;
+        height: 16px;
+        width: 32px;
+
+        img {
+            position: absolute;
+            top: -24px;
+            left: -18px;
+
+            height: 64px;
+            width: 64px;
+        }
     }
 
     @media print {
