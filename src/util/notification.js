@@ -22,7 +22,7 @@ if('Notification' in window) {
         }
     };
 
-    const createNotification = ({ message, tag = 'default', icon = 'images/icon.png', onclick }) => {
+    const createNotification = ({ message, tag = 'default', icon = 'images/icon_512.png', onclick }) => {
         try {
             const notification = new Notification(lang.get('champions'), { tag, icon, body: message });
             if (onclick) {
