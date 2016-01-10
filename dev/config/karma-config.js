@@ -6,11 +6,12 @@ export default {
 
     // karma only needs to know about the test bundle
     files: [
-        './node_modules/babel-polyfill/dist/polyfill.js',
+        { pattern: './node_modules/babel-polyfill/dist/polyfill.js', watched: false, included: true, served: true },
+        { pattern: './src/images/**/*', watched: false, included: false, served: true },
         './test/**/*.js*',
     ],
     proxies: {
-        '/images/': 'src/images/',
+        '/images/': '/base/src/images/',
     },
     frameworks: [ 'chai', 'mocha' ],
 
