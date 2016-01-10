@@ -10,14 +10,20 @@
     margin: 0 auto 1em;
     box-sizing: border-box;
     box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
-    background: #888;
+    background: #eee;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
 
     &.champion-upgrade-rank-up {
-        background: #33c;
+        background: #38c;
+        color: #fff;
+        text-shadow: 0 1px 0 #000;
     }
 
     &.champion-upgrade-max {
-        background: #3c8;
+        background: #3c3;
+        color: #fff;
+        text-shadow: 0 1px 0 #000;
     }
 
     .champion-upgrade-catalyst {
