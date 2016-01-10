@@ -25,7 +25,7 @@ const ChampionUpgrade = {
                 { (isMaxed)? lang.get('upgrade-maxed'):
                 (!catalysts)? lang.get('upgrade-max-rank'):
                 catalysts.map(({ tier, type, amount }) => (
-                    <span>
+                    <span class="champion-upgrade-catalyst">
                         { amount } x
                         <ImageIcon
                             src={ `images/catalysts/tier_${ tier }_${ (type === 'class')? typeId: type }.png` }
