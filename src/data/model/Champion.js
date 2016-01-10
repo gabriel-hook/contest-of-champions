@@ -2,48 +2,62 @@ import { uids as typeIds } from '../types';
 import Model from './Model';
 
 const CATALYSTS = {
+    1: {
+        1: [
+            { type: 'gold', amount: 2817 },
+        ],
+    },
     2:{
         1: [
-            { tier: 1, type: 'basic', amount: 2 },
+            { type: 'basic', tier: 1, amount: 2 },
+            { type: 'gold', amount: 4641 },
         ],
         2: [
-            { tier: 1, type: 'basic', amount: 3 },
-            { tier: 1, type: 'class', amount: 1 },
+            { type: 'basic', tier: 1, amount: 3 },
+            { type: 'class', tier: 1, amount: 1 },
+            { type: 'gold', amount: 9282 },
         ],
     },
     3:{
         1: [
-            { tier: 2, type: 'basic', amount: 3 },
-            { tier: 1, type: 'class', amount: 2 },
+            { type: 'basic', tier: 2, amount: 3 },
+            { type: 'class', tier: 1, amount: 2 },
+            { type: 'gold', amount: 11500 },
         ],
         2: [
-            { tier: 2, type: 'basic', amount: 5 },
-            { tier: 2, type: 'class', amount: 1 },
+            { type: 'basic', tier: 2, amount: 5 },
+            { type: 'class', tier: 2, amount: 1 },
+            { type: 'gold', amount: 23001 },
         ],
         3: [
-            { tier: 3, type: 'basic', amount: 3 },
-            { tier: 2, type: 'class', amount: 2 },
+            { type: 'basic', tier: 3, amount: 3 },
+            { type: 'class', tier: 2, amount: 2 },
+            { type: 'gold', amount: 34501 },
         ],
     },
     4:{
         1: [
-            { tier: 3, type: 'basic', amount: 4 },
-            { tier: 2, type: 'class', amount: 3 },
+            { type: 'basic', tier: 3, amount: 4 },
+            { type: 'class', tier: 2, amount: 3 },
+            { type: 'gold', amount: 27435 },
         ],
         2: [
-            { tier: 3, type: 'basic', amount: 5 },
-            { tier: 3, type: 'class', amount: 1 },
-            { tier: 1, type: 'alpha', amount: 1 },
+            { type: 'basic', tier: 3, amount: 5 },
+            { type: 'class', tier: 3, amount: 1 },
+            { type: 'alpha', tier: 1, amount: 1 },
+            { type: 'gold', amount: 54850 },
         ],
         3: [
-            { tier: 4, type: 'basic', amount: 3 },
-            { tier: 3, type: 'class', amount: 2 },
-            { tier: 1, type: 'alpha', amount: 1 },
+            { type: 'basic', tier: 4, amount: 3 },
+            { type: 'class', tier: 3, amount: 2 },
+            { type: 'alpha', tier: 1, amount: 1 },
+            { type: 'gold', amount: 82275 },
         ],
         4: [
-            { tier: 4, type: 'basic', amount: 5 },
-            { tier: 4, type: 'class', amount: 3 },
-            { tier: 1, type: 'alpha', amount: 2 },
+            { type: 'basic', tier: 4, amount: 5 },
+            { type: 'class', tier: 4, amount: 3 },
+            { type: 'alpha', tier: 1, amount: 2 },
+            { type: 'gold', amount: 109701 },
         ],
     },
 };

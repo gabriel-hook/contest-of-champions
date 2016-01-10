@@ -22,13 +22,25 @@ const ChampionUpgrade = {
                     'champion-upgrade-max': isMaxed,
                 }) }
             >
-                { (isMaxed)? lang.get('upgrade-maxed'):
-                (!catalysts)? lang.get('upgrade-max-rank'):
+                { (isMaxed)? (
+                    <span class="champion-upgrade-catalyst">
+                        { lang.get('upgrade-maxed') }
+                    </span>
+                ):
+                (!catalysts)? (
+                    <span class="champion-upgrade-catalyst">
+                        { lang.get('upgrade-max-rank') }
+                    </span>
+                ):
                 catalysts.map(({ tier, type, amount }) => (
                     <span class="champion-upgrade-catalyst">
                         { amount } x
                         <ImageIcon
-                            src={ `images/catalysts/tier_${ tier }_${ (type === 'class')? typeId: type }.png` }
+                            src={
+                                (type === 'gold')? 'images/catalysts/gold.png':
+                                (type === 'class')? `images/catalysts/tier_${ tier }_${ typeId }.png`:
+                                `images/catalysts/tier_${ tier }_${ type }.png`
+                            }
                             icon="cube"
                         />
                     </span>
