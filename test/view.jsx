@@ -35,11 +35,9 @@ import Message from '../src/view/Message.jsx';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-function render(Component, args) {
-    const ctrl = {};
-    if(Component.controller)
-        Component.controller.call(ctrl, args);
-    return Component.view(ctrl, args);
+function render(object) {
+    m.render(document.body, object);
+    return true;
 }
 
 describe('view', () => {
@@ -51,52 +49,65 @@ describe('view', () => {
             {
                 id: 'current',
                 title: 'tab',
+                icon: 'home',
             },
         ];
         app.pages[ 'current' ] = null;
-        app.menu = null;
+        app.menu = {
+            view() {
+                return (
+                    <div />
+                );
+            },
+        };
         app.button = null;
 
-        it('should render without error', () => expect(render(App, {})).to.exist);
+        it('should render without error', () => expect(render(<App />)).to.exist);
 
-        describe('GuideEditMenu', () => it('should render without error', () => expect(render(GuideEditMenu, {})).to.exist));
-        describe('GuideMenu', () => it('should render without error', () => expect(render(GuideMenu, {})).to.exist));
-        describe('RosterAddMenu', () => it('should render without error', () => expect(render(RosterAddMenu, {})).to.exist));
-        describe('RosterEditMenu', () => it('should render without error', () => expect(render(RosterEditMenu, {})).to.exist));
-        describe('RosterMenu', () => it('should render without error', () => expect(render(RosterMenu, {})).to.exist));
-        describe('SynergyMenu', () => it('should render without error', () => expect(render(SynergyMenu, {})).to.exist));
-        describe('TeamsMenu', () => it('should render without error', () => expect(render(TeamsMenu, {})).to.exist));
-        describe('TeamsSettingsMenu', () => it('should render without error', () => expect(render(TeamsSettingsMenu, {})).to.exist));
-        describe('GuideEditPage', () => it('should render without error', () => expect(render(GuideEditPage, {})).to.exist));
-        describe('GuidePage', () => it('should render without error', () => expect(render(GuidePage, {})).to.exist));
-        describe('RosterAddPage', () => it('should render without error', () => expect(render(RosterAddPage, {})).to.exist));
-        describe('RosterEditPage', () => it('should render without error', () => expect(render(RosterEditPage, {})).to.exist));
-        describe('RosterPage', () => it('should render without error', () => expect(render(RosterPage, {})).to.exist));
-        describe('SynergyPage', () => it('should render without error', () => expect(render(SynergyPage, {})).to.exist));
-        describe('TeamsPage', () => it('should render without error', () => expect(render(TeamsPage, {})).to.exist));
-        describe('TeamsSettingsPage', () => it('should render without error', () => expect(render(TeamsSettingsPage, {})).to.exist));
+        describe('GuideEditMenu', () => it('should render without error', () => expect(render(<GuideEditMenu />)).to.exist));
+        describe('GuideMenu', () => it('should render without error', () => expect(render(<GuideMenu />)).to.exist));
+        describe('RosterAddMenu', () => it('should render without error', () => expect(render(<RosterAddMenu />)).to.exist));
+        describe('RosterEditMenu', () => it('should render without error', () => expect(render(<RosterEditMenu />)).to.exist));
+        describe('RosterMenu', () => it('should render without error', () => expect(render(<RosterMenu />)).to.exist));
+        describe('SynergyMenu', () => it('should render without error', () => expect(render(<SynergyMenu />)).to.exist));
+        describe('TeamsMenu', () => it('should render without error', () => expect(render(<TeamsMenu />)).to.exist));
+        describe('TeamsSettingsMenu', () => it('should render without error', () => expect(render(<TeamsSettingsMenu />)).to.exist));
+        describe('GuideEditPage', () => it('should render without error', () => expect(render(<GuideEditPage />)).to.exist));
+        describe('GuidePage', () => it('should render without error', () => expect(render(<GuidePage />)).to.exist));
+        describe('RosterAddPage', () => {
+            it('should render without error for 1 star', () => expect(render(<RosterAddPage stars={ 1 } />)).to.exist);
+            it('should render without error for 2 star', () => expect(render(<RosterAddPage stars={ 2 } />)).to.exist);
+            it('should render without error for 3 star', () => expect(render(<RosterAddPage stars={ 3 } />)).to.exist);
+            it('should render without error for 4 star', () => expect(render(<RosterAddPage stars={ 4 } />)).to.exist);
+            it('should render without error for 5 star', () => expect(render(<RosterAddPage stars={ 5 } />)).to.exist);
+        });
+        describe('RosterEditPage', () => it('should render without error', () => expect(render(<RosterEditPage />)).to.exist));
+        describe('RosterPage', () => it('should render without error', () => expect(render(<RosterPage />)).to.exist));
+        describe('SynergyPage', () => it('should render without error', () => expect(render(<SynergyPage />)).to.exist));
+        describe('TeamsPage', () => it('should render without error', () => expect(render(<TeamsPage />)).to.exist));
+        describe('TeamsSettingsPage', () => it('should render without error', () => expect(render(<TeamsSettingsPage />)).to.exist));
     });
 
     describe('Cards', () => {
         const cards = [];
         const current = 0;
 
-        it('should render without error', () => expect(render(Cards, { cards, current })).to.exist);
+        it('should render without error', () => expect(render(<Cards { ...{ cards, current } } />)).to.exist);
     });
 
     describe('Menu', () => {
         const { tabs, tab, menu, button } = app;
 
-        it('should render without error', () => expect(render(Menu, { tabs, tab, menu, button })).to.exist);
+        it('should render without error', () => expect(render(<Menu { ...{ tabs, tab, menu, button } } />)).to.exist);
 
-        describe('MenuHeader', () => it('should render without error', () => expect(render(MenuHeader, {})).to.exist));
-        describe('MenuOption', () => it('should render without error', () => expect(render(MenuOption, {})).to.exist));
+        describe('MenuHeader', () => it('should render without error', () => expect(render(<MenuHeader />)).to.exist));
+        describe('MenuOption', () => it('should render without error', () => expect(render(<MenuOption />)).to.exist));
         describe('MenuOptionGroup', () => {
             const options = [];
 
-            it('should render without error', () => expect(render(MenuOptionGroup, { options })).to.exist);
+            it('should render without error', () => expect(render(<MenuOptionGroup { ...{ options } } />)).to.exist);
         });
-        describe('MenuSection', () => it('should render without error', () => expect(render(MenuSection, {})).to.exist));
+        describe('MenuSection', () => it('should render without error', () => expect(render(<MenuSection />)).to.exist));
     });
 
     describe('Champion', () => {
@@ -106,12 +117,12 @@ describe('view', () => {
             const title = 'type';
             const grade = 'a';
 
-            it('should render without error', () => expect(render(ChampionGrade, { title, grade })).to.exist);
+            it('should render without error', () => expect(render(<ChampionGrade { ...{ title, grade } } />)).to.exist);
         });
-        describe('ChampionHeader', () => it('should render without error', () => expect(render(ChampionHeader, { champion })).to.exist));
-        describe('ChampionPortrait', () => it('should render without error', () => expect(render(ChampionPortrait, { champion })).to.exist));
-        describe('ChampionRating', () => it('should render without error', () => expect(render(ChampionRating, {})).to.exist));
-        describe('ChampionSection', () => it('should render without error', () => expect(render(ChampionSection, {})).to.exist));
+        describe('ChampionHeader', () => it('should render without error', () => expect(render(<ChampionHeader champion={ champion } />)).to.exist));
+        describe('ChampionPortrait', () => it('should render without error', () => expect(render(<ChampionPortrait champion={ champion } />)).to.exist));
+        describe('ChampionRating', () => it('should render without error', () => expect(render(<ChampionRating />)).to.exist));
+        describe('ChampionSection', () => it('should render without error', () => expect(render(<ChampionSection />)).to.exist));
         describe('ChampionTeam', () => {
             const champions = [
                 championsById[ 'ultron-2' ],
@@ -120,9 +131,9 @@ describe('view', () => {
             ];
             const synergies = synergiesFromChampions(champions);
 
-            it('should render without error', () => expect(render(ChampionTeam, { champions, synergies })).to.exist);
+            it('should render without error', () => expect(render(<ChampionTeam { ...{ champions, synergies } } />)).to.exist);
         });
     });
 
-    describe('Message', () => it('should render without error', () => expect(render(Message, {})).to.exist));
+    describe('Message', () => it('should render without error', () => expect(render(<Message />)).to.exist));
 });

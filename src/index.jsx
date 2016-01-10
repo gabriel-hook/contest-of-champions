@@ -56,12 +56,10 @@ router.on('/guide/:uid/?', (uid) => {
     app.menu = (
         <GuideMenu uid={ uid } />
     );
-    app.button = null;
-
-    app.button = app.edit? {
+    app.button = !app.edit? null: {
         icon: 'pencil',
         onclick: () => router.setRoute(`/guide/${ uid }/edit`),
-    }: null;
+    };
     analytics.pageView();
     requestRedraw();
 });
@@ -116,7 +114,6 @@ router.on('/roster/?', () => {
     };
     analytics.pageView();
     requestRedraw();
-
     if(roster.all().length === 0) {
         notify({
             message: lang.get('notification-roster-empty'),
