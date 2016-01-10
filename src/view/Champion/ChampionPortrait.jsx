@@ -52,9 +52,11 @@ const ChampionPortrait = {
             <div class="title-field title-field-name">{ name }</div>
         );
         const isMaxed = STAR_RANK_LEVEL[ stars ] &&
+            STAR_RANK_LEVEL[ stars ][ rank ] &&
             STAR_RANK_LEVEL[ stars ].ranks === rank &&
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
         const isRankUp = !isMaxed && STAR_RANK_LEVEL[ stars ] &&
+            STAR_RANK_LEVEL[ stars ][ rank ] &&
             STAR_RANK_LEVEL[ stars ].ranks > rank &&
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
         const upgrade = isMaxed? (
