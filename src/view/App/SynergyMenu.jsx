@@ -25,9 +25,9 @@ const SynergyMenu = {
                     title="legend-show"
                     selected={ synergy.legend === true }
                     onclick={ () => {
-                    synergy.legend = !synergy.legend;
-                    requestRedraw();
-                }}
+                        synergy.legend = !synergy.legend;
+                        requestRedraw();
+                    }}
                 />
             </div>
         );
