@@ -1,11 +1,9 @@
 import { uidsByType } from '../../data/champions';
 import guides from '../../data/guides';
-import router from '../../service/router';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import ImageIcon from '../ImageIcon.jsx';
-import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
