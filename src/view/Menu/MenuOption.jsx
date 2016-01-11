@@ -1,9 +1,15 @@
 import './MenuOption.scss';
+import router from '../../service/router';
 import classNames from 'classnames';
 import lang from '../../service/lang';
+import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+
+function linkIsExternal(href) {
+    return href.startsWith('http') || href.startsWith('//');
+}
 
 const MenuOption = {
     view(ctrl, {
@@ -12,10 +18,18 @@ const MenuOption = {
     }) {
         let link = {};
         if(href) {
+            const isExternal = linkIsExternal(href);
             link = {
                 ...link,
-                href,
+                href: isExternal? href: `#${ href }`,
                 target: '_blank',
+                onclick: (onclick)? null: (event) => {
+                    if(!isExternal) {
+                        event.preventDefault();
+                    }
+                    router.setRoute(href);
+                    requestRedraw();
+                },
             };
         }
         if(download) {
@@ -34,8 +48,8 @@ const MenuOption = {
                     'menu-option--progress': progress,
                     'menu-option--red': red === true || red === 'true',
                 }, 'no-select') }
-                { ...link }
                 onclick={ onclick }
+                { ...link }
                 disabled={ !Boolean(onclick || link) }
             >
                 { (progress || progress === 0) && (

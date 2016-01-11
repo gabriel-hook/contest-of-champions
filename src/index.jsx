@@ -58,7 +58,7 @@ router.on('/guide/:uid/?', (uid) => {
     );
     app.button = !app.edit? null: {
         icon: 'pencil',
-        onclick: () => router.setRoute(`/guide/${ uid }/edit`),
+        href: `/guide/${ uid }/edit`,
     };
     analytics.pageView();
     requestRedraw();
@@ -84,7 +84,7 @@ router.on('/guide/:uid/edit/?', (uid) => {
     );
     app.button = {
         icon: 'reply',
-        onclick: () => router.setRoute(`/guide/${ uid }`),
+        href: `/guide/${ uid }`,
     };
     analytics.pageView();
     requestRedraw();
@@ -110,7 +110,7 @@ router.on('/roster/?', () => {
     );
     app.button = {
         icon: 'user-plus',
-        onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
+        href: `/roster/add/${ app.lastAddStars || 2 }`,
     };
     analytics.pageView();
     requestRedraw();
@@ -143,7 +143,7 @@ router.on('/roster/add/:stars/?', (stars) => {
     );
     app.button = {
         icon: 'share',
-        onclick: () => router.setRoute('/roster'),
+        href: '/roster',
     };
     app.lastAddStars = stars;
     analytics.pageView();
@@ -170,7 +170,7 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
     );
     app.button = {
         icon: 'reply',
-        onclick: () => router.setRoute('/roster'),
+        href: '/roster',
     };
     analytics.pageView();
     requestRedraw();
@@ -195,7 +195,7 @@ router.on('/teams/settings/?', () => {
     );
     app.button = {
         icon: 'reply',
-        onclick: () => router.setRoute('/teams'),
+        href: '/teams',
     };
     analytics.pageView();
     requestRedraw();
@@ -220,7 +220,7 @@ router.on('/teams/?', () => {
     );
     app.button = {
         icon: 'sliders',
-        onclick: () => router.setRoute('/teams/settings'),
+        href: '/teams/settings',
     };
     analytics.pageView();
     requestRedraw();
@@ -239,6 +239,11 @@ router.on('/synergy/:stars/?', (stars) => {
     app.button = null;
     analytics.pageView();
     requestRedraw();
+});
+
+router.on('/lang/:lang/?(.*)', (langId, redirect) => {
+    lang.change(langId);
+    router.setRoute(`${ redirect }`);
 });
 
 router.on('.*', () => router.setRoute('roster'));

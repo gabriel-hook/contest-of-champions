@@ -26,10 +26,7 @@ const Menu = {
                                 <Icon icon={ tab.icon } spin={ tab.spin } />
                             }
                             selected={ currentTab === tab.id }
-                            onclick={ () => {
-                                router.setRoute(`/${ tab.id }`);
-                                requestRedraw(2);
-                            }}
+                            href={ `/${ tab.id }` }
                         />
                     )) }
                     tabs="true"
@@ -177,9 +174,17 @@ const Menu = {
                     </div>
                 </div>
                 { button && (
-                    <div class="menu-button menu-button-sub" onclick={ button.onclick }>
+                    <a
+                        class="menu-button menu-button-sub"
+                        href={ `#${ button.href }` }
+                        onclick={ (event) => {
+                            event.preventDefault();
+                            router.setRoute(button.href);
+                            requestRedraw();
+                        }}
+                    >
                         <Icon icon={ button.icon } />
-                    </div>
+                    </a>
                 ) }
             </div>
         );

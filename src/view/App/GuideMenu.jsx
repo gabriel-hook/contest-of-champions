@@ -30,10 +30,7 @@ const GuideMenu = {
                     invalid={ !guides[ uid ] }
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }
-                    onclick={ () => {
-                        router.setRoute(`/guide/${ uid }`);
-                        requestRedraw();
-                    }}
+                    href={ `/guide/${ uid }` }
                 />
             ));
         });
