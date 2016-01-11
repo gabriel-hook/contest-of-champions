@@ -1,4 +1,3 @@
-import router from '../../service/router.js';
 import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -18,10 +17,7 @@ const RosterMenu = {
                         <Icon icon="user" />
                     )}
                     title="view-guide"
-                    onclick={ () => {
-                        router.setRoute(`/guide/${ uid }`);
-                        requestRedraw();
-                    }}
+                    href={ `/guide/${ uid }` }
                 />
                 <MenuOption
                     icon={(
