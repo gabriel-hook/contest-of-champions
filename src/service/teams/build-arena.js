@@ -18,7 +18,6 @@ function buildArena({
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     champions.forEach((attr) => {
-        /* eslint-disable eqeqeq */
         const champion = new Champion(attr);
         const { id } = champion;
         const { uid, stars, typeId, pi } = attr;
@@ -31,7 +30,7 @@ function buildArena({
 
         synergyMap[ id ] = {};
         synergies
-            .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars)
+            .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars)
             .forEach(({ attr }) => {
                 synergyMap[ id ][ attr.toId ] = {
                     effectId: attr.effectId,
@@ -39,7 +38,6 @@ function buildArena({
                     value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
                 };
             });
-        /* eslint-enable eqeqeq */
     });
 
     function checkValueAndSwap(array, a, b) {

@@ -16,19 +16,17 @@ function buildQuest({
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     const list = champions.map((attr) => {
-        /* eslint-disable eqeqeq */
         const champion = new Champion(attr);
         const { id } = champion;
         const { uid, stars, typeId, quest, pi } = attr;
         const synergies = {};
         dataSynergies
-            .filter(({ attr }) => attr.fromId === uid && attr.fromStars == stars )
+            .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars )
             .forEach(({ attr }) => synergies[ attr.toId ] = {
                 id: attr.toId,
                 special: SPECIAL_EFFECTS[ attr.effectId ] && `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`,
                 value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
             });
-        /* eslint-enable eqeqeq */
         return {
             id,
             uid,

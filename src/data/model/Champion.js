@@ -133,6 +133,14 @@ class Champion extends Model {
         this.attr.level = this.attr.level | 0;
         this.attr.awakened = this.attr.awakened | 0;
     }
+
+    static idToObject(id) {
+        const [ uid, stars ] = id.split('-');
+        return {
+            uid,
+            stars: parseInt(stars, 10),
+        };
+    }
 }
 
 export default Champion;

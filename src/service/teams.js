@@ -1,3 +1,4 @@
+import Champion from '../data/model/Champion';
 import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
@@ -139,19 +140,15 @@ function update() {
     });
 }
 
-function fidToRosterChampion(fid) {
-    /* eslint-disable eqeqeq */
-    const [ uid, stars ] = fid.split('-');
-    return roster.filter((champion) =>
-        champion.attr.uid === uid && champion.attr.stars == stars
-    )[ 0 ];
-    /* eslint-enable eqeqeq */
+function idToRosterChampion(id) {
+    const { uid, stars } = Champion.idToObject(id);
+    return roster.filter(({ attr }) => attr.uid === uid && attr.stars === stars)[ 0 ];
 }
 
 let progressResetTimeout;
 
 let worker;
-function workerFactory() {
+function buildTeams() {
     if(worker)
         worker.terminate();
     worker = new Worker();
@@ -167,7 +164,7 @@ function workerFactory() {
                     ...result,
                     teams: result.teams.map((team) => {
                         team.sort();
-                        const champions = team.map(fidToRosterChampion);
+                        const champions = team.map(idToRosterChampion);
                         const specials = {};
                         const synergies = dataSynergies.filter((synergy) => {
                             const { fromId, fromStars, toId } = synergy.attr;
@@ -196,7 +193,7 @@ function workerFactory() {
                         teams: teamsCount,
                         synergies: synergiesCount,
                     },
-                    extras: result.extras.map(fidToRosterChampion),
+                    extras: result.extras.map(idToRosterChampion),
                 };
                 teams.building = false;
                 progressResetTimeout = setTimeout(() => {
@@ -223,14 +220,6 @@ function workerFactory() {
             break;
         }
     };
-    return worker;
-}
-
-function buildTeams() {
-    const worker = workerFactory();
-    clearTimeout(progressResetTimeout);
-    teams.building = true;
-    teams.progress = 0;
     worker.postMessage({
         type: 'build',
         data: {
@@ -247,6 +236,9 @@ function buildTeams() {
             },
         },
     });
+    teams.building = true;
+    teams.progress = 0;
+    clearTimeout(progressResetTimeout);
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, update, buildTeams };
