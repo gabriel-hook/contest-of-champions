@@ -1,4 +1,4 @@
-import teams, { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, update } from '../../service/teams';
+import teams, { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, save } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -29,7 +29,7 @@ const TeamsSettingsMenu = {
                     ...teams.weights,
                     ...PRESETS[ id ],
                 };
-                update();
+                save();
                 requestRedraw();
             };
             options.push(
@@ -49,7 +49,7 @@ const TeamsSettingsMenu = {
                     ...teams.weights,
                     ...PRESETS_DUPLICATES[ id ],
                 };
-                update();
+                save();
                 requestRedraw();
             };
             options.push(
@@ -69,7 +69,7 @@ const TeamsSettingsMenu = {
                     ...teams.range,
                     ...PRESETS_RANGE[ id ],
                 };
-                update();
+                save();
                 requestRedraw();
             };
             options.push(

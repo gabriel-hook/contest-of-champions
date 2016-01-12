@@ -130,7 +130,7 @@ for(const key in DEFAULT_WEIGHTS) {
     }
 }
 
-function update() {
+function save() {
     toStorage('teams', {
         type: teams.type,
         size: teams.size,
@@ -241,5 +241,5 @@ function buildTeams() {
     clearTimeout(progressResetTimeout);
 }
 
-export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, update, buildTeams };
+export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, save, buildTeams };
 export default teams;

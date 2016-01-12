@@ -1,4 +1,4 @@
-import teams, { buildTeams, update } from '../../service/teams';
+import teams, { buildTeams, save } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -41,7 +41,7 @@ const TeamsMenu = {
                         selected={ teams.stars[ star ] }
                         onclick={ () => {
                             teams.stars[ star ] = !teams.stars[ star ];
-                            update();
+                            save();
                             requestRedraw();
                         }}
                     />
@@ -61,7 +61,7 @@ const TeamsMenu = {
                         selected={ teams.size === size }
                         onclick={ () => {
                             teams.size = size;
-                            update();
+                            save();
                             requestRedraw();
                         }}
                     />
@@ -81,7 +81,7 @@ const TeamsMenu = {
                         selected={ teams.type === type }
                         onclick={ () => {
                             teams.type = type;
-                            update();
+                            save();
                             requestRedraw();
                         }}
                     />

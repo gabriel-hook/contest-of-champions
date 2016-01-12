@@ -1,6 +1,6 @@
 import './TeamsSettingsPage.scss';
 import effects from '../../data/effects';
-import teams, { update } from '../../service/teams';
+import teams, { save } from '../../service/teams';
 import lang from '../../service/lang';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -28,7 +28,7 @@ const Slider = {
                 value={ toInputValue(object[ field ]) }
                 oninput={ (event) => {
                     object[ field ] = fromInputValue(event.target.value);
-                    update();
+                    save();
                     requestRedraw(10);
                 } }
             />
