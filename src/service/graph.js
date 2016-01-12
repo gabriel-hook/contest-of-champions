@@ -55,7 +55,7 @@ const fdg = new ForceDirectedGraph({
         };
         if(!deepEqual(lastSelected, currentSelected)) {
             const legend = legends[ fdg.stars ];
-            if (nodes.length > 1) {
+            if (nodes && nodes.length > 1) {
                 const amounts = {};
                 edges.forEach((edge) => {
                     const { effect, amount } = edge.data;
@@ -69,7 +69,7 @@ const fdg = new ForceDirectedGraph({
                     effect.amount = amounts[ effect.effectId ];
                 }
             }
-            else if (nodes.length === 1) {
+            else if (nodes && nodes.length === 1) {
                 const selected = {};
                 edges.forEach((edge) => {
                     const { effect } = edge.data;
@@ -89,7 +89,7 @@ const fdg = new ForceDirectedGraph({
             lastSelected = currentSelected;
             requestRedraw(5);
         }
-        else if(!nodes.length && !edges.length) {
+        else if((!nodes || !nodes.length) && (!edges || !edges.length)) {
             const legend = legends[ fdg.stars ];
             for(const effect of legend) {
                 effect.selected = true;

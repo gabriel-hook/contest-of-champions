@@ -81,7 +81,6 @@ export default function({
 
             graph.eventListeners = this.graph.eventListeners;
             this.graph = graph;
-
             clearSelected();
         }
         if(width && height) {
@@ -229,6 +228,7 @@ export default function({
     };
 
     const clearSelected = () => {
+        edgeSelected = null;
         updateSelected([]);
     };
     const updateSelected = (array) => {
