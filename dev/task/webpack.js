@@ -50,12 +50,20 @@ gulp.task('develop', (callback) => {
         inline: true,
         headers: { 'Access-Control-Allow-Origin': '*' },
         historyApiFallback: true,
+        stats: {
+            colors: true,
+            assets: false,
+            cached: false,
+            cachedAssets: false,
+            chunks: false,
+        },
     });
     server.listen(port, domain, (err) => {
-        if (err)
+        if (err) {
+            callback();
             throw new gutil.PluginError('webpack-dev-server', err);
-        gutil.log('[webpack-dev-server]', `http://${ domain }:${ port }/webpack-dev-server/index.html`);
-        callback();
+        }
+        gutil.log('[webpack-dev-server]', `http://${ domain }:${ port }/index.html`);
     });
 });
 
