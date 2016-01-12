@@ -122,6 +122,7 @@ const ChampionTeam = {
                             champion={ champion }
                             selected={ selected }
                             neighbor={ neighbor }
+                            showBadges={ false }
                             onclick={ () => selectChampion(ctrl, synergies, champions, index) }
                         />
                     );

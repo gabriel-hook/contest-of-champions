@@ -19,7 +19,7 @@ function addSVG(element, isInitialized) {
 }
 
 const ChampionPortrait = {
-    view(ctrl, { champion, events, onclick, selected, neighbor }) {
+    view(ctrl, { champion, events, onclick, selected, neighbor, showBadges = true }) {
         const { uid, stars, rank, level, pi, typeId, awakened } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
@@ -59,12 +59,14 @@ const ChampionPortrait = {
             STAR_RANK_LEVEL[ stars ][ rank ] &&
             STAR_RANK_LEVEL[ stars ].ranks > rank &&
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
-        const upgrade = isMaxed? (
+        const upgrade = !showBadges? null:
+        isMaxed? (
             <ImageIcon
                 src="images/icons/max.png"
                 icon="check-circle"
             />
-        ): isRankUp? (
+        ):
+        isRankUp? (
             <ImageIcon
                 src="images/icons/rank-up.png"
                 icon="chevron-circle-up"
