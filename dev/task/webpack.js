@@ -4,8 +4,6 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from '../config/webpack-config.js';
 
-const DEVELOPMENT = gutil.env.dev;
-
 gulp.task('develop', (callback) => {
     const domain = 'localhost';
     const port = 8080;
@@ -71,10 +69,8 @@ gulp.task('webpack', (callback) => {
     const config = {
         ...webpackConfig,
         plugins: [
-            ...(DEVELOPMENT)? []: [
-                new webpack.optimize.DedupePlugin(),
-                new webpack.optimize.UglifyJsPlugin({ minimize: true }),
-            ],
+            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.UglifyJsPlugin({ minimize: true }),
             ...webpackConfig.plugins || [],
         ],
         devtool: '#source-map',
