@@ -29,6 +29,29 @@ import SynergyMenu from './view/App/SynergyMenu.jsx';
 import { requestRedraw } from './util/animation';
 import m from 'mithril';
 
+app.tabs = [
+    {
+        id: 'guide',
+        title: 'guide',
+        icon: 'user',
+    },
+    {
+        id: 'roster',
+        title: 'roster',
+        icon: 'users',
+    },
+    {
+        id: 'teams',
+        title: 'teams',
+        icon: 'cogs',
+    },
+    {
+        id: 'synergy',
+        title: 'synergy',
+        icon: 'sitemap',
+    },
+];
+
 /**
  * Reset router if we are hot loading so we only get new routes.
  */
@@ -247,29 +270,6 @@ router.on('/lang/:lang/?(.*)', (langId, redirect) => {
 });
 
 router.on('.*', () => router.setRoute('roster'));
-
-app.tabs = [
-    {
-        id: 'guide',
-        title: 'guide',
-        icon: 'user',
-    },
-    {
-        id: 'roster',
-        title: 'roster',
-        icon: 'users',
-    },
-    {
-        id: 'teams',
-        title: 'teams',
-        icon: 'cogs',
-    },
-    {
-        id: 'synergy',
-        title: 'synergy',
-        icon: 'sitemap',
-    },
-];
 
 m.mount(document.body, (
     <App />
