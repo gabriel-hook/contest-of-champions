@@ -157,8 +157,10 @@ const Menu = {
         return (
             <div m="Menu" class={ classNames('menu', { 'menu--open': menuOpen }) }>
                 <div class="menu-background" onclick={ () => {
-                    app.menuOpen = !menuOpen;
-                    requestRedraw(2);
+                    if(menuOpen) {
+                        app.menuOpen = !menuOpen;
+                        requestRedraw(2);
+                    }
                 }}></div>
                 <div class="menu-wrapper">
                     <div class="menu-options">

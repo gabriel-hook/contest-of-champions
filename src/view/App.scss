@@ -21,7 +21,7 @@
             overflow-y: auto;
             pointer-events: none;
             transition: opacity .25s;
-            background: #ccc;
+            background: rgba(255, 255, 255, 0.333);
             z-index: 0;
 
             @media print {
