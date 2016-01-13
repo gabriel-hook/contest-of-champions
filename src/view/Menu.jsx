@@ -22,6 +22,7 @@ const Menu = {
                 <MenuOptionGroup
                     options={ tabs.map((tab) => (
                         <MenuOption
+                            info={ tab.title }
                             icon={
                                 <Icon icon={ tab.icon } spin={ tab.spin } />
                             }
@@ -157,10 +158,8 @@ const Menu = {
         return (
             <div m="Menu" class={ classNames('menu', { 'menu--open': menuOpen }) }>
                 <div class="menu-background" onclick={ () => {
-                    if(menuOpen) {
-                        app.menuOpen = !menuOpen;
-                        requestRedraw(2);
-                    }
+                    app.menuOpen = !menuOpen;
+                    requestRedraw(2);
                 }}></div>
                 <div class="menu-wrapper">
                     <div class="menu-options">
@@ -177,6 +176,7 @@ const Menu = {
                 </div>
                 { button && (
                     <a
+                        role="button"
                         class="menu-button menu-button-sub"
                         href={ `#${ button.href }` }
                         onclick={ (event) => {

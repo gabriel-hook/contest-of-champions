@@ -232,7 +232,12 @@ const GuidePage = {
             );
         }
         return (
-            <div m="GuidePage" class="guide" key={ 'guide-${ uid }' }>
+            <div
+                m="GuidePage"
+                role="article"
+                class="guide"
+                key={ 'guide-${ uid }' }
+            >
                 { details }
                 <div class="clear" />
             </div>

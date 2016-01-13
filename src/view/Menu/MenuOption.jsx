@@ -13,7 +13,7 @@ function linkIsExternal(href) {
 
 const MenuOption = {
     view(ctrl, {
-        title, icon, onclick, href,
+        info, title, icon, onclick, href,
         download, selected, invalid, progress, red,
     }) {
         let link = {};
@@ -42,6 +42,8 @@ const MenuOption = {
         return (
             <a
                 m="MenuOption"
+                role="menuitem"
+                aria-label={ lang.get(title) || lang.get(info) }
                 class={ classNames('menu-option', {
                     'menu-option--invalid': invalid,
                     'menu-option--selected': selected,
@@ -54,6 +56,9 @@ const MenuOption = {
             >
                 { (progress || progress === 0) && (
                     <div
+                        aria-valuenow={ Math.max(0, Math.min(100, 100 * progress)) }
+                        aria-valuemin="0"
+                        aria-valuemax="100"
                         class="menu-option-progress-bar"
                         style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .3s linear' };` }
                     />

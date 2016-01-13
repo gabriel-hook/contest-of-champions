@@ -1,4 +1,4 @@
-# Champions
+# ![Icon](src/images/icon_48.png) Champions Companion App
 
 [![Build Status](https://travis-ci.org/hook/champions.svg?branch=master)](https://travis-ci.org/hook/champions)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/baba36c6f40645d78a4479a2d5e51e8f)](https://www.codacy.com/app/gabrielhook/champions)

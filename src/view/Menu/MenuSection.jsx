@@ -6,7 +6,11 @@ import m from 'mithril';
 const MenuSection = {
     view(ctrl, { title, icon }) {
         return (
-            <div m="MenuSection" class="menu-section">
+            <div
+                m="MenuSection"
+                role="heading"
+                aria-label={ lang.get(title) }
+                class="menu-section">
                 <div>{ icon }{ lang.get(title) }</div>
             </div>
         );

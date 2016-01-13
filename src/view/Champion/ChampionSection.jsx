@@ -86,7 +86,11 @@ const ChampionSection = {
             ];
 
             elements.push(
-                <div class="champion-section-title">
+                <div
+                    role="section"
+                    aria-label={ title }
+                    class="champion-section-title"
+                >
                     { title }
                     { rating !== undefined? (
                         <div style="float:right;">
@@ -280,7 +284,13 @@ const ChampionSection = {
             );
         }
         return (
-            <div m="ChampionSection" class="champion-section">{ elements }</div>
+            <div
+                m="ChampionSection"
+                role="section"
+                class="champion-section"
+            >
+                { elements }
+            </div>
         );
     },
 };

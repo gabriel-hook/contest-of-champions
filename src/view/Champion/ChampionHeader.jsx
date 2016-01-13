@@ -38,6 +38,8 @@ const ChampionHeader = {
         return (
             <div
                 m="ChampionHeader"
+                role="banner"
+                aria-label={ lang.get(`champion-${ uid }-name`) }
                 class="champion-header"
                 title={ lang.get(`champion-${ uid }-name`) }
             >
