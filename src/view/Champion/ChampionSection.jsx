@@ -188,7 +188,10 @@ const ChampionSection = {
         }
         else {
             elements.push(
-                <div class="champion-section-title">
+                <div
+                    role="heading"
+                    class="champion-section-title"
+                >
                     { title }
                     { rating !== undefined && (
                         <ChampionRating rating={ rating }/>

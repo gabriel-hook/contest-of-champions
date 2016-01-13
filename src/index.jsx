@@ -41,14 +41,14 @@ router.on('/guide/?', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
-    app.pages[ 'guide-show' ] = (
+    app.cards[ 'guide-show' ] = (
         <GuidePage uid={ uid } />
     );
     app.pages[ 'guide' ] = (
         <Cards
             cards={[
-                app.pages[ 'guide-show' ],
-                app.pages[ 'guide-edit' ],
+                app.cards[ 'guide-show' ],
+                app.cards[ 'guide-edit' ],
             ]}
             current={ 0 }
         />
@@ -67,14 +67,14 @@ router.on('/guide/:uid/?', (uid) => {
 router.on('/guide/:uid/edit/?', (uid) => {
     app.edit = true;
     app.tab = 'guide';
-    app.pages[ 'guide-edit' ] = (
+    app.cards[ 'guide-edit' ] = (
         <GuideEditPage uid={ uid } />
     );
     app.pages[ 'guide' ] = (
         <Cards
             cards={[
-                app.pages[ 'guide-show' ],
-                app.pages[ 'guide-edit' ],
+                app.cards[ 'guide-show' ],
+                app.cards[ 'guide-edit' ],
             ]}
             current={ 1 }
         />
@@ -92,15 +92,15 @@ router.on('/guide/:uid/edit/?', (uid) => {
 
 router.on('/roster/?', () => {
     app.tab = 'roster';
-    app.pages[ 'roster-show' ] = (
+    app.cards[ 'roster-show' ] = (
         <RosterPage />
     );
     app.pages[ 'roster' ] = (
         <Cards
             cards={[
-                app.pages[ 'roster-add' ],
-                app.pages[ 'roster-show' ],
-                app.pages[ 'roster-edit' ],
+                app.cards[ 'roster-add' ],
+                app.cards[ 'roster-show' ],
+                app.cards[ 'roster-edit' ],
             ]}
             current={ 1 }
         />
@@ -125,15 +125,15 @@ router.on('/roster/?', () => {
 
 router.on('/roster/add/:stars/?', (stars) => {
     app.tab = 'roster';
-    app.pages[ 'roster-add' ] = (
+    app.cards[ 'roster-add' ] = (
         <RosterAddPage stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Cards
             cards={[
-                app.pages[ 'roster-add' ],
-                app.pages[ 'roster-show' ],
-                app.pages[ 'roster-edit' ],
+                app.cards[ 'roster-add' ],
+                app.cards[ 'roster-show' ],
+                app.cards[ 'roster-edit' ],
             ]}
             current={ 0 }
         />
@@ -152,15 +152,15 @@ router.on('/roster/add/:stars/?', (stars) => {
 
 router.on('/roster/:uid/:stars/?', (uid, stars) => {
     app.tab = 'roster';
-    app.pages[ 'roster-edit' ] = (
+    app.cards[ 'roster-edit' ] = (
         <RosterEditPage uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Cards
             cards={[
-                app.pages[ 'roster-add' ],
-                app.pages[ 'roster-show' ],
-                app.pages[ 'roster-edit' ],
+                app.cards[ 'roster-add' ],
+                app.cards[ 'roster-show' ],
+                app.cards[ 'roster-edit' ],
             ]}
             current={ 2 }
         />
@@ -178,14 +178,14 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
 
 router.on('/teams/settings/?', () => {
     app.tab = 'teams';
-    app.pages[ 'teams-settings' ] = (
+    app.cards[ 'teams-settings' ] = (
         <TeamsSettingsPage />
     );
     app.pages[ 'teams' ] = (
         <Cards
             cards={[
-                app.pages[ 'teams-main' ],
-                app.pages[ 'teams-settings' ],
+                app.cards[ 'teams-main' ],
+                app.cards[ 'teams-settings' ],
             ]}
             current={ 1 }
         />
@@ -203,14 +203,14 @@ router.on('/teams/settings/?', () => {
 
 router.on('/teams/?', () => {
     app.tab = 'teams';
-    app.pages[ 'teams-main' ] = (
+    app.cards[ 'teams-main' ] = (
         <TeamsPage />
     );
     app.pages[ 'teams' ] = (
         <Cards
             cards={[
-                app.pages[ 'teams-main' ],
-                app.pages[ 'teams-settings' ],
+                app.cards[ 'teams-main' ],
+                app.cards[ 'teams-settings' ],
             ]}
             current={ 0 }
         />
