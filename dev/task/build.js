@@ -9,9 +9,10 @@ gulp.task('images', () => gulp.src([
     .pipe(gulp.dest('./.build/images/')));
 
 gulp.task('public', () => gulp.src([
-    './src/manifest.json.',
+    './src/manifest.json',
+    './src/.nojekyll',
 ])
     .pipe(plumber())
     .pipe(gulp.dest('./.build/')));
 
-gulp.task('build', sequence('clean', 'images', 'webpack'));
+gulp.task('build', sequence('clean', 'webpack', 'images', 'public'));
