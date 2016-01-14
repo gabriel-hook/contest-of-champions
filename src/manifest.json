@@ -1,6 +1,8 @@
 {
     "short_name": "Champions",
     "name": "Champions",
+    "description": "Contest of Champions Companion App",
+    "default_locale": "en",
     "icons": [
         {
             "src": "images/icon_48.png",
@@ -35,6 +37,7 @@
     ],
     "start_url": "index.html",
     "display": "standalone",
+    "fullscreen": "true",
     "orientation": "portrait-primary",
     "theme_color": "#3388cc",
     "permissions": {
@@ -42,5 +45,9 @@
             "description": "Needed for creating system notifications."
         }
     },
-    "messages": [{"notification": "index.html"}]
+    "messages": [
+        {
+            "notification": "index.html"
+        }
+    ]
 }
