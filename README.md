@@ -1,7 +1,7 @@
-# [<img src="src/images/icon.png" width="32">](#) Champions
+# [<img src="src/images/icon.png" width="24" height="24" alt="Icon">](#-champions) Champions
 
-[![Build Status](https://travis-ci.org/hook/champions.svg?branch=master)](https://travis-ci.org/hook/champions)
-[![Join the chat at https://gitter.im/hook/champions](https://img.shields.io/gitter/room/hook/champions.svg)](https://gitter.im/hook/champions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[<img src="https://travis-ci.org/hook/champions.svg?branch=master" alt="Build Status">](https://travis-ci.org/hook/champions)
+[<img src="https://img.shields.io/gitter/room/hook/champions.svg" alt="Join the chat at https://gitter.im/hook/champions">](https://gitter.im/hook/champions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Development
 
