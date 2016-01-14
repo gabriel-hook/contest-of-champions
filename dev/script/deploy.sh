@@ -3,7 +3,7 @@ cd .build/
 git init
 
 git config user.name "Travis CI"
-git config user.email "hook@travis-ci.org"
+git config user.email "git@travis-ci.org"
 
 git add .
 git commit --quiet -m "Travis-CI to GitHub Pages"
