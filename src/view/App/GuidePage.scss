@@ -33,25 +33,19 @@
         }
 
         .champion-name {
-            width: 100%;
             cursor: pointer;
-            @include font-title(1em);
             text-transform: uppercase;
         }
 
+        .champion-name,
         .effect-name {
             width: 100%;
             display: inline-block;
             @include font-text(1em);
-        }
-        
-        .champion-name,
-        .effect-name {
-            display: inline-block;
+            line-height: 24px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 24px;
         }
 
         .icon {
