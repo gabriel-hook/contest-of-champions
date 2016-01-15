@@ -1,4 +1,5 @@
 import './TeamsSettingsPage.scss';
+import classNames from 'classnames';
 import effects from '../../data/effects';
 import teams, { save } from '../../service/teams';
 import lang from '../../service/lang';
@@ -36,6 +37,28 @@ const Slider = {
     },
 };
 
+const Field = {
+    view(ctrl, { title, toggle, slider, isLargeSlider, value }) {
+        return (
+            <div class="field">
+                <label class="field-name">{ title }</label>
+                <div
+                    class={ classNames('field-input',
+                        { 'field-input-small': !isLargeSlider },
+                        { 'field-input-large': isLargeSlider }
+                    )}
+                >
+                    { slider }
+                    { toggle }
+                    <span class="field-value">
+                        { value }
+                    </span>
+                </div>
+            </div>
+        );
+    },
+};
+
 const TeamsSettingsPage = {
     view() {
         return (
@@ -44,42 +67,35 @@ const TeamsSettingsPage = {
                     { lang.get('synergy-weights') }
                 </div>
                 { effects.map(({ attr }) => (
-                    <div class="field">
-                        <label class="field-name">{ lang.get(`effect-${ attr.uid }-name`) }</label>
-                        <div class="field-input">
+                    <Field
+                        title={ lang.get(`effect-${ attr.uid }-name`) }
+                        slider={
                             <Slider
                                 object={ teams.weights }
                                 field={ `effect-${ attr.uid }` }
                                 toInputValue={ (value) => value * 1000 }
                                 fromInputValue={ (value) => value / 1000 }
                             />
-                    <span class="field-value">
-                        { (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
-                    </span>
-                        </div>
-                    </div>
+                        }
+                        value={ (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
+                    />
                 )) }
                 <div class="header">
                     { lang.get('duplicate-weights') }
                 </div>
                 { [ 2, 3, 4, 5 ].map((count) => (
-                    <div class="field">
-                        <label class="field-name">
-                            { lang.get(DUPLICATE_TITLES[ count ]) }
-                            { `(${ count }x)` }
-                        </label>
-                        <div class="field-input">
+                    <Field
+                        title={ `${ lang.get(DUPLICATE_TITLES[ count ]) } (${ count }x)` }
+                        slider={
                             <Slider
                                 object={ teams.weights }
                                 field={ `duplicates-${ count }` }
                                 toInputValue={ (value) => value * 1000 }
                                 fromInputValue={ (value) => value / 1000 }
                             />
-                    <span class="field-value">
-                        { (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
-                    </span>
-                        </div>
-                    </div>
+                        }
+                        value={ (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
+                    />
                 )) }
                 <div class="header">
                     { lang.get('pi-range') }
@@ -88,27 +104,23 @@ const TeamsSettingsPage = {
                     'minimum',
                     'maximum',
                 ].map((which) => (
-                    <div class="field">
-                        <label class="field-name">
-                            { lang.get(`pi-range-${ which }`) }
-                        </label>
-                        <div class="field-input field-input-large">
+                    <Field
+                        title={ lang.get(`pi-range-${ which }`) }
+                        slider={
                             <Slider
                                 object={ teams.range }
                                 field={ which }
                                 toInputValue={ (value) => 1000 * value / MAX_PI_RANGE }
                                 fromInputValue={ (value) => MAX_PI_RANGE * value / 1000 }
                             />
-                    <span class="field-value">
-                        { (teams.range[ which ] | 0) }
-                    </span>
-                        </div>
-                    </div>
+                        }
+                        isLargeSlider={ true }
+                        value={ teams.range[ which ] | 0 }
+                    />
                 )) }
                 <div class="clear" />
             </div>
         );
     },
 };
-
 export default TeamsSettingsPage;

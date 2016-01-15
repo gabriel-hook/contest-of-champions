@@ -23,6 +23,16 @@
 ```
   npm run develop
 ```
+
+### Linting and Testing
+
+    Periodically lint your code and run tests to ensure basic functionality has not broken.
+    ESLint can be enabled inside your IDE for Webstorm.
+    
+```
+  npm run test
+```
+
 ### Deploying
 
   Lint, Test, Build and publish to gh-pages branch is done automatically by Travis-CI on `git push`.

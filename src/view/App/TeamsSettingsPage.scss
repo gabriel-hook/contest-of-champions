@@ -38,9 +38,13 @@
         .field-input {
             @include styled-button(false);
             background: #eee;
-            padding: 8px 64px 8px 16px;
+            padding: 8px 16px;
             position: relative;
             box-sizing: border-box;
+
+            &.field-input-small {
+                padding-right: 64px;
+            }
 
             &.field-input-large {
                 padding-right: 96px;
@@ -64,6 +68,7 @@
                     100%, 8px, #333, 0 1px 0 #fff, 1px,
                     24px, -8px, #38c, 0 4px 0 -2px  rgba(0, 0, 0, .25), none, 0
                 );
+
                 width: 100%;
             }
         }
