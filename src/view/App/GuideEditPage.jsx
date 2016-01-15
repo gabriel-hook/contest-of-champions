@@ -1,3 +1,4 @@
+import './GuidePage.scss';
 import './GuideEditPage.scss';
 import { idMap } from '../../data/champions';
 import Champion from '../../data/model/Champion';
@@ -185,7 +186,7 @@ const GuideEditPage = {
             />
         );
         return (
-            <div m="GuideEditPage" class="guide" key={ 'guide-${ uid }' }>
+            <div m="GuideEditPage" class="guide guide-edit" key={ 'guide-${ uid }' }>
                 { details }
                 <div class="clear" />
             </div>
