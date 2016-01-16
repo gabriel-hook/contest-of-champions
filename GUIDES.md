@@ -61,8 +61,9 @@ If you are savvy with code, you can put the .json file into a fork of this repo,
 If you want to link up the guide yourself and test it locally make sure to update the guide
 file as so (example for blackbolt)
 
-[./src/data/guides.js](src/data/guides.js)
+**Update:** [./src/data/guides.js](src/data/guides.js)
 ```javascript
+...
 import blackbolt from './guide/blackbolt';
 
 const guides = {
