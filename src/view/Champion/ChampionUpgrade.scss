@@ -13,7 +13,10 @@
     background: #eee;
     color: #000;
     text-shadow: 0 1px 0 #fff;
-    pointer-events: none;
+
+    & * {
+        pointer-events: none;
+    }
 
     &.champion-upgrade-rank-up {
         background: #38c;

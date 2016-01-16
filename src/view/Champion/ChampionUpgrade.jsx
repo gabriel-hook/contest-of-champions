@@ -17,6 +17,7 @@ const ChampionUpgrade = {
         return (
             <div
                 m="ChampionUpgrade"
+                title={ lang.get('upgrade-cost') }
                 class={ classNames('champion-upgrade', {
                     'champion-upgrade-rank-up': isRankUp,
                     'champion-upgrade-max': isMaxed,

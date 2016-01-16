@@ -197,7 +197,7 @@
     "rank": "Rank",
     "level": "Level",
     "awakened": "Awakened",
-    "pi": "PI",
+    "pi": "Power Index",
 
 
     "team-size": "Team Size",
@@ -210,7 +210,7 @@
     "synergy-weights": "Synergy Weights",
     "duplicate-weights": "Duplicate Class Weights",
 
-    "pi-range": "PI Range",
+    "pi-range": "Power Index Range",
     "pi-range-minimum": "Minimum",
     "pi-range-maximum": "Maximum",
 
@@ -274,6 +274,7 @@
     "profile-kabam": "Kabam Forums User",
     "profile-spotlight": "Official Kabam Spotlight",
 
+    "upgrade-cost": "Upgrade Cost",
     "upgrade-maxed": "Maxed",
     "upgrade-max-rank": "Max Rank",
 
