@@ -22,17 +22,12 @@ gulp.task('develop', (callback) => {
         })(webpackConfig.entry),
         module: {
             ...webpackConfig.module,
-            loaders: webpackConfig.module.loaders.map((loader) => {
-                if(loader.hot) {
-                    return {
-                        ...loader,
-                        loaders: [
-                            'simple-hot',
-                            ...loader.loaders,
-                        ],
-                    };
-                }
-                return loader;
+            loaders: webpackConfig.module.loaders.map((loader) => (!loader.hot)? loader: {
+                ...loader,
+                loaders: [
+                    'simple-hot',
+                    ...loader.loaders,
+                ],
             }),
         },
         plugins: [

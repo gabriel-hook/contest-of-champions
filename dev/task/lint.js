@@ -10,18 +10,24 @@ gulp.task('lint:dev', () => gulp.src([
     .pipe(plumber())
     .pipe(esLint())
     .pipe(esLint.format())
-    .pipe(esLint.failAfterError())
-);
+    .pipe(esLint.failAfterError()));
 
-gulp.task('lint:test', () => gulp.src([
+gulp.task('lint:tests', () => gulp.src([
     './test/**/*.js',
     './test/**/*.jsx',
 ])
     .pipe(plumber())
     .pipe(esLint())
     .pipe(esLint.format())
-    .pipe(esLint.failAfterError())
-);
+    .pipe(esLint.failAfterError()));
+
+gulp.task('lint:styles', () => gulp.src([
+    './src/**/*.scss',
+    '!./src/index.scss',
+])
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError()));
 
 gulp.task('lint:scripts', () => gulp.src([
     './src/**/*.js',
@@ -30,15 +36,6 @@ gulp.task('lint:scripts', () => gulp.src([
     .pipe(plumber())
     .pipe(esLint())
     .pipe(esLint.format())
-    .pipe(esLint.failAfterError())
-);
-gulp.task('lint:styles', () => gulp.src([
-    './src/**/*.scss',
-    '!./src/index.scss',
-])
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-);
+    .pipe(esLint.failAfterError()));
 
-gulp.task('lint', sequence('lint:dev', 'lint:test', 'lint:scripts', 'lint:styles'));
+gulp.task('lint', sequence('lint:dev', 'lint:tests', 'lint:styles', 'lint:scripts'));

@@ -60,6 +60,23 @@ const CATALYSTS = {
             { type: 'gold', amount: 109701 },
         ],
     },
+    5: {
+        1: [
+        ],
+        2: [
+            { type: 'basic', tier: 4, amount: 4 },
+            { type: 'class', tier: 4, amount: 3 },
+            { type: 'alpha', tier: 1, amount: 5 },
+        ],
+        3: [
+        ],
+        4: [
+            { type: 'basic', tier: 5, amount: 4 },
+            { type: 'class', tier: 4, amount: 6 },
+            { type: 'alpha', tier: 1, amount: 5 },
+            { type: 'alpha', tier: 2, amount: 6 },
+        ],
+    },
 };
 
 const STAR_RANK_LEVEL={
