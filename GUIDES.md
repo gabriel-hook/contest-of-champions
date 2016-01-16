@@ -56,7 +56,7 @@ into the main project.
 
 If you are savvy with code, you can put the .json file into a fork of this repo, in the
 `./src/data/guide/[id].json` path (where [id] is Champions unique ID according to
-`./src/data/champions.js`.
+[./src/data/champions.js](src/data/champions.js).
  
 If you want to link up the guide yourself and test it locally make sure to update the guide
 file as so (example for blackbolt)
