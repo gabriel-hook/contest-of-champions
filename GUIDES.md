@@ -47,10 +47,10 @@ Download directory.
 
 There are 2 ways you can start the publishing process for a finished guide.
 
-### E-mail
+### Github Issue
 
-Send me an e-mail with the guide .json file attached and if the quality is good I will merge it
-into the main project.
+You can create an Issue within github and attach the .json file there, I will review it and merge
+quality work into the App.
 
 ### Git Pull Request
 
@@ -71,5 +71,5 @@ const guides = {
 ```
 *Just make sure you import the guide and then add it to the guides object.*
 
-Once the file has been added properly, send a pull request and I will review and probably add
-it to the App immediately.
+Once the file has been added properly, send a pull request and I will review and add
+quality work to the App immediately.
