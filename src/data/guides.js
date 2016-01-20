@@ -15,8 +15,10 @@ import thevision from './guide/thevision';
 import thorjanefoster from './guide/thorjanefoster';
 import ultron from './guide/ultron';
 import venom from './guide/venom';
+import venompool from './guide/venompool';
 import vision from './guide/vision';
 import warmachine from './guide/warmachine';
+import wolverineoldman from './guide/wolverineoldman';
 
 const guides = {
     blackbolt,
@@ -36,8 +38,10 @@ const guides = {
     thorjanefoster,
     ultron,
     venom,
+    venompool,
     vision,
     warmachine,
+    wolverineoldman,
 };
 
 const RATINGS = [ 1, 2, 3, 4, 5 ];

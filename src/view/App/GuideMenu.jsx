@@ -25,7 +25,7 @@ const GuideMenu = {
                     icon={(
                         <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
                     )}
-                    invalid={ !guides[ uid ] }
+                    invalid={ !guides[ uid ] || guides[ uid ].invalid }
                     title={ `champion-${ uid }-name` }
                     selected={ currentUid === uid }
                     href={ `/guide/${ uid }` }

@@ -46,6 +46,9 @@ const champions = [
     { uid:'venom', typeId:'cosmic', stars: 4 },
     { uid:'venom', typeId:'cosmic', stars: 5 },
 
+    { uid:'venompool', typeId:'cosmic', stars: 3 },
+    { uid:'venompool', typeId:'cosmic', stars: 4 },
+
     { uid:'ironman', typeId:'tech', stars: 1 },
     { uid:'ironman', typeId:'tech', stars: 2 },
     { uid:'ironman', typeId:'tech', stars: 3 },
@@ -124,6 +127,9 @@ const champions = [
     { uid:'wolverine', typeId:'mutant', stars: 3 },
     { uid:'wolverine', typeId:'mutant', stars: 4 },
 
+    { uid:'wolverineoldman', typeId:'mutant', stars: 3 },
+    { uid:'wolverineoldman', typeId:'mutant', stars: 4 },
+
     { uid:'blackpanther', typeId:'skill', stars: 1 },
     { uid:'blackpanther', typeId:'skill', stars: 2 },
     { uid:'blackpanther', typeId:'skill', stars: 3 },
@@ -200,6 +206,9 @@ const champions = [
     { uid:'rhino', typeId:'science', stars: 3 },
     { uid:'rhino', typeId:'science', stars: 4 },
     { uid:'rhino', typeId:'science', stars: 5 },
+
+    { uid:'shehulk', typeId:'science', stars: 3 },
+    { uid:'shehulk', typeId:'science', stars: 4 },
 
     { uid:'spidergwen', typeId:'science', stars: 3 },
     { uid:'spidergwen', typeId:'science', stars: 4 },
