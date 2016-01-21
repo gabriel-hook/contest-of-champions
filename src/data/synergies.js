@@ -331,10 +331,13 @@ const synergies = [
     { fromId:'wintersoldier', fromStars:2, toId:'captainamerica', effectId:'perfectblock', effectAmount:3 },
     { fromId:'wintersoldier', fromStars:3, toId:'wolverine', effectId:'armor', effectAmount:5 },
     { fromId:'wintersoldier', fromStars:3, toId:'captainamerica', effectId:'perfectblock', effectAmount:4 },
+    { fromId:'wintersoldier', fromStars:3, toId:'captainamericawwii', effectId:'armor', effectAmount:5 },
     { fromId:'wintersoldier', fromStars:4, toId:'wolverine', effectId:'armor', effectAmount:6 },
     { fromId:'wintersoldier', fromStars:4, toId:'captainamerica', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'wintersoldier', fromStars:4, toId:'captainamericawwii', effectId:'armor', effectAmount:6 },
     { fromId:'wintersoldier', fromStars:5, toId:'wolverine', effectId:'armor', effectAmount:6 },
     { fromId:'wintersoldier', fromStars:5, toId:'captainamerica', effectId:'perfectblock', effectAmount:5 },
+    { fromId:'wintersoldier', fromStars:5, toId:'captainamericawwii', effectId:'armor', effectAmount:5 },
 
     { fromId:'blackwidow', fromStars:2, toId:'captainmarvel', effectId:'armor', effectAmount:4 },
     { fromId:'blackwidow', fromStars:2, toId:'wintersoldier', effectId:'powergain', effectAmount:3 },
