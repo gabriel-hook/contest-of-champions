@@ -8,8 +8,8 @@
     "specials": {
         "1": {
             "name": "Optic Blast",
-            "description": "48% chance to Armor Break, removing enemy Armor and applying 39% Armor reduction for 9 seconds.",
-            "note": "This attack has three potential triggers for Armor Break, all of which stack.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds.",
+            "description": "48% chance to Armor Break, removing enemy Armor and applying 39% Armor reduction for 9 seconds.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds.",
+            "note": "This attack has three potential triggers for Armor Break, all of which stack.",
             "damagetypes": [
                 "energy"
             ],
@@ -33,8 +33,8 @@
                 "armorbreak"
             ],
             "name": "Vigilance",
-            "description": "54% chance to Armor Break, removing enemy Armor and applying 44% Armor reduction for 10 seconds.",
-            "note": "This attack has three potential triggers for Armor Break, all of which stack.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds."
+            "description": "54% chance to Armor Break, removing enemy Armor and applying 44% Armor reduction for 10 seconds.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds.",
+            "note": "This attack has three potential triggers for Armor Break, all of which stack."
         },
         "3": {
             "damagetypes": [
@@ -44,8 +44,8 @@
                 "armorbreak"
             ],
             "name": "Gigawatt Blast",
-            "description": "100% chance to Armor Break, removing enemy Armor and applying 51% Armor reduction for 14 seconds.",
-            "note": "This attack has one potential trigger for Armor Break.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds."
+            "description": "100% chance to Armor Break, removing enemy Armor and applying 51% Armor reduction for 14 seconds.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds.",
+            "note": "This attack has one potential trigger for Armor Break."
         }
     },
     "signature": {
