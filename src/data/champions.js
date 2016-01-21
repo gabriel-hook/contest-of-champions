@@ -1,5 +1,14 @@
 import Champion from './model/Champion';
 
+const UNRELEASED_CHAMPIONS = {
+    'redskull': true,
+    'maestro': true,
+    'shehulk': true,
+    'wolverineoldman': true,
+    'venompool': true,
+    'drstrangemarvelnow': true,
+};
+
 const champions = [
 
     { uid:'blackbolt', typeId:'cosmic', stars: 2 },
@@ -290,3 +299,4 @@ champions.forEach((champion) => {
 
 export default champions;
 export { idMap, uids, uidsByType };
+export { UNRELEASED_CHAMPIONS };

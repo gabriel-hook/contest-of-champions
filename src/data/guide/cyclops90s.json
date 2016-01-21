@@ -1,0 +1,64 @@
+{
+    "description": "As a straight-laced youth, Scott Summers was recruited into the first generation of X-Men by Professor Xavier. Projecting forceful optic blasts from his eyes, he is a formidable defender of mutantkind. Working alongside his fellow X-Men as their tactically-minded leader, Cyclops works hard to protect mankind both from itself and from the Mutants who have joined the human-hating Brotherhood led by Magneto.",
+    "author": {
+        "type": "spotlight",
+        "profile": "632791-Cyclops-Champion-Spotlight",
+        "name": "Kabam"
+    },
+    "specials": {
+        "1": {
+            "name": "Optic Blast",
+            "description": "48% chance to Armor Break, removing enemy Armor and applying 39% Armor reduction for 9 seconds.",
+            "note": "This attack has three potential triggers for Armor Break, all of which stack.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds.",
+            "damagetypes": [
+                "energy"
+            ],
+            "ranges": [
+                "long"
+            ],
+            "abilities": [
+                "armorbreak"
+            ]
+        },
+        "2": {
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "abilities": [
+                "armorbreak"
+            ],
+            "name": "Vigilance",
+            "description": "54% chance to Armor Break, removing enemy Armor and applying 44% Armor reduction for 10 seconds.",
+            "note": "This attack has three potential triggers for Armor Break, all of which stack.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds."
+        },
+        "3": {
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "armorbreak"
+            ],
+            "name": "Gigawatt Blast",
+            "description": "100% chance to Armor Break, removing enemy Armor and applying 51% Armor reduction for 14 seconds.",
+            "note": "This attack has one potential trigger for Armor Break.\n\n75% chance to boost Critical Hit Rate by 37% for 6 seconds."
+        }
+    },
+    "signature": {
+        "name": "Expertise",
+        "description": "Beams are calibrated for up to (45% - 190%) increased Critical Hit Damage. As long as a Combo of 10 or more hits is maintained, Cyclops’ Armor Break effects have 20% increased Duration and as long as a Combo of 20 or more hits is maintained Beam Attacks break through an enemy’s Block.",
+        "note": "The benefit gained from a Combo of 20+ forces the enemy out of their Block, also allowing Cyclops to gain his Armor Break effect."
+    },
+    "gameplay": {
+        "description": "With precise control over inter-dimensional energies, Cyclops gains Power faster at low Power levels.",
+        "note": "The lower Cyclops’ Power Levels are, the faster he gains Power, both from attacking and defending. This allows him to fire off Special 1 and Special 2 more often than other champions.",
+        "abilities": [
+            "armorbreak",
+            "pluscritrate"
+        ]
+    }
+}

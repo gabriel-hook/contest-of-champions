@@ -216,6 +216,15 @@ const synergies = [
     { fromId:'cyclops', fromStars:5, toId:'storm', effectId:'mutantagenda', effectAmount:12 },
     { fromId:'cyclops', fromStars:5, toId:'colossus', effectId:'mutantagenda', effectAmount:12 },
 
+    { fromId:'cyclops90s', fromStars:3, toId:'magneto', effectId:'attack', effectAmount:4 },
+    { fromId:'cyclops90s', fromStars:3, toId:'storm', effectId:'block', effectAmount:15 },
+    { fromId:'cyclops90s', fromStars:3, toId:'colossus', effectId:'mutantagenda', effectAmount:10 },
+    { fromId:'cyclops90s', fromStars:3, toId:'wolverine', effectId:'mutantagenda', effectAmount:10 },
+    { fromId:'cyclops90s', fromStars:4, toId:'magneto', effectId:'attack', effectAmount:5 },
+    { fromId:'cyclops90s', fromStars:4, toId:'storm', effectId:'block', effectAmount:20 },
+    { fromId:'cyclops90s', fromStars:4, toId:'colossus', effectId:'mutantagenda', effectAmount:12 },
+    { fromId:'cyclops90s', fromStars:4, toId:'wolverine', effectId:'mutantagenda', effectAmount:12 },
+
     { fromId:'deadpool', fromStars:2, toId:'punisher', effectId:'perfectblock', effectAmount:3 },
     { fromId:'deadpool', fromStars:3, toId:'rhino', effectId:'critrate', effectAmount:6 },
     { fromId:'deadpool', fromStars:3, toId:'wolverine', effectId:'health', effectAmount:4 },

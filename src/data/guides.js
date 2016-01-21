@@ -1,4 +1,5 @@
 import blackbolt from './guide/blackbolt';
+import cyclops90s from './guide/cyclops90s';
 import daredevilnetflix from './guide/daredevilnetflix';
 import deadpoolxforce from './guide/deadpoolxforce';
 import elektra from './guide/elektra';
@@ -22,6 +23,7 @@ import wolverineoldman from './guide/wolverineoldman';
 
 const guides = {
     blackbolt,
+    cyclops90s,
     daredevilnetflix,
     deadpoolxforce,
     elektra,
@@ -55,7 +57,6 @@ const RANGES = [
 const DAMAGE_TYPES = [
     'physical',
     'energy',
-    'shock',
 ];
 const ABILITIES = [
     'stun',

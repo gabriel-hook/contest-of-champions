@@ -1,18 +1,10 @@
-import champions from '../data/champions';
+import champions, { UNRELEASED_CHAMPIONS } from '../data/champions';
 import synergies from '../data/synergies';
 import router from '../service/router';
 import Graph from './graph/Graph';
 import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
 import { requestRedraw } from '../util/animation';
-
-const UNRELEASED_CHAMPIONS = {
-    'redskull': true,
-    'maestro': true,
-    'drstrangemarvelnow': true,
-    'cyclops90s': true,
-    'spidermanmorales': true,
-};
 
 const TYPE_COLORS = {
     cosmic:'#3af',
