@@ -63,6 +63,7 @@ const ABILITIES = [
     'stagger',
     'fatigue',
     'weakness',
+    'nullify',
     'powerdrain',
     'powerburn',
     'shock',

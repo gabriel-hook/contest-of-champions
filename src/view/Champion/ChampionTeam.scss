@@ -63,7 +63,7 @@
     &.champion-team--size-3 {
         max-width: 450px;
 
-        .champion {
+        .champion-portrait {
             width: 33.334%;
             padding-bottom: 33.334%;
         }
@@ -72,7 +72,7 @@
     &.champion-team--size-4 {
         max-width: 600px;
 
-        .champion {
+        .champion-portrait {
             width: 25%;
             padding-bottom: 25%;
         }
@@ -81,7 +81,7 @@
     &.champion-team--size-5 {
         max-width: 750px;
 
-        .champion {
+        .champion-portrait {
             width: 20%;
             padding-bottom: 20%;
         }
