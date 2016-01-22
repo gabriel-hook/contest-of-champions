@@ -264,7 +264,7 @@ router.on('/synergy/:stars/?', (stars) => {
     requestRedraw();
 });
 
-router.on('/lang/:lang/?(.*)', (langId, redirect) => {
+router.on('/lang/:lang/?[#]?(.*)', (langId, redirect) => {
     lang.change(langId);
     router.setRoute(`${ redirect }`);
 });

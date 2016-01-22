@@ -16,7 +16,7 @@ const Cards = {
                                 'card-current': index === current,
                                 'card-next': index > current,
                             }) }>
-                                { card }
+                                { (index === current)? card: { subtree: 'retain' } }
                             </div>
                         );
                     }) }
