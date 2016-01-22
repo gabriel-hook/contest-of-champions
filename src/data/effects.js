@@ -30,7 +30,7 @@ const imageMap = {
     'attack':'attack',
     'stun':'stun',
     'mutantagenda': 'mutant',
-    'inseparable': 'mana_steal',
+    'inseparable': 'inseparable',
     'critrate':'critical',
     'critdamage':'critical',
     'powergain':'mana',
@@ -40,8 +40,8 @@ const imageMap = {
     'armor':'armor',
     'health':'health',
     'healthsteal':'health_steal',
-    'heroesforhire': 'block',
-    'thunderbolts': 'armor',
+    'heroesforhire': 'heroesforhire',
+    'thunderbolts': 'thunderbolts',
 };
 
 function effectImage(uid, isAlternate) {

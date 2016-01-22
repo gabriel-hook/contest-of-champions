@@ -1,8 +1,10 @@
 import './SynergyPage.scss';
 import classNames from 'classnames';
+import { effectImage } from '../../data/effects';
 import graph, { getLegend, updateGraph } from '../../service/graph';
 import lang from '../../service/lang';
 import synergy from '../../service/synergy';
+import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -34,8 +36,11 @@ const SynergyPage = {
                             }}
                             title={ lang.get(`effect-${ effectId }-description`) }
                         >
-                            { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
-                            { amount && ` - ${ amount }%` }
+                            <ImageIcon src={ effectImage(effectId) } icon="square"/>
+                            <span class="legend-effect-title">
+                                { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
+                                { amount && ` - ${ amount }%` }
+                            </span>
                         </div>
                     )) }
                 </div>

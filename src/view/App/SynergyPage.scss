@@ -46,7 +46,7 @@
         padding: 5px;
         font-family: Hanzel, Verdana, Geneva, sans-serif;
         font-size: 1em;
-        line-height: 1.2em;
+        line-height: 1.5em;
         opacity: 1;
         transition: opacity .25s, left .25s, top .25s;
 
@@ -60,15 +60,38 @@
         .legend-effect {
             position: relative;
             cursor: pointer;
-            border-left: solid 1em;
-            padding: 0 .4em;
+            border-left: solid 1.5em;
+            height: 1.5em;
+            padding: 0 .4em 0 0;
             opacity: .5;
             transition: opacity .25s;
 
             &.legend-effect--selected {
                 opacity: 1;
-                //chrome is being a dick and ignoring opacity change if it's on its own.
-                padding-left: .4em;
+            }
+
+            .legend-effect-title {
+                position: relative;
+                top: -.333em;
+            }
+
+            .icon {
+                display: inline-block;
+                position: relative;
+                height: 1.5em;
+                width: 1.5em;
+                overflow: hidden;
+
+                &.fa {
+                    color: #08c;
+                    line-height: 1.5em;
+                    text-align: center;
+                }
+
+                img {
+                    position: relative;
+                    height: 1.5em;
+                }
             }
         }
 
