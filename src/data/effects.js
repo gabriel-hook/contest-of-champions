@@ -29,7 +29,7 @@ const effects = [
 const imageMap = {
     'attack':'attack',
     'stun':'stun',
-    'mutantagenda': 'mana_steal',
+    'mutantagenda': 'mutant',
     'inseparable': 'mana_steal',
     'critrate':'critical',
     'critdamage':'critical',
