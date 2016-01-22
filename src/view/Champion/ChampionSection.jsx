@@ -287,7 +287,7 @@ const ChampionSection = {
                             type="text/html"
                             width="640"
                             height="390"
-                            src={ `http://www.youtube.com/embed/${ youtube.replace('\n', '').trim() }?showinfo=0&modestbranding=1` }
+                            src={ `http://www.youtube.com/embed/${ youtube.replace('\n', '').trim() }?modestbranding=1` }
                             frameborder="0"
                         />
                     </div>
