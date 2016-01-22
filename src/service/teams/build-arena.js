@@ -17,28 +17,30 @@ function buildArena({
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
-    champions.forEach((attr) => {
-        const champion = new Champion(attr);
-        const { id } = champion;
-        const { uid, stars, typeId, pi } = attr;
-        championMap[ id ]={
-            id,
-            uid,
-            typeId,
-            pi: pi || champion.pi,
-        };
+    champions
+        .filter((attr) => attr.role !== 'quest')
+        .forEach((attr) => {
+            const champion = new Champion(attr);
+            const { id } = champion;
+            const { uid, stars, typeId, pi } = attr;
+            championMap[ id ]={
+                id,
+                uid,
+                typeId,
+                pi: pi || champion.pi,
+            };
 
-        synergyMap[ id ] = {};
-        synergies
-            .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars)
-            .forEach(({ attr }) => {
-                synergyMap[ id ][ attr.toId ] = {
-                    effectId: attr.effectId,
-                    special: SPECIAL_EFFECTS[ attr.effectId ] === true,
-                    value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
-                };
-            });
-    });
+            synergyMap[ id ] = {};
+            synergies
+                .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars)
+                .forEach(({ attr }) => {
+                    synergyMap[ id ][ attr.toId ] = {
+                        effectId: attr.effectId,
+                        special: SPECIAL_EFFECTS[ attr.effectId ] === true,
+                        value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
+                    };
+                });
+        });
 
     function checkValueAndSwap(array, a, b) {
         //get team values and counts with swaps

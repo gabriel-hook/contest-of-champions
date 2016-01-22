@@ -1,6 +1,6 @@
 @import "../../util/fonts";
 
-.champion {
+.champion-portrait {
     display: block;
     float: left;
     position: relative;
@@ -139,6 +139,32 @@
         }
     }
 
+    .role {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 33%;
+        height: 33%;
+        text-align: left;
+        color: #600;
+
+        .icon {
+            width: 100%;
+            height: 100%;
+
+            img {
+                position: relative;
+                top: -25%;
+                left: -25%;
+                width: 100%;
+            }
+
+            &.fa {
+                font-size: 4vmin;
+            }
+        }
+    }
+
     .upgrade {
         position: absolute;
         top: 0;
@@ -167,7 +193,7 @@
             }
 
             &.fa {
-                font-size: 6vmin;
+                font-size: 5vmin;
             }
         }
     }

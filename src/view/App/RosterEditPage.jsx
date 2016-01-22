@@ -27,12 +27,19 @@ const Label = {
 };
 
 const Select = {
-    view(ctrl, { id, value, min, max, onchange }) {
+    view(ctrl, { id, value, min, max, values, onchange }) {
         const options = [];
-        for(let i = min; i <= max; i++)
-            options.push(
-                <option value={ i } selected={ value === i }>{ i }</option>
-            );
+        if(min !== undefined && max !== undefined) {
+            for(let i = min; i <= max; i++)
+                options.push(
+                    <option value={ i } selected={ value === i }>{ i }</option>
+                );
+        }
+        if(values !== undefined) {
+            values.forEach((option) => options.push(
+                <option value={ option.value } selected={ option.value === value }>{ option.title }</option>
+            ));
+        }
         return (
             <div class="champion-field-select">
                 <select id={ id } name={ id } onchange={ onchange }>
@@ -67,7 +74,7 @@ const RosterPage = {
         const champion = roster.get(uid, stars);
         const elements = [];
         if(champion) {
-            const { rank, level, typeId, awakened, pi } = champion.attr;
+            const { rank, level, typeId, awakened, pi, role } = champion.attr;
             const rangeMax = STAR_RANK_LEVEL[ stars ]
                 && STAR_RANK_LEVEL[ stars ].ranks || 1;
             const levelMax = STAR_RANK_LEVEL[ stars ]
@@ -166,6 +173,40 @@ const RosterPage = {
                             });
                             if(valueAsNumber !== undefined && isNaN(valueAsNumber))
                                 event.target.value = '';
+                            requestRedraw();
+                        }}
+                    />
+                </div>
+            );
+            elements.push(
+                <div class="champion-field">
+                    <Label
+                        id={ `${ champion.id }-edit-role` }
+                        text="role"
+                    />
+                    <Select
+                        id={ `${ champion.id }-edit-role` }
+                        value={ role }
+                        values={[
+                            {
+                                title: lang.get('role-none'),
+                                value: null,
+                            },
+                            {
+                                title: lang.get('role-quest'),
+                                value: 'quest',
+                            },
+                            {
+                                title: lang.get('role-arena'),
+                                value: 'arena',
+                            },
+                        ]}
+                        onchange={(event) => {
+                            const { value } = event.target;
+                            const role = value === null? null: value;
+                            roster.set(uid, stars, {
+                                role,
+                            });
                             requestRedraw();
                         }}
                     />

@@ -202,7 +202,11 @@
     "level": "Level",
     "awakened": "Awakened",
     "pi": "Power Index",
+    "role": "Role",
 
+    "role-none": "None",
+    "role-quest": "Quest",
+    "role-arena": "Arena",
 
     "team-size": "Team Size",
     "quest": "Quest",

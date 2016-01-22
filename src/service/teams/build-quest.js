@@ -15,34 +15,36 @@ function buildQuest({
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
-    const list = champions.map((attr) => {
-        const champion = new Champion(attr);
-        const { id } = champion;
-        const { uid, stars, typeId, quest, pi } = attr;
-        const synergies = {};
-        dataSynergies
-            .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars )
-            .forEach(({ attr }) => synergies[ attr.toId ] = {
-                id: attr.toId,
-                special: SPECIAL_EFFECTS[ attr.effectId ] && `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`,
-                value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
-            });
-        return {
-            id,
-            uid,
-            stars,
-            quest,
-            type: typeIds.indexOf(typeId),
-            synergies,
-            pi: pi || champion.pi,
-        };
-    }).filter((champion) => {
-        if(champion.quest) {
-            preselect.push(champion);
-            return false;
-        }
-        return true;
-    });
+    const list = champions
+        .filter((attr) => attr.role !== 'arena')
+        .map((attr) => {
+            const champion = new Champion(attr);
+            const { id } = champion;
+            const { uid, stars, typeId, role, pi } = attr;
+            const synergies = {};
+            dataSynergies
+                .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars )
+                .forEach(({ attr }) => synergies[ attr.toId ] = {
+                    id: attr.toId,
+                    special: SPECIAL_EFFECTS[ attr.effectId ] && `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`,
+                    value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
+                });
+            return {
+                id,
+                uid,
+                stars,
+                role,
+                type: typeIds.indexOf(typeId),
+                synergies,
+                pi: pi || champion.pi,
+            };
+        }).filter((champion) => {
+            if(champion.role === 'quest') {
+                preselect.push(champion);
+                return false;
+            }
+            return true;
+        });
 
     let progressCurrent = 0;
     const progressMax = combination(list.length, preselect.length? size - preselect.length: size);

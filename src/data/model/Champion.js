@@ -136,6 +136,7 @@ class Champion extends Model {
         rank = 1,
         level = 1,
         awakened = 0,
+        role = null,
     }) {
         super({
             uid,
@@ -145,6 +146,7 @@ class Champion extends Model {
             rank,
             level,
             awakened,
+            role,
         });
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = typeIds.indexOf(this.attr.typeId);

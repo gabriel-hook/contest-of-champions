@@ -20,7 +20,7 @@ function addSVG(element, isInitialized) {
 
 const ChampionPortrait = {
     view(ctrl, { champion, events, onclick, selected, neighbor, showBadges = true }) {
-        const { uid, stars, rank, level, pi, typeId, awakened } = champion.toJSON();
+        const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
                 src="images/icons/star-awakened.png"
@@ -59,7 +59,7 @@ const ChampionPortrait = {
             STAR_RANK_LEVEL[ stars ][ rank ] &&
             STAR_RANK_LEVEL[ stars ].ranks > rank &&
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
-        const upgrade = !showBadges? null:
+        const upgradeIcon = !showBadges? null:
         isMaxed? (
             <ImageIcon
                 src="images/icons/max.png"
@@ -72,10 +72,24 @@ const ChampionPortrait = {
                 icon="chevron-circle-up"
             />
         ): null;
+
+        const roleIcon = !showBadges? null:
+        role === 'quest'? (
+            <ImageIcon
+                src="images/icons/quest.png"
+                icon="map"
+            />
+        ):
+        role === 'arena'? (
+            <ImageIcon
+                src="images/icons/arena.png"
+                icon="shield"
+            />
+        ): null;
         return (
             <div
                 m="ChampionPortrait"
-                class={ classNames('champion', `champion--${ typeId }`,
+                class={ classNames('champion-portrait', `champion--${ typeId }`,
                     { 'champion--selected': selected, 'champion--neighbor': neighbor }
                 ) }
             >
@@ -100,7 +114,10 @@ const ChampionPortrait = {
                             { starImages }
                         </div>
                         <div class={ classNames('upgrade', { 'upgrade-max': isMaxed, 'upgrade-rank-up': isRankUp }) }>
-                            { upgrade }
+                            { upgradeIcon }
+                        </div>
+                        <div class={ classNames('role') }>
+                            { roleIcon }
                         </div>
                     </div>
                 </div>
