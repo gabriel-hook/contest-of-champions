@@ -13,6 +13,7 @@ const ChampionSection = {
             title, name, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
+            youtube,
             raw, onEdit,
         }) {
         const elements = [];
@@ -84,7 +85,6 @@ const ChampionSection = {
                 </div>
                 ): null,
             ];
-
             elements.push(
                 <div
                     role="section"
@@ -174,6 +174,14 @@ const ChampionSection = {
                             abilities === true? []: abilities,
                             (ability) => `ability-${ ability }`
                         ) }
+                    </div>
+                );
+            }
+            if (youtube) {
+                elements.push(
+                    <div class="champion-section-text">
+                        <b>{ lang.get('youtube-video') }:</b>
+                        <span {...editableText('youtube')}>{ editableValue(youtube) }</span>
                     </div>
                 );
             }
@@ -269,6 +277,19 @@ const ChampionSection = {
                                 lang.get(`ability-${ ability }`)
                             }</span>
                         )) }
+                    </div>
+                );
+            }
+            if (youtube) {
+                elements.push(
+                    <div class="champion-section-youtube">
+                        <iframe
+                            type="text/html"
+                            width="640"
+                            height="390"
+                            src={ `http://www.youtube.com/embed/${ youtube.replace('\n', '').trim() }?showinfo=0&modestbranding=1` }
+                            frameborder="0"
+                        />
                     </div>
                 );
             }

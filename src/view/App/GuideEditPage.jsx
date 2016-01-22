@@ -121,6 +121,7 @@ const GuideEditPage = {
                 grade={ grades && guide.grades.normal || true }
                 gradeAwakened={ grades && guide.grades.awakened || true }
                 description={ guide && guide.description || true }
+                youtube={ guide && guide.youtube || true }
                 onEdit={ (key, value) => editGuide(uid, [ ], key, value) }
             />
         );

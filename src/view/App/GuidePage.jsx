@@ -140,6 +140,7 @@ const GuidePage = {
                         grade={ guide.grades && guide.grades.normal }
                         gradeAwakened={ guide.grades && guide.grades.awakened }
                         description={ guide.description }
+                        youtube={ guide.youtube }
                     />
                 );
             }
