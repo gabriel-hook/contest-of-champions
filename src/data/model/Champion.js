@@ -62,6 +62,9 @@ const CATALYSTS = {
     },
     5: {
         1: [
+            { type: 'basic', tier: 4, amount: 2 },
+            { type: 'class', tier: 3, amount: 3 },
+            { type: 'alpha', tier: 1, amount: 5 },
         ],
         2: [
             { type: 'basic', tier: 4, amount: 4 },
@@ -69,6 +72,10 @@ const CATALYSTS = {
             { type: 'alpha', tier: 1, amount: 5 },
         ],
         3: [
+            { type: 'basic', tier: 5, amount: 6 },
+            { type: 'class', tier: 4, amount: 4 },
+            { type: 'alpha', tier: 1, amount: 6 },
+            { type: 'alpha', tier: 2, amount: 4 },
         ],
         4: [
             { type: 'basic', tier: 5, amount: 4 },
