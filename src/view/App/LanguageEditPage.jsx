@@ -4,7 +4,6 @@ import { uids as TYPES } from '../../data/types';
 import { uids as EFFECTS } from '../../data/effects';
 import { ABILITIES } from '../../data/guides';
 import lang, { getLanguage } from '../../service/lang';
-import { saveFileEventHandler } from '../../util/io';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -107,20 +106,9 @@ const LanguageEditPage = {
                     )) }
             </div>
         );
-        const filename = `${ langId }.json`;
         return (
             <div m="LanguageEditPage" class="language-edit" key={ `lang-${ langId }` }>
                 { elements }
-                <a
-                    class="language-export"
-                    download={ filename }
-                    onclick={ (event) => {
-                        saveFileEventHandler(event, 'text/json', filename, JSON.stringify(values, null, 4));
-                        m.redraw.strategy('none');
-                    }}
-                >
-                    { lang.get('export-json') }
-                </a>
                 <div class="clear" />
             </div>
         );
