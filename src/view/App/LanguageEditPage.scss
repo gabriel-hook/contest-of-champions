@@ -39,6 +39,7 @@
             @include font-text(1em);
             text-align: left;
             line-height: 1.2em;
+            text-shadow: 0 1px 0 #fff;
         }
 
         input {
@@ -46,6 +47,15 @@
             @include font-text(1em);
             padding: 8px;
             box-sizing: border-box;
+            border: solid 2px #aaa;
+        }
+
+        &.field-missing {
+            color: #600;
+
+            input {
+                border-color: #700;
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 import './LanguageEditPage.scss';
+import classNames from 'classnames';
 import { uids as CHAMPIONS } from '../../data/champions';
 import { uids as TYPES } from '../../data/types';
 import { uids as EFFECTS } from '../../data/effects';
@@ -16,7 +17,7 @@ const LanguageEditPage = {
         const elements = [];
         const placeholders = lang.messages[ 'en' ];
         const fieldElement = (id, isOptional = false) => (
-            <div class="field">
+            <div class={ classNames('field', { 'field-missing': !isOptional && !values[ id ] }) }>
                 <label>{ id }</label>
                 <input
                     placeholder={ isOptional? '': placeholders[ id ] }
