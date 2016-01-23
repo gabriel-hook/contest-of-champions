@@ -13,10 +13,10 @@ import m from 'mithril';
 function config(element, isInitialized) {
     const { top, left, width, height } = element.getBoundingClientRect();
     const stars = parseInt(element.getAttribute('stars'), 10);
-    updateGraph(stars, top, left, width, height);
     if(!isInitialized) {
         element.appendChild(graph.canvas);
     }
+    updateGraph(stars, top, left, width, height);
 }
 
 const SynergyPage = {

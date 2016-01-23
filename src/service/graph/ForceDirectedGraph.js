@@ -52,6 +52,8 @@ export default function({
     let lastCanvasState = {};
 
     function resize() {
+        if(!canvas.parentNode)
+            return;
         //resize only when the value changes, so we don't get canvas blinking.
         if(lastCanvasState.width !== canvasState.width)
             canvas.width = canvasState.width;
@@ -108,8 +110,8 @@ export default function({
         }
     };
 
-    function addEventListeners(element, types, listener) {
-        types.split(' ').forEach((type) => element.addEventListener(type, function(...args) {
+    function addEventListeners(element, events, listener) {
+        events.split(' ').forEach((event) => element.addEventListener(event, function(...args) {
             if(!isActive())
                 return;
             return listener.apply(this, args);
@@ -1063,8 +1065,9 @@ export default function({
     Node.prototype.getSize = function() {
         const canvasSize = Math.min(canvasState.width, canvasState.height);
         let size = Math.min(Math.max(16, canvasSize >> 4), 128);
-        if (this.isSelected())
+        if (this.isSelected()) {
             size *= 1.5;
+        }
         return size;
     };
 
