@@ -20,7 +20,7 @@ const Menu = {
         options.push(
             <div class="menu-tabs">
                 <MenuOptionGroup
-                    options={ tabs.map((tab) => (
+                    options={ tabs.filter((tab) => !tab.hidden).map((tab) => (
                         <MenuOption
                             info={ tab.title }
                             icon={

@@ -53,10 +53,12 @@ function effectImage(uid, isAlternate) {
 }
 
 const effectBases = {};
-effects.forEach((effect) => effectBases[ effect.attr.uid ] = effect.attr.base);
+effects.forEach(({ attr }) => effectBases[ attr.uid ] = attr.base);
 function effectBase(uid) {
     return effectBases[ uid ];
 }
 
-export { effectImage, effectBase, SPECIAL_EFFECTS };
+const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
+
+export { effectImage, effectBase, uids, SPECIAL_EFFECTS };
 export default effects;

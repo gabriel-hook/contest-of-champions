@@ -187,7 +187,7 @@ const GuideEditPage = {
             />
         );
         return (
-            <div m="GuideEditPage" class="guide guide-edit" key={ 'guide-${ uid }' }>
+            <div m="GuideEditPage" class="guide guide-edit" key={ `guide-${ uid }` }>
                 { details }
                 <div class="clear" />
             </div>

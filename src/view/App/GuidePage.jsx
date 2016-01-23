@@ -237,7 +237,6 @@ const GuidePage = {
                 m="GuidePage"
                 role="article"
                 class="guide"
-                key={ 'guide-${ uid }' }
             >
                 { details }
                 <div class="clear" />

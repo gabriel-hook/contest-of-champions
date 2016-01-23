@@ -128,23 +128,6 @@
     "type-mystic-name": "Mystic",
     "type-unknown-name": "Unknown",
 
-    "crystal-versus-name": "Versus",
-    "crystal-arena-name": "Arena",
-    "crystal-alliance-name": "Alliance",
-    "crystal-daily-name": "Daily",
-    "crystal-2star-name": "2-Star",
-    "crystal-premium-name": "Premium",
-    "crystal-3star-name": "3-Star",
-    "crystal-4star-name": "4-Star",
-
-    "crystal-versus-description": "Acquired when you win a versus match.",
-    "crystal-arena-description": "Buy for 2000 $BATTLECHIPS$.",
-    "crystal-alliance-description": "Buy for 1000 $LOYALTY$.",
-    "crystal-daily-description": "Acquired once every 24 hours.",
-    "crystal-premium-description": "Buy for 100 $UNITS$.",
-    "crystal-3star-description": "Buy for 400 $UNITS$, rare event.",
-    "crystal-4star-description": "Buy for 2500 $UNITS$, very rare event.",
-
     "preset-offensive-name": "Offensive",
     "preset-balanced-name": "Balanced",
     "preset-defensive-name": "Defensive",

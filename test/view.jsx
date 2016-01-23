@@ -4,6 +4,7 @@ import { synergiesFromChampions } from '../src/data/synergies';
 import App from '../src/view/App.jsx';
 import GuideEditMenu from '../src/view/App/GuideEditMenu.jsx';
 import GuideMenu from '../src/view/App/GuideMenu.jsx';
+import LanguageEditMenu from '../src/view/App/LanguageEditMenu.jsx';
 import RosterAddMenu from '../src/view/App/RosterAddMenu.jsx';
 import RosterEditMenu from '../src/view/App/RosterEditMenu.jsx';
 import RosterMenu from '../src/view/App/RosterMenu.jsx';
@@ -12,6 +13,7 @@ import TeamsMenu from '../src/view/App/TeamsMenu.jsx';
 import TeamsSettingsMenu from '../src/view/App/TeamsSettingsMenu.jsx';
 import GuideEditPage from '../src/view/App/GuideEditPage.jsx';
 import GuidePage from '../src/view/App/GuidePage.jsx';
+import LanguageEditPage from '../src/view/App/LanguageEditPage.jsx';
 import RosterAddPage from '../src/view/App/RosterAddPage.jsx';
 import RosterEditPage from '../src/view/App/RosterEditPage.jsx';
 import RosterPage from '../src/view/App/RosterPage.jsx';
@@ -66,6 +68,7 @@ describe('view', () => {
 
         describe('GuideEditMenu', () => it('should render without error', () => expect(render(<GuideEditMenu />)).to.exist));
         describe('GuideMenu', () => it('should render without error', () => expect(render(<GuideMenu />)).to.exist));
+        describe('LanguageEditMenu', () => it('should render without error', () => expect(render(<LanguageEditMenu />)).to.exist));
         describe('RosterAddMenu', () => it('should render without error', () => expect(render(<RosterAddMenu />)).to.exist));
         describe('RosterEditMenu', () => it('should render without error', () => expect(render(<RosterEditMenu />)).to.exist));
         describe('RosterMenu', () => it('should render without error', () => expect(render(<RosterMenu />)).to.exist));
@@ -74,6 +77,7 @@ describe('view', () => {
         describe('TeamsSettingsMenu', () => it('should render without error', () => expect(render(<TeamsSettingsMenu />)).to.exist));
         describe('GuideEditPage', () => it('should render without error', () => expect(render(<GuideEditPage />)).to.exist));
         describe('GuidePage', () => it('should render without error', () => expect(render(<GuidePage />)).to.exist));
+        describe('LanguageEditPage', () => it('should render without error', () => expect(render(<LanguageEditPage />)).to.exist));
         describe('RosterAddPage', () => {
             it('should render without error for 1 star', () => expect(render(<RosterAddPage stars={ 1 } />)).to.exist);
             it('should render without error for 2 star', () => expect(render(<RosterAddPage stars={ 2 } />)).to.exist);

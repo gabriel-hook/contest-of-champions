@@ -12,7 +12,7 @@ function loadFileFromInput(input, callback) {
 
 function saveFileEventHandler(event, type, filename, data) {
     if(isIE) {
-        const exporter = document.getElementById('roster-exporter');
+        const exporter = document.getElementById('io-exporter');
         exporter.document.open('text/html', 'replace');
         exporter.document.write(`sep=,\r\n${ data }`);
         exporter.document.close();

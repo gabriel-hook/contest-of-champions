@@ -14,6 +14,8 @@ import GuidePage from './view/App/GuidePage.jsx';
 import GuideMenu from './view/App/GuideMenu.jsx';
 import GuideEditPage from './view/App/GuideEditPage.jsx';
 import GuideEditMenu from './view/App/GuideEditMenu.jsx';
+import LanguageEditPage from './view/App/LanguageEditPage.jsx';
+import LanguageEditMenu from './view/App/LanguageEditMenu.jsx';
 import RosterPage from './view/App/RosterPage.jsx';
 import RosterMenu from './view/App/RosterMenu.jsx';
 import RosterAddPage from './view/App/RosterAddPage.jsx';
@@ -50,6 +52,12 @@ app.tabs = [
         title: 'synergy',
         icon: 'sitemap',
     },
+    {
+        id: 'language',
+        title: 'language',
+        icon: 'globe',
+        hidden: true,
+    },
 ];
 
 /**
@@ -83,6 +91,7 @@ router.on('/guide/:uid/?', (uid) => {
         icon: 'pencil',
         href: `/guide/${ uid }/edit`,
     };
+    app.route = `/guide/${ uid }`;
     analytics.pageView();
     requestRedraw();
 });
@@ -109,6 +118,7 @@ router.on('/guide/:uid/edit/?', (uid) => {
         icon: 'reply',
         href: `/guide/${ uid }`,
     };
+    app.route = `/guide/${ uid }/edit`;
     analytics.pageView();
     requestRedraw();
 });
@@ -135,6 +145,7 @@ router.on('/roster/?', () => {
         icon: 'user-plus',
         href: `/roster/add/${ app.lastAddStars || 2 }`,
     };
+    app.route = `/roster`;
     analytics.pageView();
     requestRedraw();
     if(roster.all().length === 0) {
@@ -169,6 +180,7 @@ router.on('/roster/add/:stars/?', (stars) => {
         href: '/roster',
     };
     app.lastAddStars = stars;
+    app.route = `/roster/add/${ stars }`;
     analytics.pageView();
     requestRedraw();
 });
@@ -195,6 +207,7 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
         icon: 'reply',
         href: '/roster',
     };
+    app.route = `/roster/${ uid }/${ stars }`;
     analytics.pageView();
     requestRedraw();
 });
@@ -220,6 +233,7 @@ router.on('/teams/settings/?', () => {
         icon: 'reply',
         href: '/teams',
     };
+    app.route = `/teams/settings`;
     analytics.pageView();
     requestRedraw();
 });
@@ -245,6 +259,7 @@ router.on('/teams/?', () => {
         icon: 'sliders',
         href: '/teams/settings',
     };
+    app.route = `/teams`;
     analytics.pageView();
     requestRedraw();
 });
@@ -260,13 +275,34 @@ router.on('/synergy/:stars/?', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
+    app.route = `/synergy/${ stars }`;
     analytics.pageView();
     requestRedraw();
 });
 
-router.on('/lang/:lang/?[#]?(.*)', (langId, redirect) => {
+router.on('/lang/:lang/?([#].+)?', (langId, route) => {
     lang.change(langId);
-    router.setRoute(`${ redirect }`);
+    if(route) {
+        router.setRoute(`${ route.substr(1) }`);
+    }
+    else {
+        router.setRoute(`${ app.route }`);
+    }
+
+});
+
+router.on('/lang/:lang/edit/?', (langId) => {
+    app.tab = 'language';
+    app.pages[ 'language' ] = (
+        <LanguageEditPage langId={ langId } />
+    );
+    app.menu = (
+        <LanguageEditMenu langId={ langId } />
+    );
+    app.button = null;
+    app.route = `/lang/${ langId }/edit`;
+    analytics.pageView();
+    requestRedraw();
 });
 
 router.on('.*', () => router.setRoute('roster'));
@@ -275,4 +311,5 @@ m.mount(document.body, (
     <App />
 ));
 
+app.route = '/roster';
 router.init('/roster');

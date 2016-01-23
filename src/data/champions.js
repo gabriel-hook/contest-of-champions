@@ -280,7 +280,8 @@ const champions = [
 
 ].map((champion) => new Champion(champion));
 
-const uids = [ ...new Set(champions.map((champion) => champion.attr.uid)) ];
+const uids = [ ...new Set(champions.map(({ attr }) => attr.uid)) ];
+
 const idMap = {};
 const uidsByType = [];
 champions.forEach((champion) => {

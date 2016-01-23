@@ -56,13 +56,13 @@ const GuideEditMenu = {
                 title="export-json"
                 download={ filename }
                 onclick={ (event) => {
-                    saveFileEventHandler(event, 'text/csv', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
+                    saveFileEventHandler(event, 'text/json', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
                     requestRedraw(5);
                 }}
             />
         );
         return (
-            <div m="GuideEditMenu" key={ `guide-menu` }>
+            <div m="GuideEditMenu" key={ `guide-edit-menu` }>
                 { options }
             </div>
         );
