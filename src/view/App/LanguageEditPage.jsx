@@ -125,7 +125,7 @@ const LanguageEditPage = {
                     function scroll() {
                         let previous = null;
                         let next = null;
-                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link'), function(link, index) {
+                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link') || [], function(link, index) {
                             const { top } = link.parentNode.getBoundingClientRect();
                             if(top < 0 && (!previous || top > previous.top)) {
                                 previous = {
@@ -140,7 +140,7 @@ const LanguageEditPage = {
                                 };
                             }
                         });
-                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link'), function(link, index) {
+                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link') || [], function(link, index) {
                             const isPrevious = previous && previous.index === index;
                             const isNext = next && next.index === index;
 
