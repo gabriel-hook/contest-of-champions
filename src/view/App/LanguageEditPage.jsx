@@ -206,11 +206,12 @@ const LanguageEditPage = {
                 class="language-edit"
                 config={ (element, isInitialized) => {
                     if(isInitialized) {
+                        element.handleScroll();
                         return;
                     }
-                    const handleScroll = onScroll.bind(null, element);
-                    handleScroll();
-                    element.parentNode.addEventListener('scroll', handleScroll, true);
+                    element.handleScroll = onScroll.bind(null, element);
+                    element.handleScroll();
+                    element.parentNode.addEventListener('scroll', element.handleScroll, true);
                 }}
                 key={ `lang-${ langId }` }
             >
