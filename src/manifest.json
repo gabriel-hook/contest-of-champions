@@ -45,6 +45,7 @@
     "fullscreen": "true",
     "orientation": "portrait-primary",
     "theme_color": "#3388cc",
+    "background_color": "#3388cc",
     "permissions": {
         "desktop-notification": {
             "description": "Needed for creating system notifications."
