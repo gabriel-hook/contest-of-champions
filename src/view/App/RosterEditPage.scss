@@ -28,6 +28,9 @@
             width: 50%;
             padding: 16px;
             box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             text-align: right;
             z-index: 1;
         }
