@@ -21,6 +21,19 @@
             text-align: left;
             padding: 16px;
             z-index: 1;
+
+            .icon {
+                position: relative;
+                display: inline-block;
+                margin: 0 .5em 0 0;
+
+                & img {
+                    position: relative;
+                    width: 1.2em;
+                    margin-bottom: -.2em;
+                    z-index: 1000;
+                }
+            }
         }
 
         .field-group-set {
@@ -58,41 +71,51 @@
         }
     }
 
-    .field-missing-link {
-        display: none;
+    .field-missing-controls {
         position: fixed;
         bottom: 0;
-        height: 24px;
-        width: 24px;
-        line-height: 24px;
-        margin-left: 0;
-        color: #fff;
-        background: #a00;
+        height: 2em;
+        margin-left: -16px;
+        @include font-title(1.25em);
+        line-height: 2em;
         z-index: 100;
-        cursor: pointer;
 
-        &.field-missing-link-previous {
-            display: block;
-            margin-left: -24px;
+
+        .field-missing-controls-previous,
+        .field-missing-controls-next,
+        .field-missing-controls-count {
+            float: left;
+            text-align: center;
+            transition: color .333s, background .333s;
         }
 
-        &.field-missing-link-next {
-            display: block;
-            margin-left: 6px;
+        .field-missing-controls-previous,
+        .field-missing-controls-next {
+            width: 2em;
+            background: #888;
+            color: #ddd;
+            text-shadow: 0 1px 0 #666;
+        }
+
+        .field-missing-controls-count {
+            background: #ddd;
+            color: #a00;
+            text-shadow: 0 1px 0 #000;
+            padding: 0 1em;
+        }
+
+        .field-missing-controls-active {
+            background: #800;
+            color: #fff;
+            text-shadow: 0 1px 0 #000;
+            cursor: pointer;
         }
     }
 
-    .icon {
-        position: relative;
-        display: inline-block;
-        margin: 0 .5em 0 0;
-
-        & img {
-            position: relative;
-            width: 1.2em;
-            margin-bottom: -.2em;
-            z-index: 1000;
-        }
+    .field-missing-controls-container {
+        width: 500px;
+        max-width: 90%;
+        margin: 0 auto 1em;
     }
 
     .language-export {

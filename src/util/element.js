@@ -1,3 +1,24 @@
+function isInDocumentBody(element) {
+    /* eslint-disable no-else-return */
+    if(element === document.body) {
+        return false;
+    }
+    else if(document.body.contains) {
+        return document.body.contains(element);
+    }
+    else {
+        let node = element;
+        while(node.parentNode) {
+            if(node === document.body) {
+                return true;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    }
+    /* eslint-enable no-else-return */
+}
+
 function clickElementById(id) {
     const element = document.getElementById(id);
     if(document.createEventObject) {
@@ -18,4 +39,4 @@ function clickElementById(id) {
     }
 }
 
-export { clickElementById };
+export { clickElementById, isInDocumentBody };

@@ -1,23 +1,81 @@
 import './LanguageEditPage.scss';
+import { isInDocumentBody } from '../../util/element';
 import classNames from 'classnames';
 import { uids as CHAMPIONS } from '../../data/champions';
 import { uids as TYPES } from '../../data/types';
 import { uids as EFFECTS } from '../../data/effects';
 import { ABILITIES } from '../../data/guides';
 import lang, { getLanguage } from '../../service/lang';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+/**
+ * This sets up the missing fields previous/next buttons depending on window scroll position.
+ *
+ * @param element - the page element.
+ */
+function onScroll(element) {
+    if(!isInDocumentBody(element)) {
+        return;
+    }
+
+    let previous = null;
+    let next = null;
+    Array.prototype.forEach.call(element.querySelectorAll('.field-missing') || [], (element) => {
+        const { top } = element.getBoundingClientRect();
+        if(top < 0 && (!previous || top > previous.top)) {
+            previous = {
+                top,
+                element,
+            };
+        }
+        else if(top > 0 && (!next || top < next.top)) {
+            next = {
+                top,
+                element,
+            };
+        }
+    });
+
+    const previousControl = element.querySelector('.field-missing-controls-previous');
+    if(previousControl) {
+        previousControl.onclick = function() {
+            if(previous) {
+                previous.element.scrollIntoView(true);
+            }
+        };
+        previousControl.className = classNames(
+            'field-missing-controls-previous',
+            { 'field-missing-controls-active': previous }
+        );
+    }
+
+    const nextControl = element.querySelector('.field-missing-controls-next');
+    if(nextControl) {
+        nextControl.onclick = function() {
+            if(next) {
+                next.element.scrollIntoView(true);
+            }
+        };
+        nextControl.className = classNames(
+            'field-missing-controls-next',
+            { 'field-missing-controls-active': next }
+        );
+    }
+}
+
 const LanguageEditPage = {
     view(ctrl, { langId }) {
         const { defaultFields, values } = getLanguage(langId);
         const elements = [];
         const placeholders = lang.messages[ 'en' ];
+        let missing = 0;
         const fieldElement = (id, isOptional = false) => (
-            <div class={ classNames('field', { 'field-missing': !isOptional && !values[ id ] }) }>
+            <div class={ classNames('field', { 'field-missing': !isOptional && !values[ id ] && ++missing }) }>
                 <label>{ id }</label>
                 <input
                     placeholder={ isOptional? '': placeholders[ id ] }
@@ -31,12 +89,6 @@ const LanguageEditPage = {
                         requestRedraw();
                     }}
                 />
-                { isOptional || values[ id ]? null : (
-                    <div
-                        class="field-missing-link"
-                        onclick={ ({ target }) => target.parentNode.scrollIntoView(true) }
-                    />
-                )}
             </div>
         );
         elements.push(
@@ -113,50 +165,34 @@ const LanguageEditPage = {
                     )) }
             </div>
         );
+        if(missing) {
+            elements.push(
+                <div class="field-missing-controls-container">
+                    <div class="field-missing-controls">
+                        <div class="field-missing-controls-previous">
+                            <Icon icon="chevron-up" />
+                        </div>
+                        <div class="field-missing-controls-count">
+                            { missing }
+                        </div>
+                        <div class="field-missing-controls-next">
+                            <Icon icon="chevron-down" />
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div
                 m="LanguageEditPage"
                 class="language-edit"
-                config={(element, isInitialized) => {
+                config={ (element, isInitialized) => {
                     if(isInitialized) {
                         return;
                     }
-                    /* eslint-disable prefer-arrow-callback */
-                    function scroll() {
-                        let previous = null;
-                        let next = null;
-                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link') || [], function(link, index) {
-                            const { top } = link.parentNode.getBoundingClientRect();
-                            if(top < 0 && (!previous || top > previous.top)) {
-                                previous = {
-                                    top,
-                                    index,
-                                };
-                            }
-                            else if(top > 0 && (!next || top < next.top)) {
-                                next = {
-                                    top,
-                                    index,
-                                };
-                            }
-                        });
-                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link') || [], function(link, index) {
-                            const isPrevious = previous && previous.index === index;
-                            const isNext = next && next.index === index;
-
-                            link.className = classNames(
-                                'field-missing-link',
-                                { 'field-missing-link-previous': isPrevious },
-                                { 'field-missing-link-next': isNext },
-                                { 'fa': isNext || isPrevious },
-                                { 'fa-chevron-up': isPrevious },
-                                { 'fa-chevron-down': isNext }
-                            );
-                        });
-                    }
-                    /* eslint-enable prefer-arrow-callback */
-                    scroll();
-                    element.parentNode.addEventListener('scroll', scroll, true);
+                    const handleScroll = onScroll.bind(null, element);
+                    handleScroll();
+                    element.parentNode.addEventListener('scroll', handleScroll, true);
                 }}
                 key={ `lang-${ langId }` }
             >
