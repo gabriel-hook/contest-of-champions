@@ -31,6 +31,12 @@ const LanguageEditPage = {
                         requestRedraw();
                     }}
                 />
+                { isOptional || values[ id ]? null : (
+                    <div
+                        class="field-missing-link"
+                        onclick={ ({ target }) => target.parentNode.scrollIntoView(true) }
+                    />
+                )}
             </div>
         );
         elements.push(
@@ -108,7 +114,52 @@ const LanguageEditPage = {
             </div>
         );
         return (
-            <div m="LanguageEditPage" class="language-edit" key={ `lang-${ langId }` }>
+            <div
+                m="LanguageEditPage"
+                class="language-edit"
+                config={(element, isInitialized) => {
+                    if(isInitialized) {
+                        return;
+                    }
+                    /* eslint-disable prefer-arrow-callback */
+                    function scroll() {
+                        let previous = null;
+                        let next = null;
+                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link'), function(link, index) {
+                            const { top } = link.parentNode.getBoundingClientRect();
+                            if(top < 0 && (!previous || top > previous.top)) {
+                                previous = {
+                                    top,
+                                    index,
+                                };
+                            }
+                            else if(top > 0 && (!next || top < next.top)) {
+                                next = {
+                                    top,
+                                    index,
+                                };
+                            }
+                        });
+                        Array.prototype.forEach.call(element.querySelectorAll('.field-missing-link'), function(link, index) {
+                            const isPrevious = previous && previous.index === index;
+                            const isNext = next && next.index === index;
+
+                            link.className = classNames(
+                                'field-missing-link',
+                                { 'field-missing-link-previous': isPrevious },
+                                { 'field-missing-link-next': isNext },
+                                { 'fa': isNext || isPrevious },
+                                { 'fa-chevron-up': isPrevious },
+                                { 'fa-chevron-down': isNext }
+                            );
+                        });
+                    }
+                    /* eslint-enable prefer-arrow-callback */
+                    scroll();
+                    element.parentNode.addEventListener('scroll', scroll, true);
+                }}
+                key={ `lang-${ langId }` }
+            >
                 { elements }
                 <div class="clear" />
             </div>

@@ -5,7 +5,6 @@
     padding: 32px 0;
 
     .field-group {
-        position: relative;
         width: 500px;
         max-width: 90%;
         margin: 0 auto 1em;
@@ -56,6 +55,30 @@
             input {
                 border-color: #700;
             }
+        }
+    }
+
+    .field-missing-link {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        height: 24px;
+        width: 24px;
+        line-height: 24px;
+        margin-left: 0;
+        color: #fff;
+        background: #a00;
+        z-index: 100;
+        cursor: pointer;
+
+        &.field-missing-link-previous {
+            display: block;
+            margin-left: -24px;
+        }
+
+        &.field-missing-link-next {
+            display: block;
+            margin-left: 6px;
         }
     }
 
