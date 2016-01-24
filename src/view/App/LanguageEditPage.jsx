@@ -69,24 +69,42 @@ function onScroll(element) {
 }
 
 const LanguageEditPage = {
-    view(ctrl, { langId }) {
+    controller() {
+        this.editing = {
+            id: null,
+            value: '',
+        };
+    },
+    view({ editing }, { langId }) {
         const { defaultFields, values } = getLanguage(langId);
         const elements = [];
         const placeholders = lang.messages[ 'en' ];
         let missing = 0;
+        const valueOf = (id) => (editing.id === id)? editing.value: values[ id ];
         const fieldElement = (id, isOptional = false) => (
-            <div class={ classNames('field', { 'field-missing': !isOptional && !values[ id ] && ++missing }) }>
+            <div class={ classNames('field', { 'field-missing': !isOptional && !valueOf(id) && ++missing }) }>
                 <label>{ id }</label>
                 <input
+                    type="text"
                     placeholder={ isOptional? '': placeholders[ id ] }
-                    value={ values[ id ] || '' }
+                    value={ valueOf(id) || '' }
+                    onfocus={() => {
+                        editing.id = id;
+                        editing.value = values[ id ] || '';
+                    }}
                     oninput={(event) => {
+                        editing.id = id;
+                        editing.value = event.target.value || '';
+                        requestRedraw();
+                    }}
+                    onblur={(event) => {
                         const value = event.target.value.trim();
                         values[ id ] = value;
                         if(value.length === 0 && values[ id ] !== undefined) {
                             delete values[ id ];
                         }
-                        requestRedraw();
+                        editing.id = null;
+                        editing.value = '';
                     }}
                 />
             </div>
