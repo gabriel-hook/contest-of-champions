@@ -60,13 +60,13 @@ const ChampionPortrait = {
             STAR_RANK_LEVEL[ stars ].ranks > rank &&
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
         const upgradeIcon = !showBadges? null:
-        isMaxed? (
+        (isMaxed && (showBadges === 'upgrade' || showBadges === true))? (
             <ImageIcon
                 src="images/icons/max.png"
                 icon="check-circle"
             />
         ):
-        isRankUp? (
+        (isRankUp && (showBadges === 'upgrade' || showBadges === true))? (
             <ImageIcon
                 src="images/icons/rank-up.png"
                 icon="chevron-circle-up"
@@ -74,19 +74,19 @@ const ChampionPortrait = {
         ): null;
 
         const roleIcon = !showBadges? null:
-        role === 'quest'? (
+        (role === 'quest' && (showBadges === 'role' || showBadges === true))? (
             <ImageIcon
                 src="images/icons/quest.png"
                 icon="map"
             />
         ):
-        role === 'alliance'? (
+        (role === 'alliance' && (showBadges === 'role' || showBadges === true))? (
             <ImageIcon
                 src="images/icons/alliance.png"
                 icon="map"
             />
         ):
-        role === 'arena'? (
+        (role === 'arena' && (showBadges === 'role' || showBadges === true))? (
             <ImageIcon
                 src="images/icons/arena.png"
                 icon="shield"
