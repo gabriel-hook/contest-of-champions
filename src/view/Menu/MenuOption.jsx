@@ -13,7 +13,7 @@ function linkIsExternal(href) {
 
 const MenuOption = {
     view(ctrl, {
-        info, title, icon, onclick, href,
+        info, raw, title, icon, onclick, href,
         download, selected, invalid, progress, red,
     }) {
         let link = {};
@@ -63,7 +63,7 @@ const MenuOption = {
                         style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .3s linear' };` }
                     />
                 ) || null }
-                <div class="menu-option--label">{ icon }{ lang.get(title) }</div>
+                <div class="menu-option--label">{ icon }{ raw || lang.get(title) }</div>
             </a>
         );
     },

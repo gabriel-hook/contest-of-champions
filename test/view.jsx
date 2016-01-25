@@ -46,15 +46,15 @@ describe('view', () => {
 
     describe('App', () => {
         app.edit = true;
-        app.tab = 'current';
+        app.tab = 'champions';
         app.tabs = [
             {
-                id: 'current',
-                title: 'tab',
-                icon: 'home',
+                id: 'champions',
+                title: 'champions',
+                icon: 'user',
             },
         ];
-        app.pages[ 'current' ] = null;
+        app.pages[ 'champions' ] = null;
         app.menu = {
             view() {
                 return (
@@ -66,7 +66,7 @@ describe('view', () => {
 
         it('should render without error', () => expect(render(<App />)).to.exist);
 
-        describe('GuideEditMenu', () => it('should render without error', () => expect(render(<GuideEditMenu />)).to.exist));
+        describe('GuideEditMenu', () => it('should render without error', () => expect(render(<GuideEditMenu uid="blackbolt" />)).to.exist));
         describe('GuideMenu', () => it('should render without error', () => expect(render(<GuideMenu />)).to.exist));
         describe('LanguageEditMenu', () => it('should render without error', () => expect(render(<LanguageEditMenu />)).to.exist));
         describe('RosterAddMenu', () => it('should render without error', () => expect(render(<RosterAddMenu />)).to.exist));
@@ -77,7 +77,7 @@ describe('view', () => {
         describe('TeamsSettingsMenu', () => it('should render without error', () => expect(render(<TeamsSettingsMenu />)).to.exist));
         describe('GuideEditPage', () => it('should render without error', () => expect(render(<GuideEditPage />)).to.exist));
         describe('GuidePage', () => it('should render without error', () => expect(render(<GuidePage />)).to.exist));
-        describe('LanguageEditPage', () => it('should render without error', () => expect(render(<LanguageEditPage />)).to.exist));
+        describe('LanguageEditPage', () => it('should render without error', () => expect(render(<LanguageEditPage langId="en" />)).to.exist));
         describe('RosterAddPage', () => {
             it('should render without error for 1 star', () => expect(render(<RosterAddPage stars={ 1 } />)).to.exist);
             it('should render without error for 2 star', () => expect(render(<RosterAddPage stars={ 2 } />)).to.exist);

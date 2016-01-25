@@ -58,7 +58,7 @@ const Menu = {
                     icon={
                         <ImageIcon src={ `images/lang/${ id }.png` } icon="flag" />
                     }
-                    title={ lang.messages[ id ].lang }
+                    raw={ lang.messages[ id ].lang }
                     onclick={ selectLanguage }
                 />
             );

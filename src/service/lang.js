@@ -10,6 +10,20 @@ import { flatten } from '../util/array';
 import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
 
+const warned = {};
+function warnMissing(language, id) {
+    if(id === undefined) {
+        return;
+    }
+    const key = `${ language }::${ id }`;
+    if(!warned[ key ]) {
+        /* eslint-disable no-console */
+        console.warn(`Missing string "${ id }" for language "${ language }".`);
+        /* eslint-enable no-console */
+        warned[ key ] = true;
+    }
+}
+
 const lang = {
     messages: {
         en,
@@ -29,9 +43,11 @@ const lang = {
         return this.messages[ this.current ][ id ] || this.default(id, fallback) || fallback;
     },
     default(id, fallback) {
-        if(this.current === 'en' || !fallback)
+        if(!fallback) {
             return null;
-        return this.messages[ 'en' ][ id ];
+        }
+        warnMissing(this.current, id);
+        return (this.current === 'en')? null: this.messages[ 'en' ][ id ];
     },
 };
 

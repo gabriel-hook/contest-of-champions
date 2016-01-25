@@ -37,7 +37,7 @@ const TeamsMenu = {
             <MenuOptionGroup options={
                 [ 1, 2, 3, 4, 5 ].map((star) => (
                     <MenuOption
-                        title={ `${ star }★` }
+                        raw={ `${ star }★` }
                         selected={ teams.stars[ star ] }
                         onclick={ () => {
                             teams.stars[ star ] = !teams.stars[ star ];
@@ -57,7 +57,7 @@ const TeamsMenu = {
             <MenuOptionGroup options={
                 [ 3, 4, 5 ].map((size) => (
                     <MenuOption
-                        title={ size }
+                        raw={ size }
                         selected={ teams.size === size }
                         onclick={ () => {
                             teams.size = size;

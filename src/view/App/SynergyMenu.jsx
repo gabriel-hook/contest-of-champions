@@ -15,7 +15,7 @@ const SynergyMenu = {
                 <MenuOptionGroup options={
                     [ '1', '2', '3', '4', '5' ].map((star) => (
                         <MenuOption
-                            title={ `${ star }★` }
+                            raw={ `${ star }★` }
                             selected={ stars === star }
                             href={ `/synergy/${ star }` }
                         />

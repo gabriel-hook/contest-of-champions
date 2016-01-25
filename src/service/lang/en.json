@@ -143,6 +143,7 @@
     "with": "with",
     "found": "Found",
     "extras": "Extras",
+    "other": "Other",
 
     "team": "Team",
     "teams": "Teams",
@@ -156,6 +157,9 @@
     "synergy": "Synergy",
     "synergies": "Synergies",
     "synergies-external": "External Synergies",
+
+    "effect": "Effect",
+    "effects": "Effects",
 
     "crystal": "Crystal",
     "crystals": "Crystals",
@@ -178,8 +182,12 @@
     "delete": "Delete",
     "cancel": "Cancel",
 
+    "star": "Star",
     "stars": "Stars",
+
     "type": "Type",
+    "types": "Types",
+
     "name": "Name",
     "rank": "Rank",
     "level": "Level",
@@ -197,6 +205,9 @@
     "build": "Build",
 
     "add-all": "Add All",
+
+    "settings": "Settings",
+    "presets": "Presets",
 
     "synergy-weights": "Synergy Weights",
     "duplicate-weights": "Duplicate Class Weights",
