@@ -197,10 +197,12 @@
 
     "role-none": "None",
     "role-quest": "Quest",
+    "role-alliance": "Alliance",
     "role-arena": "Arena",
 
     "team-size": "Team Size",
     "quest": "Quest",
+    "alliance": "Alliance",
     "arena": "Arena",
     "build": "Build",
 

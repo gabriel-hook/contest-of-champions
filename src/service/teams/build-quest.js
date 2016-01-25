@@ -16,7 +16,6 @@ function buildQuest({
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     const list = champions
-        .filter((attr) => attr.role !== 'arena')
         .map((attr) => {
             const champion = new Champion(attr);
             const { id } = champion;

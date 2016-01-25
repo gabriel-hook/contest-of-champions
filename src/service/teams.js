@@ -225,7 +225,12 @@ function buildTeams() {
         data: {
             type: teams.type,
             champions: roster
-                .filter((champion) => teams.stars[ champion.attr.stars ])
+                .filter(({ attr }) => teams.stars[ attr.stars ])
+                .filter(
+                    teams.type === 'alliance'? ({ attr }) => attr.role !== 'quest':
+                    teams.type === 'quest'? ({ attr }) => attr.role !== 'alliance':
+                    () => true
+                )
                 .map((champion) => champion.attr),
             size: teams.size,
             weights: {

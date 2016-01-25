@@ -80,6 +80,12 @@ const ChampionPortrait = {
                 icon="map"
             />
         ):
+        role === 'alliance'? (
+            <ImageIcon
+                src="images/icons/alliance.png"
+                icon="map"
+            />
+        ):
         role === 'arena'? (
             <ImageIcon
                 src="images/icons/arena.png"

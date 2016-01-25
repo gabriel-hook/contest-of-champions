@@ -197,6 +197,10 @@ const RosterPage = {
                                 value: 'quest',
                             },
                             {
+                                title: lang.get('role-alliance'),
+                                value: 'alliance',
+                            },
+                            {
                                 title: lang.get('role-arena'),
                                 value: 'arena',
                             },

@@ -75,7 +75,7 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                [ 'quest', 'arena' ].map((type) => (
+                [ 'quest', 'alliance', 'arena' ].map((type) => (
                     <MenuOption
                         title={ type }
                         selected={ teams.type === type }

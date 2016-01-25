@@ -18,7 +18,6 @@ function buildArena({
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
     champions
-        .filter((attr) => attr.role !== 'quest')
         .forEach((attr) => {
             const champion = new Champion(attr);
             const { id } = champion;
