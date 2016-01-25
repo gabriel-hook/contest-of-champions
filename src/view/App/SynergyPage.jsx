@@ -27,7 +27,9 @@ const SynergyPage = {
                 <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
                     { legend && legend.map(({ effectId, selected, amount }) => (
                         <div
-                            class={ classNames('legend-effect', `legend-effect--${ effectId }`,
+                            class={ classNames('no-select',
+                                'legend-effect',
+                                `legend-effect--${ effectId }`,
                                 { 'legend-effect--selected': selected }
                             ) }
                             onclick={ () => {
