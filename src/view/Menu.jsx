@@ -161,19 +161,6 @@ const Menu = {
                     app.menuOpen = !menuOpen;
                     requestRedraw(2);
                 }}></div>
-                <div class="menu-wrapper">
-                    <div class="menu-options">
-                        { options }
-                    </div>
-                    <div class="menu-button menu-button-main" onclick={ () => {
-                        app.menuOpen = !menuOpen;
-                        requestRedraw(2);
-                    }}>
-                        <div class="menu-button-bar" />
-                        <div class="menu-button-bar" />
-                        <div class="menu-button-bar" />
-                    </div>
-                </div>
                 { button && (
                     <a
                         role="button"
@@ -188,6 +175,17 @@ const Menu = {
                         <Icon icon={ button.icon } />
                     </a>
                 ) }
+                <div class="menu-options">
+                    { options }
+                </div>
+                <div class="menu-button menu-button-main" onclick={ () => {
+                    app.menuOpen = !menuOpen;
+                    requestRedraw(2);
+                }}>
+                    <div class="menu-button-bar" />
+                    <div class="menu-button-bar" />
+                    <div class="menu-button-bar" />
+                </div>
             </div>
         );
     },
