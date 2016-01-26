@@ -4,6 +4,7 @@
     position: relative;
     display: block;
     cursor: pointer;
+    min-width: 2.2em;
     @include font-title(1.1em);
     color: #fff;
     padding: .5em .5em .5em 1.5em;
