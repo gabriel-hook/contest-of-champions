@@ -180,7 +180,7 @@ const Menu = {
                 </div>
                 <div class="menu-button menu-button-main" onclick={ () => {
                     app.menuOpen = !menuOpen;
-                    requestRedraw(2);
+                    requestRedraw(0);
                 }}>
                     <div class="menu-button-bar" />
                     <div class="menu-button-bar" />
