@@ -26,8 +26,10 @@
 
 ### Linting and Testing
 
-    Periodically lint your code and run tests to ensure basic functionality has not broken.
-    ESLint can be enabled inside your IDE for Webstorm.
+  Periodically lint your code and run tests to ensure basic functionality has not broken.
+  ESLint and SassLint can be enabled inside your IDE for
+  [Webstorm](https://www.jetbrains.com/webstorm/), [Sublime Text](http://www.sublimetext.com/)
+  or [Atom](https://atom.io/).
     
 ```
   npm run test
