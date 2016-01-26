@@ -28,9 +28,9 @@
 
   Periodically lint your code and run tests to ensure basic functionality has not broken.
   ESLint and SassLint can be enabled inside your IDE for
-  [WebStorm](https://www.jetbrains.com/webstorm),
-  [Sublime Text](http://www.sublimetext.com) or
-  [Atom](https://atom.io).
+  [WebStorm](//www.jetbrains.com/webstorm),
+  [Sublime Text](//www.sublimetext.com) or
+  [Atom](//atom.io).
 
 ```
   npm test
