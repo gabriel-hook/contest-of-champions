@@ -34,22 +34,55 @@
         display: inline-block;
         line-height: 52px;
         padding: 0 4px;
+
+        .icon {
+            display: inline-block;
+            position: relative;
+            height: 16px;
+            width: 32px;
+            color: #333;
+
+            img {
+                position: absolute;
+                top: -20px;
+                left: -16px;
+
+                height: 64px;
+                width: 64px;
+            }
+        }
     }
 
-    .icon {
-        display: inline-block;
-        position: relative;
-        height: 16px;
-        width: 32px;
-        color: #333;
+    .champion-upgrade-badge {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        font-size: 32px;
+        color: #fff;
 
-        img {
+        &.champion-upgrade-badge--max {
+            text-shadow: 0 0 8px #3c3;
+        }
+
+        &.champion-upgrade-badge--rank-up {
+            color: #fff;
+            text-shadow: 0 0 8px #38c;
+        }
+
+        .fa {
+            line-height: 48px;
+        }
+
+        .icon {
             position: absolute;
-            top: -20px;
-            left: -16px;
+            right: -24px;
+            height: 48px;
+            width: 48px;
 
-            height: 64px;
-            width: 64px;
+            img {
+                height: 100%;
+                width: 100%;
+            }
         }
     }
 

@@ -46,6 +46,21 @@ const ChampionUpgrade = {
                         />
                     </span>
                 )) }
+                { isMaxed? (
+                    <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--max') }>
+                        <ImageIcon
+                            src="images/icons/max.png"
+                            icon="check-circle"
+                        />
+                    </div>
+                ): isRankUp? (
+                    <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--rank-up') }>
+                        <ImageIcon
+                            src="images/icons/rank-up.png"
+                            icon="chevron-circle-up"
+                        />
+                    </div>
+                ): null }
             </div>
         );
     },

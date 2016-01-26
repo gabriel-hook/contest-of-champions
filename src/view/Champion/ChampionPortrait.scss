@@ -172,13 +172,14 @@
         width: 33%;
         height: 33%;
         text-align: right;
+        text-shadow: 0 0 8px #fff;
 
         &.upgrade-max {
-            color: #060;
+            color: #3c3;
         }
 
         &.upgrade-rank-up {
-            color: #006;
+            color: #38c;
         }
 
         .icon {
