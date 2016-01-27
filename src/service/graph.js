@@ -49,13 +49,22 @@ const fdg = new ForceDirectedGraph({
             const legend = legends[ fdg.id ];
             if (nodes && nodes.length > 1) {
                 const amounts = {};
-                edges.forEach((edge) => {
-                    const { effect, amount } = edge.data;
-                    if(amounts[ effect ])
-                        amounts[ effect ] += amount;
-                    else
-                        amounts[ effect ] = amount;
-                });
+                const synergies = {};
+                edges
+                    .filter((edge) => {
+                        if(synergies[ edge.data.id ]) {
+                            return false;
+                        }
+                        synergies[ edge.data.id ] = true;
+                        return true;
+                    })
+                    .forEach((edge) => {
+                        const { effect, amount } = edge.data;
+                        if(amounts[ effect ])
+                            amounts[ effect ] += amount;
+                        else
+                            amounts[ effect ] = amount;
+                    });
                 for (const effect of legend) {
                     effect.selected = Boolean(amounts[ effect.effectId ]);
                     effect.amount = amounts[ effect.effectId ];
@@ -110,8 +119,10 @@ function getStarGraph(stars) {
         CHAMPIONS
             .filter((champion) => champion.attr.stars === stars && !UNRELEASED_CHAMPIONS[ champion.attr.uid ])
             .forEach((champion) => {
-                const { typeId, uid } = champion.attr;
+                const { typeId, uid, stars } = champion.attr;
                 const node = graph.newNode({
+                    uid,
+                    stars,
                     label: uid,
                     image: `images/champions/portrait_${ uid }.png`,
                     type: typeId,
@@ -133,7 +144,7 @@ function getStarGraph(stars) {
                 nodeMap[ synergy.attr.fromId ]
             )
             .forEach((synergy) => {
-                const { fromId, toId, effectId, effectAmount } = synergy.attr;
+                const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
                 nodeMap[ fromId ].data.neighbors[ nodeMap[ toId ].id ] = true;
                 nodeMap[ fromId ].data.effects[ effectId ] = true;
                 nodeMap[ toId ].data.neighbors[ nodeMap[ fromId ].id ] = true;
@@ -142,6 +153,7 @@ function getStarGraph(stars) {
                 return graph.newEdge(
                     nodeMap[ fromId ],
                     nodeMap[ toId ], {
+                        id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
                         effect: effectId,
                         amount: effectAmount,
                         color: EFFECT_COLORS[ effectId ],
@@ -179,6 +191,7 @@ function getEffectGraph(effect) {
             .map((champion) => {
                 const { typeId, uid, stars } = champion.attr;
                 const node = graph.newNode({
+                    uid,
                     stars,
                     label: uid,
                     image: `images/champions/portrait_${ uid }.png`,
@@ -201,7 +214,7 @@ function getEffectGraph(effect) {
         SYNERGIES
             .filter(({ attr }) => attr.effectId === effect)
             .forEach((synergy) => {
-                const { fromId, fromStars, toId, effectAmount } = synergy.attr;
+                const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
                 const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
                 nodeMap[ toId ].forEach((nodeTo) => {
                     nodeFrom.data.neighbors[ nodeTo.id ] = true;
@@ -209,6 +222,7 @@ function getEffectGraph(effect) {
                         nodeFrom,
                         nodeTo,
                         {
+                            id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
                             effect,
                             amount: effectAmount,
                             color: EFFECT_COLORS[ effect ],
