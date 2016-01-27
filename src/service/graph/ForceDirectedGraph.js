@@ -938,6 +938,7 @@ export default function({
                 const { stars, color } = node.data;
                 ctx.save();
 
+                ctx.globalAlpha = 1.0;
                 ctx.font = nodeFont.font;
                 ctx.fillStyle = color;
                 ctx.textAlign = 'left';
