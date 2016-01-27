@@ -2,7 +2,8 @@ import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.scss';
 import { notify } from './util/notification';
-import { uids } from './data/champions';
+import { uids as CHAMPIONS } from './data/champions';
+import { uids as EFFECTS } from './data/effects';
 import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
@@ -68,7 +69,7 @@ if(router._invoked) {
     router.routes = {};
 }
 
-router.on('/guide/?', () => router.setRoute(`/guide/${ uids[ 0 ] }`));
+router.on('/guide/?', () => router.setRoute(`/guide/${ CHAMPIONS[ 0 ] }`));
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
@@ -264,9 +265,30 @@ router.on('/teams/?', () => {
     requestRedraw();
 });
 
-router.on('/synergy/?', () => router.setRoute(`/synergy/${ 2 }`));
+router.on('/synergy/?', () => router.setRoute(`/synergy/stars/${ 2 }`));
 
-router.on('/synergy/:stars/?', (stars) => {
+router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ parseInt(stars, 10) }`));
+
+router.on('/synergy/effect/:effect/?', (effect) => {
+    if(EFFECTS.indexOf(effect) === -1) {
+        router.setRoute(`/synergy`);
+        return;
+    }
+
+    app.tab = 'synergy';
+    app.pages[ 'synergy' ] = (
+        <SynergyPage effect={ effect } />
+    );
+    app.menu = (
+        <SynergyMenu effect={ effect } />
+    );
+    app.button = null;
+    app.route = `/synergy/effect/${ effect }`;
+    analytics.pageView();
+    requestRedraw();
+});
+
+router.on('/synergy/stars/:stars/?', (stars) => {
     app.tab = 'synergy';
     app.pages[ 'synergy' ] = (
         <SynergyPage stars={ parseInt(stars, 10) } />
@@ -275,7 +297,7 @@ router.on('/synergy/:stars/?', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
-    app.route = `/synergy/${ stars }`;
+    app.route = `/synergy/stars/${ stars }`;
     analytics.pageView();
     requestRedraw();
 });

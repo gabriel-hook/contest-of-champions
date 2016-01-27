@@ -72,10 +72,11 @@ export default function({
         return false;
     }
 
-    this.update = (stars, graph, top, left, width, height) => {
-        if(graph && this.stars !== stars) {
+    this.update = (id, showStars, graph, top, left, width, height) => {
+        if(graph && this.id !== id) {
             this.update.init = true;
-            this.stars = stars;
+            this.id = id;
+            this.showStars = showStars;
 
             this.layout.graph = graph;
             this.layout.nodePoints = {};
@@ -103,7 +104,7 @@ export default function({
                     resizeTimeout = null;
                 }, 50);
 
-            if(isActive() && this.stars === stars)
+            if(isActive() && this.id === id)
                 this.renderer.start();
             else
                 this.renderer.stop();
@@ -565,7 +566,6 @@ export default function({
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
         context.fillStyle = color;
         context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-
         if (nodeImages[ src ].portraits === undefined)
             nodeImages[ src ].portraits = [];
         nodeImages[ src ].portraits.push(canvas);
@@ -699,14 +699,18 @@ export default function({
         this.hitmask = hitmask;
     };
 
-    Node.prototype.setPortraitText = function() {
+    Node.prototype.setPortraitText = function(showStars) {
+        if(!nodeFont) {
+            return;
+        }
         if (!this.text || this.text.font !== nodeFont || (!this.text.ready && this.text.ready !== nodeFont.isReady())) {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
-
             const uid = this.data.label;
-            const text = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+            const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+            const stars = showStars? `${ this.data.stars }★ `: '';
+            const text = `${ stars }${ name }`;
 
             context.font = nodeFont.font;
             const paddingX = pixelRatio * (nodeFont.isReady() ? 6 : 3);
@@ -760,7 +764,7 @@ export default function({
                 fullSize = node.getSize() | 0,
                 halfSize = fullSize >> 1;
             //set images/bounds
-            node.setPortraitText();
+            node.setPortraitText(this.showStars);
             node.setPortraitImage(fullSize);
             node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
         },
@@ -930,6 +934,22 @@ export default function({
         },
         // drawNodeOverlay
         (node /* point */) => {
+            if(this.showStars && !node.isSelected() && nodeFont) {
+                const { stars, color } = node.data;
+                ctx.save();
+
+                ctx.font = nodeFont.font;
+                ctx.fillStyle = color;
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'top';
+                ctx.shadowColor = '#000';
+                ctx.shadowOffsetX = 1 * pixelRatio;
+                ctx.shadowOffsetY = 1 * pixelRatio;
+                ctx.fillText(`${ stars }★`, node.bb.topLeft.x, node.bb.topLeft.y);
+
+                ctx.restore();
+            }
+
             if (!node.isSelected() || !node.text)
                 return;
 

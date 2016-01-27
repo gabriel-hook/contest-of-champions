@@ -12,6 +12,14 @@ const SynergyMenu = {
         return (
             <div m="SynergyMenu" key={ `teams-menu-${ stars }` }>
                 <MenuHeader title="synergies" />
+                <MenuOption
+                    title="legend-show"
+                    selected={ synergy.legend === true }
+                    onclick={ () => {
+                        synergy.legend = !synergy.legend;
+                        requestRedraw();
+                    }}
+                />
                 <MenuOptionGroup options={
                     [ '1', '2', '3', '4', '5' ].map((star) => (
                         <MenuOption
@@ -21,14 +29,6 @@ const SynergyMenu = {
                         />
                     ))
                 } />
-                <MenuOption
-                    title="legend-show"
-                    selected={ synergy.legend === true }
-                    onclick={ () => {
-                        synergy.legend = !synergy.legend;
-                        requestRedraw();
-                    }}
-                />
             </div>
         );
     },
