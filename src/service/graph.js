@@ -216,18 +216,22 @@ function getEffectGraph(effect) {
             .forEach((synergy) => {
                 const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
                 const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
-                nodeMap[ toId ].forEach((nodeTo) => {
-                    nodeFrom.data.neighbors[ nodeTo.id ] = true;
-                    graph.newEdge(
-                        nodeFrom,
-                        nodeTo,
-                        {
-                            id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
-                            effect,
-                            amount: effectAmount,
-                            color: EFFECT_COLORS[ effect ],
-                        });
-                });
+                if(nodeFrom) {
+                    nodeMap[ toId ].forEach((nodeTo) => {
+                        if(nodeTo) {
+                            nodeFrom.data.neighbors[ nodeTo.id ] = true;
+                            graph.newEdge(
+                                nodeFrom,
+                                nodeTo,
+                                {
+                                    id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
+                                    effect,
+                                    amount: effectAmount,
+                                    color: EFFECT_COLORS[ effect ],
+                                });
+                        }
+                    });
+                }
             });
         legend.push({
             effectId: effect,
