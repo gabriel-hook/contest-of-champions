@@ -18,7 +18,7 @@ const SynergyMenu = {
                 <MenuHeader title="synergies" />
                 <MenuOption
                     icon={(
-                        <Icon icon="desktop" />
+                        <Icon icon="list" />
                     )}
                     title="legend-show"
                     selected={ synergy.legend === true }
