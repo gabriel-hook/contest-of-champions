@@ -160,11 +160,13 @@
 
     "effect": "Effect",
     "effects": "Effects",
+    "effects-none": "None",
 
     "crystal": "Crystal",
     "crystals": "Crystals",
 
     "roster": "Roster",
+    "roster-use": "Use Roster",
 
     "manage": "Manage",
     "add-champion": "Add a Champion",
@@ -206,6 +208,7 @@
     "arena": "Arena",
     "build": "Build",
 
+    "show-by": "Show By",
     "add-all": "Add All",
 
     "settings": "Settings",

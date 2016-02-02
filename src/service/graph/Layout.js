@@ -200,6 +200,7 @@ class Layout {
         const minEnergyThreshold = this.minEnergyThreshold;
         let totalEnergy = 500;
         let rendering = true;
+        let renderOnce = false;
         //force initial render in case we start out of focus
         setTimeout(() => {
             this.tick(tickDelta);
@@ -222,13 +223,14 @@ class Layout {
         requestRender({
             id: 'springy',
             callback: function renderLoop() {
-                if(rendering) {
+                if(rendering || !renderOnce) {
                     requestRender({
                         id: 'springy',
                         callback: renderLoop,
                     });
-                    if (render && !isNaN(totalEnergy) && totalEnergy > minEnergyThreshold) {
+                    if (render && (renderOnce || (!isNaN(totalEnergy) && totalEnergy > minEnergyThreshold))) {
                         render();
+                        renderOnce = true;
                     }
                 }
                 else if (onRenderStop !== undefined) {

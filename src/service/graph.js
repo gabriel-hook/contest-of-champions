@@ -1,6 +1,7 @@
-import CHAMPIONS, { UNRELEASED_CHAMPIONS } from '../data/champions';
+import CHAMPIONS from '../data/champions';
 import SYNERGIES from '../data/synergies';
 import router from '../service/router';
+import roster from '../service/roster';
 import Graph from './graph/Graph';
 import ForceDirectedGraph from './graph/ForceDirectedGraph';
 import deepEqual from 'deep-equal';
@@ -49,22 +50,13 @@ const fdg = new ForceDirectedGraph({
             const legend = legends[ fdg.id ];
             if (nodes && nodes.length > 1) {
                 const amounts = {};
-                const synergies = {};
-                edges
-                    .filter((edge) => {
-                        if(synergies[ edge.data.id ]) {
-                            return false;
-                        }
-                        synergies[ edge.data.id ] = true;
-                        return true;
-                    })
-                    .forEach((edge) => {
-                        const { effect, amount } = edge.data;
-                        if(amounts[ effect ])
-                            amounts[ effect ] += amount;
-                        else
-                            amounts[ effect ] = amount;
-                    });
+                edges.forEach((edge) => {
+                    const { effect, amount } = edge.data;
+                    if(amounts[ effect ])
+                        amounts[ effect ] += amount;
+                    else
+                        amounts[ effect ] = amount;
+                });
                 for (const effect of legend) {
                     effect.selected = Boolean(amounts[ effect.effectId ]);
                     effect.amount = amounts[ effect.effectId ];
@@ -109,86 +101,24 @@ const fdg = new ForceDirectedGraph({
     },
 });
 
-function getStarGraph(stars) {
-    const id = `stars-${ stars }`;
-    if(!graphs[ id ]) {
-        const graph = new Graph();
-        const nodeMap = {};
-        const effectMap = {};
-        const legend = [];
-        CHAMPIONS
-            .filter((champion) => champion.attr.stars === stars && !UNRELEASED_CHAMPIONS[ champion.attr.uid ])
-            .forEach((champion) => {
-                const { typeId, uid, stars } = champion.attr;
-                const node = graph.newNode({
-                    uid,
-                    stars,
-                    label: uid,
-                    image: `images/champions/portrait_${ uid }.png`,
-                    type: typeId,
-                    color: TYPE_COLORS[ typeId ],
-                    neighbors: {},
-                    effects: {},
-                    onOpen: () => {
-                        router.setRoute(`/guide/${ uid }`);
-                        requestRedraw();
-                    },
-                });
-                nodeMap[ uid ] = node;
-                return node;
-            });
-        SYNERGIES
-            .filter((synergy) =>
-                synergy.attr.fromStars === stars &&
-                nodeMap[ synergy.attr.toId ] &&
-                nodeMap[ synergy.attr.fromId ]
-            )
-            .forEach((synergy) => {
-                const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
-                nodeMap[ fromId ].data.neighbors[ nodeMap[ toId ].id ] = true;
-                nodeMap[ fromId ].data.effects[ effectId ] = true;
-                nodeMap[ toId ].data.neighbors[ nodeMap[ fromId ].id ] = true;
-                nodeMap[ toId ].data.effects[ effectId ] = true;
-                effectMap[ effectId ] = true;
-                return graph.newEdge(
-                    nodeMap[ fromId ],
-                    nodeMap[ toId ], {
-                        id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
-                        effect: effectId,
-                        amount: effectAmount,
-                        color: EFFECT_COLORS[ effectId ],
-                    });
-            });
-        for(const effectId in EFFECT_COLORS)
-            if(effectMap[ effectId ])
-                legend.push({
-                    effectId,
-                    selected: true,
-                });
-        legends[ id ] = legend;
-        graphs[ id ] = graph;
-        requestRedraw(5);
-    }
-    return graphs[ id ];
-}
-
-function getEffectGraph(effect) {
-    const id = `effect-${ effect }`;
+function getGraph(id, championFilter, synergyFilter, useRoster) {
     if(!graphs[ id ]) {
         const graph = new Graph();
         const nodeMap = {};
         const legend = [];
         const championsFrom = {};
         const championsTo = {};
-        SYNERGIES
-            .filter(({ attr }) => attr.effectId === effect)
-            .forEach(({ attr }) => {
-                championsFrom[ `${ attr.fromId }-${ attr.fromStars }` ] = true;
-                championsTo[ attr.toId ] = true;
+        const effectMap = {};
+        const synergies = SYNERGIES
+            .filter(synergyFilter)
+            .map((synergy) => {
+                championsFrom[ `${ synergy.attr.fromId }-${ synergy.attr.fromStars }` ] = true;
+                championsTo[ synergy.attr.toId ] = true;
+                return synergy;
             });
-        CHAMPIONS
-            .filter(({ attr }) => championsTo[ attr.uid ] || championsFrom[ `${ attr.uid }-${ attr.stars }` ])
-            .map((champion) => {
+        (useRoster? roster.all(): CHAMPIONS)
+            .filter((champion) => (championsTo[ champion.attr.uid ] || championsFrom[ `${ champion.attr.uid }-${ champion.attr.stars }` ]) && championFilter(champion))
+            .forEach((champion) => {
                 const { typeId, uid, stars } = champion.attr;
                 const node = graph.newNode({
                     uid,
@@ -210,29 +140,38 @@ function getEffectGraph(effect) {
                 nodeMap[ uid ].push(node);
                 return node;
             });
-
-        SYNERGIES
-            .filter(({ attr }) => attr.effectId === effect)
-            .forEach((synergy) => {
-                const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
-                const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
-                nodeMap[ toId ].forEach((nodeTo) => {
+        synergies.forEach((synergy) => {
+            const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
+            const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
+            const nodesTo = nodeMap[ toId ];
+            if(nodeFrom && nodesTo) {
+                nodesTo.forEach((nodeTo) => {
                     nodeFrom.data.neighbors[ nodeTo.id ] = true;
+                    nodeFrom.data.effects[ effectId ] = true;
+                    nodeTo.data.neighbors[ nodeFrom.id ] = true;
+                    nodeTo.data.effects[ effectId ] = true;
                     graph.newEdge(
                         nodeFrom,
                         nodeTo,
                         {
                             id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
-                            effect,
+                            effect: effectId,
                             amount: effectAmount,
-                            color: EFFECT_COLORS[ effect ],
-                        });
+                            color: EFFECT_COLORS[ effectId ],
+                        }
+                    );
+                    effectMap[ effectId ] = true;
                 });
-            });
-        legend.push({
-            effectId: effect,
-            selected: true,
+            }
         });
+        for(const effectId in EFFECT_COLORS) {
+            if(effectMap[ effectId ]) {
+                legend.push({
+                    effectId,
+                    selected: true,
+                });
+            }
+        }
         legends[ id ] = legend;
         graphs[ id ] = graph;
         requestRedraw(5);
@@ -240,19 +179,39 @@ function getEffectGraph(effect) {
     return graphs[ id ];
 }
 
-function getLegend({ stars, effect }) {
-    return legends[ `stars-${ stars }` ] || legends[ `effect-${ effect }` ];
-}
-
-function updateGraph({ stars, effect }, top, left, width, height) {
+function getGraphId({ stars, effect, roster }) {
+    let id = 'graph';
     if(stars) {
-        fdg.update(`stars-${ stars }`, false, getStarGraph(stars), top, left, width, height);
+        id = `${ id }-stars-${ stars }`;
     }
-    else if (effect) {
-        fdg.update(`effect-${ effect }`, true, getEffectGraph(effect), top, left, width, height);
+    if (effect) {
+        id = `${ id }-effect-${ effect }`;
     }
+    if(roster) {
+        id = `${ id }-roster`;
+    }
+    return id;
 }
 
-export { getLegend };
-export { updateGraph };
+function getLegend(definition) {
+    return legends[ getGraphId(definition) ];
+}
+
+function updateGraph(definition, ...dimensions) {
+    const id = getGraphId(definition);
+    let showStars = true;
+    let championFilter = () => true;
+    let synergyFilter = () => true;
+    const { stars, effect, roster } = definition;
+    if(stars) {
+        showStars = false;
+        championFilter = ({ attr }) => attr.stars === stars;
+    }
+    if (effect) {
+        synergyFilter = ({ attr }) => attr.effectId === effect;
+    }
+    fdg.update(id, showStars, getGraph(id, championFilter, synergyFilter, roster), ...dimensions);
+}
+
 export default fdg;
+export { getLegend, updateGraph };

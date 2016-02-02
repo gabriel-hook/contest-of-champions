@@ -10,19 +10,20 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-function config({ stars, effect }, element, isInitialized) {
+function config(definition, element, isInitialized) {
     const { top, left, width, height } = element.getBoundingClientRect();
     if(!isInitialized) {
         element.appendChild(graph.canvas);
     }
-    updateGraph({ stars, effect }, top, left, width, height);
+    updateGraph(definition, top, left, width, height);
 }
 
 const SynergyPage = {
     view(ctrl, { stars, effect }) {
-        const legend = getLegend({ stars, effect });
+        const { roster } = synergy;
+        const legend = getLegend({ stars, effect, roster });
         return (
-            <div m="SynergyPage" class="synergy" config={ config.bind(null, { stars, effect }) }>
+            <div m="SynergyPage" class="synergy" config={ config.bind(null, { stars, effect, roster }) }>
                 <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
                     { legend && legend.map(({ effectId, selected, amount }) => (
                         <div
@@ -43,7 +44,10 @@ const SynergyPage = {
                                 { amount && ` - ${ amount }%` }
                             </span>
                         </div>
-                    )) }
+                    )) || null }
+                    { legend && legend.length === 0 && (
+                        <i>{ lang.get('effects-none') }</i>
+                    ) || null }
                 </div>
             </div>
         );
