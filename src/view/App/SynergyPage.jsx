@@ -4,6 +4,7 @@ import { effectImage } from '../../data/effects';
 import graph, { getLegend, updateGraph } from '../../service/graph';
 import lang from '../../service/lang';
 import synergy from '../../service/synergy';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -46,7 +47,15 @@ const SynergyPage = {
                         </div>
                     )) || null }
                     { legend && legend.length === 0 && (
-                        <i>{ lang.get('effects-none') }</i>
+                        <div
+                            class={ classNames('no-select', 'legend-effect', 'legend-effect--none') }
+                            title={ lang.get('effects-none') }
+                        >
+                            <Icon icon="times-circle"/>
+                            <span class="legend-effect-title">
+                                <i>{ lang.get('effects-none') }</i>
+                            </span>
+                        </div>
                     ) || null }
                 </div>
             </div>

@@ -94,6 +94,18 @@
                     height: 1.5em;
                 }
             }
+
+            &.legend-effect--none {
+                opacity: 1;
+                border-left-width: 0;
+                margin-left: 0;
+
+                .icon {
+                    &.fa {
+                        color: #fff;
+                    }
+                }
+            }
         }
 
         .legend-effect--attack {

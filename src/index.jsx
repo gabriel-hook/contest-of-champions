@@ -69,7 +69,7 @@ if(router._invoked) {
     router.routes = {};
 }
 
-router.on('/guide/?', () => router.setRoute(`/guide/${ CHAMPIONS[ 0 ] }`));
+router.on('/guide/?', () => router.setRoute(app.history.guide || `/guide/${ CHAMPIONS[ 0 ] }`));
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
@@ -92,7 +92,7 @@ router.on('/guide/:uid/?', (uid) => {
         icon: 'pencil',
         href: `/guide/${ uid }/edit`,
     };
-    app.route = `/guide/${ uid }`;
+    app.route = app.history.guide = `/guide/${ uid }`;
     analytics.pageView();
     requestRedraw();
 });
@@ -265,7 +265,7 @@ router.on('/teams/?', () => {
     requestRedraw();
 });
 
-router.on('/synergy/?', () => router.setRoute(`/synergy/stars/${ 2 }`));
+router.on('/synergy/?', () => router.setRoute(app.history.synergy || `/synergy/stars/${ 2 }`));
 
 router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ parseInt(stars, 10) }`));
 
@@ -283,7 +283,7 @@ router.on('/synergy/effect/:effect/?', (effect) => {
         <SynergyMenu effect={ effect } />
     );
     app.button = null;
-    app.route = `/synergy/effect/${ effect }`;
+    app.route = app.history.synergy = `/synergy/effect/${ effect }`;
     analytics.pageView();
     requestRedraw();
 });
@@ -297,7 +297,7 @@ router.on('/synergy/stars/:stars/?', (stars) => {
         <SynergyMenu stars={ stars } />
     );
     app.button = null;
-    app.route = `/synergy/stars/${ stars }`;
+    app.route = app.history.synergy = `/synergy/stars/${ stars }`;
     analytics.pageView();
     requestRedraw();
 });
