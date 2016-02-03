@@ -1,8 +1,9 @@
 import './TeamsSettingsPage.scss';
 import classNames from 'classnames';
-import effects from '../../data/effects';
+import effects, { effectImage } from '../../data/effects';
 import teams, { save } from '../../service/teams';
 import lang from '../../service/lang';
+import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -38,10 +39,13 @@ const Slider = {
 };
 
 const Field = {
-    view(ctrl, { title, toggle, slider, isLargeSlider, value }) {
+    view(ctrl, { title, icon, toggle, slider, isLargeSlider, value }) {
         return (
             <div class="field">
-                <label class="field-name">{ title }</label>
+                <label class="field-name">
+                    { icon }
+                    { title }
+                </label>
                 <div
                     class={ classNames('field-input',
                         { 'field-input-small': !isLargeSlider },
@@ -68,7 +72,13 @@ const TeamsSettingsPage = {
                 </div>
                 { effects.map(({ attr }) => (
                     <Field
-                        title={ lang.get(`effect-${ attr.uid }-name`) }
+                        title={ lang.get(`effect-${ attr.uid }-shortname`, null) || lang.get(`effect-${ attr.uid }-name`) }
+                        icon={(
+                            <ImageIcon
+                                src={ effectImage(attr.uid, 'white') }
+                                alt={ effectImage(attr.uid, 'black') }
+                            />
+                        )}
                         slider={
                             <Slider
                                 object={ teams.weights }
@@ -85,7 +95,7 @@ const TeamsSettingsPage = {
                 </div>
                 { [ 2, 3, 4, 5 ].map((count) => (
                     <Field
-                        title={ `${ lang.get(DUPLICATE_TITLES[ count ]) } (${ count }x)` }
+                        title={ `(${ count }x) ${ lang.get(DUPLICATE_TITLES[ count ]) }` }
                         slider={
                             <Slider
                                 object={ teams.weights }
