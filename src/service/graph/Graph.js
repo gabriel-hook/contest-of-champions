@@ -2,7 +2,8 @@ import Node from './Node';
 import Edge from './Edge';
 
 class Graph {
-    constructor() {
+    constructor(forceUpdate = false) {
+        this.forceUpdate = forceUpdate;
         this.nodeSet = {};
         this.nodes = [];
         this.edges = [];

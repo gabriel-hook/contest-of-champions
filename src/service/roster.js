@@ -113,6 +113,11 @@ const SORT_NAME_ASC = (a, b) => {
     return b.attr.stars - a.attr.stars;
 };
 
+let rosterHash = 'h';
+function hash() {
+    return rosterHash;
+}
+
 function save() {
     cache = {};
     const byId = {};
@@ -131,6 +136,15 @@ function save() {
         sort = (rosterOptions.sort.direction === 'desc')? SORT_NAME_DESC: SORT_NAME_ASC;
     }
     roster.sort(sort);
+    rosterHash = `h${ roster
+        .map(({ id }) => id)
+        .join('')
+        .split('')
+        .reduce((a, b) => {
+            const c = ((a << 5) - a) + b.charCodeAt(0);
+            return c & c;
+        }, 0)
+    }`;
     toStorage('roster', roster);
 }
 
@@ -319,4 +333,6 @@ export default {
     getFilter,
     setSort,
     getSort,
+    //hashing
+    hash,
 };

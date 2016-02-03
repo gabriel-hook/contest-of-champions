@@ -73,7 +73,7 @@ export default function({
     }
 
     this.update = (id, showStars, graph, top, left, width, height) => {
-        if(graph && this.id !== id) {
+        if(graph && (this.id !== id || graph.forceUpdate)) {
             this.update.init = true;
             this.id = id;
             this.showStars = showStars;
@@ -82,6 +82,7 @@ export default function({
             this.layout.nodePoints = {};
             this.layout.edgeSprings = {};
 
+            graph.forceUpdate = false;
             graph.eventListeners = this.graph.eventListeners;
             this.graph = graph;
             clearSelected();

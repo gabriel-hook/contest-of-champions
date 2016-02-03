@@ -35,6 +35,7 @@ const EFFECT_COLORS = {
 };
 
 let lastSelected;
+const rosters = {};
 const legends = {};
 const graphs = {};
 const fdg = new ForceDirectedGraph({
@@ -102,8 +103,9 @@ const fdg = new ForceDirectedGraph({
 });
 
 function getGraph(id, championFilter, synergyFilter, useRoster) {
-    if(!graphs[ id ]) {
-        const graph = new Graph();
+    const forceUpdate = useRoster && (!rosters[ id ] || rosters[ id ] !== roster.hash());
+    if(!graphs[ id ] || forceUpdate) {
+        const graph = new Graph(forceUpdate);
         const nodeMap = {};
         const legend = [];
         const championsFrom = {};
@@ -174,6 +176,7 @@ function getGraph(id, championFilter, synergyFilter, useRoster) {
         }
         legends[ id ] = legend;
         graphs[ id ] = graph;
+        rosters[ id ] = roster.hash();
         requestRedraw(5);
     }
     return graphs[ id ];
