@@ -29,7 +29,7 @@ const effects = [
 const imageMap = {
     'attack':'attack',
     'stun':'stun',
-    'mutantagenda': 'mutant',
+    'mutantagenda': 'mutant_agenda',
     'inseparable': 'inseparable',
     'critrate':'critical',
     'critdamage':'critical',
@@ -40,16 +40,16 @@ const imageMap = {
     'armor':'armor',
     'health':'health',
     'healthsteal':'health_steal',
-    'heroesforhire': 'heroesforhire',
+    'heroesforhire': 'heroes_for_hire',
     'thunderbolts': 'thunderbolts',
 };
 
-function effectImage(uid, isAlternate) {
+function effectImage(uid, append = 'black') {
     return `images/effects/${
         imageMap[ uid ]
-    }${
-        isAlternate? '_off': ''
-    }.jpg`;
+    }_${
+        append
+    }.png`;
 }
 
 const effectBases = {};

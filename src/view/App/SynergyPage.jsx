@@ -39,7 +39,11 @@ const SynergyPage = {
                             }}
                             title={ lang.get(`effect-${ effectId }-description`) }
                         >
-                            <ImageIcon src={ effectImage(effectId) } icon="square"/>
+                            <ImageIcon
+                                src={ effectImage(effectId, 'white') }
+                                alt={ effectImage(effectId, 'black') }
+                                icon="square"
+                            />
                             <span class="legend-effect-title">
                                 { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
                                 { amount && ` - ${ amount }%` }

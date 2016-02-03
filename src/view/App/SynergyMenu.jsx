@@ -53,7 +53,13 @@ const SynergyMenu = {
                 { EFFECTS.map((uid) => (
                         <MenuOption
                             icon={(
-                                <ImageIcon src={ effectImage(uid) } icon="square"/>
+                                <ImageIcon
+                                    src={ effectImage(uid, 'white') }
+                                    alt={ effectImage(uid, 'black') }
+                                    hoverSrc={ effectImage(uid, 'black') }
+                                    hoverAlt={ effectImage(uid, 'white') }
+                                    icon="square"
+                                />
                             )}
                             alternate={ `effect-${ uid }-shortname` }
                             title={ `effect-${ uid }-name` }

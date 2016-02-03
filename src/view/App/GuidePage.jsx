@@ -1,8 +1,8 @@
 import './GuidePage.scss';
 import classNames from 'classnames';
+import { effectImage } from '../../data/effects';
 import { idMap } from '../../data/champions';
 import Champion from '../../data/model/Champion';
-import { effectImage } from '../../data/effects';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';
 import router from '../../service/router';
@@ -61,7 +61,11 @@ const GuideSynergy ={
                             class="effect-name"
                             title={ lang.get(`effect-${ effectId }-description`) }
                         >
-                            <ImageIcon src={ effectImage(effectId) } icon="square" />
+                            <ImageIcon
+                                src={ effectImage(effectId, 'black') }
+                                alt={ effectImage(effectId, 'white') }
+                                icon="square"
+                            />
                             { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
                         </div>
                     </div>

@@ -25,19 +25,12 @@ $menu-transition-time: .25s;
             height: 48px + 1;
             font-size: 1.2em;
             line-height: 1.5em;
+            background: rgba(0, 0, 0, 0);
 
             &,
             &:hover {
                 color: #000;
                 text-shadow: 0 1px 0 #fff;
-            }
-
-            & {
-                background: rgba(0, 0, 0, 0);
-            }
-
-            &:hover {
-                background: rgba(0, 0, 0, .1);
             }
         }
 
@@ -114,13 +107,44 @@ $menu-transition-time: .25s;
         .icon {
             position: relative;
             display: inline-block;
-            margin: 0 .5em 0 0;
+            margin: 0 .5em -.2em 0;
+            width: 1.2em;
+            height: 1.2em;
 
-            & img {
-                position: relative;
-                width: 1.2em;
-                margin-bottom: -.2em;
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
                 z-index: 1000;
+
+                &.alt {
+                    top: 1.5px;
+                }
+            }
+        }
+
+        .menu-option {
+
+            .hover {
+                display: none;
+            }
+
+            .no-hover {
+                display: inline;
+            }
+
+            &:hover,
+            &.menu-option--selected {
+
+                .hover {
+                    display: inline;
+                }
+
+                .no-hover {
+                    display: none;
+                }
             }
         }
 

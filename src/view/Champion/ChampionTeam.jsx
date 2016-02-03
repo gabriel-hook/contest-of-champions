@@ -143,7 +143,11 @@ const ChampionTeam = {
                             onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
                             title={ lang.get(`effect-${ effect.attr.uid }-description`) }
                         >
-                            <ImageIcon src={ effectImage(effect.attr.uid) } icon="square"/>
+                            <ImageIcon
+                                src={ effectImage(effect.attr.uid, 'black') }
+                                alt={ effectImage(effect.attr.uid, 'white') }
+                                icon="square"
+                            />
                             <span class="effect-name">
                                 { lang.get(`effect-${ effect.attr.uid }-name`) }
                             </span>

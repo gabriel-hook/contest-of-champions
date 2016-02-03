@@ -30,6 +30,7 @@
         }
 
         .icon {
+            position: relative;
             display: inline-block;
             margin-right: .25em;
             width: 24px;
@@ -38,12 +39,16 @@
             color: #38c;
 
 
-            & img {
-                position: relative;
+            img {
+                position: absolute;
                 width: 100%;
                 height: 100%;
-                margin-bottom: -5px;
+                margin-top: 5px;
                 z-index: 100;
+
+                &.alt {
+                    top: 2px;
+                }
             }
         }
 
