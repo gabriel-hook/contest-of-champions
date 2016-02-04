@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import effects, { effectImage } from '../../data/effects';
 import teams, { save } from '../../service/teams';
 import lang from '../../service/lang';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -77,6 +78,7 @@ const TeamsSettingsPage = {
                             <ImageIcon
                                 src={ effectImage(attr.uid, 'white') }
                                 alt={ effectImage(attr.uid, 'black') }
+                                icon={ 'square '}
                             />
                         )}
                         slider={
@@ -111,11 +113,14 @@ const TeamsSettingsPage = {
                     { lang.get('pi-range') }
                 </div>
                 { [
-                    'minimum',
-                    'maximum',
-                ].map((which) => (
+                    { which: 'minimum', icon: 'step-backward' },
+                    { which: 'maximum', icon: 'step-forward' },
+                ].map(({ which, icon }) => (
                     <Field
                         title={ lang.get(`pi-range-${ which }`) }
+                        icon={(
+                            <Icon icon={ icon } />
+                        )}
                         slider={
                             <Slider
                                 object={ teams.range }
