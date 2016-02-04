@@ -138,6 +138,7 @@ const champions = [
 
     { uid:'wolverineoldman', typeId:'mutant', stars: 3 },
     { uid:'wolverineoldman', typeId:'mutant', stars: 4 },
+    { uid:'wolverineoldman', typeId:'mutant', stars: 5 },
 
     { uid:'blackpanther', typeId:'skill', stars: 1 },
     { uid:'blackpanther', typeId:'skill', stars: 2 },

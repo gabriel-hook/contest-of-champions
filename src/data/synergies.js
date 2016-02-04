@@ -275,6 +275,16 @@ const synergies = [
     { fromId:'wolverine', fromStars:4, toId:'captainamerica', effectId:'armor', effectAmount:6 },
     { fromId:'wolverine', fromStars:4, toId:'magneto', effectId:'critrate', effectAmount:7 },
 
+    { fromId:'wolverineoldman', fromStars:3, toId:'wolverine', effectId:'critrate', effectAmount:6 },
+    { fromId:'wolverineoldman', fromStars:3, toId:'hawkeye', effectId:'armor', effectAmount:5 },
+    { fromId:'wolverineoldman', fromStars:3, toId:'hulk', effectId:'attack', effectAmount:5 },
+    { fromId:'wolverineoldman', fromStars:4, toId:'wolverine', effectId:'critrate', effectAmount:7 },
+    { fromId:'wolverineoldman', fromStars:4, toId:'hawkeye', effectId:'armor', effectAmount:6 },
+    { fromId:'wolverineoldman', fromStars:4, toId:'hulk', effectId:'attack', effectAmount:6 },
+    { fromId:'wolverineoldman', fromStars:5, toId:'wolverine', effectId:'critrate', effectAmount:7 },
+    { fromId:'wolverineoldman', fromStars:5, toId:'hawkeye', effectId:'armor', effectAmount:6 },
+    { fromId:'wolverineoldman', fromStars:5, toId:'hulk', effectId:'attack', effectAmount:6 },
+
     { fromId:'blackpanther', fromStars:2, toId:'ironfist', effectId:'critdamage', effectAmount:15 },
     { fromId:'blackpanther', fromStars:3, toId:'ironfist', effectId:'critdamage', effectAmount:20 },
     { fromId:'blackpanther', fromStars:3, toId:'storm', effectId:'powergain', effectAmount:4 },
