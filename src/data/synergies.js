@@ -277,7 +277,6 @@ const synergies = [
 
     { fromId: 'wolverineoldman', fromStars: 3, toId: 'wolverine', effectId: 'critrate', effectAmount: 6 },
     { fromId: 'wolverineoldman', fromStars: 3, toId: 'hawkeye', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'wolverineoldman', fromStars: 3, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
     { fromId: 'wolverineoldman', fromStars: 4, toId: 'wolverine', effectId: 'critrate', effectAmount: 7 },
     { fromId: 'wolverineoldman', fromStars: 4, toId: 'hawkeye', effectId: 'armor', effectAmount: 6 },
     { fromId: 'wolverineoldman', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 6 },
