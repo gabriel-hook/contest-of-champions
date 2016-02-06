@@ -102,6 +102,10 @@
             color: #a00;
             text-shadow: 0 1px 0 #000;
             padding: 0 1em;
+
+            .field-missing-current {
+                color: #888;
+            }
         }
 
         .field-missing-controls-active {

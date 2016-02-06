@@ -23,10 +23,14 @@ function onScroll(element) {
         return;
     }
 
+    let current = 0;
     let previous = null;
     let next = null;
-    Array.prototype.forEach.call(element.querySelectorAll('.field-missing') || [], (element) => {
+    Array.prototype.forEach.call(element.querySelectorAll('.field-missing') || [], (element, index) => {
         const { top } = element.getBoundingClientRect();
+        if(top <= 0) {
+            current = index + 1;
+        }
         if(top < 0 && (!previous || top > previous.top)) {
             previous = {
                 top,
@@ -40,6 +44,9 @@ function onScroll(element) {
             };
         }
     });
+
+    const currentMissing = element.querySelector('.field-missing-current');
+    currentMissing.innerHTML = `${ current } /`;
 
     const previousControl = element.querySelector('.field-missing-controls-previous');
     if(previousControl) {
@@ -191,6 +198,7 @@ const LanguageEditPage = {
                             <Icon icon="chevron-up" />
                         </div>
                         <div class="field-missing-controls-count">
+                            <span class="field-missing-current"></span>
                             { missing }
                         </div>
                         <div class="field-missing-controls-next">
