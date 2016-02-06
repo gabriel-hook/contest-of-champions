@@ -1,9 +1,10 @@
 import './ChampionSection.scss';
-import { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES } from '../../data/guides';
+import { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES, abilityImage } from '../../data/guides';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
 import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -271,11 +272,18 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('abilities') }:</b>
                         { abilities.map((ability, index) => (
-                            <span class={ `champion-section-ability-${ ability }` }>{
-                            (index < abilities.length - 1)?
-                                `${ lang.get(`ability-${ ability }`) }, `:
-                                lang.get(`ability-${ ability }`)
-                            }</span>
+                            <span class={ `champion-section-ability-${ ability }` }>
+                                { abilityImage(ability) &&
+                                    <ImageIcon
+                                        src={ abilityImage(ability, 'black') }
+                                        alt={ abilityImage(ability, 'white') }
+                                    />
+                                }{
+                                    (index < abilities.length - 1)?
+                                        `${ lang.get(`ability-${ ability }`) }, `:
+                                        lang.get(`ability-${ ability }`)
+                                }
+                            </span>
                         )) }
                     </div>
                 );
