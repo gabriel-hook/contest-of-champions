@@ -1,5 +1,6 @@
 import CHAMPIONS from '../data/champions';
 import SYNERGIES from '../data/synergies';
+import { SPECIAL_EFFECTS } from '../data/effects';
 import router from '../service/router';
 import roster from '../service/roster';
 import Graph from './graph/Graph';
@@ -51,7 +52,15 @@ const fdg = new ForceDirectedGraph({
             const legend = legends[ fdg.id ];
             if (nodes && nodes.length > 1) {
                 const amounts = {};
+                const uniqueEdges = {};
                 edges.forEach((edge) => {
+                    const { id, amount } = edge.data;
+                    if(uniqueEdges[ id ] && uniqueEdges[ id ].data.amount > amount) {
+                        return;
+                    }
+                    uniqueEdges[ id ] = edge;
+                });
+                Object.values(uniqueEdges).forEach((edge) => {
                     const { effect, amount } = edge.data;
                     if(amounts[ effect ])
                         amounts[ effect ] += amount;
@@ -156,7 +165,9 @@ function getGraph(id, championFilter, synergyFilter, useRoster) {
                         nodeFrom,
                         nodeTo,
                         {
-                            id: `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
+                            id: (SPECIAL_EFFECTS[ effectId ])?
+                                `${ fromId }-${ fromStars }-${ effectId }`:
+                                `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
                             effect: effectId,
                             amount: effectAmount,
                             color: EFFECT_COLORS[ effectId ],
