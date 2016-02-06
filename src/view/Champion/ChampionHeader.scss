@@ -74,20 +74,11 @@
             color: #ddd;
         }
 
-        .icon {
-            display: inline-block;
-            position: relative;
+        .image-icon {
+            top: 2px;
             width: 32px;
+            height: 32px;
             margin-right: 1%;
-            padding: 0;
-
-            &.fa {
-                top: -2px;
-            }
-
-            img {
-                width: 100%;
-            }
 
             &:last-child {
                 margin-right: 0;

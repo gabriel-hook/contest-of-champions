@@ -21,19 +21,6 @@
             text-align: left;
             padding: 16px;
             z-index: 1;
-
-            .icon {
-                position: relative;
-                display: inline-block;
-                margin: 0 .5em 0 0;
-
-                & img {
-                    position: relative;
-                    width: 1.2em;
-                    margin-bottom: -.2em;
-                    z-index: 1000;
-                }
-            }
         }
 
         .field-group-set {

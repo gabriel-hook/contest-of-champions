@@ -26,30 +26,8 @@
         text-align: left;
 
         .team-synergy {
+            padding: 1em 0 0;
             cursor: pointer;
-        }
-
-        .icon {
-            position: relative;
-            display: inline-block;
-            margin-right: .25em;
-            width: 24px;
-            height: 24px;
-            font-size: 24px;
-            color: #38c;
-
-
-            img {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                margin-top: 5px;
-                z-index: 100;
-
-                &.alt {
-                    top: 2px;
-                }
-            }
         }
 
         .effect-name,

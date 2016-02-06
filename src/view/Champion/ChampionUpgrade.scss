@@ -35,21 +35,11 @@
         line-height: 52px;
         padding: 0 4px;
 
-        .icon {
-            display: inline-block;
-            position: relative;
-            height: 16px;
-            width: 32px;
-            color: #333;
-
-            img {
-                position: absolute;
-                top: -20px;
-                left: -16px;
-
-                height: 64px;
-                width: 64px;
-            }
+        .image-icon {
+            height: 3.5em;
+            width: 3.5em;
+            margin-top: -4em;
+            top: 1.5em;
         }
     }
 
@@ -69,20 +59,11 @@
             text-shadow: 0 0 8px #38c;
         }
 
-        .fa {
-            line-height: 48px;
-        }
-
-        .icon {
+        .image-icon {
             position: absolute;
             right: -24px;
             height: 48px;
             width: 48px;
-
-            img {
-                height: 100%;
-                width: 100%;
-            }
         }
     }
 

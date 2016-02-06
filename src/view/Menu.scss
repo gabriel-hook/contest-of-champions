@@ -104,27 +104,6 @@ $menu-transition-time: .25s;
         background: #38c;
         transition: right $menu-transition-time;
 
-        .icon {
-            position: relative;
-            display: inline-block;
-            margin: 0 .5em -.2em 0;
-            width: 1.2em;
-            height: 1.2em;
-
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                z-index: 1000;
-
-                &.alt {
-                    top: 1.5px;
-                }
-            }
-        }
-
         .menu-option {
 
             .hover {
