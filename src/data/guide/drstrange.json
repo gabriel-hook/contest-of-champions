@@ -1,0 +1,75 @@
+{
+    "grades": {
+        "normal": "A+",
+        "awakened": "A+"
+    },
+    "description": "Dr. Strange is widely recognized as the best champion in the game.\n\n\n He combines multiple useful abilities that make him ideal for every part of the contest.",
+    "gameplay": {
+        "description": "There are two primary aspects of Dr. Srange that makes him so unique and powerful.\n\n\n The first is his rotating benefits, which are Armor Up (Oshtur's Refuge), Fury (Agamotto's Insight), and Life Steal (Hoggoth's Wisdom).\n\n\n The second is that he doesn't need to actually fight in order for his power bar to increase.\n\n\n These aspects grant him a lot of flexibility in determining how and when to attack.\n\n\n Additionally, the Life Steal aspect allows him to regenerate health which is vital for Alliance Quests or for difficult quests like Realm of Legends or Coulson's Challenge.",
+        "note": "Many people dislike the recent change to his animations, thinking that they look clunky.",
+        "abilities": [
+            "armorup",
+            "fury",
+            "regeneration",
+            "weakness",
+            "armorbreak",
+            "nullify"
+        ],
+        "rating": "5"
+    },
+    "attack": {
+        "rating": "4",
+        "description": "Dr. Strange's base attack is nothing to write home about.\n\n\n However, 1/3 of the time he has a strong Fury, during which time you can do a great deal of damage.",
+        "heavy": "Use sparingly, as this is a double attack so there are 2 spots where strong opponents can attack you and you can do nothing about it.\n\n\n Also a little slow to initiate."
+    },
+    "signature": {
+        "rating": "4",
+        "name": "Counterspell",
+        "description": "Counterspell gives Dr. Strange a chance to nullify enemy status effects like Armor Up, Fury, etc.\n\n\n Can be quite useful against some enemies, but does nothing against opponents that don't use status effects like Captain America, Storm, etc.",
+        "note": "Counterspell only nullifies one status effect at a time, so if effects are stacked (like Fury for Drax or Armor Up for Colossus), only one of those instances will be nullified at once."
+    },
+    "specials": {
+        "1": {
+            "rating": "4",
+            "name": "Magic Missle",
+            "description": "A 2 part attack, the first melee, the second a long attack.\n\n\n What makes this attack extraordinary is the fact that there is a chance to recover 100% of the power expended, which would allow you to spam this attack constantly.",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ]
+        },
+        "2": {
+            "rating": "5",
+            "name": "Faltinian Triplicate",
+            "description": "A 3-part energy attack.\n\n\n What makes this attack special is the beneficial effects that can be granted with each hit.\n\n\n The effect is dependant on the rotating benefit that Dr. Strange currently has up.\n\n\n During Oshtur's Refuge, the benefit is Weakness.\n\n\n During Agamotto's Insight, the benefit is Armor Break.\n\n\n During Hoggoth's Wisdom, the benefit is Nullify.\n\n\n Weakness and Armor Break last for 10 seconds and can stack for up to 3 instances of the effect.",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "weakness",
+                "armorbreak",
+                "nullify"
+            ],
+            "note": "The effects from this attack allow for a lot of flexibility.\n\n\n For example, you can try to get Armor Breaks up which would allow you to hit the opponent harder during Hoggoth's Wisdom and gain back more health.\n\n\n Or you can get Weakness which makes the opponent hurt you less during Agamotto's Insight, when Dr. Strange is most vulnerable to attack."
+        },
+        "3": {
+            "rating": "4",
+            "name": "The Prestige",
+            "description": "By itself, not a terribly powerful attack.\n\n\n What makes it better is that you can attack during Agomotto's Insight for a much stronger, unblockable attack, or during Hoggoth's Wisdom for guaranteed healing.\n\n\n Additionally, this attack causes Fate Seal, which nullifies any current beneficial effects for the opponent and prevents them from gaining beneficial effects for a short time after.",
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "nullify"
+            ]
+        }
+    },
+   "author": {
+        "name": "Beren9955"
+    }
+}
