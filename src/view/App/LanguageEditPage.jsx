@@ -46,7 +46,9 @@ function onScroll(element) {
     });
 
     const currentMissing = element.querySelector('.field-missing-current');
-    currentMissing.innerHTML = `${ current } /`;
+    if(currentMissing) {
+        currentMissing.innerHTML = `${ current } /`;
+    }
 
     const previousControl = element.querySelector('.field-missing-controls-previous');
     if(previousControl) {
