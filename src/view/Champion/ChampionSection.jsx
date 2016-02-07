@@ -1,5 +1,6 @@
 import './ChampionSection.scss';
-import { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES, abilityImage } from '../../data/guides';
+import { RATINGS, GRADES, RANGES, DAMAGE_TYPES } from '../../data/guides';
+import { uids as ABILITIES, abilityImage } from '../../data/abilities';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { uids as CHAMPIONS } from '../../data/champions';
 import { uids as TYPES } from '../../data/types';
 import { uids as EFFECTS } from '../../data/effects';
-import { ABILITIES } from '../../data/guides';
+import { uids as ABILITIES } from '../../data/abilities';
 import lang, { getLanguage } from '../../service/lang';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';

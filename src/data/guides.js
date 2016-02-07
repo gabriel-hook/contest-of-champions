@@ -49,41 +49,19 @@ const guides = {
 };
 
 const RATINGS = [ 1, 2, 3, 4, 5 ];
+
 const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
+
 const RANGES = [
     'melee',
     'short',
     'medium',
     'long',
 ];
+
 const DAMAGE_TYPES = [
     'physical',
     'energy',
-];
-const ABILITIES = [
-    'stun',
-    'stagger',
-    'fatigue',
-    'weakness',
-    'nullify',
-    'powerdrain',
-    'powerburn',
-    'shock',
-    'bleed',
-    'healblock',
-    'cauterize',
-    'armorbreak',
-    'fury',
-    'regeneration',
-    'healthsteal',
-    'unstoppable',
-    'poison',
-    'armorup',
-    'plusdamage',
-    'pluscritrate',
-    'pluscritdamage',
-    'poisonimmunity',
-    'bleedimmunity',
 ];
 
 const PROFILE_TYPES = [
@@ -93,40 +71,5 @@ const PROFILE_TYPES = [
     'spotlight',
 ];
 
-
-const abilityImageMap = {
-    'stun': 'stun',
-    'stagger': null,
-    'fatigue': null,
-    'weakness': null,
-    'nullify': null,
-    'powerdrain': 'mana_steal',
-    'powerburn': 'mana_steal',
-    'shock': null,
-    'bleed': 'bleed',
-    'healblock': null,
-    'cauterize': null,
-    'armorbreak': 'armor_break',
-    'fury': 'attack',
-    'regeneration': 'heal',
-    'healthsteal': 'health-steal',
-    'unstoppable': null,
-    'poison': null,
-    'armorup': 'armor',
-    'plusdamage': 'attack',
-    'pluscritrate': 'critical_rate',
-    'pluscritdamage': 'critical',
-    'poisonimmunity': null,
-    'bleedimmunity': null,
-};
-
-function abilityImage(uid, append = 'black') {
-    return abilityImageMap[ uid ]? `images/effects/${
-        abilityImageMap[ uid ]
-    }_${
-        append
-    }.png`: null;
-}
-
-export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, ABILITIES, PROFILE_TYPES, abilityImage };
+export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, PROFILE_TYPES };
 export default guides;

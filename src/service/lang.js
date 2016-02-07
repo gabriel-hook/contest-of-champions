@@ -5,7 +5,7 @@ import ru from './lang/ru.json';
 import { uids as CHAMPIONS } from '../data/champions';
 import { uids as TYPES } from '../data/types';
 import { uids as EFFECTS } from '../data/effects';
-import { ABILITIES } from '../data/guides';
+import { uids as ABILITIES } from '../data/abilities';
 import { flatten } from '../util/array';
 import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
