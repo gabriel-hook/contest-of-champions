@@ -609,7 +609,7 @@ export default function({
         159.09474, 215.87646, 3.5709275, 215.81378, 3.5709275, 215.81378,
     ];
 
-    function getPlaceholder(size, color) {
+    function getPlaceholder(size, color = '#000000') {
         const id = `${ size }_${ color || '' }`;
         if (!placeholders[ id ]) {
             let canvas;
@@ -640,7 +640,7 @@ export default function({
             context = canvas.getContext('2d');
             canvas.height = canvas.width = size;
             context.drawImage(placeholders[ size ], 0, 0, canvas.width, canvas.height);
-            context.fillStyle = color || '#000';
+            context.fillStyle = color;
             context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
             placeholders[ id ] = canvas;
         }

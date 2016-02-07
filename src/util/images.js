@@ -3,9 +3,16 @@ import { requestRedraw } from './animation';
 const images = {};
 
 function getImage(src) {
+    if(src === undefined || src === 'undefined') {
+        /* eslint-disable no-console */
+        console.error('Invalid image', src);
+        /* eslint-enable no-console */
+        return null;
+    }
     let image = images[ src ];
     if(!image) {
         image = new Image();
+        image.loaded = null;
         image.addEventListener('load', () => {
             image.loaded = true;
             requestRedraw(5);
