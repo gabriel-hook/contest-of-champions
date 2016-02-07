@@ -786,7 +786,7 @@ export default function({
             else
                 ctx.globalAlpha = 1.0;
 
-            ctx.fillStyle = '#555';
+            ctx.fillStyle = '#333';
             ctx.fillRect((topLeft.x + 1) | 0, bottomRight.y | 0, (size - 2) | 0, 1);
 
             ctx.restore();
@@ -966,7 +966,7 @@ export default function({
                 ctx.fillStyle = color;
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'top';
-                ctx.shadowColor = '#555';
+                ctx.shadowColor = '#333';
                 ctx.shadowOffsetX = 0;
                 ctx.shadowOffsetY = 1 * pixelRatio;
                 ctx.fillText(`${ stars }★`, node.bb.topLeft.x, node.bb.bottomRight.y);
