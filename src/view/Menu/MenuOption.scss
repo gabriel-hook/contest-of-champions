@@ -61,4 +61,20 @@
     .image-icon {
         margin-right: .5em;
     }
+
+    .no-hover {
+        display: inline;
+    }
+
+    &:hover,
+    &.menu-option--selected {
+
+        .hover {
+            display: inline;
+        }
+
+        .no-hover {
+            display: none;
+        }
+    }
 }

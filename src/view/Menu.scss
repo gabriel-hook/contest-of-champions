@@ -104,29 +104,6 @@ $menu-transition-time: .25s;
         background: #38c;
         transition: right $menu-transition-time;
 
-        .menu-option {
-
-            .hover {
-                display: none;
-            }
-
-            .no-hover {
-                display: inline;
-            }
-
-            &:hover,
-            &.menu-option--selected {
-
-                .hover {
-                    display: inline;
-                }
-
-                .no-hover {
-                    display: none;
-                }
-            }
-        }
-
         .fa {
             margin-right: .5em;
         }
