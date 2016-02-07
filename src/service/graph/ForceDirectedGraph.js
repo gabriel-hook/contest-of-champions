@@ -768,6 +768,28 @@ export default function({
             node.setPortraitText(this.showStars);
             node.setPortraitImage(fullSize);
             node.setBoundingBox(x - halfSize, y - halfSize, fullSize);
+
+            const { size, topLeft, bottomRight } = node.bb;
+
+            ctx.save();
+
+            if (node.isSelected())
+                ctx.globalAlpha = 1.0;
+            else if (edgeSelected)
+                ctx.globalAlpha = (node.data.effects[ edgeSelected ]) ? 1.0 : 0.25;
+            else if (selected.length === maxTeamSize)
+                ctx.globalAlpha = 0.25;
+            else if (selected.length > 1)
+                ctx.globalAlpha = (node.isSelectedNeighbor()) ? 0.75 : 0.25;
+            else if (selected.length)
+                ctx.globalAlpha = (node.isSelectedNeighbor()) ? 1.0 : 0.25;
+            else
+                ctx.globalAlpha = 1.0;
+
+            ctx.fillStyle = '#555';
+            ctx.fillRect((topLeft.x + 1) | 0, bottomRight.y | 0, (size - 2) | 0, 1);
+
+            ctx.restore();
         },
         // drawEdge
         (edge, pointStart, pointEnd) => {
@@ -944,10 +966,10 @@ export default function({
                 ctx.fillStyle = color;
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'top';
-                ctx.shadowColor = '#000';
-                ctx.shadowOffsetX = 1 * pixelRatio;
+                ctx.shadowColor = '#555';
+                ctx.shadowOffsetX = 0;
                 ctx.shadowOffsetY = 1 * pixelRatio;
-                ctx.fillText(`${ stars }★`, node.bb.topLeft.x, node.bb.topLeft.y);
+                ctx.fillText(`${ stars }★`, node.bb.topLeft.x, node.bb.bottomRight.y);
 
                 ctx.restore();
             }
@@ -958,7 +980,8 @@ export default function({
             ctx.globalAlpha = 1.0;
 
             //draw the portrait text
-            const width = node.text.width, height = node.text.height;
+            const width = node.text.width;
+            const height = node.text.height;
             ctx.drawImage(node.text,
                 Math.min(Math.max(0, node.bb.center.x - (width / 2) | 0), canvasState.width - width),
                 Math.min(Math.max(0, node.bb.center.y - height - (node.bb.size / 2) | 0), canvasState.height - height),
