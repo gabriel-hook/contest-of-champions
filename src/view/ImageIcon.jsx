@@ -11,23 +11,29 @@ const ImageIcon = {
         const elements = [];
         const image = getImage(src);
         if(image) {
-            const hoverImage = getImage(hoverSrc);
-            if(hoverSrc && hoverImage) {
-                const hoverAlternate = getImage(hoverAlt);
-                if(hoverAlt && hoverAlternate) {
+            if(hoverSrc) {
+                const hoverImage = getImage(hoverSrc);
+                if(hoverImage) {
+                    if(hoverAlt) {
+                        const hoverAlternate = getImage(hoverAlt);
+                        if(hoverAlternate) {
+                            elements.push(
+                                <img class={ classNames('hover', 'alt') } src={ hoverAlternate.src } />
+                            );
+                        }
+                    }
                     elements.push(
-                        <img class={ classNames('hover', 'alt') } src={ hoverAlternate.src } />
+                        <img class={ classNames('hover') } src={ hoverImage.src } />
                     );
                 }
-                elements.push(
-                    <img class={ classNames('hover') } src={ hoverImage.src } />
-                );
             }
-            const alternate = getImage(alt);
-            if(alt && alternate) {
-                elements.push(
-                    <img class={ classNames('alt', { 'no-hover': hoverAlt }) } src={ alternate.src } />
-                );
+            if(alt) {
+                const alternate = getImage(alt);
+                if(alternate) {
+                    elements.push(
+                        <img class={ classNames('alt', { 'no-hover': hoverAlt }) } src={ alternate.src } />
+                    );
+                }
             }
             elements.push(
                 <img class={ classNames('image', { 'no-hover': hoverSrc }) } src={ image && image.src } />
