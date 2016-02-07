@@ -24,4 +24,10 @@
             top: 2px;
         }
     }
+
+    @media print {
+        &.alt {
+            display: none;
+        }
+    }
 }
