@@ -514,10 +514,10 @@ export default function({
         }
     });
 
-    const nodeHitmasks = {};
+    const portraitHitmasks = {};
 
     function getHitmask(src, image) {
-        if (!nodeHitmasks[ src ]) {
+        if (!portraitHitmasks[ src ]) {
             if (typeof image === 'function')
                 image = image();
             const size = image.width;
@@ -529,32 +529,32 @@ export default function({
                 for (let y = 0; y < size; y++)
                     opaque[ x ][ y ] = (data[ (y * size * 4) + x * 4 + 3 ] > 127) ? true : undefined;
             }
-            nodeHitmasks[ src ] = { size, opaque };
+            portraitHitmasks[ src ] = { size, opaque };
         }
-        return nodeHitmasks[ src ];
+        return portraitHitmasks[ src ];
     }
 
-    const nodeImages = {};
-    const nodeImageQueue = {
+    const portraitImages = {};
+    const portraitImageResampleQueue = {
         list: [],
         todo: {},
     };
-    nodeImageQueue.insert = function(id, callback) {
-        nodeImageQueue.todo[ id ] = callback;
-        nodeImageQueue.list.unshift(id);
-        if (!nodeImageQueue.timeout)
-            nodeImageQueue.next();
+    portraitImageResampleQueue.insert = function(id, callback) {
+        portraitImageResampleQueue.todo[ id ] = callback;
+        portraitImageResampleQueue.list.unshift(id);
+        if (!portraitImageResampleQueue.timeout)
+            portraitImageResampleQueue.next();
     };
-    nodeImageQueue.next = function() {
-        if (nodeImageQueue.list.length === 0)
+    portraitImageResampleQueue.next = function() {
+        if (portraitImageResampleQueue.list.length === 0)
             return;
-        const id = nodeImageQueue.list.shift();
-        const todo = nodeImageQueue.todo[ id ];
-        delete nodeImageQueue.todo[ id ];
-        nodeImageQueue.timeout = setTimeout(() => {
-            delete nodeImageQueue.timeout;
+        const id = portraitImageResampleQueue.list.shift();
+        const todo = portraitImageResampleQueue.todo[ id ];
+        delete portraitImageResampleQueue.todo[ id ];
+        portraitImageResampleQueue.timeout = setTimeout(() => {
+            delete portraitImageResampleQueue.timeout;
             todo();
-            nodeImageQueue.next();
+            portraitImageResampleQueue.next();
         }, 25);
     };
 
@@ -567,18 +567,18 @@ export default function({
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
         context.fillStyle = color;
         context.fillRect(0, canvas.height - barHeight, canvas.width, barHeight);
-        if (nodeImages[ src ].portraits === undefined)
-            nodeImages[ src ].portraits = [];
-        nodeImages[ src ].portraits.push(canvas);
-        nodeImages[ src ].loaded = true;
+        if (portraitImages[ src ].portraits === undefined)
+            portraitImages[ src ].portraits = [];
+        portraitImages[ src ].portraits.push(canvas);
+        portraitImages[ src ].loaded = true;
 
-        const resize = image.width >> 1;
-        if (resize >= 16) {
-            const resizeCanvas = document.createElement('canvas');
-            const resizeContext = resizeCanvas.getContext('2d');
-            resizeCanvas.width = resizeCanvas.height = resize;
-            resizeContext.drawImage(image, 0, 0, resize, resize);
-            nodeImageQueue.insert(src, () => addPortaitImages(src, resizeCanvas, color));
+        const resampleWidth = image.width >> 1;
+        if (resampleWidth >= 16) {
+            const resampleCanvas = document.createElement('canvas');
+            const resampleContext = resampleCanvas.getContext('2d');
+            resampleCanvas.width = resampleCanvas.height = resampleWidth;
+            resampleContext.drawImage(image, 0, 0, resampleWidth, resampleWidth);
+            portraitImageResampleQueue.insert(src, () => addPortaitImages(src, resampleCanvas, color));
         }
     }
 
@@ -672,10 +672,10 @@ export default function({
         let portrait;
         let hitmask;
         if (image) {
-            if (src in nodeImages) {
-                if (nodeImages[ src ].loaded) {
+            if (src in portraitImages) {
+                if (portraitImages[ src ].loaded) {
                     //sample down for better anti-aliasing
-                    const portraits = nodeImages[ src ].portraits;
+                    const portraits = portraitImages[ src ].portraits;
                     const target = getPortraitSizeTarget(size);
                     for(let i = 0; i < portraits.length && portraits[ i ].width >= target; i++)
                         portrait = portraits[ i ];
@@ -684,12 +684,12 @@ export default function({
                     hitmask = getHitmask(src, portraits[ 0 ]);
                 }
             }
-            else if(!nodeImageQueue.todo[ src ]) {
-                nodeImages[ src ] = {
+            else if(!portraitImageResampleQueue.todo[ src ]) {
+                portraitImages[ src ] = {
                     loaded: false,
                     portraits: [],
                 };
-                nodeImageQueue.insert(src, () => addPortaitImages(src, image, color));
+                portraitImageResampleQueue.insert(src, () => addPortaitImages(src, image, color));
             }
         }
         if (!portrait) {
