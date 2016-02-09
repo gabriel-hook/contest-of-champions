@@ -46,13 +46,16 @@
     "signature": {
         "name": "Pop the Claws",
         "description": "When Logan pops his claws for a Special Attack, each attack has a (10 - 25%) chance to cause an additional Bleed for each charge of Pacifism he has at the time, inflicting 50% of your attack as direct damage over 3 seconds.",
-        "note": "The Bleed effects from Pop the Claws stacks infinitely and has a chance to trigger per Pacifism charge active."
+        "note": "The Bleed effects from Pop the Claws stacks infinitely and has a chance to trigger per Pacifism charge active.",
+        "abilities": [
+            "bleed"
+        ]
     },
     "gameplay": {
         "abilities": [
             "fury",
-            "plusdamage",
-            "pluscritrate",
+            "precision",
+            "cruelty",
             "regeneration"
         ],
         "description": "Each time Logan loses 10% of his max health, or the opponent uses a Special Attack against him, he gains a charge of Pacifism and has a 10% chance per charge to snap and go Berserk.\n Logan cannot gain a charge a multiple times if he drops below a health threshold more than once.\n When Logan goes Berserk, for each Pacifism charge he had, he gains one Fury and Cruelty effect, increasing Attack and Critical Damage by 19% per charge consumed.\n\nLogan’s advanced age has altered his Healing Factor, allowing him to recover 9 health twice per second. Additionally, any time he Bleeds, his Healing Factor closes the wound 79% faster.",

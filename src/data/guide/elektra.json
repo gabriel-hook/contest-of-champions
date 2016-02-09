@@ -13,7 +13,11 @@
     "signature": {
         "rating": "5",
         "name": "No Loose Ends",
-        "description": "\"Elektra takes care of opponents below 20% Health with 100% Critical Rate and x% Critical Damage, leaving no one to tell the tale.\" \nThis ability can be amazing for both bosses and high health tanks, but you'll notice it doesn't have much pull against opponents who are much weaker than Elektra. Once at 20% health, there's no reason for the guaranteed critical hits since her opponent should be dead after a few more hits form her. However, when going up against a bleed immune champion or anyone with high health, this can be very helpful as you'll find it will be a good way to take down their health as fast as you can, even if they are armored."
+        "description": "\"Elektra takes care of opponents below 20% Health with 100% Critical Rate and x% Critical Damage, leaving no one to tell the tale.\"\n\nThis ability can be amazing for both bosses and high health tanks, but you'll notice it doesn't have much pull against opponents who are much weaker than Elektra. Once at 20% health, there's no reason for the guaranteed critical hits since her opponent should be dead after a few more hits form her. However, when going up against a bleed immune champion or anyone with high health, this can be very helpful as you'll find it will be a good way to take down their health as fast as you can, even if they are armored.",
+        "abilities": [
+            "precision",
+            "cruelty"
+        ]
     },
     "heavy": {
         "rating": "2",
@@ -24,7 +28,7 @@
             "rating": "4",
             "abilities": [
                 "bleed",
-                "pluscritrate"
+                "cruelty"
             ],
             "damagetypes": [
                 "physical"

@@ -1,7 +1,13 @@
 {
     "description": "After Peter Parker rejected a sinister alien symbiote, the extra-terrestrial threat sought revenge by bonding with Eddie Brock, ex-photographer for the Daily Bugle and Peter’s longtime rival. Fueled by their shared hatred of Spider-Man, Brock and the symbiote now use their immense strength and deadly abilities to gain revenge as the fearful Venom.",
     "gameplay": {
-        "description": "Once every 10 seconds, the symbiote known as Venom calls upon its collective hive mind and grants its host a permanent beneficial effect from its genetic memory pool. Venom can only host 5 effects at a time. \n\nSymbiote Rage: 9% increased Attack. \nSymbiote Durability: 9% increased Physical Resistance. \nSymbiote Shield: 6% increased Armor. \nSymbiote Cruelty: 47% increased Critical Damage. \nSymbiote Frenzy: 17% increased Critical Hit Rate.\n"
+        "description": "Once every 10 seconds, the symbiote known as Venom calls upon its collective hive mind and grants its host a permanent beneficial effect from its genetic memory pool. Venom can only host 5 effects at a time. \n\nSymbiote Rage: 9% increased Attack. \nSymbiote Durability: 9% increased Physical Resistance. \nSymbiote Shield: 6% increased Armor. \nSymbiote Cruelty: 47% increased Critical Damage. \nSymbiote Frenzy: 17% increased Critical Hit Rate.\n",
+        "abilities": [
+            "fury",
+            "armorup",
+            "precision",
+            "cruelty"
+        ]
     },
     "specials": {
         "1": {
@@ -36,7 +42,11 @@
     "signature": {
         "name": "Bloodlust",
         "description": "Venom’s bloodlust triggers whenever the opponent bleeds, increasing Critical Hit Rate by 20% and Critical Damage by (15% - 115%) for as long as the enemy continues bleeding. This effect stacks with all benefits from Genetic Memory.",
-        "note": "This effect also triggers off of enemy Self Bleed effects such as Double Edge."
+        "note": "This effect also triggers off of enemy Self Bleed effects such as Double Edge.",
+        "abilities": [
+            "precision",
+            "cruelty"
+        ]
     },
     "attack": {
         "description": "7% chance to inflict Bleed, dealing 34% of your Attack as direct damage over 5 seconds.",

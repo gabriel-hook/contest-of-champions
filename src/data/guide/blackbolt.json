@@ -1,73 +1,82 @@
 {
-	"grades": {
-		"normal": "A",
-		"awakened": "A"
-	},
-	"description": "Black Bolt is an often overlooked champion, but his fast fluid attacks, along with powerful specials and having stun on all his specials make him a formidable champion among the cosmic class. ",
-	"gameplay": {
-		"style": "OFFENSIVE",
-		"description": "You will want to often spam your L1 (Particle Beam) as the true damage and stun it can deal is the highlight of Black Bolt’s power. With consistent hits, you can exploit the power of his Particle Beam by locking them down and dealing huge amounts of damage. Be mindful of their energy bars, however, as it is easy to forget while comboing that your attacks will fill up their bar quite fast and the enemy may land an L3 against you ",
-		"note": "This is not to say the L2 and L3 shouldn't be used, but especially for champions with armor or physical resistances the L1 is reccomended."
-	},
-	"signature": {
-		"rating": "3",
-		"name": "Provocation",
-		"description": "Being struck by critical hits will give Black Bolt either Attack or Crit Damage (random which is given)  that increases the stat by a certain percentage (12.9% at level 8) for the rest of the fight. ",
-		"note": " This ability is designed more of a carry for longer fights where you will be getting hit a lot and hence gaining power as you do so, but most fights don’t last this long and if you are skilled enough, you won’t be getting hit much and it will only trigger if that hit is a critical. It is nice to have, but by no means a game changing dupe."
-	},
-	"heavy": {
-		"rating": "3",
-		"description": " Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself."
-	},
-	"specials": {
-		"1": {
-			"rating": "5",
-			"damagetypes": [
-				"energy"
-			],
-			"ranges": [
-				"long"
-			],
-			"description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
-			"abilities": [
-				"stun"
-			],
-			"note": "Also applies Direct Damage",
-			"name": "Particle Beam"
-		},
-		"2": {
-			"description": "Although Black Bolts L2, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
-			"rating": "4",
-			"abilities": [
-				"stun"
-			],
-			"damagetypes": [
-				"physical"
-			],
-			"ranges": [
-				"medium"
-			],
-			"name": "Corkscrew"
-		},
-		"3": {
-			"rating": "3",
-			"description": "Hypersonic Whisper has an extremely high chance to stun so if you ever felt the stun wasn’t long enough on his other specials, then you will want to use this. However, this special only has stun with regular L3 damage so you are much better off focusing on your L1 and L2. It is by no means a bad special, but rather his first two will benefit you more in fights.",
-			"abilities": [
-				"stun"
-			],
-			"damagetypes": [
-				"energy"
-			],
-			"name": "Hypersonic Whisper"
-		}
-	},
-	"author": {
-		"profile": "Sifakaster",
+    "grades": {
+        "normal": "A",
+        "awakened": "A"
+    },
+    "description": "Black Bolt is an often overlooked champion, but his fast fluid attacks, along with powerful specials and having stun on all his specials make him a formidable champion among the cosmic class. ",
+    "gameplay": {
+        "style": "OFFENSIVE",
+        "description": "You will want to often spam your L1 (Particle Beam) as the true damage and stun it can deal is the highlight of Black Bolt’s power. With consistent hits, you can exploit the power of his Particle Beam by locking them down and dealing huge amounts of damage. Be mindful of their energy bars, however, as it is easy to forget while comboing that your attacks will fill up their bar quite fast and the enemy may land an L3 against you ",
+        "note": "This is not to say the L2 and L3 shouldn't be used, but especially for champions with armor or physical resistances the L1 is reccomended.",
+        "abilities": [
+            "stun",
+            "fury",
+            "precision"
+        ]
+    },
+    "signature": {
+        "rating": "3",
+        "name": "Provocation",
+        "description": "Being struck by critical hits will give Black Bolt either Attack or Crit Damage (random which is given)  that increases the stat by a certain percentage (12.9% at level 8) for the rest of the fight. ",
+        "note": " This ability is designed more of a carry for longer fights where you will be getting hit a lot and hence gaining power as you do so, but most fights don’t last this long and if you are skilled enough, you won’t be getting hit much and it will only trigger if that hit is a critical. It is nice to have, but by no means a game changing dupe.",
+        "abilities": [
+            "fury",
+            "precision"
+        ]
+    },
+    "heavy": {
+        "rating": "3",
+        "description": " Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself."
+    },
+    "specials": {
+        "1": {
+            "rating": "5",
+            "damagetypes": [
+                "energy"
+            ],
+            "ranges": [
+                "long"
+            ],
+            "description": "The true ability of Black bolt, this L1 is a very powerful ability as it deals True Damage, which ignores all armor and resistances as well as having an extremely high chance to stun. The particle beam is also extremely quick so advanced AIs are less likely to block this attack after a combo, making it significantly more useful than you might expect. It can be predictable, but it has an immense range and is very powerful.",
+            "abilities": [
+                "stun"
+            ],
+            "note": "Also applies Direct Damage",
+            "name": "Particle Beam"
+        },
+        "2": {
+            "description": "Although Black Bolts L2, can do more damage and has a higher chance to stun than Particle Beam, it is generally not as useful due to how easy the ability is to block and the recoil that comes with it (fixed at 5% of your maximum health every time you use this ability). Use Corkscrew mainly with enemies that have lower armor (as it does not deal true damage) and be careful not to let the opponent block it, as you will take more damage than they will. ",
+            "rating": "4",
+            "abilities": [
+                "stun"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ],
+            "name": "Corkscrew"
+        },
+        "3": {
+            "rating": "3",
+            "description": "Hypersonic Whisper has an extremely high chance to stun so if you ever felt the stun wasn’t long enough on his other specials, then you will want to use this. However, this special only has stun with regular L3 damage so you are much better off focusing on your L1 and L2. It is by no means a bad special, but rather his first two will benefit you more in fights.",
+            "abilities": [
+                "stun"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "name": "Hypersonic Whisper"
+        }
+    },
+    "author": {
+        "profile": "Sifakaster",
         "type": "reddit",
-		"name": "Verreaux"
-	},
-	"attack": {
-		"heavy": "Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself.",
-		"rating": "3"
-	}
+        "name": "Verreaux"
+    },
+    "attack": {
+        "heavy": "Quite regular, easy to charge up and has a decent range, but usually not recommended as champions like to exploit the second you need to charge it up, and gives no other benefits to you other than a bit of extra damage while a champion is stunned or when a good opportunity presents itself.",
+        "rating": "3"
+    }
 }

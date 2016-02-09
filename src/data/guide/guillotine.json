@@ -18,7 +18,10 @@
     "signature": {
         "description": "The Souls of her ancestor’s empower Guillotine further, granting a 10% chance to steal (16.8% - 50%) Health for every 4 Souls she possesses.\nThis effect has a chance to activate with each strike.",
         "name": "Ancestor's Strength",
-        "note": " The amount of health stolen is tied to how much damage is dealt by the strike."
+        "note": " The amount of health stolen is tied to how much damage is dealt by the strike.",
+        "abilities": [
+            "healthsteal"
+        ]
     },
     "gameplay": {
         "description": "For every 6% of maximum health that Guillotine removes from her opponent during combat, she feeds her ancestral blade and gains 1 Soul. Souls expire every 10 seconds and grant Guillotine 13% Critical Damage per Soul.",

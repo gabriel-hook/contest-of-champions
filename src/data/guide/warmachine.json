@@ -44,7 +44,11 @@
     "signature": {
         "name": "Empty the Clip",
         "description": "War Machine readies all remaining ordnance if Health drops below 20%, granting up to 90% increased Armor and 161.6% increased Attack for the next 12 hits.",
-        "note": "War Machine gains 12 instances of Armor Up and Fury. Each instance is 1/12 of the total bonus. Each time War Machine is struck by an opponent, he loses one instance of Armor Up and each time War Machine hits an opponent he loses one instance of Fury."
+        "note": "War Machine gains 12 instances of Armor Up and Fury. Each instance is 1/12 of the total bonus. Each time War Machine is struck by an opponent, he loses one instance of Armor Up and each time War Machine hits an opponent he loses one instance of Fury.",
+        "abilities": [
+            "fury",
+            "armorup"
+        ]
     },
     "author": {
         "name": "Kabam",

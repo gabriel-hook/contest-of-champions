@@ -10,6 +10,10 @@
             ],
             "damagetypes": [
                 "energy"
+            ],
+            "ranges": [
+                "melee",
+                "long"
             ]
         },
         "2": {
@@ -21,6 +25,9 @@
             ],
             "abilities": [
                 "shock"
+            ],
+            "ranges": [
+                "medium"
             ]
         },
         "3": {
@@ -29,17 +36,24 @@
             "note": "Shocks ignore Physical Resistance but not Armor.",
             "damagetypes": [
                 "physical",
-                "shock"
+                "energy"
             ],
             "abilities": [
                 "shock"
+            ],
+            "ranges": [
+                "melee"
             ]
         }
     },
     "signature": {
         "description": "With Freyja's guidance and Mjölnir's power, Thor lets loose \"That Which Smashes\", dealing guaranteed Critical Hits and dealing (17% - 170%) Critical Damage against stunned opponents.",
         "name": "All-Mother’s Blessing",
-        "note": "The effect counts as 100% Critical Hit Rate and can still be altered by effects like Fatigue and Ant-Man’s Glancing Hit. This effect will work for any Stun effect, not just Stuns gained from Lightning Arc."
+        "note": "The effect counts as 100% Critical Hit Rate and can still be altered by effects like Fatigue and Ant-Man’s Glancing Hit. This effect will work for any Stun effect, not just Stuns gained from Lightning Arc.",
+        "abilities": [
+            "precision",
+            "critdamage"
+        ]
     },
     "attack": {
         "description": "Striking an opponent that has been Shocked has a 19% chance to Stun them for 2.1 seconds.",
@@ -52,7 +66,12 @@
     "gameplay": {
         "description": "Jane’s extremely high damage output while the opponent is Stunned or Shocked allows aggressive players to take down strong opponent’s quickly as long as the pace is kept up.",
         "note": "Shock deals a fair amount of damage, and can get around Bleed and Poison immunity, allowing Jane to deal chip damage to any opposing Champion.",
-        "style": "Offensive"
+        "style": "Offensive",
+        "abilities": [
+            "shock",
+            "stun",
+            "stagger"
+        ]
     },
     "author": {
         "name": "Kabam",

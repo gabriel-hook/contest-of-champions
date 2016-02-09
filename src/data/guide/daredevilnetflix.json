@@ -46,12 +46,20 @@
     },
     "gameplay": {
         "description": "The fantastic suit crafted by Mr. Potter can turn aside knives and gunfire, granting Daredevil 5% Physical Resistance against all attacks. 33% chance that a Block reduces all damage. Daredevil’s enhanced senses grant him a 15% chance to dodge projectile attacks\n",
-        "note": "10% increased base Critical Hit Rate"
+        "note": "10% increased base Critical Hit Rate",
+        "abilities": [
+            "precision",
+            "physicalresist",
+            "evade"
+        ]
     },
     "signature": {
         "name": "World on Fire",
         "description": "The son of Battlin’ Jack Murdock only becomes more determined as he takes punishment, granting him (15% - 40%) increased Critical Hit Rate for 6 seconds each time the opponent places a detrimental effect on him.",
-        "note": "The Critical Hit Rate buff does not stack with itself."
+        "note": "The Critical Hit Rate buff does not stack with itself.",
+        "abilities": [
+            "precision"
+        ]
     },
     "author": {
         "name": "Kabam",

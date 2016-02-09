@@ -157,6 +157,7 @@ const GuideEditPage = {
                 rating={ signature && guide.signature.rating || true }
                 name={ signature && guide.signature.name || true }
                 description={ signature && guide.signature.description || true }
+                abilities={ signature && guide.signature.abilities || true }
                 note={ signature && guide.signature.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
             />

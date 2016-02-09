@@ -7,14 +7,15 @@
     "gameplay": {
         "rating": 5,
         "style": "Offensive + Defensive",
-        "description": "Wait for a bleed and drop your L1 for critical + cauterize damage!\n\n",
+        "description": "Wait for a bleed and drop your L1 for critical + cauterize damage!  \nRegeneration happens automatically at 25% and 50% health.",
         "abilities": [
             "regeneration",
             "armorup",
             "poisonimmunity",
-            "bleedimmunity"
+            "bleedimmunity",
+            "evade"
         ],
-        "note": "Regeneration happens automatically at 25% and 50% health."
+        "note": "Ultron gains Evade at level 4."
     },
     "heavy": {
         "rating": 5,
@@ -72,7 +73,10 @@
     "signature": {
         "rating": 4,
         "name": "Absorption",
-        "description": "40.8% of energy attack damage is converted into power and health. Also adds armor up!"
+        "description": "40.8% of energy attack damage is converted into power and health. Also adds armor up!",
+        "abilities": [
+            "energyabsorb"
+        ]
     },
     "abilities": [
         "Bleed Immunity",

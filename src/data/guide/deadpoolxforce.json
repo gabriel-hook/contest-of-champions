@@ -3,7 +3,10 @@
     "signature": {
         "description": "Permanently bleeding the opponent was granted after poking enemies right in the duodenum, guaranteed to cause Bleed for 50% Attack over 4 seconds.",
         "note": "The Bleed is quite weak, but since it is guaranteed, it essentially remains on the opponent throughout the entire fight. ",
-        "name": "Duodenum Poke"
+        "name": "Duodenum Poke",
+        "abilities": [
+            "bleed"
+        ]
     },
     "specials": {
         "1": {

@@ -10,23 +10,26 @@
         "abilities": [
             "armorup",
             "fury",
-            "regeneration",
-            "weakness",
-            "armorbreak",
-            "nullify"
+            "healthsteal"
         ],
         "rating": "5"
     },
     "attack": {
         "rating": "4",
         "description": "Dr. Strange's base attack is nothing to write home about.\n\n\n However, 1/3 of the time he has a strong Fury, during which time you can do a great deal of damage.",
-        "heavy": "Use sparingly, as this is a double attack so there are 2 spots where strong opponents can attack you and you can do nothing about it.\n\n\n Also a little slow to initiate."
+        "heavy": "Use sparingly, as this is a double attack so there are 2 spots where strong opponents can attack you and you can do nothing about it.\n\n\n Also a little slow to initiate.",
+        "damagetypes": [
+            "energy"
+        ]
     },
     "signature": {
         "rating": "4",
         "name": "Counterspell",
         "description": "Counterspell gives Dr. Strange a chance to nullify enemy status effects like Armor Up, Fury, etc.\n\n\n Can be quite useful against some enemies, but does nothing against opponents that don't use status effects like Captain America, Storm, etc.",
-        "note": "Counterspell only nullifies one status effect at a time, so if effects are stacked (like Fury for Drax or Armor Up for Colossus), only one of those instances will be nullified at once."
+        "note": "Counterspell only nullifies one status effect at a time, so if effects are stacked (like Fury for Drax or Armor Up for Colossus), only one of those instances will be nullified at once.",
+        "abilities": [
+            "nullify"
+        ]
     },
     "specials": {
         "1": {
@@ -34,6 +37,7 @@
             "name": "Magic Missle",
             "description": "A 2 part attack, the first melee, the second a long attack.\n\n\n What makes this attack extraordinary is the fact that there is a chance to recover 100% of the power expended, which would allow you to spam this attack constantly.",
             "ranges": [
+                "melee",
                 "long"
             ],
             "damagetypes": [
@@ -69,7 +73,7 @@
             ]
         }
     },
-   "author": {
+    "author": {
         "name": "Beren9955"
     }
 }
