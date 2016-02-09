@@ -3,8 +3,9 @@ function fromStorage(id, initial) {
     if(localStorage) {
         const string = localStorage.getItem(id);
         object = JSON.parse(string);
-        if(object === 'undefined' || object === 'null')
+        if(object === 'undefined' || object === 'null') {
             return initial;
+        }
     }
     return object || initial;
 }

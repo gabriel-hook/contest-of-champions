@@ -1,6 +1,6 @@
 const app = {
     pages: {},
-    cards: {},
+    slides: {},
     history: {},
 };
 

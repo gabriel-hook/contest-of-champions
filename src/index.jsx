@@ -10,7 +10,7 @@ import router from './service/router';
 import roster from './service/roster';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
-import Cards from './view/Cards.jsx';
+import Slides from './view/Slides.jsx';
 import GuidePage from './view/App/GuidePage.jsx';
 import GuideMenu from './view/App/GuideMenu.jsx';
 import GuideEditPage from './view/App/GuideEditPage.jsx';
@@ -73,14 +73,14 @@ router.on('/guide/?', () => router.setRoute(app.history.guide || `/guide/${ CHAM
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
-    app.cards[ 'guide-show' ] = (
+    app.slides[ 'guide-show' ] = (
         <GuidePage uid={ uid } />
     );
     app.pages[ 'guide' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'guide-show' ],
-                app.cards[ 'guide-edit' ],
+        <Slides
+            slides={[
+                app.slides[ 'guide-show' ],
+                app.slides[ 'guide-edit' ],
             ]}
             current={ 0 }
         />
@@ -100,14 +100,14 @@ router.on('/guide/:uid/?', (uid) => {
 router.on('/guide/:uid/edit/?', (uid) => {
     app.edit = true;
     app.tab = 'guide';
-    app.cards[ 'guide-edit' ] = (
+    app.slides[ 'guide-edit' ] = (
         <GuideEditPage uid={ uid } />
     );
     app.pages[ 'guide' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'guide-show' ],
-                app.cards[ 'guide-edit' ],
+        <Slides
+            slides={[
+                app.slides[ 'guide-show' ],
+                app.slides[ 'guide-edit' ],
             ]}
             current={ 1 }
         />
@@ -126,15 +126,15 @@ router.on('/guide/:uid/edit/?', (uid) => {
 
 router.on('/roster/?', () => {
     app.tab = 'roster';
-    app.cards[ 'roster-show' ] = (
+    app.slides[ 'roster-show' ] = (
         <RosterPage />
     );
     app.pages[ 'roster' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'roster-add' ],
-                app.cards[ 'roster-show' ],
-                app.cards[ 'roster-edit' ],
+        <Slides
+            slides={[
+                app.slides[ 'roster-add' ],
+                app.slides[ 'roster-show' ],
+                app.slides[ 'roster-edit' ],
             ]}
             current={ 1 }
         />
@@ -160,15 +160,15 @@ router.on('/roster/?', () => {
 
 router.on('/roster/add/:stars/?', (stars) => {
     app.tab = 'roster';
-    app.cards[ 'roster-add' ] = (
+    app.slides[ 'roster-add' ] = (
         <RosterAddPage stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'roster-add' ],
-                app.cards[ 'roster-show' ],
-                app.cards[ 'roster-edit' ],
+        <Slides
+            slides={[
+                app.slides[ 'roster-add' ],
+                app.slides[ 'roster-show' ],
+                app.slides[ 'roster-edit' ],
             ]}
             current={ 0 }
         />
@@ -188,15 +188,15 @@ router.on('/roster/add/:stars/?', (stars) => {
 
 router.on('/roster/:uid/:stars/?', (uid, stars) => {
     app.tab = 'roster';
-    app.cards[ 'roster-edit' ] = (
+    app.slides[ 'roster-edit' ] = (
         <RosterEditPage uid={ uid } stars={ parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'roster-add' ],
-                app.cards[ 'roster-show' ],
-                app.cards[ 'roster-edit' ],
+        <Slides
+            slides={[
+                app.slides[ 'roster-add' ],
+                app.slides[ 'roster-show' ],
+                app.slides[ 'roster-edit' ],
             ]}
             current={ 2 }
         />
@@ -215,14 +215,14 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
 
 router.on('/teams/settings/?', () => {
     app.tab = 'teams';
-    app.cards[ 'teams-settings' ] = (
+    app.slides[ 'teams-settings' ] = (
         <TeamsSettingsPage />
     );
     app.pages[ 'teams' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'teams-main' ],
-                app.cards[ 'teams-settings' ],
+        <Slides
+            slides={[
+                app.slides[ 'teams-main' ],
+                app.slides[ 'teams-settings' ],
             ]}
             current={ 1 }
         />
@@ -241,14 +241,14 @@ router.on('/teams/settings/?', () => {
 
 router.on('/teams/?', () => {
     app.tab = 'teams';
-    app.cards[ 'teams-main' ] = (
+    app.slides[ 'teams-main' ] = (
         <TeamsPage />
     );
     app.pages[ 'teams' ] = (
-        <Cards
-            cards={[
-                app.cards[ 'teams-main' ],
-                app.cards[ 'teams-settings' ],
+        <Slides
+            slides={[
+                app.slides[ 'teams-main' ],
+                app.slides[ 'teams-settings' ],
             ]}
             current={ 0 }
         />

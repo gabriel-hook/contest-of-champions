@@ -20,7 +20,7 @@ import RosterPage from '../src/view/App/RosterPage.jsx';
 import SynergyPage from '../src/view/App/SynergyPage.jsx';
 import TeamsPage from '../src/view/App/TeamsPage.jsx';
 import TeamsSettingsPage from '../src/view/App/TeamsSettingsPage.jsx';
-import Cards from '../src/view/Cards.jsx';
+import Slides from '../src/view/Slides.jsx';
 import Menu from '../src/view/Menu.jsx';
 import MenuHeader from '../src/view/Menu/MenuHeader.jsx';
 import MenuOption from '../src/view/Menu/MenuOption.jsx';
@@ -92,11 +92,11 @@ describe('view', () => {
         describe('TeamsSettingsPage', () => it('should render without error', () => expect(render(<TeamsSettingsPage />)).to.exist));
     });
 
-    describe('Cards', () => {
-        const cards = [];
+    describe('Slides', () => {
+        const slides = [];
         const current = 0;
 
-        it('should render without error', () => expect(render(<Cards { ...{ cards, current } } />)).to.exist);
+        it('should render without error', () => expect(render(<Slides { ...{ slides, current } } />)).to.exist);
     });
 
     describe('Menu', () => {
