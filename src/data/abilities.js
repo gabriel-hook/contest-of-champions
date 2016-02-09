@@ -46,7 +46,7 @@ const abilityImageMap = {
     'armorup': 'armor',
     'plusdamage': 'attack',
     'pluscritrate': 'critical_rate',
-    'pluscritdamage': 'critical',
+    'pluscritdamage': 'critical_damage',
     'poisonimmunity': null,
     'bleedimmunity': null,
 };

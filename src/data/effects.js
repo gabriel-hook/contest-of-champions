@@ -32,7 +32,7 @@ const imageMap = {
     'mutantagenda': 'mutant_agenda',
     'inseparable': 'inseparable',
     'critrate': 'critical_rate',
-    'critdamage': 'critical',
+    'critdamage': 'critical_damage',
     'powergain': 'mana',
     'powersteal': 'mana_steal',
     'perfectblock': 'block',
