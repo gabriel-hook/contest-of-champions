@@ -18,11 +18,12 @@ const TeamsPage = {
         if(result) {
             const { counts, teams, extras } = result;
             message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
-            teamDivs = teams.map(({ champions, synergies }) => (
+            teamDivs = teams.map(({ champions, synergies }, index) => (
                 <ChampionTeam
                     key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
                     champions={ champions }
                     synergies={ synergies }
+                    edit={ undefined && `/teams/${ index }/edit` }
                 />
             ));
             if(extras.length) {

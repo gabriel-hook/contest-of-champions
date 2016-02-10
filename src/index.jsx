@@ -25,6 +25,8 @@ import RosterEditPage from './view/App/RosterEditPage.jsx';
 import RosterEditMenu from './view/App/RosterEditMenu.jsx';
 import TeamsPage from './view/App/TeamsPage.jsx';
 import TeamsMenu from './view/App/TeamsMenu.jsx';
+import TeamsEditPage from './view/App/TeamsEditPage.jsx';
+//import TeamsEditMenu from './view/App/TeamsEditMenu.jsx';
 import TeamsSettingsPage from './view/App/TeamsSettingsPage.jsx';
 import TeamsSettingsMenu from './view/App/TeamsSettingsMenu.jsx';
 import SynergyPage from './view/App/SynergyPage.jsx';
@@ -221,20 +223,48 @@ router.on('/teams/settings/?', () => {
     app.pages[ 'teams' ] = (
         <Slides
             slides={[
-                app.slides[ 'teams-main' ],
                 app.slides[ 'teams-settings' ],
+                app.slides[ 'teams-main' ],
+                app.slides[ 'teams-edit' ],
             ]}
-            current={ 1 }
+            current={ 0 }
         />
     );
     app.menu = (
         <TeamsSettingsMenu />
     );
     app.button = {
-        icon: 'reply',
+        icon: 'share',
         href: '/teams',
     };
     app.route = `/teams/settings`;
+    analytics.pageView();
+    requestRedraw();
+});
+
+router.on('/teams/:index/edit/?', (index) => {
+    app.tab = 'teams';
+    app.slides[ 'teams-edit' ] = (
+        <TeamsEditPage index={ index } />
+    );
+    app.pages[ 'teams' ] = (
+        <Slides
+            slides={[
+                app.slides[ 'teams-settings' ],
+                app.slides[ 'teams-main' ],
+                app.slides[ 'teams-edit' ],
+            ]}
+            current={ 2 }
+        />
+    );
+    app.menu = (
+        <TeamsMenu />
+    );
+    app.button = {
+        icon: 'reply',
+        href: '/teams',
+    };
+    app.route = `/teams/${ index }/edit`;
     analytics.pageView();
     requestRedraw();
 });
@@ -247,10 +277,11 @@ router.on('/teams/?', () => {
     app.pages[ 'teams' ] = (
         <Slides
             slides={[
-                app.slides[ 'teams-main' ],
                 app.slides[ 'teams-settings' ],
+                app.slides[ 'teams-main' ],
+                app.slides[ 'teams-edit' ],
             ]}
-            current={ 0 }
+            current={ 1 }
         />
     );
     app.menu = (
