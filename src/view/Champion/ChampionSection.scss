@@ -74,6 +74,7 @@
 
     .champion-section-item {
         display: inline-block;
+        position: relative;
         @include font-title(1em);
         padding: 8px;
         margin: 8px 8px 0 0;

@@ -9,20 +9,18 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const TeamsEditPage = {
-    view(ctrl, { index }) {
+    view() {
         const result = teams.result;
         const elements = [];
         if(result) {
             const { teams, extras } = result;
-            const team = teams[ index ];
-
-            elements.push(
+            teams && teams.forEach(({ champions, synergies }) => elements.push(
                 <ChampionTeam
-                    key={ `teams-${ team.champions.map((champion) => champion.id).join('-') }` }
-                    champions={ team.champions }
-                    synergies={ team.synergies }
+                    key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
+                    champions={ champions }
+                    synergies={ synergies }
                 />
-            );
+            ));
 
             extras && extras.forEach((champion) => elements.push(
                 <ChampionHeader

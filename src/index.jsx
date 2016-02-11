@@ -242,10 +242,10 @@ router.on('/teams/settings/?', () => {
     requestRedraw();
 });
 
-router.on('/teams/:index/edit/?', (index) => {
+router.on('/teams/edit/?', () => {
     app.tab = 'teams';
     app.slides[ 'teams-edit' ] = (
-        <TeamsEditPage index={ index } />
+        <TeamsEditPage />
     );
     app.pages[ 'teams' ] = (
         <Slides
@@ -258,13 +258,13 @@ router.on('/teams/:index/edit/?', (index) => {
         />
     );
     app.menu = (
-        <TeamsMenu />
+        <TeamsMenu edit />
     );
     app.button = {
         icon: 'reply',
         href: '/teams',
     };
-    app.route = `/teams/${ index }/edit`;
+    app.route = `/teams/edit`;
     analytics.pageView();
     requestRedraw();
 });

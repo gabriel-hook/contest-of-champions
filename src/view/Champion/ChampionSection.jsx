@@ -4,7 +4,6 @@ import { uids as ABILITIES, abilityImage } from '../../data/abilities';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
-import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -49,7 +48,7 @@ const ChampionSection = {
                     }
                 </select>
             );
-            const editableSelectAdd = (list, key, array, stringify) => [
+            const editableSelectAdd = (list, key, array, stringify, image) => [
                 (
                 <select
                     key={ Date.now() }
@@ -79,8 +78,7 @@ const ChampionSection = {
                             class="champion-section-item"
                             onclick={ () => onEdit(key, array.filter((v, i) => i !== index)) }
                         >
-                            <Icon icon="close"/>
-                            { lang.get(stringify(value)) }
+                            { image && image(value) }{ lang.get(stringify(value)) }
                         </span>
                         ))
                     }
@@ -174,7 +172,13 @@ const ChampionSection = {
                             ABILITIES,
                             'abilities',
                             abilities === true? []: abilities,
-                            (ability) => `ability-${ ability }`
+                            (ability) => `ability-${ ability }`,
+                            (ability) => abilityImage(ability) && (
+                                <ImageIcon
+                                    src={ abilityImage(ability, 'black') }
+                                    alt={ abilityImage(ability, 'white') }
+                                />
+                            )
                         ) }
                     </div>
                 );

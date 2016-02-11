@@ -9,8 +9,11 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+//once it's ready
+const EDITABLE = false;
+
 const TeamsMenu = {
-    view() {
+    view(ctrl, { edit }) {
         const options = [];
         options.push(
             <MenuHeader title="teams" />
@@ -28,6 +31,18 @@ const TeamsMenu = {
                 progress={ teams.progress }
             />
         );
+        if(EDITABLE) {
+            options.push(
+                <MenuOption
+                    title="customize"
+                    icon={(
+                        <Icon icon="magic" />
+                    )}
+                    selected={ edit }
+                    href={ edit? '/teams': '/teams/edit' }
+                />
+            );
+        }
         options.push(
             <MenuSection
                 title="champions"
