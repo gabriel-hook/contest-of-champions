@@ -1,3 +1,5 @@
+@import "../../util/fonts";
+
 .champion-team {
     clear: both;
     text-align: center;
@@ -19,7 +21,7 @@
     .team-synergies {
         position: relative;
         clear: both;
-        padding: 20px 16px 16px;
+        padding: 20px 16px 4px;
         margin-bottom: 10px;
         background: #eee;
         color: #000;
@@ -98,6 +100,16 @@
             &.team-synergy--selected {
                 opacity: 1;
             }
+        }
+    }
+
+    .team-pi {
+        @include font-title(1em);
+        color: #888;
+        text-align: right;
+
+        .team-pi-number {
+            color: #444;
         }
     }
 
