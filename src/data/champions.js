@@ -116,6 +116,7 @@ const champions = [
     { uid: 'deadpool', typeId: 'mutant', stars: 3 },
     { uid: 'deadpool', typeId: 'mutant', stars: 4 },
 
+    { uid: 'deadpoolxforce', typeId: 'mutant', stars: 2 },
     { uid: 'deadpoolxforce', typeId: 'mutant', stars: 3 },
     { uid: 'deadpoolxforce', typeId: 'mutant', stars: 4 },
 
@@ -301,6 +302,8 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
+const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
+
 export default champions;
 export { idMap, uids, uidsByType };
-export { UNRELEASED_CHAMPIONS };
+export { UNRELEASED_CHAMPIONS, PLACEHOLDER };

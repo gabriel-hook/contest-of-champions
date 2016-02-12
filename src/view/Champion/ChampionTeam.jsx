@@ -3,9 +3,7 @@ import deepEqual from 'deep-equal';
 import classNames from 'classnames';
 import effects, { effectImage } from '../../data/effects';
 import lang from '../../service/lang';
-import router from '../../service/router';
 import ChampionPortrait from './ChampionPortrait.jsx';
-import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -107,11 +105,11 @@ const ChampionTeam = {
         this.champions = {};
         this.effects = {};
     },
-    view(ctrl, { champions, synergies, edit }) {
+    view(ctrl, { champions, synergies }) {
         const size = champions.length;
         return(
             <div
-                m="Team"
+                m="ChampionTeam"
                 class={ classNames('champion-team', ` champion-team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
             >
                 <div>
@@ -165,19 +163,6 @@ const ChampionTeam = {
                             { champions.reduce((amount, champion) => amount + (champion.attr.pi || champion.pi), 0) }
                         </span>
                     </div>
-                { edit && (
-                    <a
-                        role="button"
-                        class="champion-team--edit-button"
-                        href={ `#${ edit }` }
-                        onclick={ (event) => {
-                            event.preventDefault();
-                            router.setRoute(edit);
-                            requestRedraw();
-                        }}>
-                        <Icon icon="pencil" />
-                    </a>
-                )}
                 </div>
             </div>
         );

@@ -32,6 +32,24 @@
         color: #90f;
     }
 
+    &.champion--null {
+
+        .portrait-image {
+            opacity: .333;
+        }
+    }
+
+    &.champion--editing {
+        .inner {
+            box-sizing: border-box;
+            border: dashed 1px #000;
+        }
+
+        .portrait-image {
+            opacity: .666;
+        }
+    }
+
     .container {
         position: absolute;
         width: 100%;

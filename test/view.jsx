@@ -19,6 +19,7 @@ import RosterEditPage from '../src/view/App/RosterEditPage.jsx';
 import RosterPage from '../src/view/App/RosterPage.jsx';
 import SynergyPage from '../src/view/App/SynergyPage.jsx';
 import TeamsPage from '../src/view/App/TeamsPage.jsx';
+import TeamsEditPage from '../src/view/App/TeamsEditPage.jsx';
 import TeamsSettingsPage from '../src/view/App/TeamsSettingsPage.jsx';
 import Slides from '../src/view/Slides.jsx';
 import Menu from '../src/view/Menu.jsx';
@@ -74,6 +75,7 @@ describe('view', () => {
         describe('RosterMenu', () => it('should render without error', () => expect(render(<RosterMenu />)).to.exist));
         describe('SynergyMenu', () => it('should render without error', () => expect(render(<SynergyMenu />)).to.exist));
         describe('TeamsMenu', () => it('should render without error', () => expect(render(<TeamsMenu />)).to.exist));
+        describe('TeamsEditPage', () => it('should render without error', () => expect(render(<TeamsEditPage />)).to.exist));
         describe('TeamsSettingsMenu', () => it('should render without error', () => expect(render(<TeamsSettingsMenu />)).to.exist));
         describe('GuideEditPage', () => it('should render without error', () => expect(render(<GuideEditPage />)).to.exist));
         describe('GuidePage', () => it('should render without error', () => expect(render(<GuidePage />)).to.exist));

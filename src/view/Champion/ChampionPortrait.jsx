@@ -19,7 +19,7 @@ function addSVG(element, isInitialized) {
 }
 
 const ChampionPortrait = {
-    view(ctrl, { champion, events, onclick, selected, neighbor, showBadges = true }) {
+    view(ctrl, { champion, events, onclick, selected, neighbor, editing, showBadges = true }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
@@ -35,22 +35,24 @@ const ChampionPortrait = {
         const starImages = [];
         for(let i=0; i<stars; i++)
             starImages.push(starIcon);
-        const portraitImage = getImage(`images/champions/portrait_${ uid }.png`);
+        const portraitImage = (uid !== null) && getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
         const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         const title = [];
-        if(pi || champion.pi) {
+        if(uid !== null) {
+            if(pi || champion.pi) {
+                title.push(
+                    <div
+                        class={ classNames('title-field', 'title-field-pi', {
+                            'title-field-pi-custom': pi && pi > 0,
+                        }) }
+                    >{ pi || champion.pi }</div>
+                );
+            }
             title.push(
-                <div
-                    class={ classNames('title-field', 'title-field-pi', {
-                        'title-field-pi-custom': pi && pi > 0,
-                    }) }
-                >{ pi || champion.pi }</div>
+                <div class="title-field title-field-name">{ name }</div>
             );
         }
-        title.push(
-            <div class="title-field title-field-name">{ name }</div>
-        );
         const isMaxed = STAR_RANK_LEVEL[ stars ] &&
             STAR_RANK_LEVEL[ stars ][ rank ] &&
             STAR_RANK_LEVEL[ stars ].ranks === rank &&
@@ -95,16 +97,19 @@ const ChampionPortrait = {
         return (
             <div
                 m="ChampionPortrait"
-                class={ classNames('champion-portrait', `champion--${ typeId }`,
-                    { 'champion--selected': selected, 'champion--neighbor': neighbor }
-                ) }
+                class={ classNames('champion-portrait', `champion--${ typeId }`, {
+                    'champion--selected': selected,
+                    'champion--neighbor': neighbor,
+                    'champion--editing': editing,
+                    'champion--null': uid === null,
+                }) }
             >
                 <div class={ classNames('container', 'no-select') }>
                     <div
                         { ...events }
                         class={ classNames('inner', { 'clickable': onclick }) }
                         onclick={ onclick }
-                        title={ lang.get(`champion-${ uid }-name`) }
+                        title={ uid && lang.get(`champion-${ uid }-name`) || '' }
                     >
                         <div class="portrait">
                             <div

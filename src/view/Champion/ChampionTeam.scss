@@ -105,36 +105,19 @@
 
     .team-pi {
         @include font-title(1em);
-        color: #888;
+        color: #bbb;
         text-align: right;
+        text-shadow: 0 1px 0 #fff;
 
         .team-pi-number {
-            color: #444;
+            @include font-text(1em);
+            font-weight: bold;
+            color: #000;
         }
-    }
-
-    .champion-team--edit-button {
-        display: block;
-        position: absolute;
-        right: -12px;
-        bottom: -12px;
-        width: 48px;
-        height: 48px;
-        background: #eee;
-        color: #000;
-        line-height: 48px;
-        text-align: center;
-        font-size: 18px;
-        border-radius: 24px;
-        box-shadow: 2px 2px 0 1px rgba(0, 0, 0, .25);
     }
 
     @media print {
         box-shadow: none;
         page-break-inside: avoid;
-
-        .champion-team--edit-button {
-            display: none;
-        }
     }
 }

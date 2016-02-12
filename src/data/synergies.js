@@ -233,6 +233,7 @@ const synergies = [
     { fromId: 'deadpool', fromStars: 4, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
     { fromId: 'deadpool', fromStars: 4, toId: 'punisher', effectId: 'perfectblock', effectAmount: 5 },
 
+    { fromId: 'deadpoolxforce', fromStars: 2, toId: 'moonknight', effectId: 'critdamage', effectAmount: 15 },
     { fromId: 'deadpoolxforce', fromStars: 3, toId: 'moonknight', effectId: 'critdamage', effectAmount: 20 },
     { fromId: 'deadpoolxforce', fromStars: 3, toId: 'deadpool', effectId: 'critdamage', effectAmount: 20 },
     { fromId: 'deadpoolxforce', fromStars: 4, toId: 'magnetomarvelnow', effectId: 'armor', effectAmount: 6 },
