@@ -1,6 +1,6 @@
 import lang from './lang';
 import Champion from '../data/model/Champion';
-import champions, { idMap as championMap } from '../data/champions';
+import champions, { idMap as championMap, UNRELEASED_CHAMPIONS } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion({
@@ -248,7 +248,7 @@ function available(stars) {
         const has = {};
         roster.forEach((champion) => has[ champion.id ] = true);
         available = cache[ key ] = champions
-            .filter((champion) => stars === champion.attr.stars && !has[ champion.id ])
+            .filter((champion) => stars === champion.attr.stars && !has[ champion.id ] && !UNRELEASED_CHAMPIONS[ champion.attr.uid ])
             .map((champion) => new Champion({
                 ...champion.attr,
                 rank: 0,
