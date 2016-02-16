@@ -37,7 +37,6 @@ const ChampionPortrait = {
             starImages.push(starIcon);
         const portraitImage = (uid !== null) && getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
-        const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
         const title = [];
         if(uid !== null) {
             if(pi || champion.pi) {
@@ -49,6 +48,7 @@ const ChampionPortrait = {
                     >{ pi || champion.pi }</div>
                 );
             }
+            const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
             title.push(
                 <div class="title-field title-field-name">{ name }</div>
             );

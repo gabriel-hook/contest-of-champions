@@ -21,7 +21,7 @@
     .team-synergies {
         position: relative;
         clear: both;
-        padding: 20px 16px 4px;
+        padding: 24px 16px;
         margin-bottom: 10px;
         background: #eee;
         color: #000;
@@ -104,6 +104,10 @@
     }
 
     .team-pi {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 0 16px 8px 0;
         @include font-title(1em);
         color: #bbb;
         text-align: right;

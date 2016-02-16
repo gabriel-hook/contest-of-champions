@@ -1,4 +1,5 @@
 import './ChampionTeam.scss';
+import './ChampionTeamSelector.scss';
 import classNames from 'classnames';
 import { PLACEHOLDER } from '../../data/champions';
 import effects, { effectImage } from '../../data/effects';
@@ -11,7 +12,9 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionTeamSelector = {
-    view(ctrl, { team, swap, onclick }) {
+    view(ctrl, { team, swap, onclick, onapply }) {
+        const sourceId = swap && swap.source && swap.source.id;
+        const targetId = swap && swap.target && swap.target.id;
         const { champions, synergies } = team;
         const size = champions.length;
         return(
@@ -20,25 +23,30 @@ const ChampionTeamSelector = {
                 class={ classNames('champion-team', 'champion-team-selector', ` champion-team--size-${ size }`) }
             >
                 <div>
-                    { champions.map((champion, index) => champion && (
+                    { champions.map((champion, index) => (champion)? (
                         <ChampionPortrait
                             key={ champion.id }
                             champion={ champion }
-                            editing={ swap && (swap.source === champion.id || swap.target === champion.id) }
+                            editing={ sourceId === champion.id || targetId === champion.id }
                             showBadges={ 'none' }
                             onclick={() => {
-                                onclick(champion.id);
+                                onclick({
+                                    id: champion.id,
+                                });
                                 requestRedraw();
                             }}
                         />
-                    ) || (
+                    ): (
                         <ChampionPortrait
                             key={ `create_${ index }` }
                             champion={ PLACEHOLDER }
-                            editing={ swap && (swap.source === `create_${ index }` || swap.target === `create_${ index }`) }
+                            editing={ swap && swap.source && swap.source.create && swap.source.index === index }
                             showBadges={ 'none' }
                             onclick={() => {
-                                onclick(`create_${ index }`);
+                                onclick({
+                                    create: true,
+                                    index,
+                                });
                                 requestRedraw();
                             }}
                         />
@@ -76,6 +84,11 @@ const ChampionTeamSelector = {
                         </span>
                     </div>
                 </div>
+                { onapply && (
+                    <div class={ classNames('team-apply', { 'disabled': !swap.target }) } onclick={ onapply }>
+                        { lang.get('apply') }
+                    </div>
+                ) || null }
             </div>
         );
     },

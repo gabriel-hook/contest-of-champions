@@ -145,6 +145,35 @@ function idToRosterChampion(id) {
     return roster.filter(({ attr }) => attr.uid === uid && attr.stars === stars)[ 0 ];
 }
 
+function synergiesFromChampions(team) {
+    const specials = {};
+    const champions = team.reduce((array, champion) => {
+        if(champion) {
+            return [
+                ...array,
+                champion,
+            ];
+        }
+        return array;
+    }, []);
+    return dataSynergies.filter((synergy) => {
+        const { fromId, fromStars, toId } = synergy.attr;
+        if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
+            return false;
+        return Boolean(champions.find(({ attr }) => toId === attr.uid));
+
+    }).filter(({ attr }) => {
+        if(SPECIAL_EFFECTS[ attr.effectId ]) {
+            const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
+            if(specials[ specialId ]) {
+                return false;
+            }
+            specials[ specialId ] = true;
+        }
+        return true;
+    });
+}
+
 let progressResetTimeout;
 
 let worker;
@@ -165,23 +194,7 @@ function buildTeams() {
                     teams: result.teams.map((team) => {
                         team.sort();
                         const champions = team.map(idToRosterChampion);
-                        const specials = {};
-                        const synergies = dataSynergies.filter((synergy) => {
-                            const { fromId, fromStars, toId } = synergy.attr;
-                            if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
-                                return false;
-                            return Boolean(champions.find(({ attr }) => toId === attr.uid));
-
-                        }).filter(({ attr }) => {
-                            if(SPECIAL_EFFECTS[ attr.effectId ]) {
-                                const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
-                                if(specials[ specialId ]) {
-                                    return false;
-                                }
-                                specials[ specialId ] = true;
-                            }
-                            return true;
-                        });
+                        const synergies = synergiesFromChampions(champions);
                         teamsCount++;
                         synergiesCount += synergies.length;
                         return {
@@ -196,6 +209,7 @@ function buildTeams() {
                     extras: result.extras.map(idToRosterChampion),
                 };
                 teams.building = false;
+                teams.last = Date.now();
                 progressResetTimeout = setTimeout(() => {
                     teams.progress = 0;
                     requestRedraw();
@@ -246,5 +260,5 @@ function buildTeams() {
     clearTimeout(progressResetTimeout);
 }
 
-export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, save, buildTeams };
+export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, save, buildTeams, synergiesFromChampions };
 export default teams;
