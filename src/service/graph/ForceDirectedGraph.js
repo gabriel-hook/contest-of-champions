@@ -786,8 +786,8 @@ export default function({
             else
                 ctx.globalAlpha = 1.0;
 
-            ctx.fillStyle = '#333';
-            ctx.fillRect((topLeft.x + 1) | 0, bottomRight.y | 0, (size - 2) | 0, 1);
+            ctx.fillStyle = '#ccc';
+            ctx.fillRect((topLeft.x + 2) | 0, bottomRight.y | 0, (size - 4) | 0, 3);
 
             ctx.restore();
         },
