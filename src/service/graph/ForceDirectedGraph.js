@@ -786,7 +786,7 @@ export default function({
             else
                 ctx.globalAlpha = 1.0;
 
-            ctx.fillStyle = '#ccc';
+            ctx.fillStyle = '#c0c0c0';
             ctx.fillRect((topLeft.x + 2) | 0, bottomRight.y | 0, (size - 4) | 0, 3);
 
             ctx.restore();
