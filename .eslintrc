@@ -1,6 +1,7 @@
 {
     "parser": "babel-eslint",
     "rules": {
+        "linebreak-style": 0,
         "indent": [
             2,
             4
@@ -54,10 +55,6 @@
         "jsx-quotes": [
             2,
             "prefer-double"
-        ],
-        "linebreak-style": [
-            2,
-            "unix"
         ],
         "semi": [
             2,
