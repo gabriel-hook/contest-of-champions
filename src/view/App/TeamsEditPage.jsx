@@ -141,6 +141,9 @@ const TeamsEditPage = {
                                 champion: champions[ index ],
                                 index,
                             };
+                            if(source && source.create && !source.champion) {
+                                swap.source = null;
+                            }
                         }
                         calculateSynergies(swap);
                         requestRedraw();
