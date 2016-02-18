@@ -10,18 +10,22 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 function applyTeams(updatedTeams) {
-    if(!teams.result) {
-        teams.result = {};
-    }
-    teams.result.count = {
-        teams: 0,
-        synergies: 0,
+    teams.result = {
+        teams: updatedTeams,
+        counts: {
+            teams: 0,
+            synergies: 0,
+        },
+        extras: [],
     };
-    teams.result.teams = updatedTeams;
-    teams.result.teams.forEach((team) => {
-        teams.result.count.teams++;
-        teams.result.count.synergies += team.synergies.length;
+    const inTeam = {};
+    updatedTeams.forEach((team) => {
+        teams.result.counts.teams++;
+        teams.result.counts.synergies += team.synergies.length;
+        team.champions.forEach((champion) => inTeam[ champion.id ] = true);
     });
+    roster.filter((champion) => !inTeam[ champion.id ] && teams.stars[ champion.attr.stars ])
+        .forEach((champion) => teams.result.extras.push(champion));
 }
 
 function calculateSynergies(swap) {
