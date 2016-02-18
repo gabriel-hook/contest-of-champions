@@ -29,6 +29,14 @@ function calculateSynergies(swap) {
             target.synergies = [];
         }
     }
+    else {
+        if(source) {
+            source.synergies = [];
+        }
+        if(target) {
+            target.synergies = [];
+        }
+    }
 }
 
 const TeamsEditPage = {

@@ -121,9 +121,7 @@ const ChampionPortrait = {
                                 <img src={ portraitImage && portraitImage.src || DATA_IMAGE_EMPTY } />
                             </div>
                         </div>
-                        { title && (
-                            <div class="title">{ title }</div>
-                        )}
+                        <div class="title">{ title }</div>
                         <div class={ classNames('stars', { 'stars--awakened': awakened }) }>
                             { starImages }
                         </div>
