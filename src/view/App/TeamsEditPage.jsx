@@ -75,27 +75,30 @@ const TeamsEditPage = {
         this.stars = {};
         this.last = -1;
         this.reset = () => {
-            if(this.last === teams.last &&
-                this.size === teams.size &&
-                deepEqual(this.stars, teams.stars)
-            ) {
-                return;
+            const starsEqual = deepEqual(this.stars, teams.stars);
+            if(this.last !== teams.last || this.size !== teams.size || !starsEqual) {
+                if(this.size !== teams.size || !starsEqual) {
+                    teams.result = null;
+                    this.teams = [];
+                }
+                else {
+                    this.teams = teams.result && teams.result.teams.map(({ champions, synergies }) => ({
+                        champions: [
+                            ...champions,
+                        ],
+                        synergies: [
+                            ...synergies,
+                        ],
+                    })) || [];
+                }
+                this.swap.source = null;
+                this.swap.target = null;
+                this.create.champions = [ null ];
+                this.create.synergies = [];
+                this.stars = { ...teams.stars };
+                this.size = teams.size;
+                this.last = teams.last;
             }
-            this.teams = teams.result && teams.result.teams.map(({ champions, synergies }) => ({
-                champions: [
-                    ...champions,
-                ],
-                synergies: [
-                    ...synergies,
-                ],
-            })) || [];
-            this.swap.source = null;
-            this.swap.target = null;
-            this.create.champions = [ null ];
-            this.create.synergies = [];
-            this.stars = teams.stars;
-            this.size = teams.size;
-            this.last = teams.last;
         };
         this.apply = () => {
             const { source, target } = this.swap;
