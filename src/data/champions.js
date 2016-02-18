@@ -5,7 +5,6 @@ const UNRELEASED_CHAMPIONS = {
     'maestro': true,
     'shehulk': true,
     'wolverineoldman': true,
-    'venompool': true,
     'drstrangemarvelnow': true,
 };
 
