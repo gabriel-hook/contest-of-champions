@@ -12,7 +12,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionTeamSelector = {
-    view(ctrl, { team, swap, onclick, onapply, onremove, create }) {
+    view(ctrl, { team, swap, onclick, onapply, onremove, onsplit, create }) {
         const { source, target } = swap;
         const sourceId = source && source.champion && source.champion.id;
         const targetId = target && target.champion && target.champion.id;
@@ -26,7 +26,7 @@ const ChampionTeamSelector = {
             if(champion && champion.id === targetId)
                 return target;
             return value;
-        }, null);
+        }, null) || null;
         return(
             <div
                 m="ChampionTeamSelector"
@@ -64,12 +64,15 @@ const ChampionTeamSelector = {
                         const amount = synergies
                             .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
                             .reduce((value, synergy) => value + synergy.attr.effectAmount, 0);
-                        const changed = editing && editing.synergies && editing.synergies
+                        let changed = editing && editing.synergies && editing.synergies
                             .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
                             .reduce((value, synergy) => (value || 0) + synergy.attr.effectAmount, null);
-                        const hasChanged = changed !== null && changed !== undefined;
-                        if(!amount && !hasChanged)
+                        if(amount === 0 && changed === null) {
                             return null;
+                        }
+                        if(changed === null && editing) {
+                            changed = 0;
+                        }
                         return (
                             <div
                                 class={ classNames('team-synergy', 'no-select') }
@@ -84,8 +87,8 @@ const ChampionTeamSelector = {
                                     { lang.get(`effect-${ effect.attr.uid }-name`) }
                                 </span>
                                 <span class="effect-amount">
-                                    { hasChanged? changed: amount }%
-                                    { hasChanged && amount !== changed && (
+                                    { changed !== null? changed: amount }%
+                                    { (changed !== null && amount !== changed) && (
                                         <span>
                                             (
                                             <span class={ classNames('effect-amount', {
@@ -111,6 +114,10 @@ const ChampionTeamSelector = {
                 { onremove && (
                     <div class={ classNames('team-remove') } onclick={ onremove }>
                         { lang.get('remove') }
+                    </div>
+                ) || onsplit && (
+                    <div class={ classNames('team-remove') } onclick={ onsplit }>
+                        { lang.get('dissolve') }
                     </div>
                 ) || onapply && (
                     <div class={ classNames('team-apply', { 'disabled': !swap.target }) } onclick={ onapply }>

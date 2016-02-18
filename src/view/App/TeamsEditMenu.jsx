@@ -9,7 +9,7 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const TeamsMenu = {
+const TeamsEditMenu = {
     view(ctrl, { edit }) {
         const options = [];
         options.push(
@@ -35,7 +35,7 @@ const TeamsMenu = {
                     <Icon icon="magic" />
                 )}
                 selected={ edit }
-                href={ edit? '/teams': '/teams/edit' }
+                href={ edit? '/teams': '/teams' }
             />
         );
         options.push(
@@ -99,11 +99,11 @@ const TeamsMenu = {
             } />
         );
         return (
-            <div m="TeamsMenu" key={ `teams-menu` }>
+            <div m="TeamsEditMenu" key={ `teams-edit-menu` }>
                 { options }
             </div>
         );
     },
 };
 
-export default TeamsMenu;
+export default TeamsEditMenu;

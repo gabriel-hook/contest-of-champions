@@ -1,13 +1,28 @@
 import './TeamsEditPage.scss';
 import teams, { synergiesFromChampions } from '../../service/teams';
 import roster from '../../service/roster';
-//import lang from '../../service/lang';
+import deepEqual from 'deep-equal';
 import ChampionTeamSelector from '../Champion/ChampionTeamSelector.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+
+function applyTeams(updatedTeams) {
+    if(!teams.result) {
+        teams.result = {};
+    }
+    teams.result.count = {
+        teams: 0,
+        synergies: 0,
+    };
+    teams.result.teams = updatedTeams;
+    teams.result.teams.forEach((team) => {
+        teams.result.count.teams++;
+        teams.result.count.synergies += team.synergies.length;
+    });
+}
 
 function calculateSynergies(swap) {
     const { source, target } = swap;
@@ -28,6 +43,11 @@ function calculateSynergies(swap) {
         else {
             target.synergies = [];
         }
+    }
+    else if(!target && source && source.create && source.champion) {
+        const champions = [ ...source.team.champions ];
+        champions[ source.index ] = null;
+        source.synergies = synergiesFromChampions(champions);
     }
     else {
         if(source) {
@@ -51,7 +71,10 @@ const TeamsEditPage = {
         this.stars = {};
         this.last = -1;
         this.reset = () => {
-            if(this.last === teams.last) {
+            if(this.last === teams.last &&
+                this.size === teams.size &&
+                deepEqual(this.stars, teams.stars)
+            ) {
                 return;
             }
             this.teams = teams.result && teams.result.teams.map(({ champions, synergies }) => ({
@@ -91,6 +114,7 @@ const TeamsEditPage = {
             }
             this.swap.source = null;
             this.swap.target = null;
+            applyTeams(this.teams);
         };
     },
 
@@ -148,6 +172,12 @@ const TeamsEditPage = {
                         calculateSynergies(swap);
                         requestRedraw();
                     }}
+                    onsplit={ source && champions.some((champion) => champion === source.champion) && !target && (() => {
+                        ctrl.teams = teams.filter((element, index) => teamIndex !== index);
+                        swap.source = null;
+                        applyTeams(teams);
+                        requestRedraw();
+                    })}
                     onapply={ source && champions.some((champion) => champion === source.champion) && target && ctrl.apply }
                 />
             );
@@ -197,7 +227,9 @@ const TeamsEditPage = {
                     onapply={ source && target && source.create && target.champion && ctrl.apply }
                     onremove={ source && source.create && source.champion && !target && (() => {
                         create.champions[ swap.source.index ] = null;
+                        create.synergies = synergiesFromChampions(create.champions);
                         swap.source = null;
+                        applyTeams(teams);
                         requestRedraw();
                     }) }
                     create
