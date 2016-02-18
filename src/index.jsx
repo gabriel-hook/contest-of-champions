@@ -424,8 +424,7 @@ const keyHandler = (event) => {
     }
 };
 window.addEventListener('keydown', keyHandler);
-
-if(window.__champions_key_handler__) {
-    window.removeEventListener('keydown', window.__champions_key_handler__);
+if(window[ '__champions_key_handler__' ]) {
+    window.removeEventListener('keydown', window[ '__champions_key_handler__' ]);
 }
-window.__champions_key_handler__ = keyHandler;
+window[ '__champions_key_handler__' ] = keyHandler;
