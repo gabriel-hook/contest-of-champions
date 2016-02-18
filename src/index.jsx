@@ -8,6 +8,7 @@ import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
 import roster from './service/roster';
+import { buildTeams } from './service/teams';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
 import Slides from './view/Slides.jsx';
@@ -94,6 +95,7 @@ router.on('/guide/:uid/?', (uid) => {
         href: `/guide/${ uid }/edit`,
     };
     app.route = app.history.guide = `/guide/${ uid }`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -121,6 +123,7 @@ router.on('/guide/:uid/edit/?', (uid) => {
         href: `/guide/${ uid }`,
     };
     app.route = `/guide/${ uid }/edit`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -148,6 +151,7 @@ router.on('/roster/?', () => {
         href: `/roster/add/${ app.lastAddStars || 2 }`,
     };
     app.route = `/roster`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
     if(roster.all().length === 0) {
@@ -183,6 +187,7 @@ router.on('/roster/add/:stars/?', (stars) => {
     };
     app.lastAddStars = stars;
     app.route = `/roster/add/${ stars }`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -210,6 +215,7 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
         href: '/roster',
     };
     app.route = `/roster/${ uid }/${ stars }`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -237,6 +243,18 @@ router.on('/teams/settings/?', () => {
         href: '/teams',
     };
     app.route = `/teams/settings`;
+    app.hotkeys = [
+        {
+            'which': 'B',
+            'modifier': 'ctrl',
+            'callback': buildTeams,
+        },
+        {
+            'which': 'B',
+            'modifier': 'apple',
+            'callback': buildTeams,
+        },
+    ];
     analytics.pageView();
     requestRedraw();
 });
@@ -256,6 +274,18 @@ router.on('/teams/edit/?', () => {
             current={ 2 }
         />
     );
+    app.hotkeys = [
+        {
+            'which': 'B',
+            'modifier': 'ctrl',
+            'callback': buildTeams,
+        },
+        {
+            'which': 'B',
+            'modifier': 'apple',
+            'callback': buildTeams,
+        },
+    ];
     app.menu = (
         <TeamsMenu edit />
     );
@@ -291,6 +321,18 @@ router.on('/teams/?', () => {
         href: '/teams/settings',
     };
     app.route = `/teams`;
+    app.hotkeys = [
+        {
+            'which': 'B',
+            'modifier': 'ctrl',
+            'callback': buildTeams,
+        },
+        {
+            'which': 'B',
+            'modifier': 'apple',
+            'callback': buildTeams,
+        },
+    ];
     analytics.pageView();
     requestRedraw();
 });
@@ -314,6 +356,7 @@ router.on('/synergy/effect/:effect/?', (effect) => {
     );
     app.button = null;
     app.route = app.history.synergy = `/synergy/effect/${ effect }`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -328,6 +371,7 @@ router.on('/synergy/stars/:stars/?', (stars) => {
     );
     app.button = null;
     app.route = app.history.synergy = `/synergy/stars/${ stars }`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -353,6 +397,7 @@ router.on('/lang/:lang/edit/?', (langId) => {
     );
     app.button = null;
     app.route = `/lang/${ langId }/edit`;
+    app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
 });
@@ -365,3 +410,22 @@ m.mount(document.body, (
 
 app.route = '/roster';
 router.init('/roster');
+
+const keyHandler = (event) => {
+    if(app.hotkeys) {
+        const which = String.fromCharCode(event.which);
+        const modifiers = {
+            'ctrl': event.ctrlKey,
+            'apple': event.metaKey,
+        };
+        app.hotkeys
+            .filter((hotkey) => which === hotkey.which && (!hotkey.modifier || modifiers[ hotkey.modifier ]))
+            .forEach((hotkey) => hotkey.callback());
+    }
+};
+window.addEventListener('keydown', keyHandler);
+
+if(window.__champions_key_handler__) {
+    window.removeEventListener('keydown', window.__champions_key_handler__);
+}
+window.__champions_key_handler__ = keyHandler;
