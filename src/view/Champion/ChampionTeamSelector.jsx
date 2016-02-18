@@ -66,10 +66,12 @@ const ChampionTeamSelector = {
                             .reduce((value, synergy) => value + synergy.attr.effectAmount, 0);
                         const changed = editing && editing.synergies && editing.synergies
                             .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
-                            .reduce((value, synergy) => value + synergy.attr.effectAmount, 0) || amount;
-
-                        if(amount === 0 && changed === 0)
+                            .reduce((value, synergy) => (value || 0) + synergy.attr.effectAmount, null);
+                        const hasChanged = changed !== null && changed !== undefined;
+                        if(!amount && !hasChanged)
                             return null;
+                        if(editing)
+                            console.log(amount, changed);
                         return (
                             <div
                                 class={ classNames('team-synergy', 'no-select') }
@@ -84,8 +86,8 @@ const ChampionTeamSelector = {
                                     { lang.get(`effect-${ effect.attr.uid }-name`) }
                                 </span>
                                 <span class="effect-amount">
-                                    { changed }%
-                                    { amount !== changed && (
+                                    { hasChanged? changed: amount }%
+                                    { hasChanged && amount !== changed && (
                                         <span>
                                             (
                                             <span class={ classNames('effect-amount', {
