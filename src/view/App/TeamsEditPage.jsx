@@ -77,7 +77,7 @@ const TeamsEditPage = {
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
             if(this.last !== teams.last || this.size !== teams.size || !starsEqual) {
-                if(this.size !== teams.size || !starsEqual) {
+                if(this.last === teams.last && (this.size !== teams.size || !starsEqual)) {
                     teams.result = null;
                     this.teams = [];
                 }
@@ -98,6 +98,7 @@ const TeamsEditPage = {
                 this.stars = { ...teams.stars };
                 this.size = teams.size;
                 this.last = teams.last;
+                this.init = true;
             }
         };
         this.apply = () => {
@@ -136,7 +137,7 @@ const TeamsEditPage = {
         teams.forEach(({ champions, synergies }, teamIndex) => {
             elements.push(
                 <ChampionTeamSelector
-                    key={ ++keys }
+                    key={ `key-${ ++keys }` }
                     team={{
                         champions,
                         synergies,
@@ -200,7 +201,7 @@ const TeamsEditPage = {
             }
             elements.push(
                 <ChampionTeamSelector
-                    key={ ++keys }
+                    key={ `key-${ ++keys }` }
                     team={{
                         champions: create.champions,
                         synergies: create.synergies,
@@ -246,7 +247,7 @@ const TeamsEditPage = {
         }
         extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => elements.push(
             <ChampionPortrait
-                key={ ++keys }
+                key={ `key-${ ++keys }` }
                 champion={ champion }
                 editing={ target && target.champion && target.champion.id === champion.id }
                 onclick={() => {
