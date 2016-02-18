@@ -37,8 +37,9 @@ const ChampionPortrait = {
             starImages.push(starIcon);
         const portraitImage = (uid !== null) && getImage(`images/champions/portrait_${ uid }.png`);
         const hasPortraitImage = Boolean(portraitImage);
-        const title = [];
+        let title = null;
         if(uid !== null) {
+            title = [];
             if(pi || champion.pi) {
                 title.push(
                     <div
@@ -120,7 +121,9 @@ const ChampionPortrait = {
                                 <img src={ portraitImage && portraitImage.src || DATA_IMAGE_EMPTY } />
                             </div>
                         </div>
-                        <div class="title">{ title }</div>
+                        { title && (
+                            <div class="title">{ title }</div>
+                        )}
                         <div class={ classNames('stars', { 'stars--awakened': awakened }) }>
                             { starImages }
                         </div>

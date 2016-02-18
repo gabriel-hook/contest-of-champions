@@ -9,6 +9,28 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+function calculateSynergies(swap) {
+    const { source, target } = swap;
+    if(source && target) {
+        if(source.team && source.index !== undefined) {
+            const champions = [ ...source.team.champions ];
+            champions[ source.index ] = target.champion;
+            source.synergies = synergiesFromChampions(champions);
+        }
+        else {
+            source.synergies = [];
+        }
+        if(target.team && target.index !== undefined) {
+            const champions = [ ...target.team.champions ];
+            champions[ target.index ] = source.champion;
+            target.synergies = synergiesFromChampions(champions);
+        }
+        else {
+            target.synergies = [];
+        }
+    }
+}
+
 const TeamsEditPage = {
     controller() {
         this.swap = {
@@ -34,7 +56,7 @@ const TeamsEditPage = {
             })) || [];
             this.swap.source = null;
             this.swap.target = null;
-            this.create.champions = [];
+            this.create.champions = [ null ];
             this.create.synergies = [];
             this.stars = teams.stars;
             this.size = teams.size;
@@ -42,38 +64,21 @@ const TeamsEditPage = {
         };
         this.apply = () => {
             const { source, target } = this.swap;
-
             if(source && target) {
-                if(source.create) {
-                    this.create.champions[ source.index ] = roster.find(({ id }) => id === target.id);
-                    this.create.synergies = synergiesFromChampions(this.create.champions);
-                    if(this.create.champions.reduce((count, element) => count + (element? 1: 0), 0) === this.size) {
-                        this.teams.push(this.create);
-                        this.create = {
-                            champions: [],
-                            synergies: [],
-                        };
-                    }
+                if(source.index !== undefined && source.team) {
+                    source.team.champions[ source.index ] = target.champion;
+                    source.team.synergies = synergiesFromChampions(source.team.champions);
                 }
-                else {
-                    const sourceTeam = source && source.team;
-                    const targetTeam = target && target.team;
-                    // swapping between teams
-                    if(sourceTeam && targetTeam) {
-                        const sourceIndex = sourceTeam.champions.findIndex((champion) => champion.id === source.id);
-                        const targetIndex = targetTeam.champions.findIndex((champion) => champion.id === target.id);
-                        const swap = sourceTeam.champions[ sourceIndex ];
-                        sourceTeam.champions[ sourceIndex ] = targetTeam.champions[ targetIndex ];
-                        targetTeam.champions[ targetIndex ] = swap;
-                        sourceTeam.synergies = synergiesFromChampions(sourceTeam.champions);
-                        targetTeam.synergies = synergiesFromChampions(targetTeam.champions);
-                    }
-                    // swapping a free champions
-                    else {
-                        const sourceIndex = sourceTeam.champions.findIndex((champion) => champion.id === source.id);
-                        sourceTeam.champions[ sourceIndex ] = roster.find(({ id }) => id === target.id);
-                        sourceTeam.synergies = synergiesFromChampions(sourceTeam.champions);
-                    }
+                if(target.index !== undefined && target.team) {
+                    target.team.champions[ target.index ] = source.champion;
+                    target.team.synergies = synergiesFromChampions(target.team.champions);
+                }
+                if(source.create && !source.team.champions.some((champion) => !champion)) {
+                    this.teams.push(this.create);
+                    this.create = {
+                        champions: [ null ],
+                        synergies: [],
+                    };
                 }
             }
             this.swap.source = null;
@@ -83,49 +88,56 @@ const TeamsEditPage = {
 
     view(ctrl) {
         ctrl.reset();
+        let keys = 0;
         const { swap, create, teams } = ctrl;
-        const sourceId = swap.source && swap.source.id;
-        const targetId = swap.target && swap.target.id;
+        const { source, target } = swap;
+        const targetId = target && target.champion && target.champion.id;
         const elements = [];
         const inTeam = {};
         teams.forEach(({ champions, synergies }, teamIndex) => {
             elements.push(
                 <ChampionTeamSelector
-                    key={ `team-selectors-${ teamIndex }` }
+                    key={ ++keys }
                     team={{
                         champions,
                         synergies,
                     }}
                     swap={ swap }
-                    onclick={(attributes) => {
-                        if(targetId === attributes.id) {
+                    onclick={(index) => {
+                        if(targetId === champions[ index ].id) {
                             swap.target = null;
                         }
-                        else if (sourceId === attributes.id) {
+                        else if (source && source.champion === champions[ index ]) {
                             swap.source = null;
                         }
-                        else if(champions.some((champion) => champion.id === sourceId)) {
+                        else if(source && champions.some((champion) => source.champion === champion)) {
                             swap.source = {
                                 team: teams[ teamIndex ],
-                                ...attributes,
+                                champion: champions[ index ],
+                                index,
                             };
                         }
-                        else if(!sourceId) {
+                        else if(!source) {
                             swap.source = {
                                 team: teams[ teamIndex ],
-                                ...attributes,
+                                champion: champions[ index ],
+                                index,
                             };
-                            swap.target = null;
+                            if(swap.target && swap.target.index) {
+                                swap.target = null;
+                            }
                         }
                         else {
                             swap.target = {
                                 team: teams[ teamIndex ],
-                                ...attributes,
+                                champion: champions[ index ],
+                                index,
                             };
                         }
+                        calculateSynergies(swap);
                         requestRedraw();
                     }}
-                    onapply={ champions.some((champion) => champion && champion.id === sourceId) && ctrl.apply }
+                    onapply={ source && champions.some((champion) => champion === source.champion) && target && ctrl.apply }
                 />
             );
             champions.forEach((champion) => inTeam[ champion.id ] = true);
@@ -140,47 +152,63 @@ const TeamsEditPage = {
             }
             elements.push(
                 <ChampionTeamSelector
-                    key={ `team-selectors-create` }
+                    key={ ++keys }
                     team={{
                         champions: create.champions,
                         synergies: create.synergies,
                     }}
                     swap={ swap }
-                    onclick={(attributes) => {
-                        if(swap.source && (swap.source.create && swap.source.index === attributes.index)) {
+                    onclick={(index) => {
+                        if(source && source.create && source.index === index) {
                             swap.source = null;
-                            swap.target = null;
-                        }
-                        else {
-                            swap.source = {
-                                team: create,
-                                ...attributes,
-                            };
-                            if(targetId && inTeam[ targetId ]) {
+                            if(swap.target && swap.target.team) {
+                                swap.source = swap.target;
                                 swap.target = null;
                             }
                         }
+                        else {
+                            if(!swap.target && swap.source && swap.source.id) {
+                                swap.target = swap.source;
+                            }
+                            swap.source = {
+                                team: create,
+                                index,
+                                champion: create.champions[ index ],
+                                create: true,
+                            };
+                            if(target && target.champion && inTeam[ target.champion.id ]) {
+                                swap.target = null;
+                            }
+                        }
+                        calculateSynergies(swap);
                         requestRedraw();
                     }}
-                    onapply={ swap.source && swap.source.create && ctrl.apply }
+                    onapply={ source && target && source.create && target.champion && ctrl.apply }
+                    onremove={ source && source.create && source.champion && !target && (() => {
+                        create.champions[ swap.source.index ] = null;
+                        swap.source = null;
+                        requestRedraw();
+                    }) }
+                    create
                 />
             );
             create.champions.forEach((champion) => champion && (inTeam[ champion.id ] = true));
         }
         extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => elements.push(
             <ChampionPortrait
-                key={ `team-selectors-${ champion.id }` }
+                key={ ++keys }
                 champion={ champion }
-                editing={ targetId === champion.id }
+                editing={ target && target.champion && target.champion.id === champion.id }
                 onclick={() => {
-                    if(targetId === champion.id) {
+                    if(target && target.champion && target.champion.id === champion.id) {
                         swap.target = null;
                     }
                     else {
                         swap.target = {
-                            id: champion.id,
+                            champion,
                         };
                     }
+                    calculateSynergies(swap);
                     requestRedraw();
                 }}
             />

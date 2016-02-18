@@ -1,8 +1,17 @@
 @import "../../util/input";
 
 .champion-team-selector {
+
+    .team-remove {
+        @include styled-button(true, #c33);
+    }
+
     .team-apply {
         @include styled-button(true, #3c3);
+    }
+
+    .team-remove,
+    .team-apply {
         margin-top: -16px;
         padding: 16px;
         box-shadow: 0 6px 0 -2px  rgba(0, 0, 0, .25);
@@ -19,6 +28,41 @@
 
         @media print {
             page-break-inside: avoid;
+        }
+    }
+
+    .team-synergies {
+
+        .effect-amount {
+            &::before {
+                content: "- ";
+            }
+
+            &.effect-amount--decreased {
+                color: #900;
+            }
+
+            &.effect-amount--increased {
+                color: #090;
+
+                &::before {
+                    content: "+ ";
+                }
+            }
+        }
+    }
+
+    &.champion-team-selector-create {
+        .team-synergies {
+            border: dashed 1px #000;
+        }
+
+        .champion-portrait {
+            &.champion--editing {
+                .inner {
+                    border-bottom: 0;
+                }
+            }
         }
     }
 }

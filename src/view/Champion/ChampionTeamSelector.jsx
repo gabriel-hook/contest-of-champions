@@ -12,27 +12,37 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionTeamSelector = {
-    view(ctrl, { team, swap, onclick, onapply }) {
-        const sourceId = swap && swap.source && swap.source.id;
-        const targetId = swap && swap.target && swap.target.id;
+    view(ctrl, { team, swap, onclick, onapply, onremove, create }) {
+        const { source, target } = swap;
+        const sourceId = source && source.champion && source.champion.id;
+        const targetId = target && target.champion && target.champion.id;
         const { champions, synergies } = team;
         const size = champions.length;
+        const editing = champions.reduce((value, champion) => {
+            if(create && source && source.create)
+                return source;
+            if(champion && champion.id === sourceId)
+                return source;
+            if(champion && champion.id === targetId)
+                return target;
+            return value;
+        }, null);
         return(
             <div
                 m="ChampionTeamSelector"
-                class={ classNames('champion-team', 'champion-team-selector', ` champion-team--size-${ size }`) }
+                class={ classNames('champion-team', 'champion-team-selector', `champion-team--size-${ size }`, {
+                    'champion-team-selector-create': create,
+                }) }
             >
                 <div>
                     { champions.map((champion, index) => (champion)? (
                         <ChampionPortrait
-                            key={ champion.id }
+                            key={ `create_${ index }` }
                             champion={ champion }
                             editing={ sourceId === champion.id || targetId === champion.id }
                             showBadges={ 'none' }
                             onclick={() => {
-                                onclick({
-                                    id: champion.id,
-                                });
+                                onclick(index);
                                 requestRedraw();
                             }}
                         />
@@ -43,10 +53,7 @@ const ChampionTeamSelector = {
                             editing={ swap && swap.source && swap.source.create && swap.source.index === index }
                             showBadges={ 'none' }
                             onclick={() => {
-                                onclick({
-                                    create: true,
-                                    index,
-                                });
+                                onclick(index);
                                 requestRedraw();
                             }}
                         />
@@ -54,10 +61,15 @@ const ChampionTeamSelector = {
                 </div>
                 <div className="team-synergies">
                     { effects.map((effect) => {
-                        const synergy = synergies.filter((synergy) => synergy.attr.effectId === effect.attr.uid);
-                        if(synergy.length === 0)
+                        const amount = synergies
+                            .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
+                            .reduce((value, synergy) => value + synergy.attr.effectAmount, 0);
+                        const changed = editing && editing.synergies && editing.synergies
+                            .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
+                            .reduce((value, synergy) => value + synergy.attr.effectAmount, 0) || amount;
+
+                        if(amount === 0 && changed === 0)
                             return null;
-                        const amount = synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0);
                         return (
                             <div
                                 class={ classNames('team-synergy', 'no-select') }
@@ -72,7 +84,19 @@ const ChampionTeamSelector = {
                                     { lang.get(`effect-${ effect.attr.uid }-name`) }
                                 </span>
                                 <span class="effect-amount">
-                                    { amount }%
+                                    { changed }%
+                                    { amount !== changed && (
+                                        <span>
+                                            (
+                                            <span class={ classNames('effect-amount', {
+                                                'effect-amount--increased': amount < changed,
+                                                'effect-amount--decreased': amount > changed,
+                                            }) }>
+                                                { Math.abs(amount - changed) }%
+                                            </span>
+                                            )
+                                        </span>
+                                    ) || null }
                                 </span>
                             </div>
                         );
@@ -84,7 +108,11 @@ const ChampionTeamSelector = {
                         </span>
                     </div>
                 </div>
-                { onapply && (
+                { onremove && (
+                    <div class={ classNames('team-remove') } onclick={ onremove }>
+                        { lang.get('remove') }
+                    </div>
+                ) || onapply && (
                     <div class={ classNames('team-apply', { 'disabled': !swap.target }) } onclick={ onapply }>
                         { lang.get('apply') }
                     </div>
