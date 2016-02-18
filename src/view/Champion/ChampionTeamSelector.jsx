@@ -70,8 +70,6 @@ const ChampionTeamSelector = {
                         const hasChanged = changed !== null && changed !== undefined;
                         if(!amount && !hasChanged)
                             return null;
-                        if(editing)
-                            console.log(amount, changed);
                         return (
                             <div
                                 class={ classNames('team-synergy', 'no-select') }
