@@ -1,5 +1,74 @@
 {
-    "description": "Venompool is an alternate reality version of Deadpool from Earth-90211. He is the combination of Deadpool and the Venom symbiote. Being part of Earth-90211 he is a part of a reality the Beyonder loves partying in, a reality perpetually stuck in the 1980's in many regards, Venompool is the Beyonder's go to party-animal, until the party got boring for the Beyonder.",
-    "invalid": true,
-    "youtube": "rJ1dWMkcvVo"
+    "description": "“Origin story time! Ahem. A long time ago...in a forgotten corner of the Contest, a wise, handsome, kick-butt dude became permanently duct-taped to a weird, alien Venom thingy…”\n “That’sssss not what happened!”\n “Shut up Symbioid, I’m telling the story! Dang. Lost my place. Oh well, anywhoozle, epic story told in haiku! Deadpool Venom mix; Smashed together, best friends; and....Chimichangas?”\n “We must kill the Ssssssspider-Man!”\n “Oh Symby! You’re the funniest. You always crack me up.”",
+    "youtube": "1vVEOyPFkGs",
+    "specials": {
+        "1": {
+            "name": "Symbiotic Smack Om Nom",
+            "ranges": [
+                "short",
+                "medium"
+            ],
+            "description": "The Symbiote has a 85% chance to steal an enemy beneficial effect from the opponent and feed it to Deadpool to trigger his Healing Factor, recovering 9.5% Health over 7 seconds.",
+            "note": "The Regeneration trigger will only occur if a Buff is successfully eaten.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed",
+                "regeneration"
+            ]
+        },
+        "2": {
+            "name": "Sword Spin: XL Edition",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "precision",
+                "bleed",
+                "healblock"
+            ],
+            "description": "Deadpool, with the help of his new symbiote friend, has found his carbonadium sword, which places a Heal Block on the opponent for 8.5 seconds.\n Allowing Deadpool to finish his sweet dance moves after his attack boosts his confidence and grants 15% increased Critical Hit Rate for 6.5 seconds.",
+            "ranges": [
+                "short"
+            ],
+            "note": "If you interrupt Venompool’s sweet dance moves at the end of his Special 2 animation, you won’t gain the increased Critical Hit Rate."
+        },
+        "3": {
+            "name": "Ssssssave Me!",
+            "description": "Any Bleed effect triggered lasts 38% longer than normal.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        }
+    },
+    "signature": {
+        "name": "Continuity Memory",
+        "description": "Every 6 seconds, the symbiote known as Venom has a (20 - 45%) chance to access Deadpool’s unique memory and grant him a random beneficial effect for a short time...even if he never actually had that effect in the past...\n These effects range from Armor Up to Regeneration, with other stranger abilities all lumped in as well. Below are just a few of the possible benefits:\n Unstoppable for 3 seconds.\n Static Shock for 7 seconds.\n Indestructible for 3.5 seconds.\n A Luck Buff that affects both champions’ Ability Accuracy. Venompool’s gets better while his opponent’s gets worse.\n ALL THE ARMOR! *It’s actually called that in game",
+        "abilities": [
+            "armorup",
+            "regeneration",
+            "unstoppable",
+            "shock",
+            "physicalresist",
+            "precision",
+            "fatigue"
+        ],
+        "note": "And others!"
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "640807-Venompool-Champion-Spotlight"
+    },
+    "gameplay": {
+        "description": "All Special Attacks have a 94% Chance to inflict Bleed, dealing 225% of your Attack as direct damage over 5 seconds.",
+        "note": "Each Special Attack only has 1 potential Bleed trigger on the last hit of the attack.",
+        "abilities": [
+            "bleed"
+        ]
+    }
 }
