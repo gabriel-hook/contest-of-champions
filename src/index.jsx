@@ -246,12 +246,7 @@ router.on('/teams/settings/?', () => {
     app.hotkeys = [
         {
             'which': 'B',
-            'modifier': 'ctrl',
-            'callback': buildTeams,
-        },
-        {
-            'which': 'B',
-            'modifier': 'apple',
+            'modifiers': [ 'ctrl' ],
             'callback': buildTeams,
         },
     ];
@@ -277,12 +272,7 @@ router.on('/teams/edit/?', () => {
     app.hotkeys = [
         {
             'which': 'B',
-            'modifier': 'ctrl',
-            'callback': buildTeams,
-        },
-        {
-            'which': 'B',
-            'modifier': 'apple',
+            'modifiers': [ 'ctrl' ],
             'callback': buildTeams,
         },
     ];
@@ -324,12 +314,7 @@ router.on('/teams/?', () => {
     app.hotkeys = [
         {
             'which': 'B',
-            'modifier': 'ctrl',
-            'callback': buildTeams,
-        },
-        {
-            'which': 'B',
-            'modifier': 'apple',
+            'modifiers': [ 'ctrl' ],
             'callback': buildTeams,
         },
     ];
@@ -415,11 +400,15 @@ const keyHandler = (event) => {
     if(app.hotkeys) {
         const which = String.fromCharCode(event.which);
         const modifiers = {
-            'ctrl': event.ctrlKey,
-            'apple': event.metaKey,
+            'ctrl': event.ctrlKey || event.metaKey,
+            'alt': event.altKey,
+            'shift': event.shiftKey,
         };
         app.hotkeys
-            .filter((hotkey) => which === hotkey.which && (!hotkey.modifier || modifiers[ hotkey.modifier ]))
+            .filter((hotkey) => which === hotkey.which && (
+                !hotkey.modifiers ||
+                hotkey.modifiers.reduce((has, modifier) => has && modifiers[ modifier ], true)
+            ))
             .forEach((hotkey) => hotkey.callback());
     }
 };

@@ -10,6 +10,10 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 function applyTeams(updatedTeams) {
+    updatedTeams.forEach((team) => {
+        team.value = team.champions.reduce((sum, champion) => sum + (champion.attr.pi || champion.pi), 0);
+    });
+    updatedTeams.sort((a, b) => b.value - a.value);
     teams.result = {
         teams: updatedTeams,
         counts: {
@@ -52,6 +56,11 @@ function calculateSynergies(swap) {
         const champions = [ ...source.team.champions ];
         champions[ source.index ] = null;
         source.synergies = synergiesFromChampions(champions);
+    }
+    else if(!source && target && target.champion && target.team) {
+        const champions = [ ...target.team.champions ];
+        champions[ target.index ] = null;
+        target.synergies = synergiesFromChampions(champions);
     }
     else {
         if(source) {
@@ -128,21 +137,63 @@ const TeamsEditPage = {
 
     view(ctrl) {
         ctrl.reset();
-        let keys = 0;
         const { swap, create, teams } = ctrl;
         const { source, target } = swap;
         const targetId = target && target.champion && target.champion.id;
-        const elements = [];
+        const teamElements = [];
+        const createElements = [];
+        const extraElements = [];
         const inTeam = {};
         teams.forEach(({ champions, synergies }, teamIndex) => {
-            elements.push(
+            teamElements.push(
                 <ChampionTeamSelector
-                    key={ `key-${ ++keys }` }
+                    key={ `team-${ teamIndex }` }
                     team={{
                         champions,
                         synergies,
                     }}
                     swap={ swap }
+                    draggable={ true }
+                    droppable={ true }
+                    ondragstart={(index) => {
+                        swap.source = null;
+                        swap.target = {
+                            team: teams[ teamIndex ],
+                            champion: champions[ index ],
+                            index,
+                        };
+                        swap.dragging = true;
+                        calculateSynergies(swap);
+                        requestRedraw();
+                    }}
+                    ondragend={() => {
+                        if(source && target) {
+                            ctrl.apply();
+                        }
+                        swap.dragging = false;
+                        swap.source = null;
+                        swap.target = null;
+                    }}
+                    ondragover={(index, event) => {
+                        if(target && target.champion && !champions.some(({ id }) => id === target.champion.id)) {
+                            swap.source = {
+                                team: teams[ teamIndex ],
+                                champion: champions[ index ],
+                                index,
+                            };
+                            calculateSynergies(swap);
+                            requestRedraw();
+                        }
+                        event.preventDefault();
+                    }}
+                    ondragout={(index, event) => {
+                        if(source && source.index === index) {
+                            swap.source = null;
+                            calculateSynergies(swap);
+                        }
+                        requestRedraw();
+                        event.preventDefault();
+                    }}
                     onclick={(index) => {
                         if(targetId === champions[ index ].id) {
                             swap.target = null;
@@ -199,14 +250,61 @@ const TeamsEditPage = {
             while(create.champions.length > ctrl.size) {
                 create.champions.pop();
             }
-            elements.push(
+            createElements.push(
                 <ChampionTeamSelector
-                    key={ `key-${ ++keys }` }
+                    key={ `team-create` }
                     team={{
                         champions: create.champions,
                         synergies: create.synergies,
                     }}
                     swap={ swap }
+                    draggable={ true }
+                    droppable={ true }
+                    ondragstart={(index) => {
+                        const champion = create.champions[ index ];
+                        if(champion) {
+                            swap.source = null;
+                            swap.target = {
+                                team: create,
+                                index,
+                                champion,
+                                create: true,
+                            };
+                            swap.dragging = true;
+                            calculateSynergies(swap);
+                        }
+                        requestRedraw();
+                    }}
+                    ondragend={() => {
+                        if(source && target) {
+                            ctrl.apply();
+                        }
+                        swap.dragging = false;
+                        swap.source = null;
+                        swap.target = null;
+                    }}
+                    ondragover={(index, event) => {
+                        const champion = create.champions[ index ];
+                        if(target && !target.create && (!target.team || champion)) {
+                            swap.source = {
+                                team: create,
+                                index,
+                                champion,
+                                create: true,
+                            };
+                            calculateSynergies(swap);
+                            requestRedraw();
+                        }
+                        event.preventDefault();
+                    }}
+                    ondragout={(index, event) => {
+                        if(source && source.index === index) {
+                            swap.source = null;
+                            calculateSynergies(swap);
+                        }
+                        requestRedraw();
+                        event.preventDefault();
+                    }}
                     onclick={(index) => {
                         if(source && source.create && source.index === index) {
                             swap.source = null;
@@ -245,11 +343,30 @@ const TeamsEditPage = {
             );
             create.champions.forEach((champion) => champion && (inTeam[ champion.id ] = true));
         }
-        extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => elements.push(
+        extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => extraElements.push(
             <ChampionPortrait
-                key={ `key-${ ++keys }` }
+                key={ `champion-${ champion.id }` }
                 champion={ champion }
                 editing={ target && target.champion && target.champion.id === champion.id }
+                draggable={ true }
+                events={{
+                    ondragstart: () => {
+                        swap.source = null;
+                        swap.target = {
+                            champion,
+                        };
+                        swap.dragging = true;
+                        requestRedraw();
+                    },
+                    ondragend: () => {
+                        if(source && target) {
+                            ctrl.apply();
+                        }
+                        swap.dragging = false;
+                        swap.source = null;
+                        swap.target = null;
+                    },
+                }}
                 onclick={() => {
                     if(target && target.champion && target.champion.id === champion.id) {
                         swap.target = null;
@@ -267,7 +384,13 @@ const TeamsEditPage = {
         return (
             <div m="TeamsPage" class="teams">
                 <div>
-                    { elements }
+                    { teamElements }
+                </div>
+                <div>
+                    { createElements }
+                </div>
+                <div>
+                    { extraElements }
                 </div>
                 <div class="clear" />
             </div>

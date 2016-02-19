@@ -12,7 +12,10 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ChampionTeamSelector = {
-    view(ctrl, { team, swap, onclick, onapply, onremove, onsplit, create }) {
+    view(ctrl, {
+        team, swap, onclick, onapply, onremove, onsplit, create,
+        draggable, droppable, ondragstart, ondragend, ondragover, ondragout,
+    }) {
         const { source, target } = swap;
         const sourceId = source && source.champion && source.champion.id;
         const targetId = target && target.champion && target.champion.id;
@@ -41,6 +44,14 @@ const ChampionTeamSelector = {
                             champion={ champion }
                             editing={ sourceId === champion.id || targetId === champion.id }
                             showBadges={ 'none' }
+                            draggable={ draggable }
+                            droppable={ droppable }
+                            events={{
+                                ondragstart: ondragstart && ondragstart.bind(null, index),
+                                ondragend: ondragend && ondragend.bind(null, index),
+                                ondragover: ondragover && ondragover.bind(null, index),
+                                ondragleave: ondragout && ondragout.bind(null, index),
+                            }}
                             onclick={() => {
                                 onclick(index);
                                 requestRedraw();
@@ -50,8 +61,13 @@ const ChampionTeamSelector = {
                         <ChampionPortrait
                             key={ `create_${ index }` }
                             champion={ PLACEHOLDER }
-                            editing={ swap && swap.source && swap.source.create && swap.source.index === index }
+                            editing={ source && source.create && source.index === index }
                             showBadges={ 'none' }
+                            droppable={ droppable }
+                            events={{
+                                ondragover: ondragover && ondragover.bind(null, index),
+                                ondragleave: ondragout && ondragout.bind(null, index),
+                            }}
                             onclick={() => {
                                 onclick(index);
                                 requestRedraw();
@@ -67,6 +83,9 @@ const ChampionTeamSelector = {
                         let changed = editing && editing.synergies && editing.synergies
                             .filter((synergy) => synergy.attr.effectId === effect.attr.uid)
                             .reduce((value, synergy) => (value || 0) + synergy.attr.effectAmount, null);
+                        if(isNaN(changed)) {
+                            changed = null;
+                        }
                         if(amount === 0 && changed === null) {
                             return null;
                         }
@@ -111,7 +130,7 @@ const ChampionTeamSelector = {
                         </span>
                     </div>
                 </div>
-                { onremove && (
+                { !swap.dragging && (onremove && (
                     <div class={ classNames('team-remove') } onclick={ onremove }>
                         { lang.get('remove') }
                     </div>
@@ -123,7 +142,7 @@ const ChampionTeamSelector = {
                     <div class={ classNames('team-apply', { 'disabled': !swap.target }) } onclick={ onapply }>
                         { lang.get('apply') }
                     </div>
-                ) || null }
+                )) || null }
             </div>
         );
     },

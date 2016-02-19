@@ -61,6 +61,12 @@ function requestRedraw(delay = 2) {
     });
 }
 
+function errorHandler(error) {
+    /* eslint-disable no-console */
+    console.error(error.stack || error);
+    /* eslint-enable no-console */
+}
+
 function renderDeferred() {
     if (requestId) {
         cancelNextFrame(requestId);
@@ -76,42 +82,37 @@ function renderDeferred() {
     renderDeferredArray = [];
     renderDeferredMap = {};
 
-    for(const deferred of deferredArray)
-        try {
-            if(deferred.delay && deferred.delay > 1) {
-                renderDeferredArray.push({
-                    ...deferred,
-                    delay: deferred.delay - 1,
-                });
-                hasDeferred = true;
-            }
-            else if(deferred.callback)
+    for(const deferred of deferredArray) {
+        if(deferred.delay && deferred.delay > 1) {
+            renderDeferredArray.push({
+                ...deferred,
+                delay: deferred.delay - 1,
+            });
+            hasDeferred = true;
+        }
+        else if(deferred.callback) {
+            new Promise((resolve) => {
                 deferred.callback();
+                resolve();
+            }).catch(errorHandler);
         }
-        catch(error) {
-            /* eslint-disable no-console */
-            console.error('error', error);
-            /* eslint-enable no-console */
+    }
+    for(const id in deferredMap) {
+        const deferred = deferredMap[ id ];
+        if(deferred.delay && deferred.delay > 1) {
+            renderDeferredMap[ id ] = {
+                ...deferred,
+                delay: deferred.delay - 1,
+            };
+            hasDeferred = true;
         }
-
-    for(const id in deferredMap)
-        try {
-            const deferred = deferredMap[ id ];
-            if(deferred.delay && deferred.delay > 1) {
-                renderDeferredMap[ id ] = {
-                    ...deferred,
-                    delay: deferred.delay - 1,
-                };
-                hasDeferred = true;
-            }
-            else if(deferred.callback)
+        else if(deferred.callback) {
+            new Promise((resolve) => {
                 deferred.callback();
+                resolve();
+            }).catch(errorHandler);
         }
-        catch(error) {
-            /* eslint-disable no-console */
-            console.error(error);
-            /* eslint-enable no-console */
-        }
+    }
     if(hasDeferred) {
         queueRenderDeferred();
     }

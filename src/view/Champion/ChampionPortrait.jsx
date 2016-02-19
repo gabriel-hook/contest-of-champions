@@ -19,7 +19,10 @@ function addSVG(element, isInitialized) {
 }
 
 const ChampionPortrait = {
-    view(ctrl, { champion, events, onclick, selected, neighbor, editing, showBadges = true }) {
+    view(ctrl, {
+        champion, events, selected, neighbor, editing, showBadges = true,
+        onclick, draggable, droppable,
+    }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.toJSON();
         const starIcon = awakened? (
             <ImageIcon
@@ -107,8 +110,10 @@ const ChampionPortrait = {
             >
                 <div class={ classNames('container', 'no-select') }>
                     <div
-                        { ...events }
                         class={ classNames('inner', { 'clickable': onclick }) }
+                        { ...events }
+                        droppable={ droppable }
+                        draggable={ draggable }
                         onclick={ onclick }
                         title={ uid && lang.get(`champion-${ uid }-name`) || '' }
                     >
