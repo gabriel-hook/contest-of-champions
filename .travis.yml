@@ -7,6 +7,8 @@ cache:
 env:
   global:
   - GH_REF: github.com/hook/champions.git
+before_install:
+- npm prune
 after_success:
   - "${TRAVIS_PULL_REQUEST} || npm run deploy"
 sudo: false
