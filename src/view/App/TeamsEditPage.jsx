@@ -13,7 +13,7 @@ function applyTeams(updatedTeams) {
     updatedTeams.forEach((team) => {
         team.value = team.champions.reduce((sum, champion) => sum + (champion.attr.pi || champion.pi), 0);
     });
-    updatedTeams.sort((a, b) => b.value - a.value);
+    //updatedTeams.sort((a, b) => b.value - a.value);
     teams.result = {
         teams: updatedTeams,
         counts: {
