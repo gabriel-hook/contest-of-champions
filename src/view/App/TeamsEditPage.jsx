@@ -35,38 +35,34 @@ function applyTeams(updatedTeams) {
 function calculateSynergies(swap) {
     const { source, target } = swap;
     if(source && target) {
-        if(source.team && source.index !== undefined) {
-            const champions = [ ...source.team.champions ];
-            champions[ source.index ] = target.champion;
-            source.synergies = synergiesFromChampions(champions);
-        }
-        else {
-            source.synergies = [];
-        }
-        if(target.team && target.index !== undefined) {
-            const champions = [ ...target.team.champions ];
-            champions[ target.index ] = source.champion;
-            target.synergies = synergiesFromChampions(champions);
-        }
-        else {
-            target.synergies = [];
-        }
+        [ source, target ].forEach((group, index) => {
+            const other = (index === 0)? target: source;
+            if(group.team && group.index !== undefined) {
+                const champions = [ ...group.team.champions ];
+                champions[ group.index ] = other.champion;
+                group.synergies = synergiesFromChampions(champions);
+            }
+            else {
+                group.synergies = [];
+            }
+        });
     }
-    else if(source && source.champion && source.team) {
-        const champions = [ ...source.team.champions ];
-        champions[ source.index ] = null;
-        source.synergies = synergiesFromChampions(champions);
-    }
-    else if(target && target.champion && target.team) {
-        const champions = [ ...target.team.champions ];
-        champions[ target.index ] = null;
-        target.synergies = synergiesFromChampions(champions);
-    }
-    else if(source && source.champion) {
-        source.synergies = [];
-    }
-    else if(target && target.champion) {
-        target.synergies = [];
+    else {
+        [ source, target ].forEach((group) => {
+            if(group) {
+                if(group.champion && group.team) {
+                    const champions = [ ...group.team.champions ];
+                    champions[ group.index ] = null;
+                    group.synergies = synergiesFromChampions(champions);
+                }
+                else if(group.champion) {
+                    group.synergies = [];
+                }
+                else {
+                    group.synergies = null;
+                }
+            }
+        });
     }
 }
 
