@@ -52,23 +52,21 @@ function calculateSynergies(swap) {
             target.synergies = [];
         }
     }
-    else if(!target && source && source.create && source.champion) {
+    else if(source && source.champion && source.team) {
         const champions = [ ...source.team.champions ];
         champions[ source.index ] = null;
         source.synergies = synergiesFromChampions(champions);
     }
-    else if(!source && target && target.champion && target.team) {
+    else if(target && target.champion && target.team) {
         const champions = [ ...target.team.champions ];
         champions[ target.index ] = null;
         target.synergies = synergiesFromChampions(champions);
     }
-    else {
-        if(source) {
-            source.synergies = [];
-        }
-        if(target) {
-            target.synergies = [];
-        }
+    else if(source && source.champion) {
+        source.synergies = [];
+    }
+    else if(target && target.champion) {
+        target.synergies = [];
     }
 }
 
