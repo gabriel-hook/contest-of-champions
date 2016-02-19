@@ -22,7 +22,7 @@ const ChampionTeamSelector = {
         const { champions, synergies } = team;
         const size = champions.length;
         const editing = champions.reduce((value, champion) => {
-            if(create && source && source.create)
+            if(create && source && source.create && (sourceId || targetId))
                 return source;
             if(champion && champion.id === sourceId)
                 return source;
