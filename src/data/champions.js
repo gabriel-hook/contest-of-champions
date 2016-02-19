@@ -4,7 +4,6 @@ const UNRELEASED_CHAMPIONS = {
     'redskull': true,
     'maestro': true,
     'shehulk': true,
-    'wolverineoldman': true,
     'drstrangemarvelnow': true,
 };
 
