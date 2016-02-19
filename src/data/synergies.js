@@ -86,10 +86,10 @@ const synergies = [
     { fromId: 'thor', fromStars: 2, toId: 'ironman', effectId: 'armor', effectAmount: 4 },
     { fromId: 'thor', fromStars: 3, toId: 'drstrange', effectId: 'armor', effectAmount: 5 },
     { fromId: 'thor', fromStars: 3, toId: 'ironman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'thor', fromStars: 3, toId: 'juggernaut', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'thor', fromStars: 3, toId: 'juggernaut', effectId: 'critrate', effectAmount: 6 },
     { fromId: 'thor', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
     { fromId: 'thor', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'thor', fromStars: 4, toId: 'juggernaut', effectId: 'armor', effectAmount: 7 },
+    { fromId: 'thor', fromStars: 4, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
 
     { fromId: 'thorjanefoster', fromStars: 3, toId: 'thor', effectId: 'armor', effectAmount: 4 },
     { fromId: 'thorjanefoster', fromStars: 3, toId: 'vision', effectId: 'perfectblock', effectAmount: 4 },
