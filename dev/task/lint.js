@@ -12,7 +12,7 @@ gulp.task('lint:dev', () => gulp.src([
     .pipe(esLint.format())
     .pipe(esLint.failAfterError()));
 
-gulp.task('lint:tests', () => gulp.src([
+gulp.task('lint:test', () => gulp.src([
     './test/**/*.js',
     './test/**/*.jsx',
 ])
@@ -21,15 +21,7 @@ gulp.task('lint:tests', () => gulp.src([
     .pipe(esLint.format())
     .pipe(esLint.failAfterError()));
 
-gulp.task('lint:styles', () => gulp.src([
-    './src/**/*.scss',
-    '!./src/index.scss',
-])
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError()));
-
-gulp.task('lint:scripts', () => gulp.src([
+gulp.task('lint:src', () => gulp.src([
     './src/**/*.js',
     './src/**/*.jsx',
 ])
@@ -38,4 +30,13 @@ gulp.task('lint:scripts', () => gulp.src([
     .pipe(esLint.format())
     .pipe(esLint.failAfterError()));
 
-gulp.task('lint', sequence('lint:dev', 'lint:tests', 'lint:styles', 'lint:scripts'));
+gulp.task('lint:style', () => gulp.src([
+    './src/**/*.scss',
+])
+    .pipe(sassLint({
+        'maxBuffer': 1228800,
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError()));
+
+gulp.task('lint', sequence('lint:dev', 'lint:test', 'lint:src', 'lint:style'));
