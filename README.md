@@ -18,7 +18,7 @@
 
 ### Local Development
 
-  Run a webpack-dev-server and navigate to [localhost:8080](http://localhost:8080) test changes. 
+  Run a webpack-dev-server and navigate to [localhost:8080](http://localhost:8080) test changes.
 
 ```
   npm run develop
@@ -40,3 +40,7 @@
 
   Lint, Test, Build and publish to gh-pages branch is done automatically by Travis-CI on `git push`.
 
+### Windows
+
+  If you are developing in a Windows environment, make sure to set your line endings preferences
+  to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
