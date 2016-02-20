@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
-import './index.scss';
+import './index.css';
 import { notify } from './util/notification';
 import { uids as CHAMPIONS } from './data/champions';
 import { uids as EFFECTS } from './data/effects';

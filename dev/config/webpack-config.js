@@ -31,6 +31,13 @@ export default {
                 exclude: /node_modules/,
                 hot: true,
             },
+            // css
+            {
+                test: /\.css(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loaders: [ 'style', 'css' ],
+                exclude: /node_modules/,
+                hot: true,
+            },
             // fonts & svg
             {
                 test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
