@@ -1,7 +1,7 @@
-import en from './lang/en.json';
-import es from './lang/es.json';
-import br from './lang/br.json';
-import ru from './lang/ru.json';
+import en from '../data/lang/en.json';
+import es from '../data/lang/es.json';
+import br from '../data/lang/br.json';
+import ru from '../data/lang/ru.json';
 import { uids as CHAMPIONS } from '../data/champions';
 import { uids as TYPES } from '../data/types';
 import { uids as EFFECTS } from '../data/effects';
