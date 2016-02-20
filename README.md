@@ -15,7 +15,7 @@
   $ npm install
 ```
 
-#### Windows
+##### Windows
 
 If you are developing in a Windows environment, make sure to set your line endings preferences
 to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
