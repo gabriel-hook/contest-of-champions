@@ -1,3 +1,21 @@
-# Auto detect text files and perform LF normalization
+# Auto-detect text files
 * text=auto
 
+# Definitively text files
+*.sh text
+*.yml text
+*.xml text
+*.html text
+*.txt text
+*.md text
+*.js text
+*.jsx text
+*.json text
+*.css text
+*.scss text
+
+# Ensure those won't be messed up with
+*.jpg binary
+*.png binary
+*.xcf binary
+*.data binary
