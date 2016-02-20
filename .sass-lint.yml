@@ -1,7 +1,10 @@
+options:
+  merge-default-rules: false
 rules:
   extends-before-mixins: 2
   extends-before-declarations: 2
   mixins-before-declarations: 0
+  placeholder-in-extend: 0
   brace-style:
     - 1
     -
