@@ -53,7 +53,7 @@
     "gulp-eslint": "^1.1.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-plumber": "^1.0.1",
-    "gulp-sass-lint": "^1.1.0",
+    "gulp-sass-lint": "^1.1.1",
     "gulp-sequence": "^0.4.1",
     "gulp-util": "^3.0.6",
     "html-webpack-plugin": "^1.6.2",
