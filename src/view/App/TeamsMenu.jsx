@@ -30,9 +30,9 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOption
-                title="customize"
+                title="modify"
                 icon={(
-                    <Icon icon="magic" />
+                    <Icon icon="pencil" />
                 )}
                 selected={ edit }
                 href={ edit? '/teams': '/teams/edit' }
