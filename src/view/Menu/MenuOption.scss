@@ -7,7 +7,6 @@
     min-width: 2.2em;
     @include font-title(1.1em);
     color: #fff;
-    padding: .5em .5em .5em 1.5em;
     text-shadow: 0 1px 0 #000;
     text-decoration: none;
 
@@ -38,6 +37,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        padding: .5em .5em .5em 1.5em;
     }
 
     .menu-option-progress-bar {

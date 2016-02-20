@@ -5,7 +5,10 @@
         display: inline-block;
         box-sizing: border-box;
         text-align: center;
-        padding: .5em 0;
+
+        .menu-option--label {
+            padding: .5em 0;
+        }
 
         & {
             display: inline-table;
