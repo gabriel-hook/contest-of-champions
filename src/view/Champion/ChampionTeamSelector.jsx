@@ -5,6 +5,7 @@ import { PLACEHOLDER } from '../../data/champions';
 import effects, { effectImage } from '../../data/effects';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -13,7 +14,7 @@ import m from 'mithril';
 
 const ChampionTeamSelector = {
     view(ctrl, {
-        team, swap, onclick, onapply, onremove, onsplit, create,
+        team, swap, onclick, onapply, onremove, onsplit, create, onup, ondown,
         draggable, droppable, ondragstart, ondragend, ondragover, ondragout,
     }) {
         const { source, target } = swap;
@@ -129,6 +130,26 @@ const ChampionTeamSelector = {
                             { champions.reduce((amount, champion) => amount + (champion && (champion.attr.pi || champion.pi) || 0), 0) }
                         </span>
                     </div>
+                    { !create && (
+                        <div class="team-move">
+                            <div
+                                class={ classNames('team-move-direction', {
+                                    'team-move-direction--disabled': !onup,
+                                }) }
+                                onclick={ onup }
+                            >
+                                <Icon icon="caret-up" />
+                            </div>
+                            <div
+                                class={ classNames('team-move-direction', {
+                                    'team-move-direction--disabled': !ondown,
+                                }) }
+                                onclick={ ondown }
+                            >
+                                <Icon icon="caret-down" />
+                            </div>
+                        </div>
+                    ) || null }
                 </div>
                 { !swap.dragging && (onremove && (
                     <div class={ classNames('team-remove') } onclick={ onremove }>

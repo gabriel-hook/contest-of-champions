@@ -13,7 +13,6 @@ function applyTeams(updatedTeams) {
     updatedTeams.forEach((team) => {
         team.value = team.champions.reduce((sum, champion) => sum + (champion.attr.pi || champion.pi), 0);
     });
-    //updatedTeams.sort((a, b) => b.value - a.value);
     teams.result = {
         teams: updatedTeams,
         counts: {
@@ -141,12 +140,23 @@ const TeamsEditPage = {
         teams.forEach(({ champions, synergies }, teamIndex) => {
             teamElements.push(
                 <ChampionTeamSelector
-                    key={ `team-${ teamIndex }` }
                     team={{
                         champions,
                         synergies,
                     }}
                     swap={ swap }
+                    onup={ teamIndex > 0 && (() => {
+                        const swap = teams[ teamIndex ];
+                        teams[ teamIndex ] = teams[ teamIndex - 1 ];
+                        teams[ teamIndex - 1 ] = swap;
+                        requestRedraw();
+                    }) }
+                    ondown={ teamIndex < teams.length - 1 && (() => {
+                        const swap = teams[ teamIndex ];
+                        teams[ teamIndex ] = teams[ teamIndex + 1 ];
+                        teams[ teamIndex + 1 ] = swap;
+                        requestRedraw();
+                    }) }
                     draggable={ true }
                     droppable={ true }
                     ondragstart={(index) => {
@@ -158,7 +168,7 @@ const TeamsEditPage = {
                         };
                         swap.dragging = true;
                         calculateSynergies(swap);
-                        requestRedraw();
+                        requestRedraw(5);
                     }}
                     ondragend={() => {
                         if(source && target) {
