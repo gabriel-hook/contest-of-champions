@@ -149,12 +149,14 @@ const TeamsEditPage = {
                         const swap = teams[ teamIndex ];
                         teams[ teamIndex ] = teams[ teamIndex - 1 ];
                         teams[ teamIndex - 1 ] = swap;
+                        applyTeams(teams);
                         requestRedraw();
                     }) }
                     ondown={ teamIndex < teams.length - 1 && (() => {
                         const swap = teams[ teamIndex ];
                         teams[ teamIndex ] = teams[ teamIndex + 1 ];
                         teams[ teamIndex + 1 ] = swap;
+                        applyTeams(teams);
                         requestRedraw();
                     }) }
                     draggable={ true }
