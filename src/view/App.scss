@@ -43,6 +43,25 @@
         }
     }
 
+    .app-building {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        pointer-events: none;
+        z-index: 999999;
+
+        .app-building--progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: #38c;
+        }
+    }
+
     .raw-html {
         display: none;
     }

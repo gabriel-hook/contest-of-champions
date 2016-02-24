@@ -1,6 +1,7 @@
 import './App.scss';
 import classNames from 'classnames';
 import app from '../service/app';
+import teams from '../service/teams';
 import Menu from './Menu.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -25,6 +26,7 @@ function addRawHTML(element, isInitialized) {
 const App = {
     view() {
         const { tabs, tab, pages, menu, button } = app;
+        const { progress } = teams;
         const currentPage = tab;
         return (
             <div m="App" class="app">
@@ -36,6 +38,12 @@ const App = {
                     ))}
                 </div>
                 <Menu tabs={ tabs } tab={ tab } menu={ menu } button={ button } />
+                <div class="app-building">
+                    <div
+                        class="app-building--progress"
+                        style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .3s linear' };` }
+                    />
+                </div>
                 <div class="raw-html" config={ addRawHTML } />
             </div>
         );
