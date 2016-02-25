@@ -1,9 +1,11 @@
 import './TeamsEditPage.scss';
 import teams, { synergiesFromChampions } from '../../service/teams';
 import roster from '../../service/roster';
+import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
 import ChampionTeamSelector from '../Champion/ChampionTeamSelector.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
+import Message from '../Message.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -137,6 +139,10 @@ const TeamsEditPage = {
         const createElements = [];
         const extraElements = [];
         const inTeam = {};
+        const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
+        const message = synergiesCount?
+            `${ teams.length } ${ lang.get('teams') } ${ lang.get('width') } ${ synergiesCount } ${ lang.get('synergies') }`:
+            `${ teams.length } ${ lang.get('teams') }`;
         teams.forEach(({ champions, synergies }, teamIndex) => {
             teamElements.push(
                 <ChampionTeamSelector
@@ -389,6 +395,7 @@ const TeamsEditPage = {
         ));
         return (
             <div m="TeamsPage" class="teams">
+                <Message value={ message } />
                 <div>
                     { teamElements }
                 </div>
