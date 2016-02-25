@@ -1,11 +1,13 @@
 {
     "lang": "English",
 
+    "champion-agentvenom-name": "Agent Venom",
     "champion-blackbolt-name": "Black Bolt",
     "champion-captainmarvel-name": "Captain Marvel",
     "champion-drax-name": "Drax",
     "champion-gamora-name": "Gamora",
     "champion-groot-name": "Groot",
+    "champion-kamalakhan-name": "Kamala Khan",
     "champion-msmarvel-name": "Ms. Marvel",
     "champion-ronan-name": "Ronan",
     "champion-spidermanblack-name": "Spider-Man Symbiote",
@@ -33,6 +35,7 @@
     "champion-storm-name": "Storm",
     "champion-wolverine-name": "Wolverine",
     "champion-wolverineoldman-name": "Old Man Logan",
+    "champion-x23-name": "X-23",
     "champion-blackpanther-name": "Black Panther",
     "champion-blackwidow-name": "Black Widow",
     "champion-daredevil-name": "Daredevil",

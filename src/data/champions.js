@@ -1,13 +1,19 @@
 import Champion from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
+    'agentvenom': true,
+    'kamalakhan': true,
     'redskull': true,
-    'maestro': true,
+    'x23': true,
     'shehulk': true,
     'drstrangemarvelnow': true,
+    'maestro': true,
 };
 
 const champions = [
+
+    { uid: 'agentvenom', typeId: 'cosmic', stars: 3 },
+    { uid: 'agentvenom', typeId: 'cosmic', stars: 4 },
 
     { uid: 'blackbolt', typeId: 'cosmic', stars: 2 },
     { uid: 'blackbolt', typeId: 'cosmic', stars: 3 },
@@ -29,6 +35,9 @@ const champions = [
     { uid: 'groot', typeId: 'cosmic', stars: 3 },
     { uid: 'groot', typeId: 'cosmic', stars: 4 },
     { uid: 'groot', typeId: 'cosmic', stars: 5 },
+
+    { uid: 'kamalakhan', typeId: 'cosmic', stars: 3 },
+    { uid: 'kamalakhan', typeId: 'cosmic', stars: 4 },
 
     { uid: 'msmarvel', typeId: 'cosmic', stars: 3 },
     { uid: 'msmarvel', typeId: 'cosmic', stars: 4 },
@@ -138,6 +147,9 @@ const champions = [
     { uid: 'wolverineoldman', typeId: 'mutant', stars: 3 },
     { uid: 'wolverineoldman', typeId: 'mutant', stars: 4 },
     { uid: 'wolverineoldman', typeId: 'mutant', stars: 5 },
+
+    { uid: 'x23', typeId: 'mutant', stars: 3 },
+    { uid: 'x23', typeId: 'mutant', stars: 4 },
 
     { uid: 'blackpanther', typeId: 'skill', stars: 1 },
     { uid: 'blackpanther', typeId: 'skill', stars: 2 },
