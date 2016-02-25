@@ -180,6 +180,7 @@ const GuidePage = {
                         rating={ guide.signature.rating }
                         name={ guide.signature.name }
                         description={ guide.signature.description }
+                        abilities={ guide.signature.abilities }
                         note={ guide.signature.note }
                     />
                 );
