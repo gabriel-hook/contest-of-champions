@@ -9,11 +9,12 @@ const SPECIAL_EFFECTS = {
 const effects = [
 
     { uid: 'attack', base: 5 },
-    { uid: 'stun', base: 15 },
-    { uid: 'mutantagenda', base: 8 },
+    { uid: 'idol', base: 3 },
     { uid: 'inseparable', base: 8 },
+    { uid: 'mutantagenda', base: 8 },
     { uid: 'critrate', base: 5 },
     { uid: 'critdamage', base: 15 },
+    { uid: 'stun', base: 15 },
     { uid: 'powergain', base: 3 },
     //{ uid: 'powersteal', base: 3 },
     { uid: 'perfectblock', base: 3 },
@@ -28,11 +29,12 @@ const effects = [
 
 const imageMap = {
     'attack': 'attack',
-    'stun': 'stun',
-    'mutantagenda': 'mutant_agenda',
+    'idol': 'health_steal',
     'inseparable': 'inseparable',
+    'mutantagenda': 'mutant_agenda',
     'critrate': 'critical_rate',
     'critdamage': 'critical_damage',
+    'stun': 'stun',
     'powergain': 'mana',
     'powersteal': 'mana_steal',
     'perfectblock': 'block',

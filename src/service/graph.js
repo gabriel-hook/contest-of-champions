@@ -19,11 +19,12 @@ const TYPE_COLORS = {
 
 const EFFECT_COLORS = {
     attack:'#f00',
-    stun:'#f60',
-    mutantagenda:'#ff0',
+    idol:'#f0a',
     inseparable:'#a00',
+    mutantagenda:'#ff0',
     critrate:'#fa0',
     critdamage:'#a60',
+    stun:'#f60',
     powergain:'#a0f',
     powersteal:'#a6f',
     perfectblock:'#00a',
@@ -34,6 +35,14 @@ const EFFECT_COLORS = {
     heroesforhire:'#0a6',
     thunderbolts:'#a6a',
 };
+
+function getTypeColor(typeId) {
+    return TYPE_COLORS[ typeId ] || null;
+}
+
+function getEffectColor(effectId) {
+    return EFFECT_COLORS[ effectId ] || null;
+}
 
 let lastSelected;
 const rosters = {};
@@ -228,4 +237,4 @@ function updateGraph(definition, ...dimensions) {
 }
 
 export default fdg;
-export { getLegend, updateGraph };
+export { getLegend, updateGraph, getTypeColor, getEffectColor };

@@ -1,7 +1,7 @@
 import './SynergyPage.scss';
 import classNames from 'classnames';
 import { effectImage } from '../../data/effects';
-import graph, { getLegend, updateGraph } from '../../service/graph';
+import graph, { getLegend, updateGraph, getEffectColor } from '../../service/graph';
 import lang from '../../service/lang';
 import synergy from '../../service/synergy';
 import Icon from '../Icon.jsx';
@@ -33,6 +33,7 @@ const SynergyPage = {
                                 `legend-effect--${ effectId }`,
                                 { 'legend-effect--selected': selected }
                             ) }
+                            style={ `border-color: ${ getEffectColor(effectId) }` }
                             onclick={ () => {
                                 graph.selectEdgeType(effectId);
                                 requestRedraw(5);
