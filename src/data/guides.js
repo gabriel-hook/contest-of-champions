@@ -1,3 +1,4 @@
+import agentvenom from './guide/agentvenom';
 import blackbolt from './guide/blackbolt';
 import cyclops90s from './guide/cyclops90s';
 import daredevilnetflix from './guide/daredevilnetflix';
@@ -23,6 +24,7 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 
 const guides = {
+    agentvenom,
     blackbolt,
     cyclops90s,
     daredevilnetflix,

@@ -7,8 +7,8 @@
     "champion-drax-name": "Drax",
     "champion-gamora-name": "Gamora",
     "champion-groot-name": "Groot",
-    "champion-kamalakhan-name": "Kamala Khan",
-    "champion-msmarvel-name": "Ms. Marvel",
+    "champion-kamalakhan-name": "Ms Marvel (Kamala Khan)",
+    "champion-msmarvel-name": "Ms Marvel (Carol Danvers)",
     "champion-ronan-name": "Ronan",
     "champion-spidermanblack-name": "Spider-Man Symbiote",
     "champion-superiorironman-name": "Superior Iron Man",
@@ -73,6 +73,7 @@
     "champion-maestro-name": "Maestro",
 
     "champion-captainmarvel-shortname": "Cap. Marvel",
+    "champion-kamalakhan-shortname": "Ms Marvel",
     "champion-spidermanblack-shortname": "Spider-Man",
     "champion-superiorironman-shortname": "Sup. Iron Man",
     "champion-rocket-shortname": "Rocket",

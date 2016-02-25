@@ -12,9 +12,6 @@ const UNRELEASED_CHAMPIONS = {
 
 const champions = [
 
-    { uid: 'agentvenom', typeId: 'cosmic', stars: 3 },
-    { uid: 'agentvenom', typeId: 'cosmic', stars: 4 },
-
     { uid: 'blackbolt', typeId: 'cosmic', stars: 2 },
     { uid: 'blackbolt', typeId: 'cosmic', stars: 3 },
     { uid: 'blackbolt', typeId: 'cosmic', stars: 4 },
@@ -150,6 +147,9 @@ const champions = [
 
     { uid: 'x23', typeId: 'mutant', stars: 3 },
     { uid: 'x23', typeId: 'mutant', stars: 4 },
+
+    { uid: 'agentvenom', typeId: 'skill', stars: 3 },
+    { uid: 'agentvenom', typeId: 'skill', stars: 4 },
 
     { uid: 'blackpanther', typeId: 'skill', stars: 1 },
     { uid: 'blackpanther', typeId: 'skill', stars: 2 },
