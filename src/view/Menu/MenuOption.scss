@@ -1,3 +1,4 @@
+@import "../../util/colors";
 @import "../../util/fonts";
 
 .menu-option {
@@ -5,8 +6,9 @@
     display: block;
     cursor: pointer;
     min-width: 2.2em;
-    @include font-title(1.1em);
     color: #fff;
+    font-family: $font-family-title;
+    font-size: 1.1em;
     text-shadow: 0 1px 0 #000;
     text-decoration: none;
 

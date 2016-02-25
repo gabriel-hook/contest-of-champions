@@ -1,3 +1,4 @@
+@import "../../util/colors";
 @import "../../util/fonts";
 
 .champion-portrait {
@@ -109,11 +110,12 @@
             width: 100%;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
             color: #eee;
-            @include font-title(1em);
+            font-family: $font-family-title;
+            font-size: 1em;
             text-transform: uppercase;
             text-shadow: 0 1px 0 #000;
+            text-overflow: ellipsis;
 
             @media (max-width: 355px) {
                 font-size: .75em;

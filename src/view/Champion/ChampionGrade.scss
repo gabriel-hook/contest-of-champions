@@ -1,10 +1,12 @@
+@import "../../util/colors";
 @import "../../util/fonts";
 @import "../../util/ratings";
 
 .champion-grade {
     display: block;
     padding: 16px 16px 0;
-    @include font-text(1em);
+    font-family: $font-family-text;
+    font-size: 1em;
 
     .champion-grade--value-a,
     .champion-grade--value-b,
@@ -12,7 +14,7 @@
     .champion-grade--value-d,
     .champion-grade--value-e,
     .champion-grade--value-f {
-        font-family: Hanzel, Verdana, Geneva, sans-serif;
+        font-family: $font-family-title;
         text-shadow: 0 1px 0 #fff;
     }
 

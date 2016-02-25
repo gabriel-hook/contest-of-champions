@@ -1,3 +1,4 @@
+@import "../../util/colors";
 @import "../../util/input";
 @import "../../util/fonts";
 
@@ -36,7 +37,8 @@
     .champion-section-text {
         display: block;
         padding: 16px 16px 0;
-        @include font-text(1em);
+        font-family: $font-family-text;
+        font-size: 1em;
         line-height: 166%;
         text-shadow: 0 1px 0 #eee;
 
@@ -76,14 +78,16 @@
     .champion-section-item {
         display: inline-block;
         position: relative;
-        @include font-title(1em);
+        font-family: $font-family-title;
+        font-size: 1em;
         padding: 8px;
         margin: 8px 8px 0 0;
         cursor: pointer;
     }
 
     .champion-section-select {
-        @include font-title(1em);
+        font-family: $font-family-title;
+        font-size: 1em;
 
         &.champion-section-select-item {
             width: 36px;
@@ -93,7 +97,8 @@
     .champion-section-textarea {
         display: block;
         width: 100%;
-        @include font-text(1em);
+        font-family: $font-family-text;
+        font-size: 1em;
         line-height: 166%;
         padding: 16px;
         text-shadow: 0 1px 0 #eee;

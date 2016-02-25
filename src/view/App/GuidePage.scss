@@ -1,7 +1,8 @@
+@import "../../util/colors";
 @import "../../util/fonts";
 
 .guide {
-    background: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0);
     min-height: 100%;
 
     .guide-synergies {
@@ -33,15 +34,17 @@
         }
 
         .champion-name {
-            @include font-title(1em);
-            line-height: 24px;
+            font-family: $font-family-title;
+            font-size: 1em;
+            line-height: 2em;
             text-transform: uppercase;
             cursor: pointer;
         }
 
         .effect-name {
-            @include font-text(1em);
-            line-height: 24px;
+            font-family: $font-family-text;
+            font-size: 1em;
+            line-height: 2em;
         }
 
         .champion-name,
@@ -63,11 +66,12 @@
         padding: 16px;
         box-sizing: border-box;
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
-        @include font-text(1em);
+        font-family: $font-family-text;
+        font-size: 1em;
         text-align: center;
 
         a {
-            @include font-title(1em);
+            font-family: $font-family-title;
             text-decoration: none;
             color: #000;
         }

@@ -1,3 +1,4 @@
+@import "../../util/colors";
 @import "../../util/fonts";
 @import "../../util/input";
 
@@ -12,7 +13,8 @@
         padding: 0 0 16px;
         box-sizing: border-box;
         box-shadow: 0 8px 0 -4px rgba(0, 0, 0, .25);
-        @include font-text(1em);
+        font-family: $font-family-text;
+        font-size: 1em;
         text-align: center;
 
         .field-group-title {
@@ -35,7 +37,8 @@
 
         label {
             display: block;
-            @include font-text(1em);
+            font-family: $font-family-text;
+            font-size: 1em;
             text-align: left;
             line-height: 1.2em;
             text-shadow: 0 1px 0 #fff;
@@ -43,7 +46,8 @@
 
         input {
             width: 100%;
-            @include font-text(1em);
+            font-family: $font-family-text;
+            font-size: 1em;
             padding: 8px;
             box-sizing: border-box;
             border: solid 2px #aaa;
@@ -63,7 +67,8 @@
         bottom: 0;
         height: 2em;
         margin-left: -16px;
-        @include font-title(1.25em);
+        font-family: $font-family-title;
+        font-size: 1.25em;
         line-height: 2em;
         z-index: 100;
 
