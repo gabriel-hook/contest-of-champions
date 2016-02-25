@@ -91,15 +91,6 @@ const synergies = [
     { fromId: 'thor', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
     { fromId: 'thor', fromStars: 4, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
 
-    { fromId: 'thorjanefoster', fromStars: 3, toId: 'thor', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'thorjanefoster', fromStars: 3, toId: 'vision', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'blackwidow', effectId: 'powergain', effectAmount: 6 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'thor', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'blackwidow', effectId: 'powergain', effectAmount: 6 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'thor', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
-
     { fromId: 'venom', fromStars: 3, toId: 'spiderman', effectId: 'attack', effectAmount: 5 },
     { fromId: 'venom', fromStars: 3, toId: 'spidermanblack', effectId: 'health', effectAmount: 4 },
     { fromId: 'venom', fromStars: 3, toId: 'electro', effectId: 'critdamage', effectAmount: 20 },
@@ -558,6 +549,15 @@ const synergies = [
     { fromId: 'scarletwitch', fromStars: 3, toId: 'vision', effectId: 'powergain', effectAmount: 4 },
     { fromId: 'scarletwitch', fromStars: 4, toId: 'captainmarvel', effectId: 'armor', effectAmount: 6 },
     { fromId: 'scarletwitch', fromStars: 4, toId: 'vision', effectId: 'powergain', effectAmount: 5 },
+
+    { fromId: 'thorjanefoster', fromStars: 3, toId: 'thor', effectId: 'powergain', effectAmount: 4 },
+    { fromId: 'thorjanefoster', fromStars: 3, toId: 'vision', effectId: 'perfectblock', effectAmount: 4 },
+    { fromId: 'thorjanefoster', fromStars: 4, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'thorjanefoster', fromStars: 4, toId: 'thor', effectId: 'powergain', effectAmount: 5 },
+    { fromId: 'thorjanefoster', fromStars: 4, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'thorjanefoster', fromStars: 5, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'thorjanefoster', fromStars: 5, toId: 'thor', effectId: 'powergain', effectAmount: 5 },
+    { fromId: 'thorjanefoster', fromStars: 5, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
 
     { fromId: 'unstoppablecolossus', fromStars: 2, toId: 'magik', effectId: 'health', effectAmount: 4 },
     { fromId: 'unstoppablecolossus', fromStars: 2, toId: 'juggernaut', effectId: 'critdamage', effectAmount: 15 },
