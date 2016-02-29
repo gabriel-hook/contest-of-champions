@@ -31,6 +31,11 @@
         }
     }
 
+    &.image-icon--solitary {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     @media print {
         &.alt {
             display: none;

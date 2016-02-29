@@ -7,7 +7,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ImageIcon = {
-    view(ctrl, { src, icon, alt, hoverSrc, hoverAlt }) {
+    view(ctrl, { src, icon, alt, hoverSrc, hoverAlt, solitary }) {
         const elements = [];
         const image = getImage(src);
         if(image) {
@@ -45,7 +45,7 @@ const ImageIcon = {
             );
         }
         return src && (
-            <div class="image-icon">
+            <div class={ classNames('image-icon', { 'image-icon--solitary': solitary }) }>
                 { elements }
             </div>
         );

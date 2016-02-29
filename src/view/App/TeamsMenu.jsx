@@ -1,9 +1,12 @@
+import { uids as TYPES, typeImage } from '../../data/types';
 import teams, { buildTeams, save } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
+import lang from '../../service/lang';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -51,6 +54,36 @@ const TeamsMenu = {
                         selected={ teams.stars[ star ] }
                         onclick={ () => {
                             teams.stars[ star ] = !teams.stars[ star ];
+                            save();
+                            requestRedraw();
+                        }}
+                    />
+                ))
+            } />
+        );
+        options.push(
+            <MenuSection
+                title="types"
+            />
+        );
+        options.push(
+            <MenuOptionGroup options={
+                TYPES.map((type) => (
+                    <MenuOption
+                        icon={(
+                            <ImageIcon
+                                src={ typeImage(type, 'white') }
+                                alt={ typeImage(type, 'black') }
+                                hoverSrc={ typeImage(type, 'black') }
+                                hoverAlt={ typeImage(type, 'white') }
+                                icon="square"
+                                solitary
+                            />
+                        )}
+                        info={ lang.get(`type-${ type }-name`) }
+                        selected={ teams.types[ type ] }
+                        onclick={ () => {
+                            teams.types[ type ] = !teams.types[ type ];
                             save();
                             requestRedraw();
                         }}

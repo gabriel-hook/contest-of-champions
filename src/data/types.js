@@ -11,7 +11,15 @@ const types = [
 
 ].map((type) => new Type(type));
 
+function typeImage(uid, append = 'black') {
+    return `images/types/${
+        uid
+    }_${
+        append
+    }.png`;
+}
+
 const uids = [ ...new Set(types.map(({ attr }) => attr.uid)) ];
 
-export { uids };
+export { uids, typeImage };
 export default types;

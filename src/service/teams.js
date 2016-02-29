@@ -111,6 +111,14 @@ const teams = {
         4: false,
         5: false,
     },
+    types:{
+        cosmic: true,
+        tech: true,
+        mutant: true,
+        skill: true,
+        science: true,
+        mystic: true,
+    },
     weights: {
         ...DEFAULT_WEIGHTS,
     },
@@ -135,6 +143,7 @@ function save() {
         type: teams.type,
         size: teams.size,
         stars: teams.stars,
+        types: teams.types,
         weights: teams.weights,
         range: teams.range,
     });
@@ -239,6 +248,7 @@ function buildTeams() {
         data: {
             type: teams.type,
             champions: roster
+                .filter(({ attr }) => teams.types[ attr.typeId ])
                 .filter(({ attr }) => teams.stars[ attr.stars ])
                 .filter(
                     teams.type === 'alliance'? ({ attr }) => attr.role !== 'quest':
