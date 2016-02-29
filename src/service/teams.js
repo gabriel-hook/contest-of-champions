@@ -14,11 +14,11 @@ const PRESETS = {
     'offensive': {
         'effect-attack': 0.6,
         'effect-idol': 0.6,
-        'effect-stun': 0.5,
-        'effect-mutantagenda': 0.6,
         'effect-inseparable': 0.6,
+        'effect-mutantagenda': 0.6,
         'effect-critrate': 0.4,
         'effect-critdamage': 0.4,
+        'effect-stun': 0.5,
         'effect-powergain': 0.2,
         'effect-powersteal': 0.2,
         'effect-perfectblock': 0.1,
@@ -32,11 +32,11 @@ const PRESETS = {
     'balanced': {
         'effect-attack': 0.5,
         'effect-idol': 0.5,
-        'effect-stun': 0.5,
-        'effect-mutantagenda': 0.5,
         'effect-inseparable': 0.5,
+        'effect-mutantagenda': 0.5,
         'effect-critrate': 0.5,
         'effect-critdamage': 0.5,
+        'effect-stun': 0.5,
         'effect-powergain': 0.5,
         'effect-powersteal': 0.5,
         'effect-perfectblock': 0.5,
@@ -50,11 +50,11 @@ const PRESETS = {
     'defensive': {
         'effect-attack': 0.1,
         'effect-idol': 0.3,
-        'effect-stun': 0.5,
-        'effect-mutantagenda': 0.1,
         'effect-inseparable': 0.1,
+        'effect-mutantagenda': 0.1,
         'effect-critrate': 0.1,
         'effect-critdamage': 0.1,
+        'effect-stun': 0.5,
         'effect-powergain': 0.3,
         'effect-powersteal': 0.3,
         'effect-perfectblock': 0.8,
@@ -140,6 +140,8 @@ for(const key in DEFAULT_WEIGHTS) {
         teams.weights[ key ] = DEFAULT_WEIGHTS[ key ];
     }
 }
+
+console.warn(teams.weights);
 
 function save() {
     toStorage('teams', {
