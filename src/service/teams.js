@@ -141,8 +141,6 @@ for(const key in DEFAULT_WEIGHTS) {
     }
 }
 
-console.warn(teams.weights);
-
 function save() {
     toStorage('teams', {
         type: teams.type,
