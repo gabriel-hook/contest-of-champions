@@ -13,6 +13,7 @@ import { requestRedraw } from '../util/animation';
 const PRESETS = {
     'offensive': {
         'effect-attack': 0.6,
+        'effect-idol': 0.6,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.6,
         'effect-inseparable': 0.6,
@@ -30,6 +31,7 @@ const PRESETS = {
     },
     'balanced': {
         'effect-attack': 0.5,
+        'effect-idol': 0.5,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.5,
         'effect-inseparable': 0.5,
@@ -47,6 +49,7 @@ const PRESETS = {
     },
     'defensive': {
         'effect-attack': 0.1,
+        'effect-idol': 0.3,
         'effect-stun': 0.5,
         'effect-mutantagenda': 0.1,
         'effect-inseparable': 0.1,
