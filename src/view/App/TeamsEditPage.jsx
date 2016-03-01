@@ -77,11 +77,13 @@ const TeamsEditPage = {
         this.teams = [];
         this.size = 0;
         this.stars = {};
+        this.types = {};
         this.last = -1;
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
-            if(this.last !== teams.last || this.size !== teams.size || !starsEqual) {
-                if(this.last === teams.last && (this.size !== teams.size || !starsEqual)) {
+            const typesEqual = deepEqual(this.types, teams.types);
+            if(this.last !== teams.last || this.size !== teams.size || !starsEqual || !typesEqual) {
+                if(this.last === teams.last && (this.size !== teams.size || !starsEqual || !typesEqual)) {
                     teams.result = null;
                     this.teams = [];
                 }
@@ -100,6 +102,7 @@ const TeamsEditPage = {
                 this.create.champions = [ null ];
                 this.create.synergies = [];
                 this.stars = { ...teams.stars };
+                this.types = { ...teams.types };
                 this.size = teams.size;
                 this.last = teams.last;
                 this.init = true;
@@ -254,7 +257,10 @@ const TeamsEditPage = {
             );
             champions.forEach((champion) => inTeam[ champion.id ] = true);
         });
-        const extras = roster.filter((champion) => !inTeam[ champion.id ] && ctrl.stars[ champion.attr.stars ]);
+        const extras = roster
+            .filter((champion) => ctrl.stars[ champion.attr.stars ])
+            .filter((champion) => ctrl.types[ champion.attr.typeId ])
+            .filter((champion) => !inTeam[ champion.id ]);
         if(extras.length >= ctrl.size) {
             while(create.champions.length < ctrl.size) {
                 create.champions.push(null);
