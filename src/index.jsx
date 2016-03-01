@@ -71,7 +71,11 @@ if(router._invoked) {
     router.routes = {};
 }
 
-router.on('/guide/?', () => router.setRoute(app.history.guide || `/guide/${ CHAMPIONS[ 0 ] }`));
+router.on('/guide/?', () => router.setRoute(
+    app.history.guide !== app.route &&
+    app.history.guide ||
+    `/guide/${ CHAMPIONS[ (Math.random() * CHAMPIONS.length) | 0 ] }`
+));
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
