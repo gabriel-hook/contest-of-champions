@@ -153,6 +153,7 @@ const TeamsEditPage = {
                         champions,
                         synergies,
                     }}
+                    showBadges={ 'upgrade' }
                     swap={ swap }
                     onup={ teamIndex > 0 && (() => {
                         const swap = teams[ teamIndex ];
@@ -275,6 +276,7 @@ const TeamsEditPage = {
                         champions: create.champions,
                         synergies: create.synergies,
                     }}
+                    showBadges={ 'upgrade' }
                     swap={ swap }
                     draggable={ true }
                     droppable={ true }
@@ -365,6 +367,7 @@ const TeamsEditPage = {
             <ChampionPortrait
                 key={ `champion-${ champion.id }` }
                 champion={ champion }
+                showBadges={ 'upgrade' }
                 editing={ target && target.champion && target.champion.id === champion.id }
                 draggable={ true }
                 events={{

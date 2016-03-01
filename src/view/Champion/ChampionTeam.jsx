@@ -105,7 +105,7 @@ const ChampionTeam = {
         this.champions = {};
         this.effects = {};
     },
-    view(ctrl, { champions, synergies }) {
+    view(ctrl, { champions, synergies, showBadges }) {
         const size = champions.length;
         return(
             <div
@@ -122,7 +122,7 @@ const ChampionTeam = {
                             champion={ champion }
                             selected={ selected }
                             neighbor={ neighbor }
-                            showBadges={ 'role' }
+                            showBadges={showBadges }
                             onclick={ () => selectChampion(ctrl, synergies, champions, index) }
                         />
                     );

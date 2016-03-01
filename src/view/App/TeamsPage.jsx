@@ -23,6 +23,7 @@ const TeamsPage = {
                     key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
                     champions={ champions }
                     synergies={ synergies }
+                    showBadges={ 'upgrade' }
                 />
             ));
             if(extras.length) {
@@ -33,6 +34,7 @@ const TeamsPage = {
                     <ChampionPortrait
                         key={ `teams-extras-${ champion.id }` }
                         champion={ champion }
+                        showBadges={ 'upgrade' }
                     />
                 ));
             }

@@ -14,7 +14,7 @@ import m from 'mithril';
 
 const ChampionTeamSelector = {
     view(ctrl, {
-        team, swap, onclick, onapply, onremove, onsplit, create, onup, ondown,
+        team, swap, onclick, onapply, onremove, onsplit, create, onup, ondown, showBadges,
         draggable, droppable, ondragstart, ondragend, ondragover, ondragout,
     }) {
         const { source, target } = swap;
@@ -44,7 +44,7 @@ const ChampionTeamSelector = {
                             key={ `create_${ index }` }
                             champion={ champion }
                             editing={ sourceId === champion.id || targetId === champion.id }
-                            showBadges={ 'none' }
+                            showBadges={ showBadges }
                             draggable={ draggable }
                             droppable={ droppable }
                             events={{
@@ -63,7 +63,7 @@ const ChampionTeamSelector = {
                             key={ `create_${ index }` }
                             champion={ PLACEHOLDER }
                             editing={ source && source.create && source.index === index }
-                            showBadges={ 'none' }
+                            showBadges={ showBadges }
                             droppable={ droppable }
                             events={{
                                 ondragover: ondragover && ondragover.bind(null, index),
