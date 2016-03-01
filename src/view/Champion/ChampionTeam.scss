@@ -76,18 +76,21 @@
 
     &.team--selected {
         .champion-portrait {
+            .upgrade,
             .portrait {
                 opacity: .1;
                 transition: opacity .25s;
             }
 
             &.champion--neighbor {
+                .upgrade,
                 .portrait {
                     opacity: .666;
                 }
             }
 
             &.champion--selected {
+                .upgrade,
                 .portrait {
                     opacity: 1;
                 }
