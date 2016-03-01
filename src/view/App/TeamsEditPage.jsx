@@ -141,6 +141,7 @@ const TeamsEditPage = {
         const teamElements = [];
         const createElements = [];
         const extraElements = [];
+        let extrasHeader;
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
         const message = synergiesCount?
@@ -402,6 +403,11 @@ const TeamsEditPage = {
                 }}
             />
         ));
+        if(extraElements.length) {
+            extrasHeader = (
+                <div class="header">{ lang.get('extras') }</div>
+            );
+        }
         return (
             <div m="TeamsPage" class="teams">
                 <Message value={ message } />
@@ -411,6 +417,7 @@ const TeamsEditPage = {
                 <div>
                     { createElements }
                 </div>
+                { extrasHeader }
                 <div>
                     { extraElements }
                 </div>

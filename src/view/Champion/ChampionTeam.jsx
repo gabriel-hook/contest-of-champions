@@ -112,51 +112,51 @@ const ChampionTeam = {
                 m="ChampionTeam"
                 class={ classNames('champion-team', ` champion-team--size-${ size }`, { 'team--selected': ctrl.selected.active }) }
             >
-                <div>
-                { champions.map((champion, index) => {
-                    const selected = ctrl.selected.champions[ index ] === CHAMPION_SELECTED;
-                    const neighbor = ctrl.selected.champions[ index ] === CHAMPION_NEIGHBOR;
-                    return (
-                        <ChampionPortrait
-                            key={ `champion-${ index }` }
-                            champion={ champion }
-                            selected={ selected }
-                            neighbor={ neighbor }
-                            showBadges={showBadges }
-                            onclick={ () => selectChampion(ctrl, synergies, champions, index) }
-                        />
-                    );
-                }) }
+                <div class="team-champions">
+                    { champions.map((champion, index) => {
+                        const selected = ctrl.selected.champions[ index ] === CHAMPION_SELECTED;
+                        const neighbor = ctrl.selected.champions[ index ] === CHAMPION_NEIGHBOR;
+                        return (
+                            <ChampionPortrait
+                                key={ `champion-${ index }` }
+                                champion={ champion }
+                                selected={ selected }
+                                neighbor={ neighbor }
+                                showBadges={showBadges }
+                                onclick={ () => selectChampion(ctrl, synergies, champions, index) }
+                            />
+                        );
+                    }) }
                 </div>
                 <div className="team-synergies">
-                { effects.map((effect) => {
-                    const synergy = synergies.filter((synergy) => synergy.attr.effectId === effect.attr.uid);
-                    if(synergy.length === 0)
-                        return null;
-                    const selected = ctrl.selected.effects[ effect.attr.uid ];
-                    const amount = (!selected || selected === EFFECT_SELECTED)?
-                        synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0):
-                        selected;
-                    return (
-                        <div
-                            class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
-                            onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
-                            title={ lang.get(`effect-${ effect.attr.uid }-description`) }
-                        >
-                            <ImageIcon
-                                src={ effectImage(effect.attr.uid, 'black') }
-                                alt={ effectImage(effect.attr.uid, 'white') }
-                                icon="square"
-                            />
-                            <span class="effect-name">
-                                { lang.get(`effect-${ effect.attr.uid }-name`) }
-                            </span>
-                            <span class="effect-amount">
-                                { amount }%
-                            </span>
-                        </div>
-                    );
-                })}
+                    { effects.map((effect) => {
+                        const synergy = synergies.filter((synergy) => synergy.attr.effectId === effect.attr.uid);
+                        if(synergy.length === 0)
+                            return null;
+                        const selected = ctrl.selected.effects[ effect.attr.uid ];
+                        const amount = (!selected || selected === EFFECT_SELECTED)?
+                            synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0):
+                            selected;
+                        return (
+                            <div
+                                class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
+                                onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
+                                title={ lang.get(`effect-${ effect.attr.uid }-description`) }
+                            >
+                                <ImageIcon
+                                    src={ effectImage(effect.attr.uid, 'black') }
+                                    alt={ effectImage(effect.attr.uid, 'white') }
+                                    icon="square"
+                                />
+                                <span class="effect-name">
+                                    { lang.get(`effect-${ effect.attr.uid }-name`) }
+                                </span>
+                                <span class="effect-amount">
+                                    { amount }%
+                                </span>
+                            </div>
+                        );
+                    }) }
                     <div class="team-pi">
                         { lang.get('pi') }
                         <span class="team-pi-number">
