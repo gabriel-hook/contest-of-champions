@@ -50,7 +50,7 @@ const MenuOption = {
                     'menu-option--progress': progress,
                     'menu-option--red': red === true || red === 'true',
                 }, 'no-select') }
-                title={ info || '' }
+                title={ lang.get(info) || '' }
                 onclick={ onclick }
                 { ...link }
                 disabled={ !Boolean(onclick || link) }

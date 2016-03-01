@@ -6,7 +6,6 @@ import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
-import lang from '../../service/lang';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -80,7 +79,7 @@ const TeamsMenu = {
                                 solitary
                             />
                         )}
-                        info={ lang.get(`type-${ type }-name`) }
+                        info={ `type-${ type }-name` }
                         selected={ teams.types[ type ] }
                         onclick={ () => {
                             teams.types[ type ] = !teams.types[ type ];
