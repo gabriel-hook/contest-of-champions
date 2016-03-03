@@ -95,12 +95,14 @@ const STAR_RANK_LEVEL={
         1:{ levels: 10, min:100, max:175 },
         2:{ levels: 20, min:175, max:250 },
         ranks: 2,
+        awakened: 99,
     },
     2:{
         1:{ levels: 10, min:150, max:250 },
         2:{ levels: 20, min:250, max:400 },
         3:{ levels: 30, min:400, max:600 },
         ranks: 3,
+        awakened: 99,
     },
     3:{
         1:{ levels: 10, min:300, max:500 },
@@ -108,6 +110,7 @@ const STAR_RANK_LEVEL={
         3:{ levels: 30, min:900, max:1200 },
         4:{ levels: 40, min:1200, max:1500 },
         ranks: 4,
+        awakened: 99,
     },
     4:{
         1:{ levels: 10, min:600, max:1000 },
@@ -116,6 +119,7 @@ const STAR_RANK_LEVEL={
         4:{ levels: 40, min:2000, max:2800 },
         5:{ levels: 50, min:2800, max:3500 },
         ranks: 5,
+        awakened: 99,
     },
     5:{
         1:{ levels: 25, min:1500, max:2500 },
@@ -124,6 +128,7 @@ const STAR_RANK_LEVEL={
         4:{ levels: 55, min:4500, max:5500 },
         5:{ levels: 65, min:5500, max:6500 },
         ranks: 5,
+        awakened: 200,
     },
 };
 
@@ -153,9 +158,13 @@ class Champion extends Model {
         this.pi = 0;
         const range = STAR_RANK_LEVEL[ stars ] && STAR_RANK_LEVEL[ stars ][ rank ];
         if(range && level <= range.levels) {
+            const awakenedMax = STAR_RANK_LEVEL[ stars ].awakened || 1;
             this.pi = range.min + (level / range.levels) * (range.max - range.min);
-            if(awakened > 0)
-                this.pi *= 1.05 + Math.min(Math.max(1, awakened), 99) * 0.005;
+            if(awakened > 0) {
+                // additional 5 - 15% PI for awakened
+                const ratio = Math.min(Math.max(1, awakened), awakenedMax) / awakenedMax;
+                this.pi *= 1.05 + ratio * 0.10;
+            }
             this.pi = this.pi | 0;
         }
         this.attr.pi = this.attr.pi | 0;

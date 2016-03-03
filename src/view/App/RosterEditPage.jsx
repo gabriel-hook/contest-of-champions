@@ -80,6 +80,8 @@ const RosterPage = {
             const levelMax = STAR_RANK_LEVEL[ stars ]
                 && STAR_RANK_LEVEL[ stars ][ rank ]
                 && STAR_RANK_LEVEL[ stars ][ rank ].levels || 1;
+            const awankenedMax = STAR_RANK_LEVEL[ stars ]
+                && STAR_RANK_LEVEL[ stars ].awakened || 99;
             elements.push(
                 <ChampionHeader champion={ champion } />
             );
@@ -141,10 +143,10 @@ const RosterPage = {
                         id={ `${ champion.id }-edit-awakened` }
                         value={ awakened }
                         min={ 0 }
-                        max={ 99 }
+                        max={ awankenedMax }
                         onchange={(event) => {
                             const { value } = event.target;
-                            const awakened = Math.min(99, Math.max(0, parseInt(value, 10) || 0));
+                            const awakened = Math.min(awankenedMax, Math.max(0, parseInt(value, 10) || 0));
                             roster.set(uid, stars, {
                                 awakened,
                             });
