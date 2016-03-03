@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.css';
 import { notify } from './util/notification';
-import { uids as CHAMPIONS } from './data/champions';
+import { uids as CHAMPIONS, SPOTLIGHT } from './data/champions';
 import { uids as EFFECTS } from './data/effects';
 import lang from './service/lang';
 import app from './service/app';
@@ -71,11 +71,16 @@ if(router._invoked) {
     router.routes = {};
 }
 
-router.on('/guide/?', () => router.setRoute(
-    app.history.guide !== app.route &&
-    app.history.guide ||
-    `/guide/${ CHAMPIONS[ (Math.random() * CHAMPIONS.length) | 0 ] }`
-));
+router.on('/guide/?', () => {
+    let route = app.history.guide;
+    if(!route) {
+        route = `/guide/${ SPOTLIGHT }`;
+    }
+    else if(route === app.route) {
+        route = `/guide/${ CHAMPIONS[ (Math.random() * CHAMPIONS.length) | 0 ] }`;
+    }
+    router.setRoute(route);
+});
 
 router.on('/guide/:uid/?', (uid) => {
     app.tab = 'guide';
