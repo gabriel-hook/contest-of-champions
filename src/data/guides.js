@@ -11,6 +11,7 @@ import joefixit from './guide/joefixit';
 import lukecage from './guide/lukecage';
 import magnetomarvelnow from './guide/magnetomarvelnow';
 import moonknight from './guide/moonknight';
+import shehulk from './guide/shehulk';
 import spidergwen from './guide/spidergwen';
 import spidermanblack from './guide/spidermanblack';
 import spidermanmorales from './guide/spidermanmorales';
@@ -37,6 +38,7 @@ const guides = {
     lukecage,
     magnetomarvelnow,
     moonknight,
+    shehulk,
     spidergwen,
     spidermanblack,
     spidermanmorales,

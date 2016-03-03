@@ -1,0 +1,66 @@
+{
+    "description": "When a bullet meant for her father struck Jennifer Walters, it seemed that all was lost. Bleeding out and in desperate need of a donor for her rare blood type, it was her cousin Bruce Banner that stepped forward to save her. When the Hulk’s gamma-infused blood was introduced into Jennifer, she found herself able to transform into the powerful She-Hulk! Standing as her own hero, She-Hulk has fought alongside the world’s greatest warriors, using her immense strength and intellect to defeat the villains of earth, both in the courtroom and on the battlefield.",
+    "specials": {
+        "1": {
+            "name": "Objection!",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "note": "45% chance to Stun the opponent for 3 seconds.",
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "name": "Found in Contempt",
+            "note": "55% chance to Stun the opponent for 4 seconds.",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "3": {
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "name": "Clear the Courtroom",
+            "note": "65% chance to Stun the opponent for 4.25 seconds."
+        }
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "645759-She-Hulk-Champion-Spotlight"
+    },
+    "attack": {
+        "heavy": "She-Hulk attempts to knock some sense into Stunned champions, striking with 146% increased Attack and removing the Stun effect.",
+        "description": "She-Hulk’s extensive weight training allows her Special Attacks up to 18% increased chance to Stun based on how large the opposing champion is.\n The full 18% chance to Stun is against giant champions such as Juggernaut and Hulk-Buster, while small champions will see a much smaller Stun increase chance.",
+        "note": "This Stun increase chance is a flat increase on the base. Meaning a Special 3 against a giant champion will be 83% chance (65% + 18%)",
+        "abilities": [
+            "stun"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "stun",
+            "poisonimmunity"
+        ],
+        "description": "She-Hulk has some of the longest Stun durations in the game, and amplifying her Stun effects can allow her to destroy her opponent’s when used correctly."
+    },
+    "signature": {
+        "description": "Jennifer Walters relentless studying and research on her opponent allows her to place a Passive effect on them, reducing a specific stat by (5% - 20%) based on which Class they are.\n The effects are as follows for the various classes:\n Science = Physical Resistance \nMystic = Power Gain Rate \nCosmic = Buff Duration \nTech = Ability Accuracy \nMutant = Special Damage \nSkill = Critical Hit Damage",
+        "name": "Citing Precedent",
+        "note": "This effect is a Passive effect and does not interact with effects such as Nullify, Purge or Willpower."
+    }
+}

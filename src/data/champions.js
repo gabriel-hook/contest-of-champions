@@ -5,7 +5,6 @@ const UNRELEASED_CHAMPIONS = {
     'kamalakhan': true,
     'redskull': true,
     'x23': true,
-    'shehulk': true,
     'drstrangemarvelnow': true,
     'maestro': true,
 };
@@ -231,6 +230,7 @@ const champions = [
 
     { uid: 'shehulk', typeId: 'science', stars: 3 },
     { uid: 'shehulk', typeId: 'science', stars: 4 },
+    { uid: 'shehulk', typeId: 'science', stars: 5 },
 
     { uid: 'spidergwen', typeId: 'science', stars: 3 },
     { uid: 'spidergwen', typeId: 'science', stars: 4 },
