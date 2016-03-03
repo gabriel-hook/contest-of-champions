@@ -52,6 +52,8 @@ const guides = {
     wolverineoldman,
 };
 
+const uids = Object.keys(guides);
+
 const RATINGS = [ 1, 2, 3, 4, 5 ];
 
 const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
@@ -76,4 +78,5 @@ const PROFILE_TYPES = [
 ];
 
 export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, PROFILE_TYPES };
+export { uids };
 export default guides;

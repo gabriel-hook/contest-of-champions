@@ -4,6 +4,7 @@ import './index.css';
 import { notify } from './util/notification';
 import { uids as CHAMPIONS, SPOTLIGHT } from './data/champions';
 import { uids as EFFECTS } from './data/effects';
+import { uids as GUIDES } from './data/guides';
 import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
@@ -77,7 +78,7 @@ router.on('/guide/?', () => {
         route = `/guide/${ SPOTLIGHT }`;
     }
     else if(route === app.route) {
-        route = `/guide/${ CHAMPIONS[ (Math.random() * CHAMPIONS.length) | 0 ] }`;
+        route = `/guide/${ GUIDES[ (Math.random() * GUIDES.length) | 0 ] }`;
     }
     router.setRoute(route);
 });
