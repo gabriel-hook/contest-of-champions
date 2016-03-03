@@ -61,6 +61,7 @@ const champions = [
 
     { uid: 'venompool', typeId: 'cosmic', stars: 3 },
     { uid: 'venompool', typeId: 'cosmic', stars: 4 },
+    { uid: 'venompool', typeId: 'cosmic', stars: 5 },
 
     { uid: 'ironman', typeId: 'tech', stars: 1 },
     { uid: 'ironman', typeId: 'tech', stars: 2 },
@@ -233,6 +234,7 @@ const champions = [
 
     { uid: 'spidergwen', typeId: 'science', stars: 3 },
     { uid: 'spidergwen', typeId: 'science', stars: 4 },
+    { uid: 'spidergwen', typeId: 'science', stars: 5 },
 
     { uid: 'spiderman', typeId: 'science', stars: 1 },
     { uid: 'spiderman', typeId: 'science', stars: 2 },
