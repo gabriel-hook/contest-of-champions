@@ -38,11 +38,10 @@ const RosterAddPage = {
                 >
                     { lang.get('add-all') }
                 </button>
-                <div style="clear:both" />
                 <div>
                     { champions.map((champion) => (
                         <ChampionPortrait
-                            key={ `roster-add-${ stars }-${ champion.id }` }
+                            key={ `roster-add-${ champion.id }` }
                             champion={ champion }
                             onclick={ () => {
                                 roster.add(champion.attr.uid, stars);
@@ -51,8 +50,8 @@ const RosterAddPage = {
                             }}
                         />
                     )) }
-                    <div class="clear"></div>
                 </div>
+                <div class="clear" />
             </div>
         );
     },
