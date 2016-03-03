@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.css';
 import { notify } from './util/notification';
-import { uids as CHAMPIONS, SPOTLIGHT } from './data/champions';
+import { SPOTLIGHT } from './data/champions';
 import { uids as EFFECTS } from './data/effects';
 import { uids as GUIDES } from './data/guides';
 import lang from './service/lang';
