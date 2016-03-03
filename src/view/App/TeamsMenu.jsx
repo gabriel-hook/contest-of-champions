@@ -1,4 +1,4 @@
-import { uids as TYPES, typeImage } from '../../data/types';
+import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
 import teams, { buildTeams, save } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -75,7 +75,7 @@ const TeamsMenu = {
                                 alt={ typeImage(type, 'black') }
                                 hoverSrc={ typeImage(type, 'black') }
                                 hoverAlt={ typeImage(type, 'white') }
-                                icon="square"
+                                icon={ typeIcon(type) }
                                 solitary
                             />
                         )}
