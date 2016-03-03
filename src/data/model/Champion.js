@@ -161,9 +161,7 @@ class Champion extends Model {
             const awakenedMax = STAR_RANK_LEVEL[ stars ].awakened || 1;
             this.pi = range.min + (level / range.levels) * (range.max - range.min);
             if(awakened > 0) {
-                // additional 5 - 15% PI for awakened
-                const ratio = Math.min(Math.max(1, awakened), awakenedMax) / awakenedMax;
-                this.pi *= 1.05 + ratio * 0.10;
+                this.pi *= 1.05 + 0.2 * Math.min(Math.max(1, awakened), awakenedMax) / awakenedMax;
             }
             this.pi = this.pi | 0;
         }
