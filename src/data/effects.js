@@ -27,7 +27,7 @@ const effects = [
 
 ].map((effect) => new Effect(effect));
 
-const imageMap = {
+const effectImages = {
     'attack': 'attack',
     'idol': 'idol',
     'inseparable': 'inseparable',
@@ -47,11 +47,11 @@ const imageMap = {
 };
 
 function effectImage(uid, append = 'black') {
-    return `images/effects/${
-        imageMap[ uid ]
+    return effectImages[ uid ]? `images/effects/${
+        effectImages[ uid ]
     }_${
         append
-    }.png`;
+    }.png`: null;
 }
 
 const effectBases = {};
@@ -62,5 +62,6 @@ function effectBase(uid) {
 
 const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
 
-export { effectImage, effectBase, uids, SPECIAL_EFFECTS };
+export { effectImage, effectBase }
+export { uids, SPECIAL_EFFECTS };
 export default effects;

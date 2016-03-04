@@ -28,7 +28,7 @@ const uids = [
     'evade',
 ];
 
-const abilityImageMap = {
+const abilityImages = {
     'fury': 'attack',
     'weakness': null,
     'precision': 'critical_rate',
@@ -58,8 +58,8 @@ const abilityImageMap = {
 };
 
 function abilityImage(uid, append = 'black') {
-    return abilityImageMap[ uid ]? `images/effects/${
-        abilityImageMap[ uid ]
+    return abilityImages[ uid ]? `images/effects/${
+        abilityImages[ uid ]
     }_${
         append
     }.png`: null;
