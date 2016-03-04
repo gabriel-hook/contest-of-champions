@@ -62,6 +62,6 @@ function effectBase(uid) {
 
 const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
 
-export { effectImage, effectBase }
+export { effectImage, effectBase };
 export { uids, SPECIAL_EFFECTS };
 export default effects;
