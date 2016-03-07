@@ -230,8 +230,10 @@
     "duplicate-weights": "Duplicate Class Weights",
 
     "pi-range": "Power Index Range",
-    "pi-range-minimum": "Minimum",
-    "pi-range-maximum": "Maximum",
+    "pi-range-minimum-champion": "Minimum Champion PI",
+    "pi-range-maximum-champion": "Maximum Champion PI",
+    "pi-range-minimum-team": "Minimum Team PI",
+    "pi-range-maximum-team": "Maximum Team PI",
 
     "double": "Double",
     "triple": "Triple",

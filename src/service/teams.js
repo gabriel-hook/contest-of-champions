@@ -90,13 +90,19 @@ const PRESETS_DUPLICATES = {
 
 const PRESETS_RANGE = {
     'all': {
-        'minimum': 0,
-        'maximum': 50000,
+        'minimum-champion': 0,
+        'maximum-champion': 10000,
+        'minimum-team': 0,
+        'maximum-team': 50000,
     },
     'streak': {
-        'minimum': 4000,
-        'maximum': 4500,
+        'minimum-team': 4000,
+        'maximum-team': 4500,
     },
+};
+
+const DEFAULT_RANGE = {
+    ...PRESETS_RANGE[ 'all' ],
 };
 
 const DEFAULT_WEIGHTS = {
@@ -126,13 +132,24 @@ const teams = {
         ...DEFAULT_WEIGHTS,
     },
     range: {
-        minimum: 0,
-        maximum: 50000,
+        ...DEFAULT_RANGE,
     },
     ...fromStorage('teams', {}),
     progress: 0,
     building: false,
 };
+
+// Apply missing defaults
+Object.keys(DEFAULT_WEIGHTS).forEach((key) => {
+    if(!(key in teams.weights)) {
+        teams.weights[ key ] = DEFAULT_WEIGHTS[ key ];
+    }
+});
+Object.keys(DEFAULT_RANGE).forEach((key) => {
+    if(!(key in teams.range)) {
+        teams.range[ key ] = DEFAULT_RANGE[ key ];
+    }
+});
 
 //assign missing fields a default value.
 for(const key in DEFAULT_WEIGHTS) {
@@ -253,6 +270,10 @@ function buildTeams() {
             champions: roster
                 .filter(({ attr }) => teams.types[ attr.typeId ])
                 .filter(({ attr }) => teams.stars[ attr.stars ])
+                .filter((champion) => {
+                    const pi = champion.attr.pi || champion.pi;
+                    return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
+                })
                 .filter(
                     teams.type === 'alliance'? ({ attr }) => attr.role !== 'quest':
                     teams.type === 'quest'? ({ attr }) => attr.role !== 'alliance':

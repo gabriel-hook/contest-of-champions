@@ -95,7 +95,7 @@ function getNextPartner(list, champions, synergies, types, index, depth, typeWei
     if(champions.length === depth) {
         progressIncrement();
         const pi = champions.reduce((value, { pi }) => value + pi, 0);
-        const value = (pi && pi >= range.minimum && pi <= range.maximum)?
+        const value = (pi && pi >= range[ 'minimum-team' ] && pi <= range[ 'maximum-team' ])?
             getTeamValue(champions, synergies, types, typeWeights): 0;
         return {
             champions,

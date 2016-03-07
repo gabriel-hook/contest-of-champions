@@ -117,7 +117,7 @@ function buildArena({
             teamValues[ tid ] = value = pi * synergyValue * typeValue;
         }
 
-        return (pi && pi <= range.maximum && pi >= range.minimum)? value: 0;
+        return (pi && pi <= range[ 'maximum-team' ] && pi >= range[ 'minimum-team' ])? value: 0;
     }
 
     const progressMax = 16;

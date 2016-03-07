@@ -10,8 +10,6 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const MAX_PI_RANGE = 50000;
-
 const DUPLICATE_TITLES = {
     2: 'double',
     3: 'triple',
@@ -113,9 +111,11 @@ const TeamsSettingsPage = {
                     { lang.get('pi-range') }
                 </div>
                 { [
-                    { which: 'minimum', icon: 'step-backward' },
-                    { which: 'maximum', icon: 'step-forward' },
-                ].map(({ which, icon }) => (
+                    { which: 'minimum-champion', icon: 'step-backward', maximum: 10000 },
+                    { which: 'maximum-champion', icon: 'step-forward', maximum: 10000 },
+                    { which: 'minimum-team', icon: 'step-backward', maximum: 50000 },
+                    { which: 'maximum-team', icon: 'step-forward', maximum: 50000 },
+                ].map(({ which, icon, maximum }) => (
                     <Field
                         title={ lang.get(`pi-range-${ which }`) }
                         icon={(
@@ -125,8 +125,8 @@ const TeamsSettingsPage = {
                             <Slider
                                 object={ teams.range }
                                 field={ which }
-                                toInputValue={ (value) => 1000 * value / MAX_PI_RANGE }
-                                fromInputValue={ (value) => MAX_PI_RANGE * value / 1000 }
+                                toInputValue={ (value) => 1000 * value / maximum }
+                                fromInputValue={ (value) => maximum * value / 1000 }
                             />
                         }
                         isLargeSlider={ true }
