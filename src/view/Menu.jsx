@@ -45,7 +45,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={
-                    <Icon icon="globe" />
+                    <Icon icon="globe" before />
                 }
                 title="language"
             />
@@ -56,7 +56,7 @@ const Menu = {
                 <MenuOption
                     selected={ lang.current === id }
                     icon={
-                        <ImageIcon src={ `images/lang/${ id }.png` } icon="flag" />
+                        <ImageIcon src={ `images/lang/${ id }.png` } icon="flag" before />
                     }
                     raw={ lang.messages[ id ].lang }
                     onclick={ selectLanguage }
@@ -67,7 +67,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={
-                    <Icon icon="share" />
+                    <Icon icon="share" before />
                 }
                 title="links"
             />
@@ -75,7 +75,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="bomb" />
+                    <Icon icon="bomb" before />
                 }
                 title="link-kabam"
                 href="http://community.kabam.com/forums/forumdisplay.php?1239-Marvel-Contest-of-Champions"
@@ -84,7 +84,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="reddit-alien" />
+                    <Icon icon="reddit-alien" before />
                 }
                 title="link-reddit"
                 href="http://reddit.com/r/ContestOfChampions"
@@ -93,7 +93,7 @@ const Menu = {
         options.push(
             <MenuOption
                 icon={
-                    <Icon icon="github" />
+                    <Icon icon="github" before />
                 }
                 title="link-github"
                 href="//github.com/hook/champions"
@@ -103,7 +103,7 @@ const Menu = {
         options.push(
             <MenuSection
                 icon={
-                    <Icon icon="share-alt" />
+                    <Icon icon="share-alt" before />
                 }
                 title="share-to"
             />
@@ -115,7 +115,7 @@ const Menu = {
                 (
                     <MenuOption
                         icon={
-                            <Icon icon="google-plus" />
+                            <Icon icon="google-plus" before />
                         }
                        href={ `https://plus.google.com/share?url=${ escapedUrl }` }
                     />
@@ -123,7 +123,7 @@ const Menu = {
                 (
                     <MenuOption
                         icon={
-                            <Icon icon="facebook" />
+                            <Icon icon="facebook" before />
                         }
                        href={ `http://www.facebook.com/sharer/sharer.php?u=${ escapedUrl }` }
                     />
@@ -131,7 +131,7 @@ const Menu = {
                 (
                     <MenuOption
                         icon={
-                            <Icon icon="twitter" />
+                            <Icon icon="twitter" before />
                         }
                        href={ `https://twitter.com/share?url=${ escapedUrl }` }
                     />
@@ -139,7 +139,7 @@ const Menu = {
                 (
                     <MenuOption
                         icon={
-                            <Icon icon="pinterest-p" />
+                            <Icon icon="pinterest-p" before />
                         }
                        href={ `http://pinterest.com/pin/create/link/?url=${ escapedUrl }` }
                     />
@@ -147,7 +147,7 @@ const Menu = {
                 (
                     <MenuOption
                         icon={
-                            <Icon icon="linkedin-square" />
+                            <Icon icon="linkedin-square" before />
                         }
                        href={ `https://www.linkedin.com/cws/share?url=${ escapedUrl }` }
                     />

@@ -111,16 +111,21 @@ const TeamsSettingsPage = {
                     { lang.get('pi-range') }
                 </div>
                 { [
-                    { which: 'minimum-champion', icon: 'step-backward', maximum: 10000 },
-                    { which: 'maximum-champion', icon: 'step-forward', maximum: 10000 },
-                    { which: 'minimum-team', icon: 'step-backward', maximum: 50000 },
-                    { which: 'maximum-team', icon: 'step-forward', maximum: 50000 },
-                ].map(({ which, icon, maximum }) => (
+                    { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 10000 },
+                    { which: 'maximum-champion', iconType: 'user', icon: 'step-forward', maximum: 10000 },
+                    { which: 'minimum-team', iconType: 'users', icon: 'step-backward', maximum: 50000 },
+                    { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 50000 },
+                ].map(({ which, iconType, icon, maximum }) => (
                     <Field
                         title={ lang.get(`pi-range-${ which }`) }
-                        icon={(
-                            <Icon icon={ icon } />
-                        )}
+                        icon={[
+                            (
+                            <Icon icon={ iconType } before />
+                            ),
+                            (
+                            <Icon icon={ icon } before />
+                            ),
+                        ]}
                         slider={
                             <Slider
                                 object={ teams.range }

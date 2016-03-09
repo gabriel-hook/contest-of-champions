@@ -14,14 +14,14 @@ const RosterMenu = {
                 <MenuHeader title="roster" />
                 <MenuOption
                     icon={(
-                        <Icon icon="user" />
+                        <Icon icon="user" before />
                     )}
                     title="view-guide"
                     href={ `/guide/${ uid }` }
                 />
                 <MenuOption
                     icon={(
-                        <Icon icon="refresh" />
+                        <Icon icon="refresh" before />
                     )}
                     title="reset"
                     onclick={() => {

@@ -19,7 +19,7 @@ const LanguageEditMenu = {
         options.push(
             <MenuOption
                 icon={(
-                        <Icon icon="floppy-o" />
+                        <Icon icon="floppy-o" before />
                     )}
                 title="export-json"
                 download={ filename }

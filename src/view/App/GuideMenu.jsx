@@ -23,7 +23,7 @@ const GuideMenu = {
                 <MenuOption
                     key={ `guide-champion-${ uid }` }
                     icon={(
-                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" />
+                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" before />
                     )}
                     invalid={ !guides[ uid ] || guides[ uid ].invalid }
                     title={ `champion-${ uid }-name` }

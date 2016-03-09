@@ -23,7 +23,7 @@ const GuideEditMenu = {
             options.push(
                 <MenuOption
                     icon={(
-                        <Icon icon="clipboard" />
+                        <Icon icon="clipboard" before />
                     )}
                     title="import-json"
                     onclick={ () => {
@@ -51,8 +51,8 @@ const GuideEditMenu = {
         options.push(
             <MenuOption
                 icon={(
-                        <Icon icon="floppy-o" />
-                    )}
+                    <Icon icon="floppy-o" before />
+                )}
                 title="export-json"
                 download={ filename }
                 onclick={ (event) => {

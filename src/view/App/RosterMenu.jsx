@@ -22,7 +22,7 @@ const RosterMenu = {
             options.push(
                 <MenuOption
                     icon={(
-                        <Icon icon="clipboard" />
+                        <Icon icon="clipboard" before />
                     )}
                     title="import-csv"
                     onclick={ () => {
@@ -48,7 +48,7 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon="floppy-o" />
+                    <Icon icon="floppy-o" before />
                 )}
                 title="export-csv"
                 download="champions.csv"
@@ -61,7 +61,7 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon="user-times" />
+                    <Icon icon="user-times" before />
                 )}
                 title="delete-all"
                 onclick={ () => {
@@ -80,7 +80,10 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon={ (sort.key === 'pi' && sort.direction === 'asc')? 'sort-numeric-asc': 'sort-numeric-desc' } />
+                    <Icon
+                        icon={ (sort.key === 'pi' && sort.direction === 'asc')? 'sort-numeric-asc': 'sort-numeric-desc' }
+                        before
+                     />
                 )}
                 title="pi"
                 selected={ sort.key === 'pi' }
@@ -93,7 +96,10 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon={ (sort.key === 'stars' && sort.direction === 'asc')? 'sort-amount-asc': 'sort-amount-desc' } />
+                    <Icon
+                        icon={ (sort.key === 'stars' && sort.direction === 'asc')? 'sort-amount-asc': 'sort-amount-desc' }
+                        before
+                    />
                 )}
                 title="stars"
                 selected={ sort.key === 'stars' }
@@ -106,7 +112,10 @@ const RosterMenu = {
         options.push(
             <MenuOption
                 icon={(
-                    <Icon icon={ (sort.key === 'name' && sort.direction === 'desc')? 'sort-alpha-desc': 'sort-alpha-asc' } />
+                    <Icon
+                        icon={ (sort.key === 'name' && sort.direction === 'desc')? 'sort-alpha-desc': 'sort-alpha-asc' }
+                        before
+                    />
                 )}
                 title="name"
                 selected={ sort.key === 'name' }

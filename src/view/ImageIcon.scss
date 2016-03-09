@@ -10,10 +10,6 @@
     height: 1.2em;
     color: #666;
 
-    &.fa-square {
-        color: #38c;
-    }
-
     img {
         position: absolute;
         top: 0;
@@ -31,9 +27,12 @@
         }
     }
 
-    &.image-icon--solitary {
-        margin-right: 0;
-        margin-left: 0;
+    &.image-icon--before {
+        margin-right: .5em;
+    }
+
+    &.image-icon--after {
+        margin-left: .5em;
     }
 
     @media print {

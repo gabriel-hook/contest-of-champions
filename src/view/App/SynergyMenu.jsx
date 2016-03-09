@@ -18,7 +18,7 @@ const SynergyMenu = {
                 <MenuHeader title="synergies" />
                 <MenuOption
                     icon={(
-                        <Icon icon="list" />
+                        <Icon icon="list" before />
                     )}
                     title="legend-show"
                     selected={ synergy.legend === true }
@@ -29,7 +29,7 @@ const SynergyMenu = {
                 />
                 <MenuOption
                     icon={(
-                        <Icon icon="users" />
+                        <Icon icon="users" before />
                     )}
                     title="roster-use"
                     selected={ synergy.roster === true }
@@ -59,6 +59,7 @@ const SynergyMenu = {
                                     hoverSrc={ effectImage(uid, 'black') }
                                     hoverAlt={ effectImage(uid, 'white') }
                                     icon="square"
+                                    before
                                 />
                             )}
                             alternate={ `effect-${ uid }-shortname` }

@@ -21,7 +21,7 @@ const TeamsMenu = {
             <MenuOption
                 title="build"
                 icon={(
-                    <Icon icon="cog" spin={ teams.building } />
+                    <Icon icon="cog" spin={ teams.building } before />
                 )}
                 onclick={ () => {
                     buildTeams();
@@ -34,7 +34,7 @@ const TeamsMenu = {
             <MenuOption
                 title="modify"
                 icon={(
-                    <Icon icon="pencil" />
+                    <Icon icon="pencil" before />
                 )}
                 selected={ edit }
                 href={ edit? '/teams': '/teams/edit' }
@@ -76,7 +76,6 @@ const TeamsMenu = {
                                 hoverSrc={ typeImage(type, 'black') }
                                 hoverAlt={ typeImage(type, 'white') }
                                 icon={ typeIcon(type) }
-                                solitary
                             />
                         )}
                         info={ `type-${ type }-name` }

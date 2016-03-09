@@ -4,20 +4,12 @@
     overflow: hidden;
 
     .menu-option {
-        display: inline-block;
+        display: inline-table;
         box-sizing: border-box;
         text-align: center;
 
         .menu-option--label {
             padding: .5em 0;
-        }
-
-        & {
-            display: inline-table;
-        }
-
-        .fa {
-            margin: 0;
         }
     }
 
