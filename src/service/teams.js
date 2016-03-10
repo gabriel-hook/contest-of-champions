@@ -294,5 +294,6 @@ function buildTeams() {
     clearTimeout(progressResetTimeout);
 }
 
-export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE, save, buildTeams, synergiesFromChampions };
+export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
+export { save, buildTeams, synergiesFromChampions };
 export default teams;

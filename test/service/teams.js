@@ -1,7 +1,7 @@
 import { idMap as championsById } from '../../src/data/champions';
 import buildArena from '../../src/service/teams/build-arena';
 import buildQuest from '../../src/service/teams/build-quest';
-import { PRESETS, PRESETS_DUPLICATES } from '../../src/service/teams';
+import { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE } from '../../src/service/teams';
 
 describe('service/teams', () => {
 
@@ -19,7 +19,9 @@ describe('service/teams', () => {
                 ...PRESETS[ 'offensive' ],
                 ...PRESETS_DUPLICATES[ 'balanced' ],
             },
-            range: { minimum: 0, maximum: 50000 },
+            range: {
+                ...PRESETS_RANGE[ 'all' ],
+            },
             progress: () => {},
         });
         if(result.teams && result.teams.length)
@@ -42,7 +44,9 @@ describe('service/teams', () => {
                 ...PRESETS[ 'offensive' ],
                 ...PRESETS_DUPLICATES[ 'balanced' ],
             },
-            range: { minimum: 0, maximum: 50000 },
+            range: {
+                ...PRESETS_RANGE[ 'all' ],
+            },
             progress: () => {},
         });
         if(result.teams && result.teams.length)
