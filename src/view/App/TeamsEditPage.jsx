@@ -254,7 +254,9 @@ const TeamsEditPage = {
                         applyTeams(teams);
                         requestRedraw();
                     })}
-                    onapply={ source && champions.some((champion) => champion === source.champion) && target && ctrl.apply }
+                    onapply={ source && target && (
+                        champions.some((champion) => champion === source.champion || champion === target.champion)
+                    ) && ctrl.apply }
                 />
             );
             champions.forEach((champion) => inTeam[ champion.id ] = true);
@@ -351,7 +353,10 @@ const TeamsEditPage = {
                         calculateSynergies(swap);
                         requestRedraw();
                     }}
-                    onapply={ source && target && source.create && target.champion && ctrl.apply }
+                    onapply={ source && target && (
+                        (source.create && target.champion) ||
+                        (target.create && source.champion)
+                    ) && ctrl.apply }
                     onremove={ source && source.create && source.champion && !target && (() => {
                         create.champions[ swap.source.index ] = null;
                         create.synergies = synergiesFromChampions(create.champions);
