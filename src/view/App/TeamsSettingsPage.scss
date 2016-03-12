@@ -25,13 +25,9 @@
 
         .field-name {
             @include styled-button(false);
-            display: block;
-            padding: 8px 16px;
-            font-family: Hanzel, Verdana, Geneva, sans-serif;
-            font-size: 1em;
-            text-align: left;
             text-transform: uppercase;
-            box-sizing: border-box;
+            text-align: left;
+            padding: 8px 16px;
         }
 
         .field-input {
