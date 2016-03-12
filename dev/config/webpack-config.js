@@ -17,39 +17,28 @@ export default {
                 test: /\.jsx(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'babel' ],
                 exclude: /node_modules/,
-                hot: {
-                    test: /\.jsx(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    loaders: [ 'babel' ],
-                    exclude: /node_modules/,
-                },
+                hot: true,
             },
             // javascript
             {
                 test: /\.js(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'babel' ],
                 exclude: /node_modules/,
+                hot: true,
             },
             // scss
             {
                 test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?autoprefixer&sourceMap|sass-loader'),
+                loaders: [ 'style', 'css', 'autoprefixer', 'sass' ],
                 exclude: /node_modules/,
-                hot: {
-                    test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    loaders: [ 'style', 'css', 'autoprefixer', 'sass' ],
-                    exclude: /node_modules/,
-                },
+                hot: true,
             },
             // css
             {
                 test: /\.css(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?autoprefixer&sourceMap'),
+                loaders: [ 'style', 'css', 'autoprefixer' ],
                 exclude: /node_modules/,
-                hot: {
-                    test: /\.css(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    loaders: [ 'style', 'css' ],
-                    exclude: /node_modules/,
-                },
+                hot: true,
             },
             // fonts & svg
             {
