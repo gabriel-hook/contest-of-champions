@@ -14,13 +14,25 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+    font-family: Hanzel;
+    src: url("fonts/hanzel-normal-webfont.eot");
+    src: url("fonts/hanzel-normal-webfont.eot?#iefix") format("embedded-opentype"),
+        url("fonts/hanzel-normal-webfont.woff2") format("woff2"),
+        url("fonts/hanzel-normal-webfont.woff") format("woff"),
+        url("fonts/hanzel-normal-webfont.ttf") format("truetype"),
+        url("fonts/hanzel-normal-webfont.svg#hanzelnormal") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
 @media print {
     html {
         width: 100%;
         height: auto;
         overflow: visible;
     }
-    
+
     body {
         width: 100%;
         height: auto;
@@ -49,16 +61,4 @@ button {
 
 .clear {
     clear: both;
-}
-
-@font-face {
-    font-family: Hanzel;
-    src: url("fonts/hanzel-normal-webfont.eot");
-    src: url("fonts/hanzel-normal-webfont.eot?#iefix") format("embedded-opentype"),
-    url("fonts/hanzel-normal-webfont.woff2") format("woff2"),
-    url("fonts/hanzel-normal-webfont.woff") format("woff"),
-    url("fonts/hanzel-normal-webfont.ttf") format("truetype"),
-    url("fonts/hanzel-normal-webfont.svg#hanzelnormal") format("svg");
-    font-weight: normal;
-    font-style: normal;
 }

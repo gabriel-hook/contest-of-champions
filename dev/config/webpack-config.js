@@ -1,5 +1,4 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-//import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 
 export default {
@@ -29,7 +28,7 @@ export default {
             // scss
             {
                 test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loaders: [ 'style', 'css', 'autoprefixer', 'sass' ],
+                loaders: [ 'style', 'css?sourceMap', 'autoprefixer', 'sass?sourceMap' ],
                 exclude: /node_modules/,
                 hot: true,
             },
@@ -53,7 +52,6 @@ export default {
         ],
     },
     plugins: [
-    //    new ExtractTextPlugin('style-[contenthash].css'),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body',
