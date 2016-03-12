@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+//import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 
 export default {
@@ -53,7 +53,7 @@ export default {
         ],
     },
     plugins: [
-        new ExtractTextPlugin('style-[contenthash].css'),
+    //    new ExtractTextPlugin('style-[contenthash].css'),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body',
