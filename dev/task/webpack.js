@@ -23,10 +23,10 @@ gulp.task('develop', (callback) => {
         module: {
             ...webpackConfig.module,
             loaders: webpackConfig.module.loaders.map((loader) => (!loader.hot)? loader: {
-                ...loader,
+                ...loader.hot,
                 loaders: [
                     'simple-hot',
-                    ...loader.loaders,
+                    ...loader.hot.loaders,
                 ],
             }),
         },
