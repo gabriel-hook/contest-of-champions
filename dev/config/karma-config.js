@@ -31,13 +31,6 @@ export default function(config) {
         // webpack config object
         webpack: {
             ...webpackConfig,
-            module: {
-                ...webpackConfig.module,
-                loaders: webpackConfig.module.loaders.map((loader) => (loader.karma)? {
-                    test: loader.test,
-                    loader: 'null-loader',
-                }: loader),
-            },
             devtool: 'inline-source-map',
         },
         webpackMiddleware: {

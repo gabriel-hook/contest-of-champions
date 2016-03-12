@@ -39,7 +39,6 @@ export default {
                     loaders: [ 'style', 'css', 'autoprefixer', 'sass' ],
                     exclude: /node_modules/,
                 },
-                karma: true,
             },
             // css
             {
@@ -51,13 +50,11 @@ export default {
                     loaders: [ 'style', 'css' ],
                     exclude: /node_modules/,
                 },
-                karma: true,
             },
             // fonts & svg
             {
                 test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'file?name=fonts/[name].[ext]&limit=0' ],
-                karma: true,
             },
             // json
             {
