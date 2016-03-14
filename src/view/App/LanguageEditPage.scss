@@ -113,18 +113,4 @@
         max-width: 90%;
         margin: 0 auto 1em;
     }
-
-    .language-export {
-        @include styled-button(true, #3c3);
-        width: 500px;
-        max-width: 90%;
-        padding: 16px;
-        margin: 0 auto 1em;
-        box-shadow: 0 6px 0 -2px  rgba(0, 0, 0, .25);
-
-        &:active {
-            top: 6px;
-            box-shadow: 0 0 0 rgba(0, 0, 0, .25);
-        }
-    }
 }

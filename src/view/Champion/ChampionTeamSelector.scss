@@ -6,10 +6,12 @@
 
     .team-remove {
         @include styled-button(true, #c33);
+        text-align: center;
     }
 
     .team-apply {
         @include styled-button(true, #3c3);
+        text-align: center;
     }
 
     .team-remove,
