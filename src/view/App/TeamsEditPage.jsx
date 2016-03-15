@@ -145,7 +145,7 @@ const TeamsEditPage = {
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
         const message = synergiesCount?
-            `${ teams.length } ${ lang.get('teams') } ${ lang.get('width') } ${ synergiesCount } ${ lang.get('synergies') }`:
+            `${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:
             `${ teams.length } ${ lang.get('teams') }`;
         teams.forEach(({ champions, synergies }, teamIndex) => {
             teamElements.push(
