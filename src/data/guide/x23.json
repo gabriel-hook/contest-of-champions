@@ -1,0 +1,63 @@
+{
+    "description": "Years after the original Weapon X program created Wolverine, a top secret plan was put in motion to duplicate the results to create the ultimate killing machine. Using damaged DNA from Logan, a female clone was created and bonded with Adamantium. After being raised in captivity, Laura Kinney emerged as the ultimate assassin, dubbed X-23. Breaking free from her captors, Laura now fights to forge her own legacy as the All-New Wolverine.",
+    "youtube": "ErxLU3go4Ic",
+    "specials": {
+        "1": {
+            "name": "Arterial Strike",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "short"
+            ],
+            "note": "Any Bleed or Cruelty effect triggered lasts 25% longer than normal and has 25% increased Potency."
+        },
+        "2": {
+            "name": "Triplicate Slash",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "short"
+            ],
+            "note": "Any Bleed or Cruelty effect triggered lasts 25% longer than normal and has 25% increased Potency."
+        },
+        "3": {
+            "damagetypes": [
+                "physical"
+            ],
+            "name": "Finish the Mission",
+            "note": "Any Bleed or Cruelty effect triggered lasts 25% longer than normal and has 25% increased Potency."
+        }
+    },
+    "attack": {
+        "note": "When Struck & When Attacking - 15% chance to Regenerate 8% Health over 4 seconds. Amount increases based on Power Level.",
+        "heavy": "Strikes multiple times. Each hit has an additional 7.5% chance to Critical Hit",
+        "description": "Critical Hits lacerate opponent’s with a 79% chance, inflicting Bleed damage for 105% of your Attack over 5 seconds.\n\nAgainst Naturally Bleed Immune Champions: Wolverine changes her fighting style, gaining Cruelty Buffs in place of her Bleed effects, increasing Critical Damage by 31% for 7.5 seconds.\n\n6% increased Critical Hit Chance against Bleeding targets, or while under the effects of a Cruelty Buff",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "bleed",
+            "precision",
+            "cruelty",
+            "regeneration"
+        ]
+    },
+    "signature": {
+        "name": "Frenzy",
+        "description": "Anytime the opponent has 3 or more Bleed stacks or Wolverine has 3 or more Cruelty stacks, her assassin training kicks in, telling her to finish them off, increasing Critical Hit Chance and Critical Damage by (4% - 15%).\n These effects stack with all of Wolverine’s other Critical Boosts, granting her the highest Critical Hit Rate in the game while her signature ability is active.\n This also counts self inflicted Bleed effects, such as Double Edge.",
+        "abilities": [
+            "precision",
+            "cruelty"
+        ]
+    },
+    "gameplay": {
+        "description": "Wolverine boasts one of the highest Critical Hit Rates in the entire Contest, granting her large burst damage and the ability to bypass strong Armor on opponents.\n Wolverine’s consistent, powerful Bleed and Cruelty effects allow her to quickly take down enemies in timed fights. X23 is one of the most aggressive champions in the game, allowing her to finish fights quickly when necessary, such as when under the effect of a Bleed or Degeneration node\n\nWolverine has small defenses outside of her Regeneration, and as such performs poorly against enemies that can frequently place Heal Blocks.."
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "648859-Wolverine-X23-Champion-Spotlight"
+    }
+}

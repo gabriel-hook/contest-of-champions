@@ -23,6 +23,9 @@ import venompool from './guide/venompool';
 import vision from './guide/vision';
 import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
+import x23 from './guide/x23';
+
+const SPOTLIGHT = 'x23';
 
 const guides = {
     agentvenom,
@@ -50,6 +53,7 @@ const guides = {
     vision,
     warmachine,
     wolverineoldman,
+    x23,
 };
 
 const uids = Object.keys(guides);
@@ -77,6 +81,6 @@ const PROFILE_TYPES = [
     'spotlight',
 ];
 
-export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, PROFILE_TYPES };
+export { RATINGS, GRADES, RANGES, DAMAGE_TYPES, PROFILE_TYPES, SPOTLIGHT };
 export { uids };
 export default guides;

@@ -287,6 +287,13 @@ const synergies = [
     { fromId: 'wolverineoldman', fromStars: 5, toId: 'hawkeye', effectId: 'armor', effectAmount: 6 },
     { fromId: 'wolverineoldman', fromStars: 5, toId: 'hulk', effectId: 'attack', effectAmount: 6 },
 
+    { fromId: 'x23', fromStars: 3, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
+    { fromId: 'x23', fromStars: 3, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 4 },
+    { fromId: 'x23', fromStars: 4, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
+    { fromId: 'x23', fromStars: 4, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'x23', fromStars: 5, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
+    { fromId: 'x23', fromStars: 5, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 5 },
+
     { fromId: 'agentvenom', fromStars: 3, toId: 'spiderman', effectId: 'idol', effectAmount: 3 },
     { fromId: 'agentvenom', fromStars: 3, toId: 'venom', effectId: 'health', effectAmount: 5 },
     { fromId: 'agentvenom', fromStars: 3, toId: 'spidermanblack', effectId: 'health', effectAmount: 5 },

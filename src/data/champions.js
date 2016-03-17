@@ -1,12 +1,9 @@
 import Champion from './model/Champion';
 
-const SPOTLIGHT = 'shehulk';
-
 const UNRELEASED_CHAMPIONS = {
     'agentvenom': true,
     'kamalakhan': true,
     'redskull': true,
-    'x23': true,
     'drstrangemarvelnow': true,
     'maestro': true,
 };
@@ -320,4 +317,4 @@ const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
 
 export default champions;
 export { idMap, uids, uidsByType };
-export { UNRELEASED_CHAMPIONS, SPOTLIGHT, PLACEHOLDER };
+export { UNRELEASED_CHAMPIONS, PLACEHOLDER };
