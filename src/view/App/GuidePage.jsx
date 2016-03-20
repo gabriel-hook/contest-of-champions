@@ -41,6 +41,8 @@ const GuideSynergy ={
             router.setRoute(`/guide/${ championId }`);
             requestRedraw();
         };
+        const champion = idMap[ `${ championId }-2` ] || idMap[ `${ championId }-3` ] || idMap[ `${ championId }-4` ] || idMap[ `${ championId }-5` ];
+        const typeId = champion && champion.attr.typeId;
         const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
         return (
             <div m="GuideSynergy" class="guide-synergy">
@@ -51,7 +53,11 @@ const GuideSynergy ={
                             onclick={ onclickChampion }
                             title={ lang.get(`champion-${ championId }-name`) }
                         >
-                            <ImageIcon src={ `images/champions/portrait_${ championId }.png` } icon="user" />
+                            <ImageIcon
+                                src={ `images/champions/portrait_${ championId }.png` }
+                                type={ typeId }
+                                icon="user"
+                            />
                             { stars }★
                             { name }
                         </div>
@@ -222,6 +228,7 @@ const GuidePage = {
                 raw={ getSynergies(uid, false).map(({ attr }) => (
                     <GuideSynergy
                         championId={ attr.fromId }
+                        typeId={ attr.typeId }
                         effectId={ attr.effectId }
                         stars={ attr.fromStars }
                     />

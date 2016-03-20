@@ -1,4 +1,5 @@
 import './ImageIcon.scss';
+import { getTypeColor } from '../service/graph';
 import classNames from 'classnames';
 import Icon from './Icon.jsx';
 import { getImage } from '../util/images';
@@ -7,7 +8,7 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ImageIcon = {
-    view(ctrl, { src, icon, alt, hoverSrc, hoverAlt, before, after }) {
+    view(ctrl, { src, icon, alt, hoverSrc, hoverAlt, type, before, after }) {
         const elements = [];
         const image = getImage(src);
         if(image) {
@@ -41,14 +42,21 @@ const ImageIcon = {
         }
         else if(icon) {
             return (
-                <Icon icon={ icon } before={ before } after={ after } />
+                <Icon icon={ icon } before={ before } after={ after } type={ type } />
             );
         }
+        let style = '';
+        if(type) {
+            style = `border-bottom: solid 3px ${ getTypeColor(type) }`;
+        }
         return src && (
-            <div class={ classNames('image-icon', {
-                'image-icon--before': before,
-                'image-icon--after': after,
-            }) }>
+            <div
+                style={ style }
+                class={ classNames('image-icon', {
+                    'image-icon--before': before,
+                    'image-icon--after': after,
+                }) }
+            >
                 { elements }
             </div>
         );
