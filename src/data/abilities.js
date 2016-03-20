@@ -41,7 +41,7 @@ const abilityImages = {
     'cruelty': 'critical_damage',
     'exhaust': 'exhaust',
     'armorbreak': 'armor_break',
-    'armorup': 'armor',
+    'armorup': 'armor_up',
     'physicalresist': 'resist_physical',
     'unstoppable': 'unstoppable',
     'poison': 'poison',
