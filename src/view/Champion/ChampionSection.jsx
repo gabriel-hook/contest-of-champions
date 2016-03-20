@@ -249,7 +249,7 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('range') }:</b>
                         { ranges.map((range, index) => (
-                            <span class={ `champion-section-range-${ range }` }>{
+                            <span class={ `champion-section-range champion-section-range-${ range }` }>{
                                 (index < ranges.length - 1)?
                                     `${ lang.get(`range-${ range }`) }, `:
                                     lang.get(`range-${ range }`)
@@ -263,7 +263,7 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('damage-type') }:</b>
                         { damagetypes.map((damage, index) => (
-                            <span class={ `champion-section-damage-${ damage }` }>{
+                            <span class={ `champion-section-damage champion-section-damage-${ damage }` }>{
                                 (index < damagetypes.length - 1)?
                                     `${ lang.get(`damage-${ damage }`) }, `:
                                     lang.get(`damage-${ damage }`)
@@ -277,7 +277,7 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('abilities') }:</b>
                         { abilities.map((ability, index) => (
-                            <span class={ `champion-section-ability-${ ability }` }>
+                            <span class={ `champion-section-ability champion-section-ability-${ ability }` }>
                                 { abilityImage(ability) &&
                                     <ImageIcon
                                         src={ abilityImage(ability, 'black') }
