@@ -4,6 +4,7 @@ const UNRELEASED_CHAMPIONS = {
     'agentvenom': true,
     'kamalakhan': true,
     'redskull': true,
+    'hulkred': true,
     'drstrangemarvelnow': true,
     'maestro': true,
 };
@@ -221,6 +222,10 @@ const champions = [
     { uid: 'lukecage', typeId: 'science', stars: 3 },
     { uid: 'lukecage', typeId: 'science', stars: 4 },
     { uid: 'lukecage', typeId: 'science', stars: 5 },
+
+    { uid: 'redhulk', typeId: 'science', stars: 3 },
+    { uid: 'redhulk', typeId: 'science', stars: 4 },
+    { uid: 'redhulk', typeId: 'science', stars: 5 },
 
     { uid: 'rhino', typeId: 'science', stars: 2 },
     { uid: 'rhino', typeId: 'science', stars: 3 },

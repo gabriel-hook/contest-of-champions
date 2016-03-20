@@ -54,6 +54,7 @@
     "champion-hulk-name": "Hulk",
     "champion-joefixit-name": "Joe Fixit",
     "champion-lukecage-name": "Luke Cage",
+    "champion-redhulk-name": "Red Hulk",
     "champion-rhino-name": "Rhino",
     "champion-shehulk-name": "She-Hulk",
     "champion-spidergwen-name": "Spider-Gwen",
@@ -269,6 +270,7 @@
 
     "abilities": "Abilities",
 
+    "ability-truestrike": "True Strike",
     "ability-fury": "Fury",
     "ability-weakness": "Weakness",
     "ability-precision": "Precision",
@@ -287,9 +289,12 @@
     "ability-shock": "Shock",
     "ability-powerdrain": "Power Drain",
     "ability-powerburn": "Power Burn",
+    "ability-powerlock": "Power Lock",
     "ability-regeneration": "Regeneration",
+    "ability-degeneration": "Degeneration",
     "ability-healthsteal": "Health Steal",
     "ability-healblock": "Heal Block",
+    "ability-energyresist": "Energy Resistance",
     "ability-energyabsorb": "Energy Absorption",
     "ability-stun": "Stun",
     "ability-stagger": "Stagger",
