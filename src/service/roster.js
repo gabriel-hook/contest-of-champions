@@ -19,22 +19,28 @@ let rosterOptions = fromStorage('roster-options', {
         3: true,
         4: true,
         5: true,
+        cosmic: true,
+        tech: true,
+        mutant: true,
+        skill: true,
+        science: true,
+        mystic: true,
     },
 });
 let cache = {};
 
-function setFilter(stars, value) {
+function setFilter(key, value) {
     rosterOptions = {
         ...rosterOptions,
         filter: {
             ...rosterOptions.filter,
-            [ stars ]: value,
+            [ key ]: value,
         },
     };
     toStorage('roster-options', rosterOptions);
 }
-function getFilter(stars) {
-    return rosterOptions.filter[ stars ];
+function getFilter(key) {
+    return rosterOptions.filter[ key ];
 }
 
 function setSort(key, direction) {

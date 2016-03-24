@@ -18,7 +18,7 @@ const tab = {
 const RosterPage = {
     view() {
         const total = roster.all().length;
-        const champions = roster.filter((champion) => roster.getFilter(champion.attr.stars));
+        const champions = roster.filter((champion) => roster.getFilter(champion.attr.stars) && roster.getFilter(champion.attr.typeId));
         const handleSelect = ({ uid, stars }) => {
             router.setRoute(`/roster/${ uid }/${ stars }`);
             requestRedraw();

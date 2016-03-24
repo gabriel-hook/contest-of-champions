@@ -41,9 +41,41 @@ const TeamsMenu = {
             />
         );
         options.push(
-            <MenuSection
-                title="champions"
+            <MenuSection title="type" />
+        );
+        [ 'arena', 'alliance-war-attack', 'alliance-war-defense', 'alliance-quest', 'quest' ].forEach((type) => options.push(
+            <MenuOption
+                title={ type }
+                selected={ teams.type === type }
+                onclick={ () => {
+                    teams.type = type;
+                    save();
+                    requestRedraw();
+                }}
             />
+        ));
+        if(teams.type === 'quest') {
+            options.push(
+                <MenuSection title="team-size" />
+            );
+            options.push(
+                <MenuOptionGroup options={
+                    [ 3, 4, 5 ].map((size) => (
+                        <MenuOption
+                            raw={ size }
+                            selected={ teams.size === size }
+                            onclick={ () => {
+                                teams.size = size;
+                                save();
+                                requestRedraw();
+                            }}
+                        />
+                    ))
+                } />
+            );
+        }
+        options.push(
+            <MenuSection title="champions" />
         );
         options.push(
             <MenuOptionGroup options={
@@ -59,11 +91,6 @@ const TeamsMenu = {
                     />
                 ))
             } />
-        );
-        options.push(
-            <MenuSection
-                title="types"
-            />
         );
         options.push(
             <MenuOptionGroup options={
@@ -82,46 +109,6 @@ const TeamsMenu = {
                         selected={ teams.types[ type ] }
                         onclick={ () => {
                             teams.types[ type ] = !teams.types[ type ];
-                            save();
-                            requestRedraw();
-                        }}
-                    />
-                ))
-            } />
-        );
-        options.push(
-            <MenuSection
-                title="team-size"
-            />
-        );
-        options.push(
-            <MenuOptionGroup options={
-                [ 3, 4, 5 ].map((size) => (
-                    <MenuOption
-                        raw={ size }
-                        selected={ teams.size === size }
-                        onclick={ () => {
-                            teams.size = size;
-                            save();
-                            requestRedraw();
-                        }}
-                    />
-                ))
-            } />
-        );
-        options.push(
-            <MenuSection
-                title="type"
-            />
-        );
-        options.push(
-            <MenuOptionGroup options={
-                [ 'quest', 'alliance', 'arena' ].map((type) => (
-                    <MenuOption
-                        title={ type }
-                        selected={ teams.type === type }
-                        onclick={ () => {
-                            teams.type = type;
                             save();
                             requestRedraw();
                         }}

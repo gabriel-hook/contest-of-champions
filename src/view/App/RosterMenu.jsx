@@ -1,8 +1,10 @@
+import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
 import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 import { clickElementById } from '../../util/element';
@@ -73,9 +75,7 @@ const RosterMenu = {
         );
         const sort = roster.getSort();
         options.push(
-            <MenuSection
-                title="sort"
-            />
+            <MenuSection title="sort" />
         );
         options.push(
             <MenuOption
@@ -126,9 +126,7 @@ const RosterMenu = {
             />
         );
         options.push(
-            <MenuSection
-                title="filter"
-            />
+            <MenuSection title="filter" />
         );
         options.push(
             <MenuOptionGroup options={
@@ -138,6 +136,30 @@ const RosterMenu = {
                         selected={ roster.getFilter(star) }
                         onclick={ () => {
                             roster.setFilter(star, !roster.getFilter(star));
+                            requestRedraw();
+                        }}
+                    />
+                ))
+            } />
+        );
+        options.push(
+            <MenuOptionGroup options={
+                TYPES.map((type) => (
+                    <MenuOption
+                        icon={(
+                            <ImageIcon
+                                src={ typeImage(type, 'white') }
+                                alt={ typeImage(type, 'black') }
+                                hoverSrc={ typeImage(type, 'black') }
+                                hoverAlt={ typeImage(type, 'white') }
+                                icon={ typeIcon(type) }
+                            />
+                        )}
+                        info={ `type-${ type }-name` }
+                        selected={ roster.getFilter(type) }
+                        onclick={ () => {
+
+                            roster.setFilter(type, !roster.getFilter(type));
                             requestRedraw();
                         }}
                     />
