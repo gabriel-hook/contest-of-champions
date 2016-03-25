@@ -5,44 +5,80 @@
     position: relative;
     display: block;
     cursor: pointer;
+    padding: 0;
     min-width: 2.2em;
     color: #fff;
     font-family: $font-family-title;
     font-size: 1.1em;
     text-shadow: 0 1px 0 #000;
     text-decoration: none;
+    box-sizing: border-box;
+    overflow: hidden;
 
-    &.menu-option--progress,
-    &:hover {
-        background: rgba(255, 255, 255, .65);
-        color: #000;
-        text-shadow: 0 1px 0 #fff;
-    }
+    .menu-option {
+        font-size: 1.0em;
+        height: 38px;
 
-    &.menu-option--red {
-        background: #c33;
-
-        &:hover {
-            background: rgba(255, 192, 192, .65);
+        .menu-option--label {
+            height: 38px;
         }
     }
 
-    &.menu-option--selected {
-        background: #eee;
-        color: #000;
-        text-shadow: 0 1px 0 #fff;
-    }
-
-    .menu-option--label {
+    &>.menu-option--label {
         position: relative;
+        width: 100%;
         pointer-events: none;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         padding: .5em .5em .5em 1.5em;
+        box-sizing: border-box;
     }
 
-    .menu-option-progress-bar {
+    &.menu-option--options {
+        &> .menu-option--label {
+            float: left;
+            width: 50%;
+            height: 38px;
+        }
+    }
+
+    &.menu-option--progress,
+    &:hover {
+        &> .menu-option--label {
+            background: rgba(255, 255, 255, .65);
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+        }
+    }
+
+    &.menu-option--red {
+        &> .menu-option--label {
+            background: #c33;
+        }
+
+        &:hover {
+            &> .menu-option--label {
+                background: rgba(255, 192, 192, .65);
+            }
+        }
+    }
+
+    &.menu-option--selected {
+        &> .menu-option--label {
+            background: #eee;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+        }
+    }
+
+    &>.menu-option-options {
+        float: left;
+        width: 50%;
+        height: 100%;
+    }
+
+    &>.menu-option-progress-bar {
         position: absolute;
         top: 0;
         left: 0;
@@ -58,6 +94,10 @@
         &:hover {
             color: #333;
         }
+    }
+
+    &.menu-option--noclick {
+        pointer-events: none;
     }
 
     .no-hover {

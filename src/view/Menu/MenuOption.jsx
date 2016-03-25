@@ -15,6 +15,7 @@ const MenuOption = {
     view(ctrl, {
         info, raw, alternate, title, icon, onclick, href,
         download, selected, invalid, progress, red,
+        options,
     }) {
         let link = {};
         if(href) {
@@ -45,6 +46,7 @@ const MenuOption = {
                 role="menuitem"
                 aria-label={ lang.get(title) || lang.get(info) }
                 class={ classNames('menu-option', {
+                    'menu-option--options': options,
                     'menu-option--invalid': invalid,
                     'menu-option--selected': selected,
                     'menu-option--progress': progress,
@@ -65,6 +67,11 @@ const MenuOption = {
                     />
                 ) || null }
                 <div class="menu-option--label">{ icon }{ raw || lang.get(alternate, null) || lang.get(title) }</div>
+                { options && (
+                    <div class="menu-option-options">
+                        { options}
+                    </div>
+                ) }
             </a>
         );
     },

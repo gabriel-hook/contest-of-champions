@@ -3,42 +3,42 @@
 .menu-option--group {
     overflow: hidden;
 
-    .menu-option {
+    &>.menu-option {
         display: inline-table;
         box-sizing: border-box;
         text-align: center;
 
-        .menu-option--label {
+        &>.menu-option--label {
             padding: .5em 0;
         }
     }
 
     &.menu-option--group-2 {
-        .menu-option {
+        &>.menu-option {
             width: 50%;
         }
     }
 
     &.menu-option--group-3 {
-        .menu-option {
+        &>.menu-option {
             width: 33.333%;
         }
     }
 
     &.menu-option--group-4 {
-        .menu-option {
+        &>.menu-option {
             width: 25%;
         }
     }
 
     &.menu-option--group-5 {
-        .menu-option {
+        &>.menu-option {
             width: 20%;
         }
     }
 
     &.menu-option--group-6 {
-        .menu-option {
+        &>.menu-option {
             width: 16.665%;
         }
     }
@@ -47,7 +47,7 @@
         box-sizing: border-box;
         padding-right: 48px;
 
-        .menu-option {
+        &>.menu-option {
             width: 25%;
             min-width: 36px;
         }
