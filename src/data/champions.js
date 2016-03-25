@@ -4,7 +4,7 @@ const UNRELEASED_CHAMPIONS = {
     'agentvenom': true,
     'kamalakhan': true,
     'redskull': true,
-    'hulkred': true,
+    'redhulk': true,
     'drstrangemarvelnow': true,
     'maestro': true,
 };
