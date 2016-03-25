@@ -66,78 +66,87 @@ const TeamsSettingsPage = {
     view() {
         return (
             <div m="TeamsSettingsPage" class="teams-settings">
-                <div class="header">
-                    { lang.get('synergy-weights') }
+                <div class="teams-settings-section">
+                    <div class="header">
+                        { lang.get('synergy-weights') }
+                    </div>
+                    { effects.map(({ attr }) => (
+                        <Field
+                            title={ lang.get(`effect-${ attr.uid }-shortname`, null) || lang.get(`effect-${ attr.uid }-name`) }
+                            icon={(
+                                <ImageIcon
+                                    src={ effectImage(attr.uid, 'black') }
+                                    alt={ effectImage(attr.uid, 'white') }
+                                    icon={ 'square '}
+                                />
+                            )}
+                            slider={
+                                <Slider
+                                    object={ teams.weights }
+                                    field={ `effect-${ attr.uid }` }
+                                    toInputValue={ (value) => value * 1000 }
+                                    fromInputValue={ (value) => value / 1000 }
+                                />
+                            }
+                            value={ (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
+                        />
+                    )) }
                 </div>
-                { effects.map(({ attr }) => (
-                    <Field
-                        title={ lang.get(`effect-${ attr.uid }-shortname`, null) || lang.get(`effect-${ attr.uid }-name`) }
-                        icon={(
-                            <ImageIcon
-                                src={ effectImage(attr.uid, 'white') }
-                                alt={ effectImage(attr.uid, 'black') }
-                                icon={ 'square '}
-                            />
-                        )}
-                        slider={
-                            <Slider
-                                object={ teams.weights }
-                                field={ `effect-${ attr.uid }` }
-                                toInputValue={ (value) => value * 1000 }
-                                fromInputValue={ (value) => value / 1000 }
-                            />
-                        }
-                        value={ (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
-                    />
-                )) }
-                <div class="header">
-                    { lang.get('duplicate-weights') }
+                <div class="teams-settings-section">
+                    <div class="header">
+                        { lang.get('duplicate-weights') }
+                    </div>
+                    { [ 2, 3, 4, 5 ].map((count) => (
+                        <Field
+                            title={ `${ lang.get(DUPLICATE_TITLES[ count ]) }` }
+                            icon={(
+                                <span class="field-name--bold">{ `${ count }x` }</span>
+                            )}
+                            slider={
+                                <Slider
+                                    object={ teams.weights }
+                                    field={ `duplicates-${ count }` }
+                                    toInputValue={ (value) => value * 1000 }
+                                    fromInputValue={ (value) => value / 1000 }
+                                />
+                            }
+                            value={ (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
+                        />
+                    )) }
                 </div>
-                { [ 2, 3, 4, 5 ].map((count) => (
-                    <Field
-                        title={ `(${ count }x) ${ lang.get(DUPLICATE_TITLES[ count ]) }` }
-                        slider={
-                            <Slider
-                                object={ teams.weights }
-                                field={ `duplicates-${ count }` }
-                                toInputValue={ (value) => value * 1000 }
-                                fromInputValue={ (value) => value / 1000 }
-                            />
-                        }
-                        value={ (teams.weights[ `duplicates-${ count }` ] * 1000 | 0) / 10 }
-                    />
-                )) }
-                <div class="header">
-                    { lang.get('pi-range') }
+                <div class="teams-settings-section">
+                    <div class="header">
+                        { lang.get('pi-range') }
+                    </div>
+                    { [
+                        { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 10000 },
+                        { which: 'maximum-champion', iconType: 'user', icon: 'step-forward', maximum: 10000 },
+                        { which: 'minimum-team', iconType: 'users', icon: 'step-backward', maximum: 50000 },
+                        { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 50000 },
+                    ].map(({ which, iconType, icon, maximum }) => (
+                        <Field
+                            title={ lang.get(`pi-range-${ which }`) }
+                            icon={[
+                                (
+                                <Icon icon={ iconType } before />
+                                ),
+                                (
+                                <Icon icon={ icon } before />
+                                ),
+                            ]}
+                            slider={
+                                <Slider
+                                    object={ teams.range }
+                                    field={ which }
+                                    toInputValue={ (value) => 1000 * value / maximum }
+                                    fromInputValue={ (value) => maximum * value / 1000 }
+                                />
+                            }
+                            isLargeSlider={ true }
+                            value={ teams.range[ which ] | 0 }
+                        />
+                    )) }
                 </div>
-                { [
-                    { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 10000 },
-                    { which: 'maximum-champion', iconType: 'user', icon: 'step-forward', maximum: 10000 },
-                    { which: 'minimum-team', iconType: 'users', icon: 'step-backward', maximum: 50000 },
-                    { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 50000 },
-                ].map(({ which, iconType, icon, maximum }) => (
-                    <Field
-                        title={ lang.get(`pi-range-${ which }`) }
-                        icon={[
-                            (
-                            <Icon icon={ iconType } before />
-                            ),
-                            (
-                            <Icon icon={ icon } before />
-                            ),
-                        ]}
-                        slider={
-                            <Slider
-                                object={ teams.range }
-                                field={ which }
-                                toInputValue={ (value) => 1000 * value / maximum }
-                                fromInputValue={ (value) => maximum * value / 1000 }
-                            />
-                        }
-                        isLargeSlider={ true }
-                        value={ teams.range[ which ] | 0 }
-                    />
-                )) }
                 <div class="clear" />
             </div>
         );

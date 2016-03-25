@@ -18,16 +18,8 @@ const tab = {
     title: 'roster',
 };
 
-const Label = {
-    view(ctrl, { id, text }) {
-        return (
-            <label for={ id } class="champion-field-label">{ lang.get(text) }</label>
-        );
-    },
-};
-
 const Select = {
-    view(ctrl, { id, value, min, max, values, onchange }) {
+    view(ctrl, { value, min, max, values, onchange }) {
         const options = [];
         if(min !== undefined && max !== undefined) {
             for(let i = min; i <= max; i++)
@@ -42,7 +34,7 @@ const Select = {
         }
         return (
             <div class="champion-field-select">
-                <select id={ id } name={ id } onchange={ onchange }>
+                <select onchange={ onchange }>
                     { options }
                 </select>
                 <Icon icon="caret-down" />
@@ -52,11 +44,10 @@ const Select = {
 };
 
 const Number = {
-    view(ctrl, { id, value, placeholder, min, max, onchange }) {
+    view(ctrl, { value, placeholder, min, max, onchange }) {
         return (
             <div class="champion-field-input">
                 <input
-                    id={ id }
                     value={ value || '' }
                     placeholder={ placeholder }
                     type="number"
@@ -89,13 +80,9 @@ const RosterPage = {
                 <ChampionUpgrade stars={ stars } rank={ rank } level={ level } typeId={ typeId } />
             );
             elements.push(
-                <div class="champion-field">
-                    <Label
-                        id={ `${ champion.id }-edit-rank` }
-                        text="rank"
-                    />
+                <label class="champion-field">
+                    <span class="champion-field-label">{ lang.get('rank') }</span>
                     <Select
-                        id={ `${ champion.id }-edit-rank` }
                         value={ rank }
                         min={ 1 }
                         max={ rangeMax }
@@ -109,16 +96,12 @@ const RosterPage = {
                             requestRedraw();
                         }}
                     />
-                </div>
+                </label>
             );
             elements.push(
-                <div class="champion-field">
-                    <Label
-                        id={ `${ champion.id }-edit-level` }
-                        text="level"
-                    />
+                <label class="champion-field">
+                    <span class="champion-field-label">{ lang.get('level') }</span>
                     <Select
-                        id={ `${ champion.id }-edit-level` }
                         value={ level }
                         min={ 1 }
                         max={ levelMax }
@@ -131,16 +114,12 @@ const RosterPage = {
                             requestRedraw();
                         }}
                     />
-                </div>
+                </label>
             );
             elements.push(
-                <div class="champion-field">
-                    <Label
-                        id={ `${ champion.id }-edit-awakened` }
-                        text="awakened"
-                    />
+                <label class="champion-field">
+                    <span class="champion-field-label">{ lang.get('awakened') }</span>
                     <Select
-                        id={ `${ champion.id }-edit-awakened` }
                         value={ awakened }
                         min={ 0 }
                         max={ awankenedMax }
@@ -153,16 +132,12 @@ const RosterPage = {
                             requestRedraw();
                         }}
                     />
-                </div>
+                </label>
             );
             elements.push(
-                <div class="champion-field">
-                    <Label
-                        id={ `${ champion.id }-edit-pi` }
-                        text="pi"
-                    />
+                <label class="champion-field">
+                    <span class="champion-field-label">{ lang.get('pi') }</span>
                     <Number
-                        id={ `${ champion.id }-edit-pi` }
                         value={ pi || '' }
                         placeholder={ champion.pi }
                         min={ 0 }
@@ -178,16 +153,12 @@ const RosterPage = {
                             requestRedraw();
                         }}
                     />
-                </div>
+                </label>
             );
             elements.push(
-                <div class="champion-field">
-                    <Label
-                        id={ `${ champion.id }-edit-role` }
-                        text="role"
-                    />
+                <label class="champion-field">
+                    <span class="champion-field-label">{ lang.get('role') }</span>
                     <Select
-                        id={ `${ champion.id }-edit-role` }
                         value={ role }
                         values={[
                             {
@@ -216,7 +187,7 @@ const RosterPage = {
                             requestRedraw();
                         }}
                     />
-                </div>
+                </label>
             );
             elements.push(
                 <button

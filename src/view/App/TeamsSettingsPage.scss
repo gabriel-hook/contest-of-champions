@@ -1,32 +1,39 @@
 @import "../../util/colors";
+@import "../../util/fonts";
 @import "../../util/input";
 
 .teams-settings {
     padding: 0 24px 24px;
 
-    .header {
-        width: 500px;
-        max-width: 90%;
-        margin: 0 auto;
-        padding: 16px;
-        font-size: 1.3em;
-        font-weight: normal;
-        font-family: Hanzel, Verdana, Geneva, sans-serif;
-        text-align: left;
-    }
-
-    .field {
+    .teams-settings-section {
         position: relative;
         width: 500px;
         max-width: 90%;
-        margin: 0 auto 1em;
+        margin: 1em auto 1em;
+        padding: 0 0 8px;
+        background: #eee;
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
 
-        .field-name {
+        .header {
             @include styled-button(false);
             text-transform: uppercase;
             text-align: left;
-            padding: 8px 16px;
+            padding: 16px;
+        }
+
+        .field-name {
+            display: block;
+            padding: 16px 16px 0 16px;
+            font-family: $font-family-text;
+            font-size: 1em;
+            text-align: left;
+            line-height: 1.2em;
+            text-shadow: 0 1px 0 #fff;
+        }
+
+        .field-name--bold {
+            font-family: $font-family-title;
+
         }
 
         .field-input {
