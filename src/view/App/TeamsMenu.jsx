@@ -110,13 +110,13 @@ const TeamsMenu = {
                 options={
                 (
                     <MenuOptionGroup options={
-                        [ 3, 4, 5 ].map((star) => (
+                        [ 3, 4, 5 ].map((size) => (
                             <MenuOption
-                                raw={ `${ star }★` }
-                                selected={ teams.type === 'quest' && teams.size === star }
+                                raw={ size }
+                                selected={ teams.type === 'quest' && teams.size === size }
                                 onclick={ () => {
                                     teams.type = 'quest';
-                                    teams.size = star;
+                                    teams.size = size;
                                     save();
                                     requestRedraw();
                                 }}
