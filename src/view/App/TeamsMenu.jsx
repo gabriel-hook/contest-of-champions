@@ -97,6 +97,7 @@ const TeamsMenu = {
                 selected={ teams.type === 'alliance-quest' }
                 onclick={ () => {
                     teams.type = 'alliance-quest';
+                    teams.size = 5;
                     save();
                     requestRedraw();
                 }}

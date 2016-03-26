@@ -69,6 +69,7 @@
     "karma-webpack": "^1.7.0",
     "less": "^2.5.3",
     "mocha": "^2.3.4",
+    "node-sass": "^3.4.2",
     "phantomjs": "^1.9.19",
     "sass-loader": "^3.1.1",
     "simple-hot-loader": "git://github.com/WinstonFassett/simple-hot-loader",
