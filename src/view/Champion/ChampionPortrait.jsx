@@ -86,7 +86,10 @@ const ChampionPortrait = {
                 icon="map"
             />
         ):
-        (role === 'alliance' && (showBadges === 'role' || showBadges === true))? (
+        (
+            (role === 'alliance-war-attack' || role === 'alliance-war-defense' || role === 'alliance-quest') &&
+            (showBadges === 'role' || showBadges === true)
+        )? (
             <ImageIcon
                 src="images/icons/alliance.png"
                 icon="map"

@@ -166,16 +166,24 @@ const RosterPage = {
                                 value: null,
                             },
                             {
-                                title: lang.get('role-quest'),
-                                value: 'quest',
-                            },
-                            {
-                                title: lang.get('role-alliance'),
-                                value: 'alliance',
-                            },
-                            {
                                 title: lang.get('role-arena'),
                                 value: 'arena',
+                            },
+                            {
+                                title: lang.get('role-alliance-war-attack'),
+                                value: 'alliance-war-attack',
+                            },
+                            {
+                                title: lang.get('role-alliance-war-defense'),
+                                value: 'alliance-war-defense',
+                            },
+                            {
+                                title: lang.get('role-alliance-quest'),
+                                value: 'alliance-quest',
+                            },
+                            {
+                                title: lang.get('role-quest'),
+                                value: 'quest',
                             },
                         ]}
                         onchange={(event) => {

@@ -275,8 +275,7 @@ function buildTeams() {
                     return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
                 })
                 .filter(
-                    teams.type === 'alliance'? ({ attr }) => attr.role !== 'quest':
-                    teams.type === 'quest'? ({ attr }) => attr.role !== 'alliance':
+                    teams.type !== 'arena'? ({ attr }) => !attr.role || attr.role === 'arena' || attr.role === teams.type:
                     () => true
                 )
                 .map((champion) => champion.attr),

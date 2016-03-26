@@ -79,6 +79,7 @@ const TeamsEditPage = {
         this.stars = {};
         this.types = {};
         this.last = -1;
+        this.type = null;
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
             const typesEqual = deepEqual(this.types, teams.types);
@@ -105,6 +106,7 @@ const TeamsEditPage = {
                 this.types = { ...teams.types };
                 this.size = teams.size;
                 this.last = teams.last;
+                this.type = teams.type;
                 this.init = true;
             }
         };
@@ -265,7 +267,7 @@ const TeamsEditPage = {
             .filter((champion) => ctrl.stars[ champion.attr.stars ])
             .filter((champion) => ctrl.types[ champion.attr.typeId ])
             .filter((champion) => !inTeam[ champion.id ]);
-        if(extras.length >= ctrl.size) {
+        if((ctrl.type === 'arena' || teams.length === 0) && extras.length >= ctrl.size) {
             while(create.champions.length < ctrl.size) {
                 create.champions.push(null);
             }

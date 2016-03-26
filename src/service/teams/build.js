@@ -10,10 +10,8 @@ function build({
     options,
     progress,
 }) {
-    const settings = { champions, size, weights, range, options, progress };
-    return (type === 'arena')? buildArena(settings):
-        (type === 'quest' || type === 'alliance')? buildQuest(settings):
-        { teams: [], extras: [] };
+    const settings = { type, champions, size, weights, range, options, progress };
+    return (type === 'arena')? buildArena(settings): buildQuest(settings);
 }
 
 export default build;

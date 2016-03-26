@@ -5,6 +5,7 @@ import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
 import { combination } from '../../util/math';
 
 function buildQuest({
+    type,
     champions,
     size,
     weights,
@@ -38,7 +39,7 @@ function buildQuest({
                 pi: pi || champion.pi,
             };
         }).filter((champion) => {
-            if(champion.role === 'quest') {
+            if(champion.role === type) {
                 preselect.push(champion);
                 return false;
             }
