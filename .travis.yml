@@ -7,15 +7,15 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-cache:
-  directories:
-  - node_modules
 env:
   - CXX=g++-4.8
   global:
-  - GH_REF: github.com/hook/champions.git
-before_install:
+    - GH_REF: github.com/hook/champions.git
+after_install:
 - npm prune
 after_success:
   - "${TRAVIS_PULL_REQUEST} || npm run deploy"
 sudo: false
+cache:
+directories:
+- node_modules
