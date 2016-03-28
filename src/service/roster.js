@@ -40,7 +40,7 @@ function setFilter(key, value) {
     toStorage('roster-options', rosterOptions);
 }
 function getFilter(key) {
-    return rosterOptions.filter[ key ];
+    return rosterOptions.filter[ key ] !== false;
 }
 
 function setSort(key, direction) {

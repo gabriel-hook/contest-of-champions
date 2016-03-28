@@ -264,8 +264,8 @@ const TeamsEditPage = {
             champions.forEach((champion) => inTeam[ champion.id ] = true);
         });
         const extras = roster
-            .filter((champion) => ctrl.stars[ champion.attr.stars ])
-            .filter((champion) => ctrl.types[ champion.attr.typeId ])
+            .filter((champion) => ctrl.stars[ champion.attr.stars ] !== false)
+            .filter((champion) => ctrl.types[ champion.attr.typeId ] !== false)
             .filter((champion) => !inTeam[ champion.id ]);
         if((ctrl.type === 'arena' || teams.length === 0) && extras.length >= ctrl.size) {
             while(create.champions.length < ctrl.size) {

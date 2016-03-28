@@ -268,8 +268,8 @@ function buildTeams() {
         data: {
             type: teams.type,
             champions: roster
-                .filter(({ attr }) => teams.types[ attr.typeId ])
-                .filter(({ attr }) => teams.stars[ attr.stars ])
+                .filter(({ attr }) => teams.types[ attr.typeId ] !== false)
+                .filter(({ attr }) => teams.stars[ attr.stars ] !== false)
                 .filter((champion) => {
                     const pi = champion.attr.pi || champion.pi;
                     return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;

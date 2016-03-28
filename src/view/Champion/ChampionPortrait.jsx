@@ -8,6 +8,14 @@ import lang from '../../service/lang';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+const ROLE_ICONS = {
+    'quest': 'images/icons/quest.png',
+    'alliance-war-attack': 'images/icons/alliance-war.png',
+    'alliance-war-defense': 'images/icons/alliance-war.png',
+    'alliance-quest': 'images/icons/alliance-quest.png',
+    'arena': 'images/icons/arena.png',
+};
+
 function addSVG(element, isInitialized) {
     if(!isInitialized) {
         element.innerHTML = `
@@ -79,26 +87,10 @@ const ChampionPortrait = {
             />
         ): null;
 
-        const roleIcon = !showBadges? null:
-        (role === 'quest' && (showBadges === 'role' || showBadges === true))? (
+        const roleIcon = ((showBadges === 'role' || showBadges === true) && ROLE_ICONS[ role ])? (
             <ImageIcon
-                src="images/icons/quest.png"
+                src={ ROLE_ICONS[ role ] }
                 icon="map"
-            />
-        ):
-        (
-            (role === 'alliance-war-attack' || role === 'alliance-war-defense' || role === 'alliance-quest') &&
-            (showBadges === 'role' || showBadges === true)
-        )? (
-            <ImageIcon
-                src="images/icons/alliance.png"
-                icon="map"
-            />
-        ):
-        (role === 'arena' && (showBadges === 'role' || showBadges === true))? (
-            <ImageIcon
-                src="images/icons/arena.png"
-                icon="shield"
             />
         ): null;
         return (

@@ -45,6 +45,12 @@ function buildQuest({
             }
             return true;
         });
+    if(list.length < size) {
+        return {
+            teams: [],
+            extras: [],
+        };
+    }
 
     let progressCurrent = 0;
     const progressMax = combination(list.length, preselect.length? size - preselect.length: size);
