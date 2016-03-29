@@ -156,7 +156,7 @@ function save() {
 }
 
 const CSV_HEADER_SHORT = 'Id,Stars';
-const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi';
+const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi,Role';
 
 function toCSV(separator = '\n') {
     const csv = [
@@ -168,6 +168,7 @@ function toCSV(separator = '\n') {
             `${ attr.level || 1 }`,
             `${ attr.awakened || 0 }`,
             `${ attr.pi || 0 }`,
+            `${ attr.role || '' }`,
         ]),
     ];
     return csv.join(separator);
@@ -183,12 +184,19 @@ function fromCSV(csv, filename = 'champions.csv') {
         }
         return (value === undefined)? defaultValue: value;
     };
+    const getStringValue = (array, index, defaultValue) => {
+        let value;
+        if(array.length > index) {
+            value = array[ index ].replace(/["]/g, '');
+        }
+        return (value === undefined)? defaultValue: value;
+    };
     for(let i=0; i<lines.length; i++) {
         if(i===0 && lines[ i ].replace(/["]/g, '').startsWith(CSV_HEADER_SHORT))
             continue;
 
         const values = lines[ i ].split(',');
-        if(values.length < 2 || values.length > 6)
+        if(values.length < 2 || values.length > 7)
             throw 'Invalid roster CSV';
 
         const uid = values[ 0 ].replace(/["]/g, '').toLowerCase();
@@ -197,6 +205,7 @@ function fromCSV(csv, filename = 'champions.csv') {
         const level = getIntegerValue(values, 3, 1);
         const awakened = getIntegerValue(values, 4, 0);
         const pi = getIntegerValue(values, 5, 0);
+        const role = getStringValue(values, 6, null);
         if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened) || isNaN(pi)) {
             /* eslint-disable no-console */
             console.error(`Invalid line in ${ filename }:${ i + 1 }`);
@@ -210,7 +219,7 @@ function fromCSV(csv, filename = 'champions.csv') {
             /* eslint-enable no-console */
             continue;
         }
-        array.push(new Champion({ ...champion.attr, rank, level, awakened, pi }));
+        array.push(new Champion({ ...champion.attr, rank, level, awakened, pi, role }));
     }
     roster = [
         ...roster,
