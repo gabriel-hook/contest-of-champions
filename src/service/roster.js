@@ -316,6 +316,20 @@ function set(uid, stars, attr = {}) {
     save();
 }
 
+function setTeam(role, champions) {
+    roster = [
+        ...roster.map(({ attr }) => new Champion({
+            ...attr,
+            role: (role === attr.role)? null: attr.role,
+        })),
+        ...champions.map(({ attr }) => new Champion({
+            ...attr,
+            role,
+        })),
+    ];
+    save();
+}
+
 export default {
     //getters
     all,
@@ -326,6 +340,7 @@ export default {
     find,
     //setter
     set,
+    setTeam,
     //adders
     add,
     addAll,

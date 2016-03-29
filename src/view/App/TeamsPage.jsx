@@ -10,11 +10,11 @@ import m from 'mithril';
 
 const TeamsPage = {
     view() {
-        const result = teams.result;
         let message = `0 ${ lang.get('teams') }`;
         let teamDivs;
         let extrasHeader;
         let extrasDiv;
+        const result = teams.result[ `${ teams.type }-${ teams.size }` ];
         if(result) {
             const { counts, teams, extras } = result;
             message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;

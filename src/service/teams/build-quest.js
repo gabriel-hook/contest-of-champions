@@ -5,14 +5,12 @@ import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
 import { combination } from '../../util/math';
 
 function buildQuest({
-    type,
     champions,
     size,
     weights,
     range,
     progress,
 }) {
-    const preselect = [];
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
 
@@ -38,12 +36,6 @@ function buildQuest({
                 synergies,
                 pi: pi || champion.pi,
             };
-        }).filter((champion) => {
-            if(champion.role === type) {
-                preselect.push(champion);
-                return false;
-            }
-            return true;
         });
     if(list.length < size) {
         return {
@@ -53,17 +45,13 @@ function buildQuest({
     }
 
     let progressCurrent = 0;
-    const progressMax = combination(list.length, preselect.length? size - preselect.length: size);
+    const progressMax = combination(list.length, size);
     const progressIncrement = () => {
         progressCurrent++;
         progress(progressCurrent, progressMax);
     };
 
-    const team = (preselect.length > 0)? ((preselect.length > size)?
-        getTopPartner(preselect, 0, size, typeWeights, range, progressIncrement):
-        getNextPartner(list, preselect, [], getTypes(preselect), 0, size, typeWeights, range, progressIncrement)
-    ): getTopPartner(list, 0, size, typeWeights, range, progressIncrement);
-
+    const team = getTopPartner(list, 0, size, typeWeights, range, progressIncrement);
     if(team.value > 0) {
         return {
             teams:[

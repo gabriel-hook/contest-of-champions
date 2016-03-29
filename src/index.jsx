@@ -8,7 +8,7 @@ import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
 import roster from './service/roster';
-import { buildTeams } from './service/teams';
+import { buildTeam } from './service/teams';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
 import Slides from './view/Slides.jsx';
@@ -256,7 +256,7 @@ router.on('/teams/settings/?', () => {
         {
             'which': 'B',
             'modifiers': [ 'ctrl' ],
-            'callback': buildTeams,
+            'callback': buildTeam,
         },
     ];
     analytics.pageView();
@@ -282,7 +282,7 @@ router.on('/teams/edit/?', () => {
         {
             'which': 'B',
             'modifiers': [ 'ctrl' ],
-            'callback': buildTeams,
+            'callback': buildTeam,
         },
     ];
     app.menu = (
@@ -324,7 +324,7 @@ router.on('/teams/?', () => {
         {
             'which': 'B',
             'modifiers': [ 'ctrl' ],
-            'callback': buildTeams,
+            'callback': buildTeam,
         },
     ];
     analytics.pageView();

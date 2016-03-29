@@ -1,5 +1,5 @@
 import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
-import teams, { buildTeams, save } from '../../service/teams';
+import teams, { save, loadTeam, buildTeam } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -24,7 +24,7 @@ const TeamsMenu = {
                     <Icon icon="cog" spin={ teams.building } before />
                 )}
                 onclick={ () => {
-                    buildTeams();
+                    buildTeam();
                     requestRedraw();
                 }}
                 progress={ teams.progress }
@@ -70,6 +70,7 @@ const TeamsMenu = {
                             onclick={ () => {
                                 teams.type = 'alliance-war-attack';
                                 teams.size = 3;
+                                loadTeam();
                                 save();
                                 requestRedraw();
                             }}
@@ -82,6 +83,7 @@ const TeamsMenu = {
                             onclick={ () => {
                                 teams.type = 'alliance-war-defense';
                                 teams.size = 5;
+                                loadTeam();
                                 save();
                                 requestRedraw();
                             }}
@@ -98,6 +100,7 @@ const TeamsMenu = {
                 onclick={ () => {
                     teams.type = 'alliance-quest';
                     teams.size = 3;
+                    loadTeam();
                     save();
                     requestRedraw();
                 }}
@@ -117,6 +120,7 @@ const TeamsMenu = {
                                 onclick={ () => {
                                     teams.type = 'quest';
                                     teams.size = size;
+                                    loadTeam();
                                     save();
                                     requestRedraw();
                                 }}

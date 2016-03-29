@@ -137,6 +137,7 @@ const teams = {
     ...fromStorage('teams', {}),
     progress: 0,
     building: false,
+    result: {},
 };
 
 // Apply missing defaults
@@ -167,6 +168,53 @@ function save() {
         weights: teams.weights,
         range: teams.range,
     });
+}
+
+function loadTeam() {
+    if(teams.type === 'arena' || teams.type === 'quest') {
+        return;
+    }
+    const result = {
+        teams: [
+            roster
+                .filter((champion) => champion && champion.attr.role === teams.type)
+                .map((champion) => champion.id),
+        ],
+    };
+    let teamsCount = 0;
+    let synergiesCount = 0;
+    teams.result[ `${ teams.type }-${ teams.size }` ] = {
+        ...result,
+        teams: result.teams.map((team) => {
+            team.sort();
+            const champions = team.map(idToRosterChampion);
+            const synergies = synergiesFromChampions(champions);
+            teamsCount++;
+            synergiesCount += synergies.length;
+            return {
+                champions,
+                synergies,
+            };
+        }),
+        counts: {
+            teams: teamsCount,
+            synergies: synergiesCount,
+        },
+        extras: [],
+    };
+}
+
+loadTeam();
+
+function saveTeam() {
+    if(teams.type === 'arena' || teams.type === 'quest') {
+        return;
+    }
+    const result = teams.result[ `${ teams.type }-${ teams.size }` ];
+    const champions = result && result.teams && result.teams[ 0 ] && result.teams[ 0 ].champions;
+    if(champions) {
+        roster.setTeam(teams.type, champions);
+    }
 }
 
 function idToRosterChampion(id) {
@@ -206,7 +254,7 @@ function synergiesFromChampions(team) {
 let progressResetTimeout;
 
 let worker;
-function buildTeams() {
+function buildTeam() {
     if(worker)
         worker.terminate();
     worker = new Worker();
@@ -218,7 +266,7 @@ function buildTeams() {
             setTimeout(() => {
                 let teamsCount = 0;
                 let synergiesCount = 0;
-                teams.result = {
+                teams.result[ `${ teams.type }-${ teams.size }` ] = {
                     ...result,
                     teams: result.teams.map((team) => {
                         team.sort();
@@ -237,6 +285,7 @@ function buildTeams() {
                     },
                     extras: result.extras.map(idToRosterChampion),
                 };
+                saveTeam();
                 teams.building = false;
                 teams.last = Date.now();
                 progressResetTimeout = setTimeout(() => {
@@ -294,5 +343,5 @@ function buildTeams() {
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
-export { save, buildTeams, synergiesFromChampions };
+export { save, saveTeam, loadTeam, buildTeam, synergiesFromChampions };
 export default teams;

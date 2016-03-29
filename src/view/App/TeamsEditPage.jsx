@@ -1,5 +1,5 @@
 import './TeamsEditPage.scss';
-import teams, { synergiesFromChampions } from '../../service/teams';
+import teams, { synergiesFromChampions, saveTeam } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
@@ -15,7 +15,7 @@ function applyTeams(updatedTeams) {
     updatedTeams.forEach((team) => {
         team.value = team.champions.reduce((sum, champion) => sum + (champion.attr.pi || champion.pi), 0);
     });
-    teams.result = {
+    const result = teams.result[ `${ teams.type }-${ teams.size }` ] = {
         teams: updatedTeams,
         counts: {
             teams: 0,
@@ -25,12 +25,13 @@ function applyTeams(updatedTeams) {
     };
     const inTeam = {};
     updatedTeams.forEach((team) => {
-        teams.result.counts.teams++;
-        teams.result.counts.synergies += team.synergies.length;
+        result.counts.teams++;
+        result.counts.synergies += team.synergies.length;
         team.champions.forEach((champion) => inTeam[ champion.id ] = true);
     });
     roster.filter((champion) => !inTeam[ champion.id ] && teams.stars[ champion.attr.stars ])
-        .forEach((champion) => teams.result.extras.push(champion));
+        .forEach((champion) => result.extras.push(champion));
+    saveTeam();
 }
 
 function calculateSynergies(swap) {
@@ -83,13 +84,14 @@ const TeamsEditPage = {
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
             const typesEqual = deepEqual(this.types, teams.types);
+            const result = teams.result[ `${ teams.type }-${ teams.size }` ];
             if(this.last !== teams.last || this.size !== teams.size || !starsEqual || !typesEqual) {
                 if(this.last === teams.last && (this.size !== teams.size || !starsEqual || !typesEqual)) {
-                    teams.result = null;
+                    teams.result[ `${ teams.type }-${ teams.size }` ] = null;
                     this.teams = [];
                 }
                 else {
-                    this.teams = teams.result && teams.result.teams.map(({ champions, synergies }) => ({
+                    this.teams = result && result.teams.map(({ champions, synergies }) => ({
                         champions: [
                             ...champions,
                         ],
