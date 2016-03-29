@@ -8,47 +8,64 @@ import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const TeamsPage = {
-    view() {
-        let message = `0 ${ lang.get('teams') }`;
-        let teamDivs;
-        let extrasHeader;
-        let extrasDiv;
-        const result = teams.result[ `${ teams.type }-${ teams.size }` ];
-        if(result) {
-            const { counts, teams, extras } = result;
-            message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
-            teamDivs = teams.map(({ champions, synergies }) => (
-                <ChampionTeam
-                    key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
-                    champions={ champions }
-                    synergies={ synergies }
+function results(type, size) {
+    const result = teams.result[ `${ type }-${ size }` ];
+    if(result) {
+        const { counts, teams, extras } = result;
+        const message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
+        const teamDivs = teams.map(({ champions, synergies }) => (
+            <ChampionTeam
+                key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
+                champions={ champions }
+                synergies={ synergies }
+                showBadges={ 'upgrade' }
+            />
+        ));
+        const extraDivs = [];
+        if(extras.length) {
+            extraDivs.push(
+                <div class="header">{ lang.get('extras') }</div>
+            );
+            extraDivs.push(extras.map((champion) => (
+                <ChampionPortrait
+                    key={ `teams-extras-${ champion.id }` }
+                    champion={ champion }
                     showBadges={ 'upgrade' }
                 />
-            ));
-            if(extras.length) {
-                extrasHeader = (
-                    <div class="header">{ lang.get('extras') }</div>
-                );
-                extrasDiv = extras.map((champion) => (
-                    <ChampionPortrait
-                        key={ `teams-extras-${ champion.id }` }
-                        champion={ champion }
-                        showBadges={ 'upgrade' }
-                    />
-                ));
-            }
+            )));
+        }
+        return (
+            <div>
+                <Message value={ message } />
+                { teamDivs }
+                { extraDivs }
+            </div>
+        );
+    }
+    return (
+        <div>
+            <Message value={ `0 ${ lang.get('teams') }` } />
+        </div>
+    );
+}
+
+const TeamsPage = {
+    view() {
+        let result;
+        if(teams.type === 'alliance-war-attack' || teams.type === 'alliance-war-defense') {
+            result = [
+                results('alliance-war-attack', 3),
+                results('alliance-war-defense', 5),
+            ];
+        }
+        else {
+            result = [
+                results(teams.type, teams.size),
+            ];
         }
         return (
             <div m="TeamsPage" class="teams">
-                <Message value={ message } />
-                <div>
-                    { teamDivs }
-                </div>
-                { extrasHeader }
-                <div>
-                    { extrasDiv }
-                </div>
+                { result }
                 <div class="clear" />
             </div>
         );

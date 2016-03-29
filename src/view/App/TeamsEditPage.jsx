@@ -86,20 +86,14 @@ const TeamsEditPage = {
             const typesEqual = deepEqual(this.types, teams.types);
             const result = teams.result[ `${ teams.type }-${ teams.size }` ];
             if(this.last !== teams.last || this.size !== teams.size || !starsEqual || !typesEqual) {
-                if(this.last === teams.last && (this.size !== teams.size || !starsEqual || !typesEqual)) {
-                    teams.result[ `${ teams.type }-${ teams.size }` ] = null;
-                    this.teams = [];
-                }
-                else {
-                    this.teams = result && result.teams.map(({ champions, synergies }) => ({
-                        champions: [
-                            ...champions,
-                        ],
-                        synergies: [
-                            ...synergies,
-                        ],
-                    })) || [];
-                }
+                this.teams = result && result.teams.map(({ champions, synergies }) => ({
+                    champions: [
+                        ...champions,
+                    ],
+                    synergies: [
+                        ...synergies,
+                    ],
+                })) || [];
                 this.swap.source = null;
                 this.swap.target = null;
                 this.create.champions = [ null ];
@@ -266,6 +260,7 @@ const TeamsEditPage = {
             champions.forEach((champion) => inTeam[ champion.id ] = true);
         });
         const extras = roster
+            .filter((champion) => !champion.attr.role)
             .filter((champion) => ctrl.stars[ champion.attr.stars ] !== false)
             .filter((champion) => ctrl.types[ champion.attr.typeId ] !== false)
             .filter((champion) => !inTeam[ champion.id ]);

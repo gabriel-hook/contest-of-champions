@@ -51,6 +51,7 @@ const TeamsMenu = {
                 onclick={ () => {
                     teams.type = 'arena';
                     teams.size = 3;
+                    loadTeam(teams.type);
                     save();
                     requestRedraw();
                 }}
@@ -70,7 +71,7 @@ const TeamsMenu = {
                             onclick={ () => {
                                 teams.type = 'alliance-war-attack';
                                 teams.size = 3;
-                                loadTeam();
+                                loadTeam(teams.type);
                                 save();
                                 requestRedraw();
                             }}
@@ -83,7 +84,7 @@ const TeamsMenu = {
                             onclick={ () => {
                                 teams.type = 'alliance-war-defense';
                                 teams.size = 5;
-                                loadTeam();
+                                loadTeam(teams.type);
                                 save();
                                 requestRedraw();
                             }}
@@ -100,7 +101,7 @@ const TeamsMenu = {
                 onclick={ () => {
                     teams.type = 'alliance-quest';
                     teams.size = 3;
-                    loadTeam();
+                    loadTeam(teams.type);
                     save();
                     requestRedraw();
                 }}
@@ -120,7 +121,7 @@ const TeamsMenu = {
                                 onclick={ () => {
                                     teams.type = 'quest';
                                     teams.size = size;
-                                    loadTeam();
+                                    loadTeam(teams.type);
                                     save();
                                     requestRedraw();
                                 }}

@@ -170,41 +170,38 @@ function save() {
     });
 }
 
-function loadTeam() {
-    if(teams.type === 'arena' || teams.type === 'quest') {
+function loadTeam(type, size) {
+    if(type === 'arena' || type === 'quest') {
         return;
     }
-    const result = {
-        teams: [
-            roster
-                .filter((champion) => champion && champion.attr.role === teams.type)
-                .map((champion) => champion.id),
-        ],
-    };
-    let teamsCount = 0;
-    let synergiesCount = 0;
-    teams.result[ `${ teams.type }-${ teams.size }` ] = {
-        ...result,
-        teams: result.teams.map((team) => {
-            team.sort();
-            const champions = team.map(idToRosterChampion);
-            const synergies = synergiesFromChampions(champions);
-            teamsCount++;
-            synergiesCount += synergies.length;
-            return {
-                champions,
-                synergies,
-            };
-        }),
-        counts: {
-            teams: teamsCount,
-            synergies: synergiesCount,
-        },
-        extras: [],
-    };
+    const champions = roster.filter((champion) => champion && champion.attr.role === type);
+    if(champions.length >= size) {
+        champions.sort();
+        const synergies = synergiesFromChampions(champions);
+        teams.result[ `${ type }-${ size }` ] = {
+            teams: [
+                {
+                    champions,
+                    synergies,
+                },
+            ],
+            counts: {
+                teams: 1,
+                synergies: synergies.length,
+            },
+            extras: [],
+        };
+    }
+    else {
+        teams.result[ `${ type }-${ size }` ] = null;
+    }
 }
 
-loadTeam();
+[
+    { type: 'alliance-war-attack', size: 3 },
+    { type: 'alliance-war-defense', size: 5 },
+    { type: 'alliance-quest', size: 3 },
+].forEach(({ type, size }) => loadTeam(type, size));
 
 function saveTeam() {
     if(teams.type === 'arena' || teams.type === 'quest') {
