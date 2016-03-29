@@ -189,7 +189,7 @@ function fromCSV(csv, filename = 'champions.csv') {
         if(array.length > index) {
             value = array[ index ].replace(/["]/g, '');
         }
-        return (value === undefined)? defaultValue: value;
+        return value || defaultValue;
     };
     for(let i=0; i<lines.length; i++) {
         if(i===0 && lines[ i ].replace(/["]/g, '').startsWith(CSV_HEADER_SHORT))
