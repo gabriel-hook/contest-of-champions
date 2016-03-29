@@ -29,8 +29,14 @@ function applyTeams(updatedTeams) {
         result.counts.synergies += team.synergies.length;
         team.champions.forEach((champion) => inTeam[ champion.id ] = true);
     });
-    roster.filter((champion) => !inTeam[ champion.id ] && teams.stars[ champion.attr.stars ])
-        .forEach((champion) => result.extras.push(champion));
+    if(teams.type === 'arena') {
+        roster
+            .filter((champion) => !champion.attr.role)
+            .filter((champion) => teams.stars[ champion.attr.stars ] !== false)
+            .filter((champion) => teams.types[ champion.attr.typeId ] !== false)
+            .filter((champion) => !inTeam[ champion.id ])
+            .forEach((champion) => result.extras.push(champion));
+    }
     saveTeam();
 }
 
@@ -85,7 +91,7 @@ const TeamsEditPage = {
             const starsEqual = deepEqual(this.stars, teams.stars);
             const typesEqual = deepEqual(this.types, teams.types);
             const result = teams.result[ `${ teams.type }-${ teams.size }` ];
-            if(this.last !== teams.last || this.size !== teams.size || !starsEqual || !typesEqual) {
+            if(this.last !== teams.last || this.type !== teams.type || this.size !== teams.size || !starsEqual || !typesEqual) {
                 this.teams = result && result.teams.map(({ champions, synergies }) => ({
                     champions: [
                         ...champions,

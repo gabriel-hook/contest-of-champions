@@ -209,9 +209,7 @@ function saveTeam() {
     }
     const result = teams.result[ `${ teams.type }-${ teams.size }` ];
     const champions = result && result.teams && result.teams[ 0 ] && result.teams[ 0 ].champions;
-    if(champions) {
-        roster.setTeam(teams.type, champions);
-    }
+    roster.setTeam(teams.type, champions || []);
 }
 
 function idToRosterChampion(id) {

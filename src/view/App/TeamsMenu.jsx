@@ -1,5 +1,5 @@
 import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
-import teams, { save, loadTeam, buildTeam } from '../../service/teams';
+import teams, { save, saveTeam, loadTeam, buildTeam } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -38,6 +38,21 @@ const TeamsMenu = {
                 )}
                 selected={ edit }
                 href={ edit? '/teams': '/teams/edit' }
+            />
+        );
+        options.push(
+            <MenuOption
+                title="dissolve"
+                icon={(
+                    <Icon icon="user-times" before />
+                )}
+                onclick={ () => {
+                    teams.result[ `${ teams.type }-${ teams.size }` ] = null;
+                    saveTeam();
+                    save();
+                    requestRedraw();
+                }}
+                red
             />
         );
         options.push(
