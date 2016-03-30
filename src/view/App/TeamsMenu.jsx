@@ -74,6 +74,30 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOption
+                title={ 'quest' }
+                selected={ teams.type === 'quest' }
+                options={
+                (
+                    <MenuOptionGroup options={
+                        [ 3, 4, 5 ].map((size) => (
+                            <MenuOption
+                                raw={ size }
+                                selected={ teams.type === 'quest' && teams.size === size }
+                                onclick={ () => {
+                                    teams.type = 'quest';
+                                    teams.size = size;
+                                    loadTeam(teams.type);
+                                    save();
+                                    requestRedraw();
+                                }}
+                            />
+                        ))
+                    } />
+                )
+            } />
+        );
+        options.push(
+            <MenuOption
                 title={ 'alliance-war' }
                 selected={ teams.type === 'alliance-war-attack' || teams.type === 'alliance-war-defense' }
                 options={
@@ -122,31 +146,6 @@ const TeamsMenu = {
                 }}
             />
         );
-        options.push(
-            <MenuOption
-                title={ 'quest' }
-                selected={ teams.type === 'quest' }
-                options={
-                (
-                    <MenuOptionGroup options={
-                        [ 3, 4, 5 ].map((size) => (
-                            <MenuOption
-                                raw={ size }
-                                selected={ teams.type === 'quest' && teams.size === size }
-                                onclick={ () => {
-                                    teams.type = 'quest';
-                                    teams.size = size;
-                                    loadTeam(teams.type);
-                                    save();
-                                    requestRedraw();
-                                }}
-                            />
-                        ))
-                    } />
-                )
-            } />
-        );
-
         options.push(
             <MenuSection title="champions" />
         );

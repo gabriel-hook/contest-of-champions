@@ -171,11 +171,11 @@ function save() {
 }
 
 function loadTeam(type, size) {
-    if(type === 'arena' || type === 'quest') {
+    if(type === 'arena') {
         return;
     }
     const champions = roster.filter((champion) => champion && champion.attr.role === type);
-    if(champions.length >= size) {
+    if(champions.length === size) {
         champions.sort();
         const synergies = synergiesFromChampions(champions);
         teams.result[ `${ type }-${ size }` ] = {

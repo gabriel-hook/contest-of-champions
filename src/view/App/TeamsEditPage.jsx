@@ -105,10 +105,11 @@ const TeamsEditPage = {
                         ...synergies,
                     ],
                 })) || [];
-                if(!changed || this.last === -1) {
+                if((!changed || this.last === -1) && !this.create.swapped) {
                     this.create.champions = [ null ];
                     this.create.synergies = [];
                 }
+                this.create.swapped = false;
                 this.swap.source = null;
                 this.swap.target = null;
                 this.stars = { ...teams.stars };
@@ -138,6 +139,9 @@ const TeamsEditPage = {
                         synergies: [],
                     };
                     doSave = true;
+                }
+                else if(source.create || target.create) {
+                    this.create.swapped = true;
                 }
             }
             this.swap.source = null;
