@@ -181,6 +181,7 @@
     "add-champion": "Add a Champion",
     "import-csv": "Import .csv",
     "export-csv": "Export .csv",
+    "export-alliance": "Export to Alliance Builder",
     "import-json": "Import .json",
     "export-json": "Export .json",
     "delete-all": "Delete All",
