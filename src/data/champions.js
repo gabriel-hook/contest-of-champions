@@ -318,8 +318,20 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
+const roleImages = {
+    'arena': 'arena',
+    'quest': 'quest',
+    'alliance-war-attack': 'alliance-war',
+    'alliance-war-defense': 'alliance-war',
+    'alliance-quest': 'alliance-quest',
+};
+
+function roleImage(role, color) {
+    return `images/roles/${ roleImages[ role ] }_${ color }.png`;
+}
+
 const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
 
 export default champions;
-export { idMap, uids, uidsByType };
+export { idMap, uids, uidsByType, roleImage };
 export { UNRELEASED_CHAMPIONS, PLACEHOLDER };

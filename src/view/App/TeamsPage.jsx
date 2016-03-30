@@ -1,7 +1,9 @@
 import './TeamsPage.scss';
+import { roleImage } from '../../data/champions';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import ChampionTeam from '../Champion/ChampionTeam.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 /* eslint-disable no-unused-vars */
@@ -12,7 +14,9 @@ function results(type, size) {
     const result = teams.result[ `${ type }-${ size }` ];
     if(result) {
         const { counts, teams, extras } = result;
-        const message = `${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`;
+        const message = type === 'arena'?
+            `- ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
+            `- ${ counts.synergies } ${ lang.get('synergies') }`;
         const teamDivs = teams.map(({ champions, synergies }) => (
             <ChampionTeam
                 key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
@@ -36,7 +40,17 @@ function results(type, size) {
         }
         return (
             <div>
-                <Message value={ message } />
+                <Message value={(
+                    <span>
+                        <ImageIcon
+                            src={ roleImage(type, 'white') }
+                            alt={ roleImage(type, 'black') }
+                            icon="square"
+                        />
+                        { lang.get(`role-${ type }`) }
+                        { message }
+                    </span>
+                )} />
                 { teamDivs }
                 { extraDivs }
             </div>
@@ -44,7 +58,16 @@ function results(type, size) {
     }
     return (
         <div>
-            <Message value={ `0 ${ lang.get('teams') }` } />
+            <Message value={(
+                <span>
+                    <ImageIcon
+                        src={ roleImage(type, 'white') }
+                        alt={ roleImage(type, 'black') }
+                        icon="square"
+                    />
+                    { lang.get(`role-${ type }`) }
+                </span>
+            )} />
         </div>
     );
 }

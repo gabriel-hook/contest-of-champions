@@ -204,6 +204,7 @@ function loadTeam(type, size) {
 ].forEach(({ type, size }) => loadTeam(type, size));
 
 function saveTeam() {
+    teams.last = Date.now();
     if(teams.type === 'arena' || teams.type === 'quest') {
         return;
     }
@@ -282,7 +283,6 @@ function buildTeam() {
                 };
                 saveTeam();
                 teams.building = false;
-                teams.last = Date.now();
                 progressResetTimeout = setTimeout(() => {
                     teams.progress = 0;
                     requestRedraw();

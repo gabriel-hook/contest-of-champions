@@ -1,17 +1,19 @@
 import './TeamsEditPage.scss';
+import { roleImage } from '../../data/champions';
 import teams, { synergiesFromChampions, saveTeam } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
 import ChampionTeamSelector from '../Champion/ChampionTeamSelector.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import Message from '../Message.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-function applyTeams(updatedTeams) {
+function applyTeams(updatedTeams, doSave) {
     updatedTeams.forEach((team) => {
         team.value = team.champions.reduce((sum, champion) => sum + (champion.attr.pi || champion.pi), 0);
     });
@@ -37,7 +39,9 @@ function applyTeams(updatedTeams) {
             .filter((champion) => !inTeam[ champion.id ])
             .forEach((champion) => result.extras.push(champion));
     }
-    saveTeam();
+    if(doSave) {
+        saveTeam();
+    }
 }
 
 function calculateSynergies(swap) {
@@ -91,7 +95,8 @@ const TeamsEditPage = {
             const starsEqual = deepEqual(this.stars, teams.stars);
             const typesEqual = deepEqual(this.types, teams.types);
             const result = teams.result[ `${ teams.type }-${ teams.size }` ];
-            if(this.last !== teams.last || this.type !== teams.type || this.size !== teams.size || !starsEqual || !typesEqual) {
+            const changed = this.type !== teams.type || this.size !== teams.size || !starsEqual || !typesEqual;
+            if(this.last !== teams.last || changed) {
                 this.teams = result && result.teams.map(({ champions, synergies }) => ({
                     champions: [
                         ...champions,
@@ -100,10 +105,12 @@ const TeamsEditPage = {
                         ...synergies,
                     ],
                 })) || [];
+                if(!changed || this.last === -1) {
+                    this.create.champions = [ null ];
+                    this.create.synergies = [];
+                }
                 this.swap.source = null;
                 this.swap.target = null;
-                this.create.champions = [ null ];
-                this.create.synergies = [];
                 this.stars = { ...teams.stars };
                 this.types = { ...teams.types };
                 this.size = teams.size;
@@ -114,6 +121,7 @@ const TeamsEditPage = {
         };
         this.apply = () => {
             const { source, target } = this.swap;
+            let doSave = (source && source.team && !source.create) || (target && target.team && !target.create);
             if(source && target) {
                 if(source.index !== undefined && source.team) {
                     source.team.champions[ source.index ] = target.champion;
@@ -129,11 +137,12 @@ const TeamsEditPage = {
                         champions: [ null ],
                         synergies: [],
                     };
+                    doSave = true;
                 }
             }
             this.swap.source = null;
             this.swap.target = null;
-            applyTeams(this.teams);
+            applyTeams(this.teams, doSave);
         };
     },
 
@@ -148,9 +157,15 @@ const TeamsEditPage = {
         let extrasHeader;
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
-        const message = synergiesCount?
-            `${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:
-            `${ teams.length } ${ lang.get('teams') }`;
+        let message;
+        if(ctrl.type === 'arena') {
+            message = (synergiesCount)? `- ${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:
+                (teams.length > 0)? `- ${ teams.length } ${ lang.get('teams') }`:
+                '';
+        }
+        else {
+            message = (synergiesCount)? `- ${ synergiesCount } ${ lang.get('synergies') }`: '';
+        }
         teams.forEach(({ champions, synergies }, teamIndex) => {
             teamElements.push(
                 <ChampionTeamSelector
@@ -420,7 +435,17 @@ const TeamsEditPage = {
         }
         return (
             <div m="TeamsPage" class="teams">
-                <Message value={ message } />
+                <Message value={(
+                    <span>
+                        <ImageIcon
+                            src={ roleImage(ctrl.type, 'white') }
+                            alt={ roleImage(ctrl.type, 'black') }
+                            icon="square"
+                        />
+                        { lang.get(`role-${ ctrl.type }`) }
+                        { message }
+                    </span>
+                )} />
                 <div>
                     { teamElements }
                 </div>
