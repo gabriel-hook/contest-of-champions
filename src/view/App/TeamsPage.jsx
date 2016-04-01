@@ -45,7 +45,7 @@ function results(type, size) {
                         <ImageIcon
                             src={ roleImage(type, 'white') }
                             alt={ roleImage(type, 'black') }
-                            icon="square"
+                            icon="square-o"
                         />
                         { lang.get(`role-${ type }`) }
                         { message }
@@ -63,7 +63,7 @@ function results(type, size) {
                     <ImageIcon
                         src={ roleImage(type, 'white') }
                         alt={ roleImage(type, 'black') }
-                        icon="square"
+                        icon="square-o"
                     />
                     { lang.get(`role-${ type }`) }
                 </span>

@@ -8,12 +8,19 @@ import lang from '../../service/lang';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
-const ROLE_ICONS = {
+const ROLE_IMAGEICONS = {
     'quest': 'images/icons/quest.png',
     'alliance-war-attack': 'images/icons/alliance-war.png',
     'alliance-war-defense': 'images/icons/alliance-war.png',
     'alliance-quest': 'images/icons/alliance-quest.png',
     'arena': 'images/icons/arena.png',
+};
+const ROLE_ICONS = {
+    'quest': 'map-o',
+    'alliance-war-attack': 'fire',
+    'alliance-war-defense': 'shield',
+    'alliance-quest': 'map',
+    'arena': 'certificate',
 };
 
 function addSVG(element, isInitialized) {
@@ -87,10 +94,10 @@ const ChampionPortrait = {
             />
         ): null;
 
-        const roleIcon = ((showBadges === 'role' || showBadges === true) && ROLE_ICONS[ role ])? (
+        const roleIcon = ((showBadges === 'role' || showBadges === true) && ROLE_IMAGEICONS[ role ])? (
             <ImageIcon
-                src={ ROLE_ICONS[ role ] }
-                icon="map"
+                src={ ROLE_IMAGEICONS[ role ] }
+                icon={ ROLE_ICONS[ role ] }
             />
         ): null;
         return (

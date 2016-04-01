@@ -444,7 +444,7 @@ const TeamsEditPage = {
                         <ImageIcon
                             src={ roleImage(ctrl.type, 'white') }
                             alt={ roleImage(ctrl.type, 'black') }
-                            icon="square"
+                            icon="square-o"
                         />
                         { lang.get(`role-${ ctrl.type }`) }
                         { message }
