@@ -251,90 +251,93 @@ let progressResetTimeout;
 
 let worker;
 function buildTeam() {
-    if(worker)
-        worker.terminate();
-    worker = new Worker();
-    worker.onmessage = (event) => {
-        switch(event.data.type) {
-        case 'result':
-            const result = event.data.data;
-            teams.progress = 1;
-            setTimeout(() => {
-                let teamsCount = 0;
-                let synergiesCount = 0;
-                teams.result[ `${ teams.type }-${ teams.size }` ] = {
-                    ...result,
-                    teams: result.teams.map((team) => {
-                        team.sort();
-                        const champions = team.map(idToRosterChampion);
-                        const synergies = synergiesFromChampions(champions);
-                        teamsCount++;
-                        synergiesCount += synergies.length;
-                        return {
-                            champions,
-                            synergies,
-                        };
-                    }),
-                    counts: {
-                        teams: teamsCount,
-                        synergies: synergiesCount,
-                    },
-                    extras: result.extras.map(idToRosterChampion),
-                };
-                saveTeam();
-                teams.building = false;
-                progressResetTimeout = setTimeout(() => {
-                    teams.progress = 0;
-                    requestRedraw();
-                    notify({
-                        message: lang.get('notification-team-built'),
-                        tag: 'team-built',
-                        onclick: () => {
-                            app.menuOpen = false;
-                            router.setRoute('/teams');
-                            requestRedraw();
-                        },
-                    });
-                }, 250);
+    new Promise((resolve) => {
+        if(worker)
+            worker.terminate();
+        worker = new Worker();
+        worker.onmessage = (event) => {
+            switch(event.data.type) {
+            case 'result':
+                teams.progress = 1;
+                setTimeout(() => resolve(event.data.data), 50);
                 requestRedraw();
-            }, 50);
-            requestRedraw();
-            break;
-        case 'progress':
-            const progress = event.data.data;
-            teams.progress = progress.current / progress.max;
-            requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
-            break;
-        }
-    };
-    worker.postMessage({
-        type: 'build',
-        data: {
-            type: teams.type,
-            champions: roster
-                .filter(({ attr }) => teams.types[ attr.typeId ] !== false)
-                .filter(({ attr }) => teams.stars[ attr.stars ] !== false)
-                .filter((champion) => {
-                    const pi = champion.attr.pi || champion.pi;
-                    return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
-                })
-                .filter(
-                    teams.type !== 'arena'? ({ attr }) => !attr.role || attr.role === 'arena' || attr.role === teams.type:
-                    () => true
-                )
-                .map((champion) => champion.attr),
-            size: teams.size,
-            weights: {
-                ...teams.weights,
+                break;
+            case 'progress':
+                const progress = event.data.data;
+                teams.progress = progress.current / progress.max;
+                requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
+                break;
+            }
+        };
+        worker.postMessage({
+            type: 'build',
+            data: {
+                type: teams.type,
+                champions: roster
+                    .filter(({ attr }) => teams.types[ attr.typeId ] !== false)
+                    .filter(({ attr }) => teams.stars[ attr.stars ] !== false)
+                    .filter((champion) => {
+                        const pi = champion.attr.pi || champion.pi;
+                        return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
+                    })
+                    .filter(
+                        teams.type !== 'arena'? ({ attr }) => !attr.role || attr.role === 'arena' || attr.role === teams.type:
+                        () => true
+                    )
+                    .map((champion) => champion.attr),
+                size: teams.size,
+                weights: {
+                    ...teams.weights,
+                },
+                range: {
+                    ...teams.range,
+                },
             },
-            range: {
-                ...teams.range,
+        });
+        teams.building = true;
+        teams.progress = 0;
+        clearTimeout(progressResetTimeout);
+    })
+    .then((result) => {
+        let teamsCount = 0;
+        let synergiesCount = 0;
+        teams.result[ `${ teams.type }-${ teams.size }` ] = {
+            ...result,
+            teams: result.teams.map((team) => {
+                team.sort();
+                const champions = team.map(idToRosterChampion);
+                const synergies = synergiesFromChampions(champions);
+                teamsCount++;
+                synergiesCount += synergies.length;
+                return {
+                    champions,
+                    synergies,
+                };
+            }),
+            counts: {
+                teams: teamsCount,
+                synergies: synergiesCount,
             },
-        },
+            extras: result.extras.map(idToRosterChampion),
+        };
+        saveTeam();
+        teams.building = false;
+        requestRedraw();
+        return new Promise((resolve) => progressResetTimeout = setTimeout(resolve, 250));
+    })
+    .then(() => {
+        teams.progress = 0;
+        requestRedraw();
+        notify({
+            message: lang.get('notification-team-built'),
+            tag: 'team-built',
+            onclick: () => {
+                app.menuOpen = false;
+                router.setRoute('/teams');
+                requestRedraw();
+            },
+        });
     });
-    teams.building = true;
-    teams.progress = 0;
-    clearTimeout(progressResetTimeout);
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
