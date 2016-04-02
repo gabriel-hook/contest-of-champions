@@ -60,6 +60,7 @@ const RosterMenu = {
                 }}
             />
         );
+        /*
         options.push(
             <MenuOption
                 icon={(
@@ -76,7 +77,7 @@ const RosterMenu = {
         );
         options.push(
             <form
-                action="http://coc.frogspawn.de/player/csv_import.php"
+                action="http://coc.frogspawn.de/player/csv_import_test.php"
                 method="post"
                 target="_blank"
                 style="display:none"
@@ -85,6 +86,7 @@ const RosterMenu = {
                 <input id="roster-exporter-alliance-submit" type="submit" />
             </form>
         );
+        */
         options.push(
             <MenuOption
                 icon={(

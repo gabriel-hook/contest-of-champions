@@ -15,8 +15,8 @@ function results(type, size) {
     if(result) {
         const { counts, teams, extras } = result;
         const message = type === 'arena'?
-            `- ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
-            `- ${ counts.synergies } ${ lang.get('synergies') }`;
+            ` - ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
+            ` - ${ counts.synergies } ${ lang.get('synergies') }`;
         const teamDivs = teams.map(({ champions, synergies }) => (
             <ChampionTeam
                 key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
@@ -40,17 +40,16 @@ function results(type, size) {
         }
         return (
             <div>
-                <Message value={(
-                    <span>
+                <Message
+                    icon={(
                         <ImageIcon
                             src={ roleImage(type, 'white') }
                             alt={ roleImage(type, 'black') }
                             icon="square-o"
                         />
-                        { lang.get(`role-${ type }`) }
-                        { message }
-                    </span>
-                )} />
+                    )}
+                    value={ `${ lang.get(`role-${ type }`) }${ message }` }
+                />
                 { teamDivs }
                 { extraDivs }
             </div>
@@ -58,16 +57,16 @@ function results(type, size) {
     }
     return (
         <div>
-            <Message value={(
-                <span>
+            <Message
+                icon={(
                     <ImageIcon
                         src={ roleImage(type, 'white') }
                         alt={ roleImage(type, 'black') }
                         icon="square-o"
                     />
-                    { lang.get(`role-${ type }`) }
-                </span>
-            )} />
+                )}
+                value={ lang.get(`role-${ type }`) }
+            />
         </div>
     );
 }

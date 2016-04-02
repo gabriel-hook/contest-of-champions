@@ -5,9 +5,10 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const Message = {
-    view(ctrl, { value }) {
+    view(ctrl, { icon, value }) {
         return (
             <div m="Message" class="message">
+                { icon }
                 { value }
             </div>
         );

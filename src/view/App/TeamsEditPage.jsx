@@ -439,17 +439,16 @@ const TeamsEditPage = {
         }
         return (
             <div m="TeamsPage" class="teams">
-                <Message value={(
-                    <span>
+                <Message
+                    icon={(
                         <ImageIcon
                             src={ roleImage(ctrl.type, 'white') }
                             alt={ roleImage(ctrl.type, 'black') }
                             icon="square-o"
                         />
-                        { lang.get(`role-${ ctrl.type }`) }
-                        { message }
-                    </span>
-                )} />
+                    )}
+                    value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
+                />
                 <div>
                     { teamElements }
                 </div>

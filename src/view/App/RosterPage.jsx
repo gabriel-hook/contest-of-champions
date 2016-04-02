@@ -3,6 +3,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
+import Icon from '../Icon.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -25,7 +26,16 @@ const RosterPage = {
         };
         return (
             <div m="RosterPage" class="roster">
-                <Message value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }/>
+                <Message
+                    icon={(
+                        <Icon icon={
+                            (champions.length > 1)? 'users':
+                            (champions.length)? 'user':
+                            'user-times'
+                        } />
+                    )}
+                    value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
+                />
                 <div>
                     { champions.map((champion) => (
                         <ChampionPortrait
