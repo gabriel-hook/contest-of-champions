@@ -47,6 +47,18 @@ const synergies = [
     { fromId: 'groot', fromStars: 5, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
     { fromId: 'groot', fromStars: 5, toId: 'rocket', effectId: 'inseparable', effectAmount: 9 },
 
+    { fromId: 'kamalakhan', fromStars: 3, toId: 'captainmarvel', effectId: 'idol', effectAmount: 3 },
+    { fromId: 'kamalakhan', fromStars: 3, toId: 'msmarvel', effectId: 'idol', effectAmount: 3 },
+    { fromId: 'kamalakhan', fromStars: 3, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 4 },
+    { fromId: 'kamalakhan', fromStars: 4, toId: 'captainmarvel', effectId: 'idol', effectAmount: 4 },
+    { fromId: 'kamalakhan', fromStars: 4, toId: 'msmarvel', effectId: 'idol', effectAmount: 4 },
+    { fromId: 'kamalakhan', fromStars: 4, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'kamalakhan', fromStars: 4, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'kamalakhan', fromStars: 5, toId: 'captainmarvel', effectId: 'idol', effectAmount: 4 },
+    { fromId: 'kamalakhan', fromStars: 5, toId: 'msmarvel', effectId: 'idol', effectAmount: 4 },
+    { fromId: 'kamalakhan', fromStars: 5, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'kamalakhan', fromStars: 5, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
+
     { fromId: 'msmarvel', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
     { fromId: 'msmarvel', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 4 },
     { fromId: 'msmarvel', fromStars: 3, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },

@@ -8,6 +8,7 @@ import elektra from './guide/elektra';
 import groot from './guide/groot';
 import guillotine from './guide/guillotine';
 import joefixit from './guide/joefixit';
+import kamalakhan from './guide/kamalakhan';
 import lukecage from './guide/lukecage';
 import magnetomarvelnow from './guide/magnetomarvelnow';
 import moonknight from './guide/moonknight';
@@ -25,7 +26,7 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 import x23 from './guide/x23';
 
-const SPOTLIGHT = 'x23';
+const SPOTLIGHT = 'kamalakhan';
 
 const guides = {
     agentvenom,
@@ -38,6 +39,7 @@ const guides = {
     groot,
     guillotine,
     joefixit,
+    kamalakhan,
     lukecage,
     magnetomarvelnow,
     moonknight,

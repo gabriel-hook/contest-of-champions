@@ -1,0 +1,76 @@
+{
+    "description": "Self-proclaimed nerd and massive Captain Marvel fan Kamala Khan discovered something utterly amazing when the Terrigen mists fell upon her hometown of Jersey City. The cosmic mists reacted to her Inhuman DNA, triggering her superhuman transformation through the process that the Inhumans call Terrigenesis. Kamala soon discovered she had amazing powers to stretch and alter her body, which she now uses to protect others, just like her hero, Carol Danvers.",
+    "youtube": "xl06J9VFkg4",
+    "specials": {
+        "1": {
+            "description": "This attack generates up to 4 stacks of Fury, each increasing Attack by 15% for 9 seconds.\n\nThis Special Attack generates a random amount between 1 and 4 stacks of Fury.",
+            "note": "While Ms. Marvel has 2 or more stacks of Fury, her Special Attacks each remove 2 stacks of her opponent’s Armor Up effects.",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "short"
+            ],
+            "abilities": [
+                "fury"
+            ],
+            "name": "Morpho-Punch"
+        },
+        "2": {
+            "description": "100% chance for Fury, increasing your Attack by 35% for 10 seconds.",
+            "name": "Stretchy Cosmic Kick",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "short"
+            ],
+            "abilities": [
+                "fury"
+            ],
+            "note": "While Ms. Marvel has 2 or more stacks of Fury, her Special Attacks each remove 2 stacks of her opponent’s Armor Up effects."
+        },
+        "3": {
+            "name": "Fake Out",
+            "description": "This attack has a 90% chance to grant a permanent Fury effect, increasing Attack by 35%.\n While this effect has an infinite duration, it can still be Nullified. \n\nThis Fury can only be stacked once.",
+            "note": "While Ms. Marvel has 2 or more stacks of Fury, her Special Attacks each remove 2 stacks of her opponent’s Armor Up effects.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury"
+            ]
+        }
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "651777-Ms-Marvel-(Kamala-Khan)-Champion-Spotlight"
+    },
+    "signature": {
+        "name": "Morphogenetics",
+        "description": "Ms. Marvel starts to figure out this whole Contest thing, increasing her Fury durations by (2 - 7.5) seconds and increasing the Potency of her Fury effects by 10%.\n The duration increase is a flat amount on top of her existing Fury durations and stacks with Masteries and Nodes\n Potency is the overall strength of Kamala's Fury effects. This number does not scale with Signature Level.",
+        "abilities": [
+            "fury"
+        ]
+    },
+    "attack": {
+        "heavy": "While charging her Heavy Attack, Ms. Marvel continually gains stacks of Fury, each increasing her Attack by 20% for 10 seconds. These stacks are lost as she is struck during combat.",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "fury"
+        ],
+        "ranges": [
+            "medium"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "fury",
+            "poisonimmunity"
+        ],
+        "description": "As the inexperienced Ms. Marvel gets to know her opponent’s fighting style, she better learns to alter her size and avoid incoming damage, increasing Block Proficiency by 5.5% for each Fury stack active."
+    }
+}
