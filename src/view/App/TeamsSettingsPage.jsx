@@ -73,7 +73,7 @@ const TeamsSettingsPage = {
                     <Field
                         title={ lang.get('arena-sandbagging') }
                         icon={(
-                            <Icon icon="sandbagging" />
+                            <Icon icon="users" />
                         )}
                         slider={
                             <Slider
