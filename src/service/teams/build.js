@@ -5,12 +5,13 @@ function build({
     type,
     champions,
     size,
+    sandbagging,
     weights,
     range,
     options,
     progress,
 }) {
-    const settings = { type, champions, size, weights, range, options, progress };
+    const settings = { type, champions, size, sandbagging, weights, range, options, progress };
     return (type === 'arena')? buildArena(settings): buildQuest(settings);
 }
 

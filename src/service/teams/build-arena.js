@@ -6,6 +6,7 @@ import { shuffle } from '../../util/array';
 function buildArena({
     champions,
     size,
+    sandbagging,
     weights,
     range,
     progress,
@@ -16,6 +17,8 @@ function buildArena({
     const synergyMap = {};
     const typeWeights = { 1: 1 };
     [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
+
+    const WEIGHT_BASE = weights[ 'base' ] || 0;
 
     champions
         .forEach((attr) => {
@@ -78,13 +81,18 @@ function buildArena({
 
         let pi = teamPis[ tid ];
         if(pi === undefined) {
-            pi = teamPis[ tid ] = team.reduce((sum, { pi }) => sum + pi, 0);
+            pi = team.reduce((sum, { pi }) => sum + pi, 0);
+            if(sandbagging) {
+                const lowest = team.reduce((lowest, { pi }) => (lowest < pi)? lowest: pi, Number.MAX_VALUE);
+                pi = pi - lowest;
+            }
+            teamPis[ tid ] = pi;
         }
 
         let value = teamValues[ tid ];
         if(value === undefined) {
             const types = {};
-            let synergyValue = 0;
+            let synergyValue = team.length * WEIGHT_BASE;
             for(let i=0; i<team.length; i++) {
                 const champion = team[ i ];
                 //get my synergies

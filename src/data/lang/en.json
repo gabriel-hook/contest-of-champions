@@ -232,10 +232,13 @@
     "add-all": "Add All",
 
     "settings": "Settings",
+    "general-settings": "General Settings",
     "presets": "Presets",
 
     "synergy-weights": "Synergy Weights",
     "duplicate-weights": "Duplicate Class Weights",
+    "base-weight": "Base Weight",
+    "arena-sandbagging": "Arena Sandbagging",
 
     "pi-range": "Power Index Range",
     "pi-range-minimum-champion": "Minimum Champion PI",

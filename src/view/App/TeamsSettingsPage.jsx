@@ -68,6 +68,41 @@ const TeamsSettingsPage = {
             <div m="TeamsSettingsPage" class="teams-settings">
                 <div class="teams-settings-section">
                     <div class="header">
+                        { lang.get('general-settings') }
+                    </div>
+                    <Field
+                        title={ lang.get('arena-sandbagging') }
+                        icon={(
+                            <Icon icon="sandbagging" />
+                        )}
+                        slider={
+                            <Slider
+                                object={ teams }
+                                field={ 'sandbagging' }
+                                toInputValue={ (value) => (value)? 1000: 0 }
+                                fromInputValue={ (value) => (value > 500) }
+                            />
+                        }
+                        value={ teams.sandbagging? 1: 0 }
+                    />
+                    <Field
+                        title={ lang.get('base-weight') }
+                        icon={(
+                            <Icon icon="database" />
+                        )}
+                        slider={
+                            <Slider
+                                object={ teams.weights }
+                                field={ 'base' }
+                                toInputValue={ (value) => value * 1000 }
+                                fromInputValue={ (value) => value / 1000 }
+                            />
+                        }
+                        value={ (teams.weights[ 'base' ] * 1000 | 0) / 10 }
+                    />
+                </div>
+                <div class="teams-settings-section">
+                    <div class="header">
                         { lang.get('synergy-weights') }
                     </div>
                     { effects.map(({ attr }) => (

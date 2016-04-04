@@ -101,6 +101,10 @@ const PRESETS_RANGE = {
     },
 };
 
+const DEFAULT_BASE = 0;
+
+const DEFAULT_SANDBAGGING = false;
+
 const DEFAULT_RANGE = {
     ...PRESETS_RANGE[ 'all' ],
 };
@@ -108,6 +112,7 @@ const DEFAULT_RANGE = {
 const DEFAULT_WEIGHTS = {
     ...PRESETS_DUPLICATES[ 'balanced' ],
     ...PRESETS[ 'offensive' ],
+    'base': DEFAULT_BASE,
 };
 
 const teams = {
@@ -134,6 +139,7 @@ const teams = {
     range: {
         ...DEFAULT_RANGE,
     },
+    sandbagging: DEFAULT_SANDBAGGING,
     ...fromStorage('teams', {}),
     progress: 0,
     building: false,
@@ -251,6 +257,7 @@ let progressResetTimeout;
 
 let worker;
 function buildTeam() {
+    clearTimeout(progressResetTimeout);
     new Promise((resolve) => {
         if(worker)
             worker.terminate();
@@ -286,6 +293,7 @@ function buildTeam() {
                     )
                     .map((champion) => champion.attr),
                 size: teams.size,
+                sandbagging: teams.sandbagging,
                 weights: {
                     ...teams.weights,
                 },
@@ -296,7 +304,6 @@ function buildTeam() {
         });
         teams.building = true;
         teams.progress = 0;
-        clearTimeout(progressResetTimeout);
     })
     .then((result) => {
         let teamsCount = 0;
