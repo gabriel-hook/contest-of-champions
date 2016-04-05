@@ -60,7 +60,6 @@ const RosterMenu = {
                 }}
             />
         );
-        /*
         options.push(
             <MenuOption
                 icon={(
@@ -77,16 +76,15 @@ const RosterMenu = {
         );
         options.push(
             <form
-                action="http://coc.frogspawn.de/player/csv_import_test.php"
+                action="http://coc.frogspawn.de/player/csv_import.php"
                 method="post"
                 target="_blank"
                 style="display:none"
             >
-                <input id="roster-exporter-alliance-csv" name="csv" type="text" />
+                <input id="roster-exporter-alliance-csv" name="csv_string" type="text" />
                 <input id="roster-exporter-alliance-submit" type="submit" />
             </form>
         );
-        */
         options.push(
             <MenuOption
                 icon={(
