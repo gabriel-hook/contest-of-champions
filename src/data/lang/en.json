@@ -181,7 +181,7 @@
     "add-champion": "Add a Champion",
     "import-csv": "Import .csv",
     "export-csv": "Export .csv",
-    "export-alliance": "Export to Alliance Builder",
+    "export-alliance": "Export to Alliance Tool",
     "import-json": "Import .json",
     "export-json": "Export .json",
     "delete-all": "Delete All",
@@ -332,9 +332,10 @@
 
     "language": "Language",
     "links": "Links",
-    "link-github": "Github",
     "link-kabam": "Kabam Forums",
     "link-reddit": "Reddit /r",
+    "link-frogspawn": "Frogspawn Alliance Tools",
+    "link-github": "Github hook/champions",
     "share-to": "Share",
 
     "notification-roster-empty": "Add Champions to your to your roster.",
