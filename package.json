@@ -4,12 +4,11 @@
   "description": "Contest of Champions Companion App",
   "main": "index.html",
   "scripts": {
-    "gulp": "gulp",
     "develop": "gulp develop",
     "lint": "gulp lint",
     "karma": "karma start",
-    "deploy": "gulp build && ./dev/script/deploy.sh",
-    "test": "npm run lint && npm run karma"
+    "test": "npm run lint && npm run karma",
+    "deploy": "gulp build && ./dev/script/deploy.sh"
   },
   "repository": {
     "type": "git",
