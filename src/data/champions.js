@@ -33,6 +33,7 @@ const champions = [
 
     { uid: 'kamalakhan', typeId: 'cosmic', stars: 3 },
     { uid: 'kamalakhan', typeId: 'cosmic', stars: 4 },
+    { uid: 'kamalakhan', typeId: 'cosmic', stars: 5 },
 
     { uid: 'msmarvel', typeId: 'cosmic', stars: 3 },
     { uid: 'msmarvel', typeId: 'cosmic', stars: 4 },
