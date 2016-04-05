@@ -68,7 +68,7 @@ const RosterMenu = {
                 title="export-alliance"
                 onclick={ () => {
                     const csvElement = document.getElementById('roster-exporter-alliance-csv');
-                    csvElement.setAttribute('value', roster.toCSV('\r\n'));
+                    csvElement.value = roster.toCSV('\r\n');
                     clickElementById('roster-exporter-alliance-submit');
                     m.redraw.strategy('none');
                 }}
@@ -81,7 +81,7 @@ const RosterMenu = {
                 target="_blank"
                 style="display:none"
             >
-                <input id="roster-exporter-alliance-csv" name="csv_string" type="text" />
+                <textarea id="roster-exporter-alliance-csv" name="csv_string" type="text" />
                 <input id="roster-exporter-alliance-submit" type="submit" />
             </form>
         );
