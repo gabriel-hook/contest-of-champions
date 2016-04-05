@@ -170,7 +170,7 @@ const GuideEditPage = {
                     rating={ special && special.rating || true }
                     name={ special && special.name || true }
                     description={ special && special.description || true }
-                    ranges={ special && special.ranges || true }
+                    ranges={ special && special.ranges || (index !== 3) }
                     damagetypes={ special && special.damagetypes || true }
                     abilities={ special && special.abilities || true }
                     note={ special && special.note || true }

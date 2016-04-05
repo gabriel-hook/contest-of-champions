@@ -200,7 +200,7 @@ const GuidePage = {
                                 rating={ guide.specials[ index ].rating }
                                 name={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
-                                ranges={ guide.specials[ index ].ranges }
+                                ranges={ (index === 3)? null: guide.specials[ index ].ranges }
                                 damagetypes={ guide.specials[ index ].damagetypes }
                                 abilities={ guide.specials[ index ].abilities }
                                 note={ guide.specials[ index ].note }
