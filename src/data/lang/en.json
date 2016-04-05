@@ -237,8 +237,10 @@
 
     "synergy-weights": "Synergy Weights",
     "duplicate-weights": "Duplicate Class Weights",
-    "base-weight": "Base Weight",
     "arena-sandbagging": "Arena Sandbagging",
+    "arena-sandbagging-description": "Arena teams ignore the PI of the lowest member, making sure that there are at least 2 strong members per team.",
+    "base-weight": "Base Weight",
+    "base-weight-description": "This is the value a team gets in addition to synergies. To only allow teams with synergies, set this to 0.",
 
     "pi-range": "Power Index Range",
     "pi-range-minimum-champion": "Minimum Champion PI",
@@ -250,6 +252,9 @@
     "triple": "Triple",
     "quadruple": "Quadruple",
     "quintuple": "Quintuple",
+
+    "enabled": "Enabled",
+    "disabled": "Disabled",
 
     "legend-show": "Show Legend",
 

@@ -37,25 +37,49 @@ const Slider = {
     },
 };
 
+const Checkbox = {
+    view(ctrl, { object, field }) {
+        return (
+            <div
+                class="field-checkbox no-select"
+                onclick={() => {
+                    object[ field ] = !object[ field ];
+                    save();
+                    requestRedraw(10);
+                }}
+            >
+                <Icon icon={ (object[ field ])? 'check-square': 'square' } />
+                { lang.get((object[ field ])? 'enabled': 'disabled') }
+            </div>
+        );
+    },
+};
+
 const Field = {
-    view(ctrl, { title, icon, toggle, slider, isLargeSlider, value }) {
+    view(ctrl, { title, icon, description, input, value, hasLargeValue }) {
         return (
             <div class="field">
                 <label class="field-name">
                     { icon }
                     { title }
                 </label>
-                <div
-                    class={ classNames('field-input',
-                        { 'field-input-small': !isLargeSlider },
-                        { 'field-input-large': isLargeSlider }
-                    )}
-                >
-                    { slider }
-                    { toggle }
-                    <span class="field-value">
-                        { value }
-                    </span>
+                <div class="field-content">
+                    { (description !== undefined)? (
+                        <div class="field-description">{ description }</div>
+                    ): null }
+                    { (input !== undefined)? (
+                        <div class={ classNames('field-input',
+                            { 'field-input-small': (value !== undefined) && !hasLargeValue },
+                            { 'field-input-large': (value !== undefined) && hasLargeValue }
+                        )}>
+                            { input }
+                        </div>
+                    ): null }
+                    { (value !== undefined)? (
+                        <span class="field-value">
+                            { value }
+                        </span>
+                    ): null }
                 </div>
             </div>
         );
@@ -75,22 +99,18 @@ const TeamsSettingsPage = {
                         icon={(
                             <Icon icon="users" />
                         )}
-                        slider={
-                            <Slider
-                                object={ teams }
-                                field={ 'sandbagging' }
-                                toInputValue={ (value) => (value)? 1000: 0 }
-                                fromInputValue={ (value) => (value > 500) }
-                            />
-                        }
-                        value={ teams.sandbagging? 1: 0 }
+                        description={ lang.get('arena-sandbagging-description') }
+                        input={(
+                            <Checkbox object={ teams } field={ 'sandbagging' } />
+                        )}
                     />
                     <Field
                         title={ lang.get('base-weight') }
                         icon={(
                             <Icon icon="database" />
                         )}
-                        slider={
+                        description={ lang.get('base-weight-description') }
+                        input={
                             <Slider
                                 object={ teams.weights }
                                 field={ 'base' }
@@ -115,7 +135,7 @@ const TeamsSettingsPage = {
                                     icon={ 'square '}
                                 />
                             )}
-                            slider={
+                            input={
                                 <Slider
                                     object={ teams.weights }
                                     field={ `effect-${ attr.uid }` }
@@ -137,7 +157,7 @@ const TeamsSettingsPage = {
                             icon={(
                                 <span class="field-name--bold">{ `${ count }x` }</span>
                             )}
-                            slider={
+                            input={
                                 <Slider
                                     object={ teams.weights }
                                     field={ `duplicates-${ count }` }
@@ -169,7 +189,7 @@ const TeamsSettingsPage = {
                                 <Icon icon={ icon } before />
                                 ),
                             ]}
-                            slider={
+                            input={
                                 <Slider
                                     object={ teams.range }
                                     field={ which }
@@ -177,8 +197,8 @@ const TeamsSettingsPage = {
                                     fromInputValue={ (value) => maximum * value / 1000 }
                                 />
                             }
-                            isLargeSlider={ true }
                             value={ teams.range[ which ] | 0 }
+                            hasLargeValue
                         />
                     )) }
                 </div>
