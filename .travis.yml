@@ -9,6 +9,8 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+before_script:
+  - npm prune
 after_success:
   - "${TRAVIS_PULL_REQUEST} || npm run deploy"
 sudo: false

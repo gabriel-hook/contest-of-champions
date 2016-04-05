@@ -4,6 +4,7 @@
   "description": "Contest of Champions Companion App",
   "main": "index.html",
   "scripts": {
+    "gulp": "gulp",
     "develop": "gulp develop",
     "lint": "gulp lint",
     "karma": "karma start",
