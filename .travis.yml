@@ -11,7 +11,8 @@ addons:
       - g++-4.8
 before_script:
   - npm prune
-  - npm install gulp -g
+  - npm install -g gulp
+  - npm install -g karma
 after_success:
   - "${TRAVIS_PULL_REQUEST} || npm run deploy"
 sudo: false
