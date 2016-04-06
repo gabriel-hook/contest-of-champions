@@ -302,6 +302,85 @@ const champions = [
 
 const uids = [ ...new Set(champions.map(({ attr }) => attr.uid)) ];
 
+const CHAMPIONS_TO_FROGSPAWN = {};
+const FROGSPAWN_TO_CHAMPIONS = {};
+[
+    [ 'blackbolt', 'black_bolt' ],
+    [ 'captainmarvel', 'cap_marvel' ],
+    [ 'drax', 'drax' ],
+    [ 'gamora', 'gamora' ],
+    [ 'groot', 'groot' ],
+    [ 'kamalakhan', 'kamala_khan' ],
+    [ 'msmarvel', 'ms_marvel' ],
+    [ 'ronan', 'ronan' ],
+    [ 'spidermanblack', 'spiderman_black' ],
+    [ 'superiorironman', 'superior_ironman' ],
+    [ 'thor', 'thor' ],
+    [ 'venom', 'venom' ],
+    [ 'venompool', 'venompool' ],
+    [ 'ironman', 'ironman' ],
+    [ 'ironpatriot', 'iron_patriot' ],
+    [ 'hulkbuster', 'hulkbuster' ],
+    [ 'kang', 'kang' ],
+    [ 'rocket', 'rocket' ],
+    [ 'starlord', 'star_lord' ],
+    [ 'vision', 'vision' ],
+    [ 'thevision', 'the_vision' ],
+    [ 'ultron', 'ultron' ],
+    [ 'warmachine', 'warmachine' ],
+    [ 'colossus', 'colossus' ],
+    [ 'cyclops', 'cyclops' ],
+    [ 'cyclops90s', 'cyclops90' ],
+    [ 'deadpool', 'deadpool' ],
+    [ 'deadpoolxforce', 'deadpool_x' ],
+    [ 'magneto', 'magneto' ],
+    [ 'magnetomarvelnow', 'magneto_white' ],
+    [ 'storm', 'storm' ],
+    [ 'wolverine', 'wolverine' ],
+    [ 'wolverineoldman', 'oldman_logan' ],
+    [ 'x23', 'wolverine_x23' ],
+    [ 'agentvenom', 'agent_venom' ],
+    [ 'blackpanther', 'black_panther' ],
+    [ 'blackwidow', 'black_widow' ],
+    [ 'daredevil', 'daredevil' ],
+    [ 'daredevilnetflix', 'daredevil_netflix' ],
+    [ 'elektra', 'elektra' ],
+    [ 'hawkeye', 'hawkeye' ],
+    [ 'moonknight', 'moonknight' ],
+    [ 'punisher', 'punisher' ],
+    [ 'redskull', 'red_skull' ],
+    [ 'wintersoldier', 'wintersoldier' ],
+    [ 'abomination', 'abomination' ],
+    [ 'antman', 'antman' ],
+    [ 'captainamerica', 'cap_america' ],
+    [ 'captainamericawwii', 'cap_america_wwii' ],
+    [ 'electro', 'electro' ],
+    [ 'hulk', 'hulk' ],
+    [ 'joefixit', 'joe_fixit' ],
+    [ 'lukecage', 'luke_cage' ],
+    [ 'redhulk', 'red_hulk' ],
+    [ 'rhino', 'rhino' ],
+    [ 'shehulk', 'she_hulk' ],
+    [ 'spidergwen', 'spidergwen' ],
+    [ 'spiderman', 'spiderman' ],
+    [ 'spidermanmorales', 'spiderman_morales' ],
+    [ 'yellowjacket', 'yellowjacket' ],
+    [ 'drstrange', 'dr_strange' ],
+    [ 'drstrangemarvelnow', 'dr_strange_mn' ],
+    [ 'guillotine', 'guillotine' ],
+    [ 'ironfist', 'iron_fist' ],
+    [ 'ironfistwhite', 'iron_fist_white' ],
+    [ 'juggernaut', 'juggernaut' ],
+    [ 'magik', 'magik' ],
+    [ 'scarletwitch', 'scarlet_witch' ],
+    [ 'thorjanefoster', 'thor_jane_foster' ],
+    [ 'unstoppablecolossus', 'u_colossus' ],
+    [ 'maestro', 'maestro' ],
+].forEach(([ champion, frogspawn ]) => {
+    CHAMPIONS_TO_FROGSPAWN[ champion ] = frogspawn;
+    FROGSPAWN_TO_CHAMPIONS[ frogspawn ] = champion;
+});
+
 const idMap = {};
 const uidsByType = [];
 champions.forEach((champion) => {
@@ -334,4 +413,4 @@ const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
 
 export default champions;
 export { idMap, uids, uidsByType, roleImage };
-export { UNRELEASED_CHAMPIONS, PLACEHOLDER };
+export { UNRELEASED_CHAMPIONS, PLACEHOLDER, FROGSPAWN_TO_CHAMPIONS, CHAMPIONS_TO_FROGSPAWN };

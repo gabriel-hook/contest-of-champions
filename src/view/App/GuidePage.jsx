@@ -1,7 +1,7 @@
 import './GuidePage.scss';
 import classNames from 'classnames';
 import { effectImage } from '../../data/effects';
-import { idMap } from '../../data/champions';
+import { idMap, CHAMPIONS_TO_FROGSPAWN } from '../../data/champions';
 import Champion from '../../data/model/Champion';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';
@@ -142,6 +142,19 @@ const GuidePage = {
                 />
             );
         }
+        let signatureLink;
+        if(CHAMPIONS_TO_FROGSPAWN[ uid ]) {
+            signatureLink = (
+                <a
+                    href={ `http://coc.frogspawn.de/champions/#${ CHAMPIONS_TO_FROGSPAWN[ uid ] }` }
+                    target="_blank"
+                    class="guide-external-link"
+                >
+                    <Icon icon="info-circle" />
+                    { lang.get('details') }
+                </a>
+            );
+        }
         if(guide) {
             if(guide.description) {
                 details.push(
@@ -179,18 +192,6 @@ const GuidePage = {
                     />
                 );
             }
-            if(guide.signature) {
-                details.push(
-                    <ChampionSection
-                        title={ lang.get('signature') }
-                        rating={ guide.signature.rating }
-                        name={ guide.signature.name }
-                        description={ guide.signature.description }
-                        abilities={ guide.signature.abilities }
-                        note={ guide.signature.note }
-                    />
-                );
-            }
             if(guide.specials) {
                 [ 1, 2, 3 ].forEach((index) => {
                     if(guide.specials[ index ]) {
@@ -209,6 +210,27 @@ const GuidePage = {
                     }
                 });
             }
+            if(guide.signature) {
+                details.push(
+                    <ChampionSection
+                        title={ lang.get('signature') }
+                        rating={ guide.signature.rating }
+                        name={ guide.signature.name }
+                        description={ guide.signature.description }
+                        abilities={ guide.signature.abilities }
+                        note={ guide.signature.note }
+                        raw={ signatureLink }
+                    />
+                );
+            }
+        }
+        else if(signatureLink) {
+            details.push(
+                <ChampionSection
+                    title={ lang.get('signature') }
+                    raw={ signatureLink }
+                />
+            );
         }
         details.push(
             <ChampionSection
