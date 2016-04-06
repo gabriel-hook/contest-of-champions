@@ -1,5 +1,12 @@
 import './ChampionPortrait.scss';
 import { STAR_RANK_LEVEL } from '../../data/model/Champion';
+import {
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+} from '../../data/champions';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
 import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
@@ -9,18 +16,18 @@ import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
 const ROLE_IMAGEICONS = {
-    'quest': 'images/icons/quest.png',
-    'alliance-war-attack': 'images/icons/alliance-war.png',
-    'alliance-war-defense': 'images/icons/alliance-war.png',
-    'alliance-quest': 'images/icons/alliance-quest.png',
-    'arena': 'images/icons/arena.png',
+    [ ROLE_ARENA ]: 'images/icons/arena.png',
+    [ ROLE_QUEST ]: 'images/icons/quest.png',
+    [ ROLE_ALLIANCE_QUEST ]: 'images/icons/alliance-quest.png',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/icons/alliance-war.png',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/icons/alliance-war.png',
 };
 const ROLE_ICONS = {
-    'quest': 'map-o',
-    'alliance-war-attack': 'fire',
-    'alliance-war-defense': 'shield',
-    'alliance-quest': 'map',
-    'arena': 'certificate',
+    [ ROLE_ARENA ]: 'certificate',
+    [ ROLE_QUEST ]: 'map-o',
+    [ ROLE_ALLIANCE_QUEST ]: 'map',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'fire',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'shield',
 };
 
 function addSVG(element, isInitialized) {

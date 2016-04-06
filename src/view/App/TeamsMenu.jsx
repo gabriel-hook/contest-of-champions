@@ -1,4 +1,11 @@
 import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
+import {
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+} from '../../data/champions';
 import teams, { save, saveTeam, loadTeam, buildTeam } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -62,9 +69,9 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'arena' }
-                selected={ teams.type === 'arena' }
+                selected={ teams.type === ROLE_ARENA }
                 onclick={ () => {
-                    teams.type = 'arena';
+                    teams.type = ROLE_ARENA;
                     teams.size = 3;
                     loadTeam(teams.type);
                     save();
@@ -74,17 +81,17 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOption
-                title={ 'quest' }
-                selected={ teams.type === 'quest' }
+                title={ ROLE_QUEST }
+                selected={ teams.type === ROLE_QUEST }
                 options={
                 (
                     <MenuOptionGroup options={
                         [ 3, 4, 5 ].map((size) => (
                             <MenuOption
                                 raw={ size }
-                                selected={ teams.type === 'quest' && teams.size === size }
+                                selected={ teams.type === ROLE_QUEST && teams.size === size }
                                 onclick={ () => {
-                                    teams.type = 'quest';
+                                    teams.type = ROLE_QUEST;
                                     teams.size = size;
                                     loadTeam(teams.type);
                                     save();
@@ -99,16 +106,16 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'alliance-war' }
-                selected={ teams.type === 'alliance-war-attack' || teams.type === 'alliance-war-defense' }
+                selected={ teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE }
                 options={
                 (
                     <MenuOptionGroup options={[
                     (
                         <MenuOption
                             title={ 'attack' }
-                            selected={ teams.type === 'alliance-war-attack' }
+                            selected={ teams.type === ROLE_ALLIANCE_WAR_ATTACK }
                             onclick={ () => {
-                                teams.type = 'alliance-war-attack';
+                                teams.type = ROLE_ALLIANCE_WAR_ATTACK;
                                 teams.size = 3;
                                 loadTeam(teams.type);
                                 save();
@@ -119,9 +126,9 @@ const TeamsMenu = {
                     (
                         <MenuOption
                             title={ 'defense' }
-                            selected={ teams.type === 'alliance-war-defense' }
+                            selected={ teams.type === ROLE_ALLIANCE_WAR_DEFENSE }
                             onclick={ () => {
-                                teams.type = 'alliance-war-defense';
+                                teams.type = ROLE_ALLIANCE_WAR_DEFENSE;
                                 teams.size = 5;
                                 loadTeam(teams.type);
                                 save();
@@ -136,9 +143,9 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'alliance-quest' }
-                selected={ teams.type === 'alliance-quest' }
+                selected={ teams.type === ROLE_ALLIANCE_QUEST }
                 onclick={ () => {
-                    teams.type = 'alliance-quest';
+                    teams.type = ROLE_ALLIANCE_QUEST;
                     teams.size = 3;
                     loadTeam(teams.type);
                     save();

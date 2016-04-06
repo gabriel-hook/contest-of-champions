@@ -397,12 +397,26 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
+const ROLE_ARENA = 'arena';
+const ROLE_QUEST = 'quest';
+const ROLE_ALLIANCE_QUEST = 'alliance-quest';
+const ROLE_ALLIANCE_WAR_ATTACK = 'alliance-war-attack';
+const ROLE_ALLIANCE_WAR_DEFENSE = 'alliance-war-defense';
+
+const ROLES = [
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+];
+
 const roleImages = {
-    'arena': 'arena',
-    'quest': 'quest',
-    'alliance-war-attack': 'alliance-war',
-    'alliance-war-defense': 'alliance-war',
-    'alliance-quest': 'alliance-quest',
+    [ ROLE_ARENA ]: 'arena',
+    [ ROLE_QUEST ]: 'quest',
+    [ ROLE_ALLIANCE_QUEST ]: 'alliance-quest',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'alliance-war',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'alliance-war',
 };
 
 function roleImage(role, color) {
@@ -414,3 +428,4 @@ const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
 export default champions;
 export { idMap, uids, uidsByType, roleImage };
 export { UNRELEASED_CHAMPIONS, PLACEHOLDER, FROGSPAWN_TO_CHAMPIONS, CHAMPIONS_TO_FROGSPAWN };
+export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };

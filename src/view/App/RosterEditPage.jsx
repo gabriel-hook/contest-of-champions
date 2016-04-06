@@ -1,5 +1,12 @@
 import './RosterEditPage.scss';
 import { STAR_RANK_LEVEL } from '../../data/model/Champion';
+import {
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+} from '../../data/champions';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
@@ -167,23 +174,23 @@ const RosterPage = {
                             },
                             {
                                 title: lang.get('role-arena'),
-                                value: 'arena',
-                            },
-                            {
-                                title: lang.get('role-alliance-war-attack'),
-                                value: 'alliance-war-attack',
-                            },
-                            {
-                                title: lang.get('role-alliance-war-defense'),
-                                value: 'alliance-war-defense',
+                                value: ROLE_ARENA,
                             },
                             {
                                 title: lang.get('role-alliance-quest'),
-                                value: 'alliance-quest',
+                                value: ROLE_ALLIANCE_QUEST,
+                            },
+                            {
+                                title: lang.get('role-alliance-war-attack'),
+                                value: ROLE_ALLIANCE_WAR_ATTACK,
+                            },
+                            {
+                                title: lang.get('role-alliance-war-defense'),
+                                value: ROLE_ALLIANCE_WAR_DEFENSE,
                             },
                             {
                                 title: lang.get('role-quest'),
-                                value: 'quest',
+                                value: ROLE_QUEST,
                             },
                         ]}
                         onchange={(event) => {

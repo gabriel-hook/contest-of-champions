@@ -1,6 +1,6 @@
 import lang from './lang';
 import Champion from '../data/model/Champion';
-import champions, { idMap as championMap, UNRELEASED_CHAMPIONS } from '../data/champions';
+import champions, { idMap as championMap, UNRELEASED_CHAMPIONS, ROLES } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion({
@@ -159,6 +159,7 @@ const CSV_HEADER_SHORT = 'Id,Stars';
 const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi,Role';
 
 function toCSV(separator = '\n') {
+    const validRole = (role) => (role)? ROLES.includes(role) && role || '': '';
     const csv = [
         CSV_HEADER,
         ...roster.map(({ attr }) => [
@@ -168,7 +169,7 @@ function toCSV(separator = '\n') {
             `${ attr.level || 1 }`,
             `${ attr.awakened || 0 }`,
             `${ attr.pi || 0 }`,
-            `${ attr.role || '' }`,
+            `${ validRole(attr.role) }`,
         ]),
     ];
     return csv.join(separator);
@@ -184,10 +185,13 @@ function fromCSV(csv, filename = 'champions.csv') {
         }
         return (value === undefined)? defaultValue: value;
     };
-    const getStringValue = (array, index, defaultValue) => {
+    const getStringValue = (array, index, defaultValue, validValues) => {
         let value;
         if(array.length > index) {
             value = array[ index ].replace(/["]/g, '');
+        }
+        if(validValues) {
+            return (validValues.includes(value))? value: defaultValue;
         }
         return value || defaultValue;
     };
@@ -205,7 +209,7 @@ function fromCSV(csv, filename = 'champions.csv') {
         const level = getIntegerValue(values, 3, 1);
         const awakened = getIntegerValue(values, 4, 0);
         const pi = getIntegerValue(values, 5, 0);
-        const role = getStringValue(values, 6, null);
+        const role = getStringValue(values, 6, null, ROLES);
         if(typeof uid !== 'string' || isNaN(stars) || isNaN(rank) || isNaN(level) || isNaN(awakened) || isNaN(pi)) {
             /* eslint-disable no-console */
             console.error(`Invalid line in ${ filename }:${ i + 1 }`);

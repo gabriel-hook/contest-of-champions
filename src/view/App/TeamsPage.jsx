@@ -1,5 +1,10 @@
 import './TeamsPage.scss';
-import { roleImage } from '../../data/champions';
+import {
+    roleImage,
+    ROLE_ARENA,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+} from '../../data/champions';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
@@ -14,7 +19,7 @@ function results(type, size) {
     const result = teams.result[ `${ type }-${ size }` ];
     if(result) {
         const { counts, teams, extras } = result;
-        const message = type === 'arena'?
+        const message = type === ROLE_ARENA?
             ` - ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
             ` - ${ counts.synergies } ${ lang.get('synergies') }`;
         const teamDivs = teams.map(({ champions, synergies }) => (
@@ -74,10 +79,10 @@ function results(type, size) {
 const TeamsPage = {
     view() {
         let result;
-        if(teams.type === 'alliance-war-attack' || teams.type === 'alliance-war-defense') {
+        if(teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE) {
             result = [
-                results('alliance-war-attack', 3),
-                results('alliance-war-defense', 5),
+                results(ROLE_ALLIANCE_WAR_ATTACK, 3),
+                results(ROLE_ALLIANCE_WAR_DEFENSE, 5),
             ];
         }
         else {
