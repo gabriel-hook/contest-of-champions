@@ -60,7 +60,7 @@ const abilityImages = {
     'energyresist': 'resist_energy',
     'energyabsorb': null,
     'stun': 'stun',
-    'stagger': null,
+    'stagger': 'nullify',
     'nullify': 'nullify',
     'evade': null,
 };
