@@ -345,29 +345,19 @@ function setTeam(role, champions) {
 
 export default {
     //getters
-    all,
-    get,
-    available,
+    all, get, available,
     //searchers
-    filter,
-    find,
+    filter, find,
     //setter
-    set,
-    setTeam,
+    set, setTeam,
     //adders
-    add,
-    addAll,
+    add, addAll,
     //removers
-    remove,
-    clear,
-    //io
-    toCSV,
-    fromCSV,
+    remove, clear,
+    //csv
+    toCSV, fromCSV,
     //options
-    setFilter,
-    getFilter,
-    setSort,
-    getSort,
+    setFilter, getFilter, setSort, getSort,
     //hashing
     hash,
 };
