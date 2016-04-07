@@ -1,4 +1,4 @@
-import Champion from '.. /data/model/Champion';
+import Champion from '../data/model/Champion';
 import {
     ROLE_ARENA,
     ROLE_QUEST,
