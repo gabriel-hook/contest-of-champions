@@ -4,7 +4,7 @@ import Champion, {
     ROLE_ALLIANCE_QUEST,
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../data/model/data/champions';
+} from '../data/champions';
 import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
