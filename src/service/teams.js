@@ -1,4 +1,5 @@
-import Champion, {
+import Champion from '.. /data/model/Champion';
+import {
     ROLE_ARENA,
     ROLE_QUEST,
     ROLE_ALLIANCE_QUEST,
