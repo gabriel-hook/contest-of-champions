@@ -3,10 +3,12 @@ import Champion from '../data/model/Champion';
 import champions, { idMap as championMap, UNRELEASED_CHAMPIONS, ROLES } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
+const validRole = (role, fallback = '') => (role)? ROLES.includes(role) && role || fallback: fallback;
 let roster = fromStorage('roster', []).map((attr) => new Champion({
     ...attr,
     level: Math.max(1, attr.level),
     rank: Math.max(1, attr.rank),
+    role: validRole(attr.role, null),
 }));
 let rosterOptions = fromStorage('roster-options', {
     sort: {
@@ -159,7 +161,6 @@ const CSV_HEADER_SHORT = 'Id,Stars';
 const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi,Role';
 
 function toCSV(separator = '\n') {
-    const validRole = (role) => (role)? ROLES.includes(role) && role || '': '';
     const csv = [
         CSV_HEADER,
         ...roster.map(({ attr }) => [
