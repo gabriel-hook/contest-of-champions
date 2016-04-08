@@ -1,5 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
+
+const extractStylesPlugin = new ExtractTextPlugin('style-[contenthash].css');
 
 export default {
     entry: {
@@ -30,6 +33,10 @@ export default {
                 test: /\.scss(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'style', 'css?sourceMap', 'autoprefixer', 'sass?sourceMap' ],
                 exclude: /node_modules/,
+                deploy: {
+                    loaders: null,
+                    loader: extractStylesPlugin.extract([ 'css?sourceMap', 'autoprefixer', 'sass?sourceMap' ]),
+                },
                 hot: true,
             },
             // css
@@ -37,6 +44,10 @@ export default {
                 test: /\.css(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'style', 'css', 'autoprefixer' ],
                 exclude: /node_modules/,
+                deploy: {
+                    loaders: null,
+                    loader: extractStylesPlugin.extract([ 'css?sourceMap', 'autoprefixer' ]),
+                },
                 hot: true,
             },
             // fonts & svg
@@ -58,3 +69,4 @@ export default {
         }),
     ],
 };
+export { extractStylesPlugin };

@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import webpackConfig from '../config/webpack-config.js';
+import webpackConfig, { extractStylesPlugin } from '../config/webpack-config.js';
 
 gulp.task('develop', (callback) => {
     const domain = 'localhost';
@@ -63,7 +63,15 @@ gulp.task('develop', (callback) => {
 gulp.task('webpack', (callback) => {
     const config = {
         ...webpackConfig,
+        module: {
+            ...webpackConfig.module,
+            loaders: webpackConfig.module.loaders.map((loader) => (!loader.deploy)? loader: {
+                ...loader,
+                ...loader.deploy,
+            }),
+        },
         plugins: [
+            extractStylesPlugin,
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.UglifyJsPlugin({ minimize: true }),
             ...webpackConfig.plugins || [],
