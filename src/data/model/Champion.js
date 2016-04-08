@@ -1,4 +1,4 @@
-import { uids as typeIds } from '../types';
+import { uids as TYPES } from '../types';
 import Model from './Model';
 
 const CATALYSTS = {
@@ -132,6 +132,24 @@ const STAR_RANK_LEVEL={
     },
 };
 
+const ROLE_ARENA = 'arena';
+const ROLE_QUEST = 'quest';
+const ROLE_ALLIANCE_QUEST = 'alliance-quest';
+const ROLE_ALLIANCE_WAR_ATTACK = 'alliance-war-attack';
+const ROLE_ALLIANCE_WAR_DEFENSE = 'alliance-war-defense';
+const ROLES = [
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+];
+
+const validStars = (stars) => (STAR_RANK_LEVEL[ stars ])? stars: 0;
+const validRank = (stars, rank) => (validStars(stars) && STAR_RANK_LEVEL[ stars ][ rank ])? rank: 0;
+const validLevel = (stars, rank, level) => (level > 0 && validRank(stars, rank) && STAR_RANK_LEVEL[ stars ][ rank ].levels >= level)? level: 0;
+const validAwakened = (stars, awakened) => (awakened >= 0 && validStars(stars) && STAR_RANK_LEVEL[ stars ].awakened >= awakened)? awakened: 1;
+
 class Champion extends Model {
     constructor({
         uid = 'champion',
@@ -153,8 +171,16 @@ class Champion extends Model {
             awakened,
             role,
         });
+        this.attr.stars = validStars(this.attr.stars | 0) || 1;
+        this.attr.rank = validRank(this.attr.stars, this.attr.rank | 0) || 1;
+        this.attr.level = validLevel(this.attr.stars, this.attr.rank, this.attr.level | 0) || 1;
+        this.attr.awakened = validAwakened(this.attr.stars, this.attr.awakened | 0) || 0;
+        this.attr.pi = this.attr.pi | 0;
+        this.attr.type = TYPES.find((type) => type === this.attr.type) || 'unknown';
+        this.attr.role = ROLES.find((role) => role === this.attr.role) || null;
+
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
-        this.typeIndex = typeIds.indexOf(this.attr.typeId);
+        this.typeIndex = TYPES.indexOf(this.attr.typeId);
         this.pi = 0;
         const range = STAR_RANK_LEVEL[ stars ] && STAR_RANK_LEVEL[ stars ][ rank ];
         if(range && level <= range.levels) {
@@ -165,10 +191,6 @@ class Champion extends Model {
             }
             this.pi = this.pi | 0;
         }
-        this.attr.pi = this.attr.pi | 0;
-        this.attr.rank = this.attr.rank | 0;
-        this.attr.level = this.attr.level | 0;
-        this.attr.awakened = this.attr.awakened | 0;
     }
 
     static idToObject(id) {
@@ -182,3 +204,4 @@ class Champion extends Model {
 
 export default Champion;
 export { STAR_RANK_LEVEL, CATALYSTS };
+export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };

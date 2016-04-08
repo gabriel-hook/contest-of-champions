@@ -1,4 +1,10 @@
-import Champion from './model/Champion';
+import Champion, {
+    ROLE_ARENA,
+    ROLE_QUEST,
+    ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR_ATTACK,
+    ROLE_ALLIANCE_WAR_DEFENSE,
+} from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
     'agentvenom': true,
@@ -397,20 +403,6 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
-const ROLE_ARENA = 'arena';
-const ROLE_QUEST = 'quest';
-const ROLE_ALLIANCE_QUEST = 'alliance-quest';
-const ROLE_ALLIANCE_WAR_ATTACK = 'alliance-war-attack';
-const ROLE_ALLIANCE_WAR_DEFENSE = 'alliance-war-defense';
-
-const ROLES = [
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-];
-
 const roleImages = {
     [ ROLE_ARENA ]: 'arena',
     [ ROLE_QUEST ]: 'quest',
@@ -428,4 +420,3 @@ const PLACEHOLDER = new Champion({ uid: null, stars: 0 });
 export default champions;
 export { idMap, uids, uidsByType, roleImage };
 export { UNRELEASED_CHAMPIONS, PLACEHOLDER, FROGSPAWN_TO_CHAMPIONS, CHAMPIONS_TO_FROGSPAWN };
-export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };

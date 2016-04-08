@@ -5,7 +5,7 @@ import {
     ROLE_ALLIANCE_QUEST,
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/champions';
+} from '../../data/model/Champion';
 import teams, { save, saveTeam, loadTeam, buildTeam } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';

@@ -1,10 +1,6 @@
 import './TeamsPage.scss';
-import {
-    roleImage,
-    ROLE_ARENA,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/champions';
+import { roleImage } from '../../data/champions';
+import { ROLE_ARENA, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE } from '../../data/model/Champion';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';

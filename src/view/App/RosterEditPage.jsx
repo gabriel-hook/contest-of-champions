@@ -1,12 +1,12 @@
 import './RosterEditPage.scss';
-import { STAR_RANK_LEVEL } from '../../data/model/Champion';
 import {
+    STAR_RANK_LEVEL,
     ROLE_ARENA,
     ROLE_QUEST,
     ROLE_ALLIANCE_QUEST,
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/champions';
+} from '../../data/model/Champion';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
