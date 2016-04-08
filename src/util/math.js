@@ -19,4 +19,6 @@ function combination(n, r) {
     return value;
 }
 
-export { factorial, combination };
+const isInRange = (value, min, max) => value >= min && value <= max;
+
+export { factorial, combination, isInRange };

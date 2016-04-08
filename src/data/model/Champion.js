@@ -1,3 +1,4 @@
+import { isInRange } from '../../util/math';
 import { uids as TYPES } from '../types';
 import Model from './Model';
 
@@ -146,9 +147,9 @@ const ROLES = [
 ];
 
 const validStars = (stars) => (STAR_RANK_LEVEL[ stars ])? stars: 0;
-const validRank = (stars, rank) => (validStars(stars) && STAR_RANK_LEVEL[ stars ][ rank ])? rank: 0;
-const validLevel = (stars, rank, level) => (level > 0 && validRank(stars, rank) && STAR_RANK_LEVEL[ stars ][ rank ].levels >= level)? level: 0;
-const validAwakened = (stars, awakened) => (awakened >= 0 && validStars(stars) && STAR_RANK_LEVEL[ stars ].awakened >= awakened)? awakened: 1;
+const validRank = (stars, rank) => (validStars(stars) && isInRange(rank, 1, STAR_RANK_LEVEL[ stars ].ranks))? rank: 0;
+const validLevel = (stars, rank, level) => (validRank(stars, rank) && isInRange(level, 1, STAR_RANK_LEVEL[ stars ][ rank ].levels))? level: 0;
+const validAwakened = (stars, awakened) => (validStars(stars) && isInRange(awakened, 0, STAR_RANK_LEVEL[ stars ].awakened))? awakened: 0;
 
 class Champion extends Model {
     constructor({
@@ -171,12 +172,13 @@ class Champion extends Model {
             awakened,
             role,
         });
+
         this.attr.stars = validStars(this.attr.stars | 0) || 1;
         this.attr.rank = validRank(this.attr.stars, this.attr.rank | 0) || 1;
         this.attr.level = validLevel(this.attr.stars, this.attr.rank, this.attr.level | 0) || 1;
         this.attr.awakened = validAwakened(this.attr.stars, this.attr.awakened | 0) || 0;
         this.attr.pi = this.attr.pi | 0;
-        this.attr.type = TYPES.find((type) => type === this.attr.type) || 'unknown';
+        this.attr.typeId = TYPES.find((type) => type === this.attr.typeId) || 'unknown';
         this.attr.role = ROLES.find((role) => role === this.attr.role) || null;
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
