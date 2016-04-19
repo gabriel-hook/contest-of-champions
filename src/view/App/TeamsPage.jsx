@@ -74,22 +74,19 @@ function results(type, size) {
 
 const TeamsPage = {
     view() {
-        let result;
-        if(teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE) {
-            result = [
-                results(ROLE_ALLIANCE_WAR_ATTACK, 3),
-                results(ROLE_ALLIANCE_WAR_DEFENSE, 5),
-            ];
-        }
-        else {
-            result = [
-                results(teams.type, teams.size),
-            ];
-        }
         return (
             <div m="TeamsPage" class="teams">
-                { result }
-                <div class="clear" />
+                {(teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE)? (
+                    <div>
+                        { results(ROLE_ALLIANCE_WAR_ATTACK, 3) }
+                        { results(ROLE_ALLIANCE_WAR_DEFENSE, 5) }
+                    </div>
+                ): (
+                    <div>
+                        { results(teams.type, teams.size) }
+                    </div>
+                )}
+                <div key="none" class="clear" />
             </div>
         );
     },

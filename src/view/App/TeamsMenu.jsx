@@ -83,8 +83,7 @@ const TeamsMenu = {
             <MenuOption
                 title={ ROLE_QUEST }
                 selected={ teams.type === ROLE_QUEST }
-                options={
-                (
+                options={(
                     <MenuOptionGroup options={
                         [ 3, 4, 5 ].map((size) => (
                             <MenuOption
@@ -100,8 +99,8 @@ const TeamsMenu = {
                             />
                         ))
                     } />
-                )
-            } />
+                )}
+            />
         );
         options.push(
             <MenuOption
