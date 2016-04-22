@@ -7,7 +7,6 @@ import Champion, {
 } from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
-    'agentvenom': true,
     'redskull': true,
     'redhulk': true,
     'drstrangemarvelnow': true,
