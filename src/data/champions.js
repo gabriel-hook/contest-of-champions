@@ -7,11 +7,12 @@ import Champion, {
 } from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
-    'falcon': true,
     'blackpanthercivilwar': true,
     'crossbones': true,
+    'falcon': true,
     'redskull': true,
     'drstrangemarvelnow': true,
+    'civilwarrior': true,
     'maestro': true,
 };
 
