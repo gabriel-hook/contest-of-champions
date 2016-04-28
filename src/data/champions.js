@@ -69,10 +69,6 @@ const champions = [
     { uid: 'venompool', typeId: 'cosmic', stars: 4 },
     { uid: 'venompool', typeId: 'cosmic', stars: 5 },
 
-    { uid: 'falcon', typeId: 'tech', stars: 3 },
-    { uid: 'falcon', typeId: 'tech', stars: 4 },
-    { uid: 'falcon', typeId: 'tech', stars: 5 },
-
     { uid: 'ironman', typeId: 'tech', stars: 1 },
     { uid: 'ironman', typeId: 'tech', stars: 2 },
     { uid: 'ironman', typeId: 'tech', stars: 3 },
@@ -190,6 +186,10 @@ const champions = [
 
     { uid: 'elektra', typeId: 'skill', stars: 3 },
     { uid: 'elektra', typeId: 'skill', stars: 4 },
+
+    { uid: 'falcon', typeId: 'skill', stars: 3 },
+    { uid: 'falcon', typeId: 'skill', stars: 4 },
+    { uid: 'falcon', typeId: 'skill', stars: 5 },
 
     { uid: 'hawkeye', typeId: 'skill', stars: 1 },
     { uid: 'hawkeye', typeId: 'skill', stars: 2 },
