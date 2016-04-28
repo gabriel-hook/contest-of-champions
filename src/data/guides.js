@@ -12,6 +12,7 @@ import kamalakhan from './guide/kamalakhan';
 import lukecage from './guide/lukecage';
 import magnetomarvelnow from './guide/magnetomarvelnow';
 import moonknight from './guide/moonknight';
+import redhulk from './guide/redhulk';
 import shehulk from './guide/shehulk';
 import spidergwen from './guide/spidergwen';
 import spidermanblack from './guide/spidermanblack';
@@ -26,7 +27,7 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 import x23 from './guide/x23';
 
-const SPOTLIGHT = 'kamalakhan';
+const SPOTLIGHT = 'redhulk';
 
 const guides = {
     agentvenom,
@@ -43,6 +44,7 @@ const guides = {
     lukecage,
     magnetomarvelnow,
     moonknight,
+    redhulk,
     shehulk,
     spidergwen,
     spidermanblack,

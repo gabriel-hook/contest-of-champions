@@ -1,0 +1,52 @@
+{
+    "description": "General Thaddeus “Thunderbolt” Ross has done the unthinkable in his unending mission to hunt down and destroy the Incredible Hulk. Using a combination of radiations, Ross has turned himself into what he hated for so long: a walking weapon of mass destruction. Now, equipped with super strength, durability and the ability to absorb radiation and energy, Thunderbolt Ross struggles with his desire to end the Hulk without succumbing to his own monstrous impulses.",
+    "youtube": "6OpUikWTj-A",
+    "gameplay": {
+        "description": "At the start of the fight and each time Red Hulk loses 10% of his Max Health, he gains 1 Heat Charge. For each Heat Charge he has, his attacks deal an additional 9% of the damage dealt as a burst of Energy Damage.\n If Red Hulk ever has 7 or more Heat Charges, he loses all Heat Charges and becomes Overheated. While he is Overheated, he is unable to gain new Heat Charges for 5 seconds.\n\nWhenever Red Hulk would become Poisoned, his altered state removes the Poison and has a 78% chance to convert it to a Heat Charge.\n Whether Red Hulk gains the Heat Charge or not, he still removes the Poison effect.\n\nBlocking has a 52% chance to convert an Energy Attacks into Heat Charges.\n\nThis is only triggered by attacks that are Energy Damage at the base. This will not trigger in a Red Hulk mirror match as Red Hulk’s base attacks are Physical. This will, however, work against Special Attacks that deal base Energy Damage, such as Iron Man’s beams.",
+        "abilities": [
+            "poisonimmunity",
+            "physicalresist"
+        ]
+    },
+    "attack": {},
+    "specials": {
+        "1": {
+            "name": "Blistering Assault",
+            "description": "Excess heat from this attack causes Red Hulk to gain 2 additional Heat Charges.",
+            "ranges": [
+                "short",
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "2": {
+            "name": "Scorched Earth",
+            "ranges": [
+                "short",
+                "long"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 92% of his Attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
+        },
+        "3": {
+            "name": "Necessary Measures",
+            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 98% of his Attack as Energy Damage over 8 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
+        }
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "656440-Red-Hulk-Champion-Spotlight"
+    },
+    "signature": {
+        "name": "Second Strike",
+        "description": "General Ross prepares to cross the line in the sand, beginning the fight with 2 Heat Charge(s) ready. Additionally, for every 2 Heat Charges he has, he gains an additional (6 - 23%) Physical Resistance.",
+        "abilities": [
+            "physicalresist"
+        ]
+    }
+}

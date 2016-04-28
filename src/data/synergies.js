@@ -473,6 +473,24 @@ const synergies = [
     { fromId: 'rhino', fromStars: 5, toId: 'abomination', effectId: 'armor', effectAmount: 6 },
     { fromId: 'rhino', fromStars: 5, toId: 'electro', effectId: 'perfectblock', effectAmount: 5 },
 
+    { fromId: 'redhulk', fromStars: 3, toId: 'abomination', effectId: 'critrate', effectAmount: 6 },
+    { fromId: 'redhulk', fromStars: 3, toId: 'hulk', effectId: 'attack', effectAmount: 4 },
+    { fromId: 'redhulk', fromStars: 3, toId: 'x23', effectId: 'perfectblock', effectAmount: 4 },
+    { fromId: 'redhulk', fromStars: 3, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 10 },
+    { fromId: 'redhulk', fromStars: 3, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 10 },
+
+    { fromId: 'redhulk', fromStars: 4, toId: 'abomination', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'redhulk', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
+    { fromId: 'redhulk', fromStars: 4, toId: 'x23', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'redhulk', fromStars: 4, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 10 },
+    { fromId: 'redhulk', fromStars: 4, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 10 },
+
+    { fromId: 'redhulk', fromStars: 5, toId: 'abomination', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'redhulk', fromStars: 5, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
+    { fromId: 'redhulk', fromStars: 5, toId: 'x23', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'redhulk', fromStars: 5, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 10 },
+    { fromId: 'redhulk', fromStars: 5, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 10 },
+
     { fromId: 'shehulk', fromStars: 3, toId: 'hulk', effectId: 'health', effectAmount: 5 },
     { fromId: 'shehulk', fromStars: 3, toId: 'superiorironman', effectId: 'powergain', effectAmount: 4 },
     { fromId: 'shehulk', fromStars: 3, toId: 'kamalakhan', effectId: 'perfectblock', effectAmount: 4 },

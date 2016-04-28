@@ -7,8 +7,10 @@ import Champion, {
 } from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
+    'falcon': true,
+    'blackpanthercivilwar': true,
+    'crossbones': true,
     'redskull': true,
-    'redhulk': true,
     'drstrangemarvelnow': true,
     'maestro': true,
 };
@@ -66,6 +68,10 @@ const champions = [
     { uid: 'venompool', typeId: 'cosmic', stars: 3 },
     { uid: 'venompool', typeId: 'cosmic', stars: 4 },
     { uid: 'venompool', typeId: 'cosmic', stars: 5 },
+
+    { uid: 'falcon', typeId: 'tech', stars: 3 },
+    { uid: 'falcon', typeId: 'tech', stars: 4 },
+    { uid: 'falcon', typeId: 'tech', stars: 5 },
 
     { uid: 'ironman', typeId: 'tech', stars: 1 },
     { uid: 'ironman', typeId: 'tech', stars: 2 },
@@ -162,9 +168,17 @@ const champions = [
     { uid: 'blackpanther', typeId: 'skill', stars: 4 },
     { uid: 'blackpanther', typeId: 'skill', stars: 5 },
 
+    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 3 },
+    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 4 },
+    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 5 },
+
     { uid: 'blackwidow', typeId: 'skill', stars: 2 },
     { uid: 'blackwidow', typeId: 'skill', stars: 3 },
     { uid: 'blackwidow', typeId: 'skill', stars: 4 },
+
+    { uid: 'crossbones', typeId: 'skill', stars: 3 },
+    { uid: 'crossbones', typeId: 'skill', stars: 4 },
+    { uid: 'crossbones', typeId: 'skill', stars: 5 },
 
     { uid: 'daredevil', typeId: 'skill', stars: 3 },
     { uid: 'daredevil', typeId: 'skill', stars: 4 },
