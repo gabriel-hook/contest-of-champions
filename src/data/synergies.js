@@ -573,9 +573,14 @@ const synergies = [
     { fromId: 'ironfist', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
     { fromId: 'ironfist', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
 
+    { fromId: 'ironfistwhite', fromStars: 3, toId: 'drstrange', effectId: 'armor', effectAmount: 5 },
+    { fromId: 'ironfistwhite', fromStars: 3, toId: 'daredevil', effectId: 'armor', effectAmount: 5 },
     { fromId: 'ironfistwhite', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
     { fromId: 'ironfistwhite', fromStars: 4, toId: 'daredevil', effectId: 'armor', effectAmount: 6 },
     { fromId: 'ironfistwhite', fromStars: 4, toId: 'warmachine', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'ironfistwhite', fromStars: 5, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'ironfistwhite', fromStars: 5, toId: 'daredevil', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'ironfistwhite', fromStars: 5, toId: 'warmachine', effectId: 'perfectblock', effectAmount: 5 },
 
     { fromId: 'guillotine', fromStars: 2, toId: 'venom', effectId: 'attack', effectAmount: 4 },
     { fromId: 'guillotine', fromStars: 2, toId: 'captainamericawwii', effectId: 'perfectblock', effectAmount: 3 },

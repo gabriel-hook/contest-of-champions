@@ -288,7 +288,9 @@ const champions = [
     { uid: 'ironfist', typeId: 'mystic', stars: 3 },
     { uid: 'ironfist', typeId: 'mystic', stars: 4 },
 
+    { uid: 'ironfistwhite', typeId: 'mystic', stars: 3 },
     { uid: 'ironfistwhite', typeId: 'mystic', stars: 4 },
+    { uid: 'ironfistwhite', typeId: 'mystic', stars: 5 },
 
     { uid: 'juggernaut', typeId: 'mystic', stars: 1 },
     { uid: 'juggernaut', typeId: 'mystic', stars: 2 },
