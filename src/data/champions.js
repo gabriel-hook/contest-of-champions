@@ -225,6 +225,7 @@ const champions = [
     { uid: 'captainamerica', typeId: 'science', stars: 3 },
     { uid: 'captainamerica', typeId: 'science', stars: 4 },
 
+    { uid: 'captainamericawwii', typeId: 'science', stars: 2 },
     { uid: 'captainamericawwii', typeId: 'science', stars: 3 },
     { uid: 'captainamericawwii', typeId: 'science', stars: 4 },
 

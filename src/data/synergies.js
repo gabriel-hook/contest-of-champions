@@ -425,6 +425,8 @@ const synergies = [
     { fromId: 'captainamerica', fromStars: 4, toId: 'superiorironman', effectId: 'critrate', effectAmount: 7 },
     { fromId: 'captainamerica', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
 
+    { fromId: 'captainamericawwii', fromStars: 2, toId: 'wintersoldier', effectId: 'armor', effectAmount: 4 },
+    { fromId: 'captainamericawwii', fromStars: 2, toId: 'wolverine', effectId: 'armor', effectAmount: 4 },
     { fromId: 'captainamericawwii', fromStars: 3, toId: 'wintersoldier', effectId: 'armor', effectAmount: 5 },
     { fromId: 'captainamericawwii', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
     { fromId: 'captainamericawwii', fromStars: 4, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
