@@ -107,6 +107,7 @@ const champions = [
     { uid: 'ultron', typeId: 'tech', stars: 3 },
     { uid: 'ultron', typeId: 'tech', stars: 4 },
 
+    { uid: 'warmachine', typeId: 'tech', stars: 2 },
     { uid: 'warmachine', typeId: 'tech', stars: 3 },
     { uid: 'warmachine', typeId: 'tech', stars: 4 },
 

@@ -198,6 +198,7 @@ const synergies = [
     { fromId: 'ultron', fromStars: 4, toId: 'ironman', effectId: 'health', effectAmount: 6 },
     { fromId: 'ultron', fromStars: 4, toId: 'scarletwitch', effectId: 'armor', effectAmount: 6 },
 
+    { fromId: 'warmachine', fromStars: 2, toId: 'hulkbuster', effectId: 'armor', effectAmount: 4 },
     { fromId: 'warmachine', fromStars: 3, toId: 'hulkbuster', effectId: 'armor', effectAmount: 5 },
     { fromId: 'warmachine', fromStars: 3, toId: 'hawkeye', effectId: 'block', effectAmount: 15 },
     { fromId: 'warmachine', fromStars: 3, toId: 'blackwidow', effectId: 'perfectblock', effectAmount: 4 },
