@@ -18,311 +18,311 @@ const UNRELEASED_CHAMPIONS = {
 
 const champions = [
 
-    { uid: 'blackbolt', typeId: 'cosmic', stars: 2 },
-    { uid: 'blackbolt', typeId: 'cosmic', stars: 3 },
-    { uid: 'blackbolt', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'captainmarvel', typeId: 'cosmic', stars: 3 },
-    { uid: 'captainmarvel', typeId: 'cosmic', stars: 4 },
-    { uid: 'captainmarvel', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'drax', typeId: 'cosmic', stars: 2 },
-    { uid: 'drax', typeId: 'cosmic', stars: 3 },
-    { uid: 'drax', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'gamora', typeId: 'cosmic', stars: 1 },
-    { uid: 'gamora', typeId: 'cosmic', stars: 2 },
-    { uid: 'gamora', typeId: 'cosmic', stars: 3 },
-    { uid: 'gamora', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'groot', typeId: 'cosmic', stars: 3 },
-    { uid: 'groot', typeId: 'cosmic', stars: 4 },
-    { uid: 'groot', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'kamalakhan', typeId: 'cosmic', stars: 3 },
-    { uid: 'kamalakhan', typeId: 'cosmic', stars: 4 },
-    { uid: 'kamalakhan', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'msmarvel', typeId: 'cosmic', stars: 3 },
-    { uid: 'msmarvel', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'ronan', typeId: 'cosmic', stars: 2 },
-    { uid: 'ronan', typeId: 'cosmic', stars: 3 },
-    { uid: 'ronan', typeId: 'cosmic', stars: 4 },
-    { uid: 'ronan', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'spidermanblack', typeId: 'cosmic', stars: 3 },
-    { uid: 'spidermanblack', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'superiorironman', typeId: 'cosmic', stars: 2 },
-    { uid: 'superiorironman', typeId: 'cosmic', stars: 3 },
-    { uid: 'superiorironman', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'thor', typeId: 'cosmic', stars: 2 },
-    { uid: 'thor', typeId: 'cosmic', stars: 3 },
-    { uid: 'thor', typeId: 'cosmic', stars: 4 },
-
-    { uid: 'venom', typeId: 'cosmic', stars: 3 },
-    { uid: 'venom', typeId: 'cosmic', stars: 4 },
-    { uid: 'venom', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'venompool', typeId: 'cosmic', stars: 3 },
-    { uid: 'venompool', typeId: 'cosmic', stars: 4 },
-    { uid: 'venompool', typeId: 'cosmic', stars: 5 },
-
-    { uid: 'ironman', typeId: 'tech', stars: 1 },
-    { uid: 'ironman', typeId: 'tech', stars: 2 },
-    { uid: 'ironman', typeId: 'tech', stars: 3 },
-    { uid: 'ironman', typeId: 'tech', stars: 4 },
-    { uid: 'ironman', typeId: 'tech', stars: 5 },
-
-    { uid: 'ironpatriot', typeId: 'tech', stars: 3 },
-    { uid: 'ironpatriot', typeId: 'tech', stars: 4 },
-
-    { uid: 'hulkbuster', typeId: 'tech', stars: 2 },
-    { uid: 'hulkbuster', typeId: 'tech', stars: 3 },
-    { uid: 'hulkbuster', typeId: 'tech', stars: 4 },
-
-    { uid: 'kang', typeId: 'tech', stars: 4 },
-
-    { uid: 'rocket', typeId: 'tech', stars: 2 },
-    { uid: 'rocket', typeId: 'tech', stars: 3 },
-    { uid: 'rocket', typeId: 'tech', stars: 4 },
-
-    { uid: 'starlord', typeId: 'tech', stars: 2 },
-    { uid: 'starlord', typeId: 'tech', stars: 3 },
-    { uid: 'starlord', typeId: 'tech', stars: 4 },
-    { uid: 'starlord', typeId: 'tech', stars: 5 },
-
-    { uid: 'vision', typeId: 'tech', stars: 1 },
-    { uid: 'vision', typeId: 'tech', stars: 2 },
-    { uid: 'vision', typeId: 'tech', stars: 3 },
-    { uid: 'vision', typeId: 'tech', stars: 4 },
-
-    { uid: 'thevision', typeId: 'tech', stars: 2 },
-    { uid: 'thevision', typeId: 'tech', stars: 3 },
-    { uid: 'thevision', typeId: 'tech', stars: 4 },
-
-    { uid: 'ultron', typeId: 'tech', stars: 2 },
-    { uid: 'ultron', typeId: 'tech', stars: 3 },
-    { uid: 'ultron', typeId: 'tech', stars: 4 },
-
-    { uid: 'warmachine', typeId: 'tech', stars: 2 },
-    { uid: 'warmachine', typeId: 'tech', stars: 3 },
-    { uid: 'warmachine', typeId: 'tech', stars: 4 },
-
-    { uid: 'colossus', typeId: 'mutant', stars: 1 },
-    { uid: 'colossus', typeId: 'mutant', stars: 2 },
-    { uid: 'colossus', typeId: 'mutant', stars: 3 },
-    { uid: 'colossus', typeId: 'mutant', stars: 4 },
-
-    { uid: 'cyclops', typeId: 'mutant', stars: 2 },
-    { uid: 'cyclops', typeId: 'mutant', stars: 3 },
-    { uid: 'cyclops', typeId: 'mutant', stars: 4 },
-    { uid: 'cyclops', typeId: 'mutant', stars: 5 },
-
-    { uid: 'cyclops90s', typeId: 'mutant', stars: 3 },
-    { uid: 'cyclops90s', typeId: 'mutant', stars: 4 },
-    { uid: 'cyclops90s', typeId: 'mutant', stars: 5 },
-
-    { uid: 'deadpool', typeId: 'mutant', stars: 2 },
-    { uid: 'deadpool', typeId: 'mutant', stars: 3 },
-    { uid: 'deadpool', typeId: 'mutant', stars: 4 },
-
-    { uid: 'deadpoolxforce', typeId: 'mutant', stars: 2 },
-    { uid: 'deadpoolxforce', typeId: 'mutant', stars: 3 },
-    { uid: 'deadpoolxforce', typeId: 'mutant', stars: 4 },
-
-    { uid: 'magneto', typeId: 'mutant', stars: 2 },
-    { uid: 'magneto', typeId: 'mutant', stars: 3 },
-    { uid: 'magneto', typeId: 'mutant', stars: 4 },
-
-    { uid: 'magnetomarvelnow', typeId: 'mutant', stars: 3 },
-    { uid: 'magnetomarvelnow', typeId: 'mutant', stars: 4 },
-
-    { uid: 'storm', typeId: 'mutant', stars: 2 },
-    { uid: 'storm', typeId: 'mutant', stars: 3 },
-    { uid: 'storm', typeId: 'mutant', stars: 4 },
-    { uid: 'storm', typeId: 'mutant', stars: 5 },
-
-    { uid: 'wolverine', typeId: 'mutant', stars: 1 },
-    { uid: 'wolverine', typeId: 'mutant', stars: 2 },
-    { uid: 'wolverine', typeId: 'mutant', stars: 3 },
-    { uid: 'wolverine', typeId: 'mutant', stars: 4 },
+	{ uid: 'blackbolt', stars: 2, typeId: 'cosmic' },
+	{ uid: 'blackbolt', stars: 3, typeId: 'cosmic' },
+	{ uid: 'blackbolt', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'captainmarvel', stars: 3, typeId: 'cosmic' },
+	{ uid: 'captainmarvel', stars: 4, typeId: 'cosmic' },
+	{ uid: 'captainmarvel', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'drax', stars: 2, typeId: 'cosmic' },
+	{ uid: 'drax', stars: 3, typeId: 'cosmic' },
+	{ uid: 'drax', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'gamora', stars: 1, typeId: 'cosmic' },
+	{ uid: 'gamora', stars: 2, typeId: 'cosmic' },
+	{ uid: 'gamora', stars: 3, typeId: 'cosmic' },
+	{ uid: 'gamora', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'groot', stars: 3, typeId: 'cosmic' },
+	{ uid: 'groot', stars: 4, typeId: 'cosmic' },
+	{ uid: 'groot', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'kamalakhan', stars: 3, typeId: 'cosmic' },
+	{ uid: 'kamalakhan', stars: 4, typeId: 'cosmic' },
+	{ uid: 'kamalakhan', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'msmarvel', stars: 3, typeId: 'cosmic' },
+	{ uid: 'msmarvel', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'ronan', stars: 2, typeId: 'cosmic' },
+	{ uid: 'ronan', stars: 3, typeId: 'cosmic' },
+	{ uid: 'ronan', stars: 4, typeId: 'cosmic' },
+	{ uid: 'ronan', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'spidermanblack', stars: 3, typeId: 'cosmic' },
+	{ uid: 'spidermanblack', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'superiorironman', stars: 2, typeId: 'cosmic' },
+	{ uid: 'superiorironman', stars: 3, typeId: 'cosmic' },
+	{ uid: 'superiorironman', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'thor', stars: 2, typeId: 'cosmic' },
+	{ uid: 'thor', stars: 3, typeId: 'cosmic' },
+	{ uid: 'thor', stars: 4, typeId: 'cosmic' },
+
+	{ uid: 'venom', stars: 3, typeId: 'cosmic' },
+	{ uid: 'venom', stars: 4, typeId: 'cosmic' },
+	{ uid: 'venom', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'venompool', stars: 3, typeId: 'cosmic' },
+	{ uid: 'venompool', stars: 4, typeId: 'cosmic' },
+	{ uid: 'venompool', stars: 5, typeId: 'cosmic' },
+
+	{ uid: 'ironman', stars: 1, typeId: 'tech' },
+	{ uid: 'ironman', stars: 2, typeId: 'tech' },
+	{ uid: 'ironman', stars: 3, typeId: 'tech' },
+	{ uid: 'ironman', stars: 4, typeId: 'tech' },
+	{ uid: 'ironman', stars: 5, typeId: 'tech' },
+
+	{ uid: 'ironpatriot', stars: 3, typeId: 'tech' },
+	{ uid: 'ironpatriot', stars: 4, typeId: 'tech' },
+
+	{ uid: 'hulkbuster', stars: 2, typeId: 'tech' },
+	{ uid: 'hulkbuster', stars: 3, typeId: 'tech' },
+	{ uid: 'hulkbuster', stars: 4, typeId: 'tech' },
+
+	{ uid: 'kang', stars: 4, typeId: 'tech' },
+
+	{ uid: 'rocket', stars: 2, typeId: 'tech' },
+	{ uid: 'rocket', stars: 3, typeId: 'tech' },
+	{ uid: 'rocket', stars: 4, typeId: 'tech' },
+
+	{ uid: 'starlord', stars: 2, typeId: 'tech' },
+	{ uid: 'starlord', stars: 3, typeId: 'tech' },
+	{ uid: 'starlord', stars: 4, typeId: 'tech' },
+	{ uid: 'starlord', stars: 5, typeId: 'tech' },
+
+	{ uid: 'vision', stars: 1, typeId: 'tech' },
+	{ uid: 'vision', stars: 2, typeId: 'tech' },
+	{ uid: 'vision', stars: 3, typeId: 'tech' },
+	{ uid: 'vision', stars: 4, typeId: 'tech' },
+
+	{ uid: 'thevision', stars: 2, typeId: 'tech' },
+	{ uid: 'thevision', stars: 3, typeId: 'tech' },
+	{ uid: 'thevision', stars: 4, typeId: 'tech' },
+
+	{ uid: 'ultron', stars: 2, typeId: 'tech' },
+	{ uid: 'ultron', stars: 3, typeId: 'tech' },
+	{ uid: 'ultron', stars: 4, typeId: 'tech' },
+
+	{ uid: 'warmachine', stars: 2, typeId: 'tech' },
+	{ uid: 'warmachine', stars: 3, typeId: 'tech' },
+	{ uid: 'warmachine', stars: 4, typeId: 'tech' },
+
+	{ uid: 'colossus', stars: 1, typeId: 'mutant' },
+	{ uid: 'colossus', stars: 2, typeId: 'mutant' },
+	{ uid: 'colossus', stars: 3, typeId: 'mutant' },
+	{ uid: 'colossus', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'cyclops', stars: 2, typeId: 'mutant' },
+	{ uid: 'cyclops', stars: 3, typeId: 'mutant' },
+	{ uid: 'cyclops', stars: 4, typeId: 'mutant' },
+	{ uid: 'cyclops', stars: 5, typeId: 'mutant' },
+
+	{ uid: 'cyclops90s', stars: 3, typeId: 'mutant' },
+	{ uid: 'cyclops90s', stars: 4, typeId: 'mutant' },
+	{ uid: 'cyclops90s', stars: 5, typeId: 'mutant' },
+
+	{ uid: 'deadpool', stars: 2, typeId: 'mutant' },
+	{ uid: 'deadpool', stars: 3, typeId: 'mutant' },
+	{ uid: 'deadpool', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'deadpoolxforce', stars: 2, typeId: 'mutant' },
+	{ uid: 'deadpoolxforce', stars: 3, typeId: 'mutant' },
+	{ uid: 'deadpoolxforce', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'magneto', stars: 2, typeId: 'mutant' },
+	{ uid: 'magneto', stars: 3, typeId: 'mutant' },
+	{ uid: 'magneto', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'magnetomarvelnow', stars: 3, typeId: 'mutant' },
+	{ uid: 'magnetomarvelnow', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'storm', stars: 2, typeId: 'mutant' },
+	{ uid: 'storm', stars: 3, typeId: 'mutant' },
+	{ uid: 'storm', stars: 4, typeId: 'mutant' },
+	{ uid: 'storm', stars: 5, typeId: 'mutant' },
+
+	{ uid: 'wolverine', stars: 1, typeId: 'mutant' },
+	{ uid: 'wolverine', stars: 2, typeId: 'mutant' },
+	{ uid: 'wolverine', stars: 3, typeId: 'mutant' },
+	{ uid: 'wolverine', stars: 4, typeId: 'mutant' },
 
-    { uid: 'wolverineoldman', typeId: 'mutant', stars: 3 },
-    { uid: 'wolverineoldman', typeId: 'mutant', stars: 4 },
-    { uid: 'wolverineoldman', typeId: 'mutant', stars: 5 },
-
-    { uid: 'x23', typeId: 'mutant', stars: 3 },
-    { uid: 'x23', typeId: 'mutant', stars: 4 },
-
-    { uid: 'agentvenom', typeId: 'skill', stars: 3 },
-    { uid: 'agentvenom', typeId: 'skill', stars: 4 },
-
-    { uid: 'blackpanther', typeId: 'skill', stars: 1 },
-    { uid: 'blackpanther', typeId: 'skill', stars: 2 },
-    { uid: 'blackpanther', typeId: 'skill', stars: 3 },
-    { uid: 'blackpanther', typeId: 'skill', stars: 4 },
-    { uid: 'blackpanther', typeId: 'skill', stars: 5 },
-
-    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 3 },
-    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 4 },
-    { uid: 'blackpanthercivilwar', typeId: 'skill', stars: 5 },
-
-    { uid: 'blackwidow', typeId: 'skill', stars: 2 },
-    { uid: 'blackwidow', typeId: 'skill', stars: 3 },
-    { uid: 'blackwidow', typeId: 'skill', stars: 4 },
-
-    { uid: 'crossbones', typeId: 'skill', stars: 3 },
-    { uid: 'crossbones', typeId: 'skill', stars: 4 },
-    { uid: 'crossbones', typeId: 'skill', stars: 5 },
-
-    { uid: 'daredevil', typeId: 'skill', stars: 3 },
-    { uid: 'daredevil', typeId: 'skill', stars: 4 },
-
-    { uid: 'daredevilnetflix', typeId: 'skill', stars: 2 },
-    { uid: 'daredevilnetflix', typeId: 'skill', stars: 3 },
-    { uid: 'daredevilnetflix', typeId: 'skill', stars: 4 },
-    { uid: 'daredevilnetflix', typeId: 'skill', stars: 5 },
-
-    { uid: 'elektra', typeId: 'skill', stars: 3 },
-    { uid: 'elektra', typeId: 'skill', stars: 4 },
-
-    { uid: 'falcon', typeId: 'skill', stars: 3 },
-    { uid: 'falcon', typeId: 'skill', stars: 4 },
-    { uid: 'falcon', typeId: 'skill', stars: 5 },
-
-    { uid: 'hawkeye', typeId: 'skill', stars: 1 },
-    { uid: 'hawkeye', typeId: 'skill', stars: 2 },
-    { uid: 'hawkeye', typeId: 'skill', stars: 3 },
-    { uid: 'hawkeye', typeId: 'skill', stars: 4 },
-
-    { uid: 'moonknight', typeId: 'skill', stars: 3 },
-    { uid: 'moonknight', typeId: 'skill', stars: 4 },
-
-    { uid: 'punisher', typeId: 'skill', stars: 2 },
-    { uid: 'punisher', typeId: 'skill', stars: 3 },
-    { uid: 'punisher', typeId: 'skill', stars: 4 },
-
-    { uid: 'redskull', typeId: 'skill', stars: 3 },
-    { uid: 'redskull', typeId: 'skill', stars: 4 },
-    { uid: 'redskull', typeId: 'skill', stars: 5 },
-
-    { uid: 'wintersoldier', typeId: 'skill', stars: 2 },
-    { uid: 'wintersoldier', typeId: 'skill', stars: 3 },
-    { uid: 'wintersoldier', typeId: 'skill', stars: 4 },
-    { uid: 'wintersoldier', typeId: 'skill', stars: 5 },
-
-    { uid: 'abomination', typeId: 'science', stars: 2 },
-    { uid: 'abomination', typeId: 'science', stars: 3 },
-    { uid: 'abomination', typeId: 'science', stars: 4 },
-
-    { uid: 'antman', typeId: 'science', stars: 2 },
-    { uid: 'antman', typeId: 'science', stars: 3 },
-    { uid: 'antman', typeId: 'science', stars: 4 },
-
-    { uid: 'captainamerica', typeId: 'science', stars: 2 },
-    { uid: 'captainamerica', typeId: 'science', stars: 3 },
-    { uid: 'captainamerica', typeId: 'science', stars: 4 },
-
-    { uid: 'captainamericawwii', typeId: 'science', stars: 2 },
-    { uid: 'captainamericawwii', typeId: 'science', stars: 3 },
-    { uid: 'captainamericawwii', typeId: 'science', stars: 4 },
-
-    { uid: 'electro', typeId: 'science', stars: 3 },
-    { uid: 'electro', typeId: 'science', stars: 4 },
-
-    { uid: 'hulk', typeId: 'science', stars: 1 },
-    { uid: 'hulk', typeId: 'science', stars: 2 },
-    { uid: 'hulk', typeId: 'science', stars: 3 },
-    { uid: 'hulk', typeId: 'science', stars: 4 },
-
-    { uid: 'joefixit', typeId: 'science', stars: 3 },
-    { uid: 'joefixit', typeId: 'science', stars: 4 },
-
-    { uid: 'lukecage', typeId: 'science', stars: 3 },
-    { uid: 'lukecage', typeId: 'science', stars: 4 },
-    { uid: 'lukecage', typeId: 'science', stars: 5 },
-
-    { uid: 'redhulk', typeId: 'science', stars: 3 },
-    { uid: 'redhulk', typeId: 'science', stars: 4 },
-    { uid: 'redhulk', typeId: 'science', stars: 5 },
-
-    { uid: 'rhino', typeId: 'science', stars: 2 },
-    { uid: 'rhino', typeId: 'science', stars: 3 },
-    { uid: 'rhino', typeId: 'science', stars: 4 },
-    { uid: 'rhino', typeId: 'science', stars: 5 },
-
-    { uid: 'shehulk', typeId: 'science', stars: 3 },
-    { uid: 'shehulk', typeId: 'science', stars: 4 },
-    { uid: 'shehulk', typeId: 'science', stars: 5 },
-
-    { uid: 'spidergwen', typeId: 'science', stars: 3 },
-    { uid: 'spidergwen', typeId: 'science', stars: 4 },
-    { uid: 'spidergwen', typeId: 'science', stars: 5 },
-
-    { uid: 'spiderman', typeId: 'science', stars: 1 },
-    { uid: 'spiderman', typeId: 'science', stars: 2 },
-    { uid: 'spiderman', typeId: 'science', stars: 3 },
-    { uid: 'spiderman', typeId: 'science', stars: 4 },
-    { uid: 'spiderman', typeId: 'science', stars: 5 },
-
-    { uid: 'spidermanmorales', typeId: 'science', stars: 3 },
-    { uid: 'spidermanmorales', typeId: 'science', stars: 4 },
-
-    { uid: 'yellowjacket', typeId: 'science', stars: 2 },
-    { uid: 'yellowjacket', typeId: 'science', stars: 3 },
-    { uid: 'yellowjacket', typeId: 'science', stars: 4 },
-
-    { uid: 'drstrange', typeId: 'mystic', stars: 3 },
-    { uid: 'drstrange', typeId: 'mystic', stars: 4 },
-
-    { uid: 'drstrangemarvelnow', typeId: 'mystic', stars: 3 },
-    { uid: 'drstrangemarvelnow', typeId: 'mystic', stars: 4 },
-    { uid: 'drstrangemarvelnow', typeId: 'mystic', stars: 5 },
-
-    { uid: 'guillotine', typeId: 'mystic', stars: 2 },
-    { uid: 'guillotine', typeId: 'mystic', stars: 3 },
-    { uid: 'guillotine', typeId: 'mystic', stars: 4 },
-
-    { uid: 'ironfist', typeId: 'mystic', stars: 2 },
-    { uid: 'ironfist', typeId: 'mystic', stars: 3 },
-    { uid: 'ironfist', typeId: 'mystic', stars: 4 },
-
-    { uid: 'ironfistwhite', typeId: 'mystic', stars: 3 },
-    { uid: 'ironfistwhite', typeId: 'mystic', stars: 4 },
-    { uid: 'ironfistwhite', typeId: 'mystic', stars: 5 },
-
-    { uid: 'juggernaut', typeId: 'mystic', stars: 1 },
-    { uid: 'juggernaut', typeId: 'mystic', stars: 2 },
-    { uid: 'juggernaut', typeId: 'mystic', stars: 3 },
-    { uid: 'juggernaut', typeId: 'mystic', stars: 4 },
-    { uid: 'juggernaut', typeId: 'mystic', stars: 5 },
-
-    { uid: 'magik', typeId: 'mystic', stars: 2 },
-    { uid: 'magik', typeId: 'mystic', stars: 3 },
-    { uid: 'magik', typeId: 'mystic', stars: 4 },
-    { uid: 'magik', typeId: 'mystic', stars: 5 },
-
-    { uid: 'scarletwitch', typeId: 'mystic', stars: 1 },
-    { uid: 'scarletwitch', typeId: 'mystic', stars: 2 },
-    { uid: 'scarletwitch', typeId: 'mystic', stars: 3 },
-    { uid: 'scarletwitch', typeId: 'mystic', stars: 4 },
-
-    { uid: 'thorjanefoster', typeId: 'mystic', stars: 3 },
-    { uid: 'thorjanefoster', typeId: 'mystic', stars: 4 },
-    { uid: 'thorjanefoster', typeId: 'mystic', stars: 5 },
-
-    { uid: 'unstoppablecolossus', typeId: 'mystic', stars: 2 },
-    { uid: 'unstoppablecolossus', typeId: 'mystic', stars: 3 },
-    { uid: 'unstoppablecolossus', typeId: 'mystic', stars: 4 },
-
-    { uid: 'civilwarrior', stars: 4 },
-    { uid: 'civilwarrior', stars: 5 },
-
-    { uid: 'maestro', stars: 4 },
-    { uid: 'maestro', stars: 5 },
+	{ uid: 'wolverineoldman', stars: 3, typeId: 'mutant' },
+	{ uid: 'wolverineoldman', stars: 4, typeId: 'mutant' },
+	{ uid: 'wolverineoldman', stars: 5, typeId: 'mutant' },
+
+	{ uid: 'x23', stars: 3, typeId: 'mutant' },
+	{ uid: 'x23', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'agentvenom', stars: 3, typeId: 'skill' },
+	{ uid: 'agentvenom', stars: 4, typeId: 'skill' },
+
+	{ uid: 'blackpanther', stars: 1, typeId: 'skill' },
+	{ uid: 'blackpanther', stars: 2, typeId: 'skill' },
+	{ uid: 'blackpanther', stars: 3, typeId: 'skill' },
+	{ uid: 'blackpanther', stars: 4, typeId: 'skill' },
+	{ uid: 'blackpanther', stars: 5, typeId: 'skill' },
+
+	{ uid: 'blackpanthercivilwar', stars: 3, typeId: 'skill' },
+	{ uid: 'blackpanthercivilwar', stars: 4, typeId: 'skill' },
+	{ uid: 'blackpanthercivilwar', stars: 5, typeId: 'skill' },
+
+	{ uid: 'blackwidow', stars: 2, typeId: 'skill' },
+	{ uid: 'blackwidow', stars: 3, typeId: 'skill' },
+	{ uid: 'blackwidow', stars: 4, typeId: 'skill' },
+
+	{ uid: 'crossbones', stars: 3, typeId: 'skill' },
+	{ uid: 'crossbones', stars: 4, typeId: 'skill' },
+	{ uid: 'crossbones', stars: 5, typeId: 'skill' },
+
+	{ uid: 'daredevil', stars: 3, typeId: 'skill' },
+	{ uid: 'daredevil', stars: 4, typeId: 'skill' },
+
+	{ uid: 'daredevilnetflix', stars: 2, typeId: 'skill' },
+	{ uid: 'daredevilnetflix', stars: 3, typeId: 'skill' },
+	{ uid: 'daredevilnetflix', stars: 4, typeId: 'skill' },
+	{ uid: 'daredevilnetflix', stars: 5, typeId: 'skill' },
+
+	{ uid: 'elektra', stars: 3, typeId: 'skill' },
+	{ uid: 'elektra', stars: 4, typeId: 'skill' },
+
+	{ uid: 'falcon', stars: 3, typeId: 'skill' },
+	{ uid: 'falcon', stars: 4, typeId: 'skill' },
+	{ uid: 'falcon', stars: 5, typeId: 'skill' },
+
+	{ uid: 'hawkeye', stars: 1, typeId: 'skill' },
+	{ uid: 'hawkeye', stars: 2, typeId: 'skill' },
+	{ uid: 'hawkeye', stars: 3, typeId: 'skill' },
+	{ uid: 'hawkeye', stars: 4, typeId: 'skill' },
+
+	{ uid: 'moonknight', stars: 3, typeId: 'skill' },
+	{ uid: 'moonknight', stars: 4, typeId: 'skill' },
+
+	{ uid: 'punisher', stars: 2, typeId: 'skill' },
+	{ uid: 'punisher', stars: 3, typeId: 'skill' },
+	{ uid: 'punisher', stars: 4, typeId: 'skill' },
+
+	{ uid: 'redskull', stars: 3, typeId: 'skill' },
+	{ uid: 'redskull', stars: 4, typeId: 'skill' },
+	{ uid: 'redskull', stars: 5, typeId: 'skill' },
+
+	{ uid: 'wintersoldier', stars: 2, typeId: 'skill' },
+	{ uid: 'wintersoldier', stars: 3, typeId: 'skill' },
+	{ uid: 'wintersoldier', stars: 4, typeId: 'skill' },
+	{ uid: 'wintersoldier', stars: 5, typeId: 'skill' },
+
+	{ uid: 'abomination', stars: 2, typeId: 'science' },
+	{ uid: 'abomination', stars: 3, typeId: 'science' },
+	{ uid: 'abomination', stars: 4, typeId: 'science' },
+
+	{ uid: 'antman', stars: 2, typeId: 'science' },
+	{ uid: 'antman', stars: 3, typeId: 'science' },
+	{ uid: 'antman', stars: 4, typeId: 'science' },
+
+	{ uid: 'captainamerica', stars: 2, typeId: 'science' },
+	{ uid: 'captainamerica', stars: 3, typeId: 'science' },
+	{ uid: 'captainamerica', stars: 4, typeId: 'science' },
+
+	{ uid: 'captainamericawwii', stars: 2, typeId: 'science' },
+	{ uid: 'captainamericawwii', stars: 3, typeId: 'science' },
+	{ uid: 'captainamericawwii', stars: 4, typeId: 'science' },
+
+	{ uid: 'electro', stars: 3, typeId: 'science' },
+	{ uid: 'electro', stars: 4, typeId: 'science' },
+
+	{ uid: 'hulk', stars: 1, typeId: 'science' },
+	{ uid: 'hulk', stars: 2, typeId: 'science' },
+	{ uid: 'hulk', stars: 3, typeId: 'science' },
+	{ uid: 'hulk', stars: 4, typeId: 'science' },
+
+	{ uid: 'joefixit', stars: 3, typeId: 'science' },
+	{ uid: 'joefixit', stars: 4, typeId: 'science' },
+
+	{ uid: 'lukecage', stars: 3, typeId: 'science' },
+	{ uid: 'lukecage', stars: 4, typeId: 'science' },
+	{ uid: 'lukecage', stars: 5, typeId: 'science' },
+
+	{ uid: 'redhulk', stars: 3, typeId: 'science' },
+	{ uid: 'redhulk', stars: 4, typeId: 'science' },
+	{ uid: 'redhulk', stars: 5, typeId: 'science' },
+
+	{ uid: 'rhino', stars: 2, typeId: 'science' },
+	{ uid: 'rhino', stars: 3, typeId: 'science' },
+	{ uid: 'rhino', stars: 4, typeId: 'science' },
+	{ uid: 'rhino', stars: 5, typeId: 'science' },
+
+	{ uid: 'shehulk', stars: 3, typeId: 'science' },
+	{ uid: 'shehulk', stars: 4, typeId: 'science' },
+	{ uid: 'shehulk', stars: 5, typeId: 'science' },
+
+	{ uid: 'spidergwen', stars: 3, typeId: 'science' },
+	{ uid: 'spidergwen', stars: 4, typeId: 'science' },
+	{ uid: 'spidergwen', stars: 5, typeId: 'science' },
+
+	{ uid: 'spiderman', stars: 1, typeId: 'science' },
+	{ uid: 'spiderman', stars: 2, typeId: 'science' },
+	{ uid: 'spiderman', stars: 3, typeId: 'science' },
+	{ uid: 'spiderman', stars: 4, typeId: 'science' },
+	{ uid: 'spiderman', stars: 5, typeId: 'science' },
+
+	{ uid: 'spidermanmorales', stars: 3, typeId: 'science' },
+	{ uid: 'spidermanmorales', stars: 4, typeId: 'science' },
+
+	{ uid: 'yellowjacket', stars: 2, typeId: 'science' },
+	{ uid: 'yellowjacket', stars: 3, typeId: 'science' },
+	{ uid: 'yellowjacket', stars: 4, typeId: 'science' },
+
+	{ uid: 'drstrange', stars: 3, typeId: 'mystic' },
+	{ uid: 'drstrange', stars: 4, typeId: 'mystic' },
+
+	{ uid: 'drstrangemarvelnow', stars: 3, typeId: 'mystic' },
+	{ uid: 'drstrangemarvelnow', stars: 4, typeId: 'mystic' },
+	{ uid: 'drstrangemarvelnow', stars: 5, typeId: 'mystic' },
+
+	{ uid: 'guillotine', stars: 2, typeId: 'mystic' },
+	{ uid: 'guillotine', stars: 3, typeId: 'mystic' },
+	{ uid: 'guillotine', stars: 4, typeId: 'mystic' },
+
+	{ uid: 'ironfist', stars: 2, typeId: 'mystic' },
+	{ uid: 'ironfist', stars: 3, typeId: 'mystic' },
+	{ uid: 'ironfist', stars: 4, typeId: 'mystic' },
+
+	{ uid: 'ironfistwhite', stars: 3, typeId: 'mystic' },
+	{ uid: 'ironfistwhite', stars: 4, typeId: 'mystic' },
+	{ uid: 'ironfistwhite', stars: 5, typeId: 'mystic' },
+
+	{ uid: 'juggernaut', stars: 1, typeId: 'mystic' },
+	{ uid: 'juggernaut', stars: 2, typeId: 'mystic' },
+	{ uid: 'juggernaut', stars: 3, typeId: 'mystic' },
+	{ uid: 'juggernaut', stars: 4, typeId: 'mystic' },
+	{ uid: 'juggernaut', stars: 5, typeId: 'mystic' },
+
+	{ uid: 'magik', stars: 2, typeId: 'mystic' },
+	{ uid: 'magik', stars: 3, typeId: 'mystic' },
+	{ uid: 'magik', stars: 4, typeId: 'mystic' },
+	{ uid: 'magik', stars: 5, typeId: 'mystic' },
+
+	{ uid: 'scarletwitch', stars: 1, typeId: 'mystic' },
+	{ uid: 'scarletwitch', stars: 2, typeId: 'mystic' },
+	{ uid: 'scarletwitch', stars: 3, typeId: 'mystic' },
+	{ uid: 'scarletwitch', stars: 4, typeId: 'mystic' },
+
+	{ uid: 'thorjanefoster', stars: 3, typeId: 'mystic' },
+	{ uid: 'thorjanefoster', stars: 4, typeId: 'mystic' },
+	{ uid: 'thorjanefoster', stars: 5, typeId: 'mystic' },
+
+	{ uid: 'unstoppablecolossus', stars: 2, typeId: 'mystic' },
+	{ uid: 'unstoppablecolossus', stars: 3, typeId: 'mystic' },
+	{ uid: 'unstoppablecolossus', stars: 4, typeId: 'mystic' },
+
+	{ uid: 'civilwarrior', stars: 4 },
+	{ uid: 'civilwarrior', stars: 5 },
+
+	{ uid: 'maestro', stars: 4 },
+	{ uid: 'maestro', stars: 5 },
 
 ].map((champion) => new Champion(champion));
 
