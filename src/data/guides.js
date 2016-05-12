@@ -1,5 +1,6 @@
 import agentvenom from './guide/agentvenom';
 import blackbolt from './guide/blackbolt';
+import crossbones from './guide/crossbones';
 import cyclops90s from './guide/cyclops90s';
 import daredevilnetflix from './guide/daredevilnetflix';
 import deadpoolxforce from './guide/deadpoolxforce';
@@ -27,11 +28,12 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 import x23 from './guide/x23';
 
-const SPOTLIGHT = 'redhulk';
+const SPOTLIGHT = 'crossbones';
 
 const guides = {
     agentvenom,
     blackbolt,
+    crossbones,
     cyclops90s,
     daredevilnetflix,
     deadpoolxforce,

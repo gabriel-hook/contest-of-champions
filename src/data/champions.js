@@ -8,7 +8,6 @@ import Champion, {
 
 const UNRELEASED_CHAMPIONS = {
     'blackpanthercivilwar': true,
-    'crossbones': true,
     'falcon': true,
     'redskull': true,
     'drstrangemarvelnow': true,
