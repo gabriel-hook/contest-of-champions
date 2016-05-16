@@ -98,6 +98,7 @@ const champions = [
 	{ uid: 'vision', stars: 3, typeId: 'tech' },
 	{ uid: 'vision', stars: 4, typeId: 'tech' },
 
+	{ uid: 'thevision', stars: 1, typeId: 'tech' },
 	{ uid: 'thevision', stars: 2, typeId: 'tech' },
 	{ uid: 'thevision', stars: 3, typeId: 'tech' },
 	{ uid: 'thevision', stars: 4, typeId: 'tech' },
