@@ -32,6 +32,9 @@
                 "long",
                 "long",
                 "long"
+            ],
+            "abilities": [
+                "incinerate"
             ]
         },
         "3": {
@@ -65,7 +68,8 @@
     "gameplay": {
         "description": "Overrun  To begin Overrun, Dodge back and hold Block for 2 seconds. Once activated, Overrun lasts 8 seconds before it must cool down.\n When Crossbones enters Overrun, he gains 3 Fury effects and suffers 50% reduced Armor and Block Proficiency for the duration of the Overrun.\n While Crossbones is in Overrun, his Offensive Power Gain increases by 40% and his Defensive Power Gain decreases by the same amount.",
         "abilities": [
-            "fury"
+            "fury",
+            "incinerate"
         ],
         "note": "Offensive Power Gain is the amount of Power gained from striking the opponent. Defensive Power Gain is the amount of Power gained while being struck or while blocking."
     },

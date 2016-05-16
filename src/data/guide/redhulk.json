@@ -5,7 +5,8 @@
         "description": "At the start of the fight and each time Red Hulk loses 10% of his Max Health, he gains 1 Heat Charge. For each Heat Charge he has, his attacks deal an additional 9% of the damage dealt as a burst of Energy Damage.\n If Red Hulk ever has 7 or more Heat Charges, he loses all Heat Charges and becomes Overheated. While he is Overheated, he is unable to gain new Heat Charges for 5 seconds.\n\nWhenever Red Hulk would become Poisoned, his altered state removes the Poison and has a 78% chance to convert it to a Heat Charge.\n Whether Red Hulk gains the Heat Charge or not, he still removes the Poison effect.\n\nBlocking has a 52% chance to convert an Energy Attacks into Heat Charges.\n\nThis is only triggered by attacks that are Energy Damage at the base. This will not trigger in a Red Hulk mirror match as Red Hulk’s base attacks are Physical. This will, however, work against Special Attacks that deal base Energy Damage, such as Iron Man’s beams.",
         "abilities": [
             "poisonimmunity",
-            "physicalresist"
+            "physicalresist",
+            "incinerate"
         ]
     },
     "attack": {},
@@ -30,11 +31,20 @@
             "damagetypes": [
                 "physical"
             ],
-            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 92% of his Attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
+            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 92% of his Attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active.",
+            "abilities": [
+                "incinerate"
+            ]
         },
         "3": {
             "name": "Necessary Measures",
-            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 98% of his Attack as Energy Damage over 8 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
+            "description": "Red Hulk expends one Heat Charge to Incinerate his opponent, dealing 98% of his Attack as Energy Damage over 8 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active.",
+            "abilities": [
+                "incinerate"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
         }
     },
     "author": {

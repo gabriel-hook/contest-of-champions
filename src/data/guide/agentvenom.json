@@ -11,7 +11,11 @@
     },
     "gameplay": {
         "description": "Flash's intense military background, coupled with the alien symbiotic enhancement, grants him a 73% chance to shrug off any Debuff.",
-        "note": "The Venom Symbiote works with Flash's training to reduce enemy Evasion chance by 28%."
+        "note": "The Venom Symbiote works with Flash's training to reduce enemy Evasion chance by 28%.",
+        "abilities": [
+            "bleed",
+            "incinerate"
+        ]
     },
     "specials": {
         "1": {
@@ -37,7 +41,7 @@
             ],
             "abilities": [
                 "bleed",
-                "shock"
+                "incinerate"
             ]
         },
         "3": {
