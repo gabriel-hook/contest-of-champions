@@ -1,0 +1,62 @@
+{
+    "description": "The King of the reclusive but technologically-advanced African nation Wakanda, King T’Challa’s birthright is not only to rule but to don the mantle of the Black Panther, a powerful warrior and symbol to his people. T’Challa will aggressively defend his country and citizens against any threat, no matter how menacing.",
+    "youtube": "DeDq0ITD4iU",
+    "signature": {
+        "name": "Panther Habit",
+        "description": "Black Panther begins the fight with his Reflective state active. Additionally, Black Panther's Armor passively has a 15-39.1% chance to absorb heavy attack impacts by consuming 1 Armor Up effect.",
+        "abilities": [
+            "armorup"
+        ]
+    },
+    "specials": {
+        "1": {
+            "name": "King's Strength",
+            "description": "The King of Wakanda proves his might to all that might disbelieve his strength.",
+            "note": "100% chance to inflict Bleed, dealing 80% of your Attack as direct damage over 4 seconds.",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "2": {
+            "description": "Calling upon the spirits of his ancestors grants strength for swift and powerful blows.",
+            "name": "Power of Ancestors",
+            "note": "Damage increases by up to 90% based on lost Health.",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
+        },
+        "3": {
+            "damagetypes": [
+                "physical"
+            ],
+            "note": "75% chance to Stun for 3.25 seconds.",
+            "description": "Pinpoint strikes weaken his foes, then T'Challa strikes hard to bring down the enemy of Wakanda.",
+            "abilities": [
+                "stun"
+            ],
+            "name": "Wakandan Assault"
+        }
+    },
+    "author": {
+        "type": "spotlight",
+        "profile": "661275-Black-Panther-(Civil-War)-Champion-Spotlight",
+        "name": "Kabam"
+    },
+    "gameplay": {
+        "abilities": [
+            "bleed",
+            "stun",
+            "armorup"
+        ],
+        "description": "When Attacked\n\n60% chance to Armor Up, reducing damage from attacks by 8.75% for 6.5 seconds.\n Each time Black Panther gains an Armor Up effect he has a 6.5% chance to enter a Reflective state for 5 seconds, storing 90% of the damage taken. While in the Reflective state, his suit cannot trigger Armor Up.\n For every 300 damage stored, Black Panther gains a Reflect charge. When successfully hitting the opponent, Black Panther consumes all charges to deal the equivalent damage back to the opponent. Charges lasts for 7 seconds.\n\nWhen Stunned\n Black Panther’s Vibranium Armor consumes an Armor Up effect to reflect physical Stun effects back to enemies. 100% chance to Stun opponents for 2 seconds."
+    }
+}

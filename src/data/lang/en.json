@@ -95,9 +95,10 @@
     "champion-unstoppablecolossus-shortname": "Unst. Colossus",
 
     "effect-attack-name": "Attack",
-    "effect-stun-name": "Stun",
     "effect-critrate-name": "Critical Rate",
     "effect-critdamage-name": "Critical Damage",
+    "effect-bleed-name": "Bleed",
+    "effect-stun-name": "Stun",
     "effect-powergain-name": "Power Gain",
     "effect-powersteal-name": "Power Steal",
     "effect-perfectblock-name": "Perfect Block",
@@ -118,9 +119,10 @@
     "effect-thunderbolts-shortname": "Thunderbolts",
 
     "effect-attack-description": "Increases damage on all attacks.",
-    "effect-stun-description": "Chance to Stun on special attacks.",
     "effect-critrate-description": "Increases the chance for Critical hit.",
     "effect-critdamage-description": "Increases damage multiplier for Critical hits.",
+    "effect-bleed-description": "Increases bleed damage.",
+    "effect-stun-description": "Chance to Stun on special attacks.",
     "effect-powergain-description": "Gain additional Power (used to trigger a special) whenever Power is gained.",
     "effect-powersteal-description": "Gain Power (used to trigger a special) when attacking.",
     "effect-perfectblock-description": "Increased chance to Perfect Block for 0 damage.",
