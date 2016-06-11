@@ -31,7 +31,7 @@
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
     "babel-core": "^6.5.1",
-    "babel-eslint": "^4.1.8",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.2",
     "babel-plugin-mjsx": "^4.1.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.1.3",
@@ -63,7 +63,7 @@
     "karma": "^0.13.16",
     "karma-chai": "^0.1.0",
     "karma-chai-plugins": "^0.7.0",
-    "karma-cli": "^0.1.2",
+    "karma-cli": "^1.0.0",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.0.4",
     "karma-phantomjs-launcher": "^1.0.0",
