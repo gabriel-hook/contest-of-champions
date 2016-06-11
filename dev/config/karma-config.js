@@ -8,7 +8,7 @@ export default function(config) {
         files: [
             { pattern: './node_modules/babel-polyfill/dist/polyfill.js', watched: false, included: true, served: true },
             { pattern: './src/images/**/*', watched: false, included: false, served: true },
-            './test/**/*.js*',
+            config.file || './test/**/*.js*',
         ],
         proxies: {
             '/images/': '/base/src/images/',
