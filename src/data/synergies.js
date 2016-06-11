@@ -144,11 +144,11 @@ const synergies = [
 
     { fromId: 'hulkbuster', fromStars: 2, toId: 'hulk', effectId: 'critdamage', effectAmount: 15 },
     { fromId: 'hulkbuster', fromStars: 3, toId: 'hulk', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'hulkbuster', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'hulkbuster', fromStars: 3, toId: 'superiorironman', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'hulkbuster', fromStars: 3, toId: 'ironman', effectId: 'health', effectAmount: 5 },
+    { fromId: 'hulkbuster', fromStars: 3, toId: 'superiorironman', effectId: 'health', effectAmount: 5 },
     { fromId: 'hulkbuster', fromStars: 4, toId: 'hulk', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'hulkbuster', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 6 },
-    { fromId: 'hulkbuster', fromStars: 4, toId: 'superiorironman', effectId: 'perfectblock', effectAmount: 6 },
+    { fromId: 'hulkbuster', fromStars: 4, toId: 'ironman', effectId: 'health', effectAmount: 6 },
+    { fromId: 'hulkbuster', fromStars: 4, toId: 'superiorironman', effectId: 'health', effectAmount: 6 },
 
     { fromId: 'rocket', fromStars: 2, toId: 'starlord', effectId: 'armor', effectAmount: 4 },
     { fromId: 'rocket', fromStars: 2, toId: 'gamora', effectId: 'perfectblock', effectAmount: 3 },
@@ -386,6 +386,31 @@ const synergies = [
     { fromId: 'elektra', fromStars: 4, toId: 'daredevil', effectId: 'powergain', effectAmount: 5 },
     { fromId: 'elektra', fromStars: 4, toId: 'deadpool', effectId: 'perfectblock', effectAmount: 5 },
     { fromId: 'elektra', fromStars: 4, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 25 },
+
+    { fromId: 'falcon', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'falcon', fromStars: 3, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'falcon', fromStars: 3, toId: 'warmachine', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 3, toId: 'blackwidow', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 3, toId: 'vision', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 3, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 3, toId: 'antman', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'falcon', fromStars: 3, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 5 },
+    { fromId: 'falcon', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 4, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 4, toId: 'warmachine', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 4, toId: 'blackwidow', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 4, toId: 'vision', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 4, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 4, toId: 'antman', effectId: 'perfectblock', effectAmount: 6 },
+    { fromId: 'falcon', fromStars: 4, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 6 },
+    { fromId: 'falcon', fromStars: 5, toId: 'captainamerica', effectId: 'armor', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 5, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 7 },
+    { fromId: 'falcon', fromStars: 5, toId: 'warmachine', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 5, toId: 'blackwidow', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 5, toId: 'vision', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 5, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 8 },
+    { fromId: 'falcon', fromStars: 5, toId: 'antman', effectId: 'perfectblock', effectAmount: 6 },
+    { fromId: 'falcon', fromStars: 5, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 6 },
 
     { fromId: 'hawkeye', fromStars: 2, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 3 },
     { fromId: 'hawkeye', fromStars: 3, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 4 },
@@ -672,7 +697,7 @@ const synergies = [
 
 function synergiesFromChampions(champions) {
     const ids = {};
-    champions.forEach((champion) => ids[ champion.attr.uid ] = true);
+    champions.forEach((champion) => (ids[ champion.attr.uid ] = true));
     return champions
         .map((champion) => synergies.filter((synergy) => {
             const { fromId, fromStars, toId } = synergy.attr;
