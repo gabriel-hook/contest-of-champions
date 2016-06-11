@@ -13,7 +13,7 @@ const LanguageEditMenu = {
         const { values } = getLanguage(langId);
         const options = [];
         options.push(
-            <MenuHeader title={ `language` } />
+            <MenuHeader title={ 'language' } />
         );
         const filename = `${ langId }.json`;
         options.push(
@@ -30,7 +30,7 @@ const LanguageEditMenu = {
             />
         );
         return (
-            <div m="LanguageEditMenu" key={ `language-menu` }>
+            <div m="LanguageEditMenu" key={ 'language-menu' }>
                 { options }
             </div>
         );

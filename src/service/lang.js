@@ -101,11 +101,11 @@ function getLanguage(id) {
             ...TYPES.concat('unknown').map((uid) => `type-${ uid }-name`),
             ...EFFECTS.map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ]),
             ...ABILITIES.map((uid) => `ability-${ uid }`),
-        ]).forEach((id) => defaultFields[ id ] = true);
+        ]).forEach((id) => (defaultFields[ id ] = true));
         const values = {};
         Object.keys(current)
             .filter((id) => current[ id ] && (defaults[ id ] || id.endsWith('-shortname')))
-            .forEach((id) => values[ id ] = current[ id ]);
+            .forEach((id) => (values[ id ] = current[ id ]));
         store[ id ] = language = {
             defaultFields,
             values,

@@ -355,15 +355,18 @@ export default function({
         if (dragged !== null) {
             if (moved < 10) {
                 switch (selectType) {
-                case 'add':
-                    addSelected(dragged.node);
-                    break;
-                case 'toggle':
-                    toggleSelected(dragged.node);
-                    break;
-                case 'replace':
-                    replaceSelected(dragged.node);
-                    break;
+                    case 'add': {
+                        addSelected(dragged.node);
+                        break;
+                    }
+                    case 'toggle': {
+                        toggleSelected(dragged.node);
+                        break;
+                    }
+                    case 'replace': {
+                        replaceSelected(dragged.node);
+                        break;
+                    }
                 }
                 updateNodesSelected();
                 edgeSelected = null;
@@ -500,17 +503,21 @@ export default function({
                 state = 'hover';
         }
         switch (state) {
-        case 'selecting':
-            canvas.className = 'selecting';
-            break;
-        case 'dragging':
-            canvas.className = 'dragging';
-            break;
-        case 'hover':
-            canvas.className = 'hover';
-            break;
-        default:
-            canvas.className = '';
+            case 'selecting': {
+                canvas.className = 'selecting';
+                break;
+            }
+            case 'dragging': {
+                canvas.className = 'dragging';
+                break;
+            }
+            case 'hover': {
+                canvas.className = 'hover';
+                break;
+            }
+            default: {
+                canvas.className = '';
+            }
         }
     });
 

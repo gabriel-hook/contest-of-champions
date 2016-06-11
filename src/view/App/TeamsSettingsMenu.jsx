@@ -81,7 +81,7 @@ const TeamsSettingsMenu = {
             );
         });
         return (
-            <div m="TeamsSettingsMenu" key={ `teams-settings-menu` }>
+            <div m="TeamsSettingsMenu" key={ 'teams-settings-menu' }>
                 { options }
             </div>
         );

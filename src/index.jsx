@@ -159,7 +159,7 @@ router.on('/roster/?', () => {
         icon: 'user-plus',
         href: `/roster/add/${ app.lastAddStars || 2 }`,
     };
-    app.route = `/roster`;
+    app.route = '/roster';
     app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
@@ -251,7 +251,7 @@ router.on('/teams/settings/?', () => {
         icon: 'share',
         href: '/teams',
     };
-    app.route = `/teams/settings`;
+    app.route = '/teams/settings';
     app.hotkeys = [
         {
             'which': 'B',
@@ -292,7 +292,7 @@ router.on('/teams/edit/?', () => {
         icon: 'reply',
         href: '/teams',
     };
-    app.route = `/teams/edit`;
+    app.route = '/teams/edit';
     analytics.pageView();
     requestRedraw();
 });
@@ -319,7 +319,7 @@ router.on('/teams/?', () => {
         icon: 'sliders',
         href: '/teams/settings',
     };
-    app.route = `/teams`;
+    app.route = '/teams';
     app.hotkeys = [
         {
             'which': 'B',
@@ -337,7 +337,7 @@ router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ pa
 
 router.on('/synergy/effect/:effect/?', (effect) => {
     if(EFFECTS.indexOf(effect) === -1) {
-        router.setRoute(`/synergy`);
+        router.setRoute('/synergy');
         return;
     }
 

@@ -55,7 +55,7 @@ const MenuOption = {
                 title={ lang.get(info) || '' }
                 onclick={ onclick }
                 { ...link }
-                disabled={ !Boolean(onclick || link) }
+                disabled={ !(onclick || link) }
             >
                 { (progress || progress === 0) && (
                     <div

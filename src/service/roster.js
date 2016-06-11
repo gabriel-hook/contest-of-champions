@@ -129,7 +129,7 @@ function hash() {
 function save() {
     cache = {};
     const byId = {};
-    roster.forEach((champion) => byId[ champion.id ] = champion);
+    roster.forEach((champion) => (byId[ champion.id ] = champion));
     roster = [];
     for(const id in byId) {
         roster.push(byId[ id ]);
@@ -231,7 +231,7 @@ function fromCSV(csv, filename = 'champions.csv') {
 }
 
 function all() {
-    const key = `all`;
+    const key = 'all';
     let all = cache[ key ];
     if(!all) {
         all = cache[ key ] = [
@@ -263,7 +263,7 @@ function available(stars) {
     let available = cache[ key ];
     if(available === undefined) {
         const has = {};
-        roster.forEach((champion) => has[ champion.id ] = true);
+        roster.forEach((champion) => (has[ champion.id ] = true));
         available = cache[ key ] = champions
             .filter((champion) => stars === champion.attr.stars && !has[ champion.id ] && !UNRELEASED_CHAMPIONS[ champion.attr.uid ])
             .map((champion) => new Champion({

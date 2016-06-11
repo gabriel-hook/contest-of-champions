@@ -16,7 +16,7 @@ function buildArena({
     const championMap = {};
     const synergyMap = {};
     const typeWeights = { 1: 1 };
-    [ 2, 3, 4, 5 ].forEach((count) => typeWeights[ count ] = weights[ `duplicates-${ count }` ]);
+    [ 2, 3, 4, 5 ].forEach((count) => (typeWeights[ count ] = weights[ `duplicates-${ count }` ]));
 
     const WEIGHT_BASE = weights[ 'base' ] || 0;
 

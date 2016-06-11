@@ -73,6 +73,7 @@
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
     "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.7",
     "sass-loader": "^3.1.1",
     "simple-hot-loader": "git://github.com/WinstonFassett/simple-hot-loader",
     "style-loader": "^0.13.0",

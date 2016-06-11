@@ -33,7 +33,7 @@ const GuideMenu = {
             ));
         });
         return (
-            <div m="GuideMenu" key={ `guide-menu` }>
+            <div m="GuideMenu" key={ 'guide-menu' }>
                 { options }
             </div>
         );

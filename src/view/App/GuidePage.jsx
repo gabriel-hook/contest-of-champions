@@ -89,27 +89,31 @@ const GuideAuthor = {
         let icon;
         if (type) {
             switch(type) {
-            case 'reddit':
-                icon = 'reddit-alien';
-                if(profile)
-                    href = `http://reddit.com/u/${ profile }`;
-                break;
-            case 'kabam':
-                icon = 'bomb';
-                if(profile)
-                    href = `http://community.kabam.com/forums/member.php?${ profile }`;
-                break;
-            case 'spotlight':
-                byline = 'spotlight by';
-                icon = 'bomb';
-                if(profile)
-                    href = `http://community.kabam.com/forums/showthread.php?${ profile }`;
-                break;
-            case 'email':
-                icon = 'envelope';
-                if(profile)
-                    href = `mailto:${ profile }`;
-                break;
+                case 'reddit': {
+                    icon = 'reddit-alien';
+                    if(profile)
+                        href = `http://reddit.com/u/${ profile }`;
+                    break;
+                }
+                case 'kabam': {
+                    icon = 'bomb';
+                    if(profile)
+                        href = `http://community.kabam.com/forums/member.php?${ profile }`;
+                    break;
+                }
+                case 'spotlight': {
+                    byline = 'spotlight by';
+                    icon = 'bomb';
+                    if(profile)
+                        href = `http://community.kabam.com/forums/showthread.php?${ profile }`;
+                    break;
+                }
+                case 'email': {
+                    icon = 'envelope';
+                    if(profile)
+                        href = `mailto:${ profile }`;
+                    break;
+                }
             }
         }
 
@@ -197,7 +201,7 @@ const GuidePage = {
                     if(guide.specials[ index ]) {
                         details.push(
                             <ChampionSection
-                                title={ `${ lang.get(`special`) } ${ index }` }
+                                title={ `${ lang.get('special') } ${ index }` }
                                 rating={ guide.specials[ index ].rating }
                                 name={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }

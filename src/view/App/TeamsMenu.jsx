@@ -195,7 +195,7 @@ const TeamsMenu = {
             } />
         );
         return (
-            <div m="TeamsMenu" key={ `teams-menu` }>
+            <div m="TeamsMenu" key={ 'teams-menu' }>
                 { options }
             </div>
         );

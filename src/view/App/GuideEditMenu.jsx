@@ -62,7 +62,7 @@ const GuideEditMenu = {
             />
         );
         return (
-            <div m="GuideEditMenu" key={ `guide-edit-menu` }>
+            <div m="GuideEditMenu" key={ 'guide-edit-menu' }>
                 { options }
             </div>
         );

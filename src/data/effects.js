@@ -57,7 +57,7 @@ function effectImage(uid, append = 'black') {
 }
 
 const effectBases = {};
-effects.forEach(({ attr }) => effectBases[ attr.uid ] = attr.base);
+effects.forEach(({ attr }) => (effectBases[ attr.uid ] = attr.base));
 function effectBase(uid) {
     return effectBases[ uid ];
 }

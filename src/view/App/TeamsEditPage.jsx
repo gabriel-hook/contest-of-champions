@@ -29,7 +29,7 @@ function applyTeams(updatedTeams, doSave) {
     updatedTeams.forEach((team) => {
         result.counts.teams++;
         result.counts.synergies += team.synergies.length;
-        team.champions.forEach((champion) => inTeam[ champion.id ] = true);
+        team.champions.forEach((champion) => (inTeam[ champion.id ] = true));
     });
     if(teams.type === 'arena') {
         roster
@@ -282,7 +282,7 @@ const TeamsEditPage = {
                     ) && ctrl.apply }
                 />
             );
-            champions.forEach((champion) => inTeam[ champion.id ] = true);
+            champions.forEach((champion) => (inTeam[ champion.id ] = true));
         });
         const extras = roster
             .filter((champion) => !champion.attr.role)
@@ -298,7 +298,7 @@ const TeamsEditPage = {
             }
             createElements.push(
                 <ChampionTeamSelector
-                    key={ `team-create` }
+                    key={ 'team-create' }
                     team={{
                         champions: create.champions,
                         synergies: create.synergies,

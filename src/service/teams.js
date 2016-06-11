@@ -270,16 +270,18 @@ function buildTeam() {
         worker = new Worker();
         worker.onmessage = (event) => {
             switch(event.data.type) {
-            case 'result':
-                teams.progress = 1;
-                setTimeout(() => resolve(event.data.data), 50);
-                requestRedraw();
-                break;
-            case 'progress':
-                const progress = event.data.data;
-                teams.progress = progress.current / progress.max;
-                requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
-                break;
+                case 'result': {
+                    teams.progress = 1;
+                    setTimeout(() => resolve(event.data.data), 50);
+                    requestRedraw();
+                    break;
+                }
+                case 'progress': {
+                    const progress = event.data.data;
+                    teams.progress = progress.current / progress.max;
+                    requestRedraw(teams.progress > 0 && teams.progress < 1? 5: 0);
+                    break;
+                }
             }
         };
         worker.postMessage({
@@ -336,7 +338,7 @@ function buildTeam() {
         saveTeam();
         teams.building = false;
         requestRedraw();
-        return new Promise((resolve) => progressResetTimeout = setTimeout(resolve, 250));
+        return new Promise((resolve) => (progressResetTimeout = setTimeout(resolve, 250)));
     })
     .then(() => {
         teams.progress = 0;

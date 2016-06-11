@@ -17,10 +17,10 @@ function editGuide(uid, initialSelectors, initialKey, value) {
 
     const keys = initialKey.split('.');
     const selectors = (keys.length > 1)?
-        [
-            ...initialSelectors,
-            ...keys.filter((value, index) => index < keys.length - 1),
-        ]:
+    [
+        ...initialSelectors,
+        ...keys.filter((value, index) => index < keys.length - 1),
+    ]:
         initialSelectors;
     const key = keys[ keys.length - 1 ];
 
@@ -166,7 +166,7 @@ const GuideEditPage = {
             const special = guide && guide.specials && guide.specials[ index ];
             details.push(
                 <ChampionSection
-                    title={ `${ lang.get(`special`) } ${ index }` }
+                    title={ `${ lang.get('special') } ${ index }` }
                     rating={ special && special.rating || true }
                     name={ special && special.name || true }
                     description={ special && special.description || true }
