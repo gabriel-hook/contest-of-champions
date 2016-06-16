@@ -75,9 +75,11 @@ const synergies = [
     { fromId: 'ronan', fromStars: 4, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 25 },
     { fromId: 'ronan', fromStars: 4, toId: 'ironman', effectId: 'critrate', effectAmount: 7 },
     { fromId: 'ronan', fromStars: 4, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
+    { fromId: 'ronan', fromStars: 4, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
     { fromId: 'ronan', fromStars: 5, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 25 },
     { fromId: 'ronan', fromStars: 5, toId: 'ironman', effectId: 'critrate', effectAmount: 7 },
     { fromId: 'ronan', fromStars: 5, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
+    { fromId: 'ronan', fromStars: 5, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
 
     { fromId: 'spidermanblack', fromStars: 3, toId: 'storm', effectId: 'armor', effectAmount: 5 },
     { fromId: 'spidermanblack', fromStars: 3, toId: 'electro', effectId: 'critrate', effectAmount: 6 },
