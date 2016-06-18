@@ -57,6 +57,7 @@ const GuideSynergy ={
                                 src={ `images/champions/portrait_${ championId }.png` }
                                 type={ typeId }
                                 icon="user"
+                                before
                             />
                             { stars }★
                             { name }
@@ -84,7 +85,7 @@ const GuideSynergy ={
 
 const GuideAuthor = {
     view(ctrl, { name, type, profile }) {
-        let byline = 'by';
+        let byline = 'profile-by';
         let href;
         let icon;
         if (type) {
@@ -102,7 +103,7 @@ const GuideAuthor = {
                     break;
                 }
                 case 'spotlight': {
-                    byline = 'spotlight by';
+                    byline = 'profile-spotlight-by';
                     icon = 'bomb';
                     if(profile)
                         href = `http://community.kabam.com/forums/showthread.php?${ profile }`;
@@ -119,7 +120,7 @@ const GuideAuthor = {
 
         return (
             <div m="GuideAuthor" class="guide-author">
-                { byline }
+                { `${ lang.get(byline) } ` }
                 <a href={ href } target="_blank">
                     { icon && (
                         <Icon icon={ icon } />

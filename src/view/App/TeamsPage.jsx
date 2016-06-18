@@ -47,6 +47,7 @@ function results(type, size) {
                             src={ roleImage(type, 'white') }
                             alt={ roleImage(type, 'black') }
                             icon="square-o"
+                            before
                         />
                     )}
                     value={ `${ lang.get(`role-${ type }`) }${ message }` }

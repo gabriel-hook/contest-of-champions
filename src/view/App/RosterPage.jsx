@@ -28,11 +28,14 @@ const RosterPage = {
             <div m="RosterPage" class="roster">
                 <Message
                     icon={(
-                        <Icon icon={
-                            (champions.length > 1)? 'users':
-                            (champions.length)? 'user':
-                            'user-times'
-                        } />
+                        <Icon
+                            icon={
+                                (champions.length > 1)? 'users':
+                                (champions.length)? 'user':
+                                'user-times'
+                            }
+                            before
+                        />
                     )}
                     value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
                 />

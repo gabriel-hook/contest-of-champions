@@ -1,4 +1,5 @@
 import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
+import { roleImage } from '../../data/champions';
 import {
     ROLE_ARENA,
     ROLE_QUEST,
@@ -69,6 +70,15 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'arena' }
+                icon={(
+                    <ImageIcon
+                        src={ roleImage(ROLE_ARENA, 'white') }
+                        alt={ roleImage(ROLE_ARENA, 'black') }
+                        hoverSrc={ roleImage(ROLE_ARENA, 'black') }
+                        hoverAlt={ roleImage(ROLE_ARENA, 'white') }
+                        before
+                    />
+                )}
                 selected={ teams.type === ROLE_ARENA }
                 onclick={ () => {
                     teams.type = ROLE_ARENA;
@@ -82,6 +92,15 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ ROLE_QUEST }
+                icon={(
+                    <ImageIcon
+                        src={ roleImage(ROLE_QUEST, 'white') }
+                        alt={ roleImage(ROLE_QUEST, 'black') }
+                        hoverSrc={ roleImage(ROLE_QUEST, 'black') }
+                        hoverAlt={ roleImage(ROLE_QUEST, 'white') }
+                        before
+                    />
+                )}
                 selected={ teams.type === ROLE_QUEST }
                 options={(
                     <MenuOptionGroup options={
@@ -105,6 +124,15 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'alliance-war' }
+                icon={(
+                    <ImageIcon
+                        src={ roleImage(ROLE_ALLIANCE_WAR_ATTACK, 'white') }
+                        alt={ roleImage(ROLE_ALLIANCE_WAR_ATTACK, 'black') }
+                        hoverSrc={ roleImage(ROLE_ALLIANCE_WAR_ATTACK, 'black') }
+                        hoverAlt={ roleImage(ROLE_ALLIANCE_WAR_ATTACK, 'white') }
+                        before
+                    />
+                )}
                 selected={ teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE }
                 options={
                 (
@@ -142,6 +170,15 @@ const TeamsMenu = {
         options.push(
             <MenuOption
                 title={ 'alliance-quest' }
+                icon={(
+                    <ImageIcon
+                        src={ roleImage(ROLE_ALLIANCE_QUEST, 'white') }
+                        alt={ roleImage(ROLE_ALLIANCE_QUEST, 'black') }
+                        hoverSrc={ roleImage(ROLE_ALLIANCE_QUEST, 'black') }
+                        hoverAlt={ roleImage(ROLE_ALLIANCE_QUEST, 'white') }
+                        before
+                    />
+                )}
                 selected={ teams.type === ROLE_ALLIANCE_QUEST }
                 onclick={ () => {
                     teams.type = ROLE_ALLIANCE_QUEST;
