@@ -7,7 +7,7 @@ import {
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from '../../data/model/Champion';
-import teams, { save, saveTeam, loadTeam, buildTeam } from '../../service/teams';
+import teams, { save, saveTeam, loadTeam, buildTeam, lockTeams } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -56,6 +56,9 @@ const TeamsMenu = {
                 )}
                 onclick={ () => {
                     teams.result[ `${ teams.type }-${ teams.size }` ] = null;
+                    if(teams.type === ROLE_ARENA) {
+                        lockTeams();
+                    }
                     saveTeam();
                     save();
                     requestRedraw();

@@ -14,7 +14,8 @@ import m from 'mithril';
 
 const ChampionTeamSelector = {
     view(ctrl, {
-        team, swap, onclick, onapply, onremove, onsplit, create, onup, ondown, showBadges,
+        team, swap, create, locked, onclick, onapply, onremove,
+        onsplit, onlock, onup, ondown, showBadges,
         draggable, droppable, ondragstart, ondragend, ondragover, ondragout,
     }) {
         const { source, target } = swap;
@@ -132,6 +133,12 @@ const ChampionTeamSelector = {
                     </div>
                     { !create && (
                         <div class="team-move">
+                            <div
+                                class={ classNames('team-move-direction') }
+                                onclick={ onlock }
+                            >
+                                <Icon icon={ locked? 'lock': 'unlock' } />
+                            </div>
                             <div
                                 class={ classNames('team-move-direction', {
                                     'team-move-direction--disabled': !onup,

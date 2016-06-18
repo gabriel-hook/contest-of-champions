@@ -1,6 +1,7 @@
 import './TeamsEditPage.scss';
+import { ROLE_ARENA } from '../../data/model/Champion';
 import { roleImage } from '../../data/champions';
-import teams, { synergiesFromChampions, saveTeam } from '../../service/teams';
+import teams, { synergiesFromChampions, saveTeam, lockTeams, lockedTeams } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
@@ -90,6 +91,7 @@ const TeamsEditPage = {
         this.stars = {};
         this.types = {};
         this.last = -1;
+        this.locked = [];
         this.type = null;
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
@@ -117,6 +119,7 @@ const TeamsEditPage = {
                 this.size = teams.size;
                 this.last = teams.last;
                 this.type = teams.type;
+                this.locked = (this.type === ROLE_ARENA)? lockedTeams: [];
                 this.init = true;
             }
         };
@@ -152,7 +155,7 @@ const TeamsEditPage = {
 
     view(ctrl) {
         ctrl.reset();
-        const { swap, create, teams } = ctrl;
+        const { swap, create, teams, locked } = ctrl;
         const { source, target } = swap;
         const targetId = target && target.champion && target.champion.id;
         const teamElements = [];
@@ -193,6 +196,11 @@ const TeamsEditPage = {
                         applyTeams(teams);
                         requestRedraw();
                     }) }
+                    locked={ locked[ teamIndex ] }
+                    onlock={ () => {
+                        locked[ teamIndex ] = (locked[ teamIndex ])? null: champions;
+                        lockTeams(locked);
+                    } }
                     draggable={ true }
                     droppable={ true }
                     ondragstart={(index) => {

@@ -257,6 +257,16 @@ function synergiesFromChampions(team) {
     });
 }
 
+let lockedTeams = [];
+let lockedTeamChampions = {};
+function lockTeams(teams = []) {
+    lockedTeams = teams.filter((team) => Boolean(team));
+    lockedTeamChampions = {};
+    lockedTeams.forEach((champions) => champions.forEach(({ id }) => {
+        lockedTeamChampions[ id ] = true;
+    }));
+}
+
 let progressResetTimeout;
 
 let worker;
@@ -282,6 +292,7 @@ function buildTeam() {
                 }
             }
         };
+
         worker.postMessage({
             type: 'build',
             data: {
@@ -294,8 +305,9 @@ function buildTeam() {
                         return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
                     })
                     .filter(
-                        teams.type !== ROLE_ARENA? ({ attr }) => !attr.role || attr.role === ROLE_ARENA || attr.role === teams.type:
-                        () => true
+                        teams.type !== ROLE_ARENA?
+                            ({ attr }) => !attr.role || attr.role === ROLE_ARENA || attr.role === teams.type:
+                            ({ id }) => !lockedTeamChampions[ id ]
                     )
                     .map((champion) => champion.attr),
                 size: teams.size,
@@ -314,19 +326,31 @@ function buildTeam() {
     .then((result) => {
         let teamsCount = 0;
         let synergiesCount = 0;
-        teams.result[ `${ teams.type }-${ teams.size }` ] = {
-            ...result,
-            teams: result.teams.map((team) => {
-                team.sort();
-                const champions = team.map(idToRosterChampion);
+        const teamsList = result.teams.map((team) => {
+            team.sort();
+            const champions = team.map(idToRosterChampion);
+            const synergies = synergiesFromChampions(champions);
+            teamsCount++;
+            synergiesCount += synergies.length;
+            return {
+                champions,
+                synergies,
+            };
+        });
+        if(teams.type === ROLE_ARENA) {
+            teamsList.unshift(...lockedTeams.map((champions) => {
                 const synergies = synergiesFromChampions(champions);
                 teamsCount++;
                 synergiesCount += synergies.length;
                 return {
                     champions,
-                    synergies,
+                    synergies: synergiesFromChampions(champions),
                 };
-            }),
+            }));
+        }
+        teams.result[ `${ teams.type }-${ teams.size }` ] = {
+            ...result,
+            teams: teamsList,
             counts: {
                 teams: teamsCount,
                 synergies: synergiesCount,
@@ -354,5 +378,5 @@ function buildTeam() {
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
-export { save, saveTeam, loadTeam, buildTeam, synergiesFromChampions };
+export { save, saveTeam, loadTeam, buildTeam, lockTeams, lockedTeams, synergiesFromChampions };
 export default teams;
