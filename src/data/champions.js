@@ -160,6 +160,7 @@ const champions = [
 
 	{ uid: 'agentvenom', stars: 3, typeId: 'skill' },
 	{ uid: 'agentvenom', stars: 4, typeId: 'skill' },
+	{ uid: 'agentvenom', stars: 5, typeId: 'skill' },
 
 	{ uid: 'blackpanther', stars: 1, typeId: 'skill' },
 	{ uid: 'blackpanther', stars: 2, typeId: 'skill' },

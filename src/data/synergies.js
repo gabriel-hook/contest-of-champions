@@ -335,6 +335,9 @@ const synergies = [
     { fromId: 'agentvenom', fromStars: 4, toId: 'spiderman', effectId: 'idol', effectAmount: 4 },
     { fromId: 'agentvenom', fromStars: 4, toId: 'venom', effectId: 'health', effectAmount: 6 },
     { fromId: 'agentvenom', fromStars: 4, toId: 'spidermanblack', effectId: 'health', effectAmount: 6 },
+    { fromId: 'agentvenom', fromStars: 5, toId: 'spiderman', effectId: 'idol', effectAmount: 4 },
+    { fromId: 'agentvenom', fromStars: 5, toId: 'venom', effectId: 'health', effectAmount: 6 },
+    { fromId: 'agentvenom', fromStars: 5, toId: 'spidermanblack', effectId: 'health', effectAmount: 6 },
 
     { fromId: 'blackpanther', fromStars: 2, toId: 'ironfist', effectId: 'critdamage', effectAmount: 15 },
     { fromId: 'blackpanther', fromStars: 3, toId: 'ironfist', effectId: 'critdamage', effectAmount: 20 },
