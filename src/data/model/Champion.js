@@ -173,7 +173,7 @@ class Champion extends Model {
             role,
         });
 
-        this.attr.stars = validStars(this.attr.stars | 0) || 1;
+        this.attr.stars = validStars(this.attr.stars | 0) || 0;
         this.attr.rank = validRank(this.attr.stars, this.attr.rank | 0) || 1;
         this.attr.level = validLevel(this.attr.stars, this.attr.rank, this.attr.level | 0) || 1;
         this.attr.awakened = validAwakened(this.attr.stars, this.attr.awakened | 0) || 0;

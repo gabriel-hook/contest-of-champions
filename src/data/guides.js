@@ -7,6 +7,7 @@ import daredevilnetflix from './guide/daredevilnetflix';
 import deadpoolxforce from './guide/deadpoolxforce';
 import drstrange from './guide/drstrange';
 import elektra from './guide/elektra';
+import falcon from './guide/falcon';
 import groot from './guide/groot';
 import guillotine from './guide/guillotine';
 import joefixit from './guide/joefixit';
@@ -29,7 +30,7 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 import x23 from './guide/x23';
 
-const SPOTLIGHT = 'blackpanthercivilwar';
+const SPOTLIGHT = 'falcon';
 
 const guides = {
     agentvenom,
@@ -41,6 +42,7 @@ const guides = {
     deadpoolxforce,
     drstrange,
     elektra,
+    falcon,
     groot,
     guillotine,
     joefixit,
