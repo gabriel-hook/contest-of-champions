@@ -39,7 +39,15 @@
 
     &.menu-option--group-6 {
         &>.menu-option {
-            width: 16.665%;
+            width: 16.25%;
+
+            &.menu-option:nth-child(2) {
+                width: 17.75%;
+            }
+
+            &.menu-option:nth-child(5) {
+                width: 17.75%;
+            }
         }
     }
 
