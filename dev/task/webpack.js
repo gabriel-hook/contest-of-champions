@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
+import opn from 'opn';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig, { extractStylesPlugin } from '../config/webpack-config.js';
@@ -56,7 +57,8 @@ gulp.task('develop', (callback) => {
             callback();
             throw new gutil.PluginError('webpack-dev-server', err);
         }
-        gutil.log('[webpack-dev-server]', `http://${ domain }:${ port }/index.html`);
+        gutil.log('[webpack-dev-server] 🌎', `http://${ domain }:${ port }/index.html`);
+        opn(`http://${domain}:${port}`);
     });
 });
 

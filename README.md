@@ -26,7 +26,7 @@ to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
   Run a webpack-dev-server and navigate to [localhost:8080](http://localhost:8080) test changes.
 
 ```
-  npm run develop
+  npm start
 ```
 
 ### Linting and Testing
