@@ -9,7 +9,6 @@ import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
 import dataSynergies from '../data/synergies';
-import { SPECIAL_EFFECTS } from '../data/effects';
 import roster from './roster';
 import router from './router';
 import { fromStorage, toStorage } from '../util/storage';
@@ -231,7 +230,7 @@ function idToRosterChampion(id) {
 }
 
 function synergiesFromChampions(team) {
-    const specials = {};
+    const groups = {};
     const champions = team.reduce((array, champion) => {
         if(champion) {
             return [
@@ -248,12 +247,11 @@ function synergiesFromChampions(team) {
         return Boolean(champions.find(({ attr }) => toId === attr.uid));
 
     }).filter(({ attr }) => {
-        if(SPECIAL_EFFECTS[ attr.effectId ]) {
-            const specialId = `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`;
-            if(specials[ specialId ]) {
+        if(attr.group) {
+            if(groups[ attr.group ]) {
                 return false;
             }
-            specials[ specialId ] = true;
+            groups[ attr.group ] = true;
         }
         return true;
     });

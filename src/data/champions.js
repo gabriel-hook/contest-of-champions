@@ -26,6 +26,7 @@ const champions = [
 	{ uid: 'drax', stars: 2, typeId: 'cosmic' },
 	{ uid: 'drax', stars: 3, typeId: 'cosmic' },
 	{ uid: 'drax', stars: 4, typeId: 'cosmic' },
+	{ uid: 'drax', stars: 5, typeId: 'cosmic' },
 
 	{ uid: 'gamora', stars: 1, typeId: 'cosmic' },
 	{ uid: 'gamora', stars: 2, typeId: 'cosmic' },
@@ -75,6 +76,7 @@ const champions = [
 
 	{ uid: 'ironpatriot', stars: 3, typeId: 'tech' },
 	{ uid: 'ironpatriot', stars: 4, typeId: 'tech' },
+	{ uid: 'ironpatriot', stars: 5, typeId: 'tech' },
 
 	{ uid: 'hulkbuster', stars: 2, typeId: 'tech' },
 	{ uid: 'hulkbuster', stars: 3, typeId: 'tech' },
@@ -134,6 +136,7 @@ const champions = [
 	{ uid: 'magneto', stars: 2, typeId: 'mutant' },
 	{ uid: 'magneto', stars: 3, typeId: 'mutant' },
 	{ uid: 'magneto', stars: 4, typeId: 'mutant' },
+	{ uid: 'magneto', stars: 5, typeId: 'mutant' },
 
 	{ uid: 'magnetomarvelnow', stars: 3, typeId: 'mutant' },
 	{ uid: 'magnetomarvelnow', stars: 4, typeId: 'mutant' },
@@ -195,6 +198,7 @@ const champions = [
 	{ uid: 'hawkeye', stars: 2, typeId: 'skill' },
 	{ uid: 'hawkeye', stars: 3, typeId: 'skill' },
 	{ uid: 'hawkeye', stars: 4, typeId: 'skill' },
+	{ uid: 'hawkeye', stars: 5, typeId: 'skill' },
 
 	{ uid: 'moonknight', stars: 3, typeId: 'skill' },
 	{ uid: 'moonknight', stars: 4, typeId: 'skill' },
@@ -219,6 +223,7 @@ const champions = [
 	{ uid: 'antman', stars: 2, typeId: 'science' },
 	{ uid: 'antman', stars: 3, typeId: 'science' },
 	{ uid: 'antman', stars: 4, typeId: 'science' },
+	{ uid: 'antman', stars: 5, typeId: 'science' },
 
 	{ uid: 'captainamerica', stars: 2, typeId: 'science' },
 	{ uid: 'captainamerica', stars: 3, typeId: 'science' },
@@ -287,6 +292,7 @@ const champions = [
 	{ uid: 'ironfist', stars: 2, typeId: 'mystic' },
 	{ uid: 'ironfist', stars: 3, typeId: 'mystic' },
 	{ uid: 'ironfist', stars: 4, typeId: 'mystic' },
+	{ uid: 'ironfist', stars: 5, typeId: 'mystic' },
 
 	{ uid: 'ironfistwhite', stars: 3, typeId: 'mystic' },
 	{ uid: 'ironfistwhite', stars: 4, typeId: 'mystic' },

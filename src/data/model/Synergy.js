@@ -7,6 +7,7 @@ class Synergy extends Model {
         toId = 'champion',
         effectId = 'effect',
         effectAmount = 0,
+        group = 0,
     }) {
         super({
             fromId,
@@ -14,6 +15,7 @@ class Synergy extends Model {
             toId,
             effectId,
             effectAmount,
+            group,
         });
     }
 }

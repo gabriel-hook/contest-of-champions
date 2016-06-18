@@ -1,6 +1,6 @@
 import Champion from '../../data/model/Champion';
 import synergies from '../../data/synergies';
-import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
+import { effectBase } from '../../data/effects';
 import { shuffle } from '../../util/array';
 
 function buildArena({
@@ -38,7 +38,7 @@ function buildArena({
                 .forEach(({ attr }) => {
                     synergyMap[ id ][ attr.toId ] = {
                         effectId: attr.effectId,
-                        special: SPECIAL_EFFECTS[ attr.effectId ] === true,
+                        group: attr.group,
                         value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
                     };
                 });
@@ -96,14 +96,14 @@ function buildArena({
             for(let i=0; i<team.length; i++) {
                 const champion = team[ i ];
                 //get my synergies
-                const specials = {};
+                const groups = {};
                 const synergies = synergyMap[ champion.id ];
                 for(let j=0; j<team.length; j++) {
                     const synergy = synergies[ team[ j ].uid ];
                     if(synergy) {
-                        if(synergy.special) {
-                            if(!specials[ synergy.effectId ]) {
-                                specials[ synergy.effectId ] = true;
+                        if(synergy.group) {
+                            if(!groups[ synergy.group ]) {
+                                groups[ synergy.group ] = true;
                                 synergyValue += synergy.value;
                             }
                         }

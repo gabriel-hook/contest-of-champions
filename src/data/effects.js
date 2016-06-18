@@ -1,11 +1,5 @@
 import Effect from './model/Effect';
 
-const SPECIAL_EFFECTS = {
-    'mutantagenda': true,
-    'heroesforhire': true,
-    'thunderbolts': true,
-};
-
 const effects = [
 
     { uid: 'attack', base: 5 },
@@ -65,5 +59,5 @@ function effectBase(uid) {
 const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
 
 export { effectImage, effectBase };
-export { uids, SPECIAL_EFFECTS };
+export { uids };
 export default effects;

@@ -1,6 +1,5 @@
 import CHAMPIONS from '../data/champions';
 import SYNERGIES from '../data/synergies';
-import { SPECIAL_EFFECTS } from '../data/effects';
 import router from '../service/router';
 import roster from '../service/roster';
 import Graph from './graph/Graph';
@@ -162,7 +161,7 @@ function getGraph(id, championFilter, synergyFilter, useRoster) {
                 return node;
             });
         synergies.forEach((synergy) => {
-            const { fromId, fromStars, toId, effectId, effectAmount } = synergy.attr;
+            const { fromId, fromStars, toId, effectId, effectAmount, group } = synergy.attr;
             const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
             const nodesTo = nodeMap[ toId ];
             if(nodeFrom && nodesTo) {
@@ -175,8 +174,8 @@ function getGraph(id, championFilter, synergyFilter, useRoster) {
                         nodeFrom,
                         nodeTo,
                         {
-                            id: (SPECIAL_EFFECTS[ effectId ])?
-                                `${ fromId }-${ fromStars }-${ effectId }`:
+                            id: (group)?
+                                `${ group }`:
                                 `${ fromId }-${ fromStars }-${ toId }-${ effectId }`,
                             effect: effectId,
                             amount: effectAmount,

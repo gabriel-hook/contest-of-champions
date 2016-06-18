@@ -1,7 +1,7 @@
 import Champion from '../../data/model/Champion';
 import dataSynergies from '../../data/synergies';
 import { uids as typeIds } from '../../data/types';
-import { effectBase, SPECIAL_EFFECTS } from '../../data/effects';
+import { effectBase } from '../../data/effects';
 import { combination } from '../../util/math';
 
 function buildQuest({
@@ -25,7 +25,7 @@ function buildQuest({
                 .filter(({ attr }) => attr.fromId === uid && attr.fromStars === stars )
                 .forEach(({ attr }) => (synergies[ attr.toId ] = {
                     id: attr.toId,
-                    special: SPECIAL_EFFECTS[ attr.effectId ] && `${ attr.fromId }-${ attr.fromStars }-${ attr.effectId }`,
+                    group: attr.group,
                     value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
                 }));
             return {
@@ -169,15 +169,15 @@ function addPartnerSynergies(oldSynergies, list, next) {
 }
 
 function getTeamValue(champions, synergies, types, typeWeights, base) {
-    const specials = {};
+    const groups = {};
     return types.reduce((value, typeAmount) => (typeAmount > 1)? value * typeWeights[ typeAmount ]: value, 1)
         * champions.reduce((value, champion) => value + champion.pi, 0)
         * synergies.reduce((value, synergy) => {
-            if(synergy.special) {
-                if(specials[ synergy.special ]) {
-                    return 0;
+            if(synergy.group) {
+                if(groups[ synergy.group ]) {
+                    return value;
                 }
-                specials[ synergy.special ] = true;
+                groups[ synergy.group ] = true;
             }
             return value + synergy.value;
         }, base);
