@@ -16,12 +16,29 @@
 
     .champion-field {
         @include styled-button(false);
+        position: relative;
         padding: 0;
         width: 500px;
         max-width: 90%;
-        overflow: hidden;
         margin: 0 auto 1em;
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+
+        .champion-field-role {
+            position: absolute;
+            left: -24px;
+
+            .image-icon {
+                height: 48px;
+                width: 48px;
+            }
+
+            .icon {
+                color: #600;
+                margin-left: 8px;
+                margin-top: 8px;
+                font-size: 2.5vmin;
+            }
+        }
 
         .champion-field-label {
             position: absolute;
@@ -80,6 +97,10 @@
                 @include champion-field-style;
                 -webkit-appearance: none;
             }
+        }
+
+        &.champion-field--neighbor {
+            margin-bottom: 2px;
         }
 
         @media print {

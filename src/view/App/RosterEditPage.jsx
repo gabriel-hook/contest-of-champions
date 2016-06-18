@@ -11,8 +11,10 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
+import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../Champion/ChampionHeader.jsx';
 import ChampionUpgrade from '../Champion/ChampionUpgrade.jsx';
+import { ROLE_ICONS, ROLE_IMAGEICONS } from '../Champion/ChampionPortrait.jsx';
 import classNames from 'classnames';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -73,6 +75,12 @@ const RosterPage = {
         const elements = [];
         if(champion) {
             const { rank, level, typeId, awakened, pi, role } = champion.attr;
+            const roleIcon = (ROLE_IMAGEICONS[ role ])? (
+                <ImageIcon
+                    src={ ROLE_IMAGEICONS[ role ] }
+                    icon={ ROLE_ICONS[ role ] }
+                />
+            ): null;
             const rangeMax = STAR_RANK_LEVEL[ stars ]
                 && STAR_RANK_LEVEL[ stars ].ranks || 1;
             const levelMax = STAR_RANK_LEVEL[ stars ]
@@ -87,7 +95,7 @@ const RosterPage = {
                 <ChampionUpgrade stars={ stars } rank={ rank } level={ level } typeId={ typeId } />
             );
             elements.push(
-                <label class="champion-field">
+                <label class="champion-field champion-field--neighbor">
                     <span class="champion-field-label">{ lang.get('rank') }</span>
                     <Select
                         value={ rank }
@@ -106,7 +114,7 @@ const RosterPage = {
                 </label>
             );
             elements.push(
-                <label class="champion-field">
+                <label class="champion-field champion-field--neighbor">
                     <span class="champion-field-label">{ lang.get('level') }</span>
                     <Select
                         value={ level }
@@ -165,6 +173,9 @@ const RosterPage = {
             elements.push(
                 <label class="champion-field">
                     <span class="champion-field-label">{ lang.get('role') }</span>
+                    <div class="champion-field-role">
+                        { roleIcon }
+                    </div>
                     <Select
                         value={ role }
                         values={[

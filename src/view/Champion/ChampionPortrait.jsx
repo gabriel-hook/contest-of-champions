@@ -153,3 +153,4 @@ const ChampionPortrait = {
 };
 
 export default ChampionPortrait;
+export { ROLE_IMAGEICONS, ROLE_ICONS };
