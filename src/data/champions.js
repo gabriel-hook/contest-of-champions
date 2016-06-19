@@ -7,6 +7,11 @@ import Champion, {
 } from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
+    'beast': true,
+    'gambit': true,
+    'loki': true,
+    'nightcrawler': true,
+    'wolverineweaponx': true,
     'redskull': true,
     'drstrangemarvelnow': true,
     'civilwarrior': true,
@@ -41,6 +46,10 @@ const champions = [
 	{ uid: 'kamalakhan', stars: 4, typeId: 'cosmic' },
 	{ uid: 'kamalakhan', stars: 5, typeId: 'cosmic' },
 
+	{ uid: 'loki', stars: 3, typeId: 'cosmic' },
+	{ uid: 'loki', stars: 4, typeId: 'cosmic' },
+	{ uid: 'loki', stars: 5, typeId: 'cosmic' },
+
 	{ uid: 'msmarvel', stars: 3, typeId: 'cosmic' },
 	{ uid: 'msmarvel', stars: 4, typeId: 'cosmic' },
 
@@ -68,6 +77,14 @@ const champions = [
 	{ uid: 'venompool', stars: 4, typeId: 'cosmic' },
 	{ uid: 'venompool', stars: 5, typeId: 'cosmic' },
 
+	{ uid: 'civilwarrior', stars: 3, typeId: 'tech' },
+	{ uid: 'civilwarrior', stars: 4, typeId: 'tech' },
+	{ uid: 'civilwarrior', stars: 5, typeId: 'tech' },
+
+	{ uid: 'hulkbuster', stars: 2, typeId: 'tech' },
+	{ uid: 'hulkbuster', stars: 3, typeId: 'tech' },
+	{ uid: 'hulkbuster', stars: 4, typeId: 'tech' },
+
 	{ uid: 'ironman', stars: 1, typeId: 'tech' },
 	{ uid: 'ironman', stars: 2, typeId: 'tech' },
 	{ uid: 'ironman', stars: 3, typeId: 'tech' },
@@ -77,10 +94,6 @@ const champions = [
 	{ uid: 'ironpatriot', stars: 3, typeId: 'tech' },
 	{ uid: 'ironpatriot', stars: 4, typeId: 'tech' },
 	{ uid: 'ironpatriot', stars: 5, typeId: 'tech' },
-
-	{ uid: 'hulkbuster', stars: 2, typeId: 'tech' },
-	{ uid: 'hulkbuster', stars: 3, typeId: 'tech' },
-	{ uid: 'hulkbuster', stars: 4, typeId: 'tech' },
 
 	{ uid: 'kang', stars: 4, typeId: 'tech' },
 
@@ -111,6 +124,10 @@ const champions = [
 	{ uid: 'warmachine', stars: 3, typeId: 'tech' },
 	{ uid: 'warmachine', stars: 4, typeId: 'tech' },
 
+	{ uid: 'beast', stars: 2, typeId: 'mutant' },
+	{ uid: 'beast', stars: 3, typeId: 'mutant' },
+	{ uid: 'beast', stars: 4, typeId: 'mutant' },
+
 	{ uid: 'colossus', stars: 1, typeId: 'mutant' },
 	{ uid: 'colossus', stars: 2, typeId: 'mutant' },
 	{ uid: 'colossus', stars: 3, typeId: 'mutant' },
@@ -133,6 +150,10 @@ const champions = [
 	{ uid: 'deadpoolxforce', stars: 3, typeId: 'mutant' },
 	{ uid: 'deadpoolxforce', stars: 4, typeId: 'mutant' },
 
+	{ uid: 'gambit', stars: 2, typeId: 'mutant' },
+	{ uid: 'gambit', stars: 3, typeId: 'mutant' },
+	{ uid: 'gambit', stars: 4, typeId: 'mutant' },
+
 	{ uid: 'magneto', stars: 2, typeId: 'mutant' },
 	{ uid: 'magneto', stars: 3, typeId: 'mutant' },
 	{ uid: 'magneto', stars: 4, typeId: 'mutant' },
@@ -140,6 +161,10 @@ const champions = [
 
 	{ uid: 'magnetomarvelnow', stars: 3, typeId: 'mutant' },
 	{ uid: 'magnetomarvelnow', stars: 4, typeId: 'mutant' },
+
+	{ uid: 'nightcrawler', stars: 2, typeId: 'mutant' },
+	{ uid: 'nightcrawler', stars: 3, typeId: 'mutant' },
+	{ uid: 'nightcrawler', stars: 4, typeId: 'mutant' },
 
 	{ uid: 'storm', stars: 2, typeId: 'mutant' },
 	{ uid: 'storm', stars: 3, typeId: 'mutant' },
@@ -154,6 +179,10 @@ const champions = [
 	{ uid: 'wolverineoldman', stars: 3, typeId: 'mutant' },
 	{ uid: 'wolverineoldman', stars: 4, typeId: 'mutant' },
 	{ uid: 'wolverineoldman', stars: 5, typeId: 'mutant' },
+
+	{ uid: 'wolverineweaponx', stars: 3, typeId: 'mutant' },
+	{ uid: 'wolverineweaponx', stars: 4, typeId: 'mutant' },
+	{ uid: 'wolverineweaponx', stars: 5, typeId: 'mutant' },
 
 	{ uid: 'x23', stars: 3, typeId: 'mutant' },
 	{ uid: 'x23', stars: 4, typeId: 'mutant' },
@@ -322,9 +351,6 @@ const champions = [
 	{ uid: 'unstoppablecolossus', stars: 2, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 3, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 4, typeId: 'mystic' },
-
-	{ uid: 'civilwarrior', stars: 4 },
-	{ uid: 'civilwarrior', stars: 5 },
 
 	{ uid: 'maestro', stars: 4 },
 	{ uid: 'maestro', stars: 5 },
