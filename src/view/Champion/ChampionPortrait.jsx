@@ -7,6 +7,7 @@ import {
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from '../../data/model/Champion';
+import { effectImage } from '../../data/effects';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
 import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
@@ -42,7 +43,7 @@ function addSVG(element, isInitialized) {
 
 const ChampionPortrait = {
     view(ctrl, {
-        champion, events, selected, neighbor, editing, showBadges = true,
+        champion, events, selected, neighbor, editing, effects, showBadges = true,
         onclick, draggable, droppable,
     }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.toJSON();
@@ -65,6 +66,23 @@ const ChampionPortrait = {
         let title = null;
         if(uid !== null) {
             title = [];
+            if(effects && effects.length) {
+                title.push(
+                    <div class={ classNames('title-field', 'title-field-effects') }>
+                        { effects.map(({ effectId, effectAmount }) => [ (
+                            <ImageIcon
+                                src={ effectImage(effectId, 'white') }
+                                alt={ effectImage(effectId, 'black') }
+                                hoverSrc={ effectImage(effectId, 'black') }
+                                hoverAlt={ effectImage(effectId, 'white') }
+                                after
+                            />
+                        ), (
+                            <span>{ effectAmount }%</span>
+                        ) ]) }
+                    </div>
+                );
+            }
             if(pi || champion.pi) {
                 title.push(
                     <div
@@ -100,7 +118,6 @@ const ChampionPortrait = {
                 icon="chevron-circle-up"
             />
         ): null;
-
         const roleIcon = ((showBadges === 'role' || showBadges === true) && ROLE_IMAGEICONS[ role ])? (
             <ImageIcon
                 src={ ROLE_IMAGEICONS[ role ] }

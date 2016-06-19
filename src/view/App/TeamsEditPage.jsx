@@ -401,45 +401,75 @@ const TeamsEditPage = {
             );
             create.champions.forEach((champion) => champion && (inTeam[ champion.id ] = true));
         }
-        extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => extraElements.push(
-            <ChampionPortrait
-                key={ `champion-${ champion.id }` }
-                champion={ champion }
-                showBadges={ 'upgrade' }
-                editing={ target && target.champion && target.champion.id === champion.id }
-                draggable={ true }
-                events={{
-                    ondragstart: () => {
-                        swap.source = null;
-                        swap.target = {
-                            champion,
-                        };
-                        swap.dragging = true;
-                        requestRedraw();
-                    },
-                    ondragend: () => {
-                        if(source && target) {
-                            ctrl.apply();
+        const currentSynergyMap = {};
+        swap.source && (swap.source.team && swap.source.team.synergies)
+            .forEach(({ attr: { toId, fromId, fromStars } }) => {
+                currentSynergyMap[ `${ toId }-${ fromId }-${ fromStars}` ] = true;
+            });
+        extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => {
+            let effects = null;
+            if(!swap.target && swap.source) {
+                const foundEffects = {};
+                const { team: { champions }, index } = swap.source;
+                const swapped = [
+                    ...champions,
+                ];
+                swapped[ index ] = champion;
+                effects = synergiesFromChampions(swapped)
+                    .filter(({ attr: { toId, fromId, fromStars } }) => {
+                        return !currentSynergyMap[ `${ toId }-${ fromId }-${ fromStars}` ];
+                    })
+                    .map(({ attr: { effectId, effectAmount } }) => ({ effectId, effectAmount }))
+                    .filter((effect) => {
+                        const { effectId, effectAmount } = effect;
+                        if(foundEffects[ effectId ]) {
+                            foundEffects[ effectId ].effectAmount += effectAmount;
+                            return false;
                         }
-                        swap.dragging = false;
-                        swap.source = null;
-                        swap.target = null;
-                    },
-                }}
-                onclick={() => {
-                    if(target && target.champion && target.champion.id === champion.id) {
-                        swap.target = null;
-                    }
-                    else {
-                        swap.target = {
-                            champion,
-                        };
-                    }
-                    calculateSynergies(swap);
-                    requestRedraw();
-                }}
-            />
-        ));
+                        foundEffects[ effectId ] = effect;
+                        return true;
+                    });
+            }
+            extraElements.push(
+                <ChampionPortrait
+                    key={ `champion-${ champion.id }` }
+                    champion={ champion }
+                    effects={effects}
+                    editing={ target && target.champion && target.champion.id === champion.id }
+                    draggable={ true }
+                    events={{
+                        ondragstart: () => {
+                            swap.source = null;
+                            swap.target = {
+                                champion,
+                            };
+                            swap.dragging = true;
+                            requestRedraw();
+                        },
+                        ondragend: () => {
+                            if(source && target) {
+                                ctrl.apply();
+                            }
+                            swap.dragging = false;
+                            swap.source = null;
+                            swap.target = null;
+                        },
+                    }}
+                    onclick={() => {
+                        if(target && target.champion && target.champion.id === champion.id) {
+                            swap.target = null;
+                        }
+                        else {
+                            swap.target = {
+                                champion,
+                            };
+                        }
+                        calculateSynergies(swap);
+                        requestRedraw();
+                    }}
+                />
+            );
+        });
         if(extraElements.length) {
             extrasHeader = (
                 <div class="header">{ lang.get('extras') }</div>
@@ -457,14 +487,14 @@ const TeamsEditPage = {
                     )}
                     value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
                 />
-                <div>
+                <div key="teams-edit-teams">
                     { teamElements }
                 </div>
-                <div>
+                <div key="teams-edit-create">
                     { createElements }
                 </div>
                 { extrasHeader }
-                <div>
+                <div key="teams-edit-extras">
                     { extraElements }
                 </div>
                 <div class="clear" />
