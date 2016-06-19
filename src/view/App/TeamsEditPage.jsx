@@ -402,7 +402,7 @@ const TeamsEditPage = {
             create.champions.forEach((champion) => champion && (inTeam[ champion.id ] = true));
         }
         const currentSynergyMap = {};
-        swap.source && (swap.source.team && swap.source.team.synergies)
+        (swap.source && swap.source.team && swap.source.team.synergies) && swap.source.team.synergies
             .forEach(({ attr: { toId, fromId, fromStars } }) => {
                 currentSynergyMap[ `${ toId }-${ fromId }-${ fromStars}` ] = true;
             });
@@ -487,14 +487,14 @@ const TeamsEditPage = {
                     )}
                     value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
                 />
-                <div key="teams-edit-teams">
+                <div>
                     { teamElements }
                 </div>
-                <div key="teams-edit-create">
+                <div>
                     { createElements }
                 </div>
                 { extrasHeader }
-                <div key="teams-edit-extras">
+                <div>
                     { extraElements }
                 </div>
                 <div class="clear" />
