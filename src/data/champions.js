@@ -7,18 +7,26 @@ import Champion, {
 } from './model/Champion';
 
 const UNRELEASED_CHAMPIONS = {
+    // Cosmic
+    'loki': true,
+    // Tech
+    'civilwarrior': true,
+    // Mutant
     'beast': true,
     'gambit': true,
-    'loki': true,
     'nightcrawler': true,
     'wolverineweaponx': true,
+    // Skill
     'redskull': true,
+    // Mystic
     'drstrangemarvelnow': true,
-    'civilwarrior': true,
+    //Unknown
     'maestro': true,
 };
 
 const champions = [
+
+    // Cosmic
 
 	{ uid: 'blackbolt', stars: 2, typeId: 'cosmic' },
 	{ uid: 'blackbolt', stars: 3, typeId: 'cosmic' },
@@ -77,6 +85,8 @@ const champions = [
 	{ uid: 'venompool', stars: 4, typeId: 'cosmic' },
 	{ uid: 'venompool', stars: 5, typeId: 'cosmic' },
 
+    // Tech
+
 	{ uid: 'civilwarrior', stars: 3, typeId: 'tech' },
 	{ uid: 'civilwarrior', stars: 4, typeId: 'tech' },
 	{ uid: 'civilwarrior', stars: 5, typeId: 'tech' },
@@ -123,6 +133,8 @@ const champions = [
 	{ uid: 'warmachine', stars: 2, typeId: 'tech' },
 	{ uid: 'warmachine', stars: 3, typeId: 'tech' },
 	{ uid: 'warmachine', stars: 4, typeId: 'tech' },
+
+    // Mutant
 
 	{ uid: 'beast', stars: 2, typeId: 'mutant' },
 	{ uid: 'beast', stars: 3, typeId: 'mutant' },
@@ -187,6 +199,8 @@ const champions = [
 	{ uid: 'x23', stars: 3, typeId: 'mutant' },
 	{ uid: 'x23', stars: 4, typeId: 'mutant' },
 
+    // Skill
+
 	{ uid: 'agentvenom', stars: 3, typeId: 'skill' },
 	{ uid: 'agentvenom', stars: 4, typeId: 'skill' },
 	{ uid: 'agentvenom', stars: 5, typeId: 'skill' },
@@ -245,6 +259,8 @@ const champions = [
 	{ uid: 'wintersoldier', stars: 3, typeId: 'skill' },
 	{ uid: 'wintersoldier', stars: 4, typeId: 'skill' },
 	{ uid: 'wintersoldier', stars: 5, typeId: 'skill' },
+
+    // Science
 
 	{ uid: 'abomination', stars: 2, typeId: 'science' },
 	{ uid: 'abomination', stars: 3, typeId: 'science' },
@@ -308,6 +324,8 @@ const champions = [
 	{ uid: 'yellowjacket', stars: 3, typeId: 'science' },
 	{ uid: 'yellowjacket', stars: 4, typeId: 'science' },
 
+    // Mystic
+
 	{ uid: 'drstrange', stars: 3, typeId: 'mystic' },
 	{ uid: 'drstrange', stars: 4, typeId: 'mystic' },
 
@@ -351,6 +369,8 @@ const champions = [
 	{ uid: 'unstoppablecolossus', stars: 2, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 3, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 4, typeId: 'mystic' },
+
+    // Unknown
 
 	{ uid: 'maestro', stars: 4 },
 	{ uid: 'maestro', stars: 5 },
