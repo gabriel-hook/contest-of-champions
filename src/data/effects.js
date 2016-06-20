@@ -40,6 +40,7 @@ const effectImages = {
     'healthsteal': 'health_steal',
     'heroesforhire': 'heroes_for_hire',
     'thunderbolts': 'thunderbolts',
+    'mastermind': 'mastermind',
 };
 
 function effectImage(uid, append = 'black') {
