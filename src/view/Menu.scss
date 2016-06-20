@@ -104,6 +104,7 @@ $menu-transition-time: .25s;
         overflow-y: auto;
         opacity: 1;
         background: #38c;
+        transform: translateZ(0);
         transition: right $menu-transition-time;
 
         .menu-header,
