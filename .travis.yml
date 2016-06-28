@@ -10,7 +10,7 @@ addons:
     packages:
       - g++-4.8
 after_success:
-  - "${TRAVIS_PULL_REQUEST} || npm run deploy"
+  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy || false'
 sudo: required
 env:
   global:
