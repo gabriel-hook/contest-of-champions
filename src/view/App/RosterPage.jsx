@@ -24,6 +24,14 @@ const RosterPage = {
             router.setRoute(`/roster/${ uid }/${ stars }`);
             requestRedraw();
         };
+
+        //shitty calc for now
+        const topPis = champions
+            .map(({ pi, attr }) => attr.pi || pi)
+            .sort((a, b) => b - a)
+            .slice(0, 5);
+        const prestige = topPis.length && (topPis.reduce((value, pi) => value + pi, 0) / topPis.length) | 0;
+
         return (
             <div m="RosterPage" class="roster">
                 <Message
@@ -38,11 +46,7 @@ const RosterPage = {
                         />
                     )}
                     value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
-                    alt={ champions.length &&
-                        `${ lang.get('prestige') } ${
-                            champions.reduce((value, { pi, attr }) => value + (attr.pi || pi), 0)
-                        }`
-                    }
+                    alt={ prestige && `${ lang.get('prestige') } ${ prestige }` }
                 />
                 <div>
                     { champions.map((champion) => (
