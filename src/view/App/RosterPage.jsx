@@ -38,7 +38,7 @@ const RosterPage = {
                         />
                     )}
                     value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
-                    alt={ champions.length && `${ lang.get('pi') } ${ champions.reduce((value, { pi }) => value + pi, 0)}` }
+                    alt={ champions.length && `${ lang.get('prestige') } ${ champions.reduce((value, { pi }) => value + pi, 0)}` }
                 />
                 <div>
                     { champions.map((champion) => (
