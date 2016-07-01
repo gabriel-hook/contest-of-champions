@@ -9,7 +9,7 @@ const effects = [
     { uid: 'critrate', base: 5 },
     { uid: 'critdamage', base: 15 },
     { uid: 'bleed', base: 15 },
-    { uid: 'stunactivation', base: 15 },
+    { uid: 'stunactivation', base: 5 },
     { uid: 'stunspecial', base: 15 },
     { uid: 'powergain', base: 3 },
     //{ uid: 'powersteal', base: 3 },
