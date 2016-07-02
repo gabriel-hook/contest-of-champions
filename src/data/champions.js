@@ -10,7 +10,6 @@ const UNRELEASED_CHAMPIONS = {
     // Cosmic
     'loki': true,
     // Tech
-    'civilwarrior': true,
     // Mutant
     'beast': true,
     'gambit': true,

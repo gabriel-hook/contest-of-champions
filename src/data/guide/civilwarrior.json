@@ -1,0 +1,77 @@
+{
+    "description": "There are many rumors about the origin of the mysterious Civil Warrior… Legend says he is a Captain America from an alternate Earth ravaged by the Civil War between his own army and Iron Man’s forces. On that world, the two heroes mortally wounded each other in the final battle of the war; Steve survived, but Tony didn’t. Riddled with guilt for the battle’s destruction and the death of his former ally at his own hands, he assumed the mantle of the Civil Warrior. Adding Tony’s ARC technology to his Captain America gear, he vowed to use his friend’s legacy to stop this senseless conflict from ever happening again.",
+    "youtube": "mFt7trVVcEo",
+    "specials": {
+        "1": {
+            "name": "Arc Blast",
+            "note": "\"I have seen this war.\"",
+            "description": "Civil Warrior triggers his advanced Stark Tech, gaining 4 Armor Up charges, each increasing Armor by 15% for 10 seconds.",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "armorup"
+            ]
+        },
+        "2": {
+            "name": "Repulsor Rush",
+            "note": "\"I have fought this fight.\"",
+            "description": "Depletes up to 59% of the target’s max Power.",
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "powerdrain"
+            ],
+            "ranges": [
+                "short",
+                "medium",
+                "medium"
+            ]
+        },
+        "3": {
+            "name": "Overload",
+            "description": "100% chance to Power Drain, depleting up to 54% of the target’s max Power. If the target is reduced to zero Power from this attack, they also become Power Locked for 6 seconds.",
+            "note": "\"I must end it at any cost.\"",
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "abilities": [
+                "powerdrain",
+                "powerlock"
+            ]
+        }
+    },
+    "attack": {
+        "heavy": "Heal Block - Heavy Attacks 95% chance to inflict Heal Block, preventing the target from recovering Health for 3 seconds. This has one potential trigger chance during the final strike of the heavy attack.",
+        "abilities": [
+            "healblock"
+        ]
+    },
+    "gameplay": {
+        "description": "For each Armor Up effect active, Civil Warrior’s advanced Stark Tech protects him further, reducing enemy Offensive Ability Accuracy by 15% per Armor Up charge.\n\nSpecial Attacks\n\nIf the opponent is under the effect of a Heal Block Debuff, that Heal Block is replaced with a 10 second Heal Block. This Heal Block will not replace a Passive Heal Block effect, such as those gained from a Local or Linked node.",
+        "abilities": [
+            "powerdrain",
+            "powerburn",
+            "powerlock",
+            "healblock",
+            "armorup"
+        ]
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "666515-Civil-Warrior-Champion-Spotlight"
+    },
+    "signature": {
+        "description": "An upgrade to Civil Warrior’s Arc Shield grants him 2 Armor Up charges at the start of the fight. Additionally, he receives (9 - 20%) Special Damage resistance while Blocking.",
+        "name": "Arc Shield",
+        "abilities": [
+            "armorup"
+        ]
+    }
+}

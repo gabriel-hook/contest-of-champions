@@ -127,6 +127,28 @@ const synergies = [
     { fromId: 'venompool', fromStars: 5, toId: 'deadpool', effectId: 'armor', effectAmount: 6 },
     { fromId: 'venompool', fromStars: 5, toId: 'deadpoolxforce', effectId: 'armor', effectAmount: 6 },
 
+    { fromId: 'civilwarrior', fromStars: 3, toId: 'wintersoldier', effectId: 'armor', effectAmount: 5 },
+    { fromId: 'civilwarrior', fromStars: 3, toId: 'falcon', effectId: 'armor', effectAmount: 5 },
+    { fromId: 'civilwarrior', fromStars: 3, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 4 },
+    ...group([
+        { fromId: 'civilwarrior', fromStars: 3, toId: 'ironman', effectId: 'critdamage', effectAmount: 20 },
+        { fromId: 'civilwarrior', fromStars: 3, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 20 },
+    ]),
+    { fromId: 'civilwarrior', fromStars: 4, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'civilwarrior', fromStars: 4, toId: 'falcon', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'civilwarrior', fromStars: 4, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 5 },
+    ...group([
+        { fromId: 'civilwarrior', fromStars: 4, toId: 'ironman', effectId: 'critdamage', effectAmount: 25 },
+        { fromId: 'civilwarrior', fromStars: 4, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 25 },
+    ]),
+    { fromId: 'civilwarrior', fromStars: 5, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'civilwarrior', fromStars: 5, toId: 'falcon', effectId: 'armor', effectAmount: 6 },
+    { fromId: 'civilwarrior', fromStars: 5, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 5 },
+    ...group([
+        { fromId: 'civilwarrior', fromStars: 5, toId: 'ironman', effectId: 'critdamage', effectAmount: 25 },
+        { fromId: 'civilwarrior', fromStars: 5, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 25 },
+    ]),
+
     { fromId: 'ironman', fromStars: 2, toId: 'thor', effectId: 'perfectblock', effectAmount: 3 },
     { fromId: 'ironman', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
     { fromId: 'ironman', fromStars: 3, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },

@@ -150,18 +150,6 @@ const GuideEditPage = {
                 onEdit={ (key, value) => editGuide(uid, [ 'attack' ], key, value) }
             />
         );
-        const signature = guide && guide.signature;
-        details.push(
-            <ChampionSection
-                title={ lang.get('signature') }
-                rating={ signature && guide.signature.rating || true }
-                name={ signature && guide.signature.name || true }
-                description={ signature && guide.signature.description || true }
-                abilities={ signature && guide.signature.abilities || true }
-                note={ signature && guide.signature.note || true }
-                onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
-            />
-        );
         [ 1, 2, 3 ].forEach((index) => {
             const special = guide && guide.specials && guide.specials[ index ];
             details.push(
@@ -178,6 +166,18 @@ const GuideEditPage = {
                 />
             );
         });
+        const signature = guide && guide.signature;
+        details.push(
+            <ChampionSection
+                title={ lang.get('signature') }
+                rating={ signature && guide.signature.rating || true }
+                name={ signature && guide.signature.name || true }
+                description={ signature && guide.signature.description || true }
+                abilities={ signature && guide.signature.abilities || true }
+                note={ signature && guide.signature.note || true }
+                onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
+            />
+        );
         const author = guide && guide.author;
         details.push(
             <GuideEditAuthor

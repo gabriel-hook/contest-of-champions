@@ -1,6 +1,7 @@
 import agentvenom from './guide/agentvenom';
 import blackbolt from './guide/blackbolt';
 import blackpanthercivilwar from './guide/blackpanthercivilwar';
+import civilwarrior from './guide/civilwarrior';
 import crossbones from './guide/crossbones';
 import cyclops90s from './guide/cyclops90s';
 import daredevilnetflix from './guide/daredevilnetflix';
@@ -30,12 +31,13 @@ import warmachine from './guide/warmachine';
 import wolverineoldman from './guide/wolverineoldman';
 import x23 from './guide/x23';
 
-const SPOTLIGHT = 'falcon';
+const SPOTLIGHT = 'civilwarrior';
 
 const guides = {
     agentvenom,
     blackbolt,
     blackpanthercivilwar,
+    civilwarrior,
     crossbones,
     cyclops90s,
     daredevilnetflix,
