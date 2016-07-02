@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gulp develop",
     "lint": "gulp lint",
-    "karma": "npm run karma-service && npm run karma-view && npm run karma-view-menus && npm run karma-view-pages && npm run karma-view-champion",
+    "karma": "npm run karma-data && npm run karma-service && npm run karma-view && npm run karma-view-menus && npm run karma-view-pages && npm run karma-view-champion",
+    "karma-data": "karma start --file=./test/data/*",
     "karma-service": "karma start --file=./test/service/*",
     "karma-view": "karma start --file=./test/view/index.jsx",
     "karma-view-menus": "karma start --file=./test/view/menus.jsx",
@@ -77,7 +78,6 @@
     "karma-webpack": "^1.7.0",
     "less": "^2.5.3",
     "mocha": "^2.3.4",
-    "mock-browser": "^0.92.12",
     "node-sass": "^3.4.2",
     "opn": "^4.0.2",
     "phantomjs-prebuilt": "^2.1.7",

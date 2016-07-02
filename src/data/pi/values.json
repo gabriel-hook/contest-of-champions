@@ -1,0 +1,9 @@
+{
+    "abomination-4": { "min": 1000, "max": 3224, "sig-0": 115, "sig-1": 114 },
+
+    "default-1": { "min": 100, "max": 250, "sig-0": 10, "sig-1": 10 },
+    "default-2": { "min": 200, "max": 500, "sig-0": 20, "sig-1": 20 },
+    "default-3": { "min": 400, "max": 1500, "sig-0": 40, "sig-1": 40 },
+    "default-4": { "min": 1000, "max": 3000, "sig-0": 100, "sig-1": 100 },
+    "default-5": { "min": 1000, "max": 5000, "sig-0": 100, "sig-1": 100, "sig-2": 100 }
+}

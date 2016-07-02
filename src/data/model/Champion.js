@@ -1,6 +1,49 @@
 import { isInRange } from '../../util/math';
+import { getPI } from '../pi';
 import { uids as TYPES } from '../types';
 import Model from './Model';
+
+export const STAR_RANK_LEVEL = {
+    1:{
+        1:{ levels: 10 },
+        2:{ levels: 20 },
+        ranks: 2,
+        awakened: 99,
+    },
+    2:{
+        1:{ levels: 10 },
+        2:{ levels: 20 },
+        3:{ levels: 30 },
+        ranks: 3,
+        awakened: 99,
+    },
+    3:{
+        1:{ levels: 10 },
+        2:{ levels: 20 },
+        3:{ levels: 30 },
+        4:{ levels: 40 },
+        ranks: 4,
+        awakened: 99,
+    },
+    4:{
+        1:{ levels: 10 },
+        2:{ levels: 20 },
+        3:{ levels: 30 },
+        4:{ levels: 40 },
+        5:{ levels: 50 },
+        ranks: 5,
+        awakened: 99,
+    },
+    5:{
+        1:{ levels: 25 },
+        2:{ levels: 35 },
+        3:{ levels: 45 },
+        4:{ levels: 55 },
+        5:{ levels: 65 },
+        ranks: 5,
+        awakened: 200,
+    },
+};
 
 const CATALYSTS = {
     1: {
@@ -91,48 +134,6 @@ const CATALYSTS = {
     },
 };
 
-const STAR_RANK_LEVEL={
-    1:{
-        1:{ levels: 10, min:100, max:175 },
-        2:{ levels: 20, min:175, max:250 },
-        ranks: 2,
-        awakened: 99,
-    },
-    2:{
-        1:{ levels: 10, min:150, max:250 },
-        2:{ levels: 20, min:250, max:400 },
-        3:{ levels: 30, min:400, max:600 },
-        ranks: 3,
-        awakened: 99,
-    },
-    3:{
-        1:{ levels: 10, min:300, max:500 },
-        2:{ levels: 20, min:500, max:900 },
-        3:{ levels: 30, min:900, max:1200 },
-        4:{ levels: 40, min:1200, max:1500 },
-        ranks: 4,
-        awakened: 99,
-    },
-    4:{
-        1:{ levels: 10, min:600, max:1000 },
-        2:{ levels: 20, min:1000, max:1500 },
-        3:{ levels: 30, min:1500, max:2000 },
-        4:{ levels: 40, min:2000, max:2800 },
-        5:{ levels: 50, min:2800, max:3500 },
-        ranks: 5,
-        awakened: 99,
-    },
-    5:{
-        1:{ levels: 25, min:1500, max:2500 },
-        2:{ levels: 35, min:2500, max:3500 },
-        3:{ levels: 45, min:3500, max:4500 },
-        4:{ levels: 55, min:4500, max:5500 },
-        5:{ levels: 65, min:5500, max:6500 },
-        ranks: 5,
-        awakened: 200,
-    },
-};
-
 const ROLE_ARENA = 'arena';
 const ROLE_QUEST = 'quest';
 const ROLE_ALLIANCE_QUEST = 'alliance-quest';
@@ -183,16 +184,7 @@ class Champion extends Model {
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = TYPES.indexOf(this.attr.typeId);
-        this.pi = 0;
-        const range = STAR_RANK_LEVEL[ stars ] && STAR_RANK_LEVEL[ stars ][ rank ];
-        if(range && level <= range.levels) {
-            const awakenedMax = STAR_RANK_LEVEL[ stars ].awakened || 1;
-            this.pi = range.min + (level / range.levels) * (range.max - range.min);
-            if(awakened > 0) {
-                this.pi *= 1.05 + 0.2 * Math.min(Math.max(1, awakened), awakenedMax) / awakenedMax;
-            }
-            this.pi = this.pi | 0;
-        }
+        this.pi = getPI(this.attr) || 0;
     }
 
     static idToObject(id) {
