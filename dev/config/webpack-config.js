@@ -2,7 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 
-const extractStylesPlugin = new ExtractTextPlugin('style-[contenthash].css');
+const extractStylesPlugin = new ExtractTextPlugin('style-[contenthash:8].css');
 
 export default {
     entry: {
@@ -10,20 +10,13 @@ export default {
     },
     output: {
         path: path.resolve('./.build/'),
-        filename: '[name]-[hash].js',
+        filename: '[name]-[hash:8].js',
     },
     module: {
         loaders: [
             // jsx
             {
-                test: /\.jsx(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loaders: [ 'babel' ],
-                exclude: /node_modules/,
-                hot: true,
-            },
-            // javascript
-            {
-                test: /\.js(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                test: /\.jsx?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'babel' ],
                 exclude: /node_modules/,
                 hot: true,
@@ -43,7 +36,6 @@ export default {
             {
                 test: /\.css(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'style', 'css', 'autoprefixer' ],
-                exclude: /node_modules/,
                 deploy: {
                     loaders: null,
                     loader: extractStylesPlugin.extract([ 'css?sourceMap', 'autoprefixer' ]),

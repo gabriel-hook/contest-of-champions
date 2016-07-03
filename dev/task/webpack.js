@@ -75,7 +75,29 @@ gulp.task('webpack', (callback) => {
         plugins: [
             extractStylesPlugin,
             new webpack.optimize.DedupePlugin(),
-            new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+            new webpack.optimize.AggressiveMergingPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                /* eslint-disable camelcase */
+                compress: {
+                    sequences: true,
+                    dead_code: true,
+                    conditionals: true,
+                    booleans: true,
+                    unused: true,
+                    if_return: true,
+                    join_vars: true,
+                },
+                mangle: {
+                    except: [ '$super', '$', 'exports', 'require' ],
+                },
+                output: {
+                    comments: false,
+                },
+                /* eslint-enable camelcase */
+            }),
+            new webpack.DefinePlugin({
+                'process.env':{ 'NODE_ENV': JSON.stringify('production') },
+            }),
             ...webpackConfig.plugins || [],
         ],
         devtool: '#source-map',

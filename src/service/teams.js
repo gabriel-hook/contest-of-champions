@@ -12,7 +12,7 @@ import dataSynergies from '../data/synergies';
 import roster from './roster';
 import router from './router';
 import { fromStorage, toStorage } from '../util/storage';
-import Worker from 'webworker!./teams/worker';
+import Worker from 'webworker?filename=worker-[hash:8].js!./teams/worker';
 import { requestRedraw } from '../util/animation';
 
 const PRESETS = {
