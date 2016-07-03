@@ -35,7 +35,7 @@ gulp.task('develop', (callback) => {
             new webpack.HotModuleReplacementPlugin(),
             ...webpackConfig.plugins || [],
         ],
-        devtool: '#cheap-source-map',
+        devtool: '#cheap-module-eval-source-map',
     };
     const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, {

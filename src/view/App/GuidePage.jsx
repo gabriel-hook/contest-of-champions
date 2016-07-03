@@ -155,7 +155,7 @@ const GuidePage = {
                     target="_blank"
                     class="guide-external-link"
                 >
-                    <Icon icon="info-circle" />
+                    <Icon icon="info-circle" before />
                     { lang.get('details') }
                 </a>
             );

@@ -1,800 +1,1345 @@
 import Synergy from './model/Synergy';
 
+const EFFECT_STARS_AMOUNT = {
+    attack: [ 4, 5, 6 ],
+    idol: [ 3, 4, 5 ],
+    inseparable: [ 7, 8, 9 ],
+    mutantagenda: [ 8, 10, 12 ],
+    critrate: [ 5, 6, 7 ],
+    critdamage: [ 15, 20, 25 ],
+    bleed: [ 15, 20, 25 ],
+    stunactivation: [ 5, 10, 15 ],
+    stunspecial: [ 15, 20, 25 ],
+    powergain: [ 3, 4, 5 ],
+    perfectblock: [ 3, 4, 5 ],
+    block: [ 10, 15, 20 ],
+    armor: [ 5, 6, 7 ],
+    health: [ 4, 5, 6 ],
+    heroesforhire: [ 3, 4, 5 ],
+    thunderbolts: [ 4, 5, 6 ],
+};
+const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 3 };
+
 const synergies = [
 
-    { fromId: 'blackbolt', fromStars: 2, toId: 'cyclops', effectId: 'block', effectAmount: 10 },
-    { fromId: 'blackbolt', fromStars: 3, toId: 'cyclops', effectId: 'block', effectAmount: 15 },
-    { fromId: 'blackbolt', fromStars: 3, toId: 'spiderman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'blackbolt', fromStars: 3, toId: 'ronan', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'blackbolt', fromStars: 3, toId: 'hulk', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'blackbolt', fromStars: 4, toId: 'cyclops', effectId: 'block', effectAmount: 20 },
-    { fromId: 'blackbolt', fromStars: 4, toId: 'spiderman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackbolt', fromStars: 4, toId: 'ronan', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'blackbolt', fromStars: 4, toId: 'hulk', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'captainmarvel', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainmarvel', fromStars: 3, toId: 'gamora', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainmarvel', fromStars: 3, toId: 'ironman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainmarvel', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainmarvel', fromStars: 4, toId: 'gamora', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainmarvel', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainmarvel', fromStars: 4, toId: 'wolverine', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'captainmarvel', fromStars: 5, toId: 'captainamerica', effectId: 'armor', effectAmount: 7 },
-    { fromId: 'captainmarvel', fromStars: 5, toId: 'gamora', effectId: 'armor', effectAmount: 7 },
-    { fromId: 'captainmarvel', fromStars: 5, toId: 'ironman', effectId: 'armor', effectAmount: 7 },
-    { fromId: 'captainmarvel', fromStars: 5, toId: 'wolverine', effectId: 'powergain', effectAmount: 6 },
-
-    { fromId: 'drax', fromStars: 2, toId: 'starlord', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'drax', fromStars: 2, toId: 'gamora', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'drax', fromStars: 3, toId: 'starlord', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'drax', fromStars: 3, toId: 'gamora', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'drax', fromStars: 4, toId: 'starlord', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'drax', fromStars: 4, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'drax', fromStars: 5, toId: 'starlord', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'drax', fromStars: 5, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'gamora', fromStars: 2, toId: 'starlord', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'gamora', fromStars: 3, toId: 'starlord', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'gamora', fromStars: 3, toId: 'drax', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'gamora', fromStars: 4, toId: 'starlord', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'gamora', fromStars: 4, toId: 'drax', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'groot', fromStars: 3, toId: 'starlord', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'groot', fromStars: 3, toId: 'drax', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'groot', fromStars: 3, toId: 'rocket', effectId: 'inseparable', effectAmount: 8 },
-    { fromId: 'groot', fromStars: 4, toId: 'starlord', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'groot', fromStars: 4, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'groot', fromStars: 4, toId: 'rocket', effectId: 'inseparable', effectAmount: 9 },
-    { fromId: 'groot', fromStars: 5, toId: 'starlord', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'groot', fromStars: 5, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'groot', fromStars: 5, toId: 'rocket', effectId: 'inseparable', effectAmount: 9 },
-
-    { fromId: 'kamalakhan', fromStars: 3, toId: 'captainmarvel', effectId: 'idol', effectAmount: 3 },
-    { fromId: 'kamalakhan', fromStars: 3, toId: 'msmarvel', effectId: 'idol', effectAmount: 3 },
-    { fromId: 'kamalakhan', fromStars: 3, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'kamalakhan', fromStars: 4, toId: 'captainmarvel', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'kamalakhan', fromStars: 4, toId: 'msmarvel', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'kamalakhan', fromStars: 4, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'kamalakhan', fromStars: 4, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'kamalakhan', fromStars: 5, toId: 'captainmarvel', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'kamalakhan', fromStars: 5, toId: 'msmarvel', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'kamalakhan', fromStars: 5, toId: 'spidermanmorales', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'kamalakhan', fromStars: 5, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'msmarvel', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'msmarvel', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'msmarvel', fromStars: 3, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'msmarvel', fromStars: 3, toId: 'hulk', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'msmarvel', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'msmarvel', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'msmarvel', fromStars: 4, toId: 'thor', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'msmarvel', fromStars: 4, toId: 'hulk', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'ronan', fromStars: 2, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'ronan', fromStars: 3, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'ronan', fromStars: 3, toId: 'ironman', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'ronan', fromStars: 3, toId: 'gamora', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'ronan', fromStars: 4, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'ronan', fromStars: 4, toId: 'ironman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'ronan', fromStars: 4, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'ronan', fromStars: 4, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'ronan', fromStars: 5, toId: 'blackbolt', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'ronan', fromStars: 5, toId: 'ironman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'ronan', fromStars: 5, toId: 'gamora', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'ronan', fromStars: 5, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'spidermanblack', fromStars: 3, toId: 'storm', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'spidermanblack', fromStars: 3, toId: 'electro', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'spidermanblack', fromStars: 4, toId: 'storm', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'spidermanblack', fromStars: 4, toId: 'electro', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'superiorironman', fromStars: 2, toId: 'captainamerica', effectId: 'critrate', effectAmount: 5 },
-    { fromId: 'superiorironman', fromStars: 2, toId: 'daredevil', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'superiorironman', fromStars: 2, toId: 'thor', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'superiorironman', fromStars: 3, toId: 'captainamerica', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'superiorironman', fromStars: 3, toId: 'daredevil', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'superiorironman', fromStars: 3, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'superiorironman', fromStars: 4, toId: 'captainamerica', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'superiorironman', fromStars: 4, toId: 'daredevil', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'superiorironman', fromStars: 4, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },
-
-    { fromId: 'thor', fromStars: 2, toId: 'drstrange', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'thor', fromStars: 2, toId: 'ironman', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'thor', fromStars: 3, toId: 'drstrange', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'thor', fromStars: 3, toId: 'ironman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'thor', fromStars: 3, toId: 'juggernaut', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'thor', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'thor', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'thor', fromStars: 4, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'venom', fromStars: 3, toId: 'spiderman', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'venom', fromStars: 3, toId: 'spidermanblack', effectId: 'health', effectAmount: 4 },
-    { fromId: 'venom', fromStars: 3, toId: 'electro', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'venom', fromStars: 4, toId: 'spiderman', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'venom', fromStars: 4, toId: 'spidermanblack', effectId: 'health', effectAmount: 5 },
-    { fromId: 'venom', fromStars: 4, toId: 'electro', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'venom', fromStars: 5, toId: 'spiderman', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'venom', fromStars: 5, toId: 'spidermanblack', effectId: 'health', effectAmount: 5 },
-    { fromId: 'venom', fromStars: 5, toId: 'electro', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'venompool', fromStars: 3, toId: 'venom', effectId: 'inseparable', effectAmount: 8 },
-    { fromId: 'venompool', fromStars: 3, toId: 'deadpool', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'venompool', fromStars: 3, toId: 'deadpoolxforce', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'venompool', fromStars: 4, toId: 'venom', effectId: 'inseparable', effectAmount: 9 },
-    { fromId: 'venompool', fromStars: 4, toId: 'deadpool', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'venompool', fromStars: 4, toId: 'deadpoolxforce', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'venompool', fromStars: 5, toId: 'venom', effectId: 'inseparable', effectAmount: 9 },
-    { fromId: 'venompool', fromStars: 5, toId: 'deadpool', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'venompool', fromStars: 5, toId: 'deadpoolxforce', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'civilwarrior', fromStars: 3, toId: 'wintersoldier', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'civilwarrior', fromStars: 3, toId: 'falcon', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'civilwarrior', fromStars: 3, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 4 },
-    ...group([
-        { fromId: 'civilwarrior', fromStars: 3, toId: 'ironman', effectId: 'critdamage', effectAmount: 20 },
-        { fromId: 'civilwarrior', fromStars: 3, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 20 },
-    ]),
-    { fromId: 'civilwarrior', fromStars: 4, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'civilwarrior', fromStars: 4, toId: 'falcon', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'civilwarrior', fromStars: 4, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 5 },
-    ...group([
-        { fromId: 'civilwarrior', fromStars: 4, toId: 'ironman', effectId: 'critdamage', effectAmount: 25 },
-        { fromId: 'civilwarrior', fromStars: 4, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 25 },
-    ]),
-    { fromId: 'civilwarrior', fromStars: 5, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'civilwarrior', fromStars: 5, toId: 'falcon', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'civilwarrior', fromStars: 5, toId: 'guillotine', effectId: 'perfectblock', effectAmount: 5 },
-    ...group([
-        { fromId: 'civilwarrior', fromStars: 5, toId: 'ironman', effectId: 'critdamage', effectAmount: 25 },
-        { fromId: 'civilwarrior', fromStars: 5, toId: 'hulkbuster', effectId: 'critdamage', effectAmount: 25 },
+    ...fromId('blackbolt', [
+        ...fromStars(2, [
+            { toId: 'cyclops', effectId: 'block' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'cyclops', effectId: 'block' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'ronan', effectId: 'attack' },
+            { toId: 'hulk', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'cyclops', effectId: 'block' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'ronan', effectId: 'attack' },
+            { toId: 'hulk', effectId: 'critdamage' },
+        ]),
     ]),
 
-    { fromId: 'ironman', fromStars: 2, toId: 'thor', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'ironman', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironman', fromStars: 3, toId: 'thor', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'ironman', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironman', fromStars: 4, toId: 'thor', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'ironman', fromStars: 5, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironman', fromStars: 5, toId: 'thor', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'ironpatriot', fromStars: 3, toId: 'ironman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironpatriot', fromStars: 3, toId: 'spiderman', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'ironpatriot', fromStars: 3, toId: 'captainamerica', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'ironpatriot', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironpatriot', fromStars: 4, toId: 'spiderman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'ironpatriot', fromStars: 4, toId: 'captainamerica', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'ironpatriot', fromStars: 5, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironpatriot', fromStars: 5, toId: 'spiderman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'ironpatriot', fromStars: 5, toId: 'captainamerica', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'kang', fromStars: 4, toId: 'blackbolt', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'kang', fromStars: 4, toId: 'thevision', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'kang', fromStars: 4, toId: 'thor', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'hulkbuster', fromStars: 2, toId: 'hulk', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'hulkbuster', fromStars: 3, toId: 'hulk', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'hulkbuster', fromStars: 3, toId: 'ironman', effectId: 'health', effectAmount: 5 },
-    { fromId: 'hulkbuster', fromStars: 3, toId: 'superiorironman', effectId: 'health', effectAmount: 5 },
-    { fromId: 'hulkbuster', fromStars: 4, toId: 'hulk', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'hulkbuster', fromStars: 4, toId: 'ironman', effectId: 'health', effectAmount: 6 },
-    { fromId: 'hulkbuster', fromStars: 4, toId: 'superiorironman', effectId: 'health', effectAmount: 6 },
-
-    { fromId: 'rocket', fromStars: 2, toId: 'starlord', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'rocket', fromStars: 2, toId: 'gamora', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'rocket', fromStars: 3, toId: 'starlord', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'rocket', fromStars: 3, toId: 'ronan', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'rocket', fromStars: 3, toId: 'gamora', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'rocket', fromStars: 3, toId: 'drax', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'rocket', fromStars: 4, toId: 'starlord', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'rocket', fromStars: 4, toId: 'ronan', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'rocket', fromStars: 4, toId: 'gamora', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'rocket', fromStars: 4, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'starlord', fromStars: 2, toId: 'rocket', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'starlord', fromStars: 2, toId: 'drax', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'starlord', fromStars: 3, toId: 'rocket', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'starlord', fromStars: 3, toId: 'drax', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'starlord', fromStars: 3, toId: 'gamora', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'starlord', fromStars: 4, toId: 'rocket', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'starlord', fromStars: 4, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'starlord', fromStars: 4, toId: 'gamora', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'starlord', fromStars: 5, toId: 'rocket', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'starlord', fromStars: 5, toId: 'drax', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'starlord', fromStars: 5, toId: 'gamora', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'vision', fromStars: 2, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 3 },
-    { fromId: 'vision', fromStars: 2, toId: 'ironman', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'vision', fromStars: 3, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'vision', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'vision', fromStars: 3, toId: 'magneto', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'vision', fromStars: 4, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'vision', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'vision', fromStars: 4, toId: 'magneto', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'thevision', fromStars: 2, toId: 'ironman', effectId: 'health', effectAmount: 4 },
-    { fromId: 'thevision', fromStars: 2, toId: 'scarletwitch', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'thevision', fromStars: 3, toId: 'ironman', effectId: 'health', effectAmount: 5 },
-    { fromId: 'thevision', fromStars: 3, toId: 'scarletwitch', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'thevision', fromStars: 3, toId: 'ultron', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'thevision', fromStars: 4, toId: 'ironman', effectId: 'health', effectAmount: 6 },
-    { fromId: 'thevision', fromStars: 4, toId: 'scarletwitch', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'thevision', fromStars: 4, toId: 'ultron', effectId: 'attack', effectAmount: 5 },
-
-    { fromId: 'ultron', fromStars: 2, toId: 'ironman', effectId: 'health', effectAmount: 4 },
-    { fromId: 'ultron', fromStars: 2, toId: 'scarletwitch', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'ultron', fromStars: 3, toId: 'ironman', effectId: 'health', effectAmount: 5 },
-    { fromId: 'ultron', fromStars: 3, toId: 'scarletwitch', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ultron', fromStars: 4, toId: 'ironman', effectId: 'health', effectAmount: 6 },
-    { fromId: 'ultron', fromStars: 4, toId: 'scarletwitch', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'warmachine', fromStars: 2, toId: 'hulkbuster', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'warmachine', fromStars: 3, toId: 'hulkbuster', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'warmachine', fromStars: 3, toId: 'hawkeye', effectId: 'block', effectAmount: 15 },
-    { fromId: 'warmachine', fromStars: 3, toId: 'blackwidow', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'warmachine', fromStars: 4, toId: 'hulkbuster', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'warmachine', fromStars: 4, toId: 'blackpanther', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'warmachine', fromStars: 4, toId: 'hawkeye', effectId: 'block', effectAmount: 20 },
-    { fromId: 'warmachine', fromStars: 4, toId: 'blackwidow', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'colossus', fromStars: 2, toId: 'juggernaut', effectId: 'critrate', effectAmount: 5 },
-    { fromId: 'colossus', fromStars: 3, toId: 'juggernaut', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'colossus', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'colossus', fromStars: 3, toId: 'magik', effectId: 'health', effectAmount: 4 },
-    { fromId: 'colossus', fromStars: 4, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'colossus', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'colossus', fromStars: 4, toId: 'magik', effectId: 'health', effectAmount: 5 },
-
-    { fromId: 'cyclops', fromStars: 2, toId: 'wolverine', effectId: 'critdamage', effectAmount: 15 },
-    ...group([
-        { fromId: 'cyclops', fromStars: 2, toId: 'storm', effectId: 'mutantagenda', effectAmount: 8 },
-        { fromId: 'cyclops', fromStars: 2, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 8 },
-    ]),
-    { fromId: 'cyclops', fromStars: 3, toId: 'wolverine', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'cyclops', fromStars: 3, toId: 'magneto', effectId: 'attack', effectAmount: 4 },
-    ...group([
-        { fromId: 'cyclops', fromStars: 3, toId: 'storm', effectId: 'mutantagenda', effectAmount: 10 },
-        { fromId: 'cyclops', fromStars: 3, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 10 },
-    ]),
-    { fromId: 'cyclops', fromStars: 4, toId: 'wolverine', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'cyclops', fromStars: 4, toId: 'magneto', effectId: 'attack', effectAmount: 5 },
-    ...group([
-        { fromId: 'cyclops', fromStars: 4, toId: 'storm', effectId: 'mutantagenda', effectAmount: 12 },
-        { fromId: 'cyclops', fromStars: 4, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 12 },
-    ]),
-    { fromId: 'cyclops', fromStars: 5, toId: 'wolverine', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'cyclops', fromStars: 5, toId: 'magneto', effectId: 'attack', effectAmount: 5 },
-    ...group([
-        { fromId: 'cyclops', fromStars: 5, toId: 'storm', effectId: 'mutantagenda', effectAmount: 12 },
-        { fromId: 'cyclops', fromStars: 5, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 12 },
+    ...fromId('captainmarvel', [
+        ...fromStars(3, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'gamora', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'gamora', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'powergain' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'gamora', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'powergain' },
+        ]),
     ]),
 
-    { fromId: 'cyclops90s', fromStars: 3, toId: 'magneto', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'cyclops90s', fromStars: 3, toId: 'storm', effectId: 'block', effectAmount: 15 },
-    ...group([
-        { fromId: 'cyclops90s', fromStars: 3, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 10 },
-        { fromId: 'cyclops90s', fromStars: 3, toId: 'wolverine', effectId: 'mutantagenda', effectAmount: 10 },
-    ]),
-    { fromId: 'cyclops90s', fromStars: 4, toId: 'magneto', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'cyclops90s', fromStars: 4, toId: 'storm', effectId: 'block', effectAmount: 20 },
-    ...group([
-        { fromId: 'cyclops90s', fromStars: 4, toId: 'colossus', effectId: 'mutantagenda', effectAmount: 12 },
-        { fromId: 'cyclops90s', fromStars: 4, toId: 'wolverine', effectId: 'mutantagenda', effectAmount: 12 },
-    ]),
-
-    { fromId: 'deadpool', fromStars: 2, toId: 'punisher', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'deadpool', fromStars: 3, toId: 'rhino', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'deadpool', fromStars: 3, toId: 'wolverine', effectId: 'health', effectAmount: 4 },
-    { fromId: 'deadpool', fromStars: 3, toId: 'punisher', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'deadpool', fromStars: 4, toId: 'rhino', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'deadpool', fromStars: 4, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
-    { fromId: 'deadpool', fromStars: 4, toId: 'punisher', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'deadpoolxforce', fromStars: 2, toId: 'moonknight', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'deadpoolxforce', fromStars: 3, toId: 'moonknight', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'deadpoolxforce', fromStars: 3, toId: 'deadpool', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'deadpoolxforce', fromStars: 4, toId: 'magnetomarvelnow', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'deadpoolxforce', fromStars: 4, toId: 'moonknight', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'deadpoolxforce', fromStars: 4, toId: 'deadpool', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'magneto', fromStars: 2, toId: 'cyclops', effectId: 'block', effectAmount: 10 },
-    { fromId: 'magneto', fromStars: 3, toId: 'wolverine', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'magneto', fromStars: 3, toId: 'cyclops', effectId: 'block', effectAmount: 15 },
-    { fromId: 'magneto', fromStars: 3, toId: 'storm', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'magneto', fromStars: 4, toId: 'wolverine', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'magneto', fromStars: 4, toId: 'cyclops', effectId: 'block', effectAmount: 20 },
-    { fromId: 'magneto', fromStars: 4, toId: 'storm', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'magneto', fromStars: 5, toId: 'wolverine', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'magneto', fromStars: 5, toId: 'cyclops', effectId: 'block', effectAmount: 20 },
-    { fromId: 'magneto', fromStars: 5, toId: 'storm', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'magnetomarvelnow', fromStars: 3, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'magnetomarvelnow', fromStars: 3, toId: 'magik', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'magnetomarvelnow', fromStars: 3, toId: 'wolverine', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'magnetomarvelnow', fromStars: 4, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'magnetomarvelnow', fromStars: 4, toId: 'magik', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'magnetomarvelnow', fromStars: 4, toId: 'wolverine', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'storm', fromStars: 2, toId: 'blackpanther', effectId: 'powergain', effectAmount: 3 },
-    { fromId: 'storm', fromStars: 3, toId: 'magik', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'storm', fromStars: 3, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'storm', fromStars: 3, toId: 'blackpanther', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'storm', fromStars: 4, toId: 'magik', effectId: 'armor', effectAmount: 7 },
-    { fromId: 'storm', fromStars: 4, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'storm', fromStars: 4, toId: 'blackpanther', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'storm', fromStars: 4, toId: 'magneto', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'storm', fromStars: 5, toId: 'magik', effectId: 'armor', effectAmount: 7 },
-    { fromId: 'storm', fromStars: 5, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'storm', fromStars: 5, toId: 'blackpanther', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'storm', fromStars: 5, toId: 'magneto', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'wolverine', fromStars: 2, toId: 'cyclops', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'wolverine', fromStars: 3, toId: 'cyclops', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'wolverine', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'wolverine', fromStars: 3, toId: 'magneto', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'wolverine', fromStars: 4, toId: 'cyclops', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'wolverine', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wolverine', fromStars: 4, toId: 'magneto', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'wolverineoldman', fromStars: 3, toId: 'wolverine', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'wolverineoldman', fromStars: 3, toId: 'hawkeye', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'wolverineoldman', fromStars: 4, toId: 'wolverine', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'wolverineoldman', fromStars: 4, toId: 'hawkeye', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wolverineoldman', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'wolverineoldman', fromStars: 5, toId: 'wolverine', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'wolverineoldman', fromStars: 5, toId: 'hawkeye', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wolverineoldman', fromStars: 5, toId: 'hulk', effectId: 'attack', effectAmount: 6 },
-
-    { fromId: 'x23', fromStars: 3, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
-    { fromId: 'x23', fromStars: 3, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'x23', fromStars: 4, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
-    { fromId: 'x23', fromStars: 4, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'x23', fromStars: 5, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
-    { fromId: 'x23', fromStars: 5, toId: 'agentvenom', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'agentvenom', fromStars: 3, toId: 'spiderman', effectId: 'idol', effectAmount: 3 },
-    { fromId: 'agentvenom', fromStars: 3, toId: 'venom', effectId: 'health', effectAmount: 5 },
-    { fromId: 'agentvenom', fromStars: 3, toId: 'spidermanblack', effectId: 'health', effectAmount: 5 },
-    { fromId: 'agentvenom', fromStars: 4, toId: 'spiderman', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'agentvenom', fromStars: 4, toId: 'venom', effectId: 'health', effectAmount: 6 },
-    { fromId: 'agentvenom', fromStars: 4, toId: 'spidermanblack', effectId: 'health', effectAmount: 6 },
-    { fromId: 'agentvenom', fromStars: 5, toId: 'spiderman', effectId: 'idol', effectAmount: 4 },
-    { fromId: 'agentvenom', fromStars: 5, toId: 'venom', effectId: 'health', effectAmount: 6 },
-    { fromId: 'agentvenom', fromStars: 5, toId: 'spidermanblack', effectId: 'health', effectAmount: 6 },
-
-    { fromId: 'blackpanther', fromStars: 2, toId: 'ironfist', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'blackpanther', fromStars: 3, toId: 'ironfist', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'blackpanther', fromStars: 3, toId: 'storm', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'blackpanther', fromStars: 3, toId: 'deadpool', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'blackpanther', fromStars: 4, toId: 'ironfist', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'blackpanther', fromStars: 4, toId: 'storm', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'blackpanther', fromStars: 4, toId: 'deadpool', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'blackpanther', fromStars: 5, toId: 'ironfist', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'blackpanther', fromStars: 5, toId: 'storm', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'blackpanther', fromStars: 5, toId: 'deadpool', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'thevision', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'blackwidow', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'wintersoldier', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'antman', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'hawkeye', effectId: 'bleed', effectAmount: 20 },
-    { fromId: 'blackpanthercivilwar', fromStars: 3, toId: 'blackpanther', effectId: 'bleed', effectAmount: 20 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'thevision', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'wintersoldier', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'antman', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'hawkeye', effectId: 'bleed', effectAmount: 25 },
-    { fromId: 'blackpanthercivilwar', fromStars: 4, toId: 'blackpanther', effectId: 'bleed', effectAmount: 25 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'thevision', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'wintersoldier', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'antman', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'hawkeye', effectId: 'bleed', effectAmount: 25 },
-    { fromId: 'blackpanthercivilwar', fromStars: 5, toId: 'blackpanther', effectId: 'bleed', effectAmount: 25 },
-
-    { fromId: 'crossbones', fromStars: 3, toId: 'captainamerica', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'crossbones', fromStars: 3, toId: 'captainamericawwii', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'crossbones', fromStars: 3, toId: 'falcon', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'crossbones', fromStars: 3, toId: 'wintersoldier', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'crossbones', fromStars: 3, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'crossbones', fromStars: 4, toId: 'captainamerica', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 4, toId: 'captainamericawwii', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 4, toId: 'falcon', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 4, toId: 'wintersoldier', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'crossbones', fromStars: 4, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'crossbones', fromStars: 5, toId: 'captainamerica', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 5, toId: 'captainamericawwii', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 5, toId: 'falcon', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'crossbones', fromStars: 5, toId: 'wintersoldier', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'crossbones', fromStars: 5, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'daredevil', fromStars: 3, toId: 'superiorironman', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'daredevil', fromStars: 3, toId: 'blackwidow', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'daredevil', fromStars: 3, toId: 'elektra', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'daredevil', fromStars: 4, toId: 'superiorironman', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'daredevil', fromStars: 4, toId: 'blackwidow', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'daredevil', fromStars: 4, toId: 'elektra', effectId: 'powergain', effectAmount: 5 },
-
-    { fromId: 'daredevilnetflix', fromStars: 2, toId: 'elektra', effectId: 'powergain', effectAmount: 3 },
-    { fromId: 'daredevilnetflix', fromStars: 2, toId: 'punisher', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'daredevilnetflix', fromStars: 3, toId: 'elektra', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'daredevilnetflix', fromStars: 3, toId: 'lukecage', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'daredevilnetflix', fromStars: 3, toId: 'punisher', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'daredevilnetflix', fromStars: 4, toId: 'elektra', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'daredevilnetflix', fromStars: 4, toId: 'lukecage', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'daredevilnetflix', fromStars: 4, toId: 'punisher', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'daredevilnetflix', fromStars: 5, toId: 'elektra', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'daredevilnetflix', fromStars: 5, toId: 'lukecage', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'daredevilnetflix', fromStars: 5, toId: 'punisher', effectId: 'critdamage', effectAmount: 25 },
-
-    { fromId: 'elektra', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'elektra', fromStars: 3, toId: 'daredevil', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'elektra', fromStars: 3, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'elektra', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'elektra', fromStars: 4, toId: 'daredevil', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'elektra', fromStars: 4, toId: 'deadpool', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'elektra', fromStars: 4, toId: 'blackwidow', effectId: 'critdamage', effectAmount: 25 },
-
-    ...group([
-        { fromId: 'falcon', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-        { fromId: 'falcon', fromStars: 3, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 6 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 3, toId: 'warmachine', effectId: 'critrate', effectAmount: 7 },
-        { fromId: 'falcon', fromStars: 3, toId: 'blackwidow', effectId: 'critrate', effectAmount: 7 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 3, toId: 'vision', effectId: 'critrate', effectAmount: 7 },
-        { fromId: 'falcon', fromStars: 3, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 7 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 3, toId: 'antman', effectId: 'perfectblock', effectAmount: 5 },
-        { fromId: 'falcon', fromStars: 3, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 5 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 7 },
-        { fromId: 'falcon', fromStars: 4, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 7 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 4, toId: 'warmachine', effectId: 'critrate', effectAmount: 8 },
-        { fromId: 'falcon', fromStars: 4, toId: 'blackwidow', effectId: 'critrate', effectAmount: 8 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 4, toId: 'vision', effectId: 'critrate', effectAmount: 8 },
-        { fromId: 'falcon', fromStars: 4, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 8 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 4, toId: 'antman', effectId: 'perfectblock', effectAmount: 6 },
-        { fromId: 'falcon', fromStars: 4, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 6 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 5, toId: 'captainamerica', effectId: 'armor', effectAmount: 7 },
-        { fromId: 'falcon', fromStars: 5, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 7 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 5, toId: 'warmachine', effectId: 'critrate', effectAmount: 8 },
-        { fromId: 'falcon', fromStars: 5, toId: 'blackwidow', effectId: 'critrate', effectAmount: 8 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 5, toId: 'vision', effectId: 'critrate', effectAmount: 8 },
-        { fromId: 'falcon', fromStars: 5, toId: 'blackpanthercivilwar', effectId: 'critrate', effectAmount: 8 },
-    ]),
-    ...group([
-        { fromId: 'falcon', fromStars: 5, toId: 'antman', effectId: 'perfectblock', effectAmount: 6 },
-        { fromId: 'falcon', fromStars: 5, toId: 'hawkeye', effectId: 'perfectblock', effectAmount: 6 },
+    ...fromId('drax', [
+        ...fromStars(2, [
+            { toId: 'starlord', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'starlord', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'starlord', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'starlord', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'critdamage' },
+        ]),
     ]),
 
-    { fromId: 'hawkeye', fromStars: 2, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 3 },
-    { fromId: 'hawkeye', fromStars: 3, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'hawkeye', fromStars: 3, toId: 'moonknight', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'hawkeye', fromStars: 3, toId: 'ironman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'hawkeye', fromStars: 4, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'hawkeye', fromStars: 4, toId: 'moonknight', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'hawkeye', fromStars: 4, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'hawkeye', fromStars: 4, toId: 'hulk', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'hawkeye', fromStars: 5, toId: 'scarletwitch', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'hawkeye', fromStars: 5, toId: 'moonknight', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'hawkeye', fromStars: 5, toId: 'ironman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'hawkeye', fromStars: 5, toId: 'hulk', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'moonknight', fromStars: 3, toId: 'spiderman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'moonknight', fromStars: 3, toId: 'daredevil', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'moonknight', fromStars: 3, toId: 'deadpoolxforce', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'moonknight', fromStars: 4, toId: 'spiderman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'moonknight', fromStars: 4, toId: 'daredevil', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'moonknight', fromStars: 4, toId: 'deadpoolxforce', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'moonknight', fromStars: 4, toId: 'ironpatriot', effectId: 'critrate', effectAmount: 7 },
-
-    { fromId: 'punisher', fromStars: 2, toId: 'spiderman', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'punisher', fromStars: 3, toId: 'spiderman', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'punisher', fromStars: 3, toId: 'rhino', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'punisher', fromStars: 4, toId: 'spiderman', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'punisher', fromStars: 4, toId: 'rhino', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'wintersoldier', fromStars: 2, toId: 'wolverine', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'wintersoldier', fromStars: 2, toId: 'captainamerica', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'wintersoldier', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'wintersoldier', fromStars: 3, toId: 'captainamerica', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'wintersoldier', fromStars: 3, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'wintersoldier', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wintersoldier', fromStars: 4, toId: 'captainamerica', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'wintersoldier', fromStars: 4, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wintersoldier', fromStars: 5, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'wintersoldier', fromStars: 5, toId: 'captainamerica', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'wintersoldier', fromStars: 5, toId: 'captainamericawwii', effectId: 'armor', effectAmount: 5 },
-
-    { fromId: 'blackwidow', fromStars: 2, toId: 'captainmarvel', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'blackwidow', fromStars: 2, toId: 'wintersoldier', effectId: 'powergain', effectAmount: 3 },
-    { fromId: 'blackwidow', fromStars: 3, toId: 'hulk', effectId: 'stunspecial', effectAmount: 20 },
-    { fromId: 'blackwidow', fromStars: 3, toId: 'captainmarvel', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'blackwidow', fromStars: 3, toId: 'wintersoldier', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'blackwidow', fromStars: 3, toId: 'hawkeye', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'blackwidow', fromStars: 4, toId: 'hulk', effectId: 'stunspecial', effectAmount: 25 },
-    { fromId: 'blackwidow', fromStars: 4, toId: 'captainmarvel', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'blackwidow', fromStars: 4, toId: 'wintersoldier', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'blackwidow', fromStars: 4, toId: 'hawkeye', effectId: 'powergain', effectAmount: 5 },
-
-    { fromId: 'abomination', fromStars: 2, toId: 'rhino', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'abomination', fromStars: 3, toId: 'rhino', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'abomination', fromStars: 3, toId: 'hulk', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'abomination', fromStars: 4, toId: 'rhino', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'abomination', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
-
-    { fromId: 'antman', fromStars: 2, toId: 'yellowjacket', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'antman', fromStars: 2, toId: 'ironman', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'antman', fromStars: 3, toId: 'yellowjacket', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'antman', fromStars: 3, toId: 'spiderman', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'antman', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'antman', fromStars: 4, toId: 'hulk', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'antman', fromStars: 4, toId: 'yellowjacket', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'antman', fromStars: 4, toId: 'spiderman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'antman', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'antman', fromStars: 5, toId: 'hulk', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'antman', fromStars: 5, toId: 'yellowjacket', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'antman', fromStars: 5, toId: 'spiderman', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'antman', fromStars: 5, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'captainamerica', fromStars: 2, toId: 'spiderman', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'captainamerica', fromStars: 2, toId: 'superiorironman', effectId: 'critrate', effectAmount: 5 },
-    { fromId: 'captainamerica', fromStars: 2, toId: 'ironman', effectId: 'armor', effectAmount: 3 },
-    { fromId: 'captainamerica', fromStars: 3, toId: 'wintersoldier', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainamerica', fromStars: 3, toId: 'spiderman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainamerica', fromStars: 3, toId: 'superiorironman', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'captainamerica', fromStars: 3, toId: 'ironman', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'captainamerica', fromStars: 4, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainamerica', fromStars: 4, toId: 'spiderman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainamerica', fromStars: 4, toId: 'superiorironman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'captainamerica', fromStars: 4, toId: 'ironman', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'captainamericawwii', fromStars: 2, toId: 'wintersoldier', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'captainamericawwii', fromStars: 2, toId: 'wolverine', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'captainamericawwii', fromStars: 3, toId: 'wintersoldier', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainamericawwii', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'captainamericawwii', fromStars: 4, toId: 'wintersoldier', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'captainamericawwii', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'electro', fromStars: 3, toId: 'spiderman', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'electro', fromStars: 3, toId: 'rhino', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'electro', fromStars: 4, toId: 'spiderman', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'electro', fromStars: 4, toId: 'rhino', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'hulk', fromStars: 2, toId: 'thor', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'hulk', fromStars: 3, toId: 'thor', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'hulk', fromStars: 3, toId: 'abomination', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'hulk', fromStars: 3, toId: 'hawkeye', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'hulk', fromStars: 4, toId: 'thor', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'hulk', fromStars: 4, toId: 'abomination', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'hulk', fromStars: 4, toId: 'hawkeye', effectId: 'armor', effectAmount: 6 },
-
-    { fromId: 'joefixit', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'joefixit', fromStars: 3, toId: 'moonknight', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'joefixit', fromStars: 3, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'joefixit', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'joefixit', fromStars: 4, toId: 'moonknight', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'joefixit', fromStars: 4, toId: 'msmarvel', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'joefixit', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 6 },
-
-    { fromId: 'lukecage', fromStars: 3, toId: 'ironfist', effectId: 'heroesforhire', effectAmount: 4 },
-    ...group([
-        { fromId: 'lukecage', fromStars: 3, toId: 'juggernaut', effectId: 'thunderbolts', effectAmount: 5 },
-        { fromId: 'lukecage', fromStars: 3, toId: 'ironpatriot', effectId: 'thunderbolts', effectAmount: 5 },
-    ]),
-    { fromId: 'lukecage', fromStars: 4, toId: 'ironfist', effectId: 'heroesforhire', effectAmount: 5 },
-    ...group([
-        { fromId: 'lukecage', fromStars: 4, toId: 'juggernaut', effectId: 'thunderbolts', effectAmount: 6 },
-        { fromId: 'lukecage', fromStars: 4, toId: 'ironpatriot', effectId: 'thunderbolts', effectAmount: 6 },
-    ]),
-    { fromId: 'lukecage', fromStars: 5, toId: 'ironfist', effectId: 'heroesforhire', effectAmount: 5 },
-    ...group([
-        { fromId: 'lukecage', fromStars: 5, toId: 'juggernaut', effectId: 'thunderbolts', effectAmount: 6 },
-        { fromId: 'lukecage', fromStars: 5, toId: 'ironpatriot', effectId: 'thunderbolts', effectAmount: 6 },
+    ...fromId('gamora', [
+        ...fromStars(2, [
+            { toId: 'starlord', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'drax', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'drax', effectId: 'critdamage' },
+        ]),
     ]),
 
-    { fromId: 'rhino', fromStars: 2, toId: 'spiderman', effectId: 'critrate', effectAmount: 5 },
-    { fromId: 'rhino', fromStars: 2, toId: 'abomination', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'rhino', fromStars: 3, toId: 'spiderman', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'rhino', fromStars: 3, toId: 'abomination', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'rhino', fromStars: 3, toId: 'electro', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'rhino', fromStars: 4, toId: 'spiderman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'rhino', fromStars: 4, toId: 'abomination', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'rhino', fromStars: 4, toId: 'electro', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'rhino', fromStars: 5, toId: 'spiderman', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'rhino', fromStars: 5, toId: 'abomination', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'rhino', fromStars: 5, toId: 'electro', effectId: 'perfectblock', effectAmount: 5 },
-
-    { fromId: 'redhulk', fromStars: 3, toId: 'abomination', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'redhulk', fromStars: 3, toId: 'hulk', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'redhulk', fromStars: 3, toId: 'x23', effectId: 'perfectblock', effectAmount: 4 },
-    ...group([
-        { fromId: 'redhulk', fromStars: 3, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 10 },
-        { fromId: 'redhulk', fromStars: 3, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 10 },
-    ]),
-    { fromId: 'redhulk', fromStars: 4, toId: 'abomination', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'redhulk', fromStars: 4, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'redhulk', fromStars: 4, toId: 'x23', effectId: 'perfectblock', effectAmount: 5 },
-    ...group([
-        { fromId: 'redhulk', fromStars: 4, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 10 },
-        { fromId: 'redhulk', fromStars: 4, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 10 },
-    ]),
-    { fromId: 'redhulk', fromStars: 5, toId: 'abomination', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'redhulk', fromStars: 5, toId: 'hulk', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'redhulk', fromStars: 5, toId: 'x23', effectId: 'perfectblock', effectAmount: 5 },
-    ...group([
-        { fromId: 'redhulk', fromStars: 5, toId: 'elektra', effectId: 'thunderbolts', effectAmount: 15 },
-        { fromId: 'redhulk', fromStars: 5, toId: 'agentvenom', effectId: 'thunderbolts', effectAmount: 15 },
+    ...fromId('groot', [
+        ...fromStars(3, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'rocket', effectId: 'inseparable' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'rocket', effectId: 'inseparable' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'rocket', effectId: 'inseparable' },
+        ]),
     ]),
 
-    { fromId: 'shehulk', fromStars: 3, toId: 'hulk', effectId: 'health', effectAmount: 5 },
-    { fromId: 'shehulk', fromStars: 3, toId: 'superiorironman', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'shehulk', fromStars: 3, toId: 'kamalakhan', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'shehulk', fromStars: 3, toId: 'daredevil', effectId: 'stunactivation', effectAmount: 10 },
-    { fromId: 'shehulk', fromStars: 4, toId: 'hulk', effectId: 'health', effectAmount: 6 },
-    { fromId: 'shehulk', fromStars: 4, toId: 'superiorironman', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'shehulk', fromStars: 4, toId: 'kamalakhan', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'shehulk', fromStars: 4, toId: 'daredevil', effectId: 'stunactivation', effectAmount: 15 },
-    { fromId: 'shehulk', fromStars: 5, toId: 'hulk', effectId: 'health', effectAmount: 6 },
-    { fromId: 'shehulk', fromStars: 5, toId: 'superiorironman', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'shehulk', fromStars: 5, toId: 'kamalakhan', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'shehulk', fromStars: 5, toId: 'daredevil', effectId: 'stunactivation', effectAmount: 15 },
+    ...fromId('kamalakhan', [
+        ...fromStars(3, [
+            { toId: 'captainmarvel', effectId: 'idol' },
+            { toId: 'msmarvel', effectId: 'idol' },
+            { toId: 'spidermanmorales', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainmarvel', effectId: 'idol' },
+            { toId: 'msmarvel', effectId: 'idol' },
+            { toId: 'spidermanmorales', effectId: 'perfectblock' },
+            { toId: 'vision', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'captainmarvel', effectId: 'idol' },
+            { toId: 'msmarvel', effectId: 'idol' },
+            { toId: 'spidermanmorales', effectId: 'perfectblock' },
+            { toId: 'vision', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-    { fromId: 'spiderman', fromStars: 1, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 1, toId: 'hawkeye', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 2, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 2, toId: 'hawkeye', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 3, toId: 'wolverine', effectId: 'health', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 3, toId: 'hawkeye', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 3, toId: 'electro', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 3, toId: 'captainamerica', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'spiderman', fromStars: 4, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 4, toId: 'hawkeye', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 4, toId: 'electro', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spiderman', fromStars: 4, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 5, toId: 'wolverine', effectId: 'health', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 5, toId: 'hawkeye', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'spiderman', fromStars: 5, toId: 'electro', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spiderman', fromStars: 5, toId: 'captainamerica', effectId: 'armor', effectAmount: 6 },
+    ...fromId('msmarvel', [
+        ...fromStars(3, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+            { toId: 'thor', effectId: 'perfectblock' },
+            { toId: 'hulk', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+            { toId: 'thor', effectId: 'perfectblock' },
+            { toId: 'hulk', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-    { fromId: 'spidergwen', fromStars: 3, toId: 'rhino', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'spidergwen', fromStars: 3, toId: 'daredevil', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'spidergwen', fromStars: 3, toId: 'spiderman', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'spidergwen', fromStars: 4, toId: 'rhino', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spidergwen', fromStars: 4, toId: 'daredevil', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spidergwen', fromStars: 4, toId: 'spiderman', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'spidergwen', fromStars: 4, toId: 'punisher', effectId: 'critdamage', effectAmount: 25 },
-    { fromId: 'spidergwen', fromStars: 5, toId: 'rhino', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spidergwen', fromStars: 5, toId: 'daredevil', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spidergwen', fromStars: 5, toId: 'spiderman', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'spidergwen', fromStars: 5, toId: 'punisher', effectId: 'critdamage', effectAmount: 25 },
+    ...fromId('ronan', [
+        ...fromStars(2, [
+            { toId: 'blackbolt', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'blackbolt', effectId: 'critdamage' },
+            { toId: 'ironman', effectId: 'critrate' },
+            { toId: 'gamora', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'blackbolt', effectId: 'critdamage' },
+            { toId: 'ironman', effectId: 'critrate' },
+            { toId: 'gamora', effectId: 'critdamage' },
+            { toId: 'hulk', effectId: 'critrate' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'blackbolt', effectId: 'critdamage' },
+            { toId: 'ironman', effectId: 'critrate' },
+            { toId: 'gamora', effectId: 'critdamage' },
+            { toId: 'hulk', effectId: 'critrate' },
+        ]),
+    ]),
 
-    { fromId: 'spidermanmorales', fromStars: 3, toId: 'venom', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'spidermanmorales', fromStars: 3, toId: 'spidergwen', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'spidermanmorales', fromStars: 4, toId: 'electro', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'spidermanmorales', fromStars: 4, toId: 'ironpatriot', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'spidermanmorales', fromStars: 4, toId: 'venom', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'spidermanmorales', fromStars: 4, toId: 'spidergwen', effectId: 'perfectblock', effectAmount: 6 },
+    ...fromId('spidermanblack', [
+        ...fromStars(3, [
+            { toId: 'storm', effectId: 'armor' },
+            { toId: 'electro', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'storm', effectId: 'armor' },
+            { toId: 'electro', effectId: 'critrate' },
+        ]),
+    ]),
 
-    { fromId: 'yellowjacket', fromStars: 2, toId: 'antman', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'yellowjacket', fromStars: 2, toId: 'ultron', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'yellowjacket', fromStars: 3, toId: 'antman', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'yellowjacket', fromStars: 3, toId: 'ultron', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'yellowjacket', fromStars: 4, toId: 'antman', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'yellowjacket', fromStars: 4, toId: 'ultron', effectId: 'critdamage', effectAmount: 25 },
+    ...fromId('superiorironman', [
+        ...fromStars(2, [
+            { toId: 'captainamerica', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critdamage' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'captainamerica', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critdamage' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainamerica', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critdamage' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-    { fromId: 'drstrange', fromStars: 3, toId: 'thor', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'drstrange', fromStars: 3, toId: 'spiderman', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'drstrange', fromStars: 3, toId: 'scarletwitch', effectId: 'block', effectAmount: 15 },
-    { fromId: 'drstrange', fromStars: 3, toId: 'blackbolt', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'drstrange', fromStars: 4, toId: 'thor', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'drstrange', fromStars: 4, toId: 'spiderman', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'drstrange', fromStars: 4, toId: 'scarletwitch', effectId: 'block', effectAmount: 20 },
-    { fromId: 'drstrange', fromStars: 4, toId: 'blackbolt', effectId: 'perfectblock', effectAmount: 5 },
+    ...fromId('thor', [
+        ...fromStars(2, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'juggernaut', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'juggernaut', effectId: 'critrate' },
+        ]),
+    ]),
 
-    { fromId: 'ironfist', fromStars: 2, toId: 'blackpanther', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'ironfist', fromStars: 3, toId: 'blackpanther', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironfist', fromStars: 3, toId: 'drstrange', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironfist', fromStars: 4, toId: 'blackpanther', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfist', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfist', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfist', fromStars: 5, toId: 'blackpanther', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfist', fromStars: 5, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfist', fromStars: 5, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
+    ...fromId('venom', [
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'attack' },
+            { toId: 'spidermanblack', effectId: 'health' },
+            { toId: 'electro', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'attack' },
+            { toId: 'spidermanblack', effectId: 'health' },
+            { toId: 'electro', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'spiderman', effectId: 'attack' },
+            { toId: 'spidermanblack', effectId: 'health' },
+            { toId: 'electro', effectId: 'critdamage' },
+        ]),
+    ]),
 
-    { fromId: 'ironfistwhite', fromStars: 3, toId: 'drstrange', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironfistwhite', fromStars: 3, toId: 'daredevil', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'ironfistwhite', fromStars: 4, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfistwhite', fromStars: 4, toId: 'daredevil', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfistwhite', fromStars: 4, toId: 'warmachine', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'ironfistwhite', fromStars: 5, toId: 'drstrange', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfistwhite', fromStars: 5, toId: 'daredevil', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'ironfistwhite', fromStars: 5, toId: 'warmachine', effectId: 'perfectblock', effectAmount: 5 },
+    ...fromId('venompool', [
+        ...fromStars(3, [
+            { toId: 'venom', effectId: 'inseparable' },
+            { toId: 'deadpool', effectId: 'armor' },
+            { toId: 'deadpoolxforce', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'venom', effectId: 'inseparable' },
+            { toId: 'deadpool', effectId: 'armor' },
+            { toId: 'deadpoolxforce', effectId: 'armor' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'venom', effectId: 'inseparable' },
+            { toId: 'deadpool', effectId: 'armor' },
+            { toId: 'deadpoolxforce', effectId: 'armor' },
+        ]),
+    ]),
 
-    { fromId: 'guillotine', fromStars: 2, toId: 'venom', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'guillotine', fromStars: 2, toId: 'captainamericawwii', effectId: 'perfectblock', effectAmount: 3 },
-    { fromId: 'guillotine', fromStars: 3, toId: 'venom', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'guillotine', fromStars: 3, toId: 'captainamericawwii', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'guillotine', fromStars: 3, toId: 'magik', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'guillotine', fromStars: 4, toId: 'blackpanther', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'guillotine', fromStars: 4, toId: 'venom', effectId: 'attack', effectAmount: 6 },
-    { fromId: 'guillotine', fromStars: 4, toId: 'captainamericawwii', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'guillotine', fromStars: 4, toId: 'magik', effectId: 'critdamage', effectAmount: 25 },
+    ...fromId('civilwarrior', [
+        ...fromStars(3, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'falcon', effectId: 'armor' },
+            { toId: 'guillotine', effectId: 'perfectblock' },
+            ...toIds([ 'ironman', 'hulkbuster' ], { effectId: 'critdamage' }),
+        ]),
+        ...fromStars(4, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'falcon', effectId: 'armor' },
+            { toId: 'guillotine', effectId: 'perfectblock' },
+            ...toIds([ 'ironman', 'hulkbuster' ], { effectId: 'critdamage' }),
+        ]),
+        ...fromStars(5, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'falcon', effectId: 'armor' },
+            { toId: 'guillotine', effectId: 'perfectblock' },
+            ...toIds([ 'ironman', 'hulkbuster' ], { effectId: 'critdamage' }),
+        ]),
+    ]),
 
-    { fromId: 'juggernaut', fromStars: 2, toId: 'colossus', effectId: 'critrate', effectAmount: 5 },
-    { fromId: 'juggernaut', fromStars: 3, toId: 'drstrange', effectId: 'attack', effectAmount: 4 },
-    { fromId: 'juggernaut', fromStars: 3, toId: 'colossus', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'juggernaut', fromStars: 3, toId: 'hulk', effectId: 'critrate', effectAmount: 6 },
-    { fromId: 'juggernaut', fromStars: 4, toId: 'drstrange', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'juggernaut', fromStars: 4, toId: 'colossus', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'juggernaut', fromStars: 4, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'juggernaut', fromStars: 5, toId: 'drstrange', effectId: 'attack', effectAmount: 5 },
-    { fromId: 'juggernaut', fromStars: 5, toId: 'colossus', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'juggernaut', fromStars: 5, toId: 'hulk', effectId: 'critrate', effectAmount: 7 },
+    ...fromId('ironman', [
+        ...fromStars(2, [
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'thor', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-    { fromId: 'magik', fromStars: 2, toId: 'colossus', effectId: 'health', effectAmount: 4 },
-    { fromId: 'magik', fromStars: 3, toId: 'storm', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'magik', fromStars: 3, toId: 'colossus', effectId: 'health', effectAmount: 5 },
-    { fromId: 'magik', fromStars: 3, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'magik', fromStars: 4, toId: 'storm', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'magik', fromStars: 4, toId: 'colossus', effectId: 'health', effectAmount: 6 },
-    { fromId: 'magik', fromStars: 4, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'magik', fromStars: 4, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
-    { fromId: 'magik', fromStars: 5, toId: 'storm', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'magik', fromStars: 5, toId: 'colossus', effectId: 'health', effectAmount: 6 },
-    { fromId: 'magik', fromStars: 5, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'magik', fromStars: 5, toId: 'juggernaut', effectId: 'critrate', effectAmount: 7 },
+    ...fromId('ironpatriot', [
+        ...fromStars(3, [
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'critdamage' },
+        ]),
+    ]),
 
-    { fromId: 'scarletwitch', fromStars: 2, toId: 'captainmarvel', effectId: 'armor', effectAmount: 4 },
-    { fromId: 'scarletwitch', fromStars: 3, toId: 'captainmarvel', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'scarletwitch', fromStars: 3, toId: 'vision', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'scarletwitch', fromStars: 4, toId: 'captainmarvel', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'scarletwitch', fromStars: 4, toId: 'vision', effectId: 'powergain', effectAmount: 5 },
+    ...fromId('kang', [
+        ...fromStars(4, [
+            { toId: 'blackbolt', effectId: 'armor' },
+            { toId: 'thevision', effectId: 'critrate' },
+            { toId: 'thor', effectId: 'critrate' },
+        ]),
+    ]),
 
-    { fromId: 'thorjanefoster', fromStars: 3, toId: 'thor', effectId: 'powergain', effectAmount: 4 },
-    { fromId: 'thorjanefoster', fromStars: 3, toId: 'vision', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'thor', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 4, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'blackwidow', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'thor', effectId: 'powergain', effectAmount: 5 },
-    { fromId: 'thorjanefoster', fromStars: 5, toId: 'vision', effectId: 'perfectblock', effectAmount: 5 },
+    ...fromId('hulkbuster', [
+        ...fromStars(2, [
+            { toId: 'hulk', effectId: 'critdamage' },
+            { toId: 'hulk', effectId: 'critdamage' },
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'superiorironman', effectId: 'health' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'hulk', effectId: 'critdamage' },
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'superiorironman', effectId: 'health' },
+        ]),
+    ]),
 
-    { fromId: 'unstoppablecolossus', fromStars: 2, toId: 'magik', effectId: 'health', effectAmount: 4 },
-    { fromId: 'unstoppablecolossus', fromStars: 2, toId: 'juggernaut', effectId: 'critdamage', effectAmount: 15 },
-    { fromId: 'unstoppablecolossus', fromStars: 3, toId: 'wolverine', effectId: 'armor', effectAmount: 5 },
-    { fromId: 'unstoppablecolossus', fromStars: 3, toId: 'magik', effectId: 'health', effectAmount: 5 },
-    { fromId: 'unstoppablecolossus', fromStars: 3, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 4 },
-    { fromId: 'unstoppablecolossus', fromStars: 3, toId: 'juggernaut', effectId: 'critdamage', effectAmount: 20 },
-    { fromId: 'unstoppablecolossus', fromStars: 4, toId: 'wolverine', effectId: 'armor', effectAmount: 6 },
-    { fromId: 'unstoppablecolossus', fromStars: 4, toId: 'magik', effectId: 'health', effectAmount: 6 },
-    { fromId: 'unstoppablecolossus', fromStars: 4, toId: 'cyclops', effectId: 'perfectblock', effectAmount: 5 },
-    { fromId: 'unstoppablecolossus', fromStars: 4, toId: 'juggernaut', effectId: 'critdamage', effectAmount: 25 },
+    ...fromId('rocket', [
+        ...fromStars(2, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'ronan', effectId: 'critrate' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+            { toId: 'drax', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'starlord', effectId: 'armor' },
+            { toId: 'ronan', effectId: 'critrate' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+            { toId: 'drax', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-].map((synergy) => new Synergy(synergy));
+    ...fromId('starlord', [
+        ...fromStars(2, [
+            { toId: 'rocket', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'rocket', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'rocket', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'rocket', effectId: 'armor' },
+            { toId: 'drax', effectId: 'perfectblock' },
+            { toId: 'gamora', effectId: 'perfectblock' },
+        ]),
+    ]),
 
-function group(array) {
-    group.counter = (group.counter + 1) || 1;
-    array.forEach((element) => {
-        element.group = group.counter;
-    });
-    return array;
+    ...fromId('vision', [
+        ...fromStars(2, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('thevision', [
+        ...fromStars(2, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'perfectblock' },
+            { toId: 'ultron', effectId: 'attack' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'perfectblock' },
+            { toId: 'ultron', effectId: 'attack' },
+        ]),
+    ]),
+
+    ...fromId('ultron', [
+        ...fromStars(2, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'ironman', effectId: 'health' },
+            { toId: 'scarletwitch', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('warmachine', [
+        ...fromStars(2, [
+            { toId: 'hulkbuster', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'hulkbuster', effectId: 'armor' },
+            { toId: 'hawkeye', effectId: 'block' },
+            { toId: 'blackwidow', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'hulkbuster', effectId: 'armor' },
+            { toId: 'blackpanther', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'block' },
+            { toId: 'blackwidow', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('colossus', [
+        ...fromStars(2, [
+            { toId: 'juggernaut', effectId: 'critrate' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'juggernaut', effectId: 'critrate' },
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'magik', effectId: 'health' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'juggernaut', effectId: 'critrate' },
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'magik', effectId: 'health' },
+        ]),
+    ]),
+
+    ...fromId('cyclops', [
+        ...fromStars(2, [
+            { toId: 'wolverine', effectId: 'critdamage' },
+            ...toIds([ 'storm', 'colossus' ], { effectId: 'mutantagenda' }),
+        ]),
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'critdamage' },
+            { toId: 'magneto', effectId: 'attack' },
+            ...toIds([ 'storm', 'colossus' ], { effectId: 'mutantagenda' }),
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'critdamage' },
+            { toId: 'magneto', effectId: 'attack' },
+            ...toIds([ 'storm', 'colossus' ], { effectId: 'mutantagenda' }),
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'critdamage' },
+            { toId: 'magneto', effectId: 'attack' },
+            ...toIds([ 'storm', 'colossus' ], { effectId: 'mutantagenda' }),
+        ]),
+    ]),
+
+    ...fromId('cyclops90s', [
+        ...fromStars(3, [
+            { toId: 'magneto', effectId: 'attack' },
+            { toId: 'storm', effectId: 'block' },
+            ...toIds([ 'colossus', 'wolverine' ], { effectId: 'mutantagenda' }),
+        ]),
+        ...fromStars(4, [
+            { toId: 'magneto', effectId: 'attack' },
+            { toId: 'storm', effectId: 'block' },
+            ...toIds([ 'colossus', 'wolverine' ], { effectId: 'mutantagenda' }),
+        ]),
+        ...fromStars(5, [
+            { toId: 'magneto', effectId: 'attack' },
+            { toId: 'storm', effectId: 'block' },
+            ...toIds([ 'colossus', 'wolverine' ], { effectId: 'mutantagenda' }),
+        ]),
+    ]),
+
+    ...fromId('deadpool', [
+        ...fromStars(2, [
+            { toId: 'punisher', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'rhino', effectId: 'critrate' },
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'punisher', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'rhino', effectId: 'critrate' },
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'punisher', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('deadpoolxforce', [
+        ...fromStars(2, [
+            { toId: 'moonknight', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'moonknight', effectId: 'critdamage' },
+            { toId: 'deadpool', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'magnetomarvelnow', effectId: 'armor' },
+            { toId: 'moonknight', effectId: 'critdamage' },
+            { toId: 'deadpool', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('magneto', [
+        ...fromStars(2, [
+            { toId: 'cyclops', effectId: 'block' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'cyclops', effectId: 'block' },
+            { toId: 'storm', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'cyclops', effectId: 'block' },
+            { toId: 'storm', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'cyclops', effectId: 'block' },
+            { toId: 'storm', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('magnetomarvelnow', [
+        ...fromStars(3, [
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'magik', effectId: 'perfectblock' },
+            { toId: 'wolverine', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'magik', effectId: 'perfectblock' },
+            { toId: 'wolverine', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('storm', [
+        ...fromStars(2, [
+            { toId: 'blackpanther', effectId: 'powergain' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'magik', effectId: 'armor' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'blackpanther', effectId: 'powergain' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'magik', effectId: 'armor' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'blackpanther', effectId: 'powergain' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'magik', effectId: 'armor' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'blackpanther', effectId: 'powergain' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('wolverine', [
+        ...fromStars(2, [
+            { toId: 'cyclops', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'cyclops', effectId: 'critdamage' },
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'cyclops', effectId: 'critdamage' },
+            { toId: 'captainamerica', effectId: 'armor' },
+            { toId: 'magneto', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('wolverineoldman', [
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+    ]),
+
+    ...fromId('x23', [
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'agentvenom', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'agentvenom', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'agentvenom', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('agentvenom', [
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'idol' },
+            { toId: 'venom', effectId: 'health' },
+            { toId: 'spidermanblack', effectId: 'health' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'idol' },
+            { toId: 'venom', effectId: 'health' },
+            { toId: 'spidermanblack', effectId: 'health' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'spiderman', effectId: 'idol' },
+            { toId: 'venom', effectId: 'health' },
+            { toId: 'spidermanblack', effectId: 'health' },
+        ]),
+    ]),
+
+    ...fromId('blackpanther', [
+        ...fromStars(2, [
+            { toId: 'ironfist', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'ironfist', effectId: 'critdamage' },
+            { toId: 'storm', effectId: 'powergain' },
+            { toId: 'deadpool', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'ironfist', effectId: 'critdamage' },
+            { toId: 'storm', effectId: 'powergain' },
+            { toId: 'deadpool', effectId: 'critrate' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'ironfist', effectId: 'critdamage' },
+            { toId: 'storm', effectId: 'powergain' },
+            { toId: 'deadpool', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('blackpanthercivilwar', [
+        ...fromStars(3, [
+            ...toIds([ 'thevision', 'blackwidow' ], { effectId: 'armor' }),
+            { toId: 'wintersoldier', effectId: 'attack' },
+            { toId: 'antman', effectId: 'critdamage' },
+            ...toIds([ 'hawkeye', 'blackpanther' ], { effectId: 'bleed' }),
+        ]),
+        ...fromStars(4, [
+            ...toIds([ 'thevision', 'blackwidow' ], { effectId: 'armor' }),
+            { toId: 'wintersoldier', effectId: 'attack' },
+            { toId: 'antman', effectId: 'critdamage' },
+            ...toIds([ 'hawkeye', 'blackpanther' ], { effectId: 'bleed' }),
+        ]),
+        ...fromStars(5, [
+            ...toIds([ 'thevision', 'blackwidow' ], { effectId: 'armor' }),
+            { toId: 'wintersoldier', effectId: 'attack' },
+            { toId: 'antman', effectId: 'critdamage' },
+            ...toIds([ 'hawkeye', 'blackpanther' ], { effectId: 'bleed' }),
+        ]),
+    ]),
+
+    ...fromId('crossbones', [
+        ...fromStars(3, [
+            ...toIds([ 'captainamerica', 'captainamericawwii', 'falcon' ], { effectId: 'critrate' }),
+            ...toIds([ 'wintersoldier', 'blackwidow' ], { effectId: 'critdamage' }),
+        ]),
+        ...fromStars(4, [
+            ...toIds([ 'captainamerica', 'captainamericawwii', 'falcon' ], { effectId: 'critrate' }),
+            ...toIds([ 'wintersoldier', 'blackwidow' ], { effectId: 'critdamage' }),
+        ]),
+        ...fromStars(5, [
+            ...toIds([ 'captainamerica', 'captainamericawwii', 'falcon' ], { effectId: 'critrate' }),
+            ...toIds([ 'wintersoldier', 'blackwidow' ], { effectId: 'critdamage' }),
+        ]),
+    ]),
+
+    ...fromId('daredevil', [
+        ...fromStars(3, [
+            { toId: 'superiorironman', effectId: 'critdamage' },
+            { toId: 'blackwidow', effectId: 'powergain' },
+            { toId: 'elektra', effectId: 'powergain' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'superiorironman', effectId: 'critdamage' },
+            { toId: 'blackwidow', effectId: 'powergain' },
+            { toId: 'elektra', effectId: 'powergain' },
+        ]),
+    ]),
+
+    ...fromId('daredevilnetflix', [
+        ...fromStars(2, [
+            { toId: 'elektra', effectId: 'powergain' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'elektra', effectId: 'powergain' },
+            { toId: 'lukecage', effectId: 'perfectblock' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'elektra', effectId: 'powergain' },
+            { toId: 'lukecage', effectId: 'perfectblock' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'elektra', effectId: 'powergain' },
+            { toId: 'lukecage', effectId: 'perfectblock' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('elektra', [
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'powergain' },
+            { toId: 'blackwidow', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'powergain' },
+            { toId: 'deadpool', effectId: 'perfectblock' },
+            { toId: 'blackwidow', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('falcon', [
+        ...fromStars(3, [
+            ...toIds([ 'captainamerica', 'captainamericawwii' ], { effectId: 'armor' }),
+            ...toIds([ 'warmachine', 'blackwidow' ], { effectId: 'critrate' }),
+            ...toIds([ 'vision', 'blackpanthercivilwar' ], { effectId: 'critrate' }),
+            ...toIds([ 'antman', 'hawkeye' ], { effectId: 'perfectblock' }),
+        ]),
+        ...fromStars(4, [
+            ...toIds([ 'captainamerica', 'captainamericawwii' ], { effectId: 'armor' }),
+            ...toIds([ 'warmachine', 'blackwidow' ], { effectId: 'critrate' }),
+            ...toIds([ 'vision', 'blackpanthercivilwar' ], { effectId: 'critrate' }),
+            ...toIds([ 'antman', 'hawkeye' ], { effectId: 'perfectblock' }),
+        ]),
+        ...fromStars(5, [
+            ...toIds([ 'captainamerica', 'captainamericawwii' ], { effectId: 'armor' }),
+            ...toIds([ 'warmachine', 'blackwidow' ], { effectId: 'critrate' }),
+            ...toIds([ 'vision', 'blackpanthercivilwar' ], { effectId: 'critrate' }),
+            ...toIds([ 'antman', 'hawkeye' ], { effectId: 'perfectblock' }),
+        ]),
+    ]),
+
+    ...fromId('hawkeye', [
+        ...fromStars(2, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'moonknight', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'moonknight', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'armor' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'scarletwitch', effectId: 'powergain' },
+            { toId: 'moonknight', effectId: 'armor' },
+            { toId: 'ironman', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('moonknight', [
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'perfectblock' },
+            { toId: 'deadpoolxforce', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'perfectblock' },
+            { toId: 'deadpoolxforce', effectId: 'critdamage' },
+            { toId: 'ironpatriot', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('punisher', [
+        ...fromStars(2, [
+            { toId: 'spiderman', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'critdamage' },
+            { toId: 'rhino', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'critdamage' },
+            { toId: 'rhino', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('wintersoldier', [
+        ...fromStars(2, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'captainamerica', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'captainamerica', effectId: 'perfectblock' },
+            { toId: 'captainamericawwii', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'captainamerica', effectId: 'perfectblock' },
+            { toId: 'captainamericawwii', effectId: 'armor' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'captainamerica', effectId: 'perfectblock' },
+            { toId: 'captainamericawwii', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('blackwidow', [
+        ...fromStars(2, [
+            { toId: 'captainmarvel', effectId: 'armor' },
+            { toId: 'wintersoldier', effectId: 'powergain' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'hulk', effectId: 'stunspecial' },
+            { toId: 'captainmarvel', effectId: 'armor' },
+            { toId: 'wintersoldier', effectId: 'powergain' },
+            { toId: 'hawkeye', effectId: 'powergain' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'hulk', effectId: 'stunspecial' },
+            { toId: 'captainmarvel', effectId: 'armor' },
+            { toId: 'wintersoldier', effectId: 'powergain' },
+            { toId: 'hawkeye', effectId: 'powergain' },
+        ]),
+    ]),
+
+    ...fromId('abomination', [
+        ...fromStars(2, [
+            { toId: 'rhino', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'rhino', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'rhino', effectId: 'armor' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+    ]),
+
+    ...fromId('antman', [
+        ...fromStars(2, [
+            { toId: 'yellowjacket', effectId: 'attack' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'yellowjacket', effectId: 'attack' },
+            { toId: 'spiderman', effectId: 'perfectblock' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'hulk', effectId: 'armor' },
+            { toId: 'yellowjacket', effectId: 'attack' },
+            { toId: 'spiderman', effectId: 'perfectblock' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'hulk', effectId: 'armor' },
+            { toId: 'yellowjacket', effectId: 'attack' },
+            { toId: 'spiderman', effectId: 'perfectblock' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('captainamerica', [
+        ...fromStars(2, [
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'superiorironman', effectId: 'critrate' },
+            { toId: 'ironman', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'superiorironman', effectId: 'critrate' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'superiorironman', effectId: 'critrate' },
+            { toId: 'ironman', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('captainamericawwii', [
+        ...fromStars(2, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wintersoldier', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('electro', [
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'attack' },
+            { toId: 'rhino', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'attack' },
+            { toId: 'rhino', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('hulk', [
+        ...fromStars(2, [
+            { toId: 'thor', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'thor', effectId: 'critdamage' },
+            { toId: 'abomination', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'thor', effectId: 'critdamage' },
+            { toId: 'abomination', effectId: 'critrate' },
+            { toId: 'hawkeye', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('joefixit', [
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'moonknight', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'moonknight', effectId: 'critrate' },
+            { toId: 'msmarvel', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'attack' },
+        ]),
+    ]),
+
+    ...fromId('lukecage', [
+        ...fromStars(3, [
+            { toId: 'ironfist', effectId: 'heroesforhire' },
+            ...toIds([ 'juggernaut', 'ironpatriot' ], { effectId: 'thunderbolts' }),
+        ]),
+        ...fromStars(4, [
+            { toId: 'ironfist', effectId: 'heroesforhire' },
+            ...toIds([ 'juggernaut', 'ironpatriot' ], { effectId: 'thunderbolts' }),
+        ]),
+        ...fromStars(5, [
+            { toId: 'ironfist', effectId: 'heroesforhire' },
+            ...toIds([ 'juggernaut', 'ironpatriot' ], { effectId: 'thunderbolts' }),
+        ]),
+    ]),
+
+    ...fromId('rhino', [
+        ...fromStars(2, [
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'abomination', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'abomination', effectId: 'armor' },
+            { toId: 'electro', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'abomination', effectId: 'armor' },
+            { toId: 'electro', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'spiderman', effectId: 'critrate' },
+            { toId: 'abomination', effectId: 'armor' },
+            { toId: 'electro', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('redhulk', [
+        ...fromStars(3, [
+            { toId: 'abomination', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'attack' },
+            { toId: 'x23', effectId: 'perfectblock' },
+            ...toIds([ 'elektra', 'agentvenom' ], { effectId: 'thunderbolts' }),
+        ]),
+        ...fromStars(4, [
+            { toId: 'abomination', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'attack' },
+            { toId: 'x23', effectId: 'perfectblock' },
+            ...toIds([ 'elektra', 'agentvenom' ], { effectId: 'thunderbolts' }),
+        ]),
+        ...fromStars(5, [
+            { toId: 'abomination', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'attack' },
+            { toId: 'x23', effectId: 'perfectblock' },
+            ...toIds([ 'elektra', 'agentvenom' ], { effectId: 'thunderbolts' }),
+        ]),
+    ]),
+
+    ...fromId('shehulk', [
+        ...fromStars(3, [
+            { toId: 'hulk', effectId: 'health' },
+            { toId: 'superiorironman', effectId: 'powergain' },
+            { toId: 'kamalakhan', effectId: 'perfectblock' },
+            { toId: 'daredevil', effectId: 'stunactivation' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'hulk', effectId: 'health' },
+            { toId: 'superiorironman', effectId: 'powergain' },
+            { toId: 'kamalakhan', effectId: 'perfectblock' },
+            { toId: 'daredevil', effectId: 'stunactivation' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'hulk', effectId: 'health' },
+            { toId: 'superiorironman', effectId: 'powergain' },
+            { toId: 'kamalakhan', effectId: 'perfectblock' },
+            { toId: 'daredevil', effectId: 'stunactivation' },
+        ]),
+    ]),
+
+    ...fromId('spiderman', [
+        ...fromStars(1, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'hawkeye', effectId: 'attack' },
+        ]),
+        ...fromStars(2, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'hawkeye', effectId: 'attack' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'hawkeye', effectId: 'attack' },
+            { toId: 'electro', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'hawkeye', effectId: 'attack' },
+            { toId: 'electro', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'armor' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'health' },
+            { toId: 'hawkeye', effectId: 'attack' },
+            { toId: 'electro', effectId: 'critrate' },
+            { toId: 'captainamerica', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('spidergwen', [
+        ...fromStars(3, [
+            { toId: 'rhino', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critrate' },
+            { toId: 'spiderman', effectId: 'powergain' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'rhino', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critrate' },
+            { toId: 'spiderman', effectId: 'powergain' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'rhino', effectId: 'critrate' },
+            { toId: 'daredevil', effectId: 'critrate' },
+            { toId: 'spiderman', effectId: 'powergain' },
+            { toId: 'punisher', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('spidermanmorales', [
+        ...fromStars(3, [
+            { toId: 'venom', effectId: 'attack' },
+            { toId: 'spidergwen', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'electro', effectId: 'critrate' },
+            { toId: 'ironpatriot', effectId: 'critrate' },
+            { toId: 'venom', effectId: 'attack' },
+            { toId: 'spidergwen', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('yellowjacket', [
+        ...fromStars(2, [
+            { toId: 'antman', effectId: 'attack' },
+            { toId: 'ultron', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'antman', effectId: 'attack' },
+            { toId: 'ultron', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'antman', effectId: 'attack' },
+            { toId: 'ultron', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('drstrange', [
+        ...fromStars(3, [
+            { toId: 'thor', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'scarletwitch', effectId: 'block' },
+            { toId: 'blackbolt', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'thor', effectId: 'armor' },
+            { toId: 'spiderman', effectId: 'armor' },
+            { toId: 'scarletwitch', effectId: 'block' },
+            { toId: 'blackbolt', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('ironfist', [
+        ...fromStars(2, [
+            { toId: 'blackpanther', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'blackpanther', effectId: 'armor' },
+            { toId: 'drstrange', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'blackpanther', effectId: 'armor' },
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'armor' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'blackpanther', effectId: 'armor' },
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'wolverine', effectId: 'armor' },
+        ]),
+    ]),
+
+    ...fromId('ironfistwhite', [
+        ...fromStars(3, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'armor' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'armor' },
+            { toId: 'warmachine', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'drstrange', effectId: 'armor' },
+            { toId: 'daredevil', effectId: 'armor' },
+            { toId: 'warmachine', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('guillotine', [
+        ...fromStars(2, [
+            { toId: 'venom', effectId: 'attack' },
+            { toId: 'captainamericawwii', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'venom', effectId: 'attack' },
+            { toId: 'captainamericawwii', effectId: 'perfectblock' },
+            { toId: 'magik', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'blackpanther', effectId: 'armor' },
+            { toId: 'venom', effectId: 'attack' },
+            { toId: 'captainamericawwii', effectId: 'perfectblock' },
+            { toId: 'magik', effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId('juggernaut', [
+        ...fromStars(2, [
+            { toId: 'colossus', effectId: 'critrate' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'drstrange', effectId: 'attack' },
+            { toId: 'colossus', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'critrate' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'drstrange', effectId: 'attack' },
+            { toId: 'colossus', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'critrate' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'drstrange', effectId: 'attack' },
+            { toId: 'colossus', effectId: 'critrate' },
+            { toId: 'hulk', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('magik', [
+        ...fromStars(2, [
+            { toId: 'colossus', effectId: 'health' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'storm', effectId: 'armor' },
+            { toId: 'colossus', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'storm', effectId: 'armor' },
+            { toId: 'colossus', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'juggernaut', effectId: 'critrate' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'storm', effectId: 'armor' },
+            { toId: 'colossus', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'juggernaut', effectId: 'critrate' },
+        ]),
+    ]),
+
+    ...fromId('scarletwitch', [
+        ...fromStars(2, [
+            { toId: 'captainmarvel', effectId: 'armor' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'captainmarvel', effectId: 'armor' },
+            { toId: 'vision', effectId: 'powergain' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'captainmarvel', effectId: 'armor' },
+            { toId: 'vision', effectId: 'powergain' },
+        ]),
+    ]),
+
+    ...fromId('thorjanefoster', [
+        ...fromStars(3, [
+            { toId: 'thor', effectId: 'powergain' },
+            { toId: 'vision', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'blackwidow', effectId: 'armor' },
+            { toId: 'thor', effectId: 'powergain' },
+            { toId: 'vision', effectId: 'perfectblock' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'blackwidow', effectId: 'armor' },
+            { toId: 'thor', effectId: 'powergain' },
+            { toId: 'vision', effectId: 'perfectblock' },
+        ]),
+    ]),
+
+    ...fromId('unstoppablecolossus', [
+        ...fromStars(2, [
+            { toId: 'magik', effectId: 'health' },
+            { toId: 'juggernaut', effectId: 'critdamage' },
+        ]),
+        ...fromStars(3, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'magik', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'juggernaut', effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'magik', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'juggernaut', effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: 'wolverine', effectId: 'armor' },
+            { toId: 'magik', effectId: 'health' },
+            { toId: 'cyclops', effectId: 'perfectblock' },
+            { toId: 'juggernaut', effectId: 'critdamage' },
+        ]),
+    ]),
+
+].map((synergy) => new Synergy({
+    ...synergy,
+    effectAmount: effectAmount(synergy.effectId, synergy.fromStars),
+}));
+
+function fromId(fromId, synergies) {
+    return synergies.map((synergy) => ({
+        fromId,
+        ...synergy,
+    }));
+}
+
+function fromStars(fromStars, synergies) {
+    return synergies.map((synergy) => ({
+        fromStars,
+        ...synergy,
+    }));
+}
+
+function toIds(toIds, synergy) {
+    toIds.counter = (toIds.counter + 1) || 1;
+    return toIds.map((toId) => ({
+        toId,
+        ...synergy,
+        group: toIds.counter,
+    }));
+}
+
+function effectAmount(effectId, fromStars) {
+    const amounts = EFFECT_STARS_AMOUNT[ effectId ];
+    if(!amounts) {
+        return 0;
+    }
+    return amounts[ EFFECT_STARS_INDEX[ fromStars ] || 0 ] || 0;
 }
 
 function synergiesFromChampions(champions) {

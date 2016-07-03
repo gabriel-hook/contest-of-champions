@@ -368,6 +368,7 @@ const champions = [
 	{ uid: 'unstoppablecolossus', stars: 2, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 3, typeId: 'mystic' },
 	{ uid: 'unstoppablecolossus', stars: 4, typeId: 'mystic' },
+	{ uid: 'unstoppablecolossus', stars: 5, typeId: 'mystic' },
 
     // Unknown
 
