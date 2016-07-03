@@ -1,5 +1,25 @@
 import Effect from './model/Effect';
 
+export const EFFECT_STARS_AMOUNT = {
+    attack: [ 4, 5, 6 ],
+    idol: [ 3, 4, 5 ],
+    inseparable: [ 7, 8, 9 ],
+    mutantagenda: [ 8, 10, 12 ],
+    critrate: [ 5, 6, 7 ],
+    critdamage: [ 15, 20, 25 ],
+    bleed: [ 15, 20, 25 ],
+    stunactivation: [ 5, 10, 15 ],
+    stunspecial: [ 15, 20, 25 ],
+    powergain: [ 3, 4, 5 ],
+    perfectblock: [ 3, 4, 5 ],
+    block: [ 10, 15, 20 ],
+    armor: [ 5, 6, 7 ],
+    health: [ 4, 5, 6 ],
+    heroesforhire: [ 3, 4, 5 ],
+    thunderbolts: [ 4, 5, 6 ],
+};
+export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 3 };
+
 const effects = [
 
     { uid: 'attack', base: 5 },

@@ -23,7 +23,7 @@ Now append a `/edit` to the url so that your new url looks like this.
 You are now in edit mode and can go back and forth between edit mode and view mode via the
 button in the bottom left corner of the screen.
 
-*The edit button needs to be re-enabled each time you restart the App.* 
+*The edit button needs to be re-enabled each time you restart the App.*
 
 ### Import
 
@@ -57,20 +57,6 @@ review it and merge quality work into the App.
 If you are savvy with code, you can put the .json file into a fork of this repo, in the
 `./src/data/guide/[id].json` path (where [id] is Champions unique ID according to
 [./src/data/champions.js](src/data/champions.js), and then test it locally.
- 
-If you want to link up the guide yourself and test it locally make sure to update the guide
-file as so (example for blackbolt)
 
-**Update:** [./src/data/guides.js](src/data/guides.js)
-```javascript
-...
-import blackbolt from './guide/blackbolt';
-
-const guides = {
-    blackbolt,
-    ...
-```
-*Make sure you import the guide and then add it to the guides object.*
-
-Once the files have been added properly, send a pull request and I will review and add
+Once the file has been added properly, send a pull request and I will review and add
 quality work to the App.
