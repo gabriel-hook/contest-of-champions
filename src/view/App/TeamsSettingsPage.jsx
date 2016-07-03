@@ -156,7 +156,7 @@ const TeamsSettingsPage = {
                         <Field
                             title={ `${ lang.get(DUPLICATE_TITLES[ count ]) }` }
                             icon={(
-                                <span class="field-name--bold">{ `${ count }x` }</span>
+                                <span class="field-name--bold">{ `${ count }x ` }</span>
                             )}
                             input={
                                 <Slider
