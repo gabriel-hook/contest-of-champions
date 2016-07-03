@@ -22,26 +22,27 @@ export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 3 };
 
 const effects = [
 
-    { uid: 'attack', base: 5 },
-    { uid: 'idol', base: 3 },
-    { uid: 'inseparable', base: 8 },
-    { uid: 'mutantagenda', base: 8 },
-    { uid: 'critrate', base: 5 },
-    { uid: 'critdamage', base: 15 },
-    { uid: 'bleed', base: 15 },
-    { uid: 'stunactivation', base: 5 },
-    { uid: 'stunspecial', base: 15 },
-    { uid: 'powergain', base: 3 },
-    //{ uid: 'powersteal', base: 3 },
-    { uid: 'perfectblock', base: 3 },
-    { uid: 'block', base: 10 },
-    { uid: 'armor', base: 4 },
-    { uid: 'health', base: 4 },
-    //{ uid: 'healthsteal', base: 4 },
-    { uid: 'heroesforhire', base: 4 },
-    { uid: 'thunderbolts', base: 5 },
+    { uid: 'attack' },
+    { uid: 'idol' },
+    { uid: 'inseparable' },
+    { uid: 'mutantagenda' },
+    { uid: 'critrate' },
+    { uid: 'critdamage' },
+    { uid: 'bleed' },
+    { uid: 'stunactivation' },
+    { uid: 'stunspecial' },
+    { uid: 'powergain' },
+    { uid: 'perfectblock' },
+    { uid: 'block' },
+    { uid: 'armor' },
+    { uid: 'health' },
+    { uid: 'heroesforhire' },
+    { uid: 'thunderbolts' },
 
-].map((effect) => new Effect(effect));
+].map(({ uid }) => new Effect({
+    uid,
+    base: EFFECT_STARS_AMOUNT[ uid ][ 0 ],
+}));
 
 const effectImages = {
     'attack': 'attack',

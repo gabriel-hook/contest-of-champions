@@ -28,8 +28,20 @@ let rosterOptions = fromStorage('roster-options', {
         science: true,
         mystic: true,
     },
+    scale: 1,
 });
 let cache = {};
+
+function setScale(scale) {
+    rosterOptions = {
+        ...rosterOptions,
+        scale,
+    };
+    toStorage('roster-options', rosterOptions);
+}
+function getScale() {
+    return rosterOptions.scale;
+}
 
 function setFilter(key, value) {
     rosterOptions = {
@@ -128,8 +140,10 @@ function hash() {
 
 function save() {
     cache = {};
-    const byId = {};
-    roster.forEach((champion) => (byId[ champion.id ] = champion));
+    const byId = roster.reduce((map, champion) => {
+        map[ champion.id ] = champion;
+        return map;
+    }, {});
     roster = [];
     for(const id in byId) {
         roster.push(byId[ id ]);
@@ -154,8 +168,14 @@ function save() {
             return c & c;
         }, 0)
     }`;
+    setScale(roster
+        .filter((champion) => champion.attr.pi && champion.pi)
+        .map((champion) => champion.attr.pi / champion.pi)
+        .reduce((sum, value, index, array) => sum + value / array.length, 0) || 1
+    );
     toStorage('roster', roster);
 }
+
 
 const CSV_HEADER_SHORT = 'Id,Stars';
 const CSV_HEADER = 'Id,Stars,Rank,Level,Awakened,Pi,Role';
@@ -341,6 +361,9 @@ function setTeam(role, champions) {
     save();
 }
 
+// Initialize with current sorting alorithms etc.
+save();
+
 export default {
     //getters
     all, get, available,
@@ -355,7 +378,7 @@ export default {
     //csv
     toCSV, fromCSV,
     //options
-    setFilter, getFilter, setSort, getSort,
+    setFilter, getFilter, setSort, getSort, getScale,
     //hashing
     hash,
 };

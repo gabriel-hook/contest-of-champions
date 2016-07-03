@@ -43,10 +43,11 @@ function addSVG(element, isInitialized) {
 
 const ChampionPortrait = {
     view(ctrl, {
-        champion, events, selected, neighbor, editing, effects, showBadges = true,
+        champion, events, selected, neighbor, editing, effects,
+        showBadges = true, showPi = true, scalePi = 1,
         onclick, draggable, droppable,
     }) {
-        const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.toJSON();
+        const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.attr;
         const starIcon = awakened? (
             <ImageIcon
                 src="images/icons/star-awakened.png"
@@ -83,13 +84,13 @@ const ChampionPortrait = {
                     </div>
                 );
             }
-            if(pi || champion.pi) {
+            if(showPi && (pi || champion.pi)) {
                 title.push(
                     <div
                         class={ classNames('title-field', 'title-field-pi', {
                             'title-field-pi-custom': pi && pi > 0,
                         }) }
-                    >{ pi || champion.pi }</div>
+                    >{ pi || champion.pi * scalePi }</div>
                 );
             }
             const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);

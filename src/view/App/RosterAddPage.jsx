@@ -43,6 +43,7 @@ const RosterAddPage = {
                         <ChampionPortrait
                             key={ `roster-add-${ champion.id }` }
                             champion={ champion }
+                            showPi={false}
                             onclick={ () => {
                                 roster.add(champion.attr.uid, stars);
                                 requestRedraw();

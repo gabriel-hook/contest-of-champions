@@ -20,18 +20,16 @@ const RosterPage = {
     view() {
         const total = roster.all().length;
         const champions = roster.filter((champion) => roster.getFilter(champion.attr.stars) && roster.getFilter(champion.attr.typeId));
+        const prestige = champions
+            .map(({ pi }) => pi)
+            .sort((a, b) => b - a)
+            .slice(0, 5)
+            .reduce((value, pi, index, array) => value + pi / array.length, 0) | 0;
+        const scalePi = roster.getScale();
         const handleSelect = ({ uid, stars }) => {
             router.setRoute(`/roster/${ uid }/${ stars }`);
             requestRedraw();
         };
-
-        //shitty calc for now
-        const topPis = champions
-            .map(({ pi, attr }) => attr.pi || pi)
-            .sort((a, b) => b - a)
-            .slice(0, 5);
-        const prestige = topPis.length && (topPis.reduce((value, pi) => value + pi, 0) / topPis.length) | 0;
-
         return (
             <div m="RosterPage" class="roster">
                 <Message
@@ -53,6 +51,7 @@ const RosterPage = {
                         <ChampionPortrait
                             key={ `roster-${ champion.id }` }
                             champion={ champion }
+                            scalePi={ scalePi }
                             onclick={ handleSelect.bind(this, champion.attr) }
                         />
                     )) }
