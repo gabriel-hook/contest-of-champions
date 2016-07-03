@@ -90,7 +90,7 @@ const ChampionPortrait = {
                         class={ classNames('title-field', 'title-field-pi', {
                             'title-field-pi-custom': pi && pi > 0,
                         }) }
-                    >{ pi || champion.pi * scalePi }</div>
+                    >{ (pi || champion.pi * scalePi) | 0 }</div>
                 );
             }
             const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
