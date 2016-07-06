@@ -24,10 +24,14 @@ const getLevelRatio = (stars, rank, level) => {
 };
 
 export function getPI({ uid, stars = 1, rank = 1, level = 1, awakened = 0 }) {
-    const value = values[ `${ uid }-${ stars }` ] || values[ `default-${ stars }` ];
+    let value = values[ `default-${ stars }` ];
     if(!value) {
         return 0;
     }
+    value = {
+        ...value,
+        ...(values[ `${ uid }-${ stars }` ] || {}),
+    };
     const ratio = getLevelRatio(stars, rank, level);
     const base = value.min + (value.max - value.min) * ratio;
     if(!awakened) {
