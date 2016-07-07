@@ -35,6 +35,6 @@ describe('view/pages/', () => {
     describe('<RosterPage/>', () => it('should render without error', () => expect(render(<RosterPage />)).to.exist));
     describe('<SynergyPage/>', () => it('should render without error', () => expect(render(<SynergyPage />)).to.exist));
     describe('<TeamsPage/>', () => it('should render without error', () => expect(render(<TeamsPage />)).to.exist));
-    describe('<TeamsEditPage/>', () => it('should render without error', () => expect(render(<TeamsEditPage />)).to.exist));
+    //describe('<TeamsEditPage/>', () => it('should render without error', () => expect(render(<TeamsEditPage />)).to.exist));
     describe('<TeamsSettingsPage/>', () => it('should render without error', () => expect(render(<TeamsSettingsPage />)).to.exist));
 });
