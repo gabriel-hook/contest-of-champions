@@ -165,6 +165,7 @@ const TeamsEditPage = {
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
         const scalePi = roster.getScale();
+
         let message;
         if(ctrl.type === 'arena') {
             message = (synergiesCount)? `- ${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:

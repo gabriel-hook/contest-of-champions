@@ -9,6 +9,9 @@ import ChampionTeam from '../../src/view/Champion/ChampionTeam.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+import roster from '../../src/service/roster';
+
+roster.clear();
 
 function render(object) {
     m.render(document.body, object);
