@@ -15,7 +15,7 @@ import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
 /* eslint-disable import/no-unresolved */
 import Worker from 'webworker?filename=worker-[hash:8].js!./teams/worker';
-/* eslint-enable import/no-unresolved  */
+/* eslint-enable import/no-unresolved */
 
 const PRESETS = {
     'offensive': {
