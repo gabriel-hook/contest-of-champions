@@ -219,6 +219,7 @@
     "level": "Level",
     "awakened": "Awakened",
     "pi": "Power Index",
+    "base-pi": "Base Power Index",
     "role": "Role",
 
     "role-none": "None",

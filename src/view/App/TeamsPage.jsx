@@ -78,12 +78,12 @@ const TeamsPage = {
         return (
             <div m="TeamsPage" class="teams">
                 {(teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE)? (
-                    <div>
+                    <div key="teams-alliance">
                         { results(ROLE_ALLIANCE_WAR_ATTACK, 3) }
                         { results(ROLE_ALLIANCE_WAR_DEFENSE, 5) }
                     </div>
                 ): (
-                    <div>
+                    <div key="teams-other">
                         { results(teams.type, teams.size) }
                     </div>
                 )}

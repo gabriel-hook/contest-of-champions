@@ -164,6 +164,7 @@ const TeamsEditPage = {
         let extrasHeader;
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
+        const scalePi = roster.getScale();
         let message;
         if(ctrl.type === 'arena') {
             message = (synergiesCount)? `- ${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:
@@ -437,6 +438,7 @@ const TeamsEditPage = {
                     effects={effects}
                     editing={ target && target.champion && target.champion.id === champion.id }
                     draggable={ true }
+                    scalePi={ scalePi }
                     events={{
                         ondragstart: () => {
                             swap.source = null;
@@ -472,12 +474,15 @@ const TeamsEditPage = {
         });
         if(extraElements.length) {
             extrasHeader = (
-                <div class="header">{ lang.get('extras') }</div>
+                <div class="header" key="teams-extra-header">
+                    { lang.get('extras') }
+                </div>
             );
         }
         return (
-            <div m="TeamsPage" class="teams">
+            <div m="TeamsEditPage" class="teams">
                 <Message
+                    key="teams-message"
                     icon={(
                         <ImageIcon
                             src={ roleImage(ctrl.type, 'white') }
@@ -487,17 +492,17 @@ const TeamsEditPage = {
                     )}
                     value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
                 />
-                <div>
+                <div key="team-elements">
                     { teamElements }
                 </div>
-                <div>
+                <div key="teams-create">
                     { createElements }
                 </div>
                 { extrasHeader }
-                <div>
+                <div key="teams-extra">
                     { extraElements }
                 </div>
-                <div class="clear" />
+                <div key="clear" class="clear" />
             </div>
         );
     },

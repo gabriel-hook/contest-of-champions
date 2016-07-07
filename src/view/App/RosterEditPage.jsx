@@ -72,6 +72,7 @@ const Number = {
 const RosterPage = {
     view(ctrl, { uid, stars }) {
         const champion = roster.get(uid, stars);
+        const scalePi = roster.getScale();
         const elements = [];
         if(champion) {
             const { rank, level, typeId, awakened, pi, role } = champion.attr;
@@ -154,7 +155,7 @@ const RosterPage = {
                     <span class="champion-field-label">{ lang.get('pi') }</span>
                     <Number
                         value={ pi || '' }
-                        placeholder={ champion.pi }
+                        placeholder={ champion.pi * scalePi | 0 }
                         min={ 0 }
                         max={ 10000 }
                         onchange={(event) => {

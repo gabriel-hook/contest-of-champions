@@ -32,7 +32,7 @@ const App = {
             <div m="App" class="app">
                 <div class="pages">
                     {tabs.map((tab) => (
-                        <div class={ classNames('page', { 'page--current': currentPage === tab.id }) }>
+                        <div class={ classNames('page', { 'page--current': currentPage === tab.id }) } key={ tab.id }>
                             { (currentPage === tab.id)? pages[ tab.id ]: { subtree: 'retain' } }
                         </div>
                     ))}

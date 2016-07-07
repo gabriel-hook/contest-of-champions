@@ -2,6 +2,7 @@ import './ChampionTeam.scss';
 import deepEqual from 'deep-equal';
 import classNames from 'classnames';
 import effects, { effectImage } from '../../data/effects';
+import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
 import ImageIcon from '../ImageIcon.jsx';
@@ -107,6 +108,7 @@ const ChampionTeam = {
     },
     view(ctrl, { champions, synergies, showBadges }) {
         const size = champions.length;
+        const scalePi = roster.getScale();
         return(
             <div
                 m="ChampionTeam"
@@ -123,6 +125,7 @@ const ChampionTeam = {
                                 selected={ selected }
                                 neighbor={ neighbor }
                                 showBadges={showBadges }
+                                scalePi={ scalePi }
                                 onclick={ () => selectChampion(ctrl, synergies, champions, index) }
                             />
                         );
@@ -158,7 +161,7 @@ const ChampionTeam = {
                         );
                     }) }
                     <div class="team-pi">
-                        { `${ lang.get('pi') } ` }
+                        { `${ lang.get('base-pi') } ` }
                         <span class="team-pi-number">
                             { champions.reduce((amount, champion) => amount + (champion.attr.pi || champion.pi), 0) }
                         </span>

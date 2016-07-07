@@ -1,8 +1,9 @@
 import './ChampionTeam.scss';
 import './ChampionTeamSelector.scss';
 import classNames from 'classnames';
-import { PLACEHOLDER } from '../../data/champions';
+import { CHAMPION_PLACEHOLDER } from '../../data/champions';
 import effects, { effectImage } from '../../data/effects';
+import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
 import Icon from '../Icon.jsx';
@@ -32,7 +33,8 @@ const ChampionTeamSelector = {
                 return target;
             return value;
         }, null) || null;
-        return(
+        const scalePi = roster.getScale();
+        return (
             <div
                 m="ChampionTeamSelector"
                 class={ classNames('champion-team', 'champion-team-selector', `champion-team--size-${ size }`, {
@@ -46,6 +48,7 @@ const ChampionTeamSelector = {
                             champion={ champion }
                             editing={ sourceId === champion.id || targetId === champion.id }
                             showBadges={ showBadges }
+                            scalePi={ scalePi }
                             draggable={ draggable }
                             droppable={ droppable }
                             events={{
@@ -62,7 +65,7 @@ const ChampionTeamSelector = {
                     ): (
                         <ChampionPortrait
                             key={ `create_${ index }` }
-                            champion={ PLACEHOLDER }
+                            champion={ CHAMPION_PLACEHOLDER }
                             editing={ source && source.create && source.index === index }
                             showBadges={ showBadges }
                             droppable={ droppable }
@@ -126,7 +129,7 @@ const ChampionTeamSelector = {
                         );
                     })}
                     <div class="team-pi">
-                        { `${ lang.get('pi') } ` }
+                        { `${ lang.get('base-pi') } ` }
                         <span class="team-pi-number">
                             { champions.reduce((amount, champion) => amount + (champion && (champion.attr.pi || champion.pi) || 0), 0) }
                         </span>
