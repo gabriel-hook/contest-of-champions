@@ -8,9 +8,10 @@ import {
     CHAMPION_IRONPATRIOT, CHAMPION_KANG, CHAMPION_ROCKET, CHAMPION_STARLORD,
     CHAMPION_VISION, CHAMPION_THEVISION, CHAMPION_ULTRON, CHAMPION_WARMACHINE,
 
-    CHAMPION_COLOSSUS, CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S, CHAMPION_DEADPOOL,
-    CHAMPION_DEADPOOLXFORCE, CHAMPION_MAGNETO, CHAMPION_MAGNETOMARVELNOW,
-    CHAMPION_STORM, CHAMPION_WOLVERINE, CHAMPION_WOLVERINEOLDMAN, CHAMPION_X23,
+    CHAMPION_BEAST, CHAMPION_COLOSSUS, CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S,
+    CHAMPION_DEADPOOL, CHAMPION_DEADPOOLXFORCE, CHAMPION_MAGNETO,
+    CHAMPION_MAGNETOMARVELNOW, CHAMPION_NIGHTCRAWLER, CHAMPION_STORM,
+    CHAMPION_WOLVERINE, CHAMPION_WOLVERINEOLDMAN, CHAMPION_X23,
 
     CHAMPION_AGENTVENOM, CHAMPION_BLACKPANTHER, CHAMPION_BLACKPANTHERCIVILWAR,
     CHAMPION_BLACKWIDOW, CHAMPION_CROSSBONES, CHAMPION_DAREDEVIL,
@@ -565,6 +566,27 @@ const synergies = [
             { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
             { toId: CHAMPION_MAGIK, effectId: 'perfectblock' },
             { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
+        ]),
+    ]),
+
+    ...fromId(CHAMPION_NIGHTCRAWLER, [
+        ...fromStars(3, [
+            { toId: CHAMPION_BEAST, effectId: 'armor' },
+            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
+            { toId: CHAMPION_X23, effectId: 'critdamage' },
+        ]),
+        ...fromStars(4, [
+            { toId: CHAMPION_BEAST, effectId: 'armor' },
+            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
+            { toId: CHAMPION_X23, effectId: 'critdamage' },
+        ]),
+        ...fromStars(5, [
+            { toId: CHAMPION_BEAST, effectId: 'armor' },
+            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
+            { toId: CHAMPION_X23, effectId: 'critdamage' },
         ]),
     ]),
 

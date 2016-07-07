@@ -1,0 +1,59 @@
+{
+    "description": "Raised from childhood in an Eastern European circus, Half-Demon Mutant Kurt Wagner has always existed on the outside. Gifted with the power to teleport at will, but marred with his father’s demonic appearance, Kurt eventually found a place for himself amongst Xavier’s X-Men. Despite his intimidating outward appearance, Nightcrawler remains positive and optimistic, always using his powers for the betterment of both mankind and mutantkind.",
+    "specials": {
+        "1": {
+            "name": "Displacement Strikes",
+            "description": "Using this attack increases Nightcrawler’s chance to Evade by 29% for 10 seconds if in Neyaphem Mode.\n Using this attack increases Nightcrawler’s Critical Damage by 37% for 10 seconds if in Swashbuckling Mode.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "evade",
+                "cruelty"
+            ]
+        },
+        "2": {
+            "name": "Unglaublich Acrobatic",
+            "description": "This attack reduces enemy Block Proficiency by 37% while in Neyaphem Mode.\n\nThe chance to score a Deep Wound with this attack is increased by 28% while in Swashbuckling Mode.",
+            "note": "These abilities are instantaneous and do not linger as a Debuff.",
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "3": {
+            "name": "Bamf! Bamf! Bamf!",
+            "description": "This attack disorients the opponent, granting Nightcrawler a permanent 23% increased chance to score a Deep Wound.",
+            "note": "This effect stacks infinitely, increasing the chance to score a Deep Wound each time a Special 3 is activated.",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "gameplay": {
+        "note": "By Dodging back and holding Block for 2 seconds, Nightcrawler can shift his tactics and switch his Combat Mode.",
+        "description": "While in Neyaphem Mode, Nightcrawler focuses on teleportation and dexterity, granting him a 18% chance to Evade incoming attacks. The chance to Evade attacks is increased by 15% against attacks that would deal Physical Damage. \n\nWhile in Swashbuckling Mode, Nightcrawler focuses on aggression and quick attack bursts. This grants him periodic Precision Buffs, increasing his Critical Hit chance by 25% for 4 seconds.\n While Dodging back, Nightcrawler cannot be struck by attacks. Additionally, whenever he successfully dodges an attack this way, he gains +37% Critical Damage until his next Critical Hit. This effect stacks up to 5 times.",
+        "abilities": [
+            "cruelty",
+            "bleed",
+            "evade"
+        ]
+    },
+    "signature": {
+        "description": "Nightcrawler’s unique heritage, coupled with his X-Men training, allows him to switch his combat mode 0.3 seconds faster. Additionally, anytime he strikes a Deep Wound, he gains (15 - 35%) increased Attack for 7 seconds. This effect stacks up to 3 times.",
+        "name": "NEYAPHEM HERITAGE",
+        "abilities": [
+            "fury"
+        ]
+    },
+    "attack": {
+        "description": "Nightcrawler’s cutlass has a 67% chance to strike a Deep Wound, dealing 48% of his Attack as Bleed damage instantly. The chance to score a Deep Wound increases by up to 10% based on how low the opponent’s Armor is..",
+        "abilities": [
+            "bleed"
+        ]
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "667610-Nightcrawler-Champion-Spotlight"
+    }
+}
