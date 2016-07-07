@@ -12,8 +12,10 @@ import dataSynergies from '../data/synergies';
 import roster from './roster';
 import router from './router';
 import { fromStorage, toStorage } from '../util/storage';
-import Worker from 'webworker?filename=worker-[hash:8].js!./teams/worker';
 import { requestRedraw } from '../util/animation';
+/* eslint-disable import/no-unresolved */
+import Worker from 'webworker?filename=worker-[hash:8].js!./teams/worker';
+/* eslint-enable import/no-unresolved  */
 
 const PRESETS = {
     'offensive': {

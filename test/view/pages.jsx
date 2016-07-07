@@ -6,7 +6,7 @@ import RosterEditPage from '../../src/view/App/RosterEditPage.jsx';
 import RosterPage from '../../src/view/App/RosterPage.jsx';
 import SynergyPage from '../../src/view/App/SynergyPage.jsx';
 import TeamsPage from '../../src/view/App/TeamsPage.jsx';
-import TeamsEditPage from '../../src/view/App/TeamsEditPage.jsx';
+//import TeamsEditPage from '../../src/view/App/TeamsEditPage.jsx';
 import TeamsSettingsPage from '../../src/view/App/TeamsSettingsPage.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

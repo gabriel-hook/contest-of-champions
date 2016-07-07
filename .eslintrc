@@ -163,6 +163,13 @@
         ],
         "react/jsx-uses-react": 2,
         "react/jsx-uses-vars": 2,
+        "import/no-unresolved": [
+            2,
+            {
+                "commonjs": true,
+                "amd": true
+            }
+        ],
         "eol-last": 2
     },
     "globals": {
@@ -188,6 +195,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "import"
     ]
 }
