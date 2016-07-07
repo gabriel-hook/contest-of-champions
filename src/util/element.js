@@ -1,6 +1,6 @@
 function isInDocumentBody(element) {
     /* eslint-disable no-else-return */
-    if(element === document.body) {
+    if(element === undefined || element === null || element === document.body) {
         return false;
     }
     else if(document.body.contains) {
