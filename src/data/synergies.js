@@ -267,7 +267,6 @@ const synergies = [
             { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
             { toId: CHAMPION_FALCON, effectId: 'armor' },
             { toId: CHAMPION_GUILLOTINE, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_IRONMAN, CHAMPION_HULKBUSTER ], { effectId: 'critdamage' }),
         ]),
         ...fromStars(4, [
             { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
@@ -789,19 +788,19 @@ const synergies = [
         ...fromStars(3, [
             ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
             ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_VISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
+            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
             ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
         ]),
         ...fromStars(4, [
             ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
             ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_VISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
+            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
             ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
         ]),
         ...fromStars(5, [
             ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
             ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_VISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
+            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
             ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
         ]),
     ]),
