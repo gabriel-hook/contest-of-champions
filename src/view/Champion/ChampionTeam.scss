@@ -1,5 +1,5 @@
-@import "../../util/colors";
 @import "../../util/fonts";
+@import "../../util/button";
 
 .champion-team {
     clear: both;
@@ -36,7 +36,7 @@
 
         .effect-name,
         .effect-amount {
-            font-family: $font-family-text;
+            @extend .font--text;
             font-size: 1em;
         }
 
@@ -108,18 +108,18 @@
     }
 
     .team-pi {
+        @extend .font--title;
         position: absolute;
         bottom: 0;
         right: 0;
         margin: 0 16px 8px 0;
-        font-family: $font-family-title;
         font-size: 1em;
         text-align: right;
         text-shadow: 0 1px 0 #fff;
         color: #bbb;
 
         .team-pi-number {
-            font-family: $font-family-text;
+            @extend .font--text;
             font-size: 1em;
             font-weight: bold;
             color: #000;

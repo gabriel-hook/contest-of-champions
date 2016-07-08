@@ -1,5 +1,5 @@
 @import "../../util/colors";
-@import "../../util/input";
+@import "../../util/button";
 
 .roster-add {
     padding: 24px;
@@ -13,7 +13,8 @@
         box-sizing: border-box;
 
         .add-stars-button {
-            @include styled-button(true);
+            @extend  .button--primary;
+            @extend  .button--enabled;
             display: inline-block;
             text-align: center;
             width: 20%;
@@ -31,7 +32,8 @@
             }
 
             &.add-stars-button--selected {
-                @include styled-button(false, lighten(#38c, 10%));
+                @extend  .button--primary;
+                @extend  .button--disabled;
                 display: inline-block;
                 text-align: center;
                 top: 6px;
@@ -41,7 +43,8 @@
     }
 
     .add-all {
-        @include styled-button(true);
+        @extend  .button--primary;
+        @extend  .button--enabled;
         width: 500px;
         max-width: 90%;
         text-align: center;

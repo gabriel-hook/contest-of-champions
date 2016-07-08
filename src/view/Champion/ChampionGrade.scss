@@ -1,11 +1,10 @@
 @import "../../util/colors";
 @import "../../util/fonts";
-@import "../../util/ratings";
 
 .champion-grade {
+    @extend .font--text;
     display: block;
     padding: 16px 16px 0;
-    font-family: $font-family-text;
     font-size: 1em;
 
     .champion-grade--value-a,
@@ -14,28 +13,28 @@
     .champion-grade--value-d,
     .champion-grade--value-e,
     .champion-grade--value-f {
-        font-family: $font-family-title;
+        @extend .font--title;
         text-shadow: 0 1px 0 #fff;
     }
 
     .champion-grade--value-a {
-        color: darken($rating-value-5-color, 33%);
+        color: darken($color-rating-5, 33%);
     }
 
     .champion-grade--value-b {
-        color: darken($rating-value-4-color, 33%);
+        color: darken($color-rating-4, 33%);
     }
 
     .champion-grade--value-c {
-        color: darken($rating-value-3-color, 33%);
+        color: darken($color-rating-3, 33%);
     }
 
     .champion-grade--value-d {
-        color: darken($rating-value-2-color, 33%);
+        color: darken($color-rating-2, 33%);
     }
 
     .champion-grade--value-e,
     .champion-grade--value-f {
-        color: darken($rating-value-1-color, 33%);
+        color: darken($color-rating-1, 33%);
     }
 }

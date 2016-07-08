@@ -1,10 +1,9 @@
-@import "../../util/colors";
+@import "../../util/button";
 @import "../../util/fonts";
 @import "../../util/input";
 
 .champion-upgrade {
-    position: relative;
-    @include styled-button(false);
+    @extend .button--primary;
     width: 500px;
     min-height: 52px;
     max-width: 90%;

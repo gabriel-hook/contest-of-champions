@@ -1,21 +1,12 @@
 @import "../../util/colors";
-@import "../../util/input";
-
-@mixin champion-field-style {
-    @include styled-button(true);
-    width: 100%;
-    text-align: left;
-    padding: 16px;
-    box-shadow: none;
-    box-sizing: border-box;
-    margin: 0;
-}
+@import "../../util/button";
 
 .roster-edit {
     padding: 24px;
 
     .champion-field {
-        @include styled-button(false);
+        @extend .button--primary;
+
         position: relative;
         padding: 0;
         width: 500px;
@@ -62,11 +53,6 @@
         }
 
         .champion-field-select {
-            select {
-                @include champion-field-style;
-                -webkit-appearance: none;
-            }
-
             .icon {
                 position: absolute;
                 top: 16px;
@@ -92,11 +78,17 @@
             }
         }
 
-        .champion-field-input {
-            input {
-                @include champion-field-style;
-                -webkit-appearance: none;
-            }
+        .champion-field-select select,
+        .champion-field-input input {
+            @extend .button--primary;
+            @extend .button--enabled;
+            width: 100%;
+            text-align: left;
+            padding: 16px;
+            box-shadow: none;
+            box-sizing: border-box;
+            margin: 0;
+            -webkit-appearance: none;
         }
 
         &.champion-field--neighbor {
@@ -109,7 +101,9 @@
     }
 
     .champion-button-delete {
-        @include styled-button(true, #c33);
+        @extend .button--error;
+        @extend .button--enabled;
+
         width: 500px;
         max-width: 90%;
         text-align: center;

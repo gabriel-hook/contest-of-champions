@@ -1,4 +1,5 @@
 @import "../../util/colors";
+@import "../../util/button";
 @import "../../util/fonts";
 @import "../../util/input";
 
@@ -15,16 +16,16 @@
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
 
         .header {
-            @include styled-button(false);
+            @extend .button--primary;
             text-transform: uppercase;
             text-align: left;
             padding: 16px;
         }
 
         .field-name {
+            @extend .font--text;
             display: block;
             padding: 16px 16px 0 16px;
-            font-family: $font-family-text;
             font-size: 1em;
             text-align: left;
             line-height: 1.2em;
@@ -32,7 +33,7 @@
         }
 
         .field-name--bold {
-            font-family: $font-family-title;
+            @extend .font--title;
 
         }
 
@@ -40,7 +41,7 @@
             position: relative;
 
             .field-input {
-                @include styled-button(false);
+                @extend .button--primary;
                 background: #eee;
                 padding: 8px 16px;
                 position: relative;
@@ -73,9 +74,9 @@
             }
 
             .field-description {
+                @extend .font--text;
                 box-sizing: border-box;
                 padding: 8px 64px 8px 32px;
-                font-family: $font-family-text;
                 font-size: 1em;
                 text-align: left;
                 line-height: 1.0em;
@@ -84,12 +85,12 @@
             }
 
             .field-value {
+                @extend .font--title;
                 position: absolute;
                 right: 0;
                 bottom: 0;
                 padding: 8px 16px 8px 0;
                 color: #000;
-                font-family: Hanzel, Verdana, Geneva, sans-serif;
                 font-size: 1em;
                 text-shadow: 0 1px 0 #fff;
             }

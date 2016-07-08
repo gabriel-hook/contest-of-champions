@@ -2,13 +2,13 @@
 @import "../../util/fonts";
 
 .menu-option {
+    @extend .font--title;
     position: relative;
     display: block;
     cursor: pointer;
     padding: 0;
     min-width: 2.2em;
     color: #fff;
-    font-family: $font-family-title;
     font-size: 1.1em;
     text-shadow: 0 1px 0 #000;
     text-decoration: none;

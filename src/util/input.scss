@@ -1,3 +1,5 @@
+@import "./colors";
+
 @mixin input-range($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius) {
     -webkit-appearance: none;
 
@@ -56,36 +58,4 @@
     background: $thumb-background;
     cursor: pointer;
     margin-top: $thumb-margin;
-}
-
-@mixin styled-button($effects, $background: #38c) {
-    position: relative;
-    display: block;
-    border: 0;
-    border-radius: 0;
-    font-family: Hanzel, Verdana, Geneva, sans-serif;
-    font-size: 18px;
-    background: $background;
-    color: #fff;
-    text-shadow: 0 1px 0 #000;
-    transition: background .25s, color .25s, text-shadow .25s;
-    outline: none;
-
-    @if $effects {
-        cursor: pointer;
-
-        &:hover {
-            background: #eee;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-        }
-
-        &.disabled {
-            pointer-events: none;
-            cursor: default;
-            background: #eee;
-            color: #ccc;
-            text-shadow: 0 1px 0 #fff;
-        }
-    }
 }

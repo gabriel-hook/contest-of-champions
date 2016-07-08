@@ -1,18 +1,54 @@
 
-$color-primary: #38c;
-$color-primary-text: #fff;
-$color-primary-text-shadow: #000;
+.colors--primary {
+    background: #38c;
+}
+.colors--success {
+    background: #3c3;
+}
+.colors--error {
+    background: #c33;
+}
+.colors--primary-text,
+.colors--success-text,
+.colors--error-text {
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+}
+.colors--primary-text-alt,
+.colors--success-text-alt,
+.colors--error-text-alt {
+    color: #eee;
+    text-shadow: 0 1px 0 #000;
+}
 
-$color-good: #3c3;
-$color-good-text: #fff;
-$color-good-text-shadow: #000;
+.colors--body {
+    color: #eee;
+}
+.colors--body-text {
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+}
+.colors--body-text-alt {
+    color: #555;
+    text-shadow: 0 1px 0 #fff;
+}
 
-$color-bad: #c33;
-$color-bad-text: #fff;
-$color-bad-text-shadow: #000;
-
-$color-body: #eee;
-$color-body-text: #000;
-$color-body-text-shadow: #fff;
+.colors--message {
+    color: rgba(0, 0, 0, 0.5);
+}
+.colors--message-text {
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+}
+.colors--message-text {
+    color: #ccc;
+    text-shadow: 0 1px 0 #000;
+}
 
 $color-shadow: rgba(0, 0, 0, 0.25);
+
+$color-rating-5: #3f3;
+$color-rating-4: #9f3;
+$color-rating-3: #ff3;
+$color-rating-2: #f93;
+$color-rating-1: #f33;

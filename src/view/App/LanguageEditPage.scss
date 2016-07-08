@@ -1,11 +1,12 @@
 @import "../../util/colors";
 @import "../../util/fonts";
-@import "../../util/input";
+@import "../../util/button";
 
 .language-edit {
     padding: 32px 0;
 
     .field-group {
+        @extend .font--text;
         width: 500px;
         max-width: 90%;
         margin: 0 auto 1em;
@@ -13,12 +14,11 @@
         padding: 0 0 16px;
         box-sizing: border-box;
         box-shadow: 0 8px 0 -4px rgba(0, 0, 0, .25);
-        font-family: $font-family-text;
         font-size: 1em;
         text-align: center;
 
         .field-group-title {
-            @include styled-button(false);
+            @extend .button--primary;
             text-transform: uppercase;
             text-align: left;
             padding: 16px;
@@ -36,8 +36,8 @@
         box-sizing: border-box;
 
         label {
+            @extend .font--text;
             display: block;
-            font-family: $font-family-text;
             font-size: 1em;
             text-align: left;
             line-height: 1.2em;
@@ -45,8 +45,8 @@
         }
 
         input {
+            @extend .font--text;
             width: 100%;
-            font-family: $font-family-text;
             font-size: 1em;
             padding: 8px;
             box-sizing: border-box;
@@ -63,11 +63,11 @@
     }
 
     .field-missing-controls {
+        @extend .font--title;
         position: fixed;
         bottom: 0;
         height: 2em;
         margin-left: -16px;
-        font-family: $font-family-title;
         font-size: 1.25em;
         line-height: 2em;
         z-index: 100;

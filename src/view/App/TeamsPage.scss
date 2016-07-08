@@ -1,3 +1,4 @@
+@import "../../util/fonts";
 @import "../../util/colors";
 
 .teams {
@@ -7,12 +8,12 @@
     box-sizing: border-box;
 
     .header {
+        @extend .font--title;
         width: 500px;
         max-width: 90%;
         padding: 20px 16px 16px;
         font-size: 1.3em;
         font-weight: normal;
-        font-family: Hanzel, Verdana, Geneva, sans-serif;
         text-shadow: 0 1px 0 #ccc;
         text-align: left;
     }

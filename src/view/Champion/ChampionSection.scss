@@ -1,5 +1,5 @@
 @import "../../util/colors";
-@import "../../util/input";
+@import "../../util/button";
 @import "../../util/fonts";
 
 .champion-section {
@@ -14,7 +14,7 @@
     z-index: 1;
 
     .champion-section-title {
-        @include styled-button(false);
+        @extend .button--primary;
         text-transform: uppercase;
         text-align: left;
         padding: 16px;
@@ -35,9 +35,9 @@
     }
 
     .champion-section-text {
+        @extend .font--text;
         display: block;
         padding: 16px 16px 0;
-        font-family: $font-family-text;
         font-size: 1em;
         line-height: 166%;
         text-shadow: 0 1px 0 #fff;
@@ -45,7 +45,7 @@
         &.champion-section-text-description {
             white-space: pre-line;
         }
-        
+
         & > b {
             margin-right: 0.5em;
         }
@@ -80,9 +80,9 @@
     }
 
     .champion-section-item {
+        @extend .font--title;
         display: inline-block;
         position: relative;
-        font-family: $font-family-title;
         font-size: 1em;
         padding: 8px;
         margin: 8px 8px 0 0;
@@ -90,7 +90,7 @@
     }
 
     .champion-section-select {
-        font-family: $font-family-title;
+        @extend .font--title;
         font-size: 1em;
 
         &.champion-section-select-item {
@@ -99,9 +99,9 @@
     }
 
     .champion-section-textarea {
+        @extend .font--title;
         display: block;
         width: 100%;
-        font-family: $font-family-text;
         font-size: 1em;
         line-height: 166%;
         padding: 16px;

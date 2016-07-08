@@ -1,5 +1,5 @@
 @import "../../util/colors";
-@import "../../util/input";
+@import "../../util/button";
 @import "../../util/fonts";
 
 .guide {
@@ -35,7 +35,7 @@
         }
 
         .champion-name {
-            font-family: $font-family-title;
+            @extend .font--title;
             font-size: 1em;
             line-height: 2em;
             text-transform: uppercase;
@@ -43,7 +43,7 @@
         }
 
         .effect-name {
-            font-family: $font-family-text;
+            @extend .font--text;
             font-size: 1em;
             line-height: 2em;
         }
@@ -59,11 +59,11 @@
     }
 
     .guide-external-link {
-        @include styled-button(true);
+        @extend .button--primary;
+        @extend .button--enabled;
         display: block;
         margin: 16px -16px -16px;
         padding: 16px;
-        font-family: $font-family-title;
         font-style: normal;
         text-transform: uppercase;
         text-decoration: none;
@@ -71,6 +71,7 @@
     }
 
     .guide-author {
+        @extend .font--text;
         position: relative;
         width: 500px;
         max-width: 90%;
@@ -79,12 +80,11 @@
         padding: 16px;
         box-sizing: border-box;
         box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
-        font-family: $font-family-text;
         font-size: 1em;
         text-align: center;
 
         a {
-            font-family: $font-family-title;
+            @extend .font--title;
             text-decoration: none;
             color: #000;
         }

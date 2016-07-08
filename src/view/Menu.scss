@@ -1,3 +1,4 @@
+@import "../util/fonts";
 @import "../util/colors";
 
 $menu-transition-time: .25s;
@@ -109,8 +110,8 @@ $menu-transition-time: .25s;
 
         .menu-header,
         .menu-section {
+            @extend .font--title;
             padding: .75em;
-            font-family: Hanzel, Verdana, Geneva, sans-serif;
             font-size: 1.1em;
             line-height: 1.1em;
             color: #fff;

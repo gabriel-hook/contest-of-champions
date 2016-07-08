@@ -1,0 +1,59 @@
+@import "./fonts";
+@import "./colors";
+
+.button--default {
+    @extend .font--title;
+    position: relative;
+    display: block;
+    border: 0;
+    border-radius: 0;
+    font-size: 18px;
+    transition: background .25s, color .25s, text-shadow .25s;
+    outline: none;
+}
+
+.button--primary {
+    @extend .button--default;
+    @extend .colors--primary;
+    @extend .colors--primary-text;
+}
+.button--success {
+    @extend .button--default;
+    @extend .colors--success;
+    @extend .colors--success-text;
+}
+.button--error {
+    @extend .button--default;
+    @extend .colors--error;
+    @extend .colors--error-text;
+}
+.button--enabled {
+    cursor: pointer;
+
+    &:hover {
+        background: #eee;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        cursor: default;
+        background: #eee;
+        color: #ccc;
+        text-shadow: 0 1px 0 #fff;
+    }
+}
+.button--disabled {
+    &:hover {
+        &.button--primary {
+            @extend .button--primary;
+        }
+        &.button--success {
+            @extend .button--success;
+        }
+        &.button--error {
+            @extend .button--error;
+        }
+    }
+}
