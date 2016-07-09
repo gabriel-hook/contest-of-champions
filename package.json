@@ -6,12 +6,12 @@
   "scripts": {
     "start": "gulp develop",
     "lint": "gulp lint",
-    "karma": "npm run karma-data && npm run karma-service && npm run karma-view && npm run karma-view-menus && npm run karma-view-pages && npm run karma-view-champion",
+    "karma": "karma start",
     "karma-data": "karma start --file=./test/data/*",
     "karma-service": "karma start --file=./test/service/*",
     "karma-view": "karma start --file=./test/view/index.jsx",
     "karma-view-menus": "karma start --file=./test/view/menus.jsx",
-    "karma-view-pages": "karma start --file=./test/view/pages.jsx",
+    "karma-view-pages": "karma start --file=./test/view/pages.jsx --watch",
     "karma-view-champion": "karma start --file=./test/view/champion.jsx",
     "test": "npm run lint && npm run karma",
     "deploy": "gulp build && ./dev/script/deploy.sh"

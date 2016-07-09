@@ -3,7 +3,7 @@ import webpackConfig from './webpack-config';
 export default function(config) {
     config.set({
         singleRun: true,
-        browsers: [ 'PhantomJS2' ],
+        browsers: config.browsers && config.browsers.length && config.browsers || [ 'PhantomJS2' ],
         // karma only needs to know about the test bundle
         files: [
             { pattern: './node_modules/babel-polyfill/dist/polyfill.js', watched: false, included: true, served: true },
@@ -41,6 +41,8 @@ export default function(config) {
         },
         plugins: [
             'karma-phantomjs2-launcher',
+            'karma-firefox-launcher',
+            'karma-chrome-launcher',
             'karma-mocha-reporter',
             'karma-chai',
             'karma-mocha',

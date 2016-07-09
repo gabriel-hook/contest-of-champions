@@ -6,19 +6,16 @@ import RosterEditPage from '../../src/view/App/RosterEditPage.jsx';
 import RosterPage from '../../src/view/App/RosterPage.jsx';
 import SynergyPage from '../../src/view/App/SynergyPage.jsx';
 import TeamsPage from '../../src/view/App/TeamsPage.jsx';
-//import TeamsEditPage from '../../src/view/App/TeamsEditPage.jsx';
+import TeamsEditPage from '../../src/view/App/TeamsEditPage.jsx';
 import TeamsSettingsPage from '../../src/view/App/TeamsSettingsPage.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+import { renderToDocument as render } from '../../src/util/test';
 import roster from '../../src/service/roster';
 
 roster.clear();
 
-function render(object) {
-    m.render(document.body, object);
-    return true;
-}
 
 describe('view/pages/', () => {
     describe('<GuideEditPage/>', () => it('should render without error', () => expect(render(<GuideEditPage />)).to.exist));
@@ -35,6 +32,6 @@ describe('view/pages/', () => {
     describe('<RosterPage/>', () => it('should render without error', () => expect(render(<RosterPage />)).to.exist));
     describe('<SynergyPage/>', () => it('should render without error', () => expect(render(<SynergyPage />)).to.exist));
     describe('<TeamsPage/>', () => it('should render without error', () => expect(render(<TeamsPage />)).to.exist));
-    //describe('<TeamsEditPage/>', () => it('should render without error', () => expect(render(<TeamsEditPage />)).to.exist));
+    describe('<TeamsEditPage/>', () => it('should render without error', () => expect(render(<TeamsEditPage />)).to.exist));
     describe('<TeamsSettingsPage/>', () => it('should render without error', () => expect(render(<TeamsSettingsPage />)).to.exist));
 });

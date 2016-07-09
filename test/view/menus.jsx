@@ -10,14 +10,10 @@ import TeamsSettingsMenu from '../../src/view/App/TeamsSettingsMenu.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+import { renderToDocument as render } from '../../src/util/test';
 import roster from '../../src/service/roster';
 
 roster.clear();
-
-function render(object) {
-    m.render(document.body, object);
-    return true;
-}
 
 describe('view/menus/', () => {
     describe('<GuideEditMenu/>', () => it('should render without error', () => expect(render(<GuideEditMenu uid="blackbolt" />)).to.exist));

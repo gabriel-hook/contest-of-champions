@@ -493,7 +493,7 @@ const TeamsEditPage = {
                     )}
                     value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
                 />
-                <div key="team-elements">
+                <div key="teams-elements">
                     { teamElements }
                 </div>
                 <div key="teams-create">

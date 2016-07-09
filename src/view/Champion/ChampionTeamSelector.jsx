@@ -41,7 +41,7 @@ const ChampionTeamSelector = {
                     'champion-team-selector-create': create,
                 }) }
             >
-                <div>
+                <div className="team-champions">
                     { champions.map((champion, index) => (champion)? (
                         <ChampionPortrait
                             key={ `create_${ index }` }
