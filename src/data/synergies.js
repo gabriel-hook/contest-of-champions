@@ -31,6 +31,9 @@ import {
 import { EFFECT_STARS_AMOUNT, EFFECT_STARS_INDEX } from './effects';
 import Synergy from './model/Synergy';
 
+
+let toIdsCounter = 0;
+
 const synergies = [
 
     ...fromId(CHAMPION_BLACKBOLT, [
@@ -1344,24 +1347,24 @@ const synergies = [
 
 function fromId(fromId, synergies) {
     return synergies.map((synergy) => ({
-        fromId,
         ...synergy,
+        fromId,
     }));
 }
 
 function fromStars(fromStars, synergies) {
     return synergies.map((synergy) => ({
-        fromStars,
         ...synergy,
+        fromStars,
     }));
 }
 
 function toIds(toIds, synergy) {
-    const group = `${synergy.fromId}-${toIds.join('-')}`;
+    toIdsCounter++;
     return toIds.map((toId) => ({
-        toId,
         ...synergy,
-        group,
+        toId,
+        group: `group-${ toIdsCounter }`,
     }));
 }
 
@@ -1374,18 +1377,23 @@ function effectAmount(effectId, fromStars) {
 }
 
 function synergiesFromChampions(champions) {
-    const ids = champions.reduce((map, champion) => {
-        map[ champion.attr.uid ] = true;
-        return map;
-    }, {});
-    return champions
-        .map((champion) => synergies.filter((synergy) => {
-            const { fromId, fromStars, toId } = synergy.attr;
-            if(fromId !== champion.attr.uid || fromStars !== champion.attr.stars)
+    const groups = {};
+    const validChampions = champions.filter((champion) => champion);
+    return synergies.filter(({ attr: { fromId, fromStars, toId, group } }) => {
+        const id = `${ fromId }-${ fromStars }`;
+        const found = validChampions.find((champion) => champion.id === id) &&
+            validChampions.find(({ attr: { uid } }) => uid === toId);
+        if(!found) {
+            return false;
+        }
+        if(group) {
+            if(groups[ group ]) {
                 return false;
-            return ids[ toId ];
-        }))
-        .reduce((array, current) => array.concat(current), []);
+            }
+            groups[ group ] = true;
+        }
+        return true;
+    });
 }
 
 export { synergiesFromChampions };

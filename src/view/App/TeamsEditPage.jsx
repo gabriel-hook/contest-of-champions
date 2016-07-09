@@ -1,7 +1,8 @@
 import './TeamsEditPage.scss';
 import { ROLE_ARENA } from '../../data/model/Champion';
+import { synergiesFromChampions } from '../../data/synergies';
 import { roleImage, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
-import teams, { synergiesFromChampions, saveTeam, lockTeams, lockedTeams } from '../../service/teams';
+import teams, { saveTeam, lockTeams, lockedTeams } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';

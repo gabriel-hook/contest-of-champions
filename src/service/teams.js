@@ -9,7 +9,7 @@ import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
 import { WILLPOWER_SAFE_CHAMPIONS } from '../data/champions';
-import dataSynergies from '../data/synergies';
+import { synergiesFromChampions } from '../data/synergies';
 import roster from './roster';
 import router from './router';
 import { fromStorage, toStorage } from '../util/storage';
@@ -240,34 +240,6 @@ function idToRosterChampion(id) {
     return roster.filter(({ attr }) => attr.uid === uid && attr.stars === stars)[ 0 ];
 }
 
-function synergiesFromChampions(team) {
-    const groups = {};
-    const champions = team.reduce((array, champion) => {
-        if(champion) {
-            return [
-                ...array,
-                champion,
-            ];
-        }
-        return array;
-    }, []);
-    return dataSynergies.filter((synergy) => {
-        const { fromId, fromStars, toId } = synergy.attr;
-        if (!champions.find(({ attr }) => fromId === attr.uid && fromStars === attr.stars))
-            return false;
-        return Boolean(champions.find(({ attr }) => toId === attr.uid));
-
-    }).filter(({ attr }) => {
-        if(attr.group) {
-            if(groups[ attr.group ]) {
-                return false;
-            }
-            groups[ attr.group ] = true;
-        }
-        return true;
-    });
-}
-
 let lockedTeams = [];
 let lockedTeamChampions = {};
 function lockTeams(teams = []) {
@@ -390,5 +362,5 @@ function buildTeam() {
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
-export { save, saveTeam, loadTeam, buildTeam, lockTeams, lockedTeams, synergiesFromChampions };
+export { save, saveTeam, loadTeam, buildTeam, lockTeams, lockedTeams };
 export default teams;
