@@ -153,7 +153,7 @@ const champions = [
     ...championForStars({ uid: CHAMPION_GAMBIT, typeId: 'mutant' }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION_MAGNETO, typeId: 'mutant' }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION_MAGNETOMARVELNOW, typeId: 'mutant' }, [ 3, 4 ]),
-    ...championForStars({ uid: CHAMPION_NIGHTCRAWLER, typeId: 'mutant' }, [ 2, 3, 4 ]),
+    ...championForStars({ uid: CHAMPION_NIGHTCRAWLER, typeId: 'mutant' }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION_STORM, typeId: 'mutant' }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION_WOLVERINE, typeId: 'mutant' }, [ 1, 2, 3, 4 ]),
     ...championForStars({ uid: CHAMPION_WOLVERINEOLDMAN, typeId: 'mutant' }, [ 3, 4, 5 ]),
