@@ -1,18 +1,29 @@
-function fromStorage(id, initial) {
-    let object;
+
+function fromStorage(key, defaultValue) {
+    let value;
     if(localStorage) {
-        const string = localStorage.getItem(id);
-        object = JSON.parse(string);
-        if(object === 'undefined' || object === 'null') {
-            return initial;
+        const string = localStorage.getItem(key);
+        if(string) {
+            value = JSON.parse(string);
+            if(value === 'undefined' || value === 'null') {
+                return defaultValue;
+            }
         }
     }
-    return object || initial;
+    if(value === undefined || value === null) {
+        return defaultValue;
+    }
+    return value;
 }
 
-function toStorage(id, object) {
+function toStorage(key, value) {
     if(localStorage) {
-        localStorage.setItem(id, JSON.stringify(object));
+        if(value === null || value === undefined) {
+            localStorage.removeItem(key);
+        }
+        else {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
     }
 }
 
