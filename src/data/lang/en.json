@@ -256,6 +256,8 @@
     "duplicate-weights": "Duplicate Class Weights",
     "arena-sandbagging": "Arena Sandbagging",
     "arena-sandbagging-description": "Arena teams ignore the PI of the lowest member, making sure that there are at least 2 strong members per team.",
+    "willpower-safe": "Willpower Safe Champions",
+    "willpower-safe-description": "Filter out champions that have abilities that can trigger willpower.",
     "base-weight": "Base Weight",
     "base-weight-description": "This is the value a team gets in addition to synergies. To only allow teams with synergies, set this to 0.",
 

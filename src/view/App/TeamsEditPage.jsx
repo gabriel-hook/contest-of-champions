@@ -1,6 +1,6 @@
 import './TeamsEditPage.scss';
 import { ROLE_ARENA } from '../../data/model/Champion';
-import { roleImage } from '../../data/champions';
+import { roleImage, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
 import teams, { synergiesFromChampions, saveTeam, lockTeams, lockedTeams } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
@@ -91,13 +91,18 @@ const TeamsEditPage = {
         this.stars = {};
         this.types = {};
         this.last = -1;
+        this.willpowersafe = 1;
         this.locked = [];
         this.type = null;
         this.reset = () => {
             const starsEqual = deepEqual(this.stars, teams.stars);
             const typesEqual = deepEqual(this.types, teams.types);
             const result = teams.result[ `${ teams.type }-${ teams.size }` ];
-            const changed = this.type !== teams.type || this.size !== teams.size || !starsEqual || !typesEqual;
+            const changed =
+                this.willpowersafe !== teams.willpowersafe ||
+                this.type !== teams.type ||
+                this.size !== teams.size ||
+                !starsEqual || !typesEqual;
             if(this.last !== teams.last || changed) {
                 this.teams = result && result.teams.map(({ champions, synergies }) => ({
                     champions: [
@@ -117,6 +122,7 @@ const TeamsEditPage = {
                 this.stars = { ...teams.stars };
                 this.types = { ...teams.types };
                 this.size = teams.size;
+                this.willpowersafe = teams.willpowersafe;
                 this.last = teams.last;
                 this.type = teams.type;
                 this.locked = (this.type === ROLE_ARENA)? lockedTeams: [];
@@ -296,6 +302,7 @@ const TeamsEditPage = {
         });
         const extras = roster
             .filter((champion) => !champion.attr.role)
+            .filter((champion) => !ctrl.willpowersafe || WILLPOWER_SAFE_CHAMPIONS[ champion.attr.uid ])
             .filter((champion) => ctrl.stars[ champion.attr.stars ] !== false)
             .filter((champion) => ctrl.types[ champion.attr.typeId ] !== false)
             .filter((champion) => !inTeam[ champion.id ]);

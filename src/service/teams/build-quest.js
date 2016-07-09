@@ -11,8 +11,10 @@ function buildQuest({
     range,
     progress,
 }) {
-    const typeWeights = { 1: 1 };
-    [ 2, 3, 4, 5 ].forEach((count) => (typeWeights[ count ] = weights[ `duplicates-${ count }` ]));
+    const typeWeights = [ 2, 3, 4, 5 ].reduce((map, count) => {
+        map[ count ] = weights[ `duplicates-${ count }` ];
+        return map;
+    }, { 1: 1 });
 
     const WEIGHT_BASE = weights[ 'base' ] || 0;
     const list = champions

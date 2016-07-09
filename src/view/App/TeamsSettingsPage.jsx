@@ -48,7 +48,7 @@ const Checkbox = {
                     requestRedraw(10);
                 }}
             >
-                <Icon icon={ (object[ field ])? 'check-square': 'square' } before />
+                <Icon icon={ (object[ field ])? 'check-square-o': 'square-o' } before />
                 { lang.get((object[ field ])? 'enabled': 'disabled') }
             </div>
         );
@@ -56,7 +56,7 @@ const Checkbox = {
 };
 
 const Field = {
-    view(ctrl, { title, icon, description, input, value, hasLargeValue }) {
+    view(ctrl, { title, icon, description, alt, input, value, hasLargeValue }) {
         return (
             <div class="field">
                 <label class="field-name">
@@ -80,6 +80,9 @@ const Field = {
                             { value }
                         </span>
                     ): null }
+                    { (alt !== undefined)? (
+                        <div class="field-description-alt">{ alt }</div>
+                    ): null }
                 </div>
             </div>
         );
@@ -102,6 +105,17 @@ const TeamsSettingsPage = {
                         description={ lang.get('arena-sandbagging-description') }
                         input={(
                             <Checkbox object={ teams } field={ 'sandbagging' } />
+                        )}
+                    />
+
+                    <Field
+                        title={ lang.get('willpower-safe') }
+                        icon={(
+                            <Icon icon="user-secret" before />
+                        )}
+                        description={ lang.get('willpower-safe-description') }
+                        input={(
+                            <Checkbox object={ teams } field={ 'willpowersafe' } />
                         )}
                     />
                     <Field

@@ -8,6 +8,7 @@ import Champion, {
 import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
+import { WILLPOWER_SAFE_CHAMPIONS } from '../data/champions';
 import dataSynergies from '../data/synergies';
 import roster from './roster';
 import router from './router';
@@ -111,6 +112,8 @@ const PRESETS_RANGE = {
     },
 };
 
+const DEFAULT_WILLPOWER_SAFE = false;
+
 const DEFAULT_BASE = 0;
 
 const DEFAULT_SANDBAGGING = false;
@@ -149,6 +152,7 @@ const teams = {
     range: {
         ...DEFAULT_RANGE,
     },
+    willpowersafe: DEFAULT_WILLPOWER_SAFE,
     sandbagging: DEFAULT_SANDBAGGING,
     ...fromStorage('teams', {}),
     progress: 0,
@@ -183,6 +187,8 @@ function save() {
         types: teams.types,
         weights: teams.weights,
         range: teams.range,
+        sandbagging: teams.sandbagging,
+        willpowersafe: teams.willpowersafe,
     });
 }
 
@@ -314,6 +320,7 @@ function buildTeam() {
                             ({ attr }) => !attr.role || attr.role === ROLE_ARENA || attr.role === teams.type:
                             ({ id }) => !lockedTeamChampions[ id ]
                     )
+                    .filter(({ attr }) => !teams.willpowersafe || WILLPOWER_SAFE_CHAMPIONS[ attr.uid ])
                     .map((champion) => champion.attr),
                 size: teams.size,
                 sandbagging: teams.sandbagging,
