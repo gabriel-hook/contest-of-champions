@@ -41,8 +41,6 @@ export default function(config) {
         },
         plugins: [
             'karma-phantomjs2-launcher',
-            'karma-firefox-launcher',
-            'karma-chrome-launcher',
             'karma-mocha-reporter',
             'karma-chai',
             'karma-mocha',
