@@ -18,7 +18,7 @@ export const EFFECT_STARS_AMOUNT = {
     heroesforhire: [ 3, 4, 5 ],
     thunderbolts: [ 4, 5, 6 ],
 };
-export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 3 };
+export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
 const effects = [
 
