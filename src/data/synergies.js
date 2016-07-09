@@ -1356,12 +1356,13 @@ function fromStars(fromStars, synergies) {
     }));
 }
 
+let toIdsCounter = 0;
 function toIds(toIds, synergy) {
-    toIds.counter = (toIds.counter + 1) || 1;
+    toIdsCounter++;
     return toIds.map((toId) => ({
         toId,
         ...synergy,
-        group: toIds.counter,
+        group: toIdsCounter,
     }));
 }
 
