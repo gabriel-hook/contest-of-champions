@@ -27,7 +27,7 @@ const getSynergies = (uid, isFrom) => {
         if(!isFrom && (!map[ fromId ] || map[ fromId ] > fromStars))
             map[ fromId ] = fromStars;
         return map;
-    });
+    }, {});
     return filtered.filter((synergy) => {
         const { fromId, fromStars, toId } = synergy.attr;
         const uid = isFrom? toId: fromId;

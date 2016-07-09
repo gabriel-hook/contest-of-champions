@@ -38,10 +38,13 @@ function awakenedReduction(awakened) {
         if(!value) {
             return sum;
         }
-        if(exponent > 0) {
-            return sum + value * Math.pow(ln, exponent);
+        if(exponent === 0) {
+            return sum + value;
         }
-        return sum + value;
+        if(exponent === 1) {
+            return sum + value * ln;
+        }
+        return sum + value * Math.pow(ln, exponent);
     };
 }
 
