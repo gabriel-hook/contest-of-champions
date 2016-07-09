@@ -20,13 +20,14 @@ export const PROFILE_TYPES = [
     'spotlight',
 ];
 
-const guides = {};
 const requireGuide = require.context('./guide', true, /\.json$/);
-requireGuide.keys().forEach((key) => {
+const uids = requireGuide.keys();
+const guides = requireGuide.keys().reduce((map, key) => {
     const name = key.replace('./', '').replace('.json', '');
-    guides[ name ] = requireGuide(key);
-});
+    map[ name ] = requireGuide(key);
+    return map;
+}, {});
 
 export default guides;
 
-export const uids = Object.keys(guides);
+export { uids };

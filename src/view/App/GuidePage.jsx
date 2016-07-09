@@ -20,13 +20,13 @@ const getSynergies = (uid, isFrom) => {
     const filtered = synergies.filter((synergy) => {
         return synergy.attr[ isFrom? 'fromId': 'toId' ] === uid;
     });
-    const keeperStars = {};
-    filtered.forEach((synergy) => {
+    const keeperStars = filtered.reduce((map, synergy) => {
         const { fromId, fromStars, toId } = synergy.attr;
-        if(isFrom && (!keeperStars[ toId ] || keeperStars[ toId ] > fromStars))
-            keeperStars[ toId ] = fromStars;
-        if(!isFrom && (!keeperStars[ fromId ] || keeperStars[ fromId ] > fromStars))
-            keeperStars[ fromId ] = fromStars;
+        if(isFrom && (!map[ toId ] || map[ toId ] > fromStars))
+            map[ toId ] = fromStars;
+        if(!isFrom && (!map[ fromId ] || map[ fromId ] > fromStars))
+            map[ fromId ] = fromStars;
+        return map;
     });
     return filtered.filter((synergy) => {
         const { fromId, fromStars, toId } = synergy.attr;

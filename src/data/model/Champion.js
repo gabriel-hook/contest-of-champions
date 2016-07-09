@@ -1,5 +1,5 @@
 import { isInRange } from '../../util/math';
-import { getPI } from '../pi';
+import { getPi } from '../pi';
 import { uids as TYPES } from '../types';
 import Model from './Model';
 
@@ -184,7 +184,7 @@ class Champion extends Model {
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = TYPES.indexOf(this.attr.typeId);
-        this.pi = getPI(this.attr) || 0;
+        this.pi = getPi(this.attr) || 0;
     }
 
     static idToObject(id) {

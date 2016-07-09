@@ -1,4 +1,5 @@
-import values from './pi/values.json';
+import coefficientsByStar from './pi/coefficient-by-stars.json';
+import coefficientsByRank from './pi/coefficient-by-rank.json';
 
 const STAR_RANK_LEVELS = [
     [ 10, 20 ],
@@ -17,36 +18,87 @@ const STAR_RANK_LEVEL_SUMS = STAR_RANK_LEVELS.map((rankLevels) => {
     ], []);
 });
 
-const getLevelRatio = (stars, rank, level) => {
-    const rankLevelSums = STAR_RANK_LEVEL_SUMS[ stars - 1 ];
-    const rankSum = rankLevelSums && rankLevelSums[ rank - 2 ] || 0;
-    return (rankSum + level) / (STAR_LEVELS[ stars - 1 ] || 1);
-};
+function getLevelRatio(stars, rank, level) {
+    const levelMax = STAR_LEVELS[ stars - 1 ];
+    const levelActual = (STAR_RANK_LEVEL_SUMS[ stars - 1 ][ rank - 2 ] || 0) + level;
+    return levelActual / levelMax;
+}
 
-export function getPI({ uid, stars = 1, rank = 1, level = 1, awakened = 0 }) {
-    let value = values[ `default-${ stars }` ];
+function getBasePi(data, value) {
+    const keys = Object.keys(data);
+    const minKey = Math.min(...keys);
+    const maxKey = Math.max(...keys);
+    const { [ minKey ]: minValue, [ maxKey ]: maxValue } = data;
+    return minValue + (maxValue - minValue) * (value - minKey) / (maxKey - minKey);
+}
+
+function awakenedReduction(awakened) {
+    const ln = Math.log(awakened);
+    return (sum, value, exponent) => {
+        if(!value) {
+            return sum;
+        }
+        if(exponent > 0) {
+            return sum + value * Math.pow(ln, exponent);
+        }
+        return sum + value;
+    };
+}
+
+function getRankPi({ uid, stars = 1, rank = 1, level = 1, awakened = 0 }) {
+    const value = coefficientsByRank[ `${ uid }-${ stars }` ];
+    if(!value) {
+        return 0;
+    }
+    const valueForRank = value[ rank ];
+    if(!valueForRank) {
+        return 0;
+    }
+    const minMaxPi = valueForRank[ 'pi' ];
+    if(!awakened) {
+        return getBasePi(minMaxPi, level) | 0;
+    }
+    const { k, s0, s1, s2, s3 } = valueForRank;
+    const maxLevel = STAR_RANK_LEVELS[ stars - 1 ][ rank - 1 ];
+    let maxPi = 0;
+    if(stars === 4) {
+        maxPi = k * [ s0, s1, s2 ].reduce(awakenedReduction(awakened));
+    }
+    else if (stars === 5) {
+        maxPi = k / [ s0, s1, s2, s3 ].reduce(awakenedReduction(awakened));
+    }
+    if(maxPi && maxLevel) {
+        return getBasePi({
+            ...minMaxPi,
+            [ maxLevel ]: maxPi,
+        }, level) | 0;
+    }
+    return 0;
+}
+
+function getStarsPi({ uid, stars = 1, rank = 1, level = 1, awakened = 0 }) {
+    let value = coefficientsByStar[ `default-${ stars }` ];
     if(!value) {
         return 0;
     }
     value = {
         ...value,
-        ...(values[ `${ uid }-${ stars }` ] || {}),
+        ...(coefficientsByStar[ `${ uid }-${ stars }` ] || {}),
     };
-    const ratio = getLevelRatio(stars, rank, level);
-    const base = value.min + (value.max - value.min) * ratio;
+    const levelRatio = getLevelRatio(stars, rank, level);
+    const { min: baseMinPi, max: baseMaxPi } = value;
     if(!awakened) {
-        return base | 0;
+        return (baseMinPi + (baseMaxPi - baseMinPi) * levelRatio) | 0;
     }
-    const ln = Math.log(awakened);
-    const sig = [ 0, 1, 2, 3 ].reduce((sum, i) => {
-        let c = value[ `sig-${ i }` ] || 0;
-        if(!c) {
-            return sum;
-        }
-        if(i > 0) {
-            c *= Math.pow(ln, i);
-        }
-        return sum + c;
-    }, 0);
-    return (base + sig * ratio) | 0;
+    const { s0, s1, s2, s3 } = value;
+    const maxPi = baseMaxPi + [ s0, s1, s2, s3 ].reduce(awakenedReduction(awakened));
+    return (baseMinPi + (maxPi - baseMinPi) * levelRatio) | 0;
+}
+
+export function getPi(attr) {
+    const byRank = getRankPi(attr);
+    if(byRank) {
+        return byRank;
+    }
+    return getStarsPi(attr);
 }

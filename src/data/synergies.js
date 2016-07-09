@@ -1374,8 +1374,10 @@ function effectAmount(effectId, fromStars) {
 }
 
 function synergiesFromChampions(champions) {
-    const ids = {};
-    champions.forEach((champion) => (ids[ champion.attr.uid ] = true));
+    const ids = champions.reduce((map, champion) => {
+        map[ champion.attr.uid ] = true;
+        return map;
+    }, {});
     return champions
         .map((champion) => synergies.filter((synergy) => {
             const { fromId, fromStars, toId } = synergy.attr;
