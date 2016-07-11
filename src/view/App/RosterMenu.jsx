@@ -1,10 +1,9 @@
-import { uids as TYPES, typeImage, typeIcon } from '../../data/types';
+import { uids as TYPES, typeIcon } from '../../data/types';
 import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 import { clickElementById } from '../../util/element';
@@ -172,13 +171,7 @@ const RosterMenu = {
                 TYPES.map((type) => (
                     <MenuOption
                         icon={(
-                            <ImageIcon
-                                src={ typeImage(type, 'white') }
-                                alt={ typeImage(type, 'black') }
-                                hoverSrc={ typeImage(type, 'black') }
-                                hoverAlt={ typeImage(type, 'white') }
-                                icon={ typeIcon(type) }
-                            />
+                            <Icon icon={ typeIcon(type) } />
                         )}
                         info={ `type-${ type }-name` }
                         selected={ roster.getFilter(type) }

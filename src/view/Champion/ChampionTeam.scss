@@ -39,12 +39,6 @@
             @extend .font--text;
             font-size: 1em;
         }
-
-        .effect-amount {
-            &::before {
-                content: "- ";
-            }
-        }
     }
 
     &.champion-team--size-3 {

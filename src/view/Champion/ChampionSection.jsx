@@ -1,10 +1,10 @@
 import './ChampionSection.scss';
 import { RATINGS, GRADES, RANGES, DAMAGE_TYPES } from '../../data/guides';
-import { uids as ABILITIES, abilityImage } from '../../data/abilities';
+import { uids as ABILITIES, abilityIcon } from '../../data/abilities';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
-import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../ImageIcon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -173,12 +173,9 @@ const ChampionSection = {
                             'abilities',
                             abilities === true? []: abilities,
                             (ability) => `ability-${ ability }`,
-                            (ability) => abilityImage(ability) && (
-                                <ImageIcon
-                                    src={ abilityImage(ability, 'black') }
-                                    alt={ abilityImage(ability, 'white') }
-                                />
-                            )
+                            (ability) => abilityIcon(ability) && (
+                                <Icon icon={ abilityIcon(ability) } before />
+                            ) || null
                         ) }
                     </div>
                 );
@@ -278,16 +275,12 @@ const ChampionSection = {
                         <b>{ lang.get('abilities') }:</b>
                         { abilities.map((ability, index) => (
                             <span class={ `champion-section-ability champion-section-ability-${ ability }` }>
-                                { abilityImage(ability) &&
-                                    <ImageIcon
-                                        src={ abilityImage(ability, 'black') }
-                                        alt={ abilityImage(ability, 'white') }
-                                    />
-                                }{
-                                    (index < abilities.length - 1)?
-                                        `${ lang.get(`ability-${ ability }`) }, `:
-                                        lang.get(`ability-${ ability }`)
-                                }
+                                { (index > 0) && (
+                                    <span>, </span>
+                                ) || null }
+                                { abilityIcon(ability) && (
+                                    <Icon icon={ abilityIcon(ability) } before />
+                                ) || null }{ lang.get(`ability-${ ability }`) }
                             </span>
                         )) }
                     </div>

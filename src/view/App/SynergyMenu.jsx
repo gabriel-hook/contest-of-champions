@@ -1,10 +1,9 @@
-import { uids as EFFECTS, effectImage } from '../../data/effects';
+import { uids as EFFECTS, effectIcon } from '../../data/effects';
 import synergy from '../../service/synergy';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -53,14 +52,7 @@ const SynergyMenu = {
                 { EFFECTS.map((uid) => (
                         <MenuOption
                             icon={(
-                                <ImageIcon
-                                    src={ effectImage(uid, 'white') }
-                                    alt={ effectImage(uid, 'black') }
-                                    hoverSrc={ effectImage(uid, 'black') }
-                                    hoverAlt={ effectImage(uid, 'white') }
-                                    icon="square"
-                                    before
-                                />
+                                <Icon icon={ effectIcon(uid) } before />
                             )}
                             alternate={ `effect-${ uid }-shortname` }
                             title={ `effect-${ uid }-name` }

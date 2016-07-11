@@ -1,10 +1,10 @@
 import './TeamsPage.scss';
-import { roleImage } from '../../data/champions';
+import { roleIcon } from '../../data/champions';
 import { ROLE_ARENA, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE } from '../../data/model/Champion';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
-import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../ImageIcon.jsx';
 import ChampionTeam from '../Champion/ChampionTeam.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 /* eslint-disable no-unused-vars */
@@ -43,12 +43,7 @@ function results(type, size) {
             <div>
                 <Message
                     icon={(
-                        <ImageIcon
-                            src={ roleImage(type, 'white') }
-                            alt={ roleImage(type, 'black') }
-                            icon="square-o"
-                            before
-                        />
+                        <Icon icon={ roleIcon(type) } before />
                     )}
                     value={ `${ lang.get(`role-${ type }`) }${ message }` }
                 />
@@ -61,11 +56,7 @@ function results(type, size) {
         <div>
             <Message
                 icon={(
-                    <ImageIcon
-                        src={ roleImage(type, 'white') }
-                        alt={ roleImage(type, 'black') }
-                        icon="square-o"
-                    />
+                    <Icon icon={ roleIcon(type) } before />
                 )}
                 value={ lang.get(`role-${ type }`) }
             />

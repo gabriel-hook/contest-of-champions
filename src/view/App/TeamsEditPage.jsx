@@ -1,14 +1,14 @@
 import './TeamsEditPage.scss';
 import { ROLE_ARENA } from '../../data/model/Champion';
 import { synergiesFromChampions } from '../../data/synergies';
-import { roleImage, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
+import { roleIcon, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
 import teams, { saveTeam, lockTeams, lockedTeams } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
 import ChampionTeamSelector from '../Champion/ChampionTeamSelector.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
-import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 import Message from '../Message.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -493,11 +493,7 @@ const TeamsEditPage = {
                 <Message
                     key="teams-message"
                     icon={(
-                        <ImageIcon
-                            src={ roleImage(ctrl.type, 'white') }
-                            alt={ roleImage(ctrl.type, 'black') }
-                            icon="square-o"
-                        />
+                        <Icon icon={ roleIcon(ctrl.type) } before />
                     )}
                     value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
                 />

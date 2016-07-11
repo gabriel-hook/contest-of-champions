@@ -1,10 +1,9 @@
 import './TeamsSettingsPage.scss';
 import classNames from 'classnames';
-import effects, { effectImage } from '../../data/effects';
+import effects, { effectIcon } from '../../data/effects';
 import teams, { save } from '../../service/teams';
 import lang from '../../service/lang';
 import Icon from '../Icon.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -143,12 +142,7 @@ const TeamsSettingsPage = {
                         <Field
                             title={ lang.get(`effect-${ attr.uid }-shortname`, null) || lang.get(`effect-${ attr.uid }-name`) }
                             icon={(
-                                <ImageIcon
-                                    src={ effectImage(attr.uid, 'black') }
-                                    alt={ effectImage(attr.uid, 'white') }
-                                    icon={ 'square '}
-                                    before
-                                />
+                                <Icon icon={ effectIcon(attr.uid) } before />
                             )}
                             input={
                                 <Slider

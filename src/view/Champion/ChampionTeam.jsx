@@ -1,11 +1,11 @@
 import './ChampionTeam.scss';
 import deepEqual from 'deep-equal';
 import classNames from 'classnames';
-import effects, { effectImage } from '../../data/effects';
+import effects, { effectIcon } from '../../data/effects';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
-import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -146,14 +146,11 @@ const ChampionTeam = {
                                 onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
                                 title={ lang.get(`effect-${ effect.attr.uid }-description`) }
                             >
-                                <ImageIcon
-                                    src={ effectImage(effect.attr.uid, 'black') }
-                                    alt={ effectImage(effect.attr.uid, 'white') }
-                                    icon="square"
-                                />
+                                <Icon icon={ effectIcon(effect.attr.uid) } before />
                                 <span class="effect-name">
                                     { lang.get(`effect-${ effect.attr.uid }-name`) }
                                 </span>
+                                <span> - </span>
                                 <span class="effect-amount">
                                     { amount }%
                                 </span>

@@ -44,34 +44,30 @@ const effects = [
     base: EFFECT_STARS_AMOUNT[ uid ][ 0 ],
 }));
 
-const effectImages = {
-    'attack': 'attack',
-    'idol': 'idol',
-    'inseparable': 'inseparable',
-    'mutantagenda': 'mutant_agenda',
-    'critrate': 'critical_rate',
-    'critdamage': 'critical_damage',
-    'bleed': 'bleed',
-    'stunactivation': 'stun',
-    'stunspecial': 'stun',
-    'powergain': 'mana',
-    'powersteal': 'mana_steal',
-    'perfectblock': 'perfectblock',
-    'block': 'block',
-    'armor': 'armor_up',
-    'health': 'health',
-    'healthsteal': 'health_steal',
-    'heroesforhire': 'heroes_for_hire',
-    'thunderbolts': 'thunderbolts',
-    'mastermind': 'mastermind',
+const effectIcons = {
+    'attack': 'effect-attack',
+    'idol': 'effect-idol',
+    'inseparable': 'effect-inseparable',
+    'mutantagenda': 'effect-mutant-agenda',
+    'critrate': 'effect-critical-rate',
+    'critdamage': 'effect-critical-damage',
+    'bleed': 'effect-bleed',
+    'stunactivation': 'effect-stun',
+    'stunspecial': 'effect-stun',
+    'powergain': 'effect-power',
+    'powersteal': 'effect-power-steal',
+    'perfectblock': 'effect-perfect-block',
+    'block': 'effect-block',
+    'armor': 'effect-armor',
+    'health': 'effect-health',
+    'healthsteal': 'effect-health-steal',
+    'heroesforhire': 'effect-heroes-for-hire',
+    'thunderbolts': 'effect-thunderbolts',
+    'mastermind': 'effect-mastermind',
 };
 
-function effectImage(uid, append = 'black') {
-    return effectImages[ uid ]? `images/effects/${
-        effectImages[ uid ]
-    }_${
-        append
-    }.png`: null;
+function effectIcon(uid) {
+    return effectIcons[ uid ] || 'circle';
 }
 
 const effectBases = effects.reduce((map, { attr }) => {
@@ -84,6 +80,6 @@ function effectBase(uid) {
 
 const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
 
-export { effectImage, effectBase };
+export { effectIcon, effectBase };
 export { uids };
 export default effects;

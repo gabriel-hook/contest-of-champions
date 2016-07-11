@@ -7,7 +7,7 @@ import {
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from '../../data/model/Champion';
-import { effectImage } from '../../data/effects';
+import { effectIcon } from '../../data/effects';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
 import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
@@ -71,13 +71,7 @@ const ChampionPortrait = {
                 title.push(
                     <div class={ classNames('title-field', 'title-field-effects') }>
                         { effects.map(({ effectId, effectAmount }) => [ (
-                            <ImageIcon
-                                src={ effectImage(effectId, 'white') }
-                                alt={ effectImage(effectId, 'black') }
-                                hoverSrc={ effectImage(effectId, 'black') }
-                                hoverAlt={ effectImage(effectId, 'white') }
-                                after
-                            />
+                            <Icon icon={ effectIcon(effectId) } after />
                         ), (
                             <span>{ effectAmount }%</span>
                         ) ]) }

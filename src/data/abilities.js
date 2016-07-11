@@ -33,46 +33,42 @@ const uids = [
     'evade',
 ];
 
-const abilityImages = {
-    'truestrike': 'truestrike',
-    'fury': 'attack',
-    'weakness': 'weakness',
-    'precision': 'critical_rate',
-    'fatigue': 'fatigue',
-    'cruelty': 'critical_damage',
-    'exhaust': 'exhaust',
-    'armorbreak': 'armor_break',
-    'armorup': 'armor_up',
-    'physicalresist': 'resist_physical',
-    'unstoppable': 'unstoppable',
-    'poison': 'poison',
-    'poisonimmunity': 'immunity_poison',
+const abilityIcons = {
+    'truestrike': 'effect-truestrike',
+    'fury': 'effect-attack',
+    'weakness': 'effect-weakness',
+    'precision': 'effect-critical-rate',
+    'fatigue': 'effect-fatigue',
+    'cruelty': 'effect-critical-damage',
+    'exhaust': 'effect-exhaust',
+    'armorbreak': 'effect-armor-break',
+    'armorup': 'effect-armor',
+    'physicalresist': 'effect-resist-physical',
+    'unstoppable': 'effect-unstoppable',
+    'poison': 'effect-poison',
+    'poisonimmunity': 'effect-immunity_poison',
     'cauterize': null,
-    'bleed': 'bleed',
-    'bleedimmunity': 'immunity_bleed',
-    'shock': 'shock',
-    'incinerate': 'incinerate',
-    'powerdrain': 'mana_steal',
-    'powerburn': 'mana',
-    'powerlock': 'powerlock',
-    'regeneration': 'regeneration',
-    'degeneration': 'degeneration',
-    'healthsteal': 'health_steal',
-    'healblock': 'healblock',
-    'energyresist': 'resist_energy',
+    'bleed': 'effect-bleed',
+    'bleedimmunity': 'effect-immunity-bleed',
+    'shock': 'effect-shock',
+    'incinerate': 'effect-incinerate',
+    'powerdrain': 'effect-power-steal',
+    'powerburn': 'effect-power',
+    'powerlock': 'effect-power-lock',
+    'regeneration': 'effect-regeneration',
+    'degeneration': 'effect-degeneration',
+    'healthsteal': 'effect-health-steal',
+    'healblock': 'effect-heal-block',
+    'energyresist': 'effect-resist-energy',
     'energyabsorb': null,
-    'stun': 'stun',
-    'stagger': 'nullify',
-    'nullify': 'nullify',
+    'stun': 'effect-stun',
+    'stagger': 'effect-nullify',
+    'nullify': 'effect-nullify',
     'evade': null,
 };
 
-function abilityImage(uid, append = 'black') {
-    return abilityImages[ uid ]? `images/effects/${
-        abilityImages[ uid ]
-    }_${
-        append
-    }.png`: null;
+function abilityIcon(uid) {
+    return abilityIcons[ uid ];
 }
 
-export { uids, abilityImage };
+export { uids, abilityIcon };

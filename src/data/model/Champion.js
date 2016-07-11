@@ -137,6 +137,7 @@ const CATALYSTS = {
 const ROLE_ARENA = 'arena';
 const ROLE_QUEST = 'quest';
 const ROLE_ALLIANCE_QUEST = 'alliance-quest';
+const ROLE_ALLIANCE_WAR = 'alliance-war';
 const ROLE_ALLIANCE_WAR_ATTACK = 'alliance-war-attack';
 const ROLE_ALLIANCE_WAR_DEFENSE = 'alliance-war-defense';
 const ROLES = [
@@ -198,4 +199,4 @@ class Champion extends Model {
 
 export default Champion;
 export { STAR_RANK_LEVEL, CATALYSTS };
-export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };
+export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };

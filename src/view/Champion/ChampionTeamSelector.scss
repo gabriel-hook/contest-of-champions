@@ -40,10 +40,6 @@
     .team-synergies {
 
         .effect-amount {
-            &::before {
-                content: "- ";
-            }
-
             &.effect-amount--decreased {
                 color: #900;
             }

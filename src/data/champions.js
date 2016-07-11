@@ -2,6 +2,7 @@ import Champion, {
     ROLE_ARENA,
     ROLE_QUEST,
     ROLE_ALLIANCE_QUEST,
+    ROLE_ALLIANCE_WAR,
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from './model/Champion';
@@ -262,17 +263,18 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
-const roleImages = {
-    [ ROLE_ARENA ]: 'arena',
-    [ ROLE_QUEST ]: 'quest',
-    [ ROLE_ALLIANCE_QUEST ]: 'alliance-quest',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'alliance-war',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'alliance-war',
+const roleIcons = {
+    [ ROLE_ARENA ]: 'role-arena',
+    [ ROLE_QUEST ]: 'role-quest',
+    [ ROLE_ALLIANCE_QUEST ]: 'role-alliance-quest',
+    [ ROLE_ALLIANCE_WAR ]: 'role-alliance-war',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'role-alliance-war',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'role-alliance-war',
 };
 
-function roleImage(role, color) {
-    return `images/roles/${ roleImages[ role ] }_${ color }.png`;
+function roleIcon(role) {
+    return roleIcons[ role ] || 'times';
 }
 
 export default champions;
-export { idMap, uids, uidsByType, roleImage };
+export { idMap, uids, uidsByType, roleIcon };

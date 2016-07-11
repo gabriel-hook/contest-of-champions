@@ -2,12 +2,11 @@ import './ChampionTeam.scss';
 import './ChampionTeamSelector.scss';
 import classNames from 'classnames';
 import { CHAMPION_PLACEHOLDER } from '../../data/champions';
-import effects, { effectImage } from '../../data/effects';
+import effects, { effectIcon } from '../../data/effects';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
 import Icon from '../Icon.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -102,14 +101,11 @@ const ChampionTeamSelector = {
                                 class={ classNames('team-synergy', 'no-select') }
                                 title={ lang.get(`effect-${ effect.attr.uid }-description`) }
                             >
-                                <ImageIcon
-                                    src={ effectImage(effect.attr.uid, 'black') }
-                                    alt={ effectImage(effect.attr.uid, 'white') }
-                                    icon="square"
-                                />
+                                <Icon icon={ effectIcon(effect.attr.uid) } before />
                                 <span class="effect-name">
                                     { lang.get(`effect-${ effect.attr.uid }-name`) }
                                 </span>
+                                <span> - </span>
                                 <span class="effect-amount">
                                     { changed !== null? changed: amount }%
                                     { (changed !== null && amount !== changed) && (
