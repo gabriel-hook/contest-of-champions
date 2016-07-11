@@ -15,6 +15,7 @@ import roster from '../../src/service/roster';
 roster.clear();
 
 describe('view/champion/', () => {
+
     const champion = championsById[ 'thor-3' ];
     describe('<ChampionGrade/>', () => {
         const title = 'type';

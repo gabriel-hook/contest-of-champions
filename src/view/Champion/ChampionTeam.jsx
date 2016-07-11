@@ -5,7 +5,7 @@ import effects, { effectIcon } from '../../data/effects';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
-import Icon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';

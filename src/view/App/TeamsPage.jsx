@@ -4,7 +4,7 @@ import { ROLE_ARENA, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE } from 
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
-import Icon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 import ChampionTeam from '../Champion/ChampionTeam.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
 /* eslint-disable no-unused-vars */

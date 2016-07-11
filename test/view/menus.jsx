@@ -16,6 +16,7 @@ import roster from '../../src/service/roster';
 roster.clear();
 
 describe('view/menus/', () => {
+
     describe('<GuideEditMenu/>', () => it('should render without error', () => expect(render(<GuideEditMenu uid="blackbolt" />)).to.exist));
     describe('<GuideMenu/>', () => it('should render without error', () => expect(render(<GuideMenu />)).to.exist));
     describe('<LanguageEditMenu/>', () => it('should render without error', () => expect(render(<LanguageEditMenu />)).to.exist));

@@ -4,7 +4,7 @@ import { uids as ABILITIES, abilityIcon } from '../../data/abilities';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
-import Icon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
