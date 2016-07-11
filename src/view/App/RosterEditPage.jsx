@@ -7,6 +7,7 @@ import {
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from '../../data/model/Champion';
+import { roleIcon, roleImage } from '../../data/champions';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
@@ -14,7 +15,6 @@ import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import ChampionHeader from '../Champion/ChampionHeader.jsx';
 import ChampionUpgrade from '../Champion/ChampionUpgrade.jsx';
-import { ROLE_ICONS, ROLE_IMAGEICONS } from '../Champion/ChampionPortrait.jsx';
 import classNames from 'classnames';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -76,10 +76,10 @@ const RosterPage = {
         const elements = [];
         if(champion) {
             const { rank, level, typeId, awakened, pi, role } = champion.attr;
-            const roleIcon = (ROLE_IMAGEICONS[ role ])? (
+            const roleIconImage = (role)? (
                 <ImageIcon
-                    src={ ROLE_IMAGEICONS[ role ] }
-                    icon={ ROLE_ICONS[ role ] }
+                    src={ roleImage(role) }
+                    icon={ roleIcon(role) }
                 />
             ): null;
             const rangeMax = STAR_RANK_LEVEL[ stars ]
@@ -175,7 +175,7 @@ const RosterPage = {
                 <label class="champion-field">
                     <span class="champion-field-label">{ lang.get('role') }</span>
                     <div class="champion-field-role">
-                        { roleIcon }
+                        { roleIconImage }
                     </div>
                     <Select
                         value={ role }

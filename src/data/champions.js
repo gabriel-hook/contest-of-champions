@@ -276,5 +276,17 @@ function roleIcon(role) {
     return roleIcons[ role ] || 'times';
 }
 
+const roleImages = {
+    [ ROLE_ARENA ]: 'images/icons/arena.png',
+    [ ROLE_QUEST ]: 'images/icons/quest.png',
+    [ ROLE_ALLIANCE_QUEST ]: 'images/icons/alliance-quest.png',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/icons/alliance-war.png',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/icons/alliance-war.png',
+};
+
+function roleImage(role) {
+    return roleImages[ role ];
+}
+
 export default champions;
-export { idMap, uids, uidsByType, roleIcon };
+export { idMap, uids, uidsByType, roleIcon, roleImage };

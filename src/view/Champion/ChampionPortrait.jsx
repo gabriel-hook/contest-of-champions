@@ -1,12 +1,6 @@
 import './ChampionPortrait.scss';
-import {
-    STAR_RANK_LEVEL,
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/model/Champion';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
+import { roleIcon, roleImage } from '../../data/champions';
 import { effectIcon } from '../../data/effects';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
@@ -15,21 +9,6 @@ import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
-
-const ROLE_IMAGEICONS = {
-    [ ROLE_ARENA ]: 'images/icons/arena.png',
-    [ ROLE_QUEST ]: 'images/icons/quest.png',
-    [ ROLE_ALLIANCE_QUEST ]: 'images/icons/alliance-quest.png',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/icons/alliance-war.png',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/icons/alliance-war.png',
-};
-const ROLE_ICONS = {
-    [ ROLE_ARENA ]: 'certificate',
-    [ ROLE_QUEST ]: 'map-o',
-    [ ROLE_ALLIANCE_QUEST ]: 'map',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'fire',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'shield',
-};
 
 function addSVG(element, isInitialized) {
     if(!isInitialized) {
@@ -113,10 +92,10 @@ const ChampionPortrait = {
                 icon="chevron-circle-up"
             />
         ): null;
-        const roleIcon = ((showBadges === 'role' || showBadges === true) && ROLE_IMAGEICONS[ role ])? (
+        const roleIconImage = ((showBadges === 'role' || showBadges === true) && role)? (
             <ImageIcon
-                src={ ROLE_IMAGEICONS[ role ] }
-                icon={ ROLE_ICONS[ role ] }
+                src={ roleImage(role) }
+                icon={ roleIcon(role) }
             />
         ): null;
         return (
@@ -155,7 +134,7 @@ const ChampionPortrait = {
                             { upgradeIcon }
                         </div>
                         <div class={ classNames('role') }>
-                            { roleIcon }
+                            { roleIconImage }
                         </div>
                     </div>
                 </div>
@@ -165,4 +144,3 @@ const ChampionPortrait = {
 };
 
 export default ChampionPortrait;
-export { ROLE_IMAGEICONS, ROLE_ICONS };
