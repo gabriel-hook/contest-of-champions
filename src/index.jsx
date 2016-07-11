@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.css';
+import './util/custom-icons.css';
 import { notify } from './util/notification';
 import { uids as EFFECTS } from './data/effects';
 import { uids as GUIDES, SPOTLIGHT } from './data/guides';
@@ -416,7 +417,7 @@ const keyHandler = (event) => {
         app.hotkeys
             .filter((hotkey) => which === hotkey.which && (
                 !hotkey.modifiers ||
-                hotkey.modifiers.reduce((has, modifier) => has && modifiers[ modifier ], true)
+                hotkey.modifiers.every((modifier) => modifiers[ modifier ])
             ))
             .forEach((hotkey) => hotkey.callback());
     }

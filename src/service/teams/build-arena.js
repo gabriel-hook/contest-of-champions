@@ -85,7 +85,7 @@ function buildArena({
         if(pi === undefined) {
             pi = team.reduce((sum, { pi }) => sum + pi, 0);
             if(sandbagging) {
-                const lowest = team.reduce((lowest, { pi }) => (lowest < pi)? lowest: pi, Number.MAX_VALUE);
+                const lowest = Math.min(...team.map(({ pi }) => pi));
                 pi = pi - lowest;
             }
             teamPis[ tid ] = pi;

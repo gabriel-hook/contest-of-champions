@@ -21,7 +21,18 @@ body {
         url("fonts/hanzel-normal-webfont.woff2") format("woff2"),
         url("fonts/hanzel-normal-webfont.woff") format("woff"),
         url("fonts/hanzel-normal-webfont.ttf") format("truetype"),
-        url("fonts/hanzel-normal-webfont.svg#hanzelnormal") format("svg");
+        url("fonts/hanzel-normal-webfont.svg?#hanzelnormal") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "custom-icons";
+    src:    url("fonts/custom-icons.eot");
+    src:    url("fonts/custom-icons.eot?#iefix") format("embedded-opentype"),
+        url("fonts/custom-icons.ttf") format("truetype"),
+        url("fonts/custom-icons.woff") format("woff"),
+        url("fonts/custom-icons.svg?#icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }

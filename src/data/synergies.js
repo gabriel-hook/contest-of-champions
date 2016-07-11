@@ -27,12 +27,33 @@ import {
     CHAMPION_DRSTRANGE, CHAMPION_GUILLOTINE, CHAMPION_IRONFIST,
     CHAMPION_IRONFISTWHITE, CHAMPION_JUGGERNAUT, CHAMPION_MAGIK,
     CHAMPION_SCARLETWITCH, CHAMPION_THORJANEFOSTER, CHAMPION_UNSTOPPABLECOLOSSUS,
-} from './champions';
+} from './champion/ids';
 import { EFFECT_STARS_AMOUNT, EFFECT_STARS_INDEX } from './effects';
 import Synergy from './model/Synergy';
 
+function fromId(fromId, synergies) {
+    return synergies.map((synergy) => ({
+        ...synergy,
+        fromId,
+    }));
+}
+
+function fromStars(fromStars, synergies) {
+    return synergies.map((synergy) => ({
+        ...synergy,
+        fromStars,
+    }));
+}
 
 let toIdsCounter = 0;
+function toIds(toIds, synergy) {
+    toIdsCounter++;
+    return toIds.map((toId) => ({
+        ...synergy,
+        toId,
+        group: `group-${ toIdsCounter }`,
+    }));
+}
 
 const synergies = [
 
@@ -1344,29 +1365,6 @@ const synergies = [
     ...synergy,
     effectAmount: effectAmount(synergy.effectId, synergy.fromStars),
 }));
-
-function fromId(fromId, synergies) {
-    return synergies.map((synergy) => ({
-        ...synergy,
-        fromId,
-    }));
-}
-
-function fromStars(fromStars, synergies) {
-    return synergies.map((synergy) => ({
-        ...synergy,
-        fromStars,
-    }));
-}
-
-function toIds(toIds, synergy) {
-    toIdsCounter++;
-    return toIds.map((toId) => ({
-        ...synergy,
-        toId,
-        group: `group-${ toIdsCounter }`,
-    }));
-}
 
 function effectAmount(effectId, fromStars) {
     const amounts = EFFECT_STARS_AMOUNT[ effectId ];

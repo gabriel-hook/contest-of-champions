@@ -1,0 +1,87 @@
+// Cosmic
+export const CHAMPION_BLACKBOLT = 'blackbolt';
+export const CHAMPION_CAPTAINMARVEL = 'captainmarvel';
+export const CHAMPION_DRAX = 'drax';
+export const CHAMPION_GAMORA = 'gamora';
+export const CHAMPION_GROOT = 'groot';
+export const CHAMPION_KAMALAKHAN = 'kamalakhan';
+export const CHAMPION_LOKI = 'loki';
+export const CHAMPION_MSMARVEL = 'msmarvel';
+export const CHAMPION_RONAN = 'ronan';
+export const CHAMPION_SPIDERMANBLACK = 'spidermanblack';
+export const CHAMPION_SUPERIORIRONMAN = 'superiorironman';
+export const CHAMPION_THOR = 'thor';
+export const CHAMPION_VENOM = 'venom';
+export const CHAMPION_VENOMPOOL = 'venompool';
+// Tech
+export const CHAMPION_CIVILWARRIOR = 'civilwarrior';
+export const CHAMPION_HULKBUSTER = 'hulkbuster';
+export const CHAMPION_IRONMAN = 'ironman';
+export const CHAMPION_IRONPATRIOT = 'ironpatriot';
+export const CHAMPION_KANG = 'kang';
+export const CHAMPION_ROCKET = 'rocket';
+export const CHAMPION_STARLORD = 'starlord';
+export const CHAMPION_VISION = 'vision';
+export const CHAMPION_THEVISION = 'thevision';
+export const CHAMPION_ULTRON = 'ultron';
+export const CHAMPION_WARMACHINE = 'warmachine';
+//Mutant
+export const CHAMPION_BEAST = 'beast';
+export const CHAMPION_COLOSSUS = 'colossus';
+export const CHAMPION_CYCLOPS = 'cyclops';
+export const CHAMPION_CYCLOPS90S = 'cyclops90s';
+export const CHAMPION_DEADPOOL = 'deadpool';
+export const CHAMPION_DEADPOOLXFORCE = 'deadpoolxforce';
+export const CHAMPION_GAMBIT = 'gambit';
+export const CHAMPION_MAGNETO = 'magneto';
+export const CHAMPION_MAGNETOMARVELNOW = 'magnetomarvelnow';
+export const CHAMPION_NIGHTCRAWLER = 'nightcrawler';
+export const CHAMPION_STORM = 'storm';
+export const CHAMPION_WOLVERINE = 'wolverine';
+export const CHAMPION_WOLVERINEOLDMAN = 'wolverineoldman';
+export const CHAMPION_WOLVERINEWEAPONX = 'wolverineweaponx';
+export const CHAMPION_X23 = 'x23';
+// Skill
+export const CHAMPION_AGENTVENOM = 'agentvenom';
+export const CHAMPION_BLACKPANTHER = 'blackpanther';
+export const CHAMPION_BLACKPANTHERCIVILWAR = 'blackpanthercivilwar';
+export const CHAMPION_BLACKWIDOW = 'blackwidow';
+export const CHAMPION_CROSSBONES = 'crossbones';
+export const CHAMPION_DAREDEVIL = 'daredevil';
+export const CHAMPION_DAREDEVILNETFLIX = 'daredevilnetflix';
+export const CHAMPION_ELEKTRA = 'elektra';
+export const CHAMPION_FALCON = 'falcon';
+export const CHAMPION_HAWKEYE = 'hawkeye';
+export const CHAMPION_MOONKNIGHT = 'moonknight';
+export const CHAMPION_PUNISHER = 'punisher';
+export const CHAMPION_REDSKULL = 'redskull';
+export const CHAMPION_WINTERSOLDIER = 'wintersoldier';
+// Science
+export const CHAMPION_ABOMINATION = 'abomination';
+export const CHAMPION_ANTMAN = 'antman';
+export const CHAMPION_CAPTAINAMERICA = 'captainamerica';
+export const CHAMPION_CAPTAINAMERICAWWII = 'captainamericawwii';
+export const CHAMPION_ELECTRO = 'electro';
+export const CHAMPION_HULK = 'hulk';
+export const CHAMPION_JOEFIXIT = 'joefixit';
+export const CHAMPION_LUKECAGE = 'lukecage';
+export const CHAMPION_REDHULK = 'redhulk';
+export const CHAMPION_RHINO = 'rhino';
+export const CHAMPION_SHEHULK = 'shehulk';
+export const CHAMPION_SPIDERGWEN = 'spidergwen';
+export const CHAMPION_SPIDERMAN = 'spiderman';
+export const CHAMPION_SPIDERMANMORALES = 'spidermanmorales';
+export const CHAMPION_YELLOWJACKET = 'yellowjacket';
+// Mystic
+export const CHAMPION_DRSTRANGE = 'drstrange';
+export const CHAMPION_DRSTRANGEMARVELNOW = 'drstrangemarvelnow';
+export const CHAMPION_GUILLOTINE = 'guillotine';
+export const CHAMPION_IRONFIST = 'ironfist';
+export const CHAMPION_IRONFISTWHITE = 'ironfistwhite';
+export const CHAMPION_JUGGERNAUT = 'juggernaut';
+export const CHAMPION_MAGIK = 'magik';
+export const CHAMPION_SCARLETWITCH = 'scarletwitch';
+export const CHAMPION_THORJANEFOSTER = 'thorjanefoster';
+export const CHAMPION_UNSTOPPABLECOLOSSUS = 'unstoppablecolossus';
+// Unknown
+export const CHAMPION_MAESTRO = 'maestro';

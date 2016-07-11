@@ -10,6 +10,9 @@ import m from 'mithril';
 function addRawHTML(element, isInitialized) {
     if(!isInitialized) {
         element.innerHTML = `
+            <div id="font-loader">
+                <span class="fa fa-asterisk"></span>
+                <span class="custom-icon custom-icon-app-icon"></span>
             <iframe id="io-exporter"></iframe>
             <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">
                 <symbol id="portrait-placeholder">

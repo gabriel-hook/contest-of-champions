@@ -1,4 +1,4 @@
-import { CHAMPION_NIGHTCRAWLER } from './champions';
+import { CHAMPION_NIGHTCRAWLER } from './champion/ids';
 
 export const SPOTLIGHT = CHAMPION_NIGHTCRAWLER;
 export const RATINGS = [ 1, 2, 3, 4, 5 ];

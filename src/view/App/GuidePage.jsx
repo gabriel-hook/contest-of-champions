@@ -1,7 +1,8 @@
 import './GuidePage.scss';
 import classNames from 'classnames';
 import { effectImage } from '../../data/effects';
-import { idMap, CHAMPIONS_TO_FROGSPAWN } from '../../data/champions';
+import { idMap } from '../../data/champions';
+import { CHAMPIONS_TO_FROGSPAWN } from '../../data/champion/frogspawn';
 import Champion from '../../data/model/Champion';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';

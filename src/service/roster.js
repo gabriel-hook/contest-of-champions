@@ -1,6 +1,7 @@
 import lang from './lang';
 import Champion from '../data/model/Champion';
-import champions, { idMap as championMap, UNRELEASED_CHAMPIONS } from '../data/champions';
+import { UNRELEASED_CHAMPIONS } from '../data/champion/unreleased';
+import champions, { idMap as championMap } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion({
