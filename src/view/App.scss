@@ -65,7 +65,14 @@
     }
 
     .raw-html {
-        display: none;
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        display: block;
+        overflow: hidden;
+        height: 0;
+        width: 0;
+        box-sizing: border-box;
     }
 
     @media print {
