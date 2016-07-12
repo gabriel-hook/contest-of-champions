@@ -14,7 +14,6 @@ import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
-import ImageIcon from '../ImageIcon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -192,7 +191,7 @@ const TeamsMenu = {
                 TYPES.map((type) => (
                     <MenuOption
                         icon={(
-                            <ImageIcon icon={ typeIcon(type) } />
+                            <Icon icon={ typeIcon(type) } />
                         )}
                         info={ `type-${ type }-name` }
                         selected={ teams.types[ type ] }
