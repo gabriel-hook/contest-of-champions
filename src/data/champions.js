@@ -277,11 +277,11 @@ function roleIcon(role) {
 }
 
 const roleImages = {
-    [ ROLE_ARENA ]: 'images/icons/arena.png',
-    [ ROLE_QUEST ]: 'images/icons/quest.png',
-    [ ROLE_ALLIANCE_QUEST ]: 'images/icons/alliance-quest.png',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/icons/alliance-war.png',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/icons/alliance-war.png',
+    [ ROLE_ARENA ]: 'images/badges/arena.png',
+    [ ROLE_QUEST ]: 'images/badges/quest.png',
+    [ ROLE_ALLIANCE_QUEST ]: 'images/badges/alliance-quest.png',
+    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/badges/alliance-war.png',
+    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/badges/alliance-war.png',
 };
 
 function roleImage(role) {

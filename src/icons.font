@@ -1,0 +1,18 @@
+{
+    "files": [
+        "./icons/*.svg"
+    ],
+    "fontName": "champion-icons",
+    "classPrefix": "champion-icon-",
+    "baseClass": "champion-icon",
+    "fixedWidth": false,
+    "centerHorizontally": true,
+    "ascent": 100,
+    "normalized": true,
+    "types": [
+        "eot",
+        "woff",
+        "ttf",
+        "svg"
+    ]
+}

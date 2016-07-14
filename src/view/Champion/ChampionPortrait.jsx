@@ -29,12 +29,12 @@ const ChampionPortrait = {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.attr;
         const starIcon = awakened? (
             <ImageIcon
-                src="images/icons/star-awakened.png"
+                src="images/badges/star-awakened.png"
                 icon="star"
             />
         ): (
             <ImageIcon
-                src="images/icons/star.png"
+                src="images/badges/star.png"
                 icon="star"
             />
         );
@@ -82,13 +82,13 @@ const ChampionPortrait = {
         const upgradeIcon = !showBadges? null:
         (isMaxed && (showBadges === 'upgrade' || showBadges === true))? (
             <ImageIcon
-                src="images/icons/max.png"
+                src="images/badges/max.png"
                 icon="check-circle"
             />
         ):
         (isRankUp && (showBadges === 'upgrade' || showBadges === true))? (
             <ImageIcon
-                src="images/icons/rank-up.png"
+                src="images/badges/rank-up.png"
                 icon="chevron-circle-up"
             />
         ): null;

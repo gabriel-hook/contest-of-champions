@@ -1,4 +1,8 @@
 .icon {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+
     &.icon--before {
         margin-right: .3em;
     }

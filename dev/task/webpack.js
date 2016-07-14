@@ -3,7 +3,7 @@ import gutil from 'gulp-util';
 import opn from 'opn';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import webpackConfig, { extractStylesPlugin } from '../config/webpack-config.js';
+import webpackConfig, { extractStylesPlugin, championIcons } from '../config/webpack-config.js';
 
 gulp.task('develop', (callback) => {
     const domain = 'localhost';
@@ -96,7 +96,10 @@ gulp.task('webpack', (callback) => {
                 /* eslint-enable camelcase */
             }),
             new webpack.DefinePlugin({
-                'process.env':{ 'NODE_ENV': JSON.stringify('production') },
+                'process.env':{
+                    'CHAMPION_ICONS': JSON.stringify(championIcons),
+                    'NODE_ENV': JSON.stringify('production'),
+                },
             }),
             ...webpackConfig.plugins || [],
         ],

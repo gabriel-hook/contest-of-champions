@@ -46,7 +46,7 @@ const abilityIcons = {
     'physicalresist': 'effect-resist-physical',
     'unstoppable': 'effect-unstoppable',
     'poison': 'effect-poison',
-    'poisonimmunity': 'effect-immunity_poison',
+    'poisonimmunity': 'effect-immunity-poison',
     'cauterize': null,
     'bleed': 'effect-bleed',
     'bleedimmunity': 'effect-immunity-bleed',

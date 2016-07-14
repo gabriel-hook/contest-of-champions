@@ -20,7 +20,7 @@ function buildQuest({
     const list = champions
         .map((attr) => {
             const champion = new Champion(attr);
-            const { id } = champion;
+            const { id, pi: basePi } = champion;
             const { uid, stars, typeId, role, pi } = attr;
             const synergies = {};
             dataSynergies
@@ -30,6 +30,7 @@ function buildQuest({
                     group: attr.group,
                     value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
                 }));
+
             return {
                 id,
                 uid,
@@ -37,7 +38,7 @@ function buildQuest({
                 role,
                 type: typeIds.indexOf(typeId),
                 synergies,
-                pi: pi || champion.pi,
+                pi: pi || basePi,
             };
         });
     if(list.length < size) {

@@ -13,12 +13,12 @@ const ChampionHeader = {
         const name = lang.get(`champion-${ uid }-name`);
         const starIcon = awakened? (
             <ImageIcon
-                src="images/icons/star-awakened.png"
+                src="images/badges/star-awakened.png"
                 icon="star"
             />
         ): (
             <ImageIcon
-                src="images/icons/star.png"
+                src="images/badges/star.png"
                 icon="star"
             />
         );

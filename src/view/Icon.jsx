@@ -1,28 +1,18 @@
-import './Icon.scss';
 import { getTypeColor } from '../service/graph';
 import classNames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+import '../icons.font';
 
-const customIcons = [
-    'app-icon',
-    'effect-armor', 'effect-armor-break', 'effect-attack', 'effect-bleed',
-    'effect-block', 'effect-critical-damage', 'effect-critical-rate',
-    'effect-degeneration', 'effect-exhaust', 'effect-fatigue', 'effect-heal',
-    'effect-heal-block', 'effect-health', 'effect-health-steal', 'effect-heroes-for-hire',
-    'effect-idol', 'effect-immunity-bleed', 'effect-immunity-poison', 'effect-incinerate',
-    'effect-inseparable', 'effect-mastermind', 'effect-mutant-agenda', 'effect-nullify',
-    'effect-perfect-block', 'effect-poison', 'effect-power', 'effect-power-lock',
-    'effect-regeneration', 'effect-resist-energy', 'effect-resist-physical',
-    'effect-shock', 'effect-stun', 'effect-thunderbolts', 'effect-truestrike',
-    'effect-unstoppable', 'effect-weakness',
-    'role-alliance-quest', 'role-alliance-war', 'role-arena', 'role-quest',
-    'type-cosmic', 'type-mutant', 'type-mystic', 'type-science', 'type-skill', 'type-tech',
-].reduce((map, key) => {
+import './Icon.scss';
+
+/* eslint-disable no-undef */
+const customIcons = process.env.CHAMPION_ICONS.reduce((map, key) => {
     map[ key ] = true;
     return map;
 }, {});
+/* eslint-enable no-undef */
 
 const Icon = {
     view(ctrl, { icon, spin, type, before, after }) {
@@ -41,8 +31,8 @@ const Icon = {
                     [ 'fa' ]: !isCustomIcon,
                     [ `fa-${ icon }` ]: !isCustomIcon,
                     [ 'fa-spin' ]: !isCustomIcon && isSpinning,
-                    [ 'custom-icon' ]: isCustomIcon,
-                    [ `custom-icon-${ icon }` ]: isCustomIcon,
+                    [ 'champion-icon' ]: isCustomIcon,
+                    [ `champion-icon-${ icon }` ]: isCustomIcon,
                     'icon--before': before,
                     'icon--after': after,
                 }) }

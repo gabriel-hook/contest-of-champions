@@ -58,6 +58,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "font-awesome-webpack": "0.0.4",
+    "fontgen-loader": "^0.2.1",
     "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-eslint": "^2.0.0",

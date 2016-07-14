@@ -15,7 +15,7 @@ import router from './router';
 import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
 /* eslint-disable import/no-unresolved */
-import Worker from 'webworker?filename=worker-[hash:8].js!./teams/worker';
+import Worker from 'webworker?filename=scripts/worker-[hash:6].js!./teams/worker';
 /* eslint-enable import/no-unresolved */
 
 const PRESETS = {
@@ -26,6 +26,7 @@ const PRESETS = {
         'effect-mutantagenda': 0.6,
         'effect-critrate': 0.4,
         'effect-critdamage': 0.4,
+        'effect-bleed': 0.5,
         'effect-stunactivation': 0.5,
         'effect-stunspecial': 0.5,
         'effect-powergain': 0.2,
@@ -45,6 +46,7 @@ const PRESETS = {
         'effect-mutantagenda': 0.5,
         'effect-critrate': 0.5,
         'effect-critdamage': 0.5,
+        'effect-bleed': 0.5,
         'effect-stunactivation': 0.5,
         'effect-stunspecial': 0.5,
         'effect-powergain': 0.5,
@@ -64,6 +66,7 @@ const PRESETS = {
         'effect-mutantagenda': 0.1,
         'effect-critrate': 0.1,
         'effect-critdamage': 0.1,
+        'effect-bleed': 0.1,
         'effect-stunactivation': 0.5,
         'effect-stunspecial': 0.5,
         'effect-powergain': 0.3,

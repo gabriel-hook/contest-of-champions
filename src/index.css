@@ -26,7 +26,7 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-
+/*
 @font-face {
     font-family: "custom-icons";
     src: url("fonts/custom-icons-17fwe.eot");
@@ -37,7 +37,7 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-
+*/
 @media print {
     html {
         width: 100%;

@@ -1,8 +1,15 @@
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import glob from 'glob';
 import path from 'path';
 
-const extractStylesPlugin = new ExtractTextPlugin('style-[contenthash:8].css');
+const extractStylesPlugin = new ExtractTextPlugin('styles/[name]-[contenthash:6].css');
+
+const championIcons = glob.sync('./src/icons/*.svg').map((filename) => filename
+    .replace(/([^\/\\]+[\/\\])+/g, '')
+    .replace(/\.svg$/, '')
+);
 
 export default {
     entry: {
@@ -10,7 +17,7 @@ export default {
     },
     output: {
         path: path.resolve('./.build/'),
-        filename: '[name]-[hash:8].js',
+        filename: 'scripts/[name]-[hash:6].js',
     },
     module: {
         loaders: [
@@ -44,8 +51,18 @@ export default {
             },
             // fonts & svg
             {
+                test: /\.font$/,
+                loaders: [ 'style', 'css', 'fontgen?embed' ],
+                deploy: {
+                    loaders: null,
+                    loader: extractStylesPlugin.extract([ 'css?sourceMap', 'fontgen?fileName=fonts/[fontname]-[hash:6][ext]' ]),
+                },
+                hot: true,
+            },
+            // fonts & svg
+            {
                 test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loaders: [ 'file?name=fonts/[name].[ext]&limit=0' ],
+                loaders: [ 'file?limit=0&name=fonts/[name]-[hash:6].[ext]' ],
             },
             // json
             {
@@ -54,11 +71,19 @@ export default {
             },
         ],
     },
+    resolve: {
+
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body',
         }),
+        new webpack.DefinePlugin({
+            'process.env':{
+                'CHAMPION_ICONS': JSON.stringify(championIcons),
+            },
+        }),
     ],
 };
-export { extractStylesPlugin };
+export { extractStylesPlugin, championIcons };
