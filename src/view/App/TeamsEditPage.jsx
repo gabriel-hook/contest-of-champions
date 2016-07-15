@@ -1,8 +1,7 @@
 import './TeamsEditPage.scss';
-import { ROLE_ARENA } from '../../data/model/Champion';
 import { synergiesFromChampions } from '../../data/synergies';
 import { roleIcon, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
-import teams, { saveTeam, lockTeams, lockedTeams } from '../../service/teams';
+import teams, { saveTeam, lockTeams, lockedTeamMap, isTeamLocked } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import deepEqual from 'deep-equal';
@@ -14,6 +13,13 @@ import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
+
+function toggleLockedTeam(tid, champions) {
+    lockTeams({
+        ...lockedTeamMap,
+        [ tid ]: !lockedTeamMap[ tid ]? champions: null,
+    });
+}
 
 function applyTeams(updatedTeams, doSave) {
     updatedTeams.forEach((team) => {
@@ -117,6 +123,9 @@ const TeamsEditPage = {
                     this.create.champions = [ null ];
                     this.create.synergies = [];
                 }
+                if(changed || this.last === -1) {
+                    lockTeams();
+                }
                 this.create.swapped = false;
                 this.swap.source = null;
                 this.swap.target = null;
@@ -126,7 +135,6 @@ const TeamsEditPage = {
                 this.willpowersafe = teams.willpowersafe;
                 this.last = teams.last;
                 this.type = teams.type;
-                this.locked = (this.type === ROLE_ARENA)? lockedTeams: [];
                 this.init = true;
             }
         };
@@ -162,7 +170,7 @@ const TeamsEditPage = {
 
     view(ctrl) {
         ctrl.reset();
-        const { swap, create, teams, locked } = ctrl;
+        const { swap, create, teams } = ctrl;
         const { source, target } = swap;
         const targetId = target && target.champion && target.champion.id;
         const teamElements = [];
@@ -182,6 +190,8 @@ const TeamsEditPage = {
         else {
             message = (synergiesCount)? `- ${ synergiesCount } ${ lang.get('synergies') }`: '';
         }
+
+        const teamIds = teams.map(({ champions }) => champions.map(({ id }) => id).join('_'));
         teams.forEach(({ champions, synergies }, teamIndex) => {
             teamElements.push(
                 <ChampionTeamSelector
@@ -205,14 +215,13 @@ const TeamsEditPage = {
                         applyTeams(teams);
                         requestRedraw();
                     }) }
-                    locked={ locked[ teamIndex ] }
+                    locked={ isTeamLocked(teamIds[ teamIndex ]) }
                     onlock={ () => {
-                        locked[ teamIndex ] = (locked[ teamIndex ])? null: champions;
-                        lockTeams(locked);
+                        toggleLockedTeam(teamIds[ teamIndex ], champions);
                     } }
                     draggable={ true }
                     droppable={ true }
-                    ondragstart={(index) => {
+                    ondragstart={ (index) => {
                         swap.source = null;
                         swap.target = {
                             team: teams[ teamIndex ],
@@ -222,7 +231,7 @@ const TeamsEditPage = {
                         swap.dragging = true;
                         calculateSynergies(swap);
                         requestRedraw(5);
-                    }}
+                    } }
                     ondragend={() => {
                         if(source && target) {
                             ctrl.apply();

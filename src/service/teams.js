@@ -244,13 +244,29 @@ function idToRosterChampion(id) {
 }
 
 let lockedTeams = [];
-let lockedTeamChampions = {};
-function lockTeams(teams = []) {
-    lockedTeams = teams.filter((team) => Boolean(team));
-    lockedTeamChampions = {};
-    lockedTeams.forEach((champions) => champions.forEach(({ id }) => {
-        lockedTeamChampions[ id ] = true;
-    }));
+let lockedTeamMap = {};
+let lockedChampionMap = {};
+function lockTeams(map = {}) {
+    lockedTeams = [];
+    lockedTeamMap = {};
+    lockedChampionMap = {};
+    Object.keys(map)
+        .filter((key) => map[ key ])
+        .forEach((tid) => {
+            const champions = map[ tid ];
+            const uids = tid.split('_');
+            lockedTeams.push(champions);
+            lockedTeamMap[ tid ] = champions;
+            uids.forEach((id) => {
+                lockedChampionMap[ id ] = true;
+            });
+        });
+}
+function isTeamLocked(tid) {
+    return Boolean(lockedTeamMap[ tid ]);
+}
+function isChampionLocked(uid) {
+    return lockedChampionMap[ uid ];
 }
 
 let progressResetTimeout;
@@ -293,7 +309,7 @@ function buildTeam() {
                     .filter(
                         teams.type !== ROLE_ARENA?
                             ({ attr }) => !attr.role || attr.role === ROLE_ARENA || attr.role === teams.type:
-                            ({ id }) => !lockedTeamChampions[ id ]
+                            ({ id }) => !isChampionLocked(id)
                     )
                     .filter(({ attr }) => !teams.willpowersafe || WILLPOWER_SAFE_CHAMPIONS[ attr.uid ])
                     .map((champion) => champion.attr),
@@ -365,5 +381,5 @@ function buildTeam() {
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
-export { save, saveTeam, loadTeam, buildTeam, lockTeams, lockedTeams };
+export { save, saveTeam, loadTeam, buildTeam, lockTeams, isTeamLocked, lockedTeamMap };
 export default teams;
