@@ -1,10 +1,15 @@
 import './ChampionPortrait.scss';
 import { STAR_RANK_LEVEL } from '../../data/model/Champion';
-import { roleIcon, roleImage } from '../../data/champions';
+import { roleImage } from '../../data/roles';
 import { effectIcon } from '../../data/effects';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
-import { getImage, DATA_IMAGE_EMPTY } from '../../util/images';
+import {
+    getImage,
+    IMAGE_EMPTY,
+    IMAGE_STAR, IMAGE_STAR_AWAKENED,
+    IMAGE_BADGE_RANK_UP, IMAGE_BADGE_LEVEL_MAX,
+} from '../../util/images';
 import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -28,15 +33,9 @@ const ChampionPortrait = {
     }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.attr;
         const starIcon = awakened? (
-            <ImageIcon
-                src="images/badges/star-awakened.png"
-                icon="star"
-            />
+            <ImageIcon src={ IMAGE_STAR_AWAKENED } />
         ): (
-            <ImageIcon
-                src="images/badges/star.png"
-                icon="star"
-            />
+            <ImageIcon src={ IMAGE_STAR } />
         );
         const starImages = [];
         for(let i=0; i<stars; i++)
@@ -81,22 +80,13 @@ const ChampionPortrait = {
             STAR_RANK_LEVEL[ stars ][ rank ].levels === level;
         const upgradeIcon = !showBadges? null:
         (isMaxed && (showBadges === 'upgrade' || showBadges === true))? (
-            <ImageIcon
-                src="images/badges/max.png"
-                icon="check-circle"
-            />
+            <ImageIcon src={ IMAGE_BADGE_LEVEL_MAX } />
         ):
         (isRankUp && (showBadges === 'upgrade' || showBadges === true))? (
-            <ImageIcon
-                src="images/badges/rank-up.png"
-                icon="chevron-circle-up"
-            />
+            <ImageIcon src={ IMAGE_BADGE_RANK_UP } />
         ): null;
-        const roleIconImage = ((showBadges === 'role' || showBadges === true) && role)? (
-            <ImageIcon
-                src={ roleImage(role) }
-                icon={ roleIcon(role) }
-            />
+        const roleIconImage = ((showBadges === 'role' || showBadges === true) && roleImage(role))? (
+            <ImageIcon src={ roleImage(role) } />
         ): null;
         return (
             <div
@@ -123,7 +113,7 @@ const ChampionPortrait = {
                                 config={ addSVG }
                             />
                             <div class={ classNames('portrait-image', { 'portrait-image--hidden': !hasPortraitImage }) }>
-                                <img src={ portraitImage && portraitImage.src || DATA_IMAGE_EMPTY } />
+                                <img src={ portraitImage && portraitImage.src || IMAGE_EMPTY } />
                             </div>
                         </div>
                         <div class="title">{ title }</div>

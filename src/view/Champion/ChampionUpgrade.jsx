@@ -1,6 +1,7 @@
 import './ChampionUpgrade.scss';
 import { STAR_RANK_LEVEL, CATALYSTS } from '../../data/model/Champion';
 import classNames from 'classnames';
+import { IMAGE_BADGE_RANK_UP, IMAGE_BADGE_LEVEL_MAX } from '../../util/images';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
@@ -48,17 +49,11 @@ const ChampionUpgrade = {
                 )) }
                 { isMaxed? (
                     <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--max') }>
-                        <ImageIcon
-                            src="images/badges/max.png"
-                            icon="check-circle"
-                        />
+                        <ImageIcon src={ IMAGE_BADGE_LEVEL_MAX } />
                     </div>
                 ): isRankUp? (
                     <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--rank-up') }>
-                        <ImageIcon
-                            src="images/badges/rank-up.png"
-                            icon="chevron-circle-up"
-                        />
+                        <ImageIcon src={ IMAGE_BADGE_RANK_UP } />
                     </div>
                 ): null }
             </div>

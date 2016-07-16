@@ -7,7 +7,7 @@ import {
     ROLE_ALLIANCE_WAR_ATTACK,
     ROLE_ALLIANCE_WAR_DEFENSE,
 } from '../../data/model/Champion';
-import { roleIcon, roleImage } from '../../data/champions';
+import { roleImage } from '../../data/roles';
 import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
@@ -76,11 +76,8 @@ const RosterPage = {
         const elements = [];
         if(champion) {
             const { rank, level, typeId, awakened, pi, role } = champion.attr;
-            const roleIconImage = (role)? (
-                <ImageIcon
-                    src={ roleImage(role) }
-                    icon={ roleIcon(role) }
-                />
+            const roleIconImage = roleImage(role)? (
+                <ImageIcon src={ roleImage(role) } />
             ): null;
             const rangeMax = STAR_RANK_LEVEL[ stars ]
                 && STAR_RANK_LEVEL[ stars ].ranks || 1;
@@ -230,7 +227,7 @@ const RosterPage = {
             );
         }
         return (
-            <div m="RosterPage" class="roster-edit">
+            <div m="RosterEditPage" class="roster-edit">
                 <div key={ `roster-edit-${ uid }-${ stars }` }>
                     { elements }
                 </div>

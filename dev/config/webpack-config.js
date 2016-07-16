@@ -49,7 +49,7 @@ export default {
                 },
                 hot: true,
             },
-            // fonts & svg
+            // font definition
             {
                 test: /\.font$/,
                 loaders: [ 'style', 'css', 'fontgen?embed' ],
@@ -63,6 +63,11 @@ export default {
             {
                 test: /\.(ttf|eot|svg|woff[2]?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: [ 'file?limit=0&name=fonts/[name]-[hash:6].[ext]' ],
+            },
+            // images
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loaders: [ 'url?limit=1000000000000' ],
             },
             // json
             {

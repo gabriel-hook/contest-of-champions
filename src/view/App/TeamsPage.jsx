@@ -1,5 +1,5 @@
 import './TeamsPage.scss';
-import { roleIcon } from '../../data/champions';
+import { roleIcon } from '../../data/roles';
 import { ROLE_ARENA, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE } from '../../data/model/Champion';
 import teams from '../../service/teams';
 import lang from '../../service/lang';

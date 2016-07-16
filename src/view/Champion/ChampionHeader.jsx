@@ -1,7 +1,7 @@
 import './ChampionHeader.scss';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
-import { getImage } from '../../util/images';
+import { getImage, IMAGE_STAR, IMAGE_STAR_AWAKENED } from '../../util/images';
 import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -13,12 +13,12 @@ const ChampionHeader = {
         const name = lang.get(`champion-${ uid }-name`);
         const starIcon = awakened? (
             <ImageIcon
-                src="images/badges/star-awakened.png"
+                src={ IMAGE_STAR_AWAKENED }
                 icon="star"
             />
         ): (
             <ImageIcon
-                src="images/badges/star.png"
+                src={ IMAGE_STAR }
                 icon="star"
             />
         );

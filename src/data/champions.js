@@ -1,12 +1,4 @@
-import Champion, {
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from './model/Champion';
-
+import Champion from './model/Champion';
 import {
 
     CHAMPION_BLACKBOLT,
@@ -263,30 +255,5 @@ champions.forEach((champion) => {
     idMap[ champion.id ] = champion;
 });
 
-const roleIcons = {
-    [ ROLE_ARENA ]: 'role-arena',
-    [ ROLE_QUEST ]: 'role-quest',
-    [ ROLE_ALLIANCE_QUEST ]: 'role-alliance-quest',
-    [ ROLE_ALLIANCE_WAR ]: 'role-alliance-war',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'role-alliance-war',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'role-alliance-war',
-};
-
-function roleIcon(role) {
-    return roleIcons[ role ] || 'times';
-}
-
-const roleImages = {
-    [ ROLE_ARENA ]: 'images/badges/arena.png',
-    [ ROLE_QUEST ]: 'images/badges/quest.png',
-    [ ROLE_ALLIANCE_QUEST ]: 'images/badges/alliance-quest.png',
-    [ ROLE_ALLIANCE_WAR_ATTACK ]: 'images/badges/alliance-war.png',
-    [ ROLE_ALLIANCE_WAR_DEFENSE ]: 'images/badges/alliance-war.png',
-};
-
-function roleImage(role) {
-    return roleImages[ role ];
-}
-
 export default champions;
-export { idMap, uids, uidsByType, roleIcon, roleImage };
+export { idMap, uids, uidsByType };

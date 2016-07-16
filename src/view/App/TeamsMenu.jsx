@@ -1,5 +1,5 @@
 import { uids as TYPES, typeIcon } from '../../data/types';
-import { roleIcon } from '../../data/champions';
+import { roleIcon } from '../../data/roles';
 import {
     ROLE_ARENA,
     ROLE_QUEST,

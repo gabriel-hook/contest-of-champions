@@ -1,6 +1,7 @@
 import './TeamsEditPage.scss';
 import { synergiesFromChampions } from '../../data/synergies';
-import { roleIcon, WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
+import { roleIcon } from '../../data/roles';
+import { WILLPOWER_SAFE_CHAMPIONS } from '../../data/champions';
 import teams, { saveTeam, lockTeams, lockedTeamMap, isTeamLocked } from '../../service/teams';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
