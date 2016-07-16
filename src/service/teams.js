@@ -1,13 +1,8 @@
-import Champion, {
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../data/model/Champion';
 import lang from '../service/lang';
 import app from '../service/app';
 import { notify } from '../util/notification';
+import Champion from '../data/model/Champion';
+import { ROLE } from '../data/model/Role';
 import { WILLPOWER_SAFE_CHAMPIONS } from '../data/champions';
 import { synergiesFromChampions } from '../data/synergies';
 import roster from './roster';
@@ -132,7 +127,7 @@ const DEFAULT_WEIGHTS = {
 };
 
 const teams = {
-    type: ROLE_ARENA,
+    type: ROLE.ARENA,
     size: 3,
     stars: {
         1: true,
@@ -196,7 +191,7 @@ function save() {
 }
 
 function loadTeam(type, size) {
-    if(type === ROLE_ARENA) {
+    if(type === ROLE.ARENA) {
         return;
     }
     const champions = roster.filter((champion) => champion && champion.attr.role === type);
@@ -223,14 +218,14 @@ function loadTeam(type, size) {
 }
 
 [
-    { type: ROLE_ALLIANCE_QUEST, size: 3 },
-    { type: ROLE_ALLIANCE_WAR_ATTACK, size: 3 },
-    { type: ROLE_ALLIANCE_WAR_DEFENSE, size: 5 },
+    { type: ROLE.ALLIANCE_QUEST, size: 3 },
+    { type: ROLE.ALLIANCE_WAR_ATTACK, size: 3 },
+    { type: ROLE.ALLIANCE_WAR_DEFENSE, size: 5 },
 ].forEach(({ type, size }) => loadTeam(type, size));
 
 function saveTeam() {
     teams.last = Date.now();
-    if(teams.type === ROLE_ARENA || teams.type === ROLE_QUEST) {
+    if(teams.type === ROLE.ARENA || teams.type === ROLE.QUEST) {
         return;
     }
     const result = teams.result[ `${ teams.type }-${ teams.size }` ];
@@ -307,8 +302,8 @@ function buildTeam() {
                         return teams.range[ 'minimum-champion' ] <= pi && teams.range[ 'maximum-champion' ] >= pi;
                     })
                     .filter(
-                        teams.type !== ROLE_ARENA?
-                            ({ attr }) => !attr.role || attr.role === ROLE_ARENA || attr.role === teams.type:
+                        teams.type !== ROLE.ARENA?
+                            ({ attr }) => !attr.role || attr.role === ROLE.ARENA || attr.role === teams.type:
                             ({ id }) => !isChampionLocked(id)
                     )
                     .filter(({ attr }) => !teams.willpowersafe || WILLPOWER_SAFE_CHAMPIONS[ attr.uid ])
@@ -340,7 +335,7 @@ function buildTeam() {
                 synergies,
             };
         });
-        if(teams.type === ROLE_ARENA) {
+        if(teams.type === ROLE.ARENA) {
             teamsList.unshift(...lockedTeams.map((champions) => {
                 const synergies = synergiesFromChampions(champions);
                 teamsCount++;

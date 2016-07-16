@@ -1,13 +1,7 @@
-import { uids as TYPES, typeIcon } from '../../data/types';
+import { TYPE_VALUES } from '../../data/model/Type';
+import { typeIcon } from '../../data/types';
+import { ROLE } from '../../data/model/Role';
 import { roleIcon } from '../../data/roles';
-import {
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/model/Champion';
 import teams, { save, saveTeam, loadTeam, buildTeam, lockTeams } from '../../service/teams';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -56,7 +50,7 @@ const TeamsMenu = {
                 )}
                 onclick={ () => {
                     teams.result[ `${ teams.type }-${ teams.size }` ] = null;
-                    if(teams.type === ROLE_ARENA) {
+                    if(teams.type === ROLE.ARENA) {
                         lockTeams();
                     }
                     saveTeam();
@@ -74,11 +68,11 @@ const TeamsMenu = {
             <MenuOption
                 title={ 'arena' }
                 icon={(
-                    <Icon icon={ roleIcon(ROLE_ARENA) } before />
+                    <Icon icon={ roleIcon(ROLE.ARENA) } before />
                 )}
-                selected={ teams.type === ROLE_ARENA }
+                selected={ teams.type === ROLE.ARENA }
                 onclick={ () => {
-                    teams.type = ROLE_ARENA;
+                    teams.type = ROLE.ARENA;
                     teams.size = 3;
                     loadTeam(teams.type);
                     save();
@@ -88,19 +82,19 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOption
-                title={ ROLE_QUEST }
+                title={ ROLE.QUEST }
                 icon={(
-                    <Icon icon={ roleIcon(ROLE_QUEST) } before />
+                    <Icon icon={ roleIcon(ROLE.QUEST) } before />
                 )}
-                selected={ teams.type === ROLE_QUEST }
+                selected={ teams.type === ROLE.QUEST }
                 options={(
                     <MenuOptionGroup options={
                         [ 3, 4, 5 ].map((size) => (
                             <MenuOption
                                 raw={ size }
-                                selected={ teams.type === ROLE_QUEST && teams.size === size }
+                                selected={ teams.type === ROLE.QUEST && teams.size === size }
                                 onclick={ () => {
-                                    teams.type = ROLE_QUEST;
+                                    teams.type = ROLE.QUEST;
                                     teams.size = size;
                                     loadTeam(teams.type);
                                     save();
@@ -116,18 +110,18 @@ const TeamsMenu = {
             <MenuOption
                 title={ 'alliance-war' }
                 icon={(
-                    <Icon icon={ roleIcon(ROLE_ALLIANCE_WAR) } before />
+                    <Icon icon={ roleIcon(ROLE.ALLIANCE_WAR) } before />
                 )}
-                selected={ teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE }
+                selected={ teams.type === ROLE.ALLIANCE_WAR_ATTACK || teams.type === ROLE.ALLIANCE_WAR_DEFENSE }
                 options={
                 (
                     <MenuOptionGroup options={[
                     (
                         <MenuOption
                             title={ 'attack' }
-                            selected={ teams.type === ROLE_ALLIANCE_WAR_ATTACK }
+                            selected={ teams.type === ROLE.ALLIANCE_WAR_ATTACK }
                             onclick={ () => {
-                                teams.type = ROLE_ALLIANCE_WAR_ATTACK;
+                                teams.type = ROLE.ALLIANCE_WAR_ATTACK;
                                 teams.size = 3;
                                 loadTeam(teams.type);
                                 save();
@@ -138,9 +132,9 @@ const TeamsMenu = {
                     (
                         <MenuOption
                             title={ 'defense' }
-                            selected={ teams.type === ROLE_ALLIANCE_WAR_DEFENSE }
+                            selected={ teams.type === ROLE.ALLIANCE_WAR_DEFENSE }
                             onclick={ () => {
-                                teams.type = ROLE_ALLIANCE_WAR_DEFENSE;
+                                teams.type = ROLE.ALLIANCE_WAR_DEFENSE;
                                 teams.size = 5;
                                 loadTeam(teams.type);
                                 save();
@@ -156,11 +150,11 @@ const TeamsMenu = {
             <MenuOption
                 title={ 'alliance-quest' }
                 icon={(
-                    <Icon icon={ roleIcon(ROLE_ALLIANCE_QUEST) } before />
+                    <Icon icon={ roleIcon(ROLE.ALLIANCE_QUEST) } before />
                 )}
-                selected={ teams.type === ROLE_ALLIANCE_QUEST }
+                selected={ teams.type === ROLE.ALLIANCE_QUEST }
                 onclick={ () => {
-                    teams.type = ROLE_ALLIANCE_QUEST;
+                    teams.type = ROLE.ALLIANCE_QUEST;
                     teams.size = 3;
                     loadTeam(teams.type);
                     save();
@@ -188,7 +182,7 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                TYPES.map((type) => (
+                TYPE_VALUES.map((type) => (
                     <MenuOption
                         icon={(
                             <Icon icon={ typeIcon(type) } />

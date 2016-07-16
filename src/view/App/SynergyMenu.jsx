@@ -1,4 +1,5 @@
-import { uids as EFFECTS, effectIcon } from '../../data/effects';
+import { EFFECT_VALUES } from '../../data/model/Effect';
+import { effectIcon } from '../../data/effects';
 import synergy from '../../service/synergy';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -49,7 +50,7 @@ const SynergyMenu = {
                         />
                     ))
                 } />
-                { EFFECTS.map((uid) => (
+                { EFFECT_VALUES.map((uid) => (
                         <MenuOption
                             icon={(
                                 <Icon icon={ effectIcon(uid) } before />

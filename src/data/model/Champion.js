@@ -1,6 +1,9 @@
+import * as CHAMPION from '../ids/champions';
+import { TYPE_VALUES } from './Type';
+import { ROLE_VALUES } from './Role';
 import { isInRange } from '../../util/math';
 import { getPi } from '../pi';
-import { uids as TYPES } from '../types';
+import { values } from 'lodash';
 import Model from './Model';
 
 export const STAR_RANK_LEVEL = {
@@ -134,20 +137,6 @@ const CATALYSTS = {
     },
 };
 
-const ROLE_ARENA = 'arena';
-const ROLE_QUEST = 'quest';
-const ROLE_ALLIANCE_QUEST = 'alliance-quest';
-const ROLE_ALLIANCE_WAR = 'alliance-war';
-const ROLE_ALLIANCE_WAR_ATTACK = 'alliance-war-attack';
-const ROLE_ALLIANCE_WAR_DEFENSE = 'alliance-war-defense';
-const ROLES = [
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-];
-
 const validStars = (stars) => (STAR_RANK_LEVEL[ stars ])? stars: 0;
 const validRank = (stars, rank) => (validStars(stars) && isInRange(rank, 1, STAR_RANK_LEVEL[ stars ].ranks))? rank: 0;
 const validLevel = (stars, rank, level) => (validRank(stars, rank) && isInRange(level, 1, STAR_RANK_LEVEL[ stars ][ rank ].levels))? level: 0;
@@ -180,11 +169,11 @@ class Champion extends Model {
         this.attr.level = validLevel(this.attr.stars, this.attr.rank, this.attr.level | 0) || 1;
         this.attr.awakened = validAwakened(this.attr.stars, this.attr.awakened | 0) || 0;
         this.attr.pi = this.attr.pi | 0;
-        this.attr.typeId = TYPES.find((type) => type === this.attr.typeId) || 'unknown';
-        this.attr.role = ROLES.find((role) => role === this.attr.role) || null;
+        this.attr.typeId = TYPE_VALUES.find((typeId) => typeId === this.attr.typeId) || 'unknown';
+        this.attr.role = ROLE_VALUES.find((role) => role === this.attr.role) || null;
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
-        this.typeIndex = TYPES.indexOf(this.attr.typeId);
+        this.typeIndex = TYPE_VALUES.indexOf(this.attr.typeId);
         this.pi = getPi(this.attr) || 0;
     }
 
@@ -198,5 +187,6 @@ class Champion extends Model {
 }
 
 export default Champion;
+export { CHAMPION };
+export const CHAMPION_VALUES = values(CHAMPION);
 export { STAR_RANK_LEVEL, CATALYSTS };
-export { ROLES, ROLE_ARENA, ROLE_QUEST, ROLE_ALLIANCE_QUEST, ROLE_ALLIANCE_WAR, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE };

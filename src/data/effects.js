@@ -1,43 +1,43 @@
-import Effect from './model/Effect';
+import Effect, { EFFECT } from './model/Effect';
 
 export const EFFECT_STARS_AMOUNT = {
-    attack: [ 4, 5, 6 ],
-    idol: [ 3, 4, 5 ],
-    inseparable: [ 7, 8, 9 ],
-    mutantagenda: [ 8, 10, 12 ],
-    critrate: [ 5, 6, 7 ],
-    critdamage: [ 15, 20, 25 ],
-    bleed: [ 15, 20, 25 ],
-    stunactivation: [ 5, 10, 15 ],
-    stunspecial: [ 15, 20, 25 ],
-    powergain: [ 3, 4, 5 ],
-    perfectblock: [ 3, 4, 5 ],
-    block: [ 10, 15, 20 ],
-    armor: [ 5, 6, 7 ],
-    health: [ 4, 5, 6 ],
-    heroesforhire: [ 3, 4, 5 ],
-    thunderbolts: [ 4, 5, 6 ],
+    [ EFFECT.ATTACK ]: [ 4, 5, 6 ],
+    [ EFFECT.IDOL ]: [ 3, 4, 5 ],
+    [ EFFECT.INSEPARABLE ]: [ 7, 8, 9 ],
+    [ EFFECT.MUTANT_AGENDA ]: [ 8, 10, 12 ],
+    [ EFFECT.CRITICAL_RATE ]: [ 5, 6, 7 ],
+    [ EFFECT.CRITICAL_DAMAGE ]: [ 15, 20, 25 ],
+    [ EFFECT.BLEED ]: [ 15, 20, 25 ],
+    [ EFFECT.STUN_ACTIVATION ]: [ 5, 10, 15 ],
+    [ EFFECT.STUN_SPECIAL ]: [ 15, 20, 25 ],
+    [ EFFECT.POWER_GAIN ]: [ 3, 4, 5 ],
+    [ EFFECT.PERFECT_BLOCK ]: [ 3, 4, 5 ],
+    [ EFFECT.BLOCK ]: [ 10, 15, 20 ],
+    [ EFFECT.ARMOR ]: [ 5, 6, 7 ],
+    [ EFFECT.HEALTH ]: [ 4, 5, 6 ],
+    [ EFFECT.HEROES_FOR_HIRE ]: [ 3, 4, 5 ],
+    [ EFFECT.THUNDERBOLTS ]: [ 4, 5, 6 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
 const effects = [
 
-    { uid: 'attack' },
-    { uid: 'idol' },
-    { uid: 'inseparable' },
-    { uid: 'mutantagenda' },
-    { uid: 'critrate' },
-    { uid: 'critdamage' },
-    { uid: 'bleed' },
-    { uid: 'stunactivation' },
-    { uid: 'stunspecial' },
-    { uid: 'powergain' },
-    { uid: 'perfectblock' },
-    { uid: 'block' },
-    { uid: 'armor' },
-    { uid: 'health' },
-    { uid: 'heroesforhire' },
-    { uid: 'thunderbolts' },
+    { uid: EFFECT.ATTACK },
+    { uid: EFFECT.IDOL },
+    { uid: EFFECT.INSEPARABLE },
+    { uid: EFFECT.MUTANT_AGENDA },
+    { uid: EFFECT.CRITICAL_RATE },
+    { uid: EFFECT.CRITICAL_DAMAGE },
+    { uid: EFFECT.BLEED },
+    { uid: EFFECT.STUN_ACTIVATION },
+    { uid: EFFECT.STUN_SPECIAL },
+    { uid: EFFECT.POWER_GAIN },
+    { uid: EFFECT.PERFECT_BLOCK },
+    { uid: EFFECT.BLOCK },
+    { uid: EFFECT.ARMOR },
+    { uid: EFFECT.HEALTH },
+    { uid: EFFECT.HEROES_FOR_HIRE },
+    { uid: EFFECT.THUNDERBOLTS },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -45,25 +45,25 @@ const effects = [
 }));
 
 const effectIcons = {
-    'attack': 'effect-attack',
-    'idol': 'effect-idol',
-    'inseparable': 'effect-inseparable',
-    'mutantagenda': 'effect-mutant-agenda',
-    'critrate': 'effect-critical-rate',
-    'critdamage': 'effect-critical-damage',
-    'bleed': 'effect-bleed',
-    'stunactivation': 'effect-stun',
-    'stunspecial': 'effect-stun',
-    'powergain': 'effect-power',
-    'powersteal': 'effect-power-steal',
-    'perfectblock': 'effect-perfect-block',
-    'block': 'effect-block',
-    'armor': 'effect-armor',
-    'health': 'effect-health',
-    'healthsteal': 'effect-health-steal',
-    'heroesforhire': 'effect-heroes-for-hire',
-    'thunderbolts': 'effect-thunderbolts',
-    'mastermind': 'effect-mastermind',
+    [ EFFECT.ATTACK ]: 'effect-attack',
+    [ EFFECT.IDOL ]: 'effect-idol',
+    [ EFFECT.INSEPARABLE ]: 'effect-inseparable',
+    [ EFFECT.MUTANT_AGENDA ]: 'effect-mutant-agenda',
+    [ EFFECT.CRITICAL_RATE ]: 'effect-critical-rate',
+    [ EFFECT.CRITICAL_DAMAGE ]: 'effect-critical-damage',
+    [ EFFECT.BLEED ]: 'effect-bleed',
+    [ EFFECT.STUN_ACTIVATION ]: 'effect-stun',
+    [ EFFECT.STUN_SPECIAL ]: 'effect-stun',
+    [ EFFECT.POWER_GAIN ]: 'effect-power',
+    [ EFFECT.POWER_STEAL ]: 'effect-power-steal',
+    [ EFFECT.PERFECT_BLOCK ]: 'effect-perfect-block',
+    [ EFFECT.BLOCK ]: 'effect-block',
+    [ EFFECT.ARMOR ]: 'effect-armor',
+    [ EFFECT.HEALTH ]: 'effect-health',
+    [ EFFECT.HEALTH_STEAL ]: 'effect-health-steal',
+    [ EFFECT.HEROES_FOR_HIRE ]: 'effect-heroes-for-hire',
+    [ EFFECT.THUNDERBOLTS ]: 'effect-thunderbolts',
+    [ EFFECT.MASTERMIND ]: 'effect-mastermind',
 };
 
 function effectIcon(uid) {
@@ -78,8 +78,5 @@ function effectBase(uid) {
     return effectBases[ uid ];
 }
 
-const uids = [ ...new Set(effects.map(({ attr }) => attr.uid)) ];
-
 export { effectIcon, effectBase };
-export { uids };
 export default effects;

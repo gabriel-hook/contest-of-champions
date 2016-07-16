@@ -1,33 +1,5 @@
-import {
-    CHAMPION_BLACKBOLT, CHAMPION_CAPTAINMARVEL, CHAMPION_DRAX, CHAMPION_GAMORA,
-    CHAMPION_GROOT, CHAMPION_KAMALAKHAN, CHAMPION_MSMARVEL, CHAMPION_RONAN,
-    CHAMPION_SPIDERMANBLACK, CHAMPION_SUPERIORIRONMAN, CHAMPION_THOR,
-    CHAMPION_VENOM, CHAMPION_VENOMPOOL,
-
-    CHAMPION_CIVILWARRIOR, CHAMPION_HULKBUSTER, CHAMPION_IRONMAN,
-    CHAMPION_IRONPATRIOT, CHAMPION_KANG, CHAMPION_ROCKET, CHAMPION_STARLORD,
-    CHAMPION_VISION, CHAMPION_THEVISION, CHAMPION_ULTRON, CHAMPION_WARMACHINE,
-
-    CHAMPION_BEAST, CHAMPION_COLOSSUS, CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S,
-    CHAMPION_DEADPOOL, CHAMPION_DEADPOOLXFORCE, CHAMPION_MAGNETO,
-    CHAMPION_MAGNETOMARVELNOW, CHAMPION_NIGHTCRAWLER, CHAMPION_STORM,
-    CHAMPION_WOLVERINE, CHAMPION_WOLVERINEOLDMAN, CHAMPION_X23,
-
-    CHAMPION_AGENTVENOM, CHAMPION_BLACKPANTHER, CHAMPION_BLACKPANTHERCIVILWAR,
-    CHAMPION_BLACKWIDOW, CHAMPION_CROSSBONES, CHAMPION_DAREDEVIL,
-    CHAMPION_DAREDEVILNETFLIX, CHAMPION_ELEKTRA, CHAMPION_FALCON,
-    CHAMPION_HAWKEYE, CHAMPION_MOONKNIGHT, CHAMPION_PUNISHER, CHAMPION_WINTERSOLDIER,
-
-    CHAMPION_ABOMINATION, CHAMPION_ANTMAN, CHAMPION_CAPTAINAMERICA,
-    CHAMPION_CAPTAINAMERICAWWII, CHAMPION_ELECTRO, CHAMPION_HULK,
-    CHAMPION_JOEFIXIT, CHAMPION_LUKECAGE, CHAMPION_REDHULK, CHAMPION_RHINO,
-    CHAMPION_SHEHULK, CHAMPION_SPIDERGWEN, CHAMPION_SPIDERMAN,
-    CHAMPION_SPIDERMANMORALES, CHAMPION_YELLOWJACKET,
-
-    CHAMPION_DRSTRANGE, CHAMPION_GUILLOTINE, CHAMPION_IRONFIST,
-    CHAMPION_IRONFISTWHITE, CHAMPION_JUGGERNAUT, CHAMPION_MAGIK,
-    CHAMPION_SCARLETWITCH, CHAMPION_THORJANEFOSTER, CHAMPION_UNSTOPPABLECOLOSSUS,
-} from './champion/ids';
+import { CHAMPION } from './model/Champion';
+import { EFFECT } from './model/Effect';
 import { EFFECT_STARS_AMOUNT, EFFECT_STARS_INDEX } from './effects';
 import Synergy from './model/Synergy';
 
@@ -57,1307 +29,1307 @@ function toIds(toIds, synergy) {
 
 const synergies = [
 
-    ...fromId(CHAMPION_BLACKBOLT, [
+    ...fromId(CHAMPION.BLACKBOLT, [
         ...fromStars(2, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_RONAN, effectId: 'attack' },
-            { toId: CHAMPION_HULK, effectId: 'critdamage' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.RONAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_RONAN, effectId: 'attack' },
-            { toId: CHAMPION_HULK, effectId: 'critdamage' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.RONAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_CAPTAINMARVEL, [
+    ...fromId(CHAMPION.CAPTAINMARVEL, [
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_GAMORA, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_GAMORA, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'powergain' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_GAMORA, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'powergain' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.POWER_GAIN },
         ]),
     ]),
 
-    ...fromId(CHAMPION_DRAX, [
+    ...fromId(CHAMPION.DRAX, [
         ...fromStars(2, [
-            { toId: CHAMPION_STARLORD, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_STARLORD, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STARLORD, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_STARLORD, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_GAMORA, [
+    ...fromId(CHAMPION.GAMORA, [
         ...fromStars(2, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'critdamage' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_GROOT, [
+    ...fromId(CHAMPION.GROOT, [
         ...fromStars(3, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_ROCKET, effectId: 'inseparable' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_ROCKET, effectId: 'inseparable' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_ROCKET, effectId: 'inseparable' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_KAMALAKHAN, [
+    ...fromId(CHAMPION.KAMALAKHAN, [
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_MSMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_SPIDERMANMORALES, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_MSMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_SPIDERMANMORALES, effectId: 'perfectblock' },
-            { toId: CHAMPION_VISION, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_MSMARVEL, effectId: 'idol' },
-            { toId: CHAMPION_SPIDERMANMORALES, effectId: 'perfectblock' },
-            { toId: CHAMPION_VISION, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_MSMARVEL, [
+    ...fromId(CHAMPION.MSMARVEL, [
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
-            { toId: CHAMPION_HULK, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.HULK, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
-            { toId: CHAMPION_HULK, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.HULK, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_RONAN, [
+    ...fromId(CHAMPION.RONAN, [
         ...fromStars(2, [
-            { toId: CHAMPION_BLACKBOLT, effectId: 'critdamage' },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_BLACKBOLT, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_BLACKBOLT, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
-            { toId: CHAMPION_HULK, effectId: 'critrate' },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_BLACKBOLT, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_GAMORA, effectId: 'critdamage' },
-            { toId: CHAMPION_HULK, effectId: 'critrate' },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SPIDERMANBLACK, [
+    ...fromId(CHAMPION.SPIDERMANBLACK, [
         ...fromStars(3, [
-            { toId: CHAMPION_STORM, effectId: 'armor' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
+            { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STORM, effectId: 'armor' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
+            { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SUPERIORIRONMAN, [
+    ...fromId(CHAMPION.SUPERIORIRONMAN, [
         ...fromStars(2, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critdamage' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critdamage' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critdamage' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_THOR, [
+    ...fromId(CHAMPION.THOR, [
         ...fromStars(2, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_VENOM, [
+    ...fromId(CHAMPION.VENOM, [
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critdamage' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critdamage' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critdamage' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_VENOMPOOL, [
+    ...fromId(CHAMPION.VENOMPOOL, [
         ...fromStars(3, [
-            { toId: CHAMPION_VENOM, effectId: 'inseparable' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'armor' },
-            { toId: CHAMPION_DEADPOOLXFORCE, effectId: 'armor' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.INSEPARABLE },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_VENOM, effectId: 'inseparable' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'armor' },
-            { toId: CHAMPION_DEADPOOLXFORCE, effectId: 'armor' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.INSEPARABLE },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_VENOM, effectId: 'inseparable' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'armor' },
-            { toId: CHAMPION_DEADPOOLXFORCE, effectId: 'armor' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.INSEPARABLE },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_CIVILWARRIOR, [
+    ...fromId(CHAMPION.CIVILWARRIOR, [
         ...fromStars(3, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_FALCON, effectId: 'armor' },
-            { toId: CHAMPION_GUILLOTINE, effectId: 'perfectblock' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_FALCON, effectId: 'armor' },
-            { toId: CHAMPION_GUILLOTINE, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_IRONMAN, CHAMPION_HULKBUSTER ], { effectId: 'critdamage' }),
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
+            ...toIds([ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_FALCON, effectId: 'armor' },
-            { toId: CHAMPION_GUILLOTINE, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_IRONMAN, CHAMPION_HULKBUSTER ], { effectId: 'critdamage' }),
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
+            ...toIds([ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_IRONMAN, [
+    ...fromId(CHAMPION.IRONMAN, [
         ...fromStars(2, [
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_THOR, effectId: 'perfectblock' },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_IRONPATRIOT, [
+    ...fromId(CHAMPION.IRONPATRIOT, [
         ...fromStars(3, [
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critdamage' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critdamage' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'critdamage' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_KANG, [
+    ...fromId(CHAMPION.KANG, [
         ...fromStars(4, [
-            { toId: CHAMPION_BLACKBOLT, effectId: 'armor' },
-            { toId: CHAMPION_THEVISION, effectId: 'critrate' },
-            { toId: CHAMPION_THOR, effectId: 'critrate' },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THEVISION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.THOR, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_HULKBUSTER, [
+    ...fromId(CHAMPION.HULKBUSTER, [
         ...fromStars(2, [
-            { toId: CHAMPION_HULK, effectId: 'critdamage' },
-            { toId: CHAMPION_HULK, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'health' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.HEALTH },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_HULK, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'health' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.HEALTH },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ROCKET, [
+    ...fromId(CHAMPION.ROCKET, [
         ...fromStars(2, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_RONAN, effectId: 'critrate' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.RONAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STARLORD, effectId: 'armor' },
-            { toId: CHAMPION_RONAN, effectId: 'critrate' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
+            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.RONAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_STARLORD, [
+    ...fromId(CHAMPION.STARLORD, [
         ...fromStars(2, [
-            { toId: CHAMPION_ROCKET, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_ROCKET, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_ROCKET, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_ROCKET, effectId: 'armor' },
-            { toId: CHAMPION_DRAX, effectId: 'perfectblock' },
-            { toId: CHAMPION_GAMORA, effectId: 'perfectblock' },
+            { toId: CHAMPION.ROCKET, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.GAMORA, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_VISION, [
+    ...fromId(CHAMPION.VISION, [
         ...fromStars(2, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_THEVISION, [
+    ...fromId(CHAMPION.THEVISION, [
         ...fromStars(2, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'perfectblock' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'perfectblock' },
-            { toId: CHAMPION_ULTRON, effectId: 'attack' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.ULTRON, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'perfectblock' },
-            { toId: CHAMPION_ULTRON, effectId: 'attack' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.ULTRON, effectId: EFFECT.ATTACK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ULTRON, [
+    ...fromId(CHAMPION.ULTRON, [
         ...fromStars(2, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'armor' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'armor' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_IRONMAN, effectId: 'health' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'armor' },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_WARMACHINE, [
+    ...fromId(CHAMPION.WARMACHINE, [
         ...fromStars(2, [
-            { toId: CHAMPION_HULKBUSTER, effectId: 'armor' },
+            { toId: CHAMPION.HULKBUSTER, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_HULKBUSTER, effectId: 'armor' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'block' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'perfectblock' },
+            { toId: CHAMPION.HULKBUSTER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_HULKBUSTER, effectId: 'armor' },
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'block' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'perfectblock' },
+            { toId: CHAMPION.HULKBUSTER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_COLOSSUS, [
+    ...fromId(CHAMPION.COLOSSUS, [
         ...fromStars(2, [
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
         ]),
     ]),
 
-    ...fromId(CHAMPION_CYCLOPS, [
+    ...fromId(CHAMPION.CYCLOPS, [
         ...fromStars(2, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
-            ...toIds([ CHAMPION_STORM, CHAMPION_COLOSSUS ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
+            ...toIds([ CHAMPION.STORM, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            ...toIds([ CHAMPION_STORM, CHAMPION_COLOSSUS ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            ...toIds([ CHAMPION.STORM, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            ...toIds([ CHAMPION_STORM, CHAMPION_COLOSSUS ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            ...toIds([ CHAMPION.STORM, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            ...toIds([ CHAMPION_STORM, CHAMPION_COLOSSUS ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            ...toIds([ CHAMPION.STORM, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_CYCLOPS90S, [
+    ...fromId(CHAMPION.CYCLOPS90S, [
         ...fromStars(3, [
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            { toId: CHAMPION_STORM, effectId: 'block' },
-            ...toIds([ CHAMPION_COLOSSUS, CHAMPION_WOLVERINE ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.BLOCK },
+            ...toIds([ CHAMPION.COLOSSUS, CHAMPION.WOLVERINE ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            { toId: CHAMPION_STORM, effectId: 'block' },
-            ...toIds([ CHAMPION_COLOSSUS, CHAMPION_WOLVERINE ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.BLOCK },
+            ...toIds([ CHAMPION.COLOSSUS, CHAMPION.WOLVERINE ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_MAGNETO, effectId: 'attack' },
-            { toId: CHAMPION_STORM, effectId: 'block' },
-            ...toIds([ CHAMPION_COLOSSUS, CHAMPION_WOLVERINE ], { effectId: 'mutantagenda' }),
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.BLOCK },
+            ...toIds([ CHAMPION.COLOSSUS, CHAMPION.WOLVERINE ], { effectId: EFFECT.MUTANT_AGENDA }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_DEADPOOL, [
+    ...fromId(CHAMPION.DEADPOOL, [
         ...fromStars(2, [
-            { toId: CHAMPION_PUNISHER, effectId: 'perfectblock' },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_RHINO, effectId: 'critrate' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_PUNISHER, effectId: 'perfectblock' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_RHINO, effectId: 'critrate' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_PUNISHER, effectId: 'perfectblock' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_DEADPOOLXFORCE, [
+    ...fromId(CHAMPION.DEADPOOLXFORCE, [
         ...fromStars(2, [
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'critdamage' },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'critdamage' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'critdamage' },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_MAGNETOMARVELNOW, effectId: 'armor' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'critdamage' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'critdamage' },
+            { toId: CHAMPION.MAGNETOMARVELNOW, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_MAGNETO, [
+    ...fromId(CHAMPION.MAGNETO, [
         ...fromStars(2, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
-            { toId: CHAMPION_STORM, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
-            { toId: CHAMPION_STORM, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'block' },
-            { toId: CHAMPION_STORM, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.STORM, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_MAGNETOMARVELNOW, [
+    ...fromId(CHAMPION.MAGNETOMARVELNOW, [
         ...fromStars(3, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGIK, effectId: 'perfectblock' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGIK, effectId: 'perfectblock' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'critdamage' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_NIGHTCRAWLER, [
+    ...fromId(CHAMPION.NIGHTCRAWLER, [
         ...fromStars(3, [
-            { toId: CHAMPION_BEAST, effectId: 'armor' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
-            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
-            { toId: CHAMPION_X23, effectId: 'critdamage' },
+            { toId: CHAMPION.BEAST, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
+            ...toIds([ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.PERFECT_BLOCK }),
+            { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_BEAST, effectId: 'armor' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
-            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
-            { toId: CHAMPION_X23, effectId: 'critdamage' },
+            { toId: CHAMPION.BEAST, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
+            ...toIds([ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.PERFECT_BLOCK }),
+            { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_BEAST, effectId: 'armor' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
-            ...toIds([ CHAMPION_CYCLOPS, CHAMPION_CYCLOPS90S ], { effectId: 'perfectblock' }),
-            { toId: CHAMPION_X23, effectId: 'critdamage' },
+            { toId: CHAMPION.BEAST, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
+            ...toIds([ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.PERFECT_BLOCK }),
+            { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_STORM, [
+    ...fromId(CHAMPION.STORM, [
         ...fromStars(2, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'powergain' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_MAGIK, effectId: 'armor' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'powergain' },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_MAGIK, effectId: 'armor' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'powergain' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_MAGIK, effectId: 'armor' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'powergain' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_WOLVERINE, [
+    ...fromId(CHAMPION.WOLVERINE, [
         ...fromStars(2, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'critdamage' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'critdamage' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CYCLOPS, effectId: 'critdamage' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
-            { toId: CHAMPION_MAGNETO, effectId: 'critrate' },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_WOLVERINEOLDMAN, [
+    ...fromId(CHAMPION.WOLVERINEOLDMAN, [
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_X23, [
+    ...fromId(CHAMPION.X23, [
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_AGENTVENOM, effectId: 'perfectblock' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.AGENTVENOM, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_AGENTVENOM, effectId: 'perfectblock' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.AGENTVENOM, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_AGENTVENOM, effectId: 'perfectblock' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.AGENTVENOM, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_AGENTVENOM, [
+    ...fromId(CHAMPION.AGENTVENOM, [
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'idol' },
-            { toId: CHAMPION_VENOM, effectId: 'health' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'idol' },
-            { toId: CHAMPION_VENOM, effectId: 'health' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'idol' },
-            { toId: CHAMPION_VENOM, effectId: 'health' },
-            { toId: CHAMPION_SPIDERMANBLACK, effectId: 'health' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.IDOL },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH },
         ]),
     ]),
 
-    ...fromId(CHAMPION_BLACKPANTHER, [
+    ...fromId(CHAMPION.BLACKPANTHER, [
         ...fromStars(2, [
-            { toId: CHAMPION_IRONFIST, effectId: 'critdamage' },
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_IRONFIST, effectId: 'critdamage' },
-            { toId: CHAMPION_STORM, effectId: 'powergain' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'critrate' },
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.STORM, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_IRONFIST, effectId: 'critdamage' },
-            { toId: CHAMPION_STORM, effectId: 'powergain' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'critrate' },
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.STORM, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_IRONFIST, effectId: 'critdamage' },
-            { toId: CHAMPION_STORM, effectId: 'powergain' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'critrate' },
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.STORM, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_BLACKPANTHERCIVILWAR, [
+    ...fromId(CHAMPION.BLACKPANTHERCIVILWAR, [
         ...fromStars(3, [
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKWIDOW ], { effectId: 'armor' }),
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'attack' },
-            { toId: CHAMPION_ANTMAN, effectId: 'critdamage' },
-            ...toIds([ CHAMPION_HAWKEYE, CHAMPION_BLACKPANTHER ], { effectId: 'bleed' }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.ARMOR }),
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            ...toIds([ CHAMPION.HAWKEYE, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.BLEED }),
         ]),
         ...fromStars(4, [
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKWIDOW ], { effectId: 'armor' }),
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'attack' },
-            { toId: CHAMPION_ANTMAN, effectId: 'critdamage' },
-            ...toIds([ CHAMPION_HAWKEYE, CHAMPION_BLACKPANTHER ], { effectId: 'bleed' }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.ARMOR }),
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            ...toIds([ CHAMPION.HAWKEYE, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.BLEED }),
         ]),
         ...fromStars(5, [
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKWIDOW ], { effectId: 'armor' }),
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'attack' },
-            { toId: CHAMPION_ANTMAN, effectId: 'critdamage' },
-            ...toIds([ CHAMPION_HAWKEYE, CHAMPION_BLACKPANTHER ], { effectId: 'bleed' }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.ARMOR }),
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            ...toIds([ CHAMPION.HAWKEYE, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.BLEED }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_CROSSBONES, [
+    ...fromId(CHAMPION.CROSSBONES, [
         ...fromStars(3, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII, CHAMPION_FALCON ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_WINTERSOLDIER, CHAMPION_BLACKWIDOW ], { effectId: 'critdamage' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII, CHAMPION.FALCON ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ]),
         ...fromStars(4, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII, CHAMPION_FALCON ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_WINTERSOLDIER, CHAMPION_BLACKWIDOW ], { effectId: 'critdamage' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII, CHAMPION.FALCON ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ]),
         ...fromStars(5, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII, CHAMPION_FALCON ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_WINTERSOLDIER, CHAMPION_BLACKWIDOW ], { effectId: 'critdamage' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII, CHAMPION.FALCON ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_DAREDEVIL, [
+    ...fromId(CHAMPION.DAREDEVIL, [
         ...fromStars(3, [
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'critdamage' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'powergain' },
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'critdamage' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'powergain' },
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
         ]),
     ]),
 
-    ...fromId(CHAMPION_DAREDEVILNETFLIX, [
+    ...fromId(CHAMPION.DAREDEVILNETFLIX, [
         ...fromStars(2, [
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
-            { toId: CHAMPION_LUKECAGE, effectId: 'perfectblock' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.LUKECAGE, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
-            { toId: CHAMPION_LUKECAGE, effectId: 'perfectblock' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.LUKECAGE, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_ELEKTRA, effectId: 'powergain' },
-            { toId: CHAMPION_LUKECAGE, effectId: 'perfectblock' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.ELEKTRA, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.LUKECAGE, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ELEKTRA, [
+    ...fromId(CHAMPION.ELEKTRA, [
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'powergain' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'powergain' },
-            { toId: CHAMPION_DEADPOOL, effectId: 'perfectblock' },
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.DEADPOOL, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_FALCON, [
+    ...fromId(CHAMPION.FALCON, [
         ...fromStars(3, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
-            ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII ], { effectId: EFFECT.ARMOR }),
+            ...toIds([ CHAMPION.WARMACHINE, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKPANTHERCIVILWAR ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.ANTMAN, CHAMPION.HAWKEYE ], { effectId: EFFECT.PERFECT_BLOCK }),
         ]),
         ...fromStars(4, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
-            ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII ], { effectId: EFFECT.ARMOR }),
+            ...toIds([ CHAMPION.WARMACHINE, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKPANTHERCIVILWAR ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.ANTMAN, CHAMPION.HAWKEYE ], { effectId: EFFECT.PERFECT_BLOCK }),
         ]),
         ...fromStars(5, [
-            ...toIds([ CHAMPION_CAPTAINAMERICA, CHAMPION_CAPTAINAMERICAWWII ], { effectId: 'armor' }),
-            ...toIds([ CHAMPION_WARMACHINE, CHAMPION_BLACKWIDOW ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_THEVISION, CHAMPION_BLACKPANTHERCIVILWAR ], { effectId: 'critrate' }),
-            ...toIds([ CHAMPION_ANTMAN, CHAMPION_HAWKEYE ], { effectId: 'perfectblock' }),
+            ...toIds([ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII ], { effectId: EFFECT.ARMOR }),
+            ...toIds([ CHAMPION.WARMACHINE, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.THEVISION, CHAMPION.BLACKPANTHERCIVILWAR ], { effectId: EFFECT.CRITICAL_RATE }),
+            ...toIds([ CHAMPION.ANTMAN, CHAMPION.HAWKEYE ], { effectId: EFFECT.PERFECT_BLOCK }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_HAWKEYE, [
+    ...fromId(CHAMPION.HAWKEYE, [
         ...fromStars(2, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'armor' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'powergain' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'armor' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'armor' },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_MOONKNIGHT, [
+    ...fromId(CHAMPION.MOONKNIGHT, [
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'perfectblock' },
-            { toId: CHAMPION_DEADPOOLXFORCE, effectId: 'critdamage' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'perfectblock' },
-            { toId: CHAMPION_DEADPOOLXFORCE, effectId: 'critdamage' },
-            { toId: CHAMPION_IRONPATRIOT, effectId: 'critrate' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.IRONPATRIOT, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_PUNISHER, [
+    ...fromId(CHAMPION.PUNISHER, [
         ...fromStars(2, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critdamage' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critdamage' },
-            { toId: CHAMPION_RHINO, effectId: 'perfectblock' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critdamage' },
-            { toId: CHAMPION_RHINO, effectId: 'perfectblock' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_WINTERSOLDIER, [
+    ...fromId(CHAMPION.WINTERSOLDIER, [
         ...fromStars(2, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'perfectblock' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'perfectblock' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'perfectblock' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'perfectblock' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_BLACKWIDOW, [
+    ...fromId(CHAMPION.BLACKWIDOW, [
         ...fromStars(2, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'powergain' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_HULK, effectId: 'stunspecial' },
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'powergain' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'powergain' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.STUN_SPECIAL },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_HULK, effectId: 'stunspecial' },
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'powergain' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'powergain' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.STUN_SPECIAL },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.POWER_GAIN },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ABOMINATION, [
+    ...fromId(CHAMPION.ABOMINATION, [
         ...fromStars(2, [
-            { toId: CHAMPION_RHINO, effectId: 'armor' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_RHINO, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_RHINO, effectId: 'armor' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ANTMAN, [
+    ...fromId(CHAMPION.ANTMAN, [
         ...fromStars(2, [
-            { toId: CHAMPION_YELLOWJACKET, effectId: 'attack' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.YELLOWJACKET, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_YELLOWJACKET, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.YELLOWJACKET, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_HULK, effectId: 'armor' },
-            { toId: CHAMPION_YELLOWJACKET, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.YELLOWJACKET, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_HULK, effectId: 'armor' },
-            { toId: CHAMPION_YELLOWJACKET, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.YELLOWJACKET, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_CAPTAINAMERICA, [
+    ...fromId(CHAMPION.CAPTAINAMERICA, [
         ...fromStars(2, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_IRONMAN, effectId: 'armor' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'critrate' },
-            { toId: CHAMPION_IRONMAN, effectId: 'perfectblock' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_CAPTAINAMERICAWWII, [
+    ...fromId(CHAMPION.CAPTAINAMERICAWWII, [
         ...fromStars(2, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WINTERSOLDIER, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
+            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_ELECTRO, [
+    ...fromId(CHAMPION.ELECTRO, [
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'attack' },
-            { toId: CHAMPION_RHINO, effectId: 'armor' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'attack' },
-            { toId: CHAMPION_RHINO, effectId: 'armor' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_HULK, [
+    ...fromId(CHAMPION.HULK, [
         ...fromStars(2, [
-            { toId: CHAMPION_THOR, effectId: 'critdamage' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_THOR, effectId: 'critdamage' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'armor' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_THOR, effectId: 'critdamage' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'critrate' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'armor' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.CRITICAL_DAMAGE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_JOEFIXIT, [
+    ...fromId(CHAMPION.JOEFIXIT, [
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MOONKNIGHT, effectId: 'critrate' },
-            { toId: CHAMPION_MSMARVEL, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_LUKECAGE, [
+    ...fromId(CHAMPION.LUKECAGE, [
         ...fromStars(3, [
-            { toId: CHAMPION_IRONFIST, effectId: 'heroesforhire' },
-            ...toIds([ CHAMPION_JUGGERNAUT, CHAMPION_IRONPATRIOT ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.HEROES_FOR_HIRE },
+            ...toIds([ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_IRONFIST, effectId: 'heroesforhire' },
-            ...toIds([ CHAMPION_JUGGERNAUT, CHAMPION_IRONPATRIOT ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.HEROES_FOR_HIRE },
+            ...toIds([ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_IRONFIST, effectId: 'heroesforhire' },
-            ...toIds([ CHAMPION_JUGGERNAUT, CHAMPION_IRONPATRIOT ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.IRONFIST, effectId: EFFECT.HEROES_FOR_HIRE },
+            ...toIds([ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_RHINO, [
+    ...fromId(CHAMPION.RHINO, [
         ...fromStars(2, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'armor' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'armor' },
-            { toId: CHAMPION_ELECTRO, effectId: 'perfectblock' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'armor' },
-            { toId: CHAMPION_ELECTRO, effectId: 'perfectblock' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_SPIDERMAN, effectId: 'critrate' },
-            { toId: CHAMPION_ABOMINATION, effectId: 'armor' },
-            { toId: CHAMPION_ELECTRO, effectId: 'perfectblock' },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_REDHULK, [
+    ...fromId(CHAMPION.REDHULK, [
         ...fromStars(3, [
-            { toId: CHAMPION_ABOMINATION, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
-            { toId: CHAMPION_X23, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_ELEKTRA, CHAMPION_AGENTVENOM ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK },
+            ...toIds([ CHAMPION.ELEKTRA, CHAMPION.AGENTVENOM ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_ABOMINATION, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
-            { toId: CHAMPION_X23, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_ELEKTRA, CHAMPION_AGENTVENOM ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK },
+            ...toIds([ CHAMPION.ELEKTRA, CHAMPION.AGENTVENOM ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_ABOMINATION, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'attack' },
-            { toId: CHAMPION_X23, effectId: 'perfectblock' },
-            ...toIds([ CHAMPION_ELEKTRA, CHAMPION_AGENTVENOM ], { effectId: 'thunderbolts' }),
+            { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK },
+            ...toIds([ CHAMPION.ELEKTRA, CHAMPION.AGENTVENOM ], { effectId: EFFECT.THUNDERBOLTS }),
         ]),
     ]),
 
-    ...fromId(CHAMPION_SHEHULK, [
+    ...fromId(CHAMPION.SHEHULK, [
         ...fromStars(3, [
-            { toId: CHAMPION_HULK, effectId: 'health' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'powergain' },
-            { toId: CHAMPION_KAMALAKHAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'stunactivation' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.STUN_ACTIVATION },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_HULK, effectId: 'health' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'powergain' },
-            { toId: CHAMPION_KAMALAKHAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'stunactivation' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.STUN_ACTIVATION },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_HULK, effectId: 'health' },
-            { toId: CHAMPION_SUPERIORIRONMAN, effectId: 'powergain' },
-            { toId: CHAMPION_KAMALAKHAN, effectId: 'perfectblock' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'stunactivation' },
+            { toId: CHAMPION.HULK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.STUN_ACTIVATION },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SPIDERMAN, [
+    ...fromId(CHAMPION.SPIDERMAN, [
         ...fromStars(1, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(2, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'attack' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ATTACK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'attack' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'attack' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'health' },
-            { toId: CHAMPION_HAWKEYE, effectId: 'attack' },
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
-            { toId: CHAMPION_CAPTAINAMERICA, effectId: 'armor' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.HAWKEYE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SPIDERGWEN, [
+    ...fromId(CHAMPION.SPIDERGWEN, [
         ...fromStars(3, [
-            { toId: CHAMPION_RHINO, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critrate' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'powergain' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_RHINO, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critrate' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'powergain' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_RHINO, effectId: 'critrate' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'critrate' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'powergain' },
-            { toId: CHAMPION_PUNISHER, effectId: 'critdamage' },
+            { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SPIDERMANMORALES, [
+    ...fromId(CHAMPION.SPIDERMANMORALES, [
         ...fromStars(3, [
-            { toId: CHAMPION_VENOM, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERGWEN, effectId: 'perfectblock' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERGWEN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_ELECTRO, effectId: 'critrate' },
-            { toId: CHAMPION_IRONPATRIOT, effectId: 'critrate' },
-            { toId: CHAMPION_VENOM, effectId: 'attack' },
-            { toId: CHAMPION_SPIDERGWEN, effectId: 'perfectblock' },
+            { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.IRONPATRIOT, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.SPIDERGWEN, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_YELLOWJACKET, [
+    ...fromId(CHAMPION.YELLOWJACKET, [
         ...fromStars(2, [
-            { toId: CHAMPION_ANTMAN, effectId: 'attack' },
-            { toId: CHAMPION_ULTRON, effectId: 'critdamage' },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ULTRON, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_ANTMAN, effectId: 'attack' },
-            { toId: CHAMPION_ULTRON, effectId: 'critdamage' },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ULTRON, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_ANTMAN, effectId: 'attack' },
-            { toId: CHAMPION_ULTRON, effectId: 'critdamage' },
+            { toId: CHAMPION.ANTMAN, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.ULTRON, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_DRSTRANGE, [
+    ...fromId(CHAMPION.DRSTRANGE, [
         ...fromStars(3, [
-            { toId: CHAMPION_THOR, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'block' },
-            { toId: CHAMPION_BLACKBOLT, effectId: 'perfectblock' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_THOR, effectId: 'armor' },
-            { toId: CHAMPION_SPIDERMAN, effectId: 'armor' },
-            { toId: CHAMPION_SCARLETWITCH, effectId: 'block' },
-            { toId: CHAMPION_BLACKBOLT, effectId: 'perfectblock' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.BLOCK },
+            { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_IRONFIST, [
+    ...fromId(CHAMPION.IRONFIST, [
         ...fromStars(2, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'armor' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'armor' },
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'armor' },
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'armor' },
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
         ]),
     ]),
 
-    ...fromId(CHAMPION_IRONFISTWHITE, [
+    ...fromId(CHAMPION.IRONFISTWHITE, [
         ...fromStars(3, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'armor' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'armor' },
-            { toId: CHAMPION_WARMACHINE, effectId: 'perfectblock' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WARMACHINE, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'armor' },
-            { toId: CHAMPION_DAREDEVIL, effectId: 'armor' },
-            { toId: CHAMPION_WARMACHINE, effectId: 'perfectblock' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.WARMACHINE, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_GUILLOTINE, [
+    ...fromId(CHAMPION.GUILLOTINE, [
         ...fromStars(2, [
-            { toId: CHAMPION_VENOM, effectId: 'attack' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'perfectblock' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_VENOM, effectId: 'attack' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGIK, effectId: 'critdamage' },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_BLACKPANTHER, effectId: 'armor' },
-            { toId: CHAMPION_VENOM, effectId: 'attack' },
-            { toId: CHAMPION_CAPTAINAMERICAWWII, effectId: 'perfectblock' },
-            { toId: CHAMPION_MAGIK, effectId: 'critdamage' },
+            { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_JUGGERNAUT, [
+    ...fromId(CHAMPION.JUGGERNAUT, [
         ...fromStars(2, [
-            { toId: CHAMPION_COLOSSUS, effectId: 'critrate' },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'attack' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'critrate' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'attack' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'critrate' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_DRSTRANGE, effectId: 'attack' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'critrate' },
-            { toId: CHAMPION_HULK, effectId: 'critrate' },
+            { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ATTACK },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.CRITICAL_RATE },
+            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_MAGIK, [
+    ...fromId(CHAMPION.MAGIK, [
         ...fromStars(2, [
-            { toId: CHAMPION_COLOSSUS, effectId: 'health' },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.HEALTH },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_STORM, effectId: 'armor' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
+            { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_STORM, effectId: 'armor' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_STORM, effectId: 'armor' },
-            { toId: CHAMPION_COLOSSUS, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critrate' },
+            { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.COLOSSUS, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE },
         ]),
     ]),
 
-    ...fromId(CHAMPION_SCARLETWITCH, [
+    ...fromId(CHAMPION.SCARLETWITCH, [
         ...fromStars(2, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
-            { toId: CHAMPION_VISION, effectId: 'powergain' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.VISION, effectId: EFFECT.POWER_GAIN },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_CAPTAINMARVEL, effectId: 'armor' },
-            { toId: CHAMPION_VISION, effectId: 'powergain' },
+            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.VISION, effectId: EFFECT.POWER_GAIN },
         ]),
     ]),
 
-    ...fromId(CHAMPION_THORJANEFOSTER, [
+    ...fromId(CHAMPION.THORJANEFOSTER, [
         ...fromStars(3, [
-            { toId: CHAMPION_THOR, effectId: 'powergain' },
-            { toId: CHAMPION_VISION, effectId: 'perfectblock' },
+            { toId: CHAMPION.THOR, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'armor' },
-            { toId: CHAMPION_THOR, effectId: 'powergain' },
-            { toId: CHAMPION_VISION, effectId: 'perfectblock' },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THOR, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_BLACKWIDOW, effectId: 'armor' },
-            { toId: CHAMPION_THOR, effectId: 'powergain' },
-            { toId: CHAMPION_VISION, effectId: 'perfectblock' },
+            { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.THOR, effectId: EFFECT.POWER_GAIN },
+            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
         ]),
     ]),
 
-    ...fromId(CHAMPION_UNSTOPPABLECOLOSSUS, [
+    ...fromId(CHAMPION.UNSTOPPABLECOLOSSUS, [
         ...fromStars(2, [
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critdamage' },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(3, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(4, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
         ...fromStars(5, [
-            { toId: CHAMPION_WOLVERINE, effectId: 'armor' },
-            { toId: CHAMPION_MAGIK, effectId: 'health' },
-            { toId: CHAMPION_CYCLOPS, effectId: 'perfectblock' },
-            { toId: CHAMPION_JUGGERNAUT, effectId: 'critdamage' },
+            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR },
+            { toId: CHAMPION.MAGIK, effectId: EFFECT.HEALTH },
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+            { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_DAMAGE },
         ]),
     ]),
 

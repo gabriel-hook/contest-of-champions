@@ -1,4 +1,6 @@
 import Model from './Model';
+import { values } from 'lodash';
+import * as EFFECT from '../ids/effects';
 
 class Effect extends Model {
     constructor({
@@ -15,3 +17,5 @@ class Effect extends Model {
 }
 
 export default Effect;
+export { EFFECT };
+export const EFFECT_VALUES = values(EFFECT);

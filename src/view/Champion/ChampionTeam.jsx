@@ -1,7 +1,8 @@
 import './ChampionTeam.scss';
 import deepEqual from 'deep-equal';
 import classNames from 'classnames';
-import effects, { effectIcon } from '../../data/effects';
+import { EFFECT_VALUES } from '../../data/model/Effect';
+import { effectIcon } from '../../data/effects';
 import roster from '../../service/roster';
 import lang from '../../service/lang';
 import ChampionPortrait from './ChampionPortrait.jsx';
@@ -132,23 +133,23 @@ const ChampionTeam = {
                     }) }
                 </div>
                 <div className="team-synergies">
-                    { effects.map((effect) => {
-                        const synergy = synergies.filter((synergy) => synergy.attr.effectId === effect.attr.uid);
+                    { EFFECT_VALUES.map((effectId) => {
+                        const synergy = synergies.filter((synergy) => synergy.attr.effectId === effectId);
                         if(synergy.length === 0)
                             return null;
-                        const selected = ctrl.selected.effects[ effect.attr.uid ];
+                        const selected = ctrl.selected.effects[ effectId ];
                         const amount = (!selected || selected === EFFECT_SELECTED)?
                             synergy.reduce((value, synergy) => value + synergy.attr.effectAmount, 0):
                             selected;
                         return (
                             <div
                                 class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
-                                onclick={ () => selectSynergy(ctrl, synergies, champions, effect.attr.uid) }
-                                title={ lang.get(`effect-${ effect.attr.uid }-description`) }
+                                onclick={ () => selectSynergy(ctrl, synergies, champions, effectId) }
+                                title={ lang.get(`effect-${ effectId }-description`) }
                             >
-                                <Icon icon={ effectIcon(effect.attr.uid) } before />
+                                <Icon icon={ effectIcon(effectId) } before />
                                 <span class="effect-name">
-                                    { lang.get(`effect-${ effect.attr.uid }-name`) }
+                                    { lang.get(`effect-${ effectId }-name`) }
                                 </span>
                                 <span> - </span>
                                 <span class="effect-amount">

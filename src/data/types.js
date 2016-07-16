@@ -1,30 +1,26 @@
-import Type from './model/Type';
+import Type, { TYPE } from './model/Type';
 
 const types = [
-
-        { uid: 'cosmic' },
-        { uid: 'tech' },
-        { uid: 'mutant' },
-        { uid: 'skill' },
-        { uid: 'science' },
-        { uid: 'mystic' },
-
+    { uid: TYPE.COSMIC },
+    { uid: TYPE.TECH },
+    { uid: TYPE.MUTANT },
+    { uid: TYPE.SKILL },
+    { uid: TYPE.SCIENCE },
+    { uid: TYPE.MYSTIC },
 ].map((type) => new Type(type));
 
 const typeIcons = {
-    cosmic: 'type-cosmic',
-    tech: 'type-tech',
-    mutant: 'type-mutant',
-    skill: 'type-skill',
-    science: 'type-science',
-    mystic: 'type-mystic',
+    [ TYPE.COSMIC ]: 'type-cosmic',
+    [ TYPE.TECH ]: 'type-tech',
+    [ TYPE.MUTANT ]: 'type-mutant',
+    [ TYPE.SKILL ]: 'type-skill',
+    [ TYPE.SCIENCE ]: 'type-science',
+    [ TYPE.MYSTIC ]: 'type-mystic',
 };
 
 function typeIcon(uid) {
     return typeIcons[ uid ] || 'effect-mastermind';
 }
 
-const uids = [ ...new Set(types.map(({ attr }) => attr.uid)) ];
-
-export { uids, typeIcon };
+export { typeIcon };
 export default types;

@@ -1,6 +1,6 @@
 import './GuidePage.scss';
 import './GuideEditPage.scss';
-import { idMap } from '../../data/champions';
+import { championMap } from '../../data/champions';
 import Champion from '../../data/model/Champion';
 import guides, { PROFILE_TYPES } from '../../data/guides';
 import lang from '../../service/lang';
@@ -103,7 +103,7 @@ const GuideEditPage = {
     view(ctrl, { uid }) {
         const guide = guides[ uid ];
         const details = [];
-        const champion = idMap[ `${ uid }-2` ] || idMap[ `${ uid }-3` ] || idMap[ `${ uid }-4` ] || idMap[ `${ uid }-5` ];
+        const champion = championMap[ `${ uid }-2` ] || championMap[ `${ uid }-3` ] || championMap[ `${ uid }-4` ] || championMap[ `${ uid }-5` ];
         if(champion) {
             details.push(
                 <ChampionHeader

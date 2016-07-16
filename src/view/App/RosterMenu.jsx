@@ -1,4 +1,5 @@
-import { uids as TYPES, typeIcon } from '../../data/types';
+import { TYPE_VALUES } from '../../data/model/Type';
+import { typeIcon } from '../../data/types';
 import roster from '../../service/roster.js';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -168,7 +169,7 @@ const RosterMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                TYPES.map((type) => (
+                TYPE_VALUES.map((type) => (
                     <MenuOption
                         icon={(
                             <Icon icon={ typeIcon(type) } />

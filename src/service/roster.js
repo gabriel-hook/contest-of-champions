@@ -1,11 +1,12 @@
 import lang from './lang';
 import Champion from '../data/model/Champion';
-import { UNRELEASED_CHAMPIONS } from '../data/champion/unreleased';
-import champions, { idMap as championMap } from '../data/champions';
+import { UNRELEASED_CHAMPIONS } from '../data/champions/unreleased';
+import champions, { championMap, championTypes } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
 let roster = fromStorage('roster', []).map((attr) => new Champion({
     ...attr,
+    typeId: championTypes[ attr.uid ] || attr.typeId,
     stars: Math.max(1, attr.stars | 0),
     level: Math.max(1, attr.level | 0),
     rank: Math.max(1, attr.rank | 0),

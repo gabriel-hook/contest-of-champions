@@ -1,4 +1,4 @@
-import { idMap as championsById } from '../../src/data/champions';
+import { championMap } from '../../src/data/champions';
 import { synergiesFromChampions } from '../../src/data/synergies';
 import ChampionGrade from '../../src/view/Champion/ChampionGrade.jsx';
 import ChampionHeader from '../../src/view/Champion/ChampionHeader.jsx';
@@ -16,7 +16,7 @@ roster.clear();
 
 describe('view/champion/', () => {
 
-    const champion = championsById[ 'thor-3' ];
+    const champion = championMap[ 'thor-3' ];
     describe('<ChampionGrade/>', () => {
         const title = 'type';
         const grade = 'a';
@@ -29,9 +29,9 @@ describe('view/champion/', () => {
     describe('<ChampionSection/>', () => it('should render without error', () => expect(render(<ChampionSection />)).to.exist));
     describe('<ChampionTeam/>', () => {
         const champions = [
-            championsById[ 'ultron-2' ],
-            championsById[ 'antman-2' ],
-            championsById[ 'yellowjacket-2' ],
+            championMap[ 'ultron-2' ],
+            championMap[ 'antman-2' ],
+            championMap[ 'yellowjacket-2' ],
         ];
         const synergies = synergiesFromChampions(champions);
 

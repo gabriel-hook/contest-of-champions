@@ -1,10 +1,10 @@
 import './LanguageEditPage.scss';
 import { isInDocumentBody } from '../../util/element';
 import classNames from 'classnames';
-import { uids as CHAMPIONS } from '../../data/champions';
-import { uids as TYPES } from '../../data/types';
-import { uids as EFFECTS } from '../../data/effects';
-import { uids as ABILITIES } from '../../data/abilities';
+import { CHAMPION_VALUES } from '../../data/model/Champion';
+import { TYPE_VALUES } from '../../data/model/Type';
+import { EFFECT_VALUES } from '../../data/model/Effect';
+import { ABILITY_VALUES } from '../../data/model/Ability';
 import lang, { getLanguage } from '../../service/lang';
 import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
@@ -132,7 +132,7 @@ const LanguageEditPage = {
         elements.push(
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('champions') }</div>
-                { CHAMPIONS
+                { CHAMPION_VALUES
                         .map((uid) => [ `champion-${ uid }-name`, `champion-${ uid }-shortname` ])
                         .map(([ name, shortname ]) => (
                             <div class="field-group-set">
@@ -145,7 +145,7 @@ const LanguageEditPage = {
         elements.push(
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('types') }</div>
-                { TYPES.concat('unknown')
+                { TYPE_VALUES.concat('unknown')
                     .map((uid) => `type-${ uid }-name`)
                     .map((id) => (
                         <div class="field-group-set">
@@ -157,7 +157,7 @@ const LanguageEditPage = {
         elements.push(
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('effects') }</div>
-                { EFFECTS
+                { EFFECT_VALUES
                     .map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ])
                     .map(([ name, shortname, description ]) => (
                         <div class="field-group-set">
@@ -171,7 +171,7 @@ const LanguageEditPage = {
         elements.push(
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('abilities') }</div>
-                { ABILITIES
+                { ABILITY_VALUES
                     .map((uid) => `ability-${ uid }`)
                     .map((id) => (
                         <div class="field-group-set">

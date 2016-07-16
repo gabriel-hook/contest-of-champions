@@ -3,8 +3,8 @@ import 'font-awesome-webpack';
 import './index.css';
 import './util/custom-icons.css';
 import { notify } from './util/notification';
-import { uids as EFFECTS } from './data/effects';
-import { uids as GUIDES, SPOTLIGHT } from './data/guides';
+import { EFFECT_VALUES } from './data/model/Effect';
+import { GUIDES, SPOTLIGHT } from './data/guides';
 import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
@@ -337,7 +337,7 @@ router.on('/synergy/?', () => router.setRoute(app.history.synergy || `/synergy/s
 router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ parseInt(stars, 10) }`));
 
 router.on('/synergy/effect/:effect/?', (effect) => {
-    if(EFFECTS.indexOf(effect) === -1) {
+    if(EFFECT_VALUES.indexOf(effect) === -1) {
         router.setRoute('/synergy');
         return;
     }

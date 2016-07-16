@@ -1,6 +1,7 @@
 import './ChampionSection.scss';
 import { RATINGS, GRADES, RANGES, DAMAGE_TYPES } from '../../data/guides';
-import { uids as ABILITIES, abilityIcon } from '../../data/abilities';
+import { ABILITY_VALUES } from '../../data/model/Ability';
+import { abilityIcon } from '../../data/abilities';
 import lang from '../../service/lang';
 import ChampionGrade from './ChampionGrade.jsx';
 import ChampionRating from './ChampionRating.jsx';
@@ -169,7 +170,7 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('abilities') }:</b>
                         { editableSelectAdd(
-                            ABILITIES,
+                            ABILITY_VALUES,
                             'abilities',
                             abilities === true? []: abilities,
                             (ability) => `ability-${ ability }`,

@@ -1,4 +1,6 @@
 import Model from './Model';
+import { values } from 'lodash';
+import * as ABILITY from '../ids/abilities';
 
 class Ability extends Model {
     constructor({
@@ -11,3 +13,5 @@ class Ability extends Model {
 }
 
 export default Ability;
+export { ABILITY };
+export const ABILITY_VALUES = values(ABILITY);

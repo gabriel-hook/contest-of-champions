@@ -1,8 +1,8 @@
 import './GuidePage.scss';
 import classNames from 'classnames';
 import { effectIcon } from '../../data/effects';
-import { idMap } from '../../data/champions';
-import { CHAMPIONS_TO_FROGSPAWN } from '../../data/champion/frogspawn';
+import { championMap } from '../../data/champions';
+import { CHAMPIONS_TO_FROGSPAWN } from '../../data/champions/frogspawn';
 import Champion from '../../data/model/Champion';
 import synergies from '../../data/synergies';
 import guides from '../../data/guides';
@@ -42,7 +42,7 @@ const GuideSynergy ={
             router.setRoute(`/guide/${ championId }`);
             requestRedraw();
         };
-        const champion = idMap[ `${ championId }-2` ] || idMap[ `${ championId }-3` ] || idMap[ `${ championId }-4` ] || idMap[ `${ championId }-5` ];
+        const champion = championMap[ `${ championId }-2` ] || championMap[ `${ championId }-3` ] || championMap[ `${ championId }-4` ] || championMap[ `${ championId }-5` ];
         const typeId = champion && champion.attr.typeId;
         const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
         return (
@@ -133,7 +133,7 @@ const GuidePage = {
     view(ctrl, { uid }) {
         const guide = guides[ uid ];
         const details = [];
-        const champion = idMap[ `${ uid }-2` ] || idMap[ `${ uid }-3` ] || idMap[ `${ uid }-4` ] || idMap[ `${ uid }-5` ];
+        const champion = championMap[ `${ uid }-2` ] || championMap[ `${ uid }-3` ] || championMap[ `${ uid }-4` ] || championMap[ `${ uid }-5` ];
         if(champion) {
             details.push(
                 <ChampionHeader

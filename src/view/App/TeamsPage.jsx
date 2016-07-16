@@ -1,6 +1,6 @@
 import './TeamsPage.scss';
+import { ROLE } from '../../data/model/Role';
 import { roleIcon } from '../../data/roles';
-import { ROLE_ARENA, ROLE_ALLIANCE_WAR_ATTACK, ROLE_ALLIANCE_WAR_DEFENSE } from '../../data/model/Champion';
 import teams from '../../service/teams';
 import lang from '../../service/lang';
 import Message from '../Message.jsx';
@@ -15,7 +15,7 @@ function results(type, size) {
     const result = teams.result[ `${ type }-${ size }` ];
     if(result) {
         const { counts, teams, extras } = result;
-        const message = type === ROLE_ARENA?
+        const message = type === ROLE.ARENA?
             ` - ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
             ` - ${ counts.synergies } ${ lang.get('synergies') }`;
         const teamDivs = teams.map(({ champions, synergies }) => (
@@ -68,10 +68,10 @@ const TeamsPage = {
     view() {
         return (
             <div m="TeamsPage" class="teams">
-                {(teams.type === ROLE_ALLIANCE_WAR_ATTACK || teams.type === ROLE_ALLIANCE_WAR_DEFENSE)? (
+                {(teams.type === ROLE.ALLIANCE_WAR_ATTACK || teams.type === ROLE.ALLIANCE_WAR_DEFENSE)? (
                     <div key="teams-alliance">
-                        { results(ROLE_ALLIANCE_WAR_ATTACK, 3) }
-                        { results(ROLE_ALLIANCE_WAR_DEFENSE, 5) }
+                        { results(ROLE.ALLIANCE_WAR_ATTACK, 3) }
+                        { results(ROLE.ALLIANCE_WAR_DEFENSE, 5) }
                     </div>
                 ): (
                     <div key="teams-other">

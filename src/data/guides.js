@@ -1,6 +1,6 @@
-import { CHAMPION_NIGHTCRAWLER } from './champion/ids';
+import { NIGHTCRAWLER } from './ids/champions';
 
-export const SPOTLIGHT = CHAMPION_NIGHTCRAWLER;
+export const SPOTLIGHT = NIGHTCRAWLER;
 export const RATINGS = [ 1, 2, 3, 4, 5 ];
 export const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
 export const RANGES = [
@@ -20,8 +20,8 @@ export const PROFILE_TYPES = [
     'spotlight',
 ];
 
-const requireGuide = require.context('./guide', true, /\.json$/);
-const uids = requireGuide.keys();
+const requireGuide = require.context('./guides', true, /\.json$/);
+const GUIDES = requireGuide.keys();
 const guides = requireGuide.keys().reduce((map, key) => {
     const name = key.replace('./', '').replace('.json', '');
     map[ name ] = requireGuide(key);
@@ -29,5 +29,4 @@ const guides = requireGuide.keys().reduce((map, key) => {
 }, {});
 
 export default guides;
-
-export { uids };
+export { GUIDES };

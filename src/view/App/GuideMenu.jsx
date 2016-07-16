@@ -1,4 +1,4 @@
-import { uidsByType } from '../../data/champions';
+import { championTypeMap } from '../../data/champions';
 import guides from '../../data/guides';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -15,7 +15,7 @@ const GuideMenu = {
         options.push(
             <MenuHeader title="guides" />
         );
-        uidsByType.forEach(({ typeId, uids }) => {
+        championTypeMap.forEach(({ typeId, uids }) => {
             options.push(
                 <MenuSection title={ `type-${ typeId }-name` } />
             );

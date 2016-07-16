@@ -1,6 +1,6 @@
 import Champion from '../../data/model/Champion';
+import { TYPE_VALUES } from '../../data/model/Type';
 import dataSynergies from '../../data/synergies';
-import { uids as typeIds } from '../../data/types';
 import { effectBase } from '../../data/effects';
 import { combination } from '../../util/math';
 
@@ -36,7 +36,7 @@ function buildQuest({
                 uid,
                 stars,
                 role,
-                type: typeIds.indexOf(typeId),
+                type: TYPE_VALUES.indexOf(typeId),
                 synergies,
                 pi: pi || basePi,
             };

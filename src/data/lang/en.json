@@ -126,6 +126,7 @@
     "effect-inseparable-name": "Special 3 Damage",
     "effect-heroesforhire-name": "Block Proficiency and Physical Resistance",
     "effect-thunderbolts-name": "Reduced Special Damage",
+    "effect-mastermind-name": "Mastermind",
 
     "effect-mutantagenda-shortname": "Mutant Agenda",
     "effect-idol-shortname": "Idol",
@@ -151,6 +152,7 @@
     "effect-inseparable-description": "Increased Special Attack Level 3 Damage",
     "effect-heroesforhire-description": "Increased Block Proficiency and Physical Resistance",
     "effect-thunderbolts-description": "Take less Special Damage",
+    "effect-mastermind-description": "",
 
     "type-cosmic-name": "Cosmic",
     "type-tech-name": "Tech",

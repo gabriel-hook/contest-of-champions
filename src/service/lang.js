@@ -2,10 +2,10 @@ import en from '../data/lang/en.json';
 import es from '../data/lang/es.json';
 import br from '../data/lang/br.json';
 import ru from '../data/lang/ru.json';
-import { uids as CHAMPIONS } from '../data/champions';
-import { uids as TYPES } from '../data/types';
-import { uids as EFFECTS } from '../data/effects';
-import { uids as ABILITIES } from '../data/abilities';
+import { CHAMPION_VALUES } from '../data/model/Champion';
+import { TYPE_VALUES } from '../data/model/Type';
+import { EFFECT_VALUES } from '../data/model/Effect';
+import { ABILITY_VALUES } from '../data/model/Ability';
 import { flatten } from '../util/array';
 import { fromStorage, toStorage } from '../util/storage';
 import { requestRedraw } from '../util/animation';
@@ -97,10 +97,10 @@ function getLanguage(id) {
         const defaultFields = {};
         flatten([
             'lang',
-            ...CHAMPIONS.map((uid) => [ `champion-${ uid }-name`, `champion-${ uid }-shortname` ]),
-            ...TYPES.concat('unknown').map((uid) => `type-${ uid }-name`),
-            ...EFFECTS.map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ]),
-            ...ABILITIES.map((uid) => `ability-${ uid }`),
+            ...CHAMPION_VALUES.map((uid) => [ `champion-${ uid }-name`, `champion-${ uid }-shortname` ]),
+            ...TYPE_VALUES.concat('unknown').map((uid) => `type-${ uid }-name`),
+            ...EFFECT_VALUES.map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ]),
+            ...ABILITY_VALUES.map((uid) => `ability-${ uid }`),
         ]).forEach((id) => (defaultFields[ id ] = true));
         const values = {};
         Object.keys(current)

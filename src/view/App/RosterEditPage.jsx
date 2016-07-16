@@ -1,12 +1,6 @@
 import './RosterEditPage.scss';
-import {
-    STAR_RANK_LEVEL,
-    ROLE_ARENA,
-    ROLE_QUEST,
-    ROLE_ALLIANCE_QUEST,
-    ROLE_ALLIANCE_WAR_ATTACK,
-    ROLE_ALLIANCE_WAR_DEFENSE,
-} from '../../data/model/Champion';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
+import { ROLE } from '../../data/model/Role';
 import { roleImage } from '../../data/roles';
 import roster from '../../service/roster';
 import router from '../../service/router';
@@ -183,23 +177,23 @@ const RosterPage = {
                             },
                             {
                                 title: lang.get('role-arena'),
-                                value: ROLE_ARENA,
+                                value: ROLE.ARENA,
                             },
                             {
                                 title: lang.get('role-alliance-quest'),
-                                value: ROLE_ALLIANCE_QUEST,
+                                value: ROLE.ALLIANCE_QUEST,
                             },
                             {
                                 title: lang.get('role-alliance-war-attack'),
-                                value: ROLE_ALLIANCE_WAR_ATTACK,
+                                value: ROLE.ALLIANCE_WAR_ATTACK,
                             },
                             {
                                 title: lang.get('role-alliance-war-defense'),
-                                value: ROLE_ALLIANCE_WAR_DEFENSE,
+                                value: ROLE.ALLIANCE_WAR_DEFENSE,
                             },
                             {
                                 title: lang.get('role-quest'),
-                                value: ROLE_QUEST,
+                                value: ROLE.QUEST,
                             },
                         ]}
                         onchange={(event) => {
