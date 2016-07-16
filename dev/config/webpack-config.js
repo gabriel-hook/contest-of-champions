@@ -77,9 +77,6 @@ export default {
             },
         ],
     },
-    resolve: {
-
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
