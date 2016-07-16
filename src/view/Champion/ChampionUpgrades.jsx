@@ -1,4 +1,5 @@
 import './ChampionUpgrade.scss';
+import { TYPE_VALUES } from '../../data/model/Type';
 import { STAR_RANK_LEVEL, CATALYSTS } from '../../data/model/Champion';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
@@ -21,9 +22,10 @@ const ChampionUpgrades = {
             .map(({ attr }) => ({
                 catalysts: CATALYSTS[ attr.stars ] && CATALYSTS[ attr.stars ][ attr.rank ],
                 typeId: attr.typeId,
+                typeIndex: TYPE_VALUES.indexOf(attr.typeId),
             }))
             // add to the right category
-            .reduce((collection, { catalysts, typeId }) => {
+            .reduce((collection, { catalysts, typeId, typeIndex }) => {
                 catalysts.forEach(({ type, tier, amount }) => {
                     if(type === 'gold') {
                         collection[ type ].amount += amount;
@@ -41,6 +43,7 @@ const ChampionUpgrades = {
                             tier,
                             amount,
                             typeId,
+                            typeIndex,
                         });
                     }
                 });
@@ -50,12 +53,12 @@ const ChampionUpgrades = {
         [ 'basic', 'class', 'alpha' ].forEach((type) => {
             catalysts[ type ] = catalysts[ type ]
                 // sort by tier ascending
-                .sort((type === 'class')? ({ tier: tA, typeId: tyA }, { tier: tB, typeId: tyB }) => {
-                    const tierCompare = tA - tB;
-                    if(tierCompare === 0) {
-                        return tyA.localCompare(tyB);
+                .sort((type === 'class')? ({ tier: tA, typeIndex: tyA }, { tier: tB, typeIndex: tyB }) => {
+                    const compare = tA - tB;
+                    if(compare !== 0) {
+                        return compare;
                     }
-                    return tierCompare;
+                    return tyA - tyB;
                 }: ({ tier: tA }, { tier: tB }) => tA - tB)
                 // fold same tier/type into each other
                 .reduce((array, current, index) => {
