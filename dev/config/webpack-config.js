@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import LodashModulePlugin from 'lodash-webpack-plugin';
 import glob from 'glob';
 import path from 'path';
 
@@ -89,6 +90,7 @@ export default {
                 'CHAMPION_ICONS': JSON.stringify(championIcons),
             },
         }),
+        new LodashModulePlugin(),
     ],
 };
 export { extractStylesPlugin, championIcons };

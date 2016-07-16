@@ -87,9 +87,7 @@ gulp.task('webpack', (callback) => {
                     if_return: true,
                     join_vars: true,
                 },
-                mangle: {
-                    except: [ '$super', '$', 'exports', 'require' ],
-                },
+                mangle: true,
                 output: {
                     comments: false,
                 },

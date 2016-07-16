@@ -1,6 +1,7 @@
 {
 	"presets": ["react", "stage-0", "es2015"],
 	"plugins": [
+		"lodash",
 		"mjsx",
 		"transform-es2015-modules-commonjs",
 		"transform-react-constant-elements"
