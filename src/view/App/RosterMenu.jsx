@@ -16,6 +16,19 @@ import m from 'mithril';
 const RosterMenu = {
     view() {
         const options = [];
+        options.push(
+            <MenuOption
+                icon={(
+                    <Icon icon="arrow-circle-up" before />
+                )}
+                title="show-upgrades"
+                selected={ roster.getUpgrades() }
+                onclick={ () => {
+                    roster.setUpgrades(!roster.getUpgrades());
+                    requestRedraw(5);
+                }}
+            />
+        );
         if (window.FileReader) {
             const handleTextInput = (text) => {
                 roster.fromCSV(text);

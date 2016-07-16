@@ -43,7 +43,7 @@ const ChampionUpgrade = {
                                 (type === 'class')? `images/catalysts/tier_${ tier }_${ typeId }.png`:
                                 `images/catalysts/tier_${ tier }_${ type }.png`
                             }
-                            icon="cube"
+                            icon={ (type === 'gold')? 'cloud': 'share-alt' }
                         />
                     </span>
                 )) }

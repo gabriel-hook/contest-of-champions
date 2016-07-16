@@ -204,6 +204,7 @@
 
     "manage": "Manage",
     "add-champion": "Add a Champion",
+    "show-upgrades": "Show Upgrade Resources",
     "import-csv": "Import .csv",
     "export-csv": "Export .csv",
     "export-alliance": "Export to Alliance Tool",

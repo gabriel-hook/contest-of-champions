@@ -33,8 +33,20 @@ let rosterOptions = fromStorage('roster-options', {
         mystic: true,
     },
     scale: 1,
+    upgrades: false,
 });
 let cache = {};
+
+function setUpgrades(upgrades) {
+    rosterOptions = {
+        ...rosterOptions,
+        upgrades,
+    };
+    toStorage('roster-options', rosterOptions);
+}
+function getUpgrades() {
+    return rosterOptions.upgrades;
+}
 
 function setScale(scale) {
     rosterOptions = {
@@ -384,7 +396,7 @@ export default {
     //csv
     toCSV, fromCSV,
     //options
-    setFilter, getFilter, setSort, getSort, getScale,
+    setFilter, getFilter, setSort, getSort, setUpgrades, getUpgrades, getScale,
     //hashing
     hash,
 };

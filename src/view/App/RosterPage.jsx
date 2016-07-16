@@ -5,6 +5,7 @@ import lang from '../../service/lang';
 import Message from '../Message.jsx';
 import Icon from '../Icon.jsx';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
+import ChampionUpgrades from '../Champion/ChampionUpgrades.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -30,6 +31,10 @@ const RosterPage = {
             router.setRoute(`/roster/${ uid }/${ stars }`);
             requestRedraw();
         };
+        const upgrades = roster.getUpgrades() && (
+            <ChampionUpgrades champions={ champions } />
+        ) || null;
+
         return (
             <div m="RosterPage" class="roster">
                 <Message
@@ -46,6 +51,7 @@ const RosterPage = {
                     value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
                     alt={ prestige && `${ lang.get('prestige') } ${ prestige }` }
                 />
+                { upgrades }
                 <div>
                     { champions.map((champion) => (
                         <ChampionPortrait
