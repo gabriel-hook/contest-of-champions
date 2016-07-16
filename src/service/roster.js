@@ -4,13 +4,15 @@ import { UNRELEASED_CHAMPIONS } from '../data/champions/unreleased';
 import champions, { championMap, championTypes } from '../data/champions';
 import { fromStorage, toStorage } from '../util/storage';
 
-let roster = fromStorage('roster', []).map((attr) => new Champion({
-    ...attr,
-    typeId: championTypes[ attr.uid ] || attr.typeId,
-    stars: Math.max(1, attr.stars | 0),
-    level: Math.max(1, attr.level | 0),
-    rank: Math.max(1, attr.rank | 0),
-}));
+let roster = fromStorage('roster', [])
+    .map((attr) => new Champion({
+        ...attr,
+        typeId: championTypes[ attr.uid ] || attr.typeId,
+        stars: Math.max(1, attr.stars | 0),
+        level: Math.max(1, attr.level | 0),
+        rank: Math.max(1, attr.rank | 0),
+    }))
+    .filter(({ attr }) => !UNRELEASED_CHAMPIONS[ attr.uid ]);
 
 let rosterOptions = fromStorage('roster-options', {
     sort: {
@@ -243,7 +245,9 @@ function fromCSV(csv, filename = 'champions.csv') {
             /* eslint-enable no-console */
             continue;
         }
-        array.push(new Champion({ ...champion.attr, rank, level, awakened, pi, role }));
+        if(!UNRELEASED_CHAMPIONS[ uid ]) {
+            array.push(new Champion({ ...champion.attr, rank, level, awakened, pi, role }));
+        }
     }
     roster = [
         ...roster,
