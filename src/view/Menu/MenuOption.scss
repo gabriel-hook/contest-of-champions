@@ -25,7 +25,7 @@
         }
     }
 
-    &>.menu-option--label {
+    > .menu-option--label {
         position: relative;
         width: 100%;
         pointer-events: none;
@@ -37,7 +37,7 @@
     }
 
     &.menu-option--options {
-        &> .menu-option--label {
+        > .menu-option--label {
             float: left;
             width: 50%;
             height: 2em;
@@ -46,7 +46,7 @@
 
     &.menu-option--progress,
     &:hover {
-        &> .menu-option--label {
+        > .menu-option--label {
             background: rgba(255, 255, 255, .65);
             color: #000;
             text-shadow: 0 1px 0 #fff;
@@ -54,32 +54,32 @@
     }
 
     &.menu-option--red {
-        &> .menu-option--label {
+        > .menu-option--label {
             background: #c33;
         }
 
         &:hover {
-            &> .menu-option--label {
+            > .menu-option--label {
                 background: rgba(255, 192, 192, .65);
             }
         }
     }
 
     &.menu-option--selected {
-        &> .menu-option--label {
+        > .menu-option--label {
             background: #eee;
             color: #000;
             text-shadow: 0 1px 0 #fff;
         }
     }
 
-    &>.menu-option-options {
+    > .menu-option-options {
         float: left;
         width: 50%;
         height: 100%;
     }
 
-    &>.menu-option-progress-bar {
+    > .menu-option-progress-bar {
         position: absolute;
         top: 0;
         left: 0;

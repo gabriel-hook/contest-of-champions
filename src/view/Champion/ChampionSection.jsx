@@ -281,7 +281,7 @@ const ChampionSection = {
                                 ) || null }
                                 { abilityIcon(ability) && (
                                     <Icon icon={ abilityIcon(ability) } before />
-                                ) || null }{ lang.get(`ability-${ ability }`) }
+                                ) || null }{ lang.get(`ability-${ ability }-name`) }
                             </span>
                         )) }
                     </div>

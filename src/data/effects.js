@@ -55,7 +55,7 @@ const effectIcons = {
     [ EFFECT.STUN_ACTIVATION ]: 'effect-stun',
     [ EFFECT.STUN_SPECIAL ]: 'effect-stun',
     [ EFFECT.POWER_GAIN ]: 'effect-power',
-    [ EFFECT.POWER_STEAL ]: 'effect-power-steal',
+    [ EFFECT.POWER_STEAL ]: 'effect-power-lock',
     [ EFFECT.PERFECT_BLOCK ]: 'effect-perfect-block',
     [ EFFECT.BLOCK ]: 'effect-block',
     [ EFFECT.ARMOR ]: 'effect-armor',
@@ -63,7 +63,6 @@ const effectIcons = {
     [ EFFECT.HEALTH_STEAL ]: 'effect-health-steal',
     [ EFFECT.HEROES_FOR_HIRE ]: 'effect-heroes-for-hire',
     [ EFFECT.THUNDERBOLTS ]: 'effect-thunderbolts',
-    [ EFFECT.MASTERMIND ]: 'effect-mastermind',
 };
 
 function effectIcon(uid) {

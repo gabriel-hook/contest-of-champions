@@ -16,4 +16,3 @@ export const HEALTH = 'health';
 export const HEALTH_STEAL = 'healthsteal';
 export const HEROES_FOR_HIRE = 'heroesforhire';
 export const THUNDERBOLTS = 'thunderbolts';
-export const MASTERMIND = 'mastermind';

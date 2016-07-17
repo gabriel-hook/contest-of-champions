@@ -13,6 +13,8 @@ import { buildTeam } from './service/teams';
 import analytics from './service/analytics';
 import App from './view/App.jsx';
 import Slides from './view/Slides.jsx';
+import GlossaryPage from './view/App/GlossaryPage.jsx';
+import GlossaryMenu from './view/App/GlossaryMenu.jsx';
 import GuidePage from './view/App/GuidePage.jsx';
 import GuideMenu from './view/App/GuideMenu.jsx';
 import GuideEditPage from './view/App/GuideEditPage.jsx';
@@ -55,6 +57,11 @@ app.tabs = [
         id: 'synergy',
         title: 'synergy',
         icon: 'sitemap',
+    },
+    {
+        id: 'glossary',
+        title: 'glossary',
+        icon: 'info-circle',
     },
     {
         id: 'language',
@@ -366,6 +373,21 @@ router.on('/synergy/stars/:stars/?', (stars) => {
     );
     app.button = null;
     app.route = app.history.synergy = `/synergy/stars/${ stars }`;
+    app.hotkeys = null;
+    analytics.pageView();
+    requestRedraw();
+});
+
+router.on('/glossary/?', () => {
+    app.tab = 'glossary';
+    app.pages[ 'glossary' ] = (
+        <GlossaryPage />
+    );
+    app.menu = (
+        <GlossaryMenu />
+    );
+    app.button = null;
+    app.route = '/glossary';
     app.hotkeys = null;
     analytics.pageView();
     requestRedraw();

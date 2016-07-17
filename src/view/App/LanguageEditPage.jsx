@@ -172,10 +172,11 @@ const LanguageEditPage = {
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('abilities') }</div>
                 { ABILITY_VALUES
-                    .map((uid) => `ability-${ uid }`)
-                    .map((id) => (
+                    .map((uid) => [ `ability-${ uid }-name`, `ability-${ uid }-description` ])
+                    .map(([ name, description ]) => (
                         <div class="field-group-set">
-                            { fieldElement(id) }
+                            { fieldElement(name) }
+                            { fieldElement(description) }
                         </div>
                     )) }
             </div>

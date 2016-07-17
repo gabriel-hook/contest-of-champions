@@ -25,9 +25,9 @@ $menu-transition-time: .25s;
         box-sizing: border-box;
 
         .menu-option {
-            height: 48px + 1;
+            height: 32px;
             font-size: 1.2em;
-            line-height: 1.5em;
+            line-height: 32px;
             background: rgba(0, 0, 0, 0);
 
             &,
