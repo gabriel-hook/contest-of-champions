@@ -62,6 +62,7 @@ function requestRedraw(delay = 2) {
 }
 
 function errorHandler(error) {
+    console.warn(error.stack);
     /* eslint-disable no-console */
     console.error(error.stack || error);
     /* eslint-enable no-console */
@@ -92,9 +93,14 @@ function renderDeferred() {
         }
         else if(deferred.callback) {
             new Promise((resolve) => {
-                deferred.callback();
+                try {
+                    deferred.callback();
+                }
+                catch(error) {
+                    errorHandler(error);
+                }
                 resolve();
-            }).catch(errorHandler);
+            });
         }
     }
     for(const id in deferredMap) {
@@ -108,9 +114,14 @@ function renderDeferred() {
         }
         else if(deferred.callback) {
             new Promise((resolve) => {
-                deferred.callback();
+                try {
+                    deferred.callback();
+                }
+                catch(error) {
+                    errorHandler(error);
+                }
                 resolve();
-            }).catch(errorHandler);
+            });
         }
     }
     if(hasDeferred) {
