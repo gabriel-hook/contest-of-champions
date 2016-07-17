@@ -552,6 +552,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.MAGNETOMARVELNOW, [
+        ...fromStars(2, [
+            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
+        ]),
         ...fromStars(3, [
             { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK },
             { toId: CHAMPION.MAGIK, effectId: EFFECT.PERFECT_BLOCK },
