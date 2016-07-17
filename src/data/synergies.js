@@ -10,6 +10,17 @@ function fromId(fromId, synergies) {
     }));
 }
 
+function fromStarsRange(fromStarsMin, fromStarsMax, synergy) {
+    const fromStarsArray = [];
+    for(let i = fromStarsMin; i <= fromStarsMax; i++) {
+        fromStarsArray.push(i);
+    }
+    return fromStarsArray.map((fromStars) => ({
+        ...synergy,
+        fromStars,
+    }));
+}
+
 function fromStars(fromStars, synergies) {
     return synergies.map((synergy) => ({
         ...synergy,
@@ -30,112 +41,35 @@ function toIds(toIds, synergy) {
 const synergies = [
 
     ...fromId(CHAMPION.BLACKBOLT, [
-        ...fromStars(2, [
-            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
-        ]),
-        ...fromStars(3, [
-            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
-            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.RONAN, effectId: EFFECT.ATTACK },
-            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK },
-            { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.RONAN, effectId: EFFECT.ATTACK },
-            { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
+        ...fromStarsRange(2, 4, { toId: CHAMPION.CYCLOPS, effectId: EFFECT.BLOCK }),
+        ...fromStarsRange(3, 4, { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 4, { toId: CHAMPION.RONAN, effectId: EFFECT.ATTACK }),
+        ...fromStarsRange(3, 4, { toId: CHAMPION.HULK, effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
-
     ...fromId(CHAMPION.CAPTAINMARVEL, [
-        ...fromStars(3, [
-            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.POWER_GAIN },
-        ]),
-        ...fromStars(5, [
-            { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.WOLVERINE, effectId: EFFECT.POWER_GAIN },
-        ]),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.GAMORA, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(4, 5, { toId: CHAMPION.WOLVERINE, effectId: EFFECT.POWER_GAIN }),
     ]),
-
     ...fromId(CHAMPION.DRAX, [
-        ...fromStars(2, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
-        ...fromStars(3, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
-        ...fromStars(5, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
+        ...fromStarsRange(2, 5, { toId: CHAMPION.STARLORD, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStarsRange(2, 5, { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
-
     ...fromId(CHAMPION.GAMORA, [
-        ...fromStars(2, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-        ]),
-        ...fromStars(3, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.DRAX, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.DRAX, effectId: EFFECT.CRITICAL_DAMAGE },
-        ]),
+        ...fromStarsRange(2, 4, { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 4, { toId: CHAMPION.DRAX, effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
-
     ...fromId(CHAMPION.GROOT, [
-        ...fromStars(3, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
-        ]),
-        ...fromStars(5, [
-            { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE },
-        ]),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE }),
     ]),
-
     ...fromId(CHAMPION.KAMALAKHAN, [
-        ...fromStars(3, [
-            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
-        ]),
-        ...fromStars(5, [
-            { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL },
-            { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK },
-            { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK },
-        ]),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStarsRange(4, 5, { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
     ...fromId(CHAMPION.MSMARVEL, [
@@ -259,23 +193,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.CIVILWARRIOR, [
-        ...fromStars(3, [
-            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
-        ]),
-        ...fromStars(4, [
-            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
-            ...toIds([ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], { effectId: EFFECT.CRITICAL_DAMAGE }),
-        ]),
-        ...fromStars(5, [
-            { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR },
-            { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK },
-            ...toIds([ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], { effectId: EFFECT.CRITICAL_DAMAGE }),
-        ]),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.FALCON, effectId: EFFECT.ARMOR }),
+        ...fromStarsRange(3, 5, { toId: CHAMPION.GUILLOTINE, effectId: EFFECT.PERFECT_BLOCK }),
+        ...toIds([ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], ...fromStarsRange(4, 5, { effectId: EFFECT.CRITICAL_DAMAGE })),
     ]),
 
     ...fromId(CHAMPION.IRONMAN, [
