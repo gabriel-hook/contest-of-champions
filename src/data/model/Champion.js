@@ -1,4 +1,5 @@
 import * as CHAMPION from '../ids/champions';
+import * as CATALYST from '../ids/catalyst';
 import { TYPE_VALUES } from './Type';
 import { ROLE_VALUES } from './Role';
 import { isInRange } from '../../util/math';
@@ -51,88 +52,88 @@ export const STAR_RANK_LEVEL = {
 const CATALYSTS = {
     1: {
         1: [
-            { type: 'gold', amount: 2817 },
+            { type: CATALYST.GOLD, amount: 2817 },
         ],
     },
     2:{
         1: [
-            { type: 'basic', tier: 1, amount: 2 },
-            { type: 'gold', amount: 4641 },
+            { type: CATALYST.BASIC, tier: 1, amount: 2 },
+            { type: CATALYST.GOLD, amount: 4641 },
         ],
         2: [
-            { type: 'basic', tier: 1, amount: 3 },
-            { type: 'class', tier: 1, amount: 1 },
-            { type: 'gold', amount: 9282 },
+            { type: CATALYST.BASIC, tier: 1, amount: 3 },
+            { type: CATALYST.CLASS, tier: 1, amount: 1 },
+            { type: CATALYST.GOLD, amount: 9282 },
         ],
     },
     3:{
         1: [
-            { type: 'basic', tier: 2, amount: 3 },
-            { type: 'class', tier: 1, amount: 2 },
-            { type: 'gold', amount: 11500 },
+            { type: CATALYST.BASIC, tier: 2, amount: 3 },
+            { type: CATALYST.CLASS, tier: 1, amount: 2 },
+            { type: CATALYST.GOLD, amount: 11500 },
         ],
         2: [
-            { type: 'basic', tier: 2, amount: 5 },
-            { type: 'class', tier: 2, amount: 1 },
-            { type: 'gold', amount: 23001 },
+            { type: CATALYST.BASIC, tier: 2, amount: 5 },
+            { type: CATALYST.CLASS, tier: 2, amount: 1 },
+            { type: CATALYST.GOLD, amount: 23001 },
         ],
         3: [
-            { type: 'basic', tier: 3, amount: 3 },
-            { type: 'class', tier: 2, amount: 2 },
-            { type: 'gold', amount: 34501 },
+            { type: CATALYST.BASIC, tier: 3, amount: 3 },
+            { type: CATALYST.CLASS, tier: 2, amount: 2 },
+            { type: CATALYST.GOLD, amount: 34501 },
         ],
     },
     4:{
         1: [
-            { type: 'basic', tier: 3, amount: 4 },
-            { type: 'class', tier: 2, amount: 3 },
-            { type: 'gold', amount: 27435 },
+            { type: CATALYST.BASIC, tier: 3, amount: 4 },
+            { type: CATALYST.CLASS, tier: 2, amount: 3 },
+            { type: CATALYST.GOLD, amount: 27435 },
         ],
         2: [
-            { type: 'basic', tier: 3, amount: 5 },
-            { type: 'class', tier: 3, amount: 1 },
-            { type: 'alpha', tier: 1, amount: 1 },
-            { type: 'gold', amount: 54850 },
+            { type: CATALYST.BASIC, tier: 3, amount: 5 },
+            { type: CATALYST.CLASS, tier: 3, amount: 1 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 1 },
+            { type: CATALYST.GOLD, amount: 54850 },
         ],
         3: [
-            { type: 'basic', tier: 4, amount: 3 },
-            { type: 'class', tier: 3, amount: 2 },
-            { type: 'alpha', tier: 1, amount: 1 },
-            { type: 'gold', amount: 82275 },
+            { type: CATALYST.BASIC, tier: 4, amount: 3 },
+            { type: CATALYST.CLASS, tier: 3, amount: 2 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 1 },
+            { type: CATALYST.GOLD, amount: 82275 },
         ],
         4: [
-            { type: 'basic', tier: 4, amount: 5 },
-            { type: 'class', tier: 4, amount: 3 },
-            { type: 'alpha', tier: 1, amount: 2 },
-            { type: 'gold', amount: 109701 },
+            { type: CATALYST.BASIC, tier: 4, amount: 5 },
+            { type: CATALYST.CLASS, tier: 4, amount: 3 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 2 },
+            { type: CATALYST.GOLD, amount: 109701 },
         ],
     },
     5: {
         1: [
-            { type: 'basic', tier: 4, amount: 2 },
-            { type: 'class', tier: 3, amount: 3 },
-            { type: 'alpha', tier: 1, amount: 5 },
-            { type: 'gold', amount: 135684 },
+            { type: CATALYST.BASIC, tier: 4, amount: 2 },
+            { type: CATALYST.CLASS, tier: 3, amount: 3 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 5 },
+            { type: CATALYST.GOLD, amount: 135684 },
         ],
         2: [
-            { type: 'basic', tier: 4, amount: 4 },
-            { type: 'class', tier: 4, amount: 3 },
-            { type: 'alpha', tier: 1, amount: 5 },
-            { type: 'gold', amount: 271370 },
+            { type: CATALYST.BASIC, tier: 4, amount: 4 },
+            { type: CATALYST.CLASS, tier: 4, amount: 3 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 5 },
+            { type: CATALYST.GOLD, amount: 271370 },
         ],
         3: [
-            { type: 'basic', tier: 5, amount: 6 },
-            { type: 'class', tier: 4, amount: 4 },
-            { type: 'alpha', tier: 1, amount: 6 },
-            { type: 'alpha', tier: 2, amount: 4 },
-            { type: 'gold', amount: 407056 },
+            { type: CATALYST.BASIC, tier: 5, amount: 6 },
+            { type: CATALYST.CLASS, tier: 4, amount: 4 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 6 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 4 },
+            { type: CATALYST.GOLD, amount: 407056 },
         ],
         4: [
-            { type: 'basic', tier: 5, amount: 4 },
-            { type: 'class', tier: 4, amount: 6 },
-            { type: 'alpha', tier: 1, amount: 5 },
-            { type: 'alpha', tier: 2, amount: 6 },
-            { type: 'gold', amount: 524738 },
+            { type: CATALYST.BASIC, tier: 5, amount: 4 },
+            { type: CATALYST.CLASS, tier: 4, amount: 6 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 5 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 6 },
+            { type: CATALYST.GOLD, amount: 524738 },
         ],
     },
 };
@@ -187,6 +188,7 @@ class Champion extends Model {
 }
 
 export default Champion;
-export { CHAMPION };
+export { CHAMPION, CATALYST };
 export const CHAMPION_VALUES = values(CHAMPION);
+export const CATALYST_VALUES = values(CATALYST);
 export { STAR_RANK_LEVEL, CATALYSTS };

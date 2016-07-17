@@ -1,6 +1,6 @@
 import './ChampionUpgrade.scss';
-import { STAR_RANK_LEVEL, CATALYSTS } from '../../data/model/Champion';
-import classNames from 'classnames';
+import { STAR_RANK_LEVEL, CATALYSTS, CATALYST } from '../../data/model/Champion';
+import classnames from 'classnames';
 import { IMAGE_BADGE_RANK_UP, IMAGE_BADGE_LEVEL_MAX } from '../../util/images';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
@@ -19,7 +19,7 @@ const ChampionUpgrade = {
             <div
                 m="ChampionUpgrade"
                 title={ lang.get('upgrade-cost') }
-                class={ classNames('champion-upgrade', {
+                class={ classnames('champion-upgrade', {
                     'champion-upgrade-rank-up': isRankUp,
                     'champion-upgrade-max': isMaxed,
                 }) }
@@ -35,24 +35,28 @@ const ChampionUpgrade = {
                     </span>
                 ):
                 catalysts.map(({ tier, type, amount }) => (
-                    <span class="champion-upgrade-catalyst">
+                    <span
+                        class={ classnames('champion-upgrade-catalyst', `champion-upgrade-catalyst--${ type }`, {
+                            [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
+                        }) }
+                    >
                         { amount } x
                         <ImageIcon
-                            src={
-                                (type === 'gold')? 'images/catalysts/gold.png':
-                                (type === 'class')? `images/catalysts/tier_${ tier }_${ typeId }.png`:
+                            src={ (type === CATALYST.GOLD)? 'images/catalysts/gold.png':
+                                (type === CATALYST.CLASS)? `images/catalysts/tier_${ tier }_${ typeId }.png`:
                                 `images/catalysts/tier_${ tier }_${ type }.png`
                             }
-                            icon={ (type === 'gold')? 'cloud': 'share-alt' }
+                            icon={ (type === CATALYST.GOLD)? 'circle': 'share-alt' }
+                            after
                         />
                     </span>
                 )) }
                 { isMaxed? (
-                    <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--max') }>
+                    <div class={ classnames('champion-upgrade-badge', 'champion-upgrade-badge--max') }>
                         <ImageIcon src={ IMAGE_BADGE_LEVEL_MAX } />
                     </div>
                 ): isRankUp? (
-                    <div class={ classNames('champion-upgrade-badge', 'champion-upgrade-badge--rank-up') }>
+                    <div class={ classnames('champion-upgrade-badge', 'champion-upgrade-badge--rank-up') }>
                         <ImageIcon src={ IMAGE_BADGE_RANK_UP } />
                     </div>
                 ): null }

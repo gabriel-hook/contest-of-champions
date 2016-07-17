@@ -1,16 +1,12 @@
 import './ChampionUpgrade.scss';
 import { TYPE_VALUES } from '../../data/model/Type';
-import { STAR_RANK_LEVEL, CATALYSTS } from '../../data/model/Champion';
+import { STAR_RANK_LEVEL, CATALYSTS, CATALYST } from '../../data/model/Champion';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
+import classnames from 'classnames';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
-
-const CATALYST_TYPE_BASIC = 'basic';
-const CATALYST_TYPE_CLASS = 'class';
-const CATALYST_TYPE_ALPHA = 'alpha';
-const CATALYST_TYPE_GOLD = 'gold';
 
 const ChampionUpgrades = {
     view(ctrl, { champions }) {
@@ -30,17 +26,17 @@ const ChampionUpgrades = {
             // add to the right category
             .reduce((collection, { catalysts, typeId, typeIndex }) => {
                 catalysts.forEach(({ type, tier, amount }) => {
-                    if(type === CATALYST_TYPE_GOLD) {
+                    if(type === CATALYST.GOLD) {
                         collection[ type ] += amount;
                     }
-                    else if(type === CATALYST_TYPE_BASIC || type === CATALYST_TYPE_ALPHA) {
+                    else if(type === CATALYST.BASIC || type === CATALYST.ALPHA) {
                         collection[ type ].push({
                             type,
                             tier,
                             amount,
                         });
                     }
-                    else if (type === CATALYST_TYPE_CLASS) {
+                    else if (type === CATALYST.CLASS) {
                         collection[ type ].push({
                             type,
                             tier,
@@ -52,16 +48,16 @@ const ChampionUpgrades = {
                 });
                 return collection;
             }, {
-                [ CATALYST_TYPE_BASIC ]: [],
-                [ CATALYST_TYPE_CLASS ]: [],
-                [ CATALYST_TYPE_ALPHA ]: [],
-                [ CATALYST_TYPE_GOLD ]: 0,
+                [ CATALYST.BASIC ]: [],
+                [ CATALYST.CLASS ]: [],
+                [ CATALYST.ALPHA ]: [],
+                [ CATALYST.GOLD ]: 0,
             });
 
         [ 'basic', 'class', 'alpha' ].forEach((type) => {
             catalysts[ type ] = catalysts[ type ]
                 // sort by tier ascending
-                .sort((type === CATALYST_TYPE_CLASS)?
+                .sort((type === CATALYST.CLASS)?
                     ({ tier: tA, typeIndex: tyA }, { tier: tB, typeIndex: tyB }) => {
                         const compare = tA - tB;
                         if(compare !== 0) {
@@ -94,26 +90,31 @@ const ChampionUpgrades = {
                 m="ChampionUpgrades"
                 title={ lang.get('upgrade-cost') }
                 class="champion-upgrade">
-                { [ CATALYST_TYPE_BASIC, CATALYST_TYPE_CLASS, CATALYST_TYPE_ALPHA ]
+                { [ CATALYST.BASIC, CATALYST.CLASS, CATALYST.ALPHA ]
                     .filter((type) => Boolean(catalysts[ type ]))
                     .map((type) => {
                         return catalysts[ type ].map(({ type, tier, amount, typeId }) => (
-                            <span class="champion-upgrade-catalyst">
+                            <span
+                                class={ classnames('champion-upgrade-catalyst', `champion-upgrade-catalyst--${ type }`, {
+                                    [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
+                                }) }
+                            >
                                 { amount } x
                                 <ImageIcon
-                                    src={ (type === CATALYST_TYPE_CLASS)
+                                    src={ (type === CATALYST.CLASS)
                                         ? `images/catalysts/tier_${ tier }_${ typeId }.png`
                                         : `images/catalysts/tier_${ tier }_${ type }.png`
                                     }
                                     icon="share-alt"
+                                    after
                                 />
                             </span>
                         ));
                     })
                 }
-                <span class="champion-upgrade-catalyst">
-                    { catalysts[ CATALYST_TYPE_GOLD ] } x
-                    <ImageIcon src={ 'images/catalysts/gold.png' } icon="cloud" />
+                <span class={ classnames('champion-upgrade-catalyst', 'champion-upgrade-catalyst--gold') }>
+                    { catalysts[ CATALYST.GOLD ] } x
+                    <ImageIcon src={ 'images/catalysts/gold.png' } icon="circle" after />
                 </span>
             </div>
         );
