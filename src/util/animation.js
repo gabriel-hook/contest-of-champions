@@ -62,7 +62,6 @@ function requestRedraw(delay = 2) {
 }
 
 function errorHandler(error) {
-    console.warn(error.stack);
     /* eslint-disable no-console */
     console.error(error.stack || error);
     /* eslint-enable no-console */
