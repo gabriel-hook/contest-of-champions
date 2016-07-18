@@ -53,7 +53,7 @@
         "description": "Beams are calibrated for up to (45% - 190%) increased Critical Hit Damage. As long as a Combo of 10 or more hits is maintained, Cyclops’ Armor Break effects have 20% increased Duration and as long as a Combo of 20 or more hits is maintained Beam Attacks break through an enemy’s Block.",
         "note": "The benefit gained from a Combo of 20+ forces the enemy out of their Block, also allowing Cyclops to gain his Armor Break effect.",
         "abilities": [
-            "critdamage"
+            "cruelty"
         ]
     },
     "gameplay": {

@@ -4,7 +4,7 @@ import './index.css';
 import './util/custom-icons.css';
 import { notify } from './util/notification';
 import { EFFECT_VALUES } from './data/model/Effect';
-import { GUIDES, SPOTLIGHT } from './data/guides';
+import { GUIDE_KEYS, SPOTLIGHT } from './data/guides';
 import lang from './service/lang';
 import app from './service/app';
 import router from './service/router';
@@ -85,7 +85,7 @@ router.on('/guide/?', () => {
         route = `/guide/${ SPOTLIGHT }`;
     }
     else if(route === app.route) {
-        route = `/guide/${ GUIDES[ (Math.random() * GUIDES.length) | 0 ] }`;
+        route = `/guide/${ GUIDE_KEYS[ (Math.random() * GUIDE_KEYS.length) | 0 ] }`;
     }
     router.setRoute(route);
 });

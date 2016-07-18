@@ -20,13 +20,11 @@ export const PROFILE_TYPES = [
     'spotlight',
 ];
 
+const guideUrlToName = (key) => key.replace('./', '').replace('.json', '');
+
 const requireGuide = require.context('./guides', true, /\.json$/);
-const GUIDES = requireGuide.keys();
-const guides = requireGuide.keys().reduce((map, key) => {
-    const name = key.replace('./', '').replace('.json', '');
-    map[ name ] = requireGuide(key);
+export const GUIDE_KEYS = requireGuide.keys().map(guideUrlToName);
+export default requireGuide.keys().reduce((map, key) => {
+    map[ guideUrlToName(key) ] = requireGuide(key);
     return map;
 }, {});
-
-export default guides;
-export { GUIDES };

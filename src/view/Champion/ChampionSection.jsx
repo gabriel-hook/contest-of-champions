@@ -173,7 +173,7 @@ const ChampionSection = {
                             ABILITY_VALUES,
                             'abilities',
                             abilities === true? []: abilities,
-                            (ability) => `ability-${ ability }`,
+                            (ability) => `ability-${ ability }-name`,
                             (ability) => abilityIcon(ability) && (
                                 <Icon icon={ abilityIcon(ability) } before />
                             ) || null
