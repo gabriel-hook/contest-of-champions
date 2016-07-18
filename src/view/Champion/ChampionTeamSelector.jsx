@@ -16,7 +16,7 @@ const ChampionTeamSelector = {
     view(ctrl, {
         team, swap, create, locked, onclick, onapply, onremove,
         onsplit, onlock, onup, ondown, showBadges,
-        draggable, droppable, ondragstart, ondragend, ondragover, ondragout,
+        draggable, droppable, ondragstart, ondragend, ondragover, ondragleave,
     }) {
         const { source, target } = swap;
         const sourceId = source && source.champion && source.champion.id;
@@ -55,7 +55,7 @@ const ChampionTeamSelector = {
                                 ondragstart: ondragstart && ondragstart.bind(null, index),
                                 ondragend: ondragend && ondragend.bind(null, index),
                                 ondragover: ondragover && ondragover.bind(null, index),
-                                ondragleave: ondragout && ondragout.bind(null, index),
+                                ondragleave: ondragleave && ondragleave.bind(null, index),
                             }}
                             onclick={ locked? null: () => {
                                 onclick(index);
@@ -71,7 +71,7 @@ const ChampionTeamSelector = {
                             droppable={ droppable }
                             events={{
                                 ondragover: ondragover && ondragover.bind(null, index),
-                                ondragleave: ondragout && ondragout.bind(null, index),
+                                ondragleave: ondragleave && ondragleave.bind(null, index),
                             }}
                             onclick={() => {
                                 onclick(index);

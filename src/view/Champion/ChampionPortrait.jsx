@@ -110,10 +110,30 @@ const ChampionPortrait = {
                         class={ classNames('inner', { 'clickable': onclick }) }
                         { ...events }
                         ondragstart={ !isInvalid && ((event) => {
-                            event.dataTransfer.setData('text/plain', lang.get(`champion-${ uid }-name`, null) || lang.get('champion'));
-                            event.dataTransfer.setData('application/json', JSON.stringify(champion));
+                            event.dataTransfer.setData('text/plain', JSON.stringify(champion));
                             if(draggable && events.ondragstart) {
+                                const championPortrait = event.target.parentNode.parentNode;
+                                const { width, height } = championPortrait.getBoundingClientRect();
+                                const handle = championPortrait.cloneNode(true);
+                                handle.style.position = 'absolute';
+                                handle.style.left = `-${ width }px`;
+                                handle.style.top = `-${ height }px`;
+                                handle.style.width = `${ width }px`;
+                                handle.style.paddingBottom = `${ height }px`;
+                                handle.style.zIndex = '2';
+                                handle.style.opacity = 1;
+                                event.target.handle = handle;
+                                document.body.appendChild(handle);
+                                event.dataTransfer.setDragImage(handle, width / 2 | 0, height / 2 | 0);
                                 events.ondragstart(event);
+                            }
+                        }) }
+                        ondragend={ !isInvalid && ((event) => {
+                            if(draggable && events.ondragend) {
+                                if(event.target.handle) {
+                                    document.body.removeChild(event.target.handle);
+                                }
+                                events.ondragend(event);
                             }
                         }) }
                         droppable={ droppable }

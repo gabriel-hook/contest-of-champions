@@ -277,7 +277,7 @@ const TeamsEditPage = {
                         m.redraw.strategy('none');
                         event.preventDefault();
                     } }
-                    ondragout={ (index, event) => {
+                    ondragleave={ (index, event) => {
                         if(source && source.index === index) {
                             const source = null;
                             if(!isSameSwapSource(source, swap.source)) {
@@ -404,7 +404,7 @@ const TeamsEditPage = {
                         m.redraw.strategy('none');
                         event.preventDefault();
                     }}
-                    ondragout={ (index, event) => {
+                    ondragleave={ (index, event) => {
                         if(source && source.index === index) {
                             const source = null;
                             if(!isSameSwapSource(source, swap.source)) {

@@ -66,12 +66,12 @@
 
     .raw-html {
         position: absolute;
-        top: -50%;
-        left: -50%;
         display: block;
-        overflow: hidden;
+        top: 0;
+        left: 0;
         height: 0;
         width: 0;
+        overflow: hidden;
         box-sizing: border-box;
     }
 
