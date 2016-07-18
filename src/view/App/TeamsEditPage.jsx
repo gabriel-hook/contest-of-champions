@@ -261,7 +261,7 @@ const TeamsEditPage = {
                         swap.target = null;
                     } }
                     ondragover={ (index, event) => {
-                        if(target && target.champion && !champions.some(({ id }) => id === target.champion.id)) {
+                        if(!isLocked && target && target.champion && !champions.some(({ id }) => id === target.champion.id)) {
                             const source = {
                                 team: teams[ teamIndex ],
                                 champion: champions[ index ],
