@@ -4,6 +4,7 @@ import { roleImage } from '../../data/roles';
 import { effectIcon } from '../../data/effects';
 import classNames from 'classnames';
 import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 import {
     getImage,
     IMAGE_EMPTY,
@@ -32,6 +33,7 @@ const ChampionPortrait = {
         onclick, draggable, droppable,
     }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.attr;
+        let details = uid && lang.get(`champion-${ uid }-name`) || '';
         const starIcon = awakened? (
             <ImageIcon src={ IMAGE_STAR_AWAKENED } />
         ): (
@@ -48,11 +50,14 @@ const ChampionPortrait = {
             if(effects && effects.length) {
                 title.push(
                     <div class={ classNames('title-field', 'title-field-effects') }>
-                        { effects.map(({ effectId, effectAmount }) => [ (
-                            <Icon icon={ effectIcon(effectId) } after />
-                        ), (
-                            <span>{ effectAmount }%</span>
-                        ) ]) }
+                        { effects.map(({ effectId, effectAmount }) => {
+                            details += `\n${ lang.get(`effect-${ effectId }-type`)} +${ effectAmount }%`;
+                            return [ (
+                                <Icon icon={ effectIcon(effectId) } after />
+                            ), (
+                                <span>{ effectAmount }%</span>
+                            ) ];
+                        }) }
                     </div>
                 );
             }
@@ -102,10 +107,17 @@ const ChampionPortrait = {
                     <div
                         class={ classNames('inner', { 'clickable': onclick }) }
                         { ...events }
+                        ondragstart={ (event) => {
+                            event.dataTransfer.setData('text/plain', lang.get(`champion-${ uid }-name`, null) || lang.get('champion'));
+                            event.dataTransfer.setData('application/json', JSON.stringify(champion));
+                            if(draggable && events.ondragstart) {
+                                events.ondragstart(event);
+                            }
+                        } }
                         droppable={ droppable }
-                        draggable={ draggable }
+                        draggable={ true }
                         onclick={ onclick }
-                        title={ uid && lang.get(`champion-${ uid }-name`) || '' }
+                        title={ details }
                     >
                         <div class="portrait">
                             <div

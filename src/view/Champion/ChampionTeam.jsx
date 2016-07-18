@@ -149,7 +149,7 @@ const ChampionTeam = {
                             >
                                 <Icon icon={ effectIcon(effectId) } before />
                                 <span class="effect-name">
-                                    { lang.get(`effect-${ effectId }-name`) }
+                                    { lang.get(`effect-${ effectId }-type`) }
                                 </span>
                                 <span> - </span>
                                 <span class="effect-amount">

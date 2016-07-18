@@ -19,23 +19,6 @@ const GlossaryPage = {
                 role="article"
                 class="glossary"
             >
-
-                <div class="glossary-section">
-                    <div class="header">{ lang.get('effects') }</div>
-                    { EFFECT_VALUES.map((effect) => (
-                        <div class="details">
-                            <div class="name">
-                                { effectIcon(effect) && (
-                                    <Icon icon={ effectIcon(effect) } before />
-                                ) || null }
-                                { lang.get(`effect-${ effect }-shortname`, null) || lang.get(`effect-${ effect }-name`) }
-                            </div>
-                            <div class="description">
-                                { lang.get(`effect-${ effect }-description`) }
-                            </div>
-                        </div>
-                    )) }
-                </div>
                 <div class="glossary-section">
                     <div class="header">{ lang.get('abilities') }</div>
                     { ABILITY_VALUES.map((ability) => (
@@ -48,6 +31,22 @@ const GlossaryPage = {
                             </div>
                             <div class="description">
                                 { lang.get(`ability-${ ability }-description`) }
+                            </div>
+                        </div>
+                    )) }
+                </div>
+                <div class="glossary-section">
+                    <div class="header">{ lang.get('synergies') }</div>
+                    { EFFECT_VALUES.map((effect) => (
+                        <div class="details">
+                            <div class="name">
+                                { effectIcon(effect) && (
+                                    <Icon icon={ effectIcon(effect) } before />
+                                ) || null }
+                                { lang.get(`effect-${ effect }-name`, null) || lang.get(`effect-${ effect }-type`) }
+                            </div>
+                            <div class="description">
+                                { lang.get(`effect-${ effect }-description`) }
                             </div>
                         </div>
                     )) }

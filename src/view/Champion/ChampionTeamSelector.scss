@@ -52,6 +52,10 @@
                 }
             }
         }
+
+        .team-synergy {
+            cursor: default;
+        }
     }
 
     .team-move {
@@ -80,7 +84,18 @@
         }
     }
 
-    &.champion-team-selector-create {
+    &.champion-team-selector--locked {
+
+        .champion-portrait {
+            &.champion--editing {
+                .inner {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.champion-team-selector--create {
         .team-synergies {
             border: dashed 1px #000;
         }

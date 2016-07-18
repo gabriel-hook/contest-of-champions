@@ -55,8 +55,8 @@ const SynergyMenu = {
                             icon={(
                                 <Icon icon={ effectIcon(uid) } before />
                             )}
-                            alternate={ `effect-${ uid }-shortname` }
-                            title={ `effect-${ uid }-name` }
+                            alternate={ `effect-${ uid }-name` }
+                            title={ `effect-${ uid }-type` }
                             selected={ uid === effect }
                             href={ `/synergy/effect/${ uid }` }
                         />

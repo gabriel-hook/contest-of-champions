@@ -37,7 +37,8 @@ const ChampionTeamSelector = {
             <div
                 m="ChampionTeamSelector"
                 class={ classNames('champion-team', 'champion-team-selector', `champion-team--size-${ size }`, {
-                    'champion-team-selector-create': create,
+                    'champion-team-selector--create': create,
+                    'champion-team-selector--locked': locked,
                 }) }
             >
                 <div className="team-champions">
@@ -56,7 +57,7 @@ const ChampionTeamSelector = {
                                 ondragover: ondragover && ondragover.bind(null, index),
                                 ondragleave: ondragout && ondragout.bind(null, index),
                             }}
-                            onclick={() => {
+                            onclick={ locked? null: () => {
                                 onclick(index);
                                 requestRedraw();
                             }}
@@ -103,7 +104,7 @@ const ChampionTeamSelector = {
                             >
                                 <Icon icon={ effectIcon(effect.attr.uid) } before />
                                 <span class="effect-name">
-                                    { lang.get(`effect-${ effect.attr.uid }-name`) }
+                                    { lang.get(`effect-${ effect.attr.uid }-type`) }
                                 </span>
                                 <span> - </span>
                                 <span class="effect-amount">

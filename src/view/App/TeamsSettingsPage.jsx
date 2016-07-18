@@ -140,7 +140,8 @@ const TeamsSettingsPage = {
                     </div>
                     { effects.map(({ attr }) => (
                         <Field
-                            title={ lang.get(`effect-${ attr.uid }-shortname`, null) || lang.get(`effect-${ attr.uid }-name`) }
+                            title={ lang.get(`effect-${ attr.uid }-type`) }
+                            description={ lang.get(`effect-${ attr.uid }-description`, null) }
                             icon={(
                                 <Icon icon={ effectIcon(attr.uid) } before />
                             )}

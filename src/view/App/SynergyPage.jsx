@@ -41,7 +41,7 @@ const SynergyPage = {
                         >
                             <Icon icon={ effectIcon(effectId) } before />
                             <span class="legend-effect-title">
-                                { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
+                                { lang.get(`effect-${ effectId }-name`, null) || lang.get(`effect-${ effectId }-type`) }
                                 { amount && ` - ${ amount }%` }
                             </span>
                         </div>

@@ -15,6 +15,16 @@ import { requestRedraw } from '../../util/animation';
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
 
+function isSameSwapSource(a, b) {
+    if(a === b) {
+        return true;
+    }
+    if(!a || !b) {
+        return false;
+    }
+    return a.index === b.index && a.create === b.create && a.teamIndex === b.teamIndex;
+}
+
 function toggleLockedTeam(tid, champions) {
     lockTeams({
         ...lockedTeamMap,
@@ -194,6 +204,7 @@ const TeamsEditPage = {
 
         const teamIds = teams.map(({ champions }) => champions.map(({ id }) => id).join('_'));
         teams.forEach(({ champions, synergies }, teamIndex) => {
+            const isLocked = isTeamLocked(teamIds[ teamIndex ]);
             teamElements.push(
                 <ChampionTeamSelector
                     team={{
@@ -216,12 +227,20 @@ const TeamsEditPage = {
                         applyTeams(teams);
                         requestRedraw();
                     }) }
-                    locked={ isTeamLocked(teamIds[ teamIndex ]) }
+                    locked={ isLocked }
                     onlock={ () => {
+                        if(champions.some(({ id }) =>
+                            (swap.source && swap.source.champion && swap.source.champion.id === id) ||
+                            (swap.target && swap.target.champion && swap.target.champion.id === id)
+                        )) {
+                            swap.dragging = false;
+                            swap.source = null;
+                            swap.target = null;
+                        }
                         toggleLockedTeam(teamIds[ teamIndex ], champions);
                     } }
-                    draggable={ true }
-                    droppable={ true }
+                    draggable={ !isLocked }
+                    droppable={ !isLocked }
                     ondragstart={ (index) => {
                         swap.source = null;
                         swap.target = {
@@ -233,35 +252,44 @@ const TeamsEditPage = {
                         calculateSynergies(swap);
                         requestRedraw(5);
                     } }
-                    ondragend={() => {
+                    ondragend={ () => {
                         if(source && target) {
                             ctrl.apply();
                         }
                         swap.dragging = false;
                         swap.source = null;
                         swap.target = null;
-                    }}
-                    ondragover={(index, event) => {
+                    } }
+                    ondragover={ (index, event) => {
                         if(target && target.champion && !champions.some(({ id }) => id === target.champion.id)) {
-                            swap.source = {
+                            const source = {
                                 team: teams[ teamIndex ],
                                 champion: champions[ index ],
                                 index,
+                                teamIndex,
                             };
-                            calculateSynergies(swap);
-                            requestRedraw();
+                            if(!isSameSwapSource(source, swap.source)) {
+                                swap.source = source;
+                                calculateSynergies(swap);
+                                requestRedraw();
+                            }
                         }
+                        m.redraw.strategy('none');
                         event.preventDefault();
-                    }}
-                    ondragout={(index, event) => {
+                    } }
+                    ondragout={ (index, event) => {
                         if(source && source.index === index) {
-                            swap.source = null;
-                            calculateSynergies(swap);
+                            const source = null;
+                            if(!isSameSwapSource(source, swap.source)) {
+                                swap.source = source;
+                                calculateSynergies(swap);
+                                requestRedraw();
+                            }
                         }
-                        requestRedraw();
+                        m.redraw.strategy('none');
                         event.preventDefault();
-                    }}
-                    onclick={(index) => {
+                    } }
+                    onclick={ isLocked? null: (index) => {
                         if(targetId === champions[ index ].id) {
                             swap.target = null;
                         }
@@ -297,13 +325,13 @@ const TeamsEditPage = {
                         }
                         calculateSynergies(swap);
                         requestRedraw();
-                    }}
+                    } }
                     onsplit={ source && champions.some((champion) => champion === source.champion) && !target && (() => {
                         ctrl.teams = teams.filter((element, index) => teamIndex !== index);
                         swap.source = null;
                         applyTeams(teams);
                         requestRedraw();
-                    })}
+                    }) }
                     onapply={ source && target && (
                         champions.some((champion) => champion === source.champion || champion === target.champion)
                     ) && ctrl.apply }
@@ -312,7 +340,7 @@ const TeamsEditPage = {
             champions.forEach((champion) => (inTeam[ champion.id ] = true));
         });
         const extras = roster
-            .filter((champion) => !champion.attr.role)
+            .filter((champion) => champion.attr.role !== ctrl.type || ctrl.type === 'arena')
             .filter((champion) => !ctrl.willpowersafe || WILLPOWER_SAFE_CHAMPIONS[ champion.attr.uid ])
             .filter((champion) => ctrl.stars[ champion.attr.stars ] !== false)
             .filter((champion) => ctrl.types[ champion.attr.typeId ] !== false)
@@ -361,26 +389,34 @@ const TeamsEditPage = {
                     ondragover={(index, event) => {
                         const champion = create.champions[ index ];
                         if(target && !target.create && (!target.team || champion)) {
-                            swap.source = {
+                            const source = {
                                 team: create,
                                 index,
                                 champion,
                                 create: true,
                             };
-                            calculateSynergies(swap);
-                            requestRedraw();
+                            if(!isSameSwapSource(source, swap.source)) {
+                                swap.source = source;
+                                calculateSynergies(swap);
+                                requestRedraw();
+                            }
                         }
+                        m.redraw.strategy('none');
                         event.preventDefault();
                     }}
-                    ondragout={(index, event) => {
+                    ondragout={ (index, event) => {
                         if(source && source.index === index) {
-                            swap.source = null;
-                            calculateSynergies(swap);
+                            const source = null;
+                            if(!isSameSwapSource(source, swap.source)) {
+                                swap.source = source;
+                                calculateSynergies(swap);
+                                requestRedraw();
+                            }
                         }
-                        requestRedraw();
+                        m.redraw.strategy('none');
                         event.preventDefault();
-                    }}
-                    onclick={(index) => {
+                    } }
+                    onclick={ (index) => {
                         if(source && source.create && source.index === index) {
                             swap.source = null;
                             if(swap.target && swap.target.team) {
@@ -404,7 +440,7 @@ const TeamsEditPage = {
                         }
                         calculateSynergies(swap);
                         requestRedraw();
-                    }}
+                    } }
                     onapply={ source && target && (
                         (source.create && target.champion) ||
                         (target.create && source.champion)
@@ -422,8 +458,8 @@ const TeamsEditPage = {
             create.champions.forEach((champion) => champion && (inTeam[ champion.id ] = true));
         }
         const currentSynergyMap = {};
-        (swap.source && swap.source.team && swap.source.team.synergies) && swap.source.team.synergies
-            .forEach(({ attr: { toId, fromId, fromStars } }) => {
+        (swap.source && swap.source.team && swap.source.team.synergies) &&
+            swap.source.team.synergies.forEach(({ attr: { toId, fromId, fromStars } }) => {
                 currentSynergyMap[ `${ toId }-${ fromId }-${ fromStars}` ] = true;
             });
         extras.filter((champion) => champion && !inTeam[ champion.id ]).forEach((champion) => {

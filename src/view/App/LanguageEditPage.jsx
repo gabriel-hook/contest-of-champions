@@ -158,11 +158,11 @@ const LanguageEditPage = {
             <div class="field-group">
                 <div class="field-group-title">{ lang.get('effects') }</div>
                 { EFFECT_VALUES
-                    .map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ])
-                    .map(([ name, shortname, description ]) => (
+                    .map((uid) => [ `effect-${ uid }-type`, `effect-${ uid }-name`, `effect-${ uid }-description` ])
+                    .map(([ type, name, description ]) => (
                         <div class="field-group-set">
-                            { fieldElement(name) }
-                            { fieldElement(shortname, true) }
+                            { fieldElement(type) }
+                            { fieldElement(name, true) }
                             { fieldElement(description) }
                         </div>
                     )) }

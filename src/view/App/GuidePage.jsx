@@ -70,7 +70,7 @@ const GuideSynergy ={
                             title={ lang.get(`effect-${ effectId }-description`) }
                         >
                             <Icon icon={ effectIcon(effectId) } before />
-                            { lang.get(`effect-${ effectId }-shortname`, null) || lang.get(`effect-${ effectId }-name`) }
+                            { lang.get(`effect-${ effectId }-name`, null) || lang.get(`effect-${ effectId }-type`) }
                         </div>
                     </div>
                     <div class="guide-synergy-clear" />
