@@ -93,6 +93,8 @@ const ChampionPortrait = {
         const roleIconImage = ((showBadges === 'role' || showBadges === true) && roleImage(role))? (
             <ImageIcon src={ roleImage(role) } />
         ): null;
+        const isInvalid = (uid === null);
+
         return (
             <div
                 m="ChampionPortrait"
@@ -107,15 +109,15 @@ const ChampionPortrait = {
                     <div
                         class={ classNames('inner', { 'clickable': onclick }) }
                         { ...events }
-                        ondragstart={ (event) => {
+                        ondragstart={ !isInvalid && ((event) => {
                             event.dataTransfer.setData('text/plain', lang.get(`champion-${ uid }-name`, null) || lang.get('champion'));
                             event.dataTransfer.setData('application/json', JSON.stringify(champion));
                             if(draggable && events.ondragstart) {
                                 events.ondragstart(event);
                             }
-                        } }
+                        }) }
                         droppable={ droppable }
-                        draggable={ true }
+                        draggable={ !isInvalid }
                         onclick={ onclick }
                         title={ details }
                     >
