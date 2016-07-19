@@ -89,7 +89,7 @@ const ChampionUpgrades = {
             <div
                 m="ChampionUpgrades"
                 title={ lang.get('upgrade-cost') }
-                class="champion-upgrade">
+                class="champion-upgrade champion-upgrade-rank-up">
                 { [ CATALYST.BASIC, CATALYST.CLASS, CATALYST.ALPHA ]
                     .filter((type) => Boolean(catalysts[ type ]))
                     .map((type) => {
@@ -99,22 +99,24 @@ const ChampionUpgrades = {
                                     [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
                                 }) }
                             >
-                                { amount } x
+                                { amount }
+                                ×
                                 <ImageIcon
-                                    src={ (type === CATALYST.CLASS)
-                                        ? `images/catalysts/tier_${ tier }_${ typeId }.png`
-                                        : `images/catalysts/tier_${ tier }_${ type }.png`
+                                    src={
+                                        (type === CATALYST.CLASS)
+                                            ? require(`../../images/catalysts/tier_${ tier }_${ typeId }.png`)
+                                            : require(`../../images/catalysts/tier_${ tier }_${ type }.png`)
                                     }
-                                    icon="share-alt"
-                                    after
                                 />
+                                { ', ' }
                             </span>
                         ));
                     })
                 }
                 <span class={ classnames('champion-upgrade-catalyst', 'champion-upgrade-catalyst--gold') }>
-                    { catalysts[ CATALYST.GOLD ] } x
-                    <ImageIcon src={ 'images/catalysts/gold.png' } icon="circle" after />
+                    { catalysts[ CATALYST.GOLD ] }
+                    ×
+                    <ImageIcon src={ require('../../images/catalysts/gold.png') } />
                 </span>
             </div>
         );

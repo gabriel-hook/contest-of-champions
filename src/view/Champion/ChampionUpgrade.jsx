@@ -40,15 +40,16 @@ const ChampionUpgrade = {
                             [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
                         }) }
                     >
-                        { amount } x
+                        { amount }
+                        ×
                         <ImageIcon
-                            src={ (type === CATALYST.GOLD)? 'images/catalysts/gold.png':
-                                (type === CATALYST.CLASS)? `images/catalysts/tier_${ tier }_${ typeId }.png`:
-                                `images/catalysts/tier_${ tier }_${ type }.png`
+                            src={
+                                (type === CATALYST.GOLD)? require('../../images/catalysts/gold.png'):
+                                (type === CATALYST.CLASS)? require(`../../images/catalysts/tier_${ tier }_${ typeId }.png`):
+                                require(`../../images/catalysts/tier_${ tier }_${ type }.png`)
                             }
-                            icon={ (type === CATALYST.GOLD)? 'circle': 'share-alt' }
-                            after
                         />
+                        { (type !== CATALYST.GOLD)? ', ': '' }
                     </span>
                 )) }
                 { isMaxed? (

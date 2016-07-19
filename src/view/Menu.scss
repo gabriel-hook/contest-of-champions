@@ -22,27 +22,27 @@ $menu-transition-time: .25s;
     .menu-tabs {
         position: relative;
         width: 100%;
+        height: 48px;
         box-sizing: border-box;
 
-        .menu-option {
-            height: 32px;
-            font-size: 1.2em;
-            line-height: 32px;
-            background: rgba(0, 0, 0, 0);
+        > .menu-option--group {
 
-            &,
-            &:hover {
-                color: #000;
-                text-shadow: 0 1px 0 #fff;
-            }
-        }
+            > .menu-option {
+                height: 29px;
+                font-size: 1.2em;
+                line-height: 29px;
+                background: rgba(0, 0, 0, 0);
 
-        .menu-option--selected {
-            &,
-            &:hover {
-                color: #fff;
-                text-shadow: 0 1px 0 #000;
-                background: rgba(255, 255, 255, .1);
+                &.menu-option--selected {
+                    &,
+                    &:hover {
+                        > .menu-option--label {
+                            background: lighten(#38c, 15%);
+                            color: #000;
+                            text-shadow: 0 1px 0 #fff;
+                        }
+                    }
+                }
             }
         }
     }
@@ -122,11 +122,13 @@ $menu-transition-time: .25s;
         .menu-section {
             line-height: 1.3em;
             padding: .5em .75em;
-            background: rgba(0, 0, 0, .1);
+            background: darken(#38c, 5%);
         }
 
         .menu-header {
-            background: rgba(255, 255, 255, .1);
+            background: lighten(#38c, 15%);
+            color: #000;
+            text-shadow: 0 1px 0 #000, 0 2px 0 #fff;
         }
     }
 
