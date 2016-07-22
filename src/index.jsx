@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'font-awesome-webpack';
 import './index.css';
 import './util/custom-icons.css';
