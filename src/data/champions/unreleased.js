@@ -5,7 +5,6 @@ export const UNRELEASED_CHAMPIONS = [
     CHAMPION.LOKI,
     // Tech
     // Mutant
-    CHAMPION.BEAST,
     CHAMPION.GAMBIT,
     CHAMPION.WOLVERINEWEAPONX,
     // Skill

@@ -17,6 +17,7 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.HEALTH ]: [ 4, 5, 6 ],
     [ EFFECT.HEROES_FOR_HIRE ]: [ 3, 4, 5 ],
     [ EFFECT.THUNDERBOLTS ]: [ 4, 5, 6 ],
+    [ EFFECT.MASTERMINDS ]: [ 15, 15, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -38,6 +39,7 @@ const effects = [
     { uid: EFFECT.HEALTH },
     { uid: EFFECT.HEROES_FOR_HIRE },
     { uid: EFFECT.THUNDERBOLTS },
+    { uid: EFFECT.MASTERMINDS },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -63,6 +65,7 @@ const effectIcons = {
     [ EFFECT.HEALTH_STEAL ]: 'effect-health-steal',
     [ EFFECT.HEROES_FOR_HIRE ]: 'effect-heroes-for-hire',
     [ EFFECT.THUNDERBOLTS ]: 'effect-thunderbolts',
+    [ EFFECT.MASTERMINDS ]: 'effect-masterminds',
 };
 
 function effectIcon(uid) {

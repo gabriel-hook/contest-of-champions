@@ -126,12 +126,14 @@
     "effect-inseparable-type": "Special 3 Damage",
     "effect-heroesforhire-type": "Block Proficiency and Physical Resistance",
     "effect-thunderbolts-type": "Reduced Special Damage",
+    "effect-masterminds-type": "Increase Attack Damage during a Combo",
 
     "effect-mutantagenda-name": "Mutant Agenda",
     "effect-idol-name": "Idol",
     "effect-inseparable-name": "Inseparable",
     "effect-heroesforhire-name": "Heroes for Hire",
     "effect-thunderbolts-name": "Thunderbolts",
+    "effect-masterminds-name": "Masterminds",
 
     "effect-attack-description": "Increases damage on all attacks.",
     "effect-critrate-description": "Increases the chance for critical hit.",
@@ -151,6 +153,7 @@
     "effect-inseparable-description": "Increased special attack level 3 damage.",
     "effect-heroesforhire-description": "Increased block proficiency and physical resistance.",
     "effect-thunderbolts-description": "Take less special damage.",
+    "effect-masterminds-description": "Increases damage on all attacks once a combo of 15 or more hits is reached.",
 
     "type-cosmic-name": "Cosmic",
     "type-tech-name": "Tech",

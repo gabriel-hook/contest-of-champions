@@ -83,9 +83,7 @@ export default {
             inject: 'body',
         }),
         new webpack.DefinePlugin({
-            'process.env':{
-                'CHAMPION_ICONS': JSON.stringify(championIcons),
-            },
+            'process.env':{},
         }),
         new LodashModulePlugin(),
     ],

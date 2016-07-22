@@ -1,6 +1,6 @@
-import { NIGHTCRAWLER } from './ids/champions';
+import { BEAST } from './ids/champions';
 
-export const SPOTLIGHT = NIGHTCRAWLER;
+export const SPOTLIGHT = BEAST;
 export const RATINGS = [ 1, 2, 3, 4, 5 ];
 export const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
 export const RANGES = [

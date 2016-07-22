@@ -7,12 +7,14 @@ import '../icons.font';
 
 import './Icon.scss';
 
-/* eslint-disable no-undef */
-const customIcons = process.env.CHAMPION_ICONS.reduce((map, key) => {
-    map[ key ] = true;
-    return map;
-}, {});
-/* eslint-enable no-undef */
+const customIcons = require
+    .context('../icons', true, /\.svg$/)
+    .keys()
+    .map((filename) => filename.replace(/.*\//g, '').replace(/\.svg$/, ''))
+    .reduce((map, key) => {
+        map[ key ] = true;
+        return map;
+    }, {});
 
 const Icon = {
     view(ctrl, { icon, spin, type, before, after }) {

@@ -1,0 +1,66 @@
+{
+    "description": "One of the world's experts on mutations and evolutionary human biology, Hank was born a mutant with unusually large hands and feet. Later in life, Hank took a hormonal extract that caused him to grow fangs, pointed ears and fur all over his body. He was now a Beast in body, as well as in name.",
+    "specials": {
+        "1": {
+            "description": "Beast uses a freestyle form of combat, striking the opponent with multiple kicks.\n Beast analyses the situation and employs a Freestyle form of combat.",
+            "note": "55% chance to Stun for 1.5 seconds.",
+            "name": "Freestyle Combat",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "short"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "description": "Making full use of his great strength and agility, Beast performs a series of acrobatic kicks to knockdown the opponent.\n Using his impressive power of deductive reasoning, Beast decides that employing an Acrobatic combat style is essential to his survival.",
+            "note": "80% chance to Stun for 2.25 seconds.",
+            "name": "Acrobatic Kicks",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "3": {
+            "description": "Beast taps into his animalistic instincts and temporarily unleashes a savage attack on unsuspecting opponents",
+            "name": "Animalistic Instincts",
+            "note": "Increases Attack by 3% per hit in the combo meter, up to a maximum of 150% Attack.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury"
+            ]
+        }
+    },
+    "gameplay": {
+        "description": "Freestyle Combat When starting the battle with more than 50% Health, Beast employs a Freestyle form of combat; Critical hits have a 56% chance to inflict Bleed damage for 65% of your Attack over 3 seconds.  \n\nAcrobatic Combat When starting the battle with less than 50% health, Beast is more careful and employs an Acrobatic combat style. This gives him a 85% chance to reduce their Critical Damage by 85%. Additionally, the opponent gets 45% less Power when getting hit by Beast.\n\nThick Hide Beast’s thick hide makes him resistant to Bleed effects, decreasing their Potency and Duration by 65%",
+        "abilities": [
+            "bleed",
+            "exhaust"
+        ]
+    },
+    "signature": {
+        "name": "Chain Combo",
+        "description": "While in Freestyle combat form, performing a Medium hit followed by a Light, Light, Light and Medium combo inflicts Direct damage per blow for up to 33.1% of your Attack based on Signature level. Successfully completing the combo increases Beast’s Critical chance by 25% for 5 seconds.\n While in Acrobatic combat form, Blocking an attack followed by a Medium, Light, Light, Medium combo Regenerates up to 1.8% of Beast’s maximum Health per move, based on Signature level. Additionally on Combo Success, opponents get 50% less Power when getting hit and attacking for 5 seconds.",
+        "abilities": [
+            "fury",
+            "precision",
+            "regeneration"
+        ],
+        "note": "When unsuccessfully performing a combo, there will be a 5 second delay before you can start a new combo."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "670269-Beast-Champion-Spotlight"
+    }
+}
