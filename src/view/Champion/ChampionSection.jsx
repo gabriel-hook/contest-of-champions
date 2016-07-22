@@ -248,9 +248,9 @@ const ChampionSection = {
                         <b>{ lang.get('range') }:</b>
                         { ranges.map((range, index) => (
                             <span class={ `champion-section-range champion-section-range-${ range }` }>{
-                                (index < ranges.length - 1)?
-                                    `${ lang.get(`range-${ range }`) }, `:
-                                    lang.get(`range-${ range }`)
+                                (index < ranges.length - 1)
+                                    ? `${ lang.get(`range-${ range }`) }, `
+                                    : lang.get(`range-${ range }`)
                             }</span>
                         )) }
                     </div>
@@ -262,9 +262,9 @@ const ChampionSection = {
                         <b>{ lang.get('damage-type') }:</b>
                         { damagetypes.map((damage, index) => (
                             <span class={ `champion-section-damage champion-section-damage-${ damage }` }>{
-                                (index < damagetypes.length - 1)?
-                                    `${ lang.get(`damage-${ damage }`) }, `:
-                                    lang.get(`damage-${ damage }`)
+                                (index < damagetypes.length - 1)
+                                    ? `${ lang.get(`damage-${ damage }`) }, `
+                                    : lang.get(`damage-${ damage }`)
                             }</span>
                         )) }
                     </div>
@@ -276,12 +276,12 @@ const ChampionSection = {
                         <b>{ lang.get('abilities') }:</b>
                         { abilities.map((ability, index) => (
                             <span class={ `champion-section-ability champion-section-ability-${ ability }` }>
-                                { (index > 0) && (
-                                    <span>, </span>
-                                ) || null }
                                 { abilityIcon(ability) && (
-                                    <Icon icon={ abilityIcon(ability) } before />
-                                ) || null }{ lang.get(`ability-${ ability }-name`) }
+                                    <Icon icon={ abilityIcon(ability) } before after={ index !== 0 } />
+                                ) || null }{ (index < abilities.length - 1)
+                                    ? `${ lang.get(`ability-${ ability }-name`) }, `
+                                    : lang.get(`ability-${ ability }-name`)
+                                }
                             </span>
                         )) }
                     </div>
