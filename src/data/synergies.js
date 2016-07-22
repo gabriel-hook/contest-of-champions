@@ -198,7 +198,7 @@ const synergies = [
 
     ...fromId(CHAMPION.THEVISION, [
         ...fromStars(2, 4, { toId: CHAMPION.IRONMAN, effectId: EFFECT.HEALTH }),
-        ...fromStars(2, 4, { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(2, 4, { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 4, { toId: CHAMPION.ULTRON, effectId: EFFECT.ATTACK }),
     ]),
 
