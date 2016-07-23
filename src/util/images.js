@@ -1,5 +1,10 @@
 import { requestRedraw } from './animation';
 
+/**
+  * Image constants.
+  */
+
+//export { IMAGE_STAR, IMAGE_STAR_AWAKENED } from './images/stars';
 export IMAGE_STAR from '../images/badges/star.png';
 export IMAGE_STAR_AWAKENED from '../images/badges/star-awakened.png';
 
@@ -13,8 +18,11 @@ export IMAGE_BADGE_LEVEL_MAX from '../images/badges/max.png';
 
 export const IMAGE_EMPTY = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
-const images = {};
+/**
+  * Get the cached image or fetch, redraw once we get it.
+  */
 
+const images = {};
 export function getImage(src) {
     let image = images[ src ];
     if(!image) {

@@ -35,6 +35,7 @@ const EFFECT_COLORS = {
     healthsteal:'#af0',
     heroesforhire:'#0a6',
     thunderbolts:'#a6a',
+    masterminds:'#ff6',
 };
 
 function getTypeColor(typeId) {
