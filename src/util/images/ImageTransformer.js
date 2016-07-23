@@ -9,8 +9,8 @@ class ImageTransformer {
         if(!this.data) {
             const image = new Image();
             image.src = this.dataUrl;
-            const width = image.width;
-            const height = image.height;
+            const width = image.width || 1;
+            const height = image.height || 1;
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
             canvas.width = width;
@@ -19,7 +19,7 @@ class ImageTransformer {
             this.data = {
                 canvas,
                 context,
-                imageData: context.getImageData(0, 0, canvas.width, canvas.height),
+                imageData: context.getImageData(0, 0, width, height),
                 width,
                 height,
             };
