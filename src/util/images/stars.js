@@ -1,16 +1,15 @@
-import TransformableImage, { transformMinimum, transformAdd, transformMultiply, transformGamma } from './TransformableImage';
+import ImageTransformer, { add, multiply, gamma } from './ImageTransformer';
 
-const imageStar = new TransformableImage(require('../../images/base/star.png'));
+const imageStar = new ImageTransformer(require('../../images/base/star.png'));
 
 const IMAGE_STAR = imageStar.clone()
-    .transform(transformMinimum({ red: 255, green: 127, blue: 31 }))
-    .transform(transformGamma(0.35))
-    .transform(transformMultiply({ red: 2, green: 1.35, blue: 0.1 }))
+    .transform(gamma(0.4))
+    .transform(multiply({ red: 2, green: 1.3, blue: 0.5 }))
     .toDataUrl();
 
 const IMAGE_STAR_AWAKENED = imageStar.clone()
-    .transform(transformAdd({ red: 32, green: 32, blue: 48 }))
-    .transform(transformMultiply({ red: 0.95, green: 0.95, blue: 1 }))
+    .transform(add('#113'))
+    .transform(multiply({ red: 0.95, green: 0.95, blue: 1 }))
     .toDataUrl();
 
 export { IMAGE_STAR, IMAGE_STAR_AWAKENED };

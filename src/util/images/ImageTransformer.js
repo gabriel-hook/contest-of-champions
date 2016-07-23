@@ -1,5 +1,5 @@
 
-class TransformableImage {
+class ImageTransformer {
     constructor(dataUrl) {
         this.dataUrl = dataUrl;
         this.data = null;
@@ -41,7 +41,7 @@ class TransformableImage {
     }
 
     clone() {
-        const clone = new TransformableImage(this.dataUrl);
+        const clone = new ImageTransformer(this.dataUrl);
         if(this.data) {
             const { width, height, imageData } = this.data;
             const canvas = document.createElement('canvas');
@@ -71,7 +71,37 @@ function sanitizeColor(color) {
     return (color < 0)? 0: (color > 255)? 255: color | 0;
 }
 
-export function transformGamma(gamma) {
+function rbgShorthandValue(character) {
+    const value = parseInt(character, 16);
+    return (value << 4) + value;
+}
+
+function rgbParam(param) {
+    if(typeof param === 'number') {
+        return { red: param, green: param, blue: param };
+    }
+    if(typeof param === 'string') {
+        if(/#[0-9a-fA-F]{3}/.test(param)) {
+            return {
+                red: rbgShorthandValue(param[ 1 ]),
+                green: rbgShorthandValue(param[ 2 ]),
+                blue: rbgShorthandValue(param[ 3 ]),
+            };
+        }
+        if(/#[0-9a-fA-F]{6}/.test(param)) {
+            return {
+                red: parseInt(param.slice(1, 3), 16),
+                green: parseInt(param.slice(3, 5), 16),
+                blue: parseInt(param.slice(5, 7), 16),
+            };
+        }
+        const value = parseInt(param, 10);
+        return { red: value, green: value, blue: value };
+    }
+    return param;
+}
+
+export function gamma(gamma) {
     const gammaCorrection = 1 / Math.max(0.01, Math.min(7.99, gamma));
     return (data) => {
         for(let i = 0; i < data.length; i += 4) {
@@ -82,7 +112,8 @@ export function transformGamma(gamma) {
     };
 }
 
-export function transformAdd({ red = 0, green = 0, blue = 0 }) {
+export function add(param) {
+    const { red = 0, green = 0, blue = 0 } = rgbParam(param);
     return (data) => {
         for(let i = 0; i < data.length; i += 4) {
             data[ i ] = sanitizeColor(data[ i ] + red);
@@ -92,11 +123,8 @@ export function transformAdd({ red = 0, green = 0, blue = 0 }) {
     };
 }
 
-export function transformShift(amount) {
-    return transformAdd({ red: amount, blue: amount, green: amount });
-}
-
-export function transformMultiply({ red = 1, green = 1, blue = 1 }) {
+export function multiply(param) {
+    const { red = 1, green = 1, blue = 1 } = rgbParam(param);
     return (data) => {
         for(let i = 0; i < data.length; i += 4) {
             data[ i ] = sanitizeColor(data[ i ] * red);
@@ -106,11 +134,19 @@ export function transformMultiply({ red = 1, green = 1, blue = 1 }) {
     };
 }
 
-export function transformScale(amount) {
-    return transformMultiply({ red: amount, blue: amount, green: amount });
+export function colorize(param) {
+    const { red = 255, green = 255, blue = 255 } = rgbParam(param);
+    return (data) => {
+        for(let i = 0; i < data.length; i += 4) {
+            data[ i ] = sanitizeColor(data[ i ] * red / 255);
+            data[ i + 1 ] = sanitizeColor(data[ i + 1 ] * green / 255);
+            data[ i + 2 ] = sanitizeColor(data[ i + 2 ] * blue / 255);
+        }
+    };
 }
 
-export function transformMinimum({ red = 0, green = 0, blue = 0 }) {
+export function minimum(param) {
+    const { red = 0, green = 0, blue = 0 } = rgbParam(param);
     return (data) => {
         for(let i = 0; i < data.length; i += 4) {
             data[ i ] = sanitizeColor(Math.max(data[ i ], red));
@@ -120,7 +156,8 @@ export function transformMinimum({ red = 0, green = 0, blue = 0 }) {
     };
 }
 
-export function transformMaximum({ red = 255, green = 255, blue = 255 }) {
+export function maximum(param) {
+    const { red = 255, green = 255, blue = 255 } = rgbParam(param);
     return (data) => {
         for(let i = 0; i < data.length; i += 4) {
             data[ i ] = sanitizeColor(Math.min(data[ i ], red));
@@ -130,13 +167,14 @@ export function transformMaximum({ red = 255, green = 255, blue = 255 }) {
     };
 }
 
-export function transformGreyscale(data) {
+export function greyscale(data) {
     for(let i = 0; i < data.length; i += 4) {
-        const color = ((data[ i ] + data[ i + 1 ] + data[ i + 2 ]) / 3) | 0;
-        data[ i ] = color;
-        data[ i + 1 ] = color;
-        data[ i + 2 ] = color;
+        const rgb = data.slice(i, i + 2);
+        const lightness = (Math.max(...rgb) + Math.min(...rgb)) * 0.5 | 0;
+        data[ i ] = lightness;
+        data[ i + 1 ] = lightness;
+        data[ i + 2 ] = lightness;
     }
 }
 
-export default TransformableImage;
+export default ImageTransformer;

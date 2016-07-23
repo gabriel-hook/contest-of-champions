@@ -1,6 +1,7 @@
 import './ChampionUpgrade.scss';
 import { TYPE_VALUES } from '../../data/model/Type';
 import { STAR_RANK_LEVEL, CATALYSTS, CATALYST } from '../../data/model/Champion';
+import { catalystImage } from '../../util/images/catalysts';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
 import classnames from 'classnames';
@@ -104,8 +105,8 @@ const ChampionUpgrades = {
                                 <ImageIcon
                                     src={
                                         (type === CATALYST.CLASS)
-                                            ? require(`../../images/catalysts/tier_${ tier }_${ typeId }.png`)
-                                            : require(`../../images/catalysts/tier_${ tier }_${ type }.png`)
+                                            ? catalystImage(`tier-${ tier }-${ typeId }`)
+                                            : catalystImage(`tier-${ tier }-${ type }`)
                                     }
                                 />
                                 { ', ' }
