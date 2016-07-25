@@ -215,7 +215,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.BEAST, [
-        ...fromStars(3, 5, [ CHAMPION.SUPERIORIRONMAN, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.MASTERMINDS }),
+        ...fromStars(4, 5, [ CHAMPION.SUPERIORIRONMAN, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.MASTERMINDS }),
         ...fromStars(3, 5, [ CHAMPION.NIGHTCRAWLER, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ...fromStars(3, 5, { toId: CHAMPION.IRONPATRIOT, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, { toId: CHAMPION.GAMBIT, effectId: EFFECT.ARMOR }),
@@ -267,7 +267,7 @@ const synergies = [
         ...fromStars(3, 5, { toId: CHAMPION.BEAST, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 5, { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, [ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(3, 5, { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE }),
+        ...fromStars(4, 5, { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
 
     ...fromId(CHAMPION.STORM, [
@@ -315,7 +315,7 @@ const synergies = [
 
     ...fromId(CHAMPION.CROSSBONES, [
         ...fromStars(3, 5, [ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII, CHAMPION.FALCON ], { effectId: EFFECT.CRITICAL_RATE }),
-        ...fromStars(3, 5, [ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
+        ...fromStars(4, 5, [ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
 
     ...fromId(CHAMPION.DAREDEVIL, [
@@ -432,7 +432,7 @@ const synergies = [
     ...fromId(CHAMPION.REDHULK, [
         ...fromStars(3, 5, { toId: CHAMPION.ABOMINATION, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, { toId: CHAMPION.HULK, effectId: EFFECT.ATTACK }),
-        ...fromStars(3, 5, { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(4, 5, { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 5, [ CHAMPION.ELEKTRA, CHAMPION.AGENTVENOM ], { effectId: EFFECT.THUNDERBOLTS }),
     ]),
 
