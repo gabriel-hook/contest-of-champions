@@ -207,8 +207,9 @@
     "glossary": "Glossary",
 
     "manage": "Manage",
+    "show": "Show",
     "add-champion": "Add a Champion",
-    "show-upgrades": "Show Upgrade Resources",
+    "show-upgrades": "Upgrade Resources",
     "import-csv": "Import .csv",
     "export-csv": "Export .csv",
     "export-alliance": "Export to Alliance Tool",
