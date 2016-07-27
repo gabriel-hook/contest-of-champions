@@ -322,7 +322,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.BLACKWIDOW, [
-        ...fromStars(2, 4, { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 4, [ CHAMPION.CAPTAINMARVEL, CHAMPION.MSMARVEL ], { effectId: EFFECT.ARMOR }),
         ...fromStars(2, 4, { toId: CHAMPION.WINTERSOLDIER, effectId: EFFECT.POWER_GAIN }),
         ...fromStars(3, 4, { toId: CHAMPION.HULK, effectId: EFFECT.STUN_SPECIAL }),
         ...fromStars(3, 4, { toId: CHAMPION.HAWKEYE, effectId: EFFECT.POWER_GAIN }),
