@@ -26,18 +26,7 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-/*
-@font-face {
-    font-family: "custom-icons";
-    src: url("fonts/custom-icons-17fwe.eot");
-    src: url("fonts/custom-icons-17fwe.eot?#iefix") format("embedded-opentype"),
-        url("fonts/custom-icons-17fwe.woff") format("woff"),
-        url("fonts/custom-icons-17fwe.ttf") format("truetype"),
-        url("fonts/custom-icons-17fwe.svg?#custom-icons") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
-*/
+
 @media print {
     html {
         width: 100%;

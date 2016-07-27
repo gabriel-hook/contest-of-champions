@@ -7,7 +7,7 @@ import '../icons.font';
 
 import './Icon.scss';
 
-const customIcons = require
+const championIcons = require
     .context('../icons', true, /\.svg$/)
     .keys()
     .map((filename) => filename.replace(/.*\//g, '').replace(/\.svg$/, ''))
@@ -23,18 +23,18 @@ const Icon = {
         if(type) {
             style = `border-bottom: solid 3px ${ getTypeColor(type) }`;
         }
-        const isCustomIcon = customIcons[ icon ] !== undefined;
+        const isChampionIcon = championIcons[ icon ] !== undefined;
 
         return icon && (
             <i
                 m="Icon"
                 style={ style }
                 class={ classNames('icon', {
-                    [ 'fa' ]: !isCustomIcon,
-                    [ `fa-${ icon }` ]: !isCustomIcon,
-                    [ 'fa-spin' ]: !isCustomIcon && isSpinning,
-                    [ 'champion-icon' ]: isCustomIcon,
-                    [ `champion-icon-${ icon }` ]: isCustomIcon,
+                    [ 'fa' ]: !isChampionIcon,
+                    [ `fa-${ icon }` ]: !isChampionIcon,
+                    [ 'fa-spin' ]: !isChampionIcon && isSpinning,
+                    [ 'champion-icon' ]: isChampionIcon,
+                    [ `champion-icon-${ icon }` ]: isChampionIcon,
                     'icon--before': before,
                     'icon--after': after,
                 }) }

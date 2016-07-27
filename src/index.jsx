@@ -1,6 +1,5 @@
 import 'font-awesome-webpack';
 import './index.css';
-import './util/custom-icons.css';
 import { notify } from './util/notification';
 import { EFFECT_VALUES } from './data/model/Effect';
 import { GUIDE_KEYS, SPOTLIGHT } from './data/guides';
