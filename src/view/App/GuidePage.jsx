@@ -37,7 +37,7 @@ const getSynergies = (uid, isFrom) => {
 };
 
 const GuideSynergy ={
-    view(ctrl, { championId, effectId, stars }) {
+    view(ctrl, { championId, effectId, stars, spacing }) {
         const onclickChampion = () => {
             router.setRoute(`/guide/${ championId }`);
             requestRedraw();
@@ -45,10 +45,13 @@ const GuideSynergy ={
         const champion = championMap[ `${ championId }-2` ] || championMap[ `${ championId }-3` ] || championMap[ `${ championId }-4` ] || championMap[ `${ championId }-5` ];
         const typeId = champion && champion.attr.typeId;
         const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
+
         return (
-            <div m="GuideSynergy" class="guide-synergy">
+            <div m="GuideSynergy" class={ classNames('guide-synergy', {
+                'guide-synergy--spacing': spacing,
+            }) }>
                 <div class="guide-synergy-parts">
-                    <div class="guide-synergy-part">
+                    <div class="guide-synergy-part guide-synergy-part--champion">
                         <div
                             class={ classNames('champion-name', 'no-select') }
                             onclick={ onclickChampion }
@@ -64,7 +67,7 @@ const GuideSynergy ={
                             { name }
                         </div>
                     </div>
-                    <div class="guide-synergy-part">
+                    <div class="guide-synergy-part guide-synergy-part--effect">
                         <div
                             class="effect-name"
                             title={ lang.get(`effect-${ effectId }-description`) }
@@ -234,16 +237,23 @@ const GuidePage = {
                 />
             );
         }
+        let lastGroup;
         details.push(
             <ChampionSection
                 title={ lang.get('synergies') }
-                raw={ getSynergies(uid, true).map(({ attr }) => (
-                    <GuideSynergy
-                        championId={ attr.toId }
-                        effectId={ attr.effectId }
-                        stars={ attr.fromStars }
-                    />
-                )) }
+                raw={ getSynergies(uid, true).map(({ attr }, index) => {
+                    const isNewGroup = (index > 0) && (!attr.group || attr.group !== lastGroup);
+                    lastGroup = attr.group;
+
+                    return (
+                        <GuideSynergy
+                            championId={ attr.toId }
+                            effectId={ attr.effectId }
+                            stars={ attr.fromStars }
+                            spacing={isNewGroup}
+                        />
+                    );
+                }) }
             />
         );
         details.push(
