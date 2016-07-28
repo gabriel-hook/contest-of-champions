@@ -56,7 +56,7 @@ const effectIcons = {
     [ EFFECT.CRITICAL_DAMAGE ]: 'effect-critical-damage',
     [ EFFECT.BLEED ]: 'effect-bleed',
     [ EFFECT.STUN_ACTIVATION ]: 'effect-stun',
-    [ EFFECT.STUN_SPECIAL ]: 'effect-stun',
+    [ EFFECT.STUN_SPECIAL ]: 'effect-stun-special',
     [ EFFECT.POWER_GAIN ]: 'effect-power',
     [ EFFECT.POWER_STEAL ]: 'effect-power-lock',
     [ EFFECT.PERFECT_BLOCK ]: 'effect-perfect-block',

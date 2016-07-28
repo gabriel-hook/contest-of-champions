@@ -12,7 +12,7 @@ import m from 'mithril';
 
 const ChampionSection = {
     view(ctrl, {
-            title, name, description, note, heavy,
+            title, icon, name, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
             youtube,
@@ -92,6 +92,9 @@ const ChampionSection = {
                     aria-label={ title }
                     class="champion-section-title"
                 >
+                    { icon && (
+                        <Icon icon={icon} before />
+                    ) || null }
                     { title }
                     { rating !== undefined? (
                         <div style="float:right;">
@@ -204,6 +207,9 @@ const ChampionSection = {
                     role="heading"
                     class="champion-section-title"
                 >
+                    { icon && (
+                        <Icon icon={icon} before />
+                    ) || null }
                     { title }
                     { rating !== undefined && (
                         <ChampionRating rating={ rating }/>

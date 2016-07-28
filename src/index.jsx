@@ -54,7 +54,7 @@ app.tabs = [
     {
         id: 'synergy',
         title: 'synergy',
-        icon: 'sitemap',
+        icon: 'synergy',
     },
     {
         id: 'glossary',

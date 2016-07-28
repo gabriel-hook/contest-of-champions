@@ -155,7 +155,7 @@ const GuidePage = {
                     target="_blank"
                     class="guide-external-link"
                 >
-                    <Icon icon="info-circle" before />
+                    <Icon icon="file-text" before />
                     { lang.get('details') }
                 </a>
             );
@@ -203,6 +203,7 @@ const GuidePage = {
                         details.push(
                             <ChampionSection
                                 title={ `${ lang.get('special') } ${ index }` }
+                                icon={ `special-${ index }` }
                                 rating={ guide.specials[ index ].rating }
                                 name={ guide.specials[ index ].name }
                                 description={ guide.specials[ index ].description }
@@ -241,6 +242,7 @@ const GuidePage = {
         details.push(
             <ChampionSection
                 title={ lang.get('synergies') }
+                icon="synergy"
                 raw={ getSynergies(uid, true).map(({ attr }, index) => {
                     const isNewGroup = (index > 0) && (!attr.group || attr.group !== lastGroup);
                     lastGroup = attr.group;
@@ -259,6 +261,7 @@ const GuidePage = {
         details.push(
             <ChampionSection
                 title={ lang.get('synergies-external') }
+                icon="synergy"
                 raw={ getSynergies(uid, false).map(({ attr }) => (
                     <GuideSynergy
                         championId={ attr.fromId }
