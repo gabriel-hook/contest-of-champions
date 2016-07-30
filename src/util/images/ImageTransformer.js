@@ -52,7 +52,7 @@ class ImageTransformer {
             clone.data = {
                 canvas,
                 context,
-                imageData: context.getImageData(0, 0, canvas.width, canvas.height),
+                imageData: context.getImageData(0, 0, width, height),
                 width,
                 height,
             };
@@ -63,7 +63,7 @@ class ImageTransformer {
     toDataUrl() {
         const { canvas, context, imageData } = this.getImageData();
         context.putImageData(imageData, 0, 0);
-        return canvas.toDataURL();
+        return canvas.toDataURL('image/png', 1.0);
     }
 }
 
