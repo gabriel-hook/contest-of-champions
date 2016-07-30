@@ -13,7 +13,7 @@ export IMAGE_BADGE_ALLIANCE_WAR from '../images/badges/alliance-war.png';
 export IMAGE_BADGE_RANK_UP from '../images/badges/rank-up.png';
 export IMAGE_BADGE_LEVEL_MAX from '../images/badges/max.png';
 
-export const IMAGE_EMPTY = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+export const IMAGE_EMPTY = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 
 /**
   * Get the cached image or fetch, redraw once we get it.
