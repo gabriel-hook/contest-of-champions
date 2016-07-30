@@ -6,7 +6,7 @@ const requestNextFrame = (() => {
         window.mozRequestAnimationFrame ||
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
-        function() { };
+        ((callback) => setTimeout(callback, 16));
 })();
 
 const cancelNextFrame = (() => {
@@ -15,7 +15,7 @@ const cancelNextFrame = (() => {
         window.mozCancelAnimationFrame ||
         window.oCancelAnimationFrame ||
         window.msCancelAnimationFrame ||
-        function() { };
+        ((id) => clearTimeout(id));
 })();
 
 let requestId;

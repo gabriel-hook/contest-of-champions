@@ -1,7 +1,7 @@
 
 function fromStorage(key, defaultValue) {
     let value;
-    if(localStorage) {
+    if('localStorage' in window) {
         const string = localStorage.getItem(key);
         if(string) {
             value = JSON.parse(string);
@@ -17,7 +17,7 @@ function fromStorage(key, defaultValue) {
 }
 
 function toStorage(key, value) {
-    if(localStorage) {
+    if('localStorage' in window) {
         if(value === null || value === undefined) {
             localStorage.removeItem(key);
         }
