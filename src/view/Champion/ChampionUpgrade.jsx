@@ -1,5 +1,6 @@
 import './ChampionUpgrade.scss';
-import { STAR_RANK_LEVEL, CATALYSTS, CATALYST } from '../../data/model/Champion';
+import { CATALYSTS, CATALYST } from '../../data/model/Catalyst';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
 import classnames from 'classnames';
 import { IMAGE_BADGE_RANK_UP, IMAGE_BADGE_LEVEL_MAX } from '../../util/images';
 import { catalystImage } from '../../util/images/catalysts';

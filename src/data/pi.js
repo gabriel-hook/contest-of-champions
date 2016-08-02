@@ -1,22 +1,6 @@
 import coefficientsByStar from './pi/coefficient-by-stars.json';
 import coefficientsByRank from './pi/coefficient-by-rank.json';
-
-const STAR_RANK_LEVELS = [
-    [ 10, 20 ],
-    [ 10, 20, 30 ],
-    [ 10, 20, 30, 40 ],
-    [ 10, 20, 30, 40, 50 ],
-    [ 25, 35, 45, 55, 65 ],
-];
-const STAR_LEVELS = STAR_RANK_LEVELS.map((rankLevels) => {
-    return rankLevels.reduce((sum, value) => sum + value, 0);
-});
-const STAR_RANK_LEVEL_SUMS = STAR_RANK_LEVELS.map((rankLevels) => {
-    return rankLevels.reduce((sums, value) => [
-        ...sums,
-        (sums[ sums.length - 1 ] || 0) + value,
-    ], []);
-});
+import { STAR_LEVELS, STAR_RANK_LEVELS, STAR_RANK_LEVEL_SUMS } from './champions/star-rank-level';
 
 function getLevelRatio(stars, rank, level) {
     const levelMax = STAR_LEVELS[ stars - 1 ];

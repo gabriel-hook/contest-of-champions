@@ -1,6 +1,7 @@
 import './ChampionUpgrade.scss';
 import { TYPE_VALUES } from '../../data/model/Type';
-import { STAR_RANK_LEVEL, CATALYSTS, CATALYST } from '../../data/model/Champion';
+import { CATALYSTS, CATALYST } from '../../data/model/Catalyst';
+import { STAR_RANK_LEVEL } from '../../data/model/Champion';
 import { catalystImage } from '../../util/images/catalysts';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
