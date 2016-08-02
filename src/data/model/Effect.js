@@ -1,18 +1,21 @@
-import Model from './Model';
 import { values } from 'lodash';
 import * as EFFECT from '../ids/effects';
 
-class Effect extends Model {
+class Effect {
     constructor({
         uid = 'effect',
         base = 0,
         amount = 0,
     }) {
-        super({
+        this.attr = {
             uid,
             base,
             amount,
-        });
+        };
+    }
+
+    toJSON() {
+        return this.attr;
     }
 }
 

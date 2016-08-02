@@ -1,6 +1,4 @@
-import Model from './Model';
-
-class Synergy extends Model {
+class Synergy {
     constructor({
         fromId = 'champion',
         fromStars = 1,
@@ -9,14 +7,18 @@ class Synergy extends Model {
         effectAmount = 0,
         group = 0,
     }) {
-        super({
+        this.attr = {
             fromId,
             fromStars,
             toId,
             effectId,
             effectAmount,
             group,
-        });
+        };
+    }
+
+    toJSON() {
+        return this.attr;
     }
 }
 

@@ -5,7 +5,6 @@ import { ROLE_VALUES } from './Role';
 import { isInRange } from '../../util/math';
 import { getPi } from '../pi';
 import { values } from 'lodash';
-import Model from './Model';
 
 export const STAR_RANK_LEVEL = {
     1:{
@@ -143,7 +142,7 @@ const validRank = (stars, rank) => (validStars(stars) && isInRange(rank, 1, STAR
 const validLevel = (stars, rank, level) => (validRank(stars, rank) && isInRange(level, 1, STAR_RANK_LEVEL[ stars ][ rank ].levels))? level: 0;
 const validAwakened = (stars, awakened) => (validStars(stars) && isInRange(awakened, 0, STAR_RANK_LEVEL[ stars ].awakened))? awakened: 0;
 
-class Champion extends Model {
+class Champion {
     constructor({
         uid = 'champion',
         stars = 1,
@@ -154,24 +153,21 @@ class Champion extends Model {
         awakened = 0,
         role = null,
     }) {
-        super({
+        this.attr = {
             uid,
-            stars,
-            typeId,
-            pi,
-            rank,
-            level,
-            awakened,
             role,
-        });
+            typeId,
+        };
 
-        this.attr.stars = validStars(this.attr.stars | 0) || 0;
-        this.attr.rank = validRank(this.attr.stars, this.attr.rank | 0) || 1;
-        this.attr.level = validLevel(this.attr.stars, this.attr.rank, this.attr.level | 0) || 1;
-        this.attr.awakened = validAwakened(this.attr.stars, this.attr.awakened | 0) || 0;
-        this.attr.pi = this.attr.pi | 0;
+        this.attr.stars = validStars(stars | 0) || 0;
+        this.attr.rank = validRank(this.attr.stars, rank | 0) || 1;
+        this.attr.level = validLevel(this.attr.stars, this.attr.rank, level | 0) || 1;
+        this.attr.awakened = validAwakened(this.attr.stars, awakened | 0) || 0;
+
         this.attr.typeId = TYPE_VALUES.find((typeId) => typeId === this.attr.typeId) || 'unknown';
         this.attr.role = ROLE_VALUES.find((role) => role === this.attr.role) || null;
+
+        this.attr.pi = pi | 0;
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = TYPE_VALUES.indexOf(this.attr.typeId);
@@ -184,6 +180,10 @@ class Champion extends Model {
             uid,
             stars: parseInt(stars, 10),
         };
+    }
+
+    toJSON() {
+        return this.attr;
     }
 }
 

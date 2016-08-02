@@ -1,14 +1,17 @@
-import Model from './Model';
 import { values } from 'lodash';
 import * as ABILITY from '../ids/abilities';
 
-class Ability extends Model {
+class Ability {
     constructor({
         uid = 'ability',
     }) {
-        super({
+        this.attr = {
             uid,
-        });
+        };
+    }
+
+    toJSON() {
+        return this.attr;
     }
 }
 
