@@ -2,7 +2,6 @@ import { CHAMPION } from '../model/Champion';
 
 export const UNRELEASED_CHAMPIONS = [
     // Cosmic
-    CHAMPION.LOKI,
     // Tech
     // Mutant
     CHAMPION.GAMBIT,
