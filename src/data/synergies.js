@@ -107,6 +107,12 @@ const synergies = [
         ...fromStars(4, 5, { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
+    ...fromId(CHAMPION.LOKI, [
+        ...fromStars(3, 5, { toId: CHAMPION.THOR, effectId: EFFECT.HEALTH }),
+        ...fromStars(3, 5, [ CHAMPION.HULK, CHAMPION.REDHULK, CHAMPION.THORJANEFOSTER ], { effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 5, [ CHAMPION.MAGNETO, CHAMPION.MAGNETOMARVELNOW ], { effectId: EFFECT.MASTERMINDS }),
+    ]),
+
     ...fromId(CHAMPION.MSMARVEL, [
         ...fromStars(3, 4, { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK }),
