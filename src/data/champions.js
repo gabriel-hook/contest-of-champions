@@ -23,7 +23,7 @@ const champions = [
     ...championForStars({ uid: CHAMPION.GAMORA, typeId: TYPE.COSMIC }, [ 1, 2, 3, 4 ]),
     ...championForStars({ uid: CHAMPION.GROOT, typeId: TYPE.COSMIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.KAMALAKHAN, typeId: TYPE.COSMIC }, [ 3, 4, 5 ]),
-    ...championForStars({ uid: CHAMPION.LOKI, typeId: TYPE.COSMIC }, [ 3, 4, 5 ]),
+    ...championForStars({ uid: CHAMPION.LOKI, typeId: TYPE.MYSTIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.MSMARVEL, typeId: TYPE.COSMIC }, [ 3, 4 ]),
     ...championForStars({ uid: CHAMPION.RONAN, typeId: TYPE.COSMIC }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.SPIDERMANBLACK, typeId: TYPE.COSMIC }, [ 3, 4 ]),
