@@ -19,7 +19,7 @@ const typeIcons = {
 };
 
 function typeIcon(uid) {
-    return typeIcons[ uid ] || 'effect-mastermind';
+    return typeIcons[ uid ] || 'type-master';
 }
 
 export { typeIcon };
