@@ -2,7 +2,7 @@ import Effect, { EFFECT } from './model/Effect';
 
 export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.ATTACK ]: [ 4, 5, 6 ],
-    [ EFFECT.IDOL ]: [ 3, 4, 5 ],
+    [ EFFECT.IDOL ]: [ 2, 3, 4 ],
     [ EFFECT.INSEPARABLE ]: [ 7, 8, 9 ],
     [ EFFECT.MUTANT_AGENDA ]: [ 8, 10, 12 ],
     [ EFFECT.COSMIC_SUPREMACY ]: [ 15, 25, 30 ],
@@ -17,7 +17,7 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.HEALTH ]: [ 4, 5, 6 ],
     [ EFFECT.HEROES_FOR_HIRE ]: [ 3, 4, 5 ],
     [ EFFECT.THUNDERBOLTS ]: [ 4, 5, 6 ],
-    [ EFFECT.MASTERMINDS ]: [ 15, 15, 15 ],
+    [ EFFECT.MASTERMINDS ]: [ 5, 10, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
