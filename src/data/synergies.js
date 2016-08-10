@@ -146,6 +146,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.VENOMPOOL, [
+        ...fromStars(3, 5, [ CHAMPION.SPIDERMANBLACK, CHAMPION.AGENTVENOM ], { effectId: EFFECT.HEALTH }),
         ...fromStars(3, 5, { toId: CHAMPION.VENOM, effectId: EFFECT.INSEPARABLE }),
         ...fromStars(3, 5, { toId: CHAMPION.DEADPOOL, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 5, { toId: CHAMPION.DEADPOOLXFORCE, effectId: EFFECT.ARMOR }),
