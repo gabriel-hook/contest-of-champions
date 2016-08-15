@@ -32,15 +32,18 @@
         <meta property="og:url" content="https://hook.github.io/champions" />
         <meta property="og:site_name" content="Champions" />
         <script>
-            if(location.hostname !== 'localhost') {
-                window.ga = window.ga || function (){
-                    (ga.q = ga.q || []).push(arguments)
+            if(location.protocol === 'http:') {
+                location.protocol = 'https:';
+            }
+            else if(location.hostname !== 'localhost') {
+                window.ga = window.ga || function() {
+                    (ga.q = ga.q || []).push(arguments);
                 };
                 ga.l = +new Date;
                 ga('create', 'UA-64735733-2', 'auto');
             }
             else
-                window.ga=function(){};
+                window.ga=function() {};
         </script>
         <script async src='//www.google-analytics.com/analytics.js'></script>
     </head>
