@@ -4,7 +4,6 @@ export const UNRELEASED_CHAMPIONS = [
     // Cosmic
     // Tech
     // Mutant
-    CHAMPION.GAMBIT,
     CHAMPION.WOLVERINEWEAPONX,
     // Skill
     CHAMPION.REDSKULL,

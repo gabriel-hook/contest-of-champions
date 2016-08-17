@@ -1,0 +1,67 @@
+{
+    "signature": {
+        "description": "Gambit maintains 30% of his Kinetic Charges whenever he Folds. Additionally his Prowess Buffs also grant him (5 – 20%) increased Critical Damage each.",
+        "name": "Ragin’ Cajun",
+        "abilities": [
+            "cruelty"
+        ]
+    },
+    "specials": {
+        "1": {
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "description": "With a little sleight of hand, the Ragin’ Cajun sends a hidden ace flying.  This attack has a 85% chance to Stun the opponent for 2.5 seconds. The chance to Stun increases based on how low the opponent’s Armor is.",
+            "name": "Cardshark",
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "description": "Super-charged staff strikes from the back alleys of N’awlins.  This attack has a 78% chance to give the opponent a Concussion, reducing their Ability Accuracy by 72%. The Potency of this effect is affected by Class relationships.",
+            "name": "Bayou Beatdown",
+            "note": "This ability is stronger against Champions that Gambit has a class advantage against, skill Champions. Meanwhile, it is weaker against Tech Champions.",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "3": {
+            "description": "With quick movements, Gambit lets fly a perfect hand. Au Revoir.  This attack has a 86% chance to Paralyze the opponent for 2.8 seconds, Stunning them and reducing their Power and Health gains by 66%.",
+            "name": "Royal Flush",
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "note": "Paralyze also counts a Stun effect, meaning it can be decreased or increased by other effects in the game, like the Limber and Stupefy Mastery."
+        }
+    },
+    "gameplay": {
+        "description": "Blocking: Gambit charges his weapons while holding Block, gaining a Kinetic Charge for every 0.5 seconds he isn’t attacked. Whenever Gambit is struck by a combo-ending attack, he has a 50% chance to Fold and lose all his Kinetic Charges.\n\nPassive: Gambit’s unique armor grants him 18% Physical Resistance & Bleed Resistance. Once Gambit has lost 20% of his max Health from Physical Damage, the armor breaks.",
+        "abilities": [
+            "physicalresist"
+        ],
+        "note": "The amount of time needed to build up Kinetic charges increases based on how many charges Gambit already has."
+    },
+    "description": "Remy LeBeau, raised by thieves on the dark streets of New Orleans was eventually forced to leave that life behind after winning a duel he wasn’t meant to. Gifted with the power to supercharge objects he touches with powerful kinetic force, Gambit now fights alongside his fellow mutants to protect mankind, while also occasionally dipping into his more scoundrel-like nature to pull off a heist here and there.",
+    "youtube": "Hhhoso66Gio",
+    "attack": {
+        "heavy": "Gambit cashes out, converting his Kinetic Charges to Prowess Buffs, each increasing Special Damage by 17% for 10 seconds.",
+        "description": "Special Attacks: Gambit’s Ability Accuracy increases by 2% for each Kinetic Charge he has during Special Attacks.",
+        "damagetypes": [
+            "physical"
+        ]
+    },
+    "author": {
+        "type": "spotlight",
+        "profile": "674420-Gambit-Champion-Spotlight",
+        "name": "Kabam"
+    }
+}

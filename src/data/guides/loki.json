@@ -49,5 +49,11 @@
     "signature": {
         "name": "Ascendant",
         "description": "Perhaps the most powerful sorcerer in all Asgard, Loki passively generates additional Power over time while he has less than one Power Bar. Rising in power through sorcery and subterfuge, Loki generates an additional 5.5% Power per second as long as he is below 1 bar."
+    },
+    "youtube": "lsFJk7hcp1g",
+    "author": {
+        "type": "kabam",
+        "name": "Kabam",
+        "profile": "672637-Loki-Champion-Spotlight"
     }
 }

@@ -260,6 +260,12 @@ const synergies = [
         ...fromStars(4, { toId: CHAMPION.MAGNETOMARVELNOW, effectId: EFFECT.ARMOR }),
     ]),
 
+    ...fromId(CHAMPION.GAMBIT, [
+        ...fromStars(3, 5, { toId: CHAMPION.X23, effectId: EFFECT.ARMOR }),
+        ...fromStars(3, 5, { toId: CHAMPION.MAGNETO, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 5, [ CHAMPION.BEAST, CHAMPION.NIGHTCRAWLER ], { effectId: EFFECT.PERFECT_BLOCK }),
+    ]),
+
     ...fromId(CHAMPION.MAGNETO, [
         ...fromStars(2, 5, [ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.ATTACK }),
         ...fromStars(3, 5, { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_RATE }),
