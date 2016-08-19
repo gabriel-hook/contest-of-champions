@@ -527,7 +527,7 @@ const synergies = [
     ...fromId(CHAMPION.LOKI, [
         ...fromStars(3, 5, { toId: CHAMPION.THOR, effectId: EFFECT.HEALTH }),
         ...fromStars(3, 5, [ CHAMPION.HULK, CHAMPION.REDHULK, CHAMPION.THORJANEFOSTER ], { effectId: EFFECT.CRITICAL_RATE }),
-        ...fromStars(3, 5, [ CHAMPION.MAGNETO, CHAMPION.MAGNETOMARVELNOW ], { effectId: EFFECT.MASTERMINDS }),
+        ...fromStars(4, 5, [ CHAMPION.MAGNETO, CHAMPION.MAGNETOMARVELNOW ], { effectId: EFFECT.MASTERMINDS }),
     ]),
 
     ...fromId(CHAMPION.MAGIK, [
