@@ -65,10 +65,37 @@
 
             &.clickable {
                 cursor: pointer;
+
+                .portrait {
+                    overflow: hidden;
+                    perspective: 200px;
+                }
+
+                .portrait-image > img,
+                .portrait-image > svg {
+                    transform: rotateX(0);
+                    transform-origin: 50% 100%;
+                    transition: transform 0.25s;
+                }
+
+                &:hover .portrait-image > img,
+                &:hover .portrait-image > svg{
+                    transform: rotateX(10deg);
+                }
+
+                &:active .portrait-image > img,
+                &:active .portrait-image > svg {
+                    transform: rotateX(20deg);
+                }
             }
         }
     }
 
+    .portrait {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
     .portrait-image {
         position: absolute;
         width: 100%;
