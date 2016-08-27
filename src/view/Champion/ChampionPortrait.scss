@@ -62,6 +62,7 @@
             position: relative;
             width: 100%;
             height: 100%;
+            z-index: 0;
 
             &.clickable {
                 cursor: pointer;
@@ -71,20 +72,20 @@
                     perspective: 200px;
                 }
 
-                .portrait-image > img,
-                .portrait-image > svg {
+                .portrait-image,
+                .portrait-image {
                     transform: rotateX(0);
                     transform-origin: 50% 100%;
                     transition: transform 0.25s;
                 }
 
-                &:hover .portrait-image > img,
-                &:hover .portrait-image > svg{
+                &:hover .portrait-image,
+                &:hover .portrait-image {
                     transform: rotateX(10deg);
                 }
 
-                &:active .portrait-image > img,
-                &:active .portrait-image > svg {
+                &:active .portrait-image,
+                &:active .portrait-image {
                     transform: rotateX(20deg);
                 }
             }
@@ -95,6 +96,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
+        z-index: -1;
     }
     .portrait-image {
         position: absolute;
