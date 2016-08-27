@@ -30,6 +30,9 @@ const RosterMenu = {
                     });
                 }
                 catch (error) {
+                    /* eslint-disable no-console */
+                    console.error(error.stack || error);
+                    /* eslint-enable no-console */
                     notify({
                         message: lang.get('notification-roster-import-failed')
                             .replace(/\%error\%/g, error),
