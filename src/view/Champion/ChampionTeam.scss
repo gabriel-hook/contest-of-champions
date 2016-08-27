@@ -2,11 +2,13 @@
 @import "../../util/button";
 
 .champion-team {
-    clear: both;
+    position: relative;
     text-align: center;
     margin: 24px auto;
     box-sizing: border-box;
     box-shadow: 0 8px 0 -4px  rgba(0, 0, 0, .25);
+    clear: both;
+    z-index: 0;
 
     .champion-portrait {
 
@@ -19,6 +21,11 @@
         }
     }
 
+    .team-champions {
+        position: relative;
+        z-index: 1;
+    }
+
     .team-synergies {
         position: relative;
         clear: both;
@@ -28,6 +35,7 @@
         color: #000;
         text-shadow: 0 1px 0 #fff;
         text-align: left;
+        z-index: 0;
 
         .team-synergy {
             margin: .5em 0 0;
