@@ -220,7 +220,7 @@ const synergies = [
         ...fromStars(2, 4, { toId: CHAMPION.HULKBUSTER, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.HAWKEYE, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 4, { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(2, 4, { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(4, { toId: CHAMPION.BLACKPANTHER, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
     ...fromId(CHAMPION.BEAST, [
