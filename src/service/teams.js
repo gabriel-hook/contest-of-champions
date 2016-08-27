@@ -266,13 +266,15 @@ function isChampionLocked(uid) {
 
 let progressResetTimeout;
 
-let worker;
+let worker = new Worker();
+let lastWorker;
+
 function buildTeam() {
     clearTimeout(progressResetTimeout);
     new Promise((resolve) => {
-        if(worker)
-            worker.terminate();
-        worker = new Worker();
+        if(lastWorker)
+            lastWorker.terminate();
+        lastWorker = worker;
         worker.onmessage = (event) => {
             switch(event.data.type) {
                 case 'result': {
@@ -289,7 +291,6 @@ function buildTeam() {
                 }
             }
         };
-
         worker.postMessage({
             type: 'build',
             data: {
@@ -321,58 +322,59 @@ function buildTeam() {
         teams.building = true;
         teams.progress = 0;
     })
-    .then((result) => {
-        let teamsCount = 0;
-        let synergiesCount = 0;
-        const teamsList = result.teams.map((team) => {
-            team.sort();
-            const champions = team.map(idToRosterChampion);
-            const synergies = synergiesFromChampions(champions);
-            teamsCount++;
-            synergiesCount += synergies.length;
-            return {
-                champions,
-                synergies,
-            };
-        });
-        if(teams.type === ROLE.ARENA) {
-            teamsList.unshift(...lockedTeams.map((champions) => {
+        .then((result) => {
+            let teamsCount = 0;
+            let synergiesCount = 0;
+            const teamsList = result.teams.map((team) => {
+                team.sort();
+                const champions = team.map(idToRosterChampion);
                 const synergies = synergiesFromChampions(champions);
                 teamsCount++;
                 synergiesCount += synergies.length;
                 return {
                     champions,
-                    synergies: synergiesFromChampions(champions),
+                    synergies,
                 };
-            }));
-        }
-        teams.result[ `${ teams.type }-${ teams.size }` ] = {
-            ...result,
-            teams: teamsList,
-            counts: {
-                teams: teamsCount,
-                synergies: synergiesCount,
-            },
-            extras: result.extras.map(idToRosterChampion),
-        };
-        saveTeam();
-        teams.building = false;
-        requestRedraw();
-        return new Promise((resolve) => (progressResetTimeout = setTimeout(resolve, 250)));
-    })
-    .then(() => {
-        teams.progress = 0;
-        requestRedraw();
-        notify({
-            message: lang.get('notification-team-built'),
-            tag: 'team-built',
-            onclick: () => {
-                app.menuOpen = false;
-                router.setRoute('/teams');
-                requestRedraw();
-            },
+            });
+            if(teams.type === ROLE.ARENA) {
+                teamsList.unshift(...lockedTeams.map((champions) => {
+                    const synergies = synergiesFromChampions(champions);
+                    teamsCount++;
+                    synergiesCount += synergies.length;
+                    return {
+                        champions,
+                        synergies: synergiesFromChampions(champions),
+                    };
+                }));
+            }
+            teams.result[ `${ teams.type }-${ teams.size }` ] = {
+                ...result,
+                teams: teamsList,
+                counts: {
+                    teams: teamsCount,
+                    synergies: synergiesCount,
+                },
+                extras: result.extras.map(idToRosterChampion),
+            };
+            saveTeam();
+            teams.building = false;
+            requestRedraw();
+            return new Promise((resolve) => (progressResetTimeout = setTimeout(resolve, 250)));
+        })
+        .then(() => {
+            teams.progress = 0;
+            requestRedraw();
+            notify({
+                message: lang.get('notification-team-built'),
+                tag: 'team-built',
+                onclick: () => {
+                    app.menuOpen = false;
+                    router.setRoute('/teams');
+                    requestRedraw();
+                },
+            });
         });
-    });
+    worker = new Worker();
 }
 
 export { PRESETS, PRESETS_DUPLICATES, PRESETS_RANGE };
