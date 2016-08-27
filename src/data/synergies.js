@@ -277,6 +277,7 @@ const synergies = [
         ...fromStars(2, 4, { toId: CHAMPION.CYCLOPS, effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 4, { toId: CHAMPION.MAGIK, effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 4, { toId: CHAMPION.WOLVERINE, effectId: EFFECT.CRITICAL_DAMAGE }),
+        ...fromStars(4, { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.ATTACK }),
     ]),
 
     ...fromId(CHAMPION.NIGHTCRAWLER, [
