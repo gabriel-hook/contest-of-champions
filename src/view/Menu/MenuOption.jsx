@@ -38,7 +38,7 @@ const MenuOption = {
             link = {
                 ...link,
                 download,
-                href: 'data:text/csv;charset=utf-8,',
+                href: 'javascript:', // eslint-disable-line no-script-url
             };
         }
         return (

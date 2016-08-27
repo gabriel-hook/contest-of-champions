@@ -21,7 +21,10 @@ function isInDocumentBody(element) {
 
 function clickElementById(id) {
     const element = document.getElementById(id);
-    if(document.createEventObject) {
+    if(typeof element.click === 'function') {
+        element.click();
+    }
+    else if(document.createEventObject) {
         element.target.fireEvent('onclick');
     }
     else if(MouseEvent) {
