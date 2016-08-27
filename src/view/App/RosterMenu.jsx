@@ -21,12 +21,21 @@ const RosterMenu = {
         const options = [];
         if (window.FileReader) {
             const handleTextInput = (text) => {
-                roster.fromCSV(text);
-                notify({
-                    message: lang.get('notification-roster-import'),
-                    tag: 'roster-import',
-                    onclick: () => router.setRoute('/roster'),
-                });
+                try {
+                    roster.fromCSV(text);
+                    notify({
+                        message: lang.get('notification-roster-import'),
+                        tag: 'roster-import',
+                        onclick: () => router.setRoute('/roster'),
+                    });
+                }
+                catch (error) {
+                    notify({
+                        message: lang.get('notification-roster-import-failed')
+                            .replace(/\%error\%/g, error),
+                        tag: 'roster-import',
+                    });
+                }
                 requestRedraw(5);
             };
             options.push(

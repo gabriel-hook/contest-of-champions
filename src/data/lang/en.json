@@ -414,7 +414,8 @@
 
     "notification-roster-empty": "Add Champions to your to your roster",
     "notification-roster-add": "Added %stars%★ %champion% to your roster",
-    "notification-roster-import": "Imported roster from file",
-    "notification-guide-import": "Imported guide from file",
+    "notification-roster-import": "Roster import successful",
+    "notification-roster-import-failed": "Guide import failed\n\n%error%",
+    "notification-guide-import": "Guide import successful",
     "notification-team-built": "Team Built"
 }
