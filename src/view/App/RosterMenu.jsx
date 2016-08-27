@@ -1,11 +1,14 @@
 import { TYPE_VALUES } from '../../data/model/Type';
 import { typeIcon } from '../../data/types';
-import roster from '../../service/roster.js';
+import lang from '../../service/lang';
+import roster from '../../service/roster';
+import router from '../../service/router';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import MenuOptionGroup from '../Menu/MenuOptionGroup.jsx';
 import Icon from '../Icon.jsx';
+import { notify } from '../../util/notification';
 import { requestRedraw } from '../../util/animation';
 import { clickElementById } from '../../util/element';
 import { loadFileFromInput, saveFileEventHandler } from '../../util/io';
@@ -19,6 +22,11 @@ const RosterMenu = {
         if (window.FileReader) {
             const handleTextInput = (text) => {
                 roster.fromCSV(text);
+                notify({
+                    message: lang.get('notification-roster-import'),
+                    tag: 'roster-import',
+                    onclick: () => router.setRoute('/roster'),
+                });
                 requestRedraw(5);
             };
             options.push(
@@ -54,9 +62,13 @@ const RosterMenu = {
                 )}
                 title="export-csv"
                 download="champions.csv"
-                onclick={ (event) => {
-                    saveFileEventHandler(event, 'text/csv', 'champions.csv', roster.toCSV('\r\n'));
-                    requestRedraw(5);
+                onclick={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/csv', 'champions.csv', roster.toCSV('\r\n'));
+                    m.redraw.strategy('none');
+                }}
+                oncontextmenu={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/csv', 'champions.csv', roster.toCSV('\r\n'));
+                    m.redraw.strategy('none');
                 }}
             />
         );

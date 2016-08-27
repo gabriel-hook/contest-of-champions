@@ -1,4 +1,4 @@
-import roster from '../../service/roster.js';
+import roster from '../../service/roster';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';

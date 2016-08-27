@@ -1,7 +1,9 @@
 import guides from '../../data/guides';
+import lang from '../../service/lang';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
+import { notify } from '../../util/notification';
 import { clickElementById } from '../../util/element';
 import { loadFileFromInput, saveFileEventHandler } from '../../util/io';
 import { requestRedraw } from '../../util/animation';
@@ -18,6 +20,10 @@ const GuideEditMenu = {
         if (window.FileReader) {
             const handleTextInput = (text) => {
                 guides[ uid ] = JSON.parse(text);
+                notify({
+                    message: lang.get('notification-guide-import'),
+                    tag: 'guide-import',
+                });
                 requestRedraw(5);
             };
             options.push(
@@ -55,9 +61,13 @@ const GuideEditMenu = {
                 )}
                 title="export-json"
                 download={ filename }
-                onclick={ (event) => {
-                    saveFileEventHandler(event, 'text/json', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
+                onclick={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/json', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
                     requestRedraw(5);
+                }}
+                oncontextmenu={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/json', filename, JSON.stringify(guides[ uid ] || {}, null, 4));
+                    m.redraw.strategy('none');
                 }}
             />
         );

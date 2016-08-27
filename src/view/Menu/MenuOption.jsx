@@ -13,8 +13,9 @@ function linkIsExternal(href) {
 
 const MenuOption = {
     view(ctrl, {
-        info, raw, alternate, title, icon, onclick, href,
+        info, raw, alternate, title, icon, href,
         download, selected, invalid, progress, red,
+        onclick, oncontextmenu,
         options,
     }) {
         let link = {};
@@ -54,6 +55,7 @@ const MenuOption = {
                 }, 'no-select') }
                 title={ lang.get(info) || '' }
                 onclick={ onclick }
+                oncontextmenu={ oncontextmenu }
                 { ...link }
                 disabled={ !(onclick || link) }
             >

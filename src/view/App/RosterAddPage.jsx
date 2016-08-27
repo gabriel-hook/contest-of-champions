@@ -4,7 +4,7 @@ import roster from '../../service/roster';
 import router from '../../service/router';
 import lang from '../../service/lang';
 import ChampionPortrait from '../Champion/ChampionPortrait.jsx';
-import { denotify } from '../../util/notification';
+import { notify, denotify } from '../../util/notification';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
@@ -46,8 +46,15 @@ const RosterAddPage = {
                             showPi={false}
                             onclick={ () => {
                                 roster.add(champion.attr.uid, stars);
-                                requestRedraw();
                                 denotify({ tag: 'roster-empty' });
+                                notify({
+                                    message: lang.get('notification-roster-add')
+                                        .replace(/\%stars\%/g, stars)
+                                        .replace(/\%champion\%/g, lang.get(`champion-${ champion.attr.uid }-shortname`, null) || lang.get(`champion-${ champion.attr.uid }-name`)),
+                                    tag: 'roster-add',
+                                    onclick: () => router.setRoute(`/roster/${champion.attr.uid}/${stars}`),
+                                });
+                                requestRedraw(5);
                             }}
                         />
                     )) }

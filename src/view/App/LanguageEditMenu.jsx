@@ -3,7 +3,6 @@ import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import Icon from '../Icon.jsx';
 import { saveFileEventHandler } from '../../util/io';
-import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -23,9 +22,13 @@ const LanguageEditMenu = {
                     )}
                 title="export-json"
                 download={ filename }
-                onclick={ (event) => {
-                    saveFileEventHandler(event, 'text/json', filename, JSON.stringify(values, null, 4));
-                    requestRedraw(5);
+                onclick={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/json', filename, JSON.stringify(values, null, 4));
+                    m.redraw.strategy('none');
+                }}
+                oncontextmenu={ ({ target }) => {
+                    saveFileEventHandler(target, 'text/json', filename, JSON.stringify(values, null, 4));
+                    m.redraw.strategy('none');
                 }}
             />
         );
