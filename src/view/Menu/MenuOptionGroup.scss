@@ -16,7 +16,7 @@
     @for $i from 1 to 10 {
         &.menu-option--group-#{ $i } {
             > .menu-option {
-                width: calc(100% * #{ 1 / $i });
+                width: #{ 100% / $i };
             }
         }
     }
