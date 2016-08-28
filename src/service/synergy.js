@@ -5,8 +5,6 @@ let synergyOptions = fromStorage('synergy-options', {
     roster: false,
 });
 
-console.log(synergyOptions);
-
 function getLegend() {
     return synergyOptions.legend;
 }
