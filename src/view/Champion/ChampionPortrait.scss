@@ -33,6 +33,10 @@
         color: $color-mystic;
     }
 
+    &.champion--universal {
+        color: $color-universal;
+    }
+
     &.champion--null {
 
         .portrait-image {

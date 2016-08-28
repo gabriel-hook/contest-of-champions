@@ -4,6 +4,7 @@ export const UNRELEASED_CHAMPIONS = [
     // Cosmic
     CHAMPION.KARNAK,
     CHAMPION.QUAKE,
+    CHAMPION.THANOS,
     // Tech
     // Mutant
     CHAMPION.ROGUE,
@@ -12,6 +13,7 @@ export const UNRELEASED_CHAMPIONS = [
     CHAMPION.REDSKULL,
     // Mystic
     CHAMPION.DRSTRANGEMARVELNOW,
+    CHAMPION.SCARLETWITCHULTIMATE,
     //Unknown
     CHAMPION.MAESTRO,
 ].reduce((map, champion) => {

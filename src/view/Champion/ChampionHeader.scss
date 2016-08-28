@@ -91,6 +91,14 @@
         position: relative;
         border-bottom: solid 16px;
         z-index: 1;
+    }
+
+    .champion-header-name-type {
+        text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .champion-header-type,
+    .champion-header-name-type {
 
         &.champion--cosmic {
             color: $color-cosmic;
@@ -114,6 +122,10 @@
 
         &.champion--mystic {
             color: $color-mystic;
+        }
+
+        &.champion--universal {
+            color: $color-universal;
         }
     }
 

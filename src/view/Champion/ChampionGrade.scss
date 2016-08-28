@@ -7,6 +7,10 @@
     padding: 16px 16px 0;
     font-size: 1em;
 
+    > b {
+        margin-right: 0.5em;
+    }
+
     .champion-grade--value-a,
     .champion-grade--value-b,
     .champion-grade--value-c,

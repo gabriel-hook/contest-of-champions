@@ -15,6 +15,7 @@
     "champion-ronan-name": "Ronan",
     "champion-spidermanblack-name": "Spider-Man (Symbiote)",
     "champion-superiorironman-name": "Iron Man (Superior)",
+    "champion-thanos-name": "Thanos",
     "champion-thor-name": "Thor",
     "champion-venom-name": "Venom",
     "champion-venompool-name": "Venompool",
@@ -81,6 +82,7 @@
     "champion-juggernaut-name": "Juggernaut",
     "champion-magik-name": "Magik",
     "champion-scarletwitch-name": "Scarlet Witch",
+    "champion-scarletwitchultimate-name": "Scarlet Witch (Ultimate)",
     "champion-thorjanefoster-name": "Thor (Jane Foster)",
     "champion-unstoppablecolossus-name": "Unstoppable Colossus",
     "champion-maestro-name": "Maestro",
@@ -108,6 +110,7 @@
     "champion-spidermanmorales-shortname": "Spider-Man",
     "champion-drstrange-shortname": "Dr. Strange",
     "champion-drstrangemarvelnow-shortname": "Dr. Strange",
+    "champion-scarletwitchultimate-shortname": "Scarlet Witch",
     "champion-thorjanefoster-shortname": "Thor",
     "champion-unstoppablecolossus-shortname": "Unst. Colossus",
 
@@ -165,7 +168,7 @@
     "type-skill-name": "Skill",
     "type-science-name": "Science",
     "type-mystic-name": "Mystic",
-    "type-unknown-name": "Unknown",
+    "type-universal-name": "Universal",
 
     "preset-offensive-name": "Offensive",
     "preset-balanced-name": "Balanced",

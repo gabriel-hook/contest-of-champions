@@ -1,5 +1,6 @@
 import './ChampionHeader.scss';
 import classNames from 'classnames';
+import Icon from '../Icon.jsx';
 import ImageIcon from '../ImageIcon.jsx';
 import { getImage, IMAGE_STAR, IMAGE_STAR_AWAKENED } from '../../util/images';
 import lang from '../../service/lang';
@@ -57,7 +58,12 @@ const ChampionHeader = {
                     }) }
                     style={ imageStyle }
                 />
-                <div class="champion-header-name">{ name }</div>
+                <div class="champion-header-name">
+                    <span class={ classNames('champion-header-name-type', `champion--${ typeId }`) }>
+                        <Icon class="type" icon={ `type-${ typeId }` } before />
+                    </span>
+                    { name }
+                </div>
                 <div
                     class={ classNames('champion-header-stars',
                            { 'champion-header-stars--awakened': awakened }

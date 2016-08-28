@@ -11,6 +11,7 @@ export const QUAKE = 'quake';
 export const RONAN = 'ronan';
 export const SPIDERMANBLACK = 'spidermanblack';
 export const SUPERIORIRONMAN = 'superiorironman';
+export const THANOS = 'thanos';
 export const THOR = 'thor';
 export const VENOM = 'venom';
 export const VENOMPOOL = 'venompool';
@@ -84,6 +85,7 @@ export const IRONFISTWHITE = 'ironfistwhite';
 export const JUGGERNAUT = 'juggernaut';
 export const MAGIK = 'magik';
 export const SCARLETWITCH = 'scarletwitch';
+export const SCARLETWITCHULTIMATE = 'scarletwitchultimate';
 export const THORJANEFOSTER = 'thorjanefoster';
 export const UNSTOPPABLECOLOSSUS = 'unstoppablecolossus';
 // Unknown

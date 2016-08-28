@@ -28,6 +28,7 @@ const champions = [
     ...championForStars({ uid: CHAMPION.RONAN, typeId: TYPE.COSMIC }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.SPIDERMANBLACK, typeId: TYPE.COSMIC }, [ 3, 4 ]),
     ...championForStars({ uid: CHAMPION.SUPERIORIRONMAN, typeId: TYPE.COSMIC }, [ 2, 3, 4 ]),
+    ...championForStars({ uid: CHAMPION.THANOS, typeId: TYPE.COSMIC }, [ 4, 5 ]),
     ...championForStars({ uid: CHAMPION.THOR, typeId: TYPE.COSMIC }, [ 2, 3, 4 ]),
     ...championForStars({ uid: CHAMPION.VENOM, typeId: TYPE.COSMIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.VENOMPOOL, typeId: TYPE.COSMIC }, [ 3, 4, 5 ]),
@@ -102,10 +103,11 @@ const champions = [
     ...championForStars({ uid: CHAMPION.LOKI, typeId: TYPE.MYSTIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.MAGIK, typeId: TYPE.MYSTIC }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.SCARLETWITCH, typeId: TYPE.MYSTIC }, [ 1, 2, 3, 4 ]),
+    ...championForStars({ uid: CHAMPION.SCARLETWITCHULTIMATE, typeId: TYPE.MYSTIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.THORJANEFOSTER, typeId: TYPE.MYSTIC }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.UNSTOPPABLECOLOSSUS, typeId: TYPE.MYSTIC }, [ 2, 3, 4, 5 ]),
     // Unknown
-    ...championForStars({ uid: CHAMPION.MAESTRO }, [ 5 ]),
+    ...championForStars({ uid: CHAMPION.MAESTRO, typeId: TYPE.UNIVERSAL }, [ 5 ]),
 ].map((champion) => new Champion(champion));
 
 function championForStars(champion, stars) {

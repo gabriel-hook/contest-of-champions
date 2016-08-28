@@ -4,6 +4,7 @@ import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
 import ImageIcon from '../ImageIcon.jsx';
+import Icon from '../Icon.jsx';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */
@@ -17,7 +18,12 @@ const GuideMenu = {
         );
         championTypeMap.forEach(({ typeId, uids }) => {
             options.push(
-                <MenuSection title={ `type-${ typeId }-name` } />
+                <MenuSection
+                    icon={
+                        <Icon icon={ `type-${ typeId }` } before />
+                    }
+                    title={ `type-${ typeId }-name` }
+                />
             );
             uids.map((uid) => options.push(
                 <MenuOption

@@ -38,9 +38,7 @@ const SynergyMenu = {
                         requestRedraw();
                     }}
                 />
-                <MenuSection
-                    title="show-by"
-                />
+                <MenuSection title="show-by" />
                 <MenuOptionGroup options={
                     [ '1', '2', '3', '4', '5' ].map((star) => (
                         <MenuOption
