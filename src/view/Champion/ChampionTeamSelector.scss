@@ -42,13 +42,17 @@
         .effect-amount {
             &.effect-amount--decreased {
                 color: #900;
+
+                &::before {
+                    content: "-";
+                }
             }
 
             &.effect-amount--increased {
                 color: #090;
 
                 &::before {
-                    content: "+ ";
+                    content: "+";
                 }
             }
         }

@@ -116,7 +116,6 @@ const ChampionTeamSelector = {
                                                 'effect-amount--increased': amount < changed,
                                                 'effect-amount--decreased': amount > changed,
                                             }) }>
-                                                { (amount < changed)? '+': (amount > changed)? '-': '' }
                                                 { Math.abs(amount - changed) }%
                                             </span>
                                             )
