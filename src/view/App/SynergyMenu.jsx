@@ -1,6 +1,6 @@
 import { EFFECT_VALUES } from '../../data/model/Effect';
 import { effectIcon } from '../../data/effects';
-import synergy from '../../service/synergy';
+import { getLegend, setLegend, getRoster, setRoster } from '../../service/synergy';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -21,9 +21,9 @@ const SynergyMenu = {
                         <Icon icon="list" before />
                     )}
                     title="legend-show"
-                    selected={ synergy.legend === true }
+                    selected={ Boolean(getLegend()) }
                     onclick={ () => {
-                        synergy.legend = !synergy.legend;
+                        setLegend(!getLegend());
                         requestRedraw();
                     }}
                 />
@@ -32,9 +32,9 @@ const SynergyMenu = {
                         <Icon icon="users" before />
                     )}
                     title="roster-use"
-                    selected={ synergy.roster === true }
+                    selected={ Boolean(getRoster()) }
                     onclick={ () => {
-                        synergy.roster = !synergy.roster;
+                        setRoster(!getRoster());
                         requestRedraw();
                     }}
                 />

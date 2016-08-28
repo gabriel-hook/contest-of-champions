@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { effectIcon } from '../../data/effects';
 import graph, { getLegend, updateGraph, getEffectColor } from '../../service/graph';
 import lang from '../../service/lang';
-import synergy from '../../service/synergy';
+import * as synergyOptions from '../../service/synergy';
 import Icon from '../Icon.jsx';
 import { requestRedraw } from '../../util/animation';
 /* eslint-disable no-unused-vars */
@@ -20,11 +20,11 @@ function config(definition, element, isInitialized) {
 
 const SynergyPage = {
     view(ctrl, { stars, effect }) {
-        const { roster } = synergy;
+        const roster = synergyOptions.getRoster();
         const legend = getLegend({ stars, effect, roster });
         return (
             <div m="SynergyPage" class="synergy" config={ config.bind(null, { stars, effect, roster }) }>
-                <div class={ classNames('legend', { 'legend--hidden': !synergy.legend }) }>
+                <div class={ classNames('legend', { 'legend--hidden': !synergyOptions.getLegend() }) }>
                     { legend && legend.map(({ effectId, selected, amount }) => (
                         <div
                             class={ classNames('no-select',
