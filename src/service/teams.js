@@ -33,6 +33,7 @@ const PRESETS = {
         'effect-healthsteal': 0.2,
         'effect-heroesforhire': 0.2,
         'effect-thunderbolts': 0.2,
+        'effect-masterminds': 0.6,
     },
     'balanced': {
         'effect-attack': 0.5,
@@ -53,6 +54,7 @@ const PRESETS = {
         'effect-healthsteal': 0.5,
         'effect-heroesforhire': 0.5,
         'effect-thunderbolts': 0.5,
+        'effect-masterminds': 0.5,
     },
     'defensive': {
         'effect-attack': 0.1,
@@ -73,6 +75,7 @@ const PRESETS = {
         'effect-healthsteal': 0.5,
         'effect-heroesforhire': 0.5,
         'effect-thunderbolts': 0.6,
+        'effect-masterminds': 0.1,
     },
 };
 
