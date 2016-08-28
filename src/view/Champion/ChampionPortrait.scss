@@ -10,27 +10,27 @@
     padding-bottom: 16.66666%;
 
     &.champion--cosmic {
-        color: #3af;
+        color: $color-cosmic;
     }
 
     &.champion--tech {
-        color: #23f;
+        color: $color-tech;
     }
 
     &.champion--mutant {
-        color: #fa0;
+        color: $color-mutant;
     }
 
     &.champion--skill {
-        color: #f30;
+        color: $color-skill;
     }
 
     &.champion--science {
-        color: #0a0;
+        color: $color-science;
     }
 
     &.champion--mystic {
-        color: #90f;
+        color: $color-mystic;
     }
 
     &.champion--null {

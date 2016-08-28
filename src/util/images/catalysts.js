@@ -13,6 +13,7 @@ const catalystImages = {
     'tier-5-basic': require('../../images/base/catalyst-5.png'),
 };
 
+// match colors in _colors.scss
 const catalystColors = {
     cosmic: '#3af',
     tech: '#23f',
