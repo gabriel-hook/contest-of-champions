@@ -26,6 +26,7 @@ const EFFECT_COLORS = {
     critrate: '#fa0',
     critdamage: '#a60',
     bleed: '#f06',
+    combo: '#600',
     stunactivation: '#f66',
     stunspecial: '#f60',
     powergain: '#a0f',
@@ -36,7 +37,7 @@ const EFFECT_COLORS = {
     healthsteal: '#af0',
     heroesforhire: '#0a6',
     thunderbolts: '#a6a',
-    masterminds: '#ff6',
+    masterminds: '#aaf',
 };
 
 function getTypeColor(typeId) {

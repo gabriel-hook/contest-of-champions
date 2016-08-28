@@ -118,6 +118,7 @@
     "effect-critrate-type": "Critical Rate",
     "effect-critdamage-type": "Critical Damage",
     "effect-bleed-type": "Bleed",
+    "effect-combo-type": "Combo",
     "effect-stunactivation-type": "Stun Activation",
     "effect-stunspecial-type": "Stun Special",
     "effect-powergain-type": "Power Gain",
@@ -132,7 +133,7 @@
     "effect-inseparable-type": "Special 3 Damage",
     "effect-heroesforhire-type": "Block Proficiency and Physical Resistance",
     "effect-thunderbolts-type": "Reduced Special Damage",
-    "effect-masterminds-type": "Increase Attack Damage during a Combo",
+    "effect-masterminds-type": "Energy Damage",
 
     "effect-mutantagenda-name": "Mutant Agenda",
     "effect-cosmicsupremacy-name": "Cosmic Supremacy",
@@ -146,6 +147,7 @@
     "effect-critrate-description": "Increases the chance for critical hit.",
     "effect-critdamage-description": "Increases damage multiplier for critical hits.",
     "effect-bleed-description": "Increases bleed damage.",
+    "effect-combo-description": "Increases damage on all attacks once a combo of 15 or more hits is reached.",
     "effect-stunactivation-description": "Chance to activate stun.",
     "effect-stunspecial-description": "Chance to stun on special attacks.",
     "effect-powergain-description": "Gain additional special power whenever you would normally gain it.",
@@ -160,7 +162,7 @@
     "effect-inseparable-description": "Increased special attack level 3 damage.",
     "effect-heroesforhire-description": "Increased block proficiency and physical resistance.",
     "effect-thunderbolts-description": "Take less special damage.",
-    "effect-masterminds-description": "Increases damage on all attacks once a combo of 15 or more hits is reached.",
+    "effect-masterminds-description": "Increases damage on all engergy based attacks.",
 
     "type-cosmic-name": "Cosmic",
     "type-tech-name": "Tech",

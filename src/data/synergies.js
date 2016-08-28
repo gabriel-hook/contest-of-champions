@@ -224,7 +224,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.BEAST, [
-        ...fromStars(4, 5, [ CHAMPION.SUPERIORIRONMAN, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.MASTERMINDS }),
+        ...fromStars(4, 5, [ CHAMPION.SUPERIORIRONMAN, CHAMPION.BLACKPANTHER ], { effectId: EFFECT.COMBO }),
         ...fromStars(3, 5, [ CHAMPION.NIGHTCRAWLER, CHAMPION.COLOSSUS ], { effectId: EFFECT.MUTANT_AGENDA }),
         ...fromStars(3, 5, { toId: CHAMPION.IRONPATRIOT, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, { toId: CHAMPION.GAMBIT, effectId: EFFECT.ARMOR }),

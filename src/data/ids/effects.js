@@ -6,6 +6,7 @@ export const COSMIC_SUPREMACY = 'cosmicsupremacy';
 export const CRITICAL_RATE = 'critrate';
 export const CRITICAL_DAMAGE = 'critdamage';
 export const BLEED = 'bleed';
+export const COMBO = 'combo';
 export const STUN_ACTIVATION = 'stunactivation';
 export const STUN_SPECIAL = 'stunspecial';
 export const POWER_GAIN = 'powergain';
