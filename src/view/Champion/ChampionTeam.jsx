@@ -151,7 +151,7 @@ const ChampionTeam = {
                                 <span class="effect-name">
                                     { lang.get(`effect-${ effectId }-type`) }
                                 </span>
-                                <span> - </span>
+                                <span> — </span>
                                 <span class="effect-amount">
                                     { amount }%
                                 </span>

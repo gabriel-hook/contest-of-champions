@@ -106,7 +106,7 @@ const ChampionTeamSelector = {
                                 <span class="effect-name">
                                     { lang.get(`effect-${ effect.attr.uid }-type`) }
                                 </span>
-                                <span> - </span>
+                                <span> — </span>
                                 <span class="effect-amount">
                                     { changed !== null? changed: amount }%
                                     { (changed !== null && amount !== changed) && (
@@ -116,6 +116,7 @@ const ChampionTeamSelector = {
                                                 'effect-amount--increased': amount < changed,
                                                 'effect-amount--decreased': amount > changed,
                                             }) }>
+                                                { (amount < changed)? '+': (amount > changed)? '-': '' }
                                                 { Math.abs(amount - changed) }%
                                             </span>
                                             )
