@@ -8,9 +8,9 @@ const IMAGE_STAR = imageStar.clone()
     .toDataUrl();
 
 const IMAGE_STAR_AWAKENED = imageStar.clone()
-    .transform(add('#113'))
+    .transform(add('#224'))
     .transform(gamma(0.5))
-    .transform(multiply({ red: 0.90, green: 0.90, blue: 0.95 }))
+    .transform(multiply({ red: 0.95, green: 0.95, blue: 1 }))
     .toDataUrl();
 
 export { IMAGE_STAR, IMAGE_STAR_AWAKENED };
