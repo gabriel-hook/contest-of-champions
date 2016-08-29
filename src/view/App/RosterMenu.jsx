@@ -1,5 +1,4 @@
-import { TYPE_VALUES } from '../../data/model/Type';
-import { typeIcon } from '../../data/types';
+import TYPES, { typeIcon } from '../../data/types';
 import lang from '../../service/lang';
 import roster from '../../service/roster';
 import router from '../../service/router';
@@ -210,16 +209,16 @@ const RosterMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                TYPE_VALUES.map((type) => (
+                TYPES.map((type) => (
                     <MenuOption
                         icon={(
-                            <Icon icon={ typeIcon(type) } />
+                            <Icon icon={ typeIcon(type.attr.uid) } />
                         )}
-                        info={ `type-${ type }-name` }
-                        selected={ roster.getFilter(type) }
+                        info={ `type-${ type.attr.uid }-name` }
+                        selected={ roster.getFilter(type.attr.uid) }
                         onclick={ () => {
 
-                            roster.setFilter(type, !roster.getFilter(type));
+                            roster.setFilter(type.attr.uid, !roster.getFilter(type.attr.uid));
                             requestRedraw();
                         }}
                     />

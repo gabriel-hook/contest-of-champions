@@ -1,5 +1,4 @@
-import { TYPE_VALUES } from '../../data/model/Type';
-import { typeIcon } from '../../data/types';
+import TYPES, { typeIcon } from '../../data/types';
 import { ROLE } from '../../data/model/Role';
 import { roleIcon } from '../../data/roles';
 import teams, { save, saveTeam, loadTeam, buildTeam, lockTeams } from '../../service/teams';
@@ -182,15 +181,15 @@ const TeamsMenu = {
         );
         options.push(
             <MenuOptionGroup options={
-                TYPE_VALUES.map((type) => (
+                TYPES.map((type) => (
                     <MenuOption
                         icon={(
-                            <Icon icon={ typeIcon(type) } />
+                            <Icon icon={ typeIcon(type.attr.uid) } />
                         )}
-                        info={ `type-${ type }-name` }
-                        selected={ teams.types[ type ] }
+                        info={ `type-${ type.attr.uid }-name` }
+                        selected={ teams.types[ type.attr.uid ] }
                         onclick={ () => {
-                            teams.types[ type ] = !teams.types[ type ];
+                            teams.types[ type.attr.uid ] = !teams.types[ type.attr.uid ];
                             save();
                             requestRedraw();
                         }}
