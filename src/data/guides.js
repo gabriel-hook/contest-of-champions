@@ -1,6 +1,6 @@
-import { GAMBIT } from './ids/champions';
+import { KARNAK } from './ids/champions';
 
-export const SPOTLIGHT = GAMBIT;
+export const SPOTLIGHT = KARNAK;
 export const RATINGS = [ 1, 2, 3, 4, 5 ];
 export const GRADES = [ 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E', 'F' ];
 export const RANGES = [

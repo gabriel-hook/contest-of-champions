@@ -1,0 +1,58 @@
+{
+    "description": "Karnak Mander-Azur, Inhuman philosopher and Magister of the Second Tower of Wisdom, refused the transformative Terrigen Mists and chose instead to train his body and mind like no other. Through his training, Karnak has gained immense insight into both himself and others, allowing him to see the flaw in all things and strike down his opponents with ruthless physical and mental precision.",
+    "youtube": "PDE4tZH_oRA",
+    "specials": {
+        "1": {
+            "description": "Karnak discovers his opponent’s stress points, gaining True Strike for 8.5 seconds. This allows him to ignore Armor, Resistances, and Evasion. True Strike is a passive effect and cannot be nullified or removed.",
+            "name": "Distortion & Focus",
+            "note": "This attack allows Karnak to be become Focused instantly.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "truestrike"
+            ]
+        },
+        "2": {
+            "description": "Damage from this attack increases by up to 48% based on how low the opponent’s Health is at the time of impact.",
+            "name": "The Three Worlds",
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": []
+        },
+        "3": {
+            "description": "Karnak Dazes his foes with his strike, reducing their Defensive Ability Accuracy by 80% for 40 seconds.",
+            "name": "Blind Time",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Karnak’s Inhuman metabolism and Autonomic Function Control allows him to shrug off non-damaging Debuff effects (20 - 50%) faster than normal and reduces damage from Poison by 65%",
+        "name": "Second Tower Training"
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "676407-Champion-Spotlight-Karnak"
+    },
+    "gameplay": {
+        "description": "Buff: Given time to study his opponent, Karnak becomes Focused, gaining 66% Critical Hit Chance. Whenever he is struck, Karnak loses Focus for 9 seconds. \n\nResist Physical Passive: Covered in a dense callus, Karnak has toughened his skin and gains 21% increased Physical Resistance.",
+        "abilities": [
+            "precision",
+            "physicalresist"
+        ]
+    },
+    "attack": {
+        "description": "Passive: Every 5 seconds, Karnak reduces his Class Disadvantage by 2% until it’s gone. This only affects the Attack penalty from a class Disadvantage, it does not affect Karnak’s opponent’s Class Advantage."
+    }
+}
