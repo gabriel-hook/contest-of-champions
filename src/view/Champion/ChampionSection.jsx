@@ -281,7 +281,10 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b>{ lang.get('abilities') }:</b>
                         { abilities.map((ability, index) => (
-                            <span class={ `champion-section-ability champion-section-ability-${ ability }` }>
+                            <span
+                                class={ `champion-section-ability champion-section-ability-${ ability }` }
+                                title={ lang.get(`ability-${ ability }-description`) }
+                            >
                                 { abilityIcon(ability) && (
                                     <Icon icon={ abilityIcon(ability) } before after={ index !== 0 } />
                                 ) || null }{ (index < abilities.length - 1)

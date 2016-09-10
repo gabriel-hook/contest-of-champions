@@ -329,7 +329,7 @@
 
     "abilities": "Abilities",
 
-    "ability-truestrike-name": "True Strike",
+    "ability-directdamage-name": "Direct Damage",
     "ability-fury-name": "Fury",
     "ability-weakness-name": "Weakness",
     "ability-precision-name": "Precision",
@@ -361,7 +361,7 @@
     "ability-nullify-name": "Nullify",
     "ability-evade-name": "Evade",
 
-    "ability-truestrike-description": "Damage ignores armor and resistances",
+    "ability-directdamage-description": "Damage ignores opponent's armor.",
     "ability-fury-description": "Increases attack damage.",
     "ability-weakness-description": "Decreases attack damage.",
     "ability-precision-description": "Increases critical rate.",

@@ -2,17 +2,32 @@
     "description": "Born of a mixed French-Algerian heritage, the mysterious Guillotine is the latest in her bloodline to inherit \"La Fleur du Mal\", a mystical sword with dark supernatural powers. Across the centuries, many have wielded the enchanted blade - some for good, some for evil. For the will of the sword is strong, and its thirst for blood is limitless, and many have succumbed to its whispers in their minds. The current Guillotine uses the blade to punish the guilty and keeps the sinister instincts of the sword in check …for now!",
     "specials": {
         "1": {
-            "name": "La Force d'Ancêtres"
+            "name": "La Force d'Ancêtres",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
         },
         "2": {
             "description": "Guillotine’s ancestral sword consumes 2 Souls to place a phantasm on the opponent, reversing all active Healing effects for 10 seconds.",
             "name": "Coup De Massue",
-            "note": "This effect reverses any Healing effects on the opponent. If the opponent is healing 10 health per second, they will instead take 10 damage per second. This can be extremely powerful against foes with predictable healing effects such as Deadpool, Ultron or Iron Man."
+            "note": "This effect reverses any Healing effects on the opponent. If the opponent is healing 10 health per second, they will instead take 10 damage per second. This can be extremely powerful against foes with predictable healing effects such as Deadpool, Ultron or Iron Man.",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
         },
         "3": {
             "name": "Coup De Grâce",
             "description": "La Fleur du Mal consumes all available Souls and deals 2% of the opponent’s health in direct damage.",
-            "note": "This attack deals direct damage, ignoring all Armor and Resistances the opponent has. Additionally, per soul that is consumed, it deals 2% of the target’s maximum health."
+            "note": "This attack deals direct damage, ignoring all Armor and Resistances the opponent has. Additionally, per soul that is consumed, it deals 2% of the target’s maximum health.",
+            "abilities": [
+                "directdamage"
+            ]
         }
     },
     "signature": {
@@ -25,12 +40,24 @@
     },
     "gameplay": {
         "description": "For every 6% of maximum health that Guillotine removes from her opponent during combat, she feeds her ancestral blade and gains 1 Soul. Souls expire every 10 seconds and grant Guillotine 13% Critical Damage per Soul.",
-        "note": "Souls can only be gained once per 6% health taken away. In other words, if an opponent heals above that threshold, you will not be rewarded for bringing him back down. You only lose one soul per 10 seconds."
+        "note": "Souls can only be gained once per 6% health taken away. In other words, if an opponent heals above that threshold, you will not be rewarded for bringing him back down. You only lose one soul per 10 seconds.",
+        "abilities": [
+            "directdamage",
+            "bleed"
+        ]
     },
     "author": {
         "name": "Kabam",
         "type": "spotlight",
         "profile": "594621-Guillotine-Champion-Spotlight"
     },
-    "youtube": "kmucBKxy6Ag"
+    "youtube": "kmucBKxy6Ag",
+    "attack": {
+        "abilities": [
+            "bleed"
+        ],
+        "damagetypes": [
+            "physical"
+        ]
+    }
 }

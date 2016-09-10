@@ -1,4 +1,4 @@
-export const TRUE_STRIKE = 'truestrike';
+export const DIRECT_DAMAGE = 'directdamage';
 export const FURY = 'fury';
 export const WEAKNESS = 'weakness';
 export const PRECISION = 'precision';

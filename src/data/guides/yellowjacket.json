@@ -1,0 +1,66 @@
+{
+    "description": "After learning the science behind Hank Pym's astonishing shrinking suit, the ruthless tech mogul Darren Cross devoted his resources to creating a prototype suit with similar abilities. Cross envisioned his high-power cybernetic rig as a means to take modern warfare to a new level, personally overseeing it's retrofitting and weaponization.  Cross dons the imposing armor himself in hopes of achieving final victory as Yellowjacket!",
+    "gameplay": {
+        "abilities": [
+            "precision"
+        ],
+        "note": "Yellowjacket is designed to bait special attacks.  Your goal should be to ramp up the enemy power level to L1 or L2, and hit him with your own L1 or L2.  Use the walk-up/run-away method to bait enemy special attacks and evade. The Power Sting target will take damage at the beginning of the L1 or L2 animation, and at the end of the L3 animation.  \n\nIf Yellowjacket is awakened, investing in Utility Masteries will extend the stun duration and related effects.  Awakened or not, investing in masteries that raise your base attack will increase the direct damage dealt to the target.",
+        "description": "Special Attacks 90% chance to Sting the opponent for 8 seconds. An opponent with sting takes 100% of your Attack as damage when activating a special attack.",
+        "rating": "5"
+    },
+    "specials": {
+        "1": {
+            "name": "Biosting Blast",
+            "description": "Sending extra power to the suit, Yellowjacket lets loose with a massive biosting energy blast",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "note": "90% chance to Sting the opponent for 8 seconds. An opponent with sting takes 100% of your Attack as damage when activating a special attack.",
+            "rating": "5"
+        },
+        "2": {
+            "rating": "5",
+            "name": "Power Sting",
+            "description": "Yellowjacket delivers a pair of heavy strikes to his opponent, then follows it up with a focused biosting blast.",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "energy",
+                "physical"
+            ],
+            "note": "90% chance to Sting the opponent for 8 seconds. An opponent with sting takes 100% of your Attack as damage when activating a special attack."
+        },
+        "3": {
+            "note": "90% chance to Sting the opponent for 8 seconds. An opponent with sting takes 100% of your Attack as damage when activating a special attack.",
+            "name": "Biosting Barrage",
+            "description": "With a blast of Pym Particles, Yellowjacket flies around his opponent at micro size, delivering a series of concentrated biostings.",
+            "damagetypes": [
+                "energy"
+            ],
+            "rating": "5"
+        }
+    },
+    "signature": {
+        "name": "Biosting 2.0",
+        "description": "Passive Power Stings stun their victims with a bio-electric shock for 1 to 2.2 second(s) after lasting their full duration.",
+        "abilities": [
+            "stun"
+        ]
+    },
+    "author": {
+        "name": "JJW",
+        "type": "reddit",
+        "profile": "/u/-JJW-"
+    },
+    "grades": {
+        "normal": "A",
+        "awakened": "A+"
+    },
+    "attack": {
+        "description": "All Attacks\n8% chance to boost Critical Hit Rate by 29% for 6 seconds."
+    }
+}

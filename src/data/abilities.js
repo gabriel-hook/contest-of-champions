@@ -1,7 +1,7 @@
 import { ABILITY } from './model/Ability';
 
 const abilityIcons = {
-    [ ABILITY.TRUE_STRIKE ]: 'effect-truestrike',
+    [ ABILITY.DIRECT_DAMAGE ]: 'effect-directdamage',
     [ ABILITY.FURY ]: 'effect-attack',
     [ ABILITY.WEAKNESS ]: 'effect-weakness',
     [ ABILITY.PRECISION ]: 'effect-critical-rate',
