@@ -60,7 +60,7 @@ const champions = [
     ...championForStars({ uid: CHAMPION.STORM, typeId: TYPE.MUTANT }, [ 2, 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.WOLVERINE, typeId: TYPE.MUTANT }, [ 1, 2, 3, 4 ]),
     ...championForStars({ uid: CHAMPION.WOLVERINEOLDMAN, typeId: TYPE.MUTANT }, [ 3, 4, 5 ]),
-    ...championForStars({ uid: CHAMPION.WOLVERINEWEAPONX, typeId: TYPE.MUTANT }, [ 3, 4, 5 ]),
+    ...championForStars({ uid: CHAMPION.WEAPONX, typeId: TYPE.MUTANT }, [ 3, 4, 5 ]),
     ...championForStars({ uid: CHAMPION.X23, typeId: TYPE.MUTANT }, [ 3, 4 ]),
     // Skill
     ...championForStars({ uid: CHAMPION.AGENTVENOM, typeId: TYPE.SKILL }, [ 3, 4, 5 ]),

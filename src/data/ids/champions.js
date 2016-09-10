@@ -43,7 +43,7 @@ export const ROGUE = 'rogue';
 export const STORM = 'storm';
 export const WOLVERINE = 'wolverine';
 export const WOLVERINEOLDMAN = 'wolverineoldman';
-export const WOLVERINEWEAPONX = 'wolverineweaponx';
+export const WEAPONX = 'weaponx';
 export const X23 = 'x23';
 // Skill
 export const AGENTVENOM = 'agentvenom';
