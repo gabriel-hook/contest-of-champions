@@ -1,0 +1,84 @@
+{
+    "signature": {
+        "description": "For each Armor Up effect active, Ultron releases more Nano-Inhibitors, reducing his opponent's Offensive Ability Accuracy by 28% per stack.",
+        "name": "Nano-Inhibitors"
+    },
+    "attack": {
+        "note": "Stack of Fury (25% attack increase for 6 seconds) every 5 attacks.",
+        "description": "Basic attacks have 18% chance to do 34% of Attack as Poison damage over 6.5 seconds.",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "poison",
+            "fury"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "poisonimmunity",
+            "bleedimmunity",
+            "armorup",
+            "poison",
+            "healblock",
+            "fury",
+            "stun",
+            "evade"
+        ],
+        "description": "Regeneration happens automatically at 25% and 50% health.",
+        "note": "Evade is automatic and random."
+    },
+    "specials": {
+        "1": {
+            "note": "Will remove any poison effects and add Heal Block for 1.5 seconds per Poison stack removed. Have 40% chance of 3 second stun.",
+            "description": "Ultra rapid and quick unleash, making it challenging to block if used at the end of a combo. Does light damage.",
+            "name": "Encaphalo-Ray",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "stun",
+                "healblock"
+            ]
+        },
+        "2": {
+            "note": "Will remove any poison effects and add Heal Block for 1.5 seconds per Poison stack removed. Have 40% chance of 3 second stun.",
+            "abilities": [
+                "stun",
+                "healblock"
+            ],
+            "damagetypes": [
+                "energy",
+                "physical"
+            ],
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "description": "Deals a decent amount of damage, but would be better to save for his L3. it can be blocked but due to its duration, the opponent will usually take some damage.",
+            "name": "Attack Routine 11010100"
+        },
+        "3": {
+            "note": "Will remove any poison effects and add Heal Block for 1.5 seconds per Poison stack removed. Have 40% chance of 3 second stun.",
+            "abilities": [
+                "stun",
+                "healblock"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "description": "Surprisingly doesn't do a ton of damage, but looks badass and gives you a few seconds of rest.",
+            "name": "Eradication"
+        }
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "671676-Labyrinth-of-Legends-Spotlight&p=3152935&viewfull=1#post3152935"
+    },
+    "description": "The visual appearance and powers of the character have varied, but common powers include superhuman levels of strength, speed, stamina, durability, and reflexes; flight at subsonic speeds; and various offensive weapons such as concussive blasts of energy fired from its optical sensors or hands and an \"encephalo-ray\", which places victims into a deathlike coma. The latter ray also allows Ultron to mesmerize and mind-control victims, or implant subliminal hypnotic commands within their minds to be enacted at a later time. Ultron also has the ability to convert electromagnetic radiation into electrical energy for use or storage. Ultron has a genius intellect, a capacity for creative intelligence and self-repair, superhuman cybernetic analytical capabilities, and the ability to process information and make calculations with superhuman speed and accuracy. The character is an expert roboticist and strategist.",
+    "youtube": "aQTvTvNzfMc"
+}

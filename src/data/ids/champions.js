@@ -26,6 +26,7 @@ export const STARLORD = 'starlord';
 export const VISION = 'vision';
 export const THEVISION = 'thevision';
 export const ULTRON = 'ultron';
+export const ULTRONCLASSIC = 'ultronclassic';
 export const WARMACHINE = 'warmachine';
 //Mutant
 export const BEAST = 'beast';

@@ -216,6 +216,12 @@ const synergies = [
         ...fromStars(3, 4, { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
+    ...fromId(CHAMPION.ULTRONCLASSIC, [
+        ...fromStars(5, [ CHAMPION.VISION, CHAMPION.THEVISION ], { effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(5, { toId: CHAMPION.THOR, effectId: EFFECT.ATTACK }),
+        ...fromStars(5, [ CHAMPION.THANOS, CHAMPION.KANG ], { effectId: EFFECT.CRITICAL_DAMAGE }),
+    ]),
+
     ...fromId(CHAMPION.WARMACHINE, [
         ...fromStars(2, 4, { toId: CHAMPION.HULKBUSTER, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.HAWKEYE, effectId: EFFECT.CRITICAL_RATE }),
