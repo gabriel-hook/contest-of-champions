@@ -19,6 +19,7 @@ const abilityIcons = {
     [ ABILITY.BLEED_IMMUNITY ]: 'effect-immunity-bleed',
     [ ABILITY.SHOCK ]: 'effect-shock',
     [ ABILITY.INCINERATE ]: 'effect-incinerate',
+    [ ABILITY.POWER_STEAL ]: 'effect-power',
     [ ABILITY.POWER_DRAIN ]: 'effect-power-lock',
     [ ABILITY.POWER_BURN ]: 'effect-power-lock',
     [ ABILITY.POWER_LOCK ]: 'effect-power-lock',
@@ -31,6 +32,7 @@ const abilityIcons = {
     [ ABILITY.STUN ]: 'effect-stun',
     [ ABILITY.STAGGER ]: 'effect-nullify',
     [ ABILITY.NULLIFY ]: 'effect-nullify',
+    [ ABILITY.LIMBO ]: 'effect-time',
     [ ABILITY.EVADE ]: 'effect-evade',
 };
 
