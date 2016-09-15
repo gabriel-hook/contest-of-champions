@@ -98,6 +98,15 @@ const MenuOptions = {
             options.push(
                 <MenuOption
                     icon={
+                        <Icon icon="trophy" before />
+                    }
+                    title="link-trucos"
+                    href="http://marveltrucos.x10.mx/"
+                />
+            );
+            options.push(
+                <MenuOption
+                    icon={
                         <Icon icon="user-secret" before />
                     }
                     title="link-frogspawn"
