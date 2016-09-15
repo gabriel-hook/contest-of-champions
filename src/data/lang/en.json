@@ -419,7 +419,7 @@
     "link-github": "Github hook/champions",
     "share-to": "Share",
 
-    "notification-roster-empty": "Add Champions to your to your roster",
+    "notification-roster-empty": "Add Champions to your roster",
     "notification-roster-add": "Added %stars%★ %champion% to your roster",
     "notification-roster-import": "Roster import successful",
     "notification-roster-import-failed": "Guide import failed\n\n%error%",
