@@ -1,0 +1,87 @@
+{
+    "description": "During an event known as Fear itself, the X-Man known as Colossus touched the Crimson Gem of the demon Cyttorak, gaining the demon's favor in place of his sister Magik. Attaining the same Mystical power that enhanced Juggernaut, Russia's favorite mutant hero became an Unstoppable artist of destruction.",
+    "gameplay": {
+        "abilities": [
+            "armorup",
+            "fury",
+            "bleedimmunity"
+        ],
+        "description": "Passive Impenetrable armor provides full immunity to Bleeding. \nWhen Attacked 9% chance to Armor Up, reducing damage from attacks by 33% for 6 seconds. \n\nSpecial Attacks \nDamage for this attack is based on current Armor levels. Damage increases by up to 130% based on overall Armor. This attack also deals reduced damage while under the effect of Armor Reduction.",
+        "note": "Unstoppable Colossus has a lot going for him before you even get to his signature ability. His attacks proc Fury like Abomination, and being attacked procs Armor Up, which increases his defense and attack at the same time. \nHis special attacks are not particularly special, but if you time them to coincide with his Armor and Fury boosts, any of them can be strong. \nLike most champs, lean into his L2 unless you have a good reason not to. For Alliance War, UC benefits most from Armor and Fury tiles. \nWhen you are fighting against UC, bring the Armor Breakers.",
+        "rating": "5"
+    },
+    "attack": {
+        "description": "All Attacks \n10% chance for Fury, increasing your Attack by 45% for 5 seconds.",
+        "ranges": [
+            "melee"
+        ],
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "fury"
+        ],
+        "rating": "5"
+    },
+    "specials": {
+        "1": {
+            "name": "Dropkick",
+            "description": "A classic wrestling move used to knock down any opponent.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury"
+            ],
+            "note": "Damage for this attack is based on current Armor levels. Damage increases by up to 130% based on overall Armor. This attack also deals reduced damage while under the effect of Armor Reduction.",
+            "rating": "3"
+        },
+        "2": {
+            "name": "Unstoppable",
+            "description": "Colossus demonstrates hand to hand combat with enough superhuman strength to careen 100 tons.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury"
+            ],
+            "note": "Damage for this attack is based on current Armor levels. Damage increases by up to 130% based on overall Armor. This attack also deals reduced damage while under the effect of Armor Reduction.",
+            "rating": "3"
+        },
+        "3": {
+            "name": "Unbreakable",
+            "description": "In flesh form he is a man, in steel form he is a hero, increasing his damage based on his current Armor level.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury"
+            ],
+            "note": "Damage for this attack is based on current Armor levels. Damage increases by up to 130% based on overall Armor. This attack also deals reduced damage while under the effect of Armor Reduction.",
+            "rating": "3"
+        }
+    },
+    "signature": {
+        "name": "Unstoppable",
+        "description": "Calling upon the power of Cyttorak, Colossus becomes Unstoppable, shrugging off all enemy attacks for 2 to 4 seconds.",
+        "abilities": [
+            "unstoppable"
+        ],
+        "rating": "5"
+    },
+    "author": {
+        "name": "[S D F] JJW, DeltaSigma",
+        "type": "reddit",
+        "profile": "-JJW-"
+    },
+    "grades": {
+        "normal": "B+",
+        "awakened": "A-"
+    }
+}

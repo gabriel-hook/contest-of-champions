@@ -1,0 +1,92 @@
+{
+    "specials": {
+        "1": {
+            "name": "Good Fortune Thunder Kick",
+            "description": "A powerful kick mastered from the teaching of Lei-Kung the Thunderer",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "1",
+            "abilities": [
+                "precision",
+                "armorbreak"
+            ],
+            "note": "8% chance to boost Critical Hit Rate by 33% for 6 seconds."
+        },
+        "2": {
+            "name": "Shattering Golden Star Blow",
+            "description": "Danny Rand learned this powerful technique while training with the Immortal Weapons of the Seven Cities.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "4",
+            "note": "8% chance to boost Critical Hit Rate by 33% for 6 seconds.",
+            "abilities": [
+                "precision",
+                "armorbreak"
+            ]
+        },
+        "3": {
+            "name": "Shou-Lao the Undying",
+            "description": "By focusing his Chi, Danny Rand unleashes the full power of the Iron Fist in a flurry of punches.",
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "2",
+            "abilities": [
+                "precision",
+                "armorbreak"
+            ],
+            "note": "8% chance to boost Critical Hit Rate by 33% for 6 seconds."
+        }
+    },
+    "attack": {
+        "rating": "4",
+        "heavy": "Heavy Attacks\nThe Iron Fist delivers a powerful Chi strike, disrupting the flow of energy and Nullifying 1 Cruelty, Fury, and Precision Buff.",
+        "ranges": [
+            "melee"
+        ],
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "nullify",
+            "precision",
+            "armorbreak"
+        ],
+        "note": "All Attacks\n8% chance to boost Critical Hit Rate by 28% for 5 seconds. \n\nCritical Hits \nThe sheer force of a Critical Hit has a 54% chance to break the target's Armor and apply 14% Armor reduction for 5 seconds."
+    },
+    "description": "Danny Rand is a brilliant billionaire who traveled to the heavenly city of K'un Lun to master the martial arts. Becoming the latest in a long line of warriors to pick up the mantle of Iron Fist, Rand gained the mystical power to focus his chi - augmenting his fighting skills to superhuman levels.",
+    "signature": {
+        "description": "The Iron First has a 21% chance to reduce enemy Armor by [4% to 15.9%], but these effects are lost if concentration is broken by incoming attacks.",
+        "name": "Concentration",
+        "abilities": [
+            "armorbreak"
+        ]
+    },
+    "gameplay": {
+        "note": "\"His armor break stacks like a m*********er. About all you need to know.\" ~s0okz",
+        "abilities": [
+            "armorbreak",
+            "nullify",
+            "precision"
+        ],
+        "description": "Iron Fist's Critical Hits have a good chance to debuff the opponent with Armor Break for 5 seconds. Enough hits in a short period of time and you can stack three, four, five deep.  \n\nIn the Contest, Armor Breaks reduce the opponents base defense by a fixed percentage. For instance, a stack by Iron Fist of 5 Armor Breaks would reduce any opponents base defense by 70% ( = 5 x 14%).  \n\nRecall, from the Perfect Block team days, most champs needed an additional 43% Block Proficiency in order to reduce damage to zero, meaning that the strongest defenders had no more than 67% defense, and frequently less. A 70% reduction for most champs would result in a negative base defense, which the Contest treats as a damage multiplier! \nA recommended tactic for Iron Fist would be to surround with a Critical Rate team, stack those Armor Breaks, and lean into an L2.",
+        "rating": "3"
+    },
+    "author": {
+        "name": "[S D F] JJW, BIZZERK, s0okz",
+        "type": "reddit",
+        "profile": "-JJW-"
+    },
+    "grades": {
+        "awakened": "A-",
+        "normal": "C"
+    }
+}

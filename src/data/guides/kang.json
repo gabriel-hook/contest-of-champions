@@ -1,0 +1,64 @@
+{
+    "description": "THE FINAL VICTORY BELONGS TO YOU, BRAVE SUMMONER. I, KANG THE CONQUORER, PHARAOH OF THE AGES, LORD OF THE TIMESTREAM ITSELF, GENIUS COMMANDER OF ALL TECHNOLOGY IN THE UNIVERSE, ACKNOWLEDGE YOUR POWER... for now. LONG LIVE KANG!",
+    "specials": {
+        "1": {
+            "name": "Concussive Bolt",
+            "description": "A concussive blast from the fingertips of Kang's gauntlets leave opponents in a daze.",
+            "note": "100% chance to stun for 3 seconds.",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "name": "E.M.P. Cannon",
+            "description": "Kang's TimeShip blasts his opponent back to the future from a remote location using an electromagnetic pulse cannon.",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "stun",
+                "powerdrain"
+            ],
+            "note": "100% chance to Stun for 2 seconds.\nDepletes up to 100% of the target's max Power."
+        },
+        "3": {
+            "name": "Drone Assault",
+            "description": "Kang deploys a swarm of robotic drones from the future to seek and destroy his target.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "healblock"
+            ],
+            "note": "100% chance to inflict Heal Block, preventing the target from recovering Health for 12 seconds."
+        }
+    },
+    "signature": {
+        "name": "Kang Armor",
+        "description": "Passive Kang's Power level fuels his neuro-kinetic suit of armor, endowing him with up to 85.2% Armor based on stored Power",
+        "abilities": [
+            "armorup"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "stun",
+            "powerdrain",
+            "healblock"
+        ]
+    },
+    "author": {
+        "name": "[S D F] JJW",
+        "type": "reddit",
+        "profile": "-JJW-"
+    }
+}
