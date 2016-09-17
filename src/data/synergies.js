@@ -110,7 +110,7 @@ const synergies = [
     ...fromId(CHAMPION.MSMARVEL, [
         ...fromStars(3, 4, { toId: CHAMPION.CAPTAINAMERICA, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.IRONMAN, effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(3, 4, { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 4, [ CHAMPION.THOR, CHAMPION.THORJANEFOSTER ], { effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 4, { toId: CHAMPION.HULK, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
@@ -291,6 +291,13 @@ const synergies = [
         ...fromStars(3, 5, { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, [ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], { effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(4, 5, { toId: CHAMPION.X23, effectId: EFFECT.CRITICAL_DAMAGE }),
+    ]),
+
+    ...fromId(CHAMPION.ROGUE, [
+        ...fromStars(3, 5, { toId: CHAMPION.NIGHTCRAWLER, effectId: EFFECT.HEALTH }),
+        ...fromStars(3, 5, { toId: CHAMPION.GAMBIT, effectId: EFFECT.POWER_GAIN }),
+        ...fromStars(3, 5, { toId: CHAMPION.MSMARVEL, effectId: EFFECT.CRITICAL_DAMAGE }),
+        ...fromStars(3, 5, { toId: CHAMPION.DEADPOOL, effectId: EFFECT.MUTANT_AGENDA }),
     ]),
 
     ...fromId(CHAMPION.STORM, [

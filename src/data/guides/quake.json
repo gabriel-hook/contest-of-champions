@@ -1,0 +1,36 @@
+{
+    "signature": {
+        "name": "Ricochet Pulse",
+        "description": "Blocking\n\nQuake Blocks an additional 18.8% Damage and Redirects it back to the opponent as a pulse of Physical Damage.",
+        "abilities": []
+    },
+    "attack": {
+        "heavy": "While Heavy Attack Charging  \nQuake generates powerful waves of vibrations that causes an Earthquake, dealing 7.2% of your Attack as physical damage per second.  \n  \nInflicts Concussion, reducing the opponent's Ability Accuracy by 32.5%. While Quake is generating an Earthquake through this attack, the Aftershock Scale goes up by 1 every 1.2 seconds.",
+        "abilities": [
+            "fatigue"
+        ]
+    },
+    "gameplay": {
+        "note": "Aftershock  \nAn Aftershock hits 10 seconds after an Earthquake. For every point in the Scale, Aftershock deals 33% Attack as physical damage.  \n  \n10% chance to Stun the opponent for 1.5 seconds.  \n  \nAftershock Stun Duration and Accuracy goes up by 7% for every point in the Aftershock Scale.  \n  \nInflicts Concussion, reducing the opponent's Ability Accuracy by 32.5% for 5 seconds when the Aftershock Scale is higher than 4 points.  \n  \nPassive  \nEvades all Basic Attacks against opponents with a Concussion."
+    },
+    "specials": {
+        "1": {
+            "note": "Adds 2 points to the Aftershock Scale."
+        },
+        "2": {
+            "note": "Adds 3 points to the Aftershock Scale.\n\n100% chance to inflict Consussion, reducing the opponent's Ability Accuracy by 32.5% for 5 seconds.",
+            "abilities": [
+                "precision"
+            ]
+        },
+        "3": {
+            "note": "Adds 6 points to the Aftershock Scale."
+        }
+    },
+    "author": {
+        "name": "[S D F] JJW, DeltaSigma",
+        "type": "reddit",
+        "profile": "-JJW-"
+    },
+    "description": "Placeholder Profile"
+}

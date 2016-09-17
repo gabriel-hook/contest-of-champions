@@ -1,4 +1,5 @@
 import { championTypeMap } from '../../data/champions';
+import lang from '../../service/lang';
 import guides from '../../data/guides';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
@@ -25,18 +26,21 @@ const GuideMenu = {
                     title={ `type-${ typeId }-name` }
                 />
             );
-            uids.map((uid) => options.push(
-                <MenuOption
-                    key={ `guide-champion-${ uid }` }
-                    icon={(
-                        <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" before />
-                    )}
-                    invalid={ !guides[ uid ] || guides[ uid ].invalid }
-                    title={ `champion-${ uid }-name` }
-                    selected={ currentUid === uid }
-                    href={ `/guide/${ uid }` }
-                />
-            ));
+            uids
+                .map((uid) => ({ uid, name: lang.get(`champion-${ uid }-name`).toLowerCase() || '' }))
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map(({ uid }) => options.push(
+                    <MenuOption
+                        key={ `guide-champion-${ uid }` }
+                        icon={(
+                            <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" before />
+                        )}
+                        invalid={ !guides[ uid ] || guides[ uid ].invalid }
+                        title={ `champion-${ uid }-name` }
+                        selected={ currentUid === uid }
+                        href={ `/guide/${ uid }` }
+                    />
+                ));
         });
         return (
             <div m="GuideMenu" key={ 'guide-menu' }>

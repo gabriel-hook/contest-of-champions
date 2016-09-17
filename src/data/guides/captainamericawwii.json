@@ -1,0 +1,70 @@
+{
+    "grades": {
+        "normal": "A",
+        "awakened": "A+"
+    },
+    "specials": {
+        "1": {
+            "rating": "3",
+            "note": "35% chance to Stun for 2.5 seconds",
+            "name": "Shield Bash",
+            "description": "Cap puts his weight behind a hefty shield bash.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "rating": "5",
+            "note": "100% chance to inflict Bleed, dealing 279% of your Attack as direct damage over 4 seconds.",
+            "name": "Shield Toss",
+            "description": "A staple of the Cap repertoire, his shield strikes true and through.",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "3": {
+            "rating": "2",
+            "note": "45% chance to Stun for 3 seconds.",
+            "name": "American Justice",
+            "description": "An up-close and personal view of Cap's shield. Don't blink or you'll miss it.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ]
+        }
+    },
+    "signature": {
+        "rating": "5",
+        "name": "Safeguard",
+        "description": "The chance to Perfectly Block all damage increases by up to 51.4% while opponents are under Buff effects."
+    },
+    "gameplay": {
+        "note": "Blocking  \nBlocking reduces 24% additional damage from attacks.\n13% chance that a Block reduces all damage.",
+        "abilities": [
+            "stun",
+            "bleed"
+        ],
+        "description": "Captain America WWII is roundly considered the superior version of this champion for two reasons. First, unlike the regular version, Cap W2 does not set a Fatigue debuff on the opponent, so willpower is not triggered when blocking.   \n Compared to the original, Cap W2's ability to Stun is substantially turned down too, but in exchange he gains an incredible Bleed ability on his L2. Coupled with Deep Wounds, his Bleed can last up to 5.5 seconds, and do nearly 384% Attack as direct damage!   \n\nYou might use Cap W2's stun abilities, L1 and L3, a lot more sparingly. If the opponent is able to Bleed, L2 is your first, best weapon. If the opponent doesn't bleed, spam L1.",
+        "rating": "5"
+    },
+    "description": "As a member of the Greatest Generation, Steve Rogers spent his days in WWII taking down Nazis and battling the infamous Red Skull. This was the era when the legend known as the Sentinel of Liberty was born.",
+    "author": {
+        "name": "[S D F] JJW, BIZERK, Cray-zTurtle",
+        "type": "reddit",
+        "profile": "-JJW-"
+    }
+}

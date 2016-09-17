@@ -1,0 +1,40 @@
+{
+    "description": "Placeholder Profile",
+    "gameplay": {
+        "abilities": [
+            "incinerate",
+            "fury",
+            "armorbreak",
+            "stun"
+        ],
+        "note": "Phoenix Force - Passive  \n \nThe Phoenix's connection to the cosmic Phoenix Force entity is the source of much of her power. She begins the fight with 1 Phoenix Force charge, and periodically generates Fury Buffs based on her current number of Phoenix Force Charges.    \n  \nFury Buffs increase Attack by 7.5%    \n  \nEmpowered - 5 or more Fury Buffs   \nAll attacks gain 100% chance to Incinerate the opponent, dealing 7% of her Attack as Energy Damage over 6 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% when it's active.   \n   \nHeavy Attacks gain 100% chance to Armor Break, reducing Armor by 30% for 7 seconds.    \n  \nOverloaded - 11 Fury Buffs  \n \nOn entering Overload all Phoenix Force charges are immediately consumed, and the Phoenix begins to consume Fury Buffs periodically.   \n    \nAll attacks have a 20% chance to Stun Incinerated targets.   \n   \nOffensive and Defensive Power Gain is reduced by 80%.   \n   \nOn reaching 0 Fury Charges, the Phoenix stops Overloading and generates 1 Phoenix Force charge."
+    },
+    "signature": {
+        "name": "Right of the Phoenix",
+        "description": "Once per fight when the Phoenix would be knocked out, she immediately becomes invulnerable for 2 seconds, and consumes all of her Phoenix Force charges, regaining 7.3 health per charge. After which she gains 1 Phoenix Force charge.",
+        "abilities": []
+    },
+    "attack": {
+        "heavy": "100% chance to gain a Phoenix Force Buff."
+    },
+    "specials": {
+        "1": {
+            "description": "Gain 10% Power for each Phoenix Force charge, consuming all but 1 of them.      Consumes up to 1 Fury Buffs, increasing Special Damage by 10% per Fury consumed.",
+            "damagetypes": [
+                "energy"
+            ]
+        },
+        "2": {
+            "note": "Gain 3 additional stacks of Phoenix Force.  \n  \nConsumes up to 4 Fury Buffs, increasing Special Damage by 10% per Fury consumed.",
+            "damagetypes": [
+                "energy"
+            ]
+        },
+        "3": {
+            "note": "This attack consumes all of the Phoenix's Fury Buffs, granting up to 242% damage bonus, based on the number of Fury Buffs consumed.",
+            "damagetypes": [
+                "energy"
+            ]
+        }
+    }
+}

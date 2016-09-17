@@ -1,0 +1,76 @@
+{
+    "description": "Cain Marko was a bitter man with a big chip on his shoulder. His story could have ended harmlessly, but then disaster struck: a mystic artifact transformed him into the unstoppable Juggernaut! Since then, he's made it his mission to torment the Marvel Universe with his strength, resilience, and nasty attitude.",
+    "specials": {
+        "1": {
+            "name": "Tremor",
+            "description": "Juggernaut smashes the ground, sending the opponent flying.",
+            "ranges": [
+                "short"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "3"
+        },
+        "2": {
+            "name": "Aftershock",
+            "description": "Juggernaut's devastating headbutt ripples through his opponent, shattering the ground below them.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "3"
+        },
+        "3": {
+            "name": "Avatar of Cyttorak",
+            "description": "Juggernaut uses the environment in more ways than one, with devastating results for opponents",
+            "damagetypes": [
+                "physical"
+            ],
+            "rating": "3"
+        }
+    },
+    "gameplay": {
+        "abilities": [
+            "fury",
+            "armorup",
+            "stagger",
+            "unstoppable"
+        ],
+        "note": "When Attacked  \n9% chance for Fury, increasing your Attack by 40% for 5.5 seconds.  \n\nPassive  \nA layer of Armor reduces an additional 15% incoming attack damage.  \n\nAt the beginning of the fight, increased momentum levels allow you to become Unstoppable and shrug off attacks for 2 seconds.",
+        "rating": "2",
+        "description": "As a champion to play offensively, Juggernaut leaves a lot to be desired. When attacking, if you rarely get hit then his Fury ability goes unused, making him unappealing for moderately advanced players, and his Unstoppable ability is less helpful than one would think. There is nothing in his arsenal that helps to end fights quickly, though he does have some decent synergies.  \n\nJuggernaut tends to shine as an Alliance War Defender. Armor and Fury tiles make him more durable and more dangerous since it is assured that he will be taking hits.  \n\nIf Awakened, his Unstoppable ability means that offenders much block up or evade, which helps to run down the clock."
+    },
+    "attack": {
+        "heavy": "90% chance to Stagger the enemy for 9 seconds. A Staggered enemy cannot gain their next buff effect.",
+        "ranges": [
+            "melee"
+        ],
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "stagger"
+        ],
+        "rating": "2"
+    },
+    "signature": {
+        "name": "Unstoppable",
+        "description": "Special Attacks  \nJuggernaut becomes Unstoppable for [1.5 to 3] seconds, shrugging off enemy attacks. Once Juggernaut starts moving nothing can stop him.",
+        "abilities": [
+            "unstoppable"
+        ],
+        "rating": "4"
+    },
+    "author": {
+        "name": "[S D F] JJW, DeltaSigma",
+        "type": "reddit",
+        "profile": "-JJW-"
+    },
+    "grades": {
+        "normal": "D",
+        "awakened": "C"
+    }
+}

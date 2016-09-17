@@ -1,0 +1,78 @@
+{
+    "description": "Steve Roger's body may have been too weak to become a soldier, but his heart was too strong to quit. By a miracle of science, Steve was transformed into Captain America, Sentinel of Liberty. Possessing super strength, speed, reflexes, and his unbreakable shield, Cap is a born leader of humans, heroes, and gods.",
+    "specials": {
+        "1": {
+            "name": "Shield Bash",
+            "description": "Cap puts his weight behind a hefty shield bash.",
+            "ranges": [
+                "melee"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "note": "30% chance to Stun opponents for 3 seconds. The chance to Stun is increased 40% if the target is Fatigued.",
+            "rating": "4"
+        },
+        "2": {
+            "name": "Shield Toss",
+            "description": "A staple of the Cap repertoire, his shield strikes true and through.",
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "note": "30% chance to Stun opponents for 3 seconds. The chance to Stun is increased by 40% if the target is fatigued.",
+            "rating": "5"
+        },
+        "3": {
+            "name": "American Justice",
+            "description": "An up-close and personal view of Cap's Shield. Don't blink or you'll miss it.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "stun"
+            ],
+            "note": "30% chance to Stun opponents for 3 seconds. The chance to Stun is increased by 40% if the target is fatigued.",
+            "rating": "3"
+        }
+    },
+    "signature": {
+        "name": "Last Stand",
+        "description": "The chance to Perfectly Block all damage increases by up to 51.4% based for every 1% Health lost, providing hope when Cap needs it most.",
+        "rating": "4"
+    },
+    "author": {
+        "name": "[S D F] JJW",
+        "type": "reddit",
+        "profile": "-JJW-"
+    },
+    "gameplay": {
+        "abilities": [
+            "fatigue",
+            "stun"
+        ],
+        "note": "Blocking  \nBlocking reduces 28% additional damage from attacks. 20% chance that a Block reduces all damage.  \n\nBlocking  \nA Perfect Block has a 89% chance to Fatigue the opponent, lowering their Critical Hit Rate by 10% for 12 seconds.",
+        "rating": "4",
+        "description": "There's no debate, Captain America is a tank. He may not be exciting to play, but he is reliable and tough.  \n\nMost players already invest in a basic defense mastery setup with 8% Block Proficiency, and a point in Perfect Block. When blocking, Cap takes very little damage.  \n\nInvesting in Utility pays off big time with Cap. He is already highly likely to Stun an opponent, but with Stupefy, Petrify and Pacify you can extend the stun duration and reduce the frequency certain opponent abilities.  \n\nWith Cap, it is pretty easy to implement a solid stun-combo chain.  Build 2 to 2.5 bars of power with basic attacks. Parry to stun, MLLL and L2. Another MLLL combo should fill up your L1, and you can Stun and combo again."
+    },
+    "grades": {
+        "normal": "A-",
+        "awakened": "A"
+    },
+    "attack": {
+        "damagetypes": [
+            "physical"
+        ],
+        "ranges": [
+            "melee"
+        ]
+    }
+}
