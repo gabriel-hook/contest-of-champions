@@ -1,6 +1,7 @@
 .sublime-*
+.DS_Store
+Thumbs.db
 npm-debug.log
-/.publish
-/.build
 /.idea
 /node_modules
+/build

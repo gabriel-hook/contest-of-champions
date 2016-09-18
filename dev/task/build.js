@@ -5,7 +5,7 @@ import plumber from 'gulp-plumber';
 import sequence from 'gulp-sequence';
 
 gulp.task('css-fix', (complete) => {
-    const cssFilename = glob.sync('./.build/styles/app-*.css')[ 0 ];
+    const cssFilename = glob.sync('./build/styles/app-*.css')[ 0 ];
     const file = fs.createReadStream(cssFilename, 'utf8');
     let css = '';
 
@@ -26,13 +26,13 @@ gulp.task('images', () => gulp.src([
     './src/images/**/*',
 ])
     .pipe(plumber())
-    .pipe(gulp.dest('./.build/images/')));
+    .pipe(gulp.dest('./build/images/')));
 
 gulp.task('public', () => gulp.src([
     './src/manifest.json',
     './src/.nojekyll',
 ])
     .pipe(plumber())
-    .pipe(gulp.dest('./.build/')));
+    .pipe(gulp.dest('./build/')));
 
 gulp.task('build', sequence('clean', 'webpack', 'css-fix', 'images', 'public'));
