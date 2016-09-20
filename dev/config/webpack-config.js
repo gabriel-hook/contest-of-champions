@@ -17,7 +17,7 @@ export default {
         app: [ './src/index.js' ],
     },
     output: {
-        path: path.resolve('./.build/'),
+        path: path.resolve('./build/'),
         filename: 'scripts/[name]-[hash:6].js',
     },
     module: {
