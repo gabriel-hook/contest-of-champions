@@ -9,14 +9,13 @@ export const UNRELEASED_CHAMPIONS = [
     // Mutant
     CHAMPION.PHOENIX,
     CHAMPION.PHOENIXDARK,
-    CHAMPION.ROGUE,
     CHAMPION.WEAPONX,
     // Skill
     CHAMPION.REDSKULL,
     // Mystic
     CHAMPION.DRSTRANGEMARVELNOW,
     CHAMPION.SCARLETWITCHULTIMATE,
-    //Unknown
+    // Universal
     CHAMPION.MAESTRO,
 ].reduce((map, champion) => {
     map[ champion ] = true;

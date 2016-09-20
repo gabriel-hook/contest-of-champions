@@ -29,7 +29,7 @@ export const THEVISION = 'thevision';
 export const ULTRON = 'ultron';
 export const ULTRONCLASSIC = 'ultronclassic';
 export const WARMACHINE = 'warmachine';
-//Mutant
+// Mutant
 export const BEAST = 'beast';
 export const COLOSSUS = 'colossus';
 export const CYCLOPS = 'cyclops';
@@ -91,5 +91,5 @@ export const SCARLETWITCH = 'scarletwitch';
 export const SCARLETWITCHULTIMATE = 'scarletwitchultimate';
 export const THORJANEFOSTER = 'thorjanefoster';
 export const UNSTOPPABLECOLOSSUS = 'unstoppablecolossus';
-// Unknown
+// Universal
 export const MAESTRO = 'maestro';
