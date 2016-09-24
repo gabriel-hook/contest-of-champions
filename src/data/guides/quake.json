@@ -5,13 +5,14 @@
         "abilities": []
     },
     "attack": {
-        "heavy": "While Heavy Attack Charging  \nQuake generates powerful waves of vibrations that causes an Earthquake, dealing 7.2% of your Attack as physical damage per second.  \n  \nInflicts Concussion, reducing the opponent's Ability Accuracy by 32.5%. While Quake is generating an Earthquake through this attack, the Aftershock Scale goes up by 1 every 1.2 seconds.",
+        "heavy": "While Heavy Attack Charging Quake generates powerful waves of vibrations that causes an Earthquake, dealing 7.2% of your Attack as physical damage per second. Inflicts Concussion, reducing the opponent's Ability Accuracy by 32.5%. While Quake is generating an Earthquake through this attack, the Aftershock Scale goes up by 1 every 1.2 seconds.",
         "abilities": [
             "fatigue"
         ]
     },
     "gameplay": {
-        "note": "Aftershock  \nAn Aftershock hits 10 seconds after an Earthquake. For every point in the Scale, Aftershock deals 33% Attack as physical damage.  \n  \n10% chance to Stun the opponent for 1.5 seconds.  \n  \nAftershock Stun Duration and Accuracy goes up by 7% for every point in the Aftershock Scale.  \n  \nInflicts Concussion, reducing the opponent's Ability Accuracy by 32.5% for 5 seconds when the Aftershock Scale is higher than 4 points.  \n  \nPassive  \nEvades all Basic Attacks against opponents with a Concussion."
+        "note": "Evades all Basic Attacks against opponents with a Concussion.",
+        "description": "Aftershock\n\nAn Aftershock hits 10 seconds after an Earthquake. For every point in the Scale, Aftershock deals 33% Attack as physical damage. 10% chance to Stun the opponent for 1.5 seconds.\n\nAftershock Stun Duration and Accuracy goes up by 7% for every point in the Aftershock Scale.\n\nInflicts Concussion, reducing the opponent's Ability Accuracy by 32.5% for 5 seconds when the Aftershock Scale is higher than 4 points."
     },
     "specials": {
         "1": {

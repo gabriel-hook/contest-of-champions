@@ -464,6 +464,10 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
     ]),
 
+    ...fromId(CHAMPION.QUAKE, [
+        ...fromStars(2, [ CHAMPION.CROSSBONES, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.CRITICAL_RATE }),
+    ]),
+
     ...fromId(CHAMPION.RHINO, [
         ...fromStars(2, 5, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERGWEN ], { effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(2, 5, { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR }),
