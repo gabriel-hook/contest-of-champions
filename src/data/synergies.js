@@ -328,6 +328,7 @@ const synergies = [
         ...fromStars(3, 5, { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.IDOL }),
         ...fromStars(3, 5, { toId: CHAMPION.VENOM, effectId: EFFECT.HEALTH }),
         ...fromStars(3, 5, { toId: CHAMPION.SPIDERMANBLACK, effectId: EFFECT.HEALTH }),
+        ...fromStars(4, 5, { toId: CHAMPION.GROOT, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
     ...fromId(CHAMPION.BLACKPANTHER, [

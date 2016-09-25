@@ -1,3 +1,4 @@
+import { UNRELEASED_CHAMPIONS } from '../data/champions/unreleased';
 import CHAMPIONS from '../data/champions';
 import SYNERGIES from '../data/synergies';
 import router from '../service/router';
@@ -140,30 +141,32 @@ function getGraph(id, championFilter, synergyFilter, useRoster) {
                 championsTo[ synergy.attr.toId ] = true;
                 return synergy;
             });
-        (useRoster? roster.all(): CHAMPIONS)
-            .filter((champion) => (championsTo[ champion.attr.uid ] || championsFrom[ `${ champion.attr.uid }-${ champion.attr.stars }` ]) && championFilter(champion))
-            .forEach((champion) => {
-                const { typeId, uid, stars } = champion.attr;
-                const node = graph.newNode({
-                    uid,
-                    stars,
-                    label: uid,
-                    image: `images/champions/portrait_${ uid }.png`,
-                    type: typeId,
-                    color: TYPE_COLORS[ typeId ],
-                    neighbors: {},
-                    effects: {},
-                    onOpen: () => {
-                        router.setRoute(`/guide/${ uid }`);
-                        requestRedraw();
-                    },
+        (useRoster
+            ? roster.all()
+            : CHAMPIONS.filter((champion) => !UNRELEASED_CHAMPIONS[ champion.attr.uid ]))
+                .filter((champion) => (championsTo[ champion.attr.uid ] || championsFrom[ `${ champion.attr.uid }-${ champion.attr.stars }` ]) && championFilter(champion))
+                .forEach((champion) => {
+                    const { typeId, uid, stars } = champion.attr;
+                    const node = graph.newNode({
+                        uid,
+                        stars,
+                        label: uid,
+                        image: `images/champions/portrait_${ uid }.png`,
+                        type: typeId,
+                        color: TYPE_COLORS[ typeId ],
+                        neighbors: {},
+                        effects: {},
+                        onOpen: () => {
+                            router.setRoute(`/guide/${ uid }`);
+                            requestRedraw();
+                        },
+                    });
+                    nodeMap[ `${ uid }-${ stars }` ] = node;
+                    if(!nodeMap[ uid ])
+                        nodeMap[ uid ] = [];
+                    nodeMap[ uid ].push(node);
+                    return node;
                 });
-                nodeMap[ `${ uid }-${ stars }` ] = node;
-                if(!nodeMap[ uid ])
-                    nodeMap[ uid ] = [];
-                nodeMap[ uid ].push(node);
-                return node;
-            });
         synergies.forEach((synergy) => {
             const { fromId, fromStars, toId, effectId, effectAmount, group } = synergy.attr;
             const nodeFrom = nodeMap[ `${ fromId }-${ fromStars }` ];
