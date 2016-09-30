@@ -28,7 +28,7 @@ function buildQuest({
                 .forEach(({ attr }) => (synergies[ attr.toId ] = {
                     id: attr.toId,
                     group: attr.group,
-                    value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
+                    value: weights[ attr.effectId ] * attr.effectAmount / effectBase(attr.effectId),
                 }));
 
             return {

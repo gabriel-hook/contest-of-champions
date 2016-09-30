@@ -1,6 +1,8 @@
 import { UNRELEASED_CHAMPIONS } from '../data/champions/unreleased';
 import CHAMPIONS from '../data/champions';
 import SYNERGIES from '../data/synergies';
+import { TYPE } from '../data/model/Type';
+import { EFFECT } from '../data/model/Effect';
 import router from '../service/router';
 import roster from '../service/roster';
 import Graph from './graph/Graph';
@@ -9,36 +11,38 @@ import deepEqual from 'deep-equal';
 import { requestRedraw } from '../util/animation';
 
 const TYPE_COLORS = {
-    cosmic: '#3af',
-    tech: '#23f',
-    mutant: '#fa0',
-    skill: '#f30',
-    science: '#0a0',
-    mystic: '#90f',
-    universal: '#3ff',
+    [ TYPE.COSMIC ]: '#3af',
+    [ TYPE.TECH ]: '#23f',
+    [ TYPE.MUTANT ]: '#fa0',
+    [ TYPE.SKILL ]: '#f30',
+    [ TYPE.SCIENCE ]: '#0a0',
+    [ TYPE.MYSTIC ]: '#90f',
+    [ TYPE.UNIVERSAL ]: '#3ff',
 };
 
 const EFFECT_COLORS = {
-    attack: '#f00',
-    idol: '#f0a',
-    inseparable: '#a00',
-    mutantagenda: '#ff0',
-    cosmicsupremacy: '#66f',
-    critrate: '#fa0',
-    critdamage: '#a60',
-    bleed: '#f06',
-    combo: '#600',
-    stunactivation: '#f66',
-    stunspecial: '#f60',
-    powergain: '#a0f',
-    powersteal: '#a6f',
-    perfectblock: '#00a',
-    armor: '#0af',
-    health: '#0f0',
-    healthsteal: '#af0',
-    heroesforhire: '#0a6',
-    thunderbolts: '#a6a',
-    masterminds: '#aaf',
+    [ EFFECT.ATTACK ]: '#f00',
+    [ EFFECT.IDOL ]: '#f0a',
+    [ EFFECT.INSEPARABLE ]: '#a00',
+    [ EFFECT.MUTANT_AGENDA ]: '#ff0',
+    [ EFFECT.COSMIC_SUPREMACY ]: '#66f',
+    [ EFFECT.CRITICAL_RATE ]: '#fa0',
+    [ EFFECT.CRITICAL_DAMAGE ]: '#a60',
+    [ EFFECT.BLEED ]: '#f06',
+    [ EFFECT.COMBO ]: '#600',
+    [ EFFECT.STUN_ACTIVATION ]: '#f66',
+    [ EFFECT.STUN_SPECIAL ]: '#f60',
+    [ EFFECT.POWER_GAIN ]: '#a0f',
+    [ EFFECT.POWER_STEAL ]: '#a6f',
+    [ EFFECT.PERFECT_BLOCK ]: '#00a',
+    [ EFFECT.ARMOR ]: '#0af',
+    [ EFFECT.HEALTH ]: '#0f0',
+    [ EFFECT.HEALTH_STEAL ]: '#af0',
+    [ EFFECT.HEROES_FOR_HIRE ]: '#0a6',
+    [ EFFECT.THUNDERBOLTS ]: '#a6a',
+    [ EFFECT.MASTERMINDS ]: '#aaf',
+    [ EFFECT.SHIELD_AGENTS ]: '#aa0',
+    [ EFFECT.SHIELD_CLEARANCE ]: '#660',
 };
 
 function getTypeColor(typeId) {

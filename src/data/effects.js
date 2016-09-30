@@ -19,6 +19,8 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.HEROES_FOR_HIRE ]: [ 3, 4, 5 ],
     [ EFFECT.THUNDERBOLTS ]: [ 4, 5, 6 ],
     [ EFFECT.MASTERMINDS ]: [ 5, 10, 15 ],
+    [ EFFECT.SHIELD_AGENTS ]: [ 10, 12, 15 ],
+    [ EFFECT.SHIELD_CLEARANCE ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -42,6 +44,8 @@ const effects = [
     { uid: EFFECT.HEROES_FOR_HIRE },
     { uid: EFFECT.THUNDERBOLTS },
     { uid: EFFECT.MASTERMINDS },
+    { uid: EFFECT.SHIELD_AGENTS },
+    { uid: EFFECT.SHIELD_CLEARANCE },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -69,6 +73,8 @@ const effectIcons = {
     [ EFFECT.HEROES_FOR_HIRE ]: 'effect-heroes-for-hire',
     [ EFFECT.THUNDERBOLTS ]: 'effect-thunderbolts',
     [ EFFECT.MASTERMINDS ]: 'effect-masterminds',
+    [ EFFECT.SHIELD_AGENTS ]: 'effect-shield',
+    [ EFFECT.SHIELD_CLEARANCE ]: 'effect-shield',
 };
 
 function effectIcon(uid) {
@@ -80,7 +86,7 @@ const effectBases = effects.reduce((map, { attr }) => {
     return map;
 }, {});
 function effectBase(uid) {
-    return effectBases[ uid ];
+    return effectBases[ uid ] || 1000;
 }
 
 export { effectIcon, effectBase };

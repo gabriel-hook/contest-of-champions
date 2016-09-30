@@ -139,6 +139,8 @@
     "effect-heroesforhire-type": "Block Proficiency and Physical Resistance",
     "effect-thunderbolts-type": "Reduced Special Damage",
     "effect-masterminds-type": "Energy Damage",
+    "effect-shieldagents-type": "Ability Accuracy",
+    "effect-shieldclearance-type": "Ability Accuracy, Duration, and Potency",
 
     "effect-mutantagenda-name": "Mutant Agenda",
     "effect-cosmicsupremacy-name": "Cosmic Supremacy",
@@ -147,6 +149,8 @@
     "effect-heroesforhire-name": "Heroes for Hire",
     "effect-thunderbolts-name": "Thunderbolts",
     "effect-masterminds-name": "Masterminds",
+    "effect-shieldagents-name": "S.H.I.E.L.D. Agents",
+    "effect-shieldclearance-name": "S.H.I.E.L.D. Clearance",
 
     "effect-attack-description": "Increases damage on all attacks.",
     "effect-critrate-description": "Increases the chance for critical hit.",
@@ -168,6 +172,8 @@
     "effect-heroesforhire-description": "Increased block proficiency and physical resistance.",
     "effect-thunderbolts-description": "Take less special damage.",
     "effect-masterminds-description": "Increases damage on all engergy based attacks.",
+    "effect-shieldagents-description": "Increases the chance of all triggerable status effects.",
+    "effect-shieldclearance-description": "Increases the overall chance, duration, and strength of triggerable status effects.",
 
     "type-cosmic-name": "Cosmic",
     "type-tech-name": "Tech",

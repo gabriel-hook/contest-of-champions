@@ -41,7 +41,7 @@ function buildArena({
                     synergyMap[ id ][ attr.toId ] = {
                         effectId: attr.effectId,
                         group: attr.group,
-                        value: weights[ `effect-${ attr.effectId }` ] * attr.effectAmount / effectBase(attr.effectId),
+                        value: weights[ attr.effectId ] * attr.effectAmount / effectBase(attr.effectId),
                     };
                 });
         });

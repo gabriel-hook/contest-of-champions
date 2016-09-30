@@ -140,7 +140,7 @@ const TeamsSettingsPage = {
                     </div>
                     { effects.map(({ attr }) => (
                         <Field
-                            title={ lang.get(`effect-${ attr.uid }-type`) }
+                            title={ lang.get(`effect-${ attr.uid }-name`, null) || lang.get(`effect-${ attr.uid }-type`) }
                             description={ lang.get(`effect-${ attr.uid }-description`, null) }
                             icon={(
                                 <Icon icon={ effectIcon(attr.uid) } before />
@@ -148,12 +148,12 @@ const TeamsSettingsPage = {
                             input={
                                 <Slider
                                     object={ teams.weights }
-                                    field={ `effect-${ attr.uid }` }
+                                    field={ attr.uid }
                                     toInputValue={ (value) => value * 1000 }
                                     fromInputValue={ (value) => value / 1000 }
                                 />
                             }
-                            value={ (teams.weights[ `effect-${ attr.uid }` ] * 1000 | 0) / 10 }
+                            value={ (teams.weights[ attr.uid ] * 1000 | 0) / 10 }
                         />
                     )) }
                 </div>
