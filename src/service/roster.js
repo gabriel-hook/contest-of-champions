@@ -229,6 +229,9 @@ function fromCSV(csv, filename = 'champions.csv') {
         }
         return value || defaultValue;
     };
+    /* eslint-disable no-console */
+    console.info(`Importing champions from "${ filename }"`);
+    /* eslint-enable no-console */
     for(let i=0; i<lines.length; i++) {
         if(i===0 && lines[ i ].replace(/["]/g, '').startsWith(CSV_HEADER_SHORT))
             continue;
@@ -259,6 +262,9 @@ function fromCSV(csv, filename = 'champions.csv') {
         }
         if(!UNRELEASED_CHAMPIONS[ uid ]) {
             array.push(new Champion({ ...champion.attr, rank, level, awakened, pi, role }));
+            /* eslint-disable no-console */
+            console.info(`Imported champion "${ lang.get(`champion-${uid}-name`) }"`);
+            /* eslint-enable no-console */
         }
     }
     roster = [

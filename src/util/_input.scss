@@ -1,32 +1,49 @@
 @import "./colors";
 
+@mixin input-all-thumbs {
+    &::-webkit-slider-thumb {
+        @content;
+    }
+
+    &::-moz-range-thumb {
+        @content;
+    }
+
+    &::-ms-thumb {
+        @content;
+    }
+}
+
+@mixin input-all-tracks {
+    &::-webkit-slider-runnable-track {
+        @content;
+    }
+
+    &::-moz-range-track {
+        @content;
+    }
+
+    &::-ms-track {
+        @content;
+    }
+}
+
 @mixin input-range($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius, $thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius) {
     -webkit-appearance: none;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none; // needed again for Chrome & Safari
+    }
+
+    @include input-all-thumbs {
         @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
     }
 
-    &::-moz-range-thumb {
-        @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
-    }
-
-    &::-ms-thumb {
-        @include range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius);
-    }
-
-    // Track
-    &::-webkit-slider-runnable-track {
-        @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
-    }
-
-    &::-moz-range-track {
+    @include input-all-tracks {
         @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
     }
 
     &::-ms-track {
-        @include range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius);
         width: 100%;
         cursor: pointer;
         background: transparent;
@@ -34,19 +51,15 @@
         color: transparent;
     }
 
+    &:hover,
     &:focus { // override outline/background on focus
         background: none;
         outline: none;
-    }
-}
 
-@mixin range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius) {
-    width: $track-width;
-    height: $track-height;
-    cursor: pointer;
-    border-radius: $track-border-radius;
-    box-shadow: $track-box-shadow;
-    background: $track-background;
+        @include input-all-thumbs {
+            background: lighten($thumb-background, 25);
+        }
+    }
 }
 
 @mixin range-thumb($thumb-size, $thumb-margin, $thumb-background, $thumb-box-shadow, $thumb-border, $thumb-border-radius) {
@@ -58,4 +71,14 @@
     background: $thumb-background;
     cursor: pointer;
     margin-top: $thumb-margin;
+    transition: background 0.25s;
+}
+
+@mixin range-track($track-width, $track-height, $track-background, $track-box-shadow, $track-border-radius) {
+    width: $track-width;
+    height: $track-height;
+    cursor: pointer;
+    border-radius: $track-border-radius;
+    box-shadow: $track-box-shadow;
+    background: $track-background;
 }

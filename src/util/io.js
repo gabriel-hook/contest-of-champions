@@ -2,7 +2,7 @@ function loadFileFromInput(input, callback) {
     const file = input.files && input.files[ 0 ];
     if (file) {
         const reader = new FileReader();
-        reader.onload = ({ target }) => callback(target.result);
+        reader.onload = ({ target }) => callback(target.result, file.name);
         reader.readAsText(file);
     }
     input.value = '';

@@ -45,6 +45,7 @@
     }
 
     &.menu-option--progress,
+    &:focus,
     &:hover {
         > .menu-option--label {
             background: rgba(255, 255, 255, .65);
@@ -58,6 +59,7 @@
             background: #c33;
         }
 
+        &:focus,
         &:hover {
             > .menu-option--label {
                 background: rgba(255, 192, 192, .65);
@@ -92,6 +94,7 @@
         color: #ccc;
 
         &.menu-option--selected,
+        &:focus,
         &:hover {
             color: #333;
         }
@@ -106,6 +109,7 @@
     }
 
     &:hover,
+    &:focus,
     &.menu-option--selected {
 
         .hover {

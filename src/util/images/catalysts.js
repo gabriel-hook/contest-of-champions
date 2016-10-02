@@ -1,3 +1,4 @@
+import { TYPE } from '../../data/model/Type';
 import ImageTransformer, { colorize, multiply, gamma } from './ImageTransformer';
 
 const catalystImages = {
@@ -15,17 +16,17 @@ const catalystImages = {
 
 // match colors in _colors.scss
 const catalystColors = {
-    cosmic: '#3af',
-    tech: '#23f',
-    mutant: '#fa0',
-    skill: '#f30',
-    science: '#0a0',
-    mystic: '#90f',
+    [ TYPE.COSMIC ]: '#3af',
+    [ TYPE.TECH ]: '#23f',
+    [ TYPE.MUTANT ]: '#fa0',
+    [ TYPE.SKILL ]: '#f30',
+    [ TYPE.SCIENCE ]: '#0a0',
+    [ TYPE.MYSTIC ]: '#90f',
 };
 
 [ 1, 2, 3, 4, 5 ].forEach((tier) => {
     const base = new ImageTransformer(catalystImages[ `tier-${ tier }-basic` ]);
-    [ 'cosmic', 'tech', 'mutant', 'skill', 'science', 'mystic' ].forEach((type) => {
+    [ TYPE.COSMIC, TYPE.TECH, TYPE.MUTANT, TYPE.SKILL, TYPE.SCIENCE, TYPE.MYSTIC ].forEach((type) => {
         catalystImages[ `tier-${ tier }-${ type }` ] = base.clone()
             .transform(gamma(1.5))
             .transform(colorize(catalystColors[ type ]))

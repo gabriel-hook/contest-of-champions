@@ -26,18 +26,20 @@ function results(type, size) {
                 showBadges={ 'upgrade' }
             />
         ));
-        const extraDivs = [];
+        let extrasDiv = null;
         if(extras.length) {
-            extraDivs.push(
-                <div class="header">{ lang.get('extras') }</div>
+            extrasDiv = (
+                <div class="teams-extras">
+                    <div class="teams-header">{ lang.get('extras') }</div>
+                    {extras.map((champion) => (
+                        <ChampionPortrait
+                            key={ `teams-extras-${ champion.id }` }
+                            champion={ champion }
+                            showBadges={ 'upgrade' }
+                        />
+                    ))}
+                </div>
             );
-            extraDivs.push(extras.map((champion) => (
-                <ChampionPortrait
-                    key={ `teams-extras-${ champion.id }` }
-                    champion={ champion }
-                    showBadges={ 'upgrade' }
-                />
-            )));
         }
         return (
             <div>
@@ -48,7 +50,7 @@ function results(type, size) {
                     value={ `${ lang.get(`role-${ type }`) }${ message }` }
                 />
                 { teamDivs }
-                { extraDivs }
+                { extrasDiv }
             </div>
         );
     }

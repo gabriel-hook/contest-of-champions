@@ -7,7 +7,7 @@
     background: rgba(255, 255, 255, 0);
     box-sizing: border-box;
 
-    .header {
+    .teams-header {
         @extend .font--title;
         width: 500px;
         max-width: 90%;
@@ -20,5 +20,11 @@
 
     .clear {
         height: 32px;
+    }
+
+    @media print {
+        .teams-extras {
+            display: none;
+        }
     }
 }

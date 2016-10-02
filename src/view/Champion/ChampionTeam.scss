@@ -129,6 +129,7 @@
     }
 
     @media print {
+        padding-top: 20px;
         box-shadow: none;
         page-break-inside: avoid;
     }

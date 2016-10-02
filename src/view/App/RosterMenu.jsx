@@ -19,9 +19,9 @@ const RosterMenu = {
     view() {
         const options = [];
         if (window.FileReader) {
-            const handleTextInput = (text) => {
+            const handleTextInput = (text, filename) => {
                 try {
-                    roster.fromCSV(text);
+                    roster.fromCSV(text, filename);
                     notify({
                         message: lang.get('notification-roster-import'),
                         tag: 'roster-import',

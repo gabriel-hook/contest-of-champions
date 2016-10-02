@@ -54,6 +54,7 @@ const MenuOption = {
                     'menu-option--red': red === true || red === 'true',
                 }, 'no-select') }
                 title={ lang.get(info) || '' }
+                tabindex={0}
                 onclick={ onclick }
                 oncontextmenu={ oncontextmenu }
                 { ...link }

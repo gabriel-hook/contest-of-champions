@@ -30,6 +30,7 @@
 .button--enabled {
     cursor: pointer;
 
+    &:focus,
     &:hover {
         background: #eee;
         color: #000;
@@ -45,6 +46,7 @@
     }
 }
 .button--disabled {
+    &:focus,
     &:hover {
         &.button--primary {
             @extend .button--primary;
