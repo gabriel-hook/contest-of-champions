@@ -82,6 +82,7 @@ export const YELLOWJACKET = 'yellowjacket';
 // Mystic
 export const DRSTRANGE = 'drstrange';
 export const DRSTRANGEMARVELNOW = 'drstrangemarvelnow';
+export const GHOSTRIDER = 'ghostrider';
 export const GUILLOTINE = 'guillotine';
 export const IRONFIST = 'ironfist';
 export const IRONFISTWHITE = 'ironfistwhite';
