@@ -379,7 +379,7 @@ function buildTeam() {
             teams.progress = 0;
             requestRedraw();
             notify({
-                message: lang.get('notification-team-built'),
+                message: lang.string('notification-team-built'),
                 tag: 'team-built',
                 onclick: () => {
                     app.menuOpen = false;

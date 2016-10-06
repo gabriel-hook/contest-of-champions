@@ -37,11 +37,11 @@ const SynergyPage = {
                                 graph.selectEdgeType(effectId);
                                 requestRedraw(5);
                             }}
-                            title={ lang.get(`effect-${ effectId }-description`) }
+                            title={ lang.string(`effect-${ effectId }-description`) }
                         >
                             <Icon icon={ effectIcon(effectId) } before />
                             <span class="legend-effect-title">
-                                { lang.get(`effect-${ effectId }-name`, null) || lang.get(`effect-${ effectId }-type`) }
+                                { lang.string(`effect-${ effectId }-name`, null) || lang.string(`effect-${ effectId }-type`) }
                                 { amount && ` - ${ amount }%` }
                             </span>
                         </div>
@@ -49,11 +49,11 @@ const SynergyPage = {
                     { legend && legend.length === 0 && (
                         <div
                             class={ classNames('no-select', 'legend-effect', 'legend-effect--none') }
-                            title={ lang.get('effects-none') }
+                            title={ lang.string('effects-none') }
                         >
                             <Icon icon="times-circle" before/>
                             <span class="legend-effect-title">
-                                <i>{ lang.get('effects-none') }</i>
+                                <i>{ lang.string('effects-none') }</i>
                             </span>
                         </div>
                     ) || null }

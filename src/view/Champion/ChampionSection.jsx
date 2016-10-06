@@ -65,7 +65,7 @@ const ChampionSection = {
                             <option
                                 value={ value }
                             >{
-                                lang.get(stringify(value))
+                                lang.string(stringify(value))
                             }</option>
                         ))
                     }
@@ -79,7 +79,7 @@ const ChampionSection = {
                             class="champion-section-item"
                             onclick={ () => onEdit(key, array.filter((v, i) => i !== index)) }
                         >
-                            { image && image(value) }{ lang.get(stringify(value)) }
+                            { image && image(value) }{ lang.string(stringify(value)) }
                         </span>
                         ))
                     }
@@ -107,7 +107,7 @@ const ChampionSection = {
             if (grade) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('grade') }:</b>
+                        <b>{ lang.string('grade') }:</b>
                         { editableSelect(GRADES, 'grades.normal', grade) }
                     </div>
                 );
@@ -115,7 +115,7 @@ const ChampionSection = {
             if (gradeAwakened) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('awakened') }:</b>
+                        <b>{ lang.string('awakened') }:</b>
                         { editableSelect(GRADES, 'grades.awakened', gradeAwakened) }
                     </div>
                 );
@@ -137,7 +137,7 @@ const ChampionSection = {
             if (heavy) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('heavy-attack') }:</b>
+                        <b>{ lang.string('heavy-attack') }:</b>
                         <span {...editableText('heavy')}>{ editableValue(heavy) }</span>
                     </div>
                 );
@@ -145,7 +145,7 @@ const ChampionSection = {
             if (ranges) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('range') }:</b>
+                        <b>{ lang.string('range') }:</b>
                         { editableSelectAdd(
                             RANGES,
                             'ranges',
@@ -158,7 +158,7 @@ const ChampionSection = {
             if (damagetypes) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('damage-type') }:</b>
+                        <b>{ lang.string('damage-type') }:</b>
                         { editableSelectAdd(
                             DAMAGE_TYPES,
                             'damagetypes',
@@ -171,7 +171,7 @@ const ChampionSection = {
             if (abilities) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('abilities') }:</b>
+                        <b>{ lang.string('abilities') }:</b>
                         { editableSelectAdd(
                             ABILITY_VALUES,
                             'abilities',
@@ -187,7 +187,7 @@ const ChampionSection = {
             if (youtube) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('youtube-video') }:</b>
+                        <b>{ lang.string('youtube-video') }:</b>
                         <span {...editableText('youtube')}>{ editableValue(youtube) }</span>
                     </div>
                 );
@@ -195,7 +195,7 @@ const ChampionSection = {
             if (note) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('note') }:</b>
+                        <b>{ lang.string('note') }:</b>
                         <span {...editableText('note')}>{ editableValue(note) }</span>
                     </div>
                 );
@@ -243,7 +243,7 @@ const ChampionSection = {
             if (heavy) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('heavy-attack') }:</b>
+                        <b>{ lang.string('heavy-attack') }:</b>
                         <span>{ heavy.replace('\n', '').trim() }</span>
                     </div>
                 );
@@ -251,12 +251,12 @@ const ChampionSection = {
             if (ranges && ranges.length) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('range') }:</b>
+                        <b>{ lang.string('range') }:</b>
                         { ranges.map((range, index) => (
                             <span class={ `champion-section-range champion-section-range-${ range }` }>{
                                 (index < ranges.length - 1)
-                                    ? `${ lang.get(`range-${ range }`) }, `
-                                    : lang.get(`range-${ range }`)
+                                    ? `${ lang.string(`range-${ range }`) }, `
+                                    : lang.string(`range-${ range }`)
                             }</span>
                         )) }
                     </div>
@@ -265,12 +265,12 @@ const ChampionSection = {
             if (damagetypes && damagetypes.length) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('damage-type') }:</b>
+                        <b>{ lang.string('damage-type') }:</b>
                         { damagetypes.map((damage, index) => (
                             <span class={ `champion-section-damage champion-section-damage-${ damage }` }>{
                                 (index < damagetypes.length - 1)
-                                    ? `${ lang.get(`damage-${ damage }`) }, `
-                                    : lang.get(`damage-${ damage }`)
+                                    ? `${ lang.string(`damage-${ damage }`) }, `
+                                    : lang.string(`damage-${ damage }`)
                             }</span>
                         )) }
                     </div>
@@ -279,17 +279,17 @@ const ChampionSection = {
             if (abilities && abilities.length) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('abilities') }:</b>
+                        <b>{ lang.string('abilities') }:</b>
                         { abilities.map((ability, index) => (
                             <span
                                 class={ `champion-section-ability champion-section-ability-${ ability }` }
-                                title={ lang.get(`ability-${ ability }-description`) }
+                                title={ lang.string(`ability-${ ability }-description`) }
                             >
                                 { abilityIcon(ability) && (
                                     <Icon icon={ abilityIcon(ability) } before after={ index !== 0 } />
                                 ) || null }{ (index < abilities.length - 1)
-                                    ? `${ lang.get(`ability-${ ability }-name`) }, `
-                                    : lang.get(`ability-${ ability }-name`)
+                                    ? `${ lang.string(`ability-${ ability }-name`) }, `
+                                    : lang.string(`ability-${ ability }-name`)
                                 }
                             </span>
                         )) }
@@ -312,7 +312,7 @@ const ChampionSection = {
             if (note) {
                 elements.push(
                     <div class="champion-section-text">
-                        <b>{ lang.get('note') }:</b>
+                        <b>{ lang.string('note') }:</b>
                         <span>{ note.replace('\n', '').trim() }</span>
                     </div>
                 );

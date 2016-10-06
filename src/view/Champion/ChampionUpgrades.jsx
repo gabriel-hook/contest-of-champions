@@ -90,7 +90,7 @@ const ChampionUpgrades = {
         ): (
             <div
                 m="ChampionUpgrades"
-                title={ lang.get('upgrade-cost') }
+                title={ lang.string('upgrade-cost') }
                 class="champion-upgrade champion-upgrade-rank-up">
                 { [ CATALYST.BASIC, CATALYST.CLASS, CATALYST.ALPHA ]
                     .filter((type) => Boolean(catalysts[ type ]))
@@ -101,7 +101,7 @@ const ChampionUpgrades = {
                                     [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
                                 }) }
                             >
-                                { amount }
+                                { lang.number(amount) }
                                 ×
                                 <ImageIcon
                                     src={
@@ -116,7 +116,7 @@ const ChampionUpgrades = {
                     })
                 }
                 <span class={ classnames('champion-upgrade-catalyst', 'champion-upgrade-catalyst--gold') }>
-                    { catalysts[ CATALYST.GOLD ] }
+                    { lang.number(catalysts[ CATALYST.GOLD ]) }
                     ×
                     <ImageIcon src={ require('../../images/catalysts/gold.png') } />
                 </span>

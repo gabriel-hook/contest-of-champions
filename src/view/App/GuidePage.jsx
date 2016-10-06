@@ -44,7 +44,7 @@ const GuideSynergy ={
         };
         const champion = championMap[ `${ championId }-2` ] || championMap[ `${ championId }-3` ] || championMap[ `${ championId }-4` ] || championMap[ `${ championId }-5` ];
         const typeId = champion && champion.attr.typeId;
-        const name = lang.get(`champion-${ championId }-shortname`, null) || lang.get(`champion-${ championId }-name`);
+        const name = lang.string(`champion-${ championId }-shortname`, null) || lang.string(`champion-${ championId }-name`);
 
         return (
             <div m="GuideSynergy" class={ classNames('guide-synergy', {
@@ -55,7 +55,7 @@ const GuideSynergy ={
                         <div
                             class={ classNames('champion-name', 'no-select') }
                             onclick={ onclickChampion }
-                            title={ lang.get(`champion-${ championId }-name`) }
+                            title={ lang.string(`champion-${ championId }-name`) }
                         >
                             <ImageIcon
                                 src={ `images/champions/portrait_${ championId }.png` }
@@ -70,10 +70,10 @@ const GuideSynergy ={
                     <div class="guide-synergy-part guide-synergy-part--effect">
                         <div
                             class="effect-name"
-                            title={ lang.get(`effect-${ effectId }-description`) }
+                            title={ lang.string(`effect-${ effectId }-description`) }
                         >
                             <Icon icon={ effectIcon(effectId) } before />
-                            { lang.get(`effect-${ effectId }-name`, null) || lang.get(`effect-${ effectId }-type`) }
+                            { lang.string(`effect-${ effectId }-name`, null) || lang.string(`effect-${ effectId }-type`) }
                         </div>
                     </div>
                     <div class="guide-synergy-clear" />
@@ -120,7 +120,7 @@ const GuideAuthor = {
 
         return (
             <div m="GuideAuthor" class="guide-author">
-                { `${ lang.get(byline) } ` }
+                { `${ lang.string(byline) } ` }
                 <a href={ href } target="_blank">
                     { icon && (
                         <Icon icon={ icon } />
@@ -156,7 +156,7 @@ const GuidePage = {
                     class="guide-external-link"
                 >
                     <Icon icon="file-text" before />
-                    { lang.get('details') }
+                    { lang.string('details') }
                 </a>
             );
         }
@@ -164,7 +164,7 @@ const GuidePage = {
             if(guide.description) {
                 details.push(
                     <ChampionSection
-                        title={ lang.get('description') }
+                        title={ lang.string('description') }
                         grade={ guide.grades && guide.grades.normal }
                         gradeAwakened={ guide.grades && guide.grades.awakened }
                         description={ guide.description }
@@ -175,7 +175,7 @@ const GuidePage = {
             if(guide.gameplay) {
                 details.push(
                     <ChampionSection
-                        title={ lang.get('gameplay') }
+                        title={ lang.string('gameplay') }
                         rating={ guide.gameplay.rating }
                         description={ guide.gameplay.description }
                         abilities={ guide.gameplay.abilities }
@@ -186,7 +186,7 @@ const GuidePage = {
             if(guide.attack) {
                 details.push(
                     <ChampionSection
-                        title={ lang.get('attack') }
+                        title={ lang.string('attack') }
                         rating={ guide.attack.rating }
                         description={ guide.attack.description }
                         heavy={ guide.attack.heavy }
@@ -202,7 +202,7 @@ const GuidePage = {
                     if(guide.specials[ index ]) {
                         details.push(
                             <ChampionSection
-                                title={ `${ lang.get('special') } ${ index }` }
+                                title={ `${ lang.string('special') } ${ index }` }
                                 icon={ `special-${ index }` }
                                 rating={ guide.specials[ index ].rating }
                                 name={ guide.specials[ index ].name }
@@ -219,7 +219,7 @@ const GuidePage = {
             if(guide.signature) {
                 details.push(
                     <ChampionSection
-                        title={ lang.get('signature') }
+                        title={ lang.string('signature') }
                         rating={ guide.signature.rating }
                         name={ guide.signature.name }
                         description={ guide.signature.description }
@@ -233,7 +233,7 @@ const GuidePage = {
         else if(signatureLink) {
             details.push(
                 <ChampionSection
-                    title={ lang.get('signature') }
+                    title={ lang.string('signature') }
                     raw={ signatureLink }
                 />
             );
@@ -241,7 +241,7 @@ const GuidePage = {
         let lastGroup;
         details.push(
             <ChampionSection
-                title={ lang.get('synergies') }
+                title={ lang.string('synergies') }
                 icon="synergy"
                 raw={ getSynergies(uid, true).map(({ attr }, index) => {
                     const isNewGroup = (index > 0) && (!attr.group || attr.group !== lastGroup);
@@ -260,7 +260,7 @@ const GuidePage = {
         );
         details.push(
             <ChampionSection
-                title={ lang.get('synergies-external') }
+                title={ lang.string('synergies-external') }
                 icon="synergy"
                 raw={ getSynergies(uid, false).map(({ attr }) => (
                     <GuideSynergy

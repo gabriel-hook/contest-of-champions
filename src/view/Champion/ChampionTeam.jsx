@@ -145,11 +145,11 @@ const ChampionTeam = {
                             <div
                                 class={ classNames('team-synergy', { 'team-synergy--selected': selected }, 'no-select') }
                                 onclick={ () => selectSynergy(ctrl, synergies, champions, effectId) }
-                                title={ lang.get(`effect-${ effectId }-description`) }
+                                title={ lang.string(`effect-${ effectId }-description`) }
                             >
                                 <Icon icon={ effectIcon(effectId) } before />
                                 <span class="effect-name">
-                                    { lang.get(`effect-${ effectId }-type`) }
+                                    { lang.string(`effect-${ effectId }-type`) }
                                 </span>
                                 <span> — </span>
                                 <span class="effect-amount">
@@ -159,9 +159,9 @@ const ChampionTeam = {
                         );
                     }) }
                     <div class="team-pi">
-                        { `${ lang.get('base-pi') } ` }
+                        { `${ lang.string('base-pi') } ` }
                         <span class="team-pi-number">
-                            { champions.reduce((amount, champion) => amount + (champion.attr.pi || champion.pi), 0) }
+                            { lang.number(champions.reduce((amount, champion) => amount + (champion.attr.pi || champion.pi), 0)) }
                         </span>
                     </div>
                 </div>

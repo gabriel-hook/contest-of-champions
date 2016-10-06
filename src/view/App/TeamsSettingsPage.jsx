@@ -48,7 +48,7 @@ const Checkbox = {
                 }}
             >
                 <Icon icon={ (object[ field ])? 'check-square-o': 'square-o' } before />
-                { lang.get((object[ field ])? 'enabled': 'disabled') }
+                { lang.string((object[ field ])? 'enabled': 'disabled') }
             </div>
         );
     },
@@ -76,7 +76,7 @@ const Field = {
                     ): null }
                     { (value !== undefined)? (
                         <span class="field-value">
-                            { value }
+                            { lang.number(value) }
                         </span>
                     ): null }
                     { (alt !== undefined)? (
@@ -94,35 +94,35 @@ const TeamsSettingsPage = {
             <div m="TeamsSettingsPage" class="teams-settings">
                 <div class="teams-settings-section">
                     <div class="header">
-                        { lang.get('general-settings') }
+                        { lang.string('general-settings') }
                     </div>
                     <Field
-                        title={ lang.get('arena-sandbagging') }
+                        title={ lang.string('arena-sandbagging') }
                         icon={(
                             <Icon icon="users" before />
                         )}
-                        description={ lang.get('arena-sandbagging-description') }
+                        description={ lang.string('arena-sandbagging-description') }
                         input={(
                             <Checkbox object={ teams } field={ 'sandbagging' } />
                         )}
                     />
 
                     <Field
-                        title={ lang.get('willpower-safe') }
+                        title={ lang.string('willpower-safe') }
                         icon={(
                             <Icon icon="user-secret" before />
                         )}
-                        description={ lang.get('willpower-safe-description') }
+                        description={ lang.string('willpower-safe-description') }
                         input={(
                             <Checkbox object={ teams } field={ 'willpowersafe' } />
                         )}
                     />
                     <Field
-                        title={ lang.get('base-weight') }
+                        title={ lang.string('base-weight') }
                         icon={(
                             <Icon icon="database" before />
                         )}
-                        description={ lang.get('base-weight-description') }
+                        description={ lang.string('base-weight-description') }
                         input={
                             <Slider
                                 object={ teams.weights }
@@ -136,12 +136,12 @@ const TeamsSettingsPage = {
                 </div>
                 <div class="teams-settings-section">
                     <div class="header">
-                        { lang.get('synergy-weights') }
+                        { lang.string('synergy-weights') }
                     </div>
                     { effects.map(({ attr }) => (
                         <Field
-                            title={ lang.get(`effect-${ attr.uid }-name`, null) || lang.get(`effect-${ attr.uid }-type`) }
-                            description={ lang.get(`effect-${ attr.uid }-description`, null) }
+                            title={ lang.string(`effect-${ attr.uid }-name`, null) || lang.string(`effect-${ attr.uid }-type`) }
+                            description={ lang.string(`effect-${ attr.uid }-description`, null) }
                             icon={(
                                 <Icon icon={ effectIcon(attr.uid) } before />
                             )}
@@ -159,11 +159,11 @@ const TeamsSettingsPage = {
                 </div>
                 <div class="teams-settings-section">
                     <div class="header">
-                        { lang.get('duplicate-weights') }
+                        { lang.string('duplicate-weights') }
                     </div>
                     { [ 2, 3, 4, 5 ].map((count) => (
                         <Field
-                            title={ `${ lang.get(DUPLICATE_TITLES[ count ]) }` }
+                            title={ `${ lang.string(DUPLICATE_TITLES[ count ]) }` }
                             icon={(
                                 <span class="field-name--bold">{ `${ count }x ` }</span>
                             )}
@@ -181,7 +181,7 @@ const TeamsSettingsPage = {
                 </div>
                 <div class="teams-settings-section">
                     <div class="header">
-                        { lang.get('pi-range') }
+                        { lang.string('pi-range') }
                     </div>
                     { [
                         { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 10000 },
@@ -190,7 +190,7 @@ const TeamsSettingsPage = {
                         { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 50000 },
                     ].map(({ which, iconType, icon, maximum }) => (
                         <Field
-                            title={ lang.get(`pi-range-${ which }`) }
+                            title={ lang.string(`pi-range-${ which }`) }
                             icon={[
                                 (
                                 <Icon icon={ iconType } before />

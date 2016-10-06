@@ -224,5 +224,7 @@
 
     "synergies-external": "Sinergias Externas",
 
-    "none": "Ninguno"
+    "none": "Ninguno",
+
+    "number-delimiter": "."
 }

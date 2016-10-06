@@ -187,19 +187,19 @@ const TeamsEditPage = {
         const teamElements = [];
         const createElements = [];
         const extraElements = [];
-        let extrasHeader;
+        let extrasDiv;
         const inTeam = {};
         const synergiesCount = teams.reduce((amount, { synergies }) => amount + synergies.length, 0);
         const scalePi = roster.getScale();
 
         let message;
         if(ctrl.type === 'arena') {
-            message = (synergiesCount)? `- ${ teams.length } ${ lang.get('teams') } ${ lang.get('with') } ${ synergiesCount } ${ lang.get('synergies') }`:
-                (teams.length > 0)? `- ${ teams.length } ${ lang.get('teams') }`:
+            message = (synergiesCount)? `- ${ teams.length } ${ lang.string('teams') } ${ lang.string('with') } ${ synergiesCount } ${ lang.string('synergies') }`:
+                (teams.length > 0)? `- ${ teams.length } ${ lang.string('teams') }`:
                 '';
         }
         else {
-            message = (synergiesCount)? `- ${ synergiesCount } ${ lang.get('synergies') }`: '';
+            message = (synergiesCount)? `- ${ synergiesCount } ${ lang.string('synergies') }`: '';
         }
 
         const teamIds = teams.map(({ champions }) => champions.map(({ id }) => id).join('_'));
@@ -528,9 +528,10 @@ const TeamsEditPage = {
             );
         });
         if(extraElements.length) {
-            extrasHeader = (
-                <div class="header" key="teams-extra-header">
-                    { lang.get('extras') }
+            extrasDiv = (
+                <div class="teams-extras">
+                    <div class="teams-header">{ lang.string('extras') }</div>
+                    {extraElements}
                 </div>
             );
         }
@@ -541,7 +542,7 @@ const TeamsEditPage = {
                     icon={(
                         <Icon icon={ roleIcon(ctrl.type) } before />
                     )}
-                    value={ `${ lang.get(`role-${ ctrl.type }`) }${ message }` }
+                    value={ `${ lang.string(`role-${ ctrl.type }`) }${ message }` }
                 />
                 <div key="teams-elements">
                     { teamElements }
@@ -549,10 +550,7 @@ const TeamsEditPage = {
                 <div key="teams-create">
                     { createElements }
                 </div>
-                { extrasHeader }
-                <div key="teams-extra">
-                    { extraElements }
-                </div>
+                { extrasDiv }
                 <div key="clear" class="clear" />
             </div>
         );

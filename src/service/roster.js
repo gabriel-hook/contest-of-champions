@@ -131,7 +131,7 @@ const SORT_PI_ASC = (a, b) => {
     return -b.attr.uid.localeCompare(a.attr.uid);
 };
 const SORT_NAME_DESC = (a, b) => {
-    const name = -lang.get(a.attr.uid).localeCompare(lang.get(b.attr.uid));
+    const name = -lang.string(a.attr.uid).localeCompare(lang.string(b.attr.uid));
     if(name !== 0)
         return name;
     const type = a.typeIndex - b.typeIndex;
@@ -140,7 +140,7 @@ const SORT_NAME_DESC = (a, b) => {
     return b.attr.stars - a.attr.stars;
 };
 const SORT_NAME_ASC = (a, b) => {
-    const name = lang.get(a.attr.uid).localeCompare(lang.get(b.attr.uid));
+    const name = lang.string(a.attr.uid).localeCompare(lang.string(b.attr.uid));
     if(name !== 0)
         return name;
     const type = a.typeIndex - b.typeIndex;
@@ -263,7 +263,7 @@ function fromCSV(csv, filename = 'champions.csv') {
         if(!UNRELEASED_CHAMPIONS[ uid ]) {
             array.push(new Champion({ ...champion.attr, rank, level, awakened, pi, role }));
             /* eslint-disable no-console */
-            console.info(`Imported champion "${ lang.get(`champion-${uid}-name`) }"`);
+            console.info(`Imported champion "${ lang.string(`champion-${uid}-name`) }"`);
             /* eslint-enable no-console */
         }
     }

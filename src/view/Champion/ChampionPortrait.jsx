@@ -33,7 +33,7 @@ const ChampionPortrait = {
         onclick, draggable, droppable,
     }) {
         const { uid, stars, rank, level, pi, typeId, awakened, role } = champion.attr;
-        let details = uid && lang.get(`champion-${ uid }-name`) || '';
+        let details = uid && lang.string(`champion-${ uid }-name`) || '';
         const starIcon = awakened? (
             <ImageIcon src={ IMAGE_STAR_AWAKENED } />
         ): (
@@ -51,7 +51,7 @@ const ChampionPortrait = {
                 title.push(
                     <div class={ classNames('title-field', 'title-field-effects') }>
                         { effects.map(({ effectId, effectAmount }) => {
-                            details += `\n${ lang.get(`effect-${ effectId }-type`)} +${ effectAmount }%`;
+                            details += `\n${ lang.string(`effect-${ effectId }-type`)} +${ effectAmount }%`;
                             return [ (
                                 <Icon icon={ effectIcon(effectId) } after />
                             ), (
@@ -67,10 +67,10 @@ const ChampionPortrait = {
                         class={ classNames('title-field', 'title-field-pi', {
                             'title-field-pi-custom': pi && pi > 0,
                         }) }
-                    >{ (pi || champion.pi * scalePi) | 0 }</div>
+                    >{ lang.number(pi || champion.pi * scalePi) }</div>
                 );
             }
-            const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+            const name = lang.string(`champion-${ uid }-shortname`, null) || lang.string(`champion-${ uid }-name`);
             title.push(
                 <div class="title-field title-field-name">{ name }</div>
             );

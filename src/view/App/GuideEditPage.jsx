@@ -58,7 +58,7 @@ const GuideEditAuthor = {
                             value={ `${ value }` }
                             selected={ initialValue && value === initialValue }
                         >{
-                            lang.get(`profile-${ value }`)
+                            lang.string(`profile-${ value }`)
                         }</option>
                     ))
                 }
@@ -67,20 +67,20 @@ const GuideEditAuthor = {
         const elements = [];
         elements.push(
             <div class="champion-section-text">
-                <b>{ lang.get('author') }:</b>
+                <b>{ lang.string('author') }:</b>
                 <span {...editableText('name')}>{ editableValue(name) }</span>
             </div>
         );
         elements.push(
             <div class="champion-section-text">
-                <b>{ lang.get('type') }:</b>
+                <b>{ lang.string('type') }:</b>
                 { editableSelect(PROFILE_TYPES, 'type', type) }
             </div>
         );
         if(type && type !== true) {
             elements.push(
                 <div class="champion-section-text">
-                    <b>{ lang.get(
+                    <b>{ lang.string(
                         (type === 'email')?
                             'email':
                         (type === 'spotlight')?
@@ -117,7 +117,7 @@ const GuideEditPage = {
         const grades = guide && guide.grades;
         details.push(
             <ChampionSection
-                title={ lang.get('description') }
+                title={ lang.string('description') }
                 grade={ grades && guide.grades.normal || true }
                 gradeAwakened={ grades && guide.grades.awakened || true }
                 description={ guide && guide.description || true }
@@ -128,7 +128,7 @@ const GuideEditPage = {
         const gameplay = guide && guide.gameplay;
         details.push(
             <ChampionSection
-                title={ lang.get('gameplay') }
+                title={ lang.string('gameplay') }
                 rating={ gameplay && guide.gameplay.rating || true }
                 description={ gameplay && guide.gameplay.description || true }
                 abilities={ gameplay && guide.gameplay.abilities || true }
@@ -139,7 +139,7 @@ const GuideEditPage = {
         const attack = guide && guide.attack;
         details.push(
             <ChampionSection
-                title={ lang.get('attack') }
+                title={ lang.string('attack') }
                 rating={ attack && guide.attack.rating || true }
                 description={ attack && guide.attack.description || true }
                 heavy={ attack && guide.attack.heavy || true }
@@ -154,7 +154,7 @@ const GuideEditPage = {
             const special = guide && guide.specials && guide.specials[ index ];
             details.push(
                 <ChampionSection
-                    title={ `${ lang.get('special') } ${ index }` }
+                    title={ `${ lang.string('special') } ${ index }` }
                     rating={ special && special.rating || true }
                     name={ special && special.name || true }
                     description={ special && special.description || true }
@@ -169,7 +169,7 @@ const GuideEditPage = {
         const signature = guide && guide.signature;
         details.push(
             <ChampionSection
-                title={ lang.get('signature') }
+                title={ lang.string('signature') }
                 rating={ signature && guide.signature.rating || true }
                 name={ signature && guide.signature.name || true }
                 description={ signature && guide.signature.description || true }

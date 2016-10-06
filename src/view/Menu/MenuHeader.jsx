@@ -7,7 +7,7 @@ const MenuHeader = {
     view(ctrl, { title, icon }) {
         return (
             <div m="MenuHeader" class="menu-header">
-                <div>{ icon }{ lang.get(title) }</div>
+                <div>{ icon }{ lang.string(title) }</div>
             </div>
         );
     },

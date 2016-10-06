@@ -100,11 +100,11 @@ const ChampionTeamSelector = {
                         return (
                             <div
                                 class={ classNames('team-synergy', 'no-select') }
-                                title={ lang.get(`effect-${ effect.attr.uid }-description`) }
+                                title={ lang.string(`effect-${ effect.attr.uid }-description`) }
                             >
                                 <Icon icon={ effectIcon(effect.attr.uid) } before />
                                 <span class="effect-name">
-                                    { lang.get(`effect-${ effect.attr.uid }-type`) }
+                                    { lang.string(`effect-${ effect.attr.uid }-type`) }
                                 </span>
                                 <span> — </span>
                                 <span class="effect-amount">
@@ -126,9 +126,9 @@ const ChampionTeamSelector = {
                         );
                     })}
                     <div class="team-pi">
-                        { `${ lang.get('base-pi') } ` }
+                        { `${ lang.string('base-pi') } ` }
                         <span class="team-pi-number">
-                            { champions.reduce((amount, champion) => amount + (champion && (champion.attr.pi || champion.pi) || 0), 0) }
+                            { lang.number(champions.reduce((amount, champion) => amount + (champion && (champion.attr.pi || champion.pi) || 0), 0)) }
                         </span>
                     </div>
                     { !create && (
@@ -160,15 +160,15 @@ const ChampionTeamSelector = {
                 </div>
                 { !swap.dragging && (onremove && (
                     <div class={ classNames('team-remove') } onclick={ onremove }>
-                        { lang.get('remove') }
+                        { lang.string('remove') }
                     </div>
                 ) || onsplit && (
                     <div class={ classNames('team-remove') } onclick={ onsplit }>
-                        { lang.get('dissolve') }
+                        { lang.string('dissolve') }
                     </div>
                 ) || onapply && (
                     <div class={ classNames('team-apply', { 'disabled': !swap.target }) } onclick={ onapply }>
-                        { lang.get('apply') }
+                        { lang.string('apply') }
                     </div>
                 )) || null }
             </div>

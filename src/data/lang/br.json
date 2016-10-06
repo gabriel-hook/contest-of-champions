@@ -268,5 +268,7 @@
     "link-github": "Github",
     "link-kabam": "Kabam Forums",
     "link-reddit": "Reddit /r",
-    "share-to": "Compartilhar"
+    "share-to": "Compartilhar",
+
+    "number-delimiter": "."
 }

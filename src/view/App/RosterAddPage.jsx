@@ -36,7 +36,7 @@ const RosterAddPage = {
                         denotify({ tag: 'roster-empty' });
                     }}
                 >
-                    { lang.get('add-all') }
+                    { lang.string('add-all') }
                 </button>
                 <div>
                     { champions.map((champion) => (
@@ -48,9 +48,9 @@ const RosterAddPage = {
                                 roster.add(champion.attr.uid, stars);
                                 denotify({ tag: 'roster-empty' });
                                 notify({
-                                    message: lang.get('notification-roster-add')
+                                    message: lang.string('notification-roster-add')
                                         .replace(/\%stars\%/g, stars)
-                                        .replace(/\%champion\%/g, lang.get(`champion-${ champion.attr.uid }-shortname`, null) || lang.get(`champion-${ champion.attr.uid }-name`)),
+                                        .replace(/\%champion\%/g, lang.string(`champion-${ champion.attr.uid }-shortname`, null) || lang.string(`champion-${ champion.attr.uid }-name`)),
                                     tag: 'roster-add',
                                     onclick: () => router.setRoute(`/roster/${champion.attr.uid}/${stars}`),
                                 });

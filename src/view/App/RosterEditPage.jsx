@@ -88,7 +88,7 @@ const RosterPage = {
             );
             elements.push(
                 <label class="champion-field champion-field--neighbor">
-                    <span class="champion-field-label">{ lang.get('rank') }</span>
+                    <span class="champion-field-label">{ lang.string('rank') }</span>
                     <Select
                         value={ rank }
                         min={ 1 }
@@ -107,7 +107,7 @@ const RosterPage = {
             );
             elements.push(
                 <label class="champion-field champion-field--neighbor">
-                    <span class="champion-field-label">{ lang.get('level') }</span>
+                    <span class="champion-field-label">{ lang.string('level') }</span>
                     <Select
                         value={ level }
                         min={ 1 }
@@ -125,7 +125,7 @@ const RosterPage = {
             );
             elements.push(
                 <label class="champion-field">
-                    <span class="champion-field-label">{ lang.get('awakened') }</span>
+                    <span class="champion-field-label">{ lang.string('awakened') }</span>
                     <Select
                         value={ awakened }
                         min={ 0 }
@@ -143,7 +143,7 @@ const RosterPage = {
             );
             elements.push(
                 <label class="champion-field">
-                    <span class="champion-field-label">{ lang.get('pi') }</span>
+                    <span class="champion-field-label">{ lang.string('pi') }</span>
                     <Number
                         value={ pi || '' }
                         placeholder={ champion.pi * scalePi | 0 }
@@ -164,7 +164,7 @@ const RosterPage = {
             );
             elements.push(
                 <label class="champion-field">
-                    <span class="champion-field-label">{ lang.get('role') }</span>
+                    <span class="champion-field-label">{ lang.string('role') }</span>
                     <div class="champion-field-role">
                         { roleIconImage }
                     </div>
@@ -172,27 +172,27 @@ const RosterPage = {
                         value={ role }
                         values={[
                             {
-                                title: lang.get('role-none'),
+                                title: lang.string('role-none'),
                                 value: null,
                             },
                             {
-                                title: lang.get('role-arena'),
+                                title: lang.string('role-arena'),
                                 value: ROLE.ARENA,
                             },
                             {
-                                title: lang.get('role-alliance-quest'),
+                                title: lang.string('role-alliance-quest'),
                                 value: ROLE.ALLIANCE_QUEST,
                             },
                             {
-                                title: lang.get('role-alliance-war-attack'),
+                                title: lang.string('role-alliance-war-attack'),
                                 value: ROLE.ALLIANCE_WAR_ATTACK,
                             },
                             {
-                                title: lang.get('role-alliance-war-defense'),
+                                title: lang.string('role-alliance-war-defense'),
                                 value: ROLE.ALLIANCE_WAR_DEFENSE,
                             },
                             {
-                                title: lang.get('role-quest'),
+                                title: lang.string('role-quest'),
                                 value: ROLE.QUEST,
                             },
                         ]}
@@ -216,7 +216,7 @@ const RosterPage = {
                         requestRedraw();
                     }}
                 >
-                    { lang.get('delete') }
+                    { lang.string('delete') }
                 </button>
             );
         }

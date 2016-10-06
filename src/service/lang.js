@@ -35,14 +35,28 @@ const lang = {
         if(this.messages[ lang ]) {
             this.current = lang;
             toStorage('lang', lang);
-            document.title = this.get('champions');
+            document.title = this.string('champions');
         }
         requestRedraw();
     },
-    get(id, fallback = id) {
-        return this.messages[ this.current ][ id ] || this.default(id, fallback) || fallback;
+    number(value) {
+        const delimiter = this.messages[ this.current ][ 'number-delimiter' ];
+        const string = String(Number(value) | 0);
+        if(delimiter) {
+            if(string.length > 3) {
+                const offset = string.length % 3;
+                const out = string.split('')
+                    .map((character, index) => (index > 0 && index % 3 === offset)? `${delimiter}${character}`: character)
+                    .join('');
+                return out;
+            }
+        }
+        return string;
     },
-    default(id, fallback) {
+    string(id, fallback = id) {
+        return this.messages[ this.current ][ id ] || this.defaultString(id, fallback) || fallback;
+    },
+    defaultString(id, fallback) {
         if(!fallback) {
             return null;
         }

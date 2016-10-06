@@ -171,7 +171,7 @@ router.on('/roster/?', () => {
     requestRedraw();
     if(roster.all().length === 0) {
         notify({
-            message: lang.get('notification-roster-empty'),
+            message: lang.string('notification-roster-empty'),
             tag: 'roster-empty',
             onclick: () => router.setRoute(`/roster/add/${ app.lastAddStars || 2 }`),
         });

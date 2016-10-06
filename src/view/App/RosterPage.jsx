@@ -48,8 +48,8 @@ const RosterPage = {
                             before
                         />
                     )}
-                    value={ `${ champions.length } ${ lang.get('of') } ${ total } ${ lang.get('champions') }` }
-                    alt={ prestige && `${ lang.get('prestige') } ${ prestige }` }
+                    value={ `${ lang.number(champions.length) } ${ lang.string('of') } ${ lang.number(total) } ${ lang.string('champions') }` }
+                    alt={ prestige && `${ lang.string('prestige') } ${ lang.number(prestige) }` }
                 />
                 { upgrades }
                 <div>

@@ -16,8 +16,8 @@ function results(type, size) {
     if(result) {
         const { counts, teams, extras } = result;
         const message = type === ROLE.ARENA?
-            ` - ${ counts.teams } ${ lang.get('teams') } ${ lang.get('with') } ${ counts.synergies } ${ lang.get('synergies') }`:
-            ` - ${ counts.synergies } ${ lang.get('synergies') }`;
+            ` - ${ counts.teams } ${ lang.string('teams') } ${ lang.string('with') } ${ counts.synergies } ${ lang.string('synergies') }`:
+            ` - ${ counts.synergies } ${ lang.string('synergies') }`;
         const teamDivs = teams.map(({ champions, synergies }) => (
             <ChampionTeam
                 key={ `teams-${ champions.map((champion) => champion.id).join('-') }` }
@@ -30,7 +30,7 @@ function results(type, size) {
         if(extras.length) {
             extrasDiv = (
                 <div class="teams-extras">
-                    <div class="teams-header">{ lang.get('extras') }</div>
+                    <div class="teams-header">{ lang.string('extras') }</div>
                     {extras.map((champion) => (
                         <ChampionPortrait
                             key={ `teams-extras-${ champion.id }` }
@@ -47,7 +47,7 @@ function results(type, size) {
                     icon={(
                         <Icon icon={ roleIcon(type) } before />
                     )}
-                    value={ `${ lang.get(`role-${ type }`) }${ message }` }
+                    value={ `${ lang.string(`role-${ type }`) }${ message }` }
                 />
                 { teamDivs }
                 { extrasDiv }
@@ -60,7 +60,7 @@ function results(type, size) {
                 icon={(
                     <Icon icon={ roleIcon(type) } before />
                 )}
-                value={ lang.get(`role-${ type }`) }
+                value={ lang.string(`role-${ type }`) }
             />
         </div>
     );

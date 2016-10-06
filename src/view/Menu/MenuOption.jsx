@@ -45,7 +45,7 @@ const MenuOption = {
             <a
                 m="MenuOption"
                 role="menuitem"
-                aria-label={ lang.get(title) || lang.get(info) }
+                aria-label={ lang.string(title) || lang.string(info) }
                 class={ classNames('menu-option', {
                     'menu-option--options': options,
                     'menu-option--invalid': invalid,
@@ -53,7 +53,7 @@ const MenuOption = {
                     'menu-option--progress': progress,
                     'menu-option--red': red === true || red === 'true',
                 }, 'no-select') }
-                title={ lang.get(info) || '' }
+                title={ lang.string(info) || '' }
                 tabindex={0}
                 onclick={ onclick }
                 oncontextmenu={ oncontextmenu }
@@ -69,7 +69,7 @@ const MenuOption = {
                         style={ `width: ${ Math.max(0, Math.min(100, 100 * progress)) }%; transition: ${ (progress <= 0)? 'none': 'width .3s linear' };` }
                     />
                 ) || null }
-                <div class="menu-option--label">{ icon }{ raw || lang.get(alternate, null) || lang.get(title) }</div>
+                <div class="menu-option--label">{ icon }{ raw || lang.string(alternate, null) || lang.string(title) }</div>
                 { options && (
                     <div class="menu-option-options">
                         { options}

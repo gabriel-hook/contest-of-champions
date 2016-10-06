@@ -9,9 +9,9 @@ const MenuSection = {
             <div
                 m="MenuSection"
                 role="heading"
-                aria-label={ lang.get(title) }
+                aria-label={ lang.string(title) }
                 class="menu-section">
-                <div>{ icon }{ lang.get(title) }</div>
+                <div>{ icon }{ lang.string(title) }</div>
             </div>
         );
     },

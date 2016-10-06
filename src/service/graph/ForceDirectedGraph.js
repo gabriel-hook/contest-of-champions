@@ -716,7 +716,7 @@ export default function({
             const context = canvas.getContext('2d');
 
             const uid = this.data.label;
-            const name = lang.get(`champion-${ uid }-shortname`, null) || lang.get(`champion-${ uid }-name`);
+            const name = lang.string(`champion-${ uid }-shortname`, null) || lang.string(`champion-${ uid }-name`);
             const stars = showStars? `${ this.data.stars }★ `: '';
             const text = `${ stars }${ name }`;
 

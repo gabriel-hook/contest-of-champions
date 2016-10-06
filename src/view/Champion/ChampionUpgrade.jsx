@@ -20,7 +20,7 @@ const ChampionUpgrade = {
         return (
             <div
                 m="ChampionUpgrade"
-                title={ lang.get('upgrade-cost') }
+                title={ lang.string('upgrade-cost') }
                 class={ classnames('champion-upgrade', {
                     'champion-upgrade-rank-up': isRankUp,
                     'champion-upgrade-max': isMaxed,
@@ -28,12 +28,12 @@ const ChampionUpgrade = {
             >
                 { (isMaxed)? (
                     <span class="champion-upgrade-catalyst">
-                        { lang.get('upgrade-maxed') }
+                        { lang.string('upgrade-maxed') }
                     </span>
                 ):
                 (!catalysts)? (
                     <span class="champion-upgrade-catalyst">
-                        { lang.get('upgrade-max-rank') }
+                        { lang.string('upgrade-max-rank') }
                     </span>
                 ):
                 catalysts.map(({ tier, type, amount }) => (
@@ -42,7 +42,7 @@ const ChampionUpgrade = {
                             [ `champion-upgrade-catalyst--class-${ typeId }` ]: type === CATALYST.CLASS,
                         }) }
                     >
-                        { amount }
+                        { lang.number(amount) }
                         ×
                         <ImageIcon
                             src={

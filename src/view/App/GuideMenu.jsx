@@ -27,7 +27,7 @@ const GuideMenu = {
                 />
             );
             uids
-                .map((uid) => ({ uid, name: lang.get(`champion-${ uid }-name`).toLowerCase() || '' }))
+                .map((uid) => ({ uid, name: lang.string(`champion-${ uid }-name`).toLowerCase() || '' }))
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map(({ uid }) => options.push(
                     <MenuOption

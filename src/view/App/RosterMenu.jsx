@@ -23,7 +23,7 @@ const RosterMenu = {
                 try {
                     roster.fromCSV(text, filename);
                     notify({
-                        message: lang.get('notification-roster-import'),
+                        message: lang.string('notification-roster-import'),
                         tag: 'roster-import',
                         onclick: () => router.setRoute('/roster'),
                     });
@@ -33,7 +33,7 @@ const RosterMenu = {
                     console.error(error.stack || error);
                     /* eslint-enable no-console */
                     notify({
-                        message: lang.get('notification-roster-import-failed')
+                        message: lang.string('notification-roster-import-failed')
                             .replace(/\%error\%/g, error),
                         tag: 'roster-import',
                     });

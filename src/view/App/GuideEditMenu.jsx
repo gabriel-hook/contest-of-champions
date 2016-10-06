@@ -21,7 +21,7 @@ const GuideEditMenu = {
             const handleTextInput = (text) => {
                 guides[ uid ] = JSON.parse(text);
                 notify({
-                    message: lang.get('notification-guide-import'),
+                    message: lang.string('notification-guide-import'),
                     tag: 'guide-import',
                 });
                 requestRedraw(5);

@@ -295,5 +295,7 @@
     "share-to": "Поделиться",
 
     "notification-roster-empty": "Добавить чемпионов в список.",
-    "notification-team-built": "Построить команду"
+    "notification-team-built": "Построить команду",
+
+    "number-delimiter": " "
 }

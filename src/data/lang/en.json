@@ -439,5 +439,7 @@
     "notification-roster-import": "Roster import successful",
     "notification-roster-import-failed": "Guide import failed\n\n%error%",
     "notification-guide-import": "Guide import successful",
-    "notification-team-built": "Team Built"
+    "notification-team-built": "Team Built",
+
+    "number-delimiter": ","
 }

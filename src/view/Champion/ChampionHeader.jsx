@@ -11,7 +11,7 @@ import m from 'mithril';
 const ChampionHeader = {
     view(ctrl, { champion }) {
         const { uid, stars, typeId, awakened } = champion.attr;
-        const name = lang.get(`champion-${ uid }-name`);
+        const name = lang.string(`champion-${ uid }-name`);
         const starIcon = awakened? (
             <ImageIcon
                 src={ IMAGE_STAR_AWAKENED }
@@ -40,9 +40,9 @@ const ChampionHeader = {
             <div
                 m="ChampionHeader"
                 role="banner"
-                aria-label={ lang.get(`champion-${ uid }-name`) }
+                aria-label={ lang.string(`champion-${ uid }-name`) }
                 class="champion-header"
-                title={ lang.get(`champion-${ uid }-name`) }
+                title={ lang.string(`champion-${ uid }-name`) }
             >
                 <div
                     class={ classNames('champion-header-image',
