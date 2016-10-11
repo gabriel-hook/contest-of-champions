@@ -14,7 +14,7 @@
     "karma-view-pages": "karma start --file=./test/view/pages.jsx --watch",
     "karma-view-champion": "karma start --file=./test/view/champion.jsx",
     "test": "npm run lint && npm run karma",
-    "deploy": "gulp build && ./dev/script/deploy.sh"
+    "deploy": "gulp build && gulp ids && ./dev/script/deploy.sh"
   },
   "repository": {
     "type": "git",
@@ -87,9 +87,11 @@
     "phantomjs-prebuilt": "^2.1.7",
     "sass-loader": "^3.1.1",
     "simple-hot-loader": "git://github.com/WinstonFassett/simple-hot-loader",
+    "string-to-stream": "^1.1.0",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "util-extend": "^1.0.1",
+    "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.3",
     "webpack-dev-server": "^1.12.1",
     "webworker-loader": "^0.1.0"
