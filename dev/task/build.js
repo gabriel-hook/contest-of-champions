@@ -38,8 +38,8 @@ gulp.task('public', () => gulp.src([
     .pipe(gulp.dest('./build/')));
 
 gulp.task('prestigecalc', () => {
-    const idMap = require('../../src/data/champions/prestigecalc.js');
     const { CHAMPION } = require('../../src/data/model/Champion.js');
+    const { default: ids } = require('../../src/data/champions/prestigecalc.js');
     const { default: champions } = require('../../src/data/champions.js');
     const csv = [
         'PID,CID,UID,TYPE,1,2,3,4,5',
@@ -55,7 +55,7 @@ gulp.task('prestigecalc', () => {
                         stars[ attr.stars - 1 ] = true;
                     });
                 return [
-                    idMap[ key ] || key,
+                    ids[ uid ] || key,
                     key,
                     uid,
                     typeId,
