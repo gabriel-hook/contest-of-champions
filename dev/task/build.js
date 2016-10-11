@@ -38,7 +38,7 @@ gulp.task('public', () => gulp.src([
     .pipe(gulp.dest('./build/')));
 
 gulp.task('prestigecalc', () => {
-    const idMap = require('../../src/data/champions/prestige.js');
+    const idMap = require('../../src/data/champions/prestigecalc.js');
     const { CHAMPION } = require('../../src/data/model/Champion.js');
     const { default: champions } = require('../../src/data/champions.js');
     const csv = [
