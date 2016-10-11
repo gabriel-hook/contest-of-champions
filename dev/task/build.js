@@ -42,7 +42,7 @@ gulp.task('prestigecalc', () => {
     const { CHAMPION } = require('../../src/data/model/Champion.js');
     const { default: champions } = require('../../src/data/champions.js');
     const csv = [
-        'PID,CID,TYPE,1,2,3,4,5',
+        'PID,CID,UID,TYPE,1,2,3,4,5',
         ...Object.keys(CHAMPION)
             .map((key) => {
                 const uid = CHAMPION[ key ];
@@ -57,6 +57,7 @@ gulp.task('prestigecalc', () => {
                 return [
                     idMap[ key ] || key,
                     key,
+                    uid,
                     typeId,
                     ...stars,
                 ].join(',');
