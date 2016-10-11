@@ -65,7 +65,7 @@ gulp.task('prestigecalc', () => {
             .sort(),
     ].join('\r\n');
     return string(csv)
-        .pipe(source('coef-ids.csv'))
+        .pipe(source('prestigecalc.csv'))
         .pipe(gulp.dest('./build/'));
 });
 
