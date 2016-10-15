@@ -34,6 +34,7 @@ const EFFECT_COLORS = {
     [ EFFECT.STUN_SPECIAL ]: '#f60',
     [ EFFECT.POWER_GAIN ]: '#a0f',
     [ EFFECT.POWER_STEAL ]: '#a6f',
+    [ EFFECT.ITS_COMPLICATED ]: '#60f',
     [ EFFECT.PERFECT_BLOCK ]: '#00a',
     [ EFFECT.ARMOR ]: '#0af',
     [ EFFECT.HEALTH ]: '#0f0',

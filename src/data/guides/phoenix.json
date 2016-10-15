@@ -1,5 +1,5 @@
 {
-    "description": "Placeholder Profile",
+    "description": "Though Jean Grey and the Phoenix Force have long been separated, their bond is unique. More than a mere host, Jean is a part of the Phoenix, as the Phoenix is a part of her. When Jean was brought to the Battlerealm and exposed to ISO-8, the highly mutagenic properties of ISO-8 reopened Jean’s latent connection the universal force of life, and the Phoenix was reborn again, this time into The Contest of Champions!",
     "gameplay": {
         "abilities": [
             "incinerate",
@@ -7,7 +7,7 @@
             "armorbreak",
             "stun"
         ],
-        "note": "Phoenix Force - Passive  \nThe Phoenix's connection to the cosmic Phoenix Force entity is the source of much of her power. She begins the fight with 1 Phoenix Force charge, and periodically generates Fury Buffs based on her current number of Phoenix Force Charges.  \n  \nFury Buffs increase Attack by 7.5%  \n  \nEmpowered - 5 or more Fury Buffs  \nAll attacks gain 100% chance to Incinerate the opponent, dealing 7% of her Attack as Energy Damage over 6 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% when it's active.  \n  \nHeavy Attacks gain 100% chance to Armor Break, reducing Armor by 30% for 7 seconds.  \n  \nOverloaded - 11 Fury Buffs  \nOn entering Overload all Phoenix Force charges are immediately consumed, and the Phoenix begins to consume Fury Buffs periodically.  \n  \nAll attacks have a 20% chance to Stun Incinerated targets.  \n  \nOffensive and Defensive Power Gain is reduced by 80%.  \n  \nOn reaching 0 Fury Charges, the Phoenix stops Overloading and generates 1 Phoenix Force charge."
+        "description": "Phoenix Force - Passive \n\nThe Phoenix's connection to the cosmic Phoenix Force entity is the source of much of her power. She begins the fight with 1 Phoenix Force charge, and periodically generates Fury Buffs based on her current number of Phoenix Force Charges. \n\nFury Buffs increase Attack by 7.5%\n\nEmpowered - 5 or more Fury Buffs \n\nAll attacks gain 100% chance to Incinerate the opponent, dealing 7% of her Attack as Energy Damage over 6 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% when it's active. \n\nHeavy Attacks gain 100% chance to Armor Break, reducing Armor by 30% for 7 seconds. \n\nOverloaded - 11 Fury Buffs \n\nOn entering Overload all Phoenix Force charges are immediately consumed, and the Phoenix begins to consume Fury Buffs periodically. \n\nAll attacks have a 20% chance to Stun Incinerated targets. \n\nOffensive and Defensive Power Gain is reduced by 80%. \n\nOn reaching 0 Fury Charges, the Phoenix stops Overloading and generates 1 Phoenix Force charge."
     },
     "signature": {
         "name": "Right of the Phoenix",
@@ -19,22 +19,42 @@
     },
     "specials": {
         "1": {
-            "description": "Gain 10% Power for each Phoenix Force charge, consuming all but 1 of them.      Consumes up to 1 Fury Buffs, increasing Special Damage by 10% per Fury consumed.",
+            "description": "The Phoenix Force is released in a wave of telekinesis, amidst a rush of power!\n\nGain 10% Power for each Phoenix Force charge, consuming all but 1 of them.",
             "damagetypes": [
                 "energy"
-            ]
+            ],
+            "name": "Telekinetic Blast",
+            "ranges": [
+                "medium"
+            ],
+            "note": "Consumes up to 1 Fury Buffs, increasing Special Damage by 10% per Fury consumed."
         },
         "2": {
-            "note": "Gain 3 additional stacks of Phoenix Force.  \n  \nConsumes up to 4 Fury Buffs, increasing Special Damage by 10% per Fury consumed.",
+            "note": "Consumes up to 4 Fury Buffs, increasing Special Damage by 10% per Fury consumed.",
             "damagetypes": [
                 "energy"
-            ]
+            ],
+            "ranges": [
+                "short",
+                "medium",
+                "short"
+            ],
+            "description": "Cosmic fire, funnelled by raw Telekinetic power, into a deadly firestorm.\n\nGain 3 additional stacks of Phoenix Force.",
+            "name": "Cosmic Firestorm"
         },
         "3": {
             "note": "This attack consumes all of the Phoenix's Fury Buffs, granting up to 242% damage bonus, based on the number of Fury Buffs consumed.",
             "damagetypes": [
                 "energy"
-            ]
+            ],
+            "description": "The power of the Phoenix Force unleashed!",
+            "name": "True Avatar Phoenix"
         }
+    },
+    "youtube": "gGMRaSe6rG4",
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "681589-Champion-Spotlight-Phoenix"
     }
 }

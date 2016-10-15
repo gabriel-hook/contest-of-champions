@@ -11,6 +11,7 @@ export const STUN_ACTIVATION = 'stunactivation';
 export const STUN_SPECIAL = 'stunspecial';
 export const POWER_GAIN = 'powergain';
 export const POWER_STEAL = 'powersteal';
+export const ITS_COMPLICATED = 'itscomplicated';
 export const PERFECT_BLOCK = 'perfectblock';
 export const ARMOR = 'armor';
 export const HEALTH = 'health';

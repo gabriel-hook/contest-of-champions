@@ -129,6 +129,7 @@
     "effect-stunspecial-type": "Stun Special",
     "effect-powergain-type": "Power Gain",
     "effect-powersteal-type": "Power Steal",
+    "effect-itscomplicated-type": "Armor and Power Gain",
     "effect-perfectblock-type": "Perfect Block",
     "effect-armor-type": "Armor",
     "effect-health-type": "Health",
@@ -143,6 +144,7 @@
     "effect-shieldagents-type": "Ability Accuracy",
     "effect-shieldclearance-type": "Ability Accuracy, Duration, and Potency",
 
+    "effect-itscomplicated-name": "It's Complicated",
     "effect-mutantagenda-name": "Mutant Agenda",
     "effect-cosmicsupremacy-name": "Cosmic Supremacy",
     "effect-idol-name": "Idol",
@@ -162,6 +164,7 @@
     "effect-stunspecial-description": "Chance to stun on special attacks.",
     "effect-powergain-description": "Gain additional special power whenever you would normally gain it.",
     "effect-powersteal-description": "Gain special power when attacking.",
+    "effect-itscomplicated-description": "Gain Armor and additional special power whenever you would normally gain it.",
     "effect-perfectblock-description": "Increased chance to perfect block for 0 damage taken.",
     "effect-armor-description": "Increases armor so that all damage taken is decreased.",
     "effect-health-description": "Increases champion health.",
