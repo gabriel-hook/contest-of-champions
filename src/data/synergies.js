@@ -140,10 +140,16 @@ const synergies = [
         ...fromStars(2, 4, { toId: CHAMPION.THOR, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
+    ...fromId(CHAMPION.THANOS, [
+        ...fromStars(4, [ CHAMPION.STARLORD, CHAMPION.HULK ], { effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(4, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], { effectId: EFFECT.ATTACK }),
+        ...fromStars(4, { toId: CHAMPION.GAMORA, effectId: EFFECT.HEALTH }),
+    ]),
+
     ...fromId(CHAMPION.THOR, [
         ...fromStars(2, 4, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR }),
         ...fromStars(2, 4, { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR }),
-        ...fromStars(3, 4, { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 4, { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
     ...fromId(CHAMPION.VENOM, [
