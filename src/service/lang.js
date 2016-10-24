@@ -1,5 +1,6 @@
 import en from '../data/lang/en.json';
 import es from '../data/lang/es.json';
+import it from '../data/lang/it.json';
 import br from '../data/lang/br.json';
 import ru from '../data/lang/ru.json';
 import { CHAMPION_VALUES } from '../data/model/Champion';
@@ -28,6 +29,7 @@ const lang = {
     messages: {
         en,
         es,
+        it,
         br,
         ru,
     },
