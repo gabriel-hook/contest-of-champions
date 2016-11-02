@@ -149,7 +149,7 @@ const synergies = [
     ...fromId(CHAMPION.THOR, [
         ...fromStars(2, 4, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR }),
         ...fromStars(2, 4, { toId: CHAMPION.IRONMAN, effectId: EFFECT.ARMOR }),
-        ...fromStars(3, 4, { toId: CHAMPION.GAMORA, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 4, { toId: CHAMPION.JUGGERNAUT, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
     ...fromId(CHAMPION.VENOM, [
