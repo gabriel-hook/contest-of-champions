@@ -555,6 +555,12 @@ const synergies = [
         ...fromStars(4, 5, { toId: CHAMPION.WARMACHINE, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
+    ...fromId(CHAMPION.GHOSTRIDER, [
+        ...fromStars(3, 5, { toId: CHAMPION.X23, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 5, [ CHAMPION.DEADPOOL, CHAMPION.ELEKTRA ], { effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 5, { toId: CHAMPION.PUNISHER, effectId: EFFECT.CRITICAL_DAMAGE }),
+    ]),
+
     ...fromId(CHAMPION.GUILLOTINE, [
         ...fromStars(2, 4, { toId: CHAMPION.VENOM, effectId: EFFECT.ATTACK }),
         ...fromStars(2, 4, { toId: CHAMPION.CAPTAINAMERICAWWII, effectId: EFFECT.PERFECT_BLOCK }),

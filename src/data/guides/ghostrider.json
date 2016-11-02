@@ -1,0 +1,80 @@
+{
+    "description": "Tricked by the demonic being Mephisto into selling his soul to save a loved one, stunt cyclist Johnny Blaze soon found himself bonded to the Spirit of Vengeance, a being of almost unlimited power from Hell itself. With the power to control Hellfire as well as his mystical Hell Cycle and Hell Chains, Ghost Rider has turned against Mephisto’s purpose and instead uses his newfound abilities to protect the innocent and cast judgment upon the wicked.",
+    "youtube": "mLZxK_BxxNM",
+    "signature": {
+        "name": "Spirit of Vengeance",
+        "description": "Finish a 5 Hit Combo with a Medium Attack \n\nGhost Rider gains a burst of (25 – 100%) Attack for 7.5 seconds.",
+        "note": "Judgment of Corruption: 65% Chance"
+    },
+    "specials": {
+        "1": {
+            "description": "Judgment of Pride: 70% Chance.",
+            "name": "Retribution",
+            "note": "Secondary: Fate Seals the opponent, Nullifying all Buffs for 5.1 seconds.",
+            "abilities": [
+                "nullify"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "medium"
+            ]
+        },
+        "2": {
+            "description": "Judgment of Anger: 80% Chance",
+            "name": "Hellfire Blast",
+            "note": "Secondary: Drains 17% of the opponent’s Power over 2 seconds.",
+            "abilities": [
+                "powerdrain"
+            ],
+            "ranges": [
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "3": {
+            "description": "Judgment of Guilt: 100% Chance",
+            "name": "Penance Stare",
+            "note": "Secondary: Inflicts Damnation upon the opponent through the Penance Stare for 3.5 seconds, dealing 40% of Ghost Rider’s Attack as Direct Damage. Opponents under Damnation are also Power Locked, Heal Blocked and Fate Sealed. When Damnation ends, all Judgments are removed from the opponent and can be applied again.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "powerlock",
+                "healblock",
+                "nullify"
+            ]
+        }
+    },
+    "attack": {
+        "heavy": "Judgment of Malice: 80% Chance\n\nSecondary: Gain a Life Steal Passive effect for 6.5 seconds, allowing Ghost Rider to steal 34.5% Health with each attack.",
+        "description": "Finish a 5 Hit Combo with a Light Attack\n\nJudgment of Spite: 70% Chance\n\nSecondary: Inflicts Bleed, dealing 104% of your Attack as Direct Damage over 3.5 seconds.",
+        "abilities": [
+            "healthsteal"
+        ],
+        "damagetypes": [
+            "physical"
+        ],
+        "ranges": []
+    },
+    "gameplay": {
+        "description": "Ghost Rider can see his opponent’s transgressions and place Judgments upon them. Each Judgment can only be applied once and lasts indefinitely.\n\nThe Duration of each Judgment’s Secondary Effect is increased by 75% for each Judgment already active.\nThis duration increase stacks for each Judgment effect active.",
+        "note": "If the opponent has 4 Judgments on them, then each Judgment’s Secondary effect will have its Duration increased by 300%. More Judgments = longer secondary effects.",
+        "abilities": [
+            "bleed",
+            "healthsteal",
+            "nullify",
+            "powerdrain",
+            "healblock",
+            "powerlock"
+        ]
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "683749-Champion-Spotlight-Ghost-Rider"
+    }
+}
