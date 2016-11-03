@@ -80,6 +80,7 @@ export const SPIDERMAN = 'spiderman';
 export const SPIDERMANMORALES = 'spidermanmorales';
 export const YELLOWJACKET = 'yellowjacket';
 // Mystic
+export const BROTHERVOODOO = 'brothervoodoo';
 export const DRSTRANGE = 'drstrange';
 export const DRSTRANGEMARVELNOW = 'drstrangemarvelnow';
 export const GHOSTRIDER = 'ghostrider';
@@ -87,6 +88,7 @@ export const GUILLOTINE = 'guillotine';
 export const IRONFIST = 'ironfist';
 export const IRONFISTWHITE = 'ironfistwhite';
 export const JUGGERNAUT = 'juggernaut';
+export const KARLMORDO = 'karlmordo';
 export const MAGIK = 'magik';
 export const SCARLETWITCH = 'scarletwitch';
 export const SCARLETWITCHULTIMATE = 'scarletwitchultimate';

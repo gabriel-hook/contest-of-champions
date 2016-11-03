@@ -116,6 +116,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.YELLOWJACKET }, [ 2, 3, 4 ]),
     ]),
     ...typeId(TYPE.MYSTIC, [
+        ...championStars({ uid: CHAMPION.BROTHERVOODOO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGE }, [ 3, 4 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGEMARVELNOW }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GHOSTRIDER }, [ 3, 4, 5 ]),
@@ -123,6 +124,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.IRONFIST }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.IRONFISTWHITE }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.JUGGERNAUT }, [ 1, 2, 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.KARLMORDO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.LOKI }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MAGIK }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.SCARLETWITCH }, [ 1, 2, 3, 4 ]),
