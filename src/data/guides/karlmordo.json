@@ -1,0 +1,63 @@
+{
+    "description": "An advanced student of the mystic arts and fellow pupil of The Ancient One, Mordo saw the potential in the fledgling apprentice Stephen Strange and took him under his wing when the one-time neurosurgeon first sought healing. Like Strange, Mordo came to Kamar-Taj lost and broken. The Ancient One helped channel Mordo’s anger and led him down the path to enlightenment. While Mordo sees a bit of himself in Strange, his reason for vetting him is much shrewder – in the fight against unknowable darkness, Kamar-Taj needs all the help it can muster.",
+    "youtube": "1Iqna5igXEI",
+    "gameplay": {
+        "description": "Mordo’s astral form ensures that every ability properly activates, resisting against Ability Accuracy effects.\n\nMordo gets one bar of Power over 5 seconds, every 8 seconds. Opponents can interrupt the Power Gain when landing a hit on Mordo.\n\nAfter holding Block for 0.5 seconds, Mordo can block unblockable special attacks.",
+        "note": "Even while Stunned, Mordo’s astral form senses incoming non-special attacks and quickly counter-attacks, inflicting Degeneration for 75% of your attack as direct damage over 2.5 seconds."
+    },
+    "attack": {
+        "heavy": "Mordo gains 16.6% of max power per second while below 1 power bar. Exponentially gains up to 10 Fury stacks while charging a Heavy Attack, each charge increases his Attack by 15% for 12 seconds."
+    },
+    "specials": {
+        "1": {
+            "name": "Energy Blast",
+            "description": "Mordo launches an energy blast designed to use the attacker’s energy against themselves.\n\nCauses Degeneration, inflicting 75% of your Attack as Direct Damage over 2.5 seconds. If the opponent has a Buff, Degeneration will activate even after a successful Block.",
+            "abilities": [
+                "degeneration",
+                "stun"
+            ],
+            "damagetypes": [
+                "energy"
+            ],
+            "ranges": [
+                "long"
+            ],
+            "note": "30% Chance to Stun for 3 seconds."
+        },
+        "2": {
+            "description": "Combining martial arts and black magic, Mordo strikes his opponent, causing them to momentarily have an out of body experience.\n\nOpponents suffer from Mordo’s Soul Barb spell for 14 seconds, 10% of your Attack per opponent Buff as Energy Damage. Additionally, Soul Barb reduces Health Recovery by 70%.",
+            "name": "Astral Strike",
+            "ranges": [
+                "short",
+                "medium"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        },
+        "3": {
+            "description": "Upon entering the Mirror Realm, Mordo is able to access all of his powers, shaping reality and catching the opponent off-guard right before the tendrils of an unidentified transdimensional beast drags them into a nightmare.\n\nGains 3 stacks of Fury, each increasing his Attack by 43% for 12 seconds.",
+            "name": "Mirror Realm",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury",
+                "regeneration"
+            ],
+            "note": "Up to 40% chance based on Health lost to Regen instead of gaining a Fury stack, Recovering 14% Health over 6 seconds."
+        }
+    },
+    "signature": {
+        "description": "By conjuring a magical barrier, Mordo Resists 80% of any Energy Damage attacks and debuffs.",
+        "name": "Mystical Barrier",
+        "abilities": [
+            "energyresist"
+        ]
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "686091-Champion-Spotlight-Mordo"
+    }
+}
