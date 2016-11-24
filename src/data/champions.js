@@ -117,7 +117,7 @@ const champions = [
     ]),
     ...typeId(TYPE.MYSTIC, [
         ...championStars({ uid: CHAMPION.BROTHERVOODOO }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.DRSTRANGE }, [ 3, 4 ]),
+        ...championStars({ uid: CHAMPION.DRSTRANGE }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGEMARVELNOW }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GHOSTRIDER }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GUILLOTINE }, [ 2, 3, 4 ]),

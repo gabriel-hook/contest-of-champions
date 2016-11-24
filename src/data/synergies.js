@@ -535,10 +535,15 @@ const synergies = [
         ...fromStars(4, { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.IDOL }),
     ]),
 
+    ...fromId(CHAMPION.BROTHERVOODOO, [
+        ...fromStars(3, 5, { toId: CHAMPION.ROGUE, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 5, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.CRITICAL_DAMAGE }),
+    ]),
+
     ...fromId(CHAMPION.DRSTRANGE, [
         ...fromStars(3, 4, [ CHAMPION.THOR, CHAMPION.X23 ], { effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR }),
-        ...fromStars(3, 4, { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(2, 4, { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 4, { toId: CHAMPION.BLACKBOLT, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
