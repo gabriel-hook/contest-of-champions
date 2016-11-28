@@ -580,8 +580,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.KARLMORDO, [
-        ...fromStars(3, 5, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.HEALTH }),
-        ...fromStars(3, 5, { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ATTACK }),
+        ...fromStars(3, 5, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.ARMOR }),
+        ...fromStars(3, 5, { toId: CHAMPION.THOR, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 5, [ CHAMPION.FALCON, CHAMPION.ABOMINATION ], { effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(3, 5, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
 
     ...fromId(CHAMPION.LOKI, [
