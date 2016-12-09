@@ -1,0 +1,78 @@
+{
+    "description": "An infant cast into space, Hyperion was the only survivor of a dying race, on a dying world. He crashed to Earth, and was found by a man who called himself Father. Father would teach him right from wrong, good from evil, instilling in him a set of morals which would guide him into using his incredible powers as a sworn protector of our world.",
+    "author": {
+        "type": "spotlight",
+        "name": "KABAM",
+        "profile": "695025-Champion-Spotlight-Hyperion"
+    },
+    "gameplay": {
+        "abilities": [
+            "fury",
+            "incinerate",
+            "armorbreak",
+            "stun",
+            "poisonimmunity"
+        ],
+        "description": "Cosmic Charge – Passive\n\nGains charges periodically. Maximum 3 charges at a time. Whenever not at full power, Cosmic Charges are converted into Power Gain Buffs one at a time. Each charge passively increases Attack by 40% and Physical Resist by 20% \n\nCosmic Healing – Passive\n\nHyperion triggers Cosmic Healing by dashing backwards and holding block for 2 seconds, at a cost of 3 Cosmic Charges. Cosmic Healing Regenerates 15% of Hyperion’s Health over 15 seconds. After triggering Cosmic Healing, Hyperion will be unable to generate Cosmic Charges for 45 seconds.",
+        "note": "Passive – Eternal physiology grants immunity to all known poisons within the Battlerealm."
+    },
+    "attack": {
+        "heavy": "35% chance for Fury, increasing your Attack by 50% for 10 seconds.",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "fury"
+        ]
+    },
+    "specials": {
+        "1": {
+            "description": "Hyperion fires beams of intense heat from his eyes to devastating effect.",
+            "name": "Atomic Vision",
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "ranges": [
+                "melee",
+                "medium"
+            ],
+            "abilities": [
+                "incinerate"
+            ],
+            "note": "This attack Incinerates the enemy, dealing 92% of your attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
+        },
+        "2": {
+            "description": "Using his massive strength Hyperion can exhale with the force of a hurricane.",
+            "ranges": [
+                "melee",
+                "medium",
+                "medium"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy",
+                "physical"
+            ],
+            "note": "100% chance to Armor Break, removing enemy Armor and applying 60% Armor reduction for 15 seconds. 50% chance to Stun for 3 seconds.",
+            "abilities": [
+                "armorbreak",
+                "stun"
+            ],
+            "name": "Solar Wind"
+        },
+        "3": {
+            "name": "Orbital Kinetic Strike –",
+            "description": "Hyperion hammers his opponent into the ground, before launching himself into orbit, and using gravity to help him smash back down on them, at terrifying speed!",
+            "note": "100% chance to gain up to 3 Cosmic Charges If Hyperion has 3 Cosmic Charges when used, he instead gains a Cosmic Overcharge Buff. While in Cosmic Overcharge mode, Hyperion gains Power and does not convert Cosmic Charges into Power Gains while below Full Power.",
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Hyperion’s Eternal physiology becomes even more efficient at storing and converting cosmic radiation, resulting in 50% increased Buff duration.",
+        "name": "Cosmic Potential"
+    },
+    "youtube": "Gg2F0ZTrILY"
+}

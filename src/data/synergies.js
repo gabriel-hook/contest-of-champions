@@ -100,6 +100,12 @@ const synergies = [
         ...fromStars(3, 5, { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE }),
     ]),
 
+    ...fromId(CHAMPION.HYPERION, [
+        ...fromStars(3, 5, { toId: CHAMPION.THOR, effectId: EFFECT.ARMOR }),
+        ...fromStars(3, 5, { toId: CHAMPION.IRONMAN, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(4, 5, { toId: CHAMPION.DRSTRANGE, effectId: EFFECT.CRITICAL_RATE }),
+    ]),
+
     ...fromId(CHAMPION.KAMALAKHAN, [
         ...fromStars(3, 5, { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL }),
         ...fromStars(3, 5, { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL }),
