@@ -109,7 +109,7 @@ const synergies = [
     ...fromId(CHAMPION.KAMALAKHAN, [
         ...fromStars(3, 5, { toId: CHAMPION.CAPTAINMARVEL, effectId: EFFECT.IDOL }),
         ...fromStars(3, 5, { toId: CHAMPION.MSMARVEL, effectId: EFFECT.IDOL }),
-        ...fromStars(3, 5, { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 5, [ CHAMPION.SPIDERMANMORALES, CHAMPION.THORJANEFOSTER ], { effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(4, 5, { toId: CHAMPION.VISION, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
