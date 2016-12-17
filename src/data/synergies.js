@@ -494,8 +494,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.RHINO, [
-        ...fromStars(2, 5, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERGWEN ], { effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(2, 5, { toId: CHAMPION.ABOMINATION, effectId: EFFECT.ARMOR }),
+        ...fromStars(4, 5, { toId: CHAMPION.PUNISHER, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(2, 5, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERGWEN ], { effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 5, { toId: CHAMPION.ELECTRO, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
