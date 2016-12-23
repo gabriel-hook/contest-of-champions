@@ -1,0 +1,70 @@
+{
+    "youtube": "WfukVQswsSc",
+    "author": {
+        "type": "spotlight",
+        "profile": "700066-Champion-Spotlight-Howard-the-Duck",
+        "name": "KABAM"
+    },
+    "description": "When Howard was whisked away from his detective agency in New York City to the Battlerealm, he didn’t\nknow what to expect. He certainly didn’t expect to be shoved into some back warehouse, organizing the\nCollector’s Crystals all day. Well, an insult like this won’t just run off this duck’s back. He’s “borrowed” a spare ISO-Loader, made some upgrades, and attached an old friend; his famous Big Freaking Gun. It’s time for Howard to introduce these so-called Champions to the ultimate fighting style of his home universe, Quack-Fu!",
+    "gameplay": {
+        "description": "Quack Fu: As Howard takes and deals damage, his temper builds, increasing his Attack and Critical Damage by 10% per stack. These stacks are lost over time as Howard eventually cools off.\n\nArmor: The ISO-Loader begins the fight with 8 stacks of Armor Up active, each increasing Armor by 7%. Each time the Loader is struck, there’s a 13% chance for a piece of Armor to fall off."
+    },
+    "specials": {
+        "1": {
+            "description": "The ISO-Loader’s specialized metal punches out a portion of the opponent’s ISO-8, reducing Armor,\nAttack, Block Proficiency, Regeneration Rate, Physical Resistance and Critical Chance by 6% for the\nremainder of the fight.",
+            "name": "Unarmed Attack",
+            "note": "The is a Passive effect that has an infinite duration. This effect can be stacked up to 4 times.",
+            "ranges": [
+                "long"
+            ],
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "armorbreak",
+                "weakness",
+                "fatigue"
+            ]
+        },
+        "2": {
+            "description": "The super-charged B.F.G. fires out a barrage of strange bullets to cause different effects.",
+            "name": "B.F.G Surprise",
+            "note": "Each effect has a 30% chance to activate",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "long"
+            ]
+        },
+        "3": {
+            "description": "The suit’s Catalyst Absorber fires off, granting Howard a temporary Buff for 9 seconds based on the opponent’s Class.\n\nCosmic – Fury Buff + Critical Hits ignore Armor\n\nTech – Armor Up + Chance to Heal Block on Critical Hits\n\nMutant – Regeneration + Chance to Armor Break on Critical Hits\n\nSkill – Precision Buff + Chance to Bleed on Critical Hits\n\nScience – Evasion buff + Chance to Poison on Critical Hits\n\nMystic – Power Gain + Chance to Nullify on Critical Hits",
+            "name": "Junkyard Smackdown",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "fury",
+                "directdamage",
+                "armorup",
+                "healblock",
+                "regeneration",
+                "armorbreak",
+                "precision",
+                "bleed",
+                "evade",
+                "poison",
+                "nullify"
+            ],
+            "note": "While the Buff is active, Howard’s Critical Hits also gain a bonus effect."
+        }
+    },
+    "signature": {
+        "description": "When Howard is brought below 60% and 30% Max Health, he frantically mashes buttons on the Loader console. This has a (38 – 87%) chance to trigger a Self Repair, healing 20% Max Health, or a Thunderquack, dealing 135% of his Attack as Energy Damage.",
+        "name": "Mash ALL the Buttons!",
+        "note": "Both effects last 7 seconds and are interrupted if Howard is Stunned.",
+        "abilities": [
+            "regeneration"
+        ]
+    }
+}

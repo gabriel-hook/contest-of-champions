@@ -178,6 +178,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], { effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
 
+    ...fromId(CHAMPION.HOWARDTHEDUCK, [
+        ...fromStars(3, 5, { toId: CHAMPION.SHEHULK, effectId: EFFECT.ARMOR }),
+        ...fromStars(3, 5, { toId: CHAMPION.ROCKET, effectId: EFFECT.ARMOR }),
+        ...fromStars(4, 5, { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK }),
+    ]),
+
     ...fromId(CHAMPION.IRONMAN, [
         ...fromStars(2, 5, [ CHAMPION.THOR, CHAMPION.WARMACHINE ], { effectId: EFFECT.PERFECT_BLOCK }),
         ...fromStars(3, 5, { toId: CHAMPION.ULTRON, effectId: EFFECT.CRITICAL_RATE }),

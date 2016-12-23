@@ -51,7 +51,7 @@ const champions = [
     ]),
     ...typeId(TYPE.TECH, [
         ...championStars({ uid: CHAMPION.CIVILWARRIOR }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.HOWARDMECH }, [ 2, 3, 4 ]),
+        ...championStars({ uid: CHAMPION.HOWARDTHEDUCK }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.HULKBUSTER }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.IRONMAN }, [ 1, 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.IRONPATRIOT }, [ 3, 4, 5 ]),

@@ -19,7 +19,7 @@ export const VENOM = 'venom';
 export const VENOMPOOL = 'venompool';
 // Tech
 export const CIVILWARRIOR = 'civilwarrior';
-export const HOWARDMECH = 'howardmech';
+export const HOWARDTHEDUCK = 'howardtheduck';
 export const HULKBUSTER = 'hulkbuster';
 export const IRONMAN = 'ironman';
 export const IRONPATRIOT = 'ironpatriot';
