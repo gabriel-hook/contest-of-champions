@@ -1,9 +1,11 @@
-import { requestRedraw } from './animation';
+import { requestRedraw } from '../util/animation';
+import { TYPE } from '../data/model/Type';
 
 /**
   * Image constants.
   */
-export { IMAGE_STAR, IMAGE_STAR_AWAKENED } from './images/stars';
+export IMAGE_STAR from '../images/badges/star.png';
+export IMAGE_STAR_AWAKENED from '../images/badges/star-awakened.png';
 
 export IMAGE_BADGE_ARENA from '../images/badges/arena.png';
 export IMAGE_BADGE_QUEST from '../images/badges/quest.png';
@@ -12,6 +14,8 @@ export IMAGE_BADGE_ALLIANCE_WAR from '../images/badges/alliance-war.png';
 
 export IMAGE_BADGE_RANK_UP from '../images/badges/rank-up.png';
 export IMAGE_BADGE_LEVEL_MAX from '../images/badges/max.png';
+
+export IMAGE_CURRENCY_GOLD from '../images/currency/gold.png';
 
 export const IMAGE_EMPTY = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 
@@ -36,4 +40,18 @@ export function getImage(src) {
         images[ src ] = image;
     }
     return image.loaded && image;
+}
+
+/**
+ * Get catalyst images.
+ */
+const catalystImages = {};
+[ 'alpha', 'basic', TYPE.COSMIC, TYPE.TECH, TYPE.MUTANT, TYPE.SKILL, TYPE.SCIENCE, TYPE.MYSTIC ].forEach((type) => {
+    [ 1, 2, 3, 4, 5 ].forEach((tier) => {
+        catalystImages[ `tier-${tier}-${type}` ] = require(`../images/catalysts/tier_${tier}_${type}.png`);
+    });
+});
+
+export function getCatalystImage(uid) {
+    return catalystImages[ uid ];
 }

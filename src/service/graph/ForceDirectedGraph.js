@@ -1,5 +1,5 @@
 import lang from '../../service/lang';
-import { getImage } from '../../util/images';
+import { getImage } from '../../images';
 import Layout from './Layout';
 import Renderer from './Renderer';
 import Graph from './Graph';

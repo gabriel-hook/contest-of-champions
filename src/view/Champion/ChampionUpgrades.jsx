@@ -2,7 +2,7 @@ import './ChampionUpgrade.scss';
 import { TYPE_VALUES } from '../../data/model/Type';
 import { CATALYSTS, CATALYST } from '../../data/model/Catalyst';
 import { STAR_RANK_LEVEL } from '../../data/model/Champion';
-import { catalystImage } from '../../util/images/catalysts';
+import { IMAGE_CURRENCY_GOLD, getCatalystImage } from '../../images';
 import ImageIcon from '../ImageIcon.jsx';
 import lang from '../../service/lang';
 import classnames from 'classnames';
@@ -106,8 +106,8 @@ const ChampionUpgrades = {
                                 <ImageIcon
                                     src={
                                         (type === CATALYST.CLASS)
-                                            ? catalystImage(`tier-${ tier }-${ typeId }`)
-                                            : catalystImage(`tier-${ tier }-${ type }`)
+                                            ? getCatalystImage(`tier-${ tier }-${ typeId }`)
+                                            : getCatalystImage(`tier-${ tier }-${ type }`)
                                     }
                                 />
                                 { ', ' }
@@ -118,7 +118,7 @@ const ChampionUpgrades = {
                 <span class={ classnames('champion-upgrade-catalyst', 'champion-upgrade-catalyst--gold') }>
                     { lang.number(catalysts[ CATALYST.GOLD ]) }
                     ×
-                    <ImageIcon src={ require('../../images/catalysts/gold.png') } />
+                    <ImageIcon src={ IMAGE_CURRENCY_GOLD } />
                 </span>
             </div>
         );

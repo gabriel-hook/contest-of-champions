@@ -2,7 +2,7 @@ import './ImageIcon.scss';
 import { getTypeColor } from '../service/graph';
 import classNames from 'classnames';
 import Icon from './Icon.jsx';
-import { getImage } from '../util/images';
+import { getImage } from '../images';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
 /* eslint-enable no-unused-vars */

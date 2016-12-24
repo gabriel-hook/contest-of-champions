@@ -4,7 +4,7 @@ import {
     IMAGE_BADGE_QUEST,
     IMAGE_BADGE_ALLIANCE_QUEST,
     IMAGE_BADGE_ALLIANCE_WAR,
-} from '../util/images';
+} from '../images';
 
 const roleIcons = {
     [ ROLE.ARENA ]: 'role-arena',

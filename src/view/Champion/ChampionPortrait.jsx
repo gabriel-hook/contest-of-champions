@@ -10,7 +10,7 @@ import {
     IMAGE_EMPTY,
     IMAGE_STAR, IMAGE_STAR_AWAKENED,
     IMAGE_BADGE_RANK_UP, IMAGE_BADGE_LEVEL_MAX,
-} from '../../util/images';
+} from '../../images';
 import lang from '../../service/lang';
 /* eslint-disable no-unused-vars */
 import m from 'mithril';
