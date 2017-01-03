@@ -395,9 +395,9 @@ const synergies = [
 
     ...fromId(CHAMPION.ELEKTRA, [
         ...fromStars(3, 4, { toId: CHAMPION.WOLVERINE, effectId: EFFECT.ARMOR }),
-        ...fromStars(3, 4, { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.POWER_GAIN }),
+        ...fromStars(3, 4, [ CHAMPION.DAREDEVIL, CHAMPION.DAREDEVILNETFLIX ], { effectId: EFFECT.POWER_GAIN }),
         ...fromStars(3, 4, { toId: CHAMPION.BLACKWIDOW, effectId: EFFECT.CRITICAL_DAMAGE }),
-        ...fromStars(4, { toId: CHAMPION.DEADPOOL, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(4, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], { effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
     ...fromId(CHAMPION.FALCON, [
