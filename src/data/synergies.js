@@ -407,6 +407,13 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.ANTMAN, CHAMPION.HAWKEYE ], { effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
+    ...fromId(CHAMPION.GWENPOOL, [
+        ...fromStars(3, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], { effectId: EFFECT.IDOL }),
+        ...fromStars(4, 5, { toId: CHAMPION.HOWARDTHEDUCK, effectId: EFFECT.ARMOR }),
+        ...fromStars(4, 5, { toId: CHAMPION.SPIDERMANMORALES, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(4, 5, { toId: CHAMPION.THORJANEFOSTER, effectId: EFFECT.CRITICAL_RATE }),
+    ]),
+
     ...fromId(CHAMPION.HAWKEYE, [
         ...fromStars(2, 5, { toId: CHAMPION.SCARLETWITCH, effectId: EFFECT.POWER_GAIN }),
         ...fromStars(3, 5, { toId: CHAMPION.MOONKNIGHT, effectId: EFFECT.ARMOR }),

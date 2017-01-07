@@ -1,0 +1,73 @@
+{
+    "description": "Through unknown means, the avid comic reader Gwen Poole was transported into the world of the comics\nshe loves so much, with all of her memories of the “real” world intact. Unwilling to remain an extra in her own story, she sets out to make a name for herself and to find a way to pay her internet bill. Maybe she can make some money in this Contest thingy? At least it’ll give her something fun to do!",
+    "youtube": "yPqrduKoR3k",
+    "gameplay": {
+        "abilities": []
+    },
+    "attack": {
+        "heavy": "If the target isn’t Bleeding when the last strike hits, it has a 50% chance to cause Bleed, doing 70% of Gwen’s attack over 5 seconds.\n\nIf the target is already Bleeding, the attack instead gains a 100% chance to convert 1 existing Bleed to cause 450% of Gwen’s attack as direct damage, over 23 seconds.",
+        "description": "All attacks have a 25% chance to inflict Bleed, dealing 70% of your Attack as direct damage over 5 seconds.",
+        "note": "3% chance to Stun per Bleed active on target, lasting for 0.75 seconds.",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "bleed",
+            "stun"
+        ]
+    },
+    "specials": {
+        "1": {
+            "description": "Swords and guns! What more could you ask for?\n\n100% chance to Incinerate the target, dealing 98% of your Attack as Energy Damage for 14 seconds.",
+            "name": "Slice, Slice, Bang!",
+            "note": "This effect also removes Perfect Block chance and reduces Block Proficiency by 50% while active..",
+            "ranges": [
+                "melee",
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "abilities": [
+                "incinerate"
+            ]
+        },
+        "2": {
+            "description": "Explosives strapped on a football, and kicked right at your opponent’s face!\n\nCatch!\n\n100% chance to Enervate the target, preventing them from gaining Power when struck for 6 seconds.",
+            "name": "Down, Set, Boom!",
+            "note": "When this effect expires, it has a 100% chance to consume 1 Bleed off the opponent to re-apply itself",
+            "damagetypes": [
+                "physical"
+            ],
+            "ranges": [
+                "long"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "3": {
+            "description": "In the immortal words of anyone about to do something really cool, that in no way could go horribly wrong!\n\n100% chance to Armor Break, removing enemy Armor and applying a 115% Armor reduction for 14\nseconds.",
+            "name": "Watch This!",
+            "note": "When this effect expires, it has a 100% chance to consume 1 Bleed off the opponent to re-apply itself.",
+            "abilities": [
+                "armorbreak",
+                "bleed"
+            ],
+            "damagetypes": [
+                "physical"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Gwenpool’s read enough comics to know that the main character doesn’t die, preventing her from losing more than 65% of her current health per hit from Special Attacks.\n\nShe also reduces her opponent’s Defensive Ability Accuracy, based on her current combo count.",
+        "name": "Plot Armor"
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "703897-Champion-Spotlight-Gwenpool"
+    }
+}
