@@ -95,9 +95,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.GROOT, [
-        ...fromStars(3, 5, { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 5, { toId: CHAMPION.STARLORD, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 5, { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE }),
         ...fromStars(3, 5, { toId: CHAMPION.DRAX, effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(3, 5, { toId: CHAMPION.ROCKET, effectId: EFFECT.INSEPARABLE }),
     ]),
 
     ...fromId(CHAMPION.HYPERION, [
@@ -135,7 +135,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.SPIDERMANBLACK, [
-        ...fromStars(3, 4, { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 4, { toId: CHAMPION.STORM, effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.ELECTRO, effectId: EFFECT.CRITICAL_RATE }),
         ...fromStars(3, 4, { toId: CHAMPION.AGENTVENOM, effectId: EFFECT.HEALTH }),
     ]),
@@ -378,7 +378,7 @@ const synergies = [
 
     ...fromId(CHAMPION.CROSSBONES, [
         ...fromStars(3, 5, [ CHAMPION.CAPTAINAMERICA, CHAMPION.CAPTAINAMERICAWWII, CHAMPION.FALCON ], { effectId: EFFECT.CRITICAL_RATE }),
-        ...fromStars(4, 5, [ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
+        ...fromStars(3, 5, [ CHAMPION.WINTERSOLDIER, CHAMPION.BLACKWIDOW ], { effectId: EFFECT.CRITICAL_DAMAGE }),
     ]),
 
     ...fromId(CHAMPION.DAREDEVIL, [
@@ -429,9 +429,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.MOONKNIGHT, [
-        ...fromStars(3, 4, { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 4, { toId: CHAMPION.SPIDERMAN, effectId: EFFECT.ARMOR }),
+        ...fromStars(2, 4, [ CHAMPION.DEADPOOLXFORCE, CHAMPION.DEADPOOL ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ...fromStars(3, 4, { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(3, 4, [ CHAMPION.DEADPOOLXFORCE, CHAMPION.DEADPOOL ], { effectId: EFFECT.CRITICAL_DAMAGE }),
         ...fromStars(4, { toId: CHAMPION.IRONPATRIOT, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
@@ -495,8 +495,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.LUKECAGE, [
-        ...fromStars(3, 5, { toId: CHAMPION.IRONFIST, effectId: EFFECT.HEROES_FOR_HIRE }),
-        ...fromStars(3, 5, [ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
+        ...fromStars(2, 5, { toId: CHAMPION.IRONFIST, effectId: EFFECT.HEROES_FOR_HIRE }),
+        ...fromStars(2, 5, [ CHAMPION.JUGGERNAUT, CHAMPION.IRONPATRIOT ], { effectId: EFFECT.THUNDERBOLTS }),
+        ...fromStars(3, 5, { toId: CHAMPION.RHINO, effectId: EFFECT.CRITICAL_RATE }),
+        ...fromStars(4, 5, { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
     ...fromId(CHAMPION.QUAKE, [
@@ -521,10 +523,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.SHEHULK, [
+        ...fromStars(3, 5, [ CHAMPION.DAREDEVIL, CHAMPION.DAREDEVILNETFLIX ], { effectId: EFFECT.STUN_ACTIVATION }),
         ...fromStars(3, 5, { toId: CHAMPION.HULK, effectId: EFFECT.HEALTH }),
         ...fromStars(3, 5, { toId: CHAMPION.SUPERIORIRONMAN, effectId: EFFECT.POWER_GAIN }),
-        ...fromStars(3, 5, { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK }),
-        ...fromStars(3, 5, { toId: CHAMPION.DAREDEVIL, effectId: EFFECT.STUN_ACTIVATION }),
+        ...fromStars(4, 5, { toId: CHAMPION.KAMALAKHAN, effectId: EFFECT.PERFECT_BLOCK }),
     ]),
 
     ...fromId(CHAMPION.SPIDERMAN, [
@@ -623,6 +625,7 @@ const synergies = [
         ...fromStars(2, 4, [ CHAMPION.CAPTAINMARVEL, CHAMPION.MSMARVEL ], { effectId: EFFECT.ARMOR }),
         ...fromStars(3, 4, { toId: CHAMPION.VISION, effectId: EFFECT.POWER_GAIN }),
         ...fromStars(3, 4, { toId: CHAMPION.ANTMAN, effectId: EFFECT.PERFECT_BLOCK }),
+        ...fromStars(3, 4, { toId: CHAMPION.PHOENIX, effectId: EFFECT.CRITICAL_RATE }),
     ]),
 
     ...fromId(CHAMPION.THORJANEFOSTER, [
