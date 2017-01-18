@@ -20,11 +20,14 @@ function fromId(fromId, synergies) {
 
 let toIdsCounter = 0;
 function toIds(toIds, synergy) {
-    toIdsCounter++;
+    const isGrouped = toIds.length > 1;
+    if (isGrouped) {
+        toIdsCounter++;
+    }
     return toIds.map((toId) => ({
+        ...(isGrouped) ? { group: `group-${ toIdsCounter }` } : {},
         ...synergy,
         toId,
-        group: `group-${ toIdsCounter }`,
     }));
 }
 
