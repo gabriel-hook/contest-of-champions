@@ -121,9 +121,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.SUPERIORIRONMAN, [
-        ...fromStars(2, 4, [ CHAMPION.CAPTAINAMERICA ], EFFECT.CRITICAL_RATE),
-        ...fromStars(2, 4, [ CHAMPION.DAREDEVIL ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(2, 4, [ CHAMPION.THOR ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(2, 5, [ CHAMPION.CAPTAINAMERICA ], EFFECT.CRITICAL_RATE),
+        ...fromStars(2, 5, [ CHAMPION.DAREDEVIL ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(2, 5, [ CHAMPION.THOR ], EFFECT.PERFECT_BLOCK),
     ]),
 
     ...fromId(CHAMPION.THANOS, [
@@ -184,10 +184,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.HULKBUSTER, [
-        ...fromStars(2, 4, [ CHAMPION.HULK, CHAMPION.YELLOWJACKET ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(3, 4, [ CHAMPION.IRONMAN ], EFFECT.HEALTH),
-        ...fromStars(3, 4, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.HEALTH),
-        ...fromStars(4, 4, [ CHAMPION.ULTRON ], EFFECT.CRITICAL_RATE),
+        ...fromStars(2, 5, [ CHAMPION.HULK, CHAMPION.YELLOWJACKET ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(3, 5, [ CHAMPION.IRONMAN ], EFFECT.HEALTH),
+        ...fromStars(3, 5, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.HEALTH),
+        ...fromStars(4, 5, [ CHAMPION.ULTRON ], EFFECT.CRITICAL_RATE),
     ]),
 
     ...fromId(CHAMPION.ROCKET, [
@@ -242,9 +242,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.COLOSSUS, [
-        ...fromStars(2, 4, [ CHAMPION.JUGGERNAUT ], EFFECT.CRITICAL_RATE),
-        ...fromStars(3, 4, [ CHAMPION.WOLVERINE, CHAMPION.WOLVERINEOLDMAN ], EFFECT.ARMOR),
-        ...fromStars(3, 4, [ CHAMPION.MAGIK ], EFFECT.HEALTH),
+        ...fromStars(2, 5, [ CHAMPION.JUGGERNAUT ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.WOLVERINE, CHAMPION.WOLVERINEOLDMAN ], EFFECT.ARMOR),
+        ...fromStars(3, 5, [ CHAMPION.MAGIK ], EFFECT.HEALTH),
     ]),
 
     ...fromId(CHAMPION.CYCLOPS, [
@@ -409,10 +409,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.MOONKNIGHT, [
-        ...fromStars(2, 4, [ CHAMPION.SPIDERMAN ], EFFECT.ARMOR),
-        ...fromStars(2, 4, [ CHAMPION.DEADPOOLXFORCE, CHAMPION.DEADPOOL ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(3, 4, [ CHAMPION.DAREDEVIL ], EFFECT.PERFECT_BLOCK),
-        ...fromStars(4, 4, [ CHAMPION.IRONPATRIOT ], EFFECT.CRITICAL_RATE),
+        ...fromStars(2, 5, [ CHAMPION.SPIDERMAN ], EFFECT.ARMOR),
+        ...fromStars(2, 5, [ CHAMPION.DEADPOOLXFORCE, CHAMPION.DEADPOOL ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(3, 5, [ CHAMPION.DAREDEVIL ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.IRONPATRIOT ], EFFECT.CRITICAL_RATE),
     ]),
 
     ...fromId(CHAMPION.PUNISHER, [
@@ -531,10 +531,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.YELLOWJACKET, [
-        ...fromStars(2, 4, [ CHAMPION.ANTMAN ], EFFECT.ATTACK),
-        ...fromStars(2, 4, [ CHAMPION.ULTRON ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(3, 4, [ CHAMPION.JOEFIXIT ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(4, 4, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.IDOL),
+        ...fromStars(2, 5, [ CHAMPION.ANTMAN ], EFFECT.ATTACK),
+        ...fromStars(2, 5, [ CHAMPION.ULTRON ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(3, 5, [ CHAMPION.JOEFIXIT ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(4, 5, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.IDOL),
     ]),
 
     ...fromId(CHAMPION.BROTHERVOODOO, [
@@ -569,10 +569,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.GUILLOTINE, [
-        ...fromStars(2, 4, [ CHAMPION.VENOM ], EFFECT.ATTACK),
-        ...fromStars(2, 4, [ CHAMPION.CAPTAINAMERICAWWII ], EFFECT.PERFECT_BLOCK),
-        ...fromStars(3, 4, [ CHAMPION.MAGIK ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(4, 4, [ CHAMPION.BLACKPANTHER ], EFFECT.ARMOR),
+        ...fromStars(2, 5, [ CHAMPION.VENOM ], EFFECT.ATTACK),
+        ...fromStars(2, 5, [ CHAMPION.CAPTAINAMERICAWWII ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(3, 5, [ CHAMPION.MAGIK ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(4, 5, [ CHAMPION.BLACKPANTHER ], EFFECT.ARMOR),
     ]),
 
     ...fromId(CHAMPION.JUGGERNAUT, [
