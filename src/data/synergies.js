@@ -62,6 +62,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.DRAX, [
+        ...fromStars(2, 5, [ CHAMPION.RONAN ], EFFECT.CRITICAL_RATE),
         ...fromStars(2, 5, [ CHAMPION.STARLORD ], EFFECT.PERFECT_BLOCK),
         ...fromStars(2, 5, [ CHAMPION.GAMORA ], EFFECT.CRITICAL_DAMAGE),
         ...fromStars(3, 4, [ CHAMPION.AGENTVENOM ], EFFECT.PERFECT_BLOCK),
