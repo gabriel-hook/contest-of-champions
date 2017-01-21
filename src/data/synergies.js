@@ -242,6 +242,13 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.GAMBIT ], EFFECT.ARMOR),
     ]),
 
+    ...fromId(CHAMPION.CABLE, [
+        ...fromStars(3, 5, [ CHAMPION.CYCLOPS, CHAMPION.CYCLOPS90S ], EFFECT.HEALTH),
+        ...fromStars(3, 5, [ CHAMPION.PHOENIX ], EFFECT.HEALTH),
+        ...fromStars(4, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], EFFECT.CRITICAL_RATE),
+        ...fromStars(4, 5, [ CHAMPION.ROGUE ], EFFECT.PERFECT_BLOCK),
+    ]),
+
     ...fromId(CHAMPION.COLOSSUS, [
         ...fromStars(2, 5, [ CHAMPION.JUGGERNAUT ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.WOLVERINE, CHAMPION.WOLVERINEOLDMAN ], EFFECT.ARMOR),

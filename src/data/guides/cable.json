@@ -1,0 +1,68 @@
+{
+    "description": "Nathan Summers was a child of destiny even before his birth. His parents, Scott Summers and Madelyne Prior, were manipulated into having him by Mister\nSinister, who was attempting to create a genetically superior mutant as his ultimate weapon. As an infant, he was instead infected with the deadly Techno Organic Virus, and sent 2000 years into the future to save his life. Years later he would return, taking the name Cable to represent his unique place as a link between the present and the future.",
+    "youtube": "jup-agcL4PE",
+    "gameplay": {
+        "abilities": [
+            "regeneration",
+            "incinerate",
+            "directdamage"
+        ],
+        "description": "Techno Organic Repairs\n\n15% chance to Regenerate 15% Health for 10 seconds, each time a bar of Power is filled. This ability stops working below 25% Health.\n\nBelle\n\nOnce his Poison Durations are reduced to 0, Cable gains a Passive 50% bonus to Special Damage.\n\nTechno Organic Infection\n\nWhen caused to Bleed, Cable has a 100% chance to trigger his Heavy Attack Degeneration on his Opponent."
+    },
+    "attack": {
+        "heavy": "100% Chance to Degenerate Non-Robotic opponents for up to 400% of your Attack over 15 seconds. Strength of Degenerate scales inverse of your Opponent’s current Power.",
+        "damagetypes": [
+            "physical"
+        ]
+    },
+    "specials": {
+        "1": {
+            "name": "Short Controlled Bursts",
+            "note": "This attack is Unblockable if you are currently under the effects of a True Strike Buff",
+            "description": "Cable knocks back his opponent, making space to use his plasma rifle!",
+            "ranges": [
+                "long",
+                "long",
+                "long"
+            ],
+            "damagetypes": [
+                "energy"
+            ]
+        },
+        "2": {
+            "name": "Charge Shot",
+            "description": "A telekinetic wave, followed up by a high energy charged blast from his rifle!\n\nThis attack Incinerates the enemy, dealing 100% of your Attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50%.\n\nThis attack has a 84% chance to give the opponent a Concussion, reducing their Ability Accuracy by 78% for 11 seconds. The potency of this effect is affected by Class relationships.",
+            "ranges": [
+                "melee",
+                "long"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "abilities": [
+                "incinerate"
+            ]
+        },
+        "3": {
+            "description": "Cable uses his powers to enhances his plasma rifle, locks on his target, and unleashes a withering barrage of firepower.",
+            "name": "TK Rifle",
+            "note": "100% Chance to grant True Strike for 15 seconds. This allows him to ignore Armor, Resistances, and Evasion.",
+            "abilities": [
+                "directdamage"
+            ],
+            "damagetypes": [
+                "energy"
+            ]
+        }
+    },
+    "signature": {
+        "name": "Techno Organic Virus Suppression",
+        "description": "Cable’s immense mutant powers are hampered by having to constantly keep the techno organic virus in check. As the strength of the virus wanes, Cable has a 40% chance to gain 16.5% Power over 10 seconds, each time he fills a bar of power."
+    },
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "708221-Champion-Spotlight-Cable"
+    }
+}

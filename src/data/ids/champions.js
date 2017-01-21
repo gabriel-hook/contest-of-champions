@@ -61,6 +61,7 @@ export const ELEKTRA = 'elektra';
 export const FALCON = 'falcon';
 export const GWENPOOL = 'gwenpool';
 export const HAWKEYE = 'hawkeye';
+export const HOOD = 'hood';
 export const KARNAK = 'karnak';
 export const MOONKNIGHT = 'moonknight';
 export const PUNISHER = 'punisher';
@@ -85,6 +86,7 @@ export const SPIDERMANMORALES = 'spidermanmorales';
 export const YELLOWJACKET = 'yellowjacket';
 // Mystic
 export const BROTHERVOODOO = 'brothervoodoo';
+export const DORMAMMU = 'dormammu';
 export const DRSTRANGE = 'drstrange';
 export const DRSTRANGEMARVELNOW = 'drstrangemarvelnow';
 export const GHOSTRIDER = 'ghostrider';
