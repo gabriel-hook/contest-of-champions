@@ -396,9 +396,9 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.GWENPOOL, [
-        ...fromStars(3, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], EFFECT.IDOL),
-        ...fromStars(4, 5, [ CHAMPION.HOWARDTHEDUCK ], EFFECT.ARMOR),
-        ...fromStars(4, 5, [ CHAMPION.SPIDERMANMORALES ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(3, 5, [ CHAMPION.HOWARDTHEDUCK ], EFFECT.ARMOR),
+        ...fromStars(3, 5, [ CHAMPION.SPIDERMANBLACK ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], EFFECT.IDOL),
         ...fromStars(4, 5, [ CHAMPION.THORJANEFOSTER ], EFFECT.CRITICAL_RATE),
     ]),
 
