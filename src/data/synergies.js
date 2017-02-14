@@ -583,6 +583,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.BLACKPANTHER ], EFFECT.ARMOR),
     ]),
 
+    ...fromId(CHAMPION.HOOD, [
+        ...fromStars(3, 5, [ CHAMPION.BROTHERVOODOO, CHAMPION.PUNISHER ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.JOEFIXIT ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.IRONPATRIOT, CHAMPION.LOKI ], EFFECT.PERFECT_BLOCK),
+    ]),
+
     ...fromId(CHAMPION.JUGGERNAUT, [
         ...fromStars(2, 5, [ CHAMPION.COLOSSUS, CHAMPION.UNSTOPPABLECOLOSSUS ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.DRSTRANGE ], EFFECT.ATTACK),
