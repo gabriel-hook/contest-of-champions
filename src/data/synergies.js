@@ -545,9 +545,15 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.IDOL),
     ]),
 
-    ...fromId(CHAMPION.BROTHERVOODOO, [
+    ...fromId(CHAMPION.DRVOODOO, [
         ...fromStars(3, 5, [ CHAMPION.ROGUE ], EFFECT.PERFECT_BLOCK),
         ...fromStars(3, 5, [ CHAMPION.DRSTRANGE ], EFFECT.CRITICAL_DAMAGE),
+    ]),
+
+    ...fromId(CHAMPION.DORMAMMU, [
+        ...fromStars(3, 5, [ CHAMPION.GUILLOTINE ], EFFECT.INSEPARABLE),
+        ...fromStars(3, 5, [ CHAMPION.DRSTRANGE ], EFFECT.ATTACK),
+        ...fromStars(4, 5, [ CHAMPION.DRVOODOO ], EFFECT.CRITICAL_RATE),
     ]),
 
     ...fromId(CHAMPION.DRSTRANGE, [
@@ -584,7 +590,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.HOOD, [
-        ...fromStars(3, 5, [ CHAMPION.BROTHERVOODOO, CHAMPION.PUNISHER ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.DRVOODOO, CHAMPION.PUNISHER ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.JOEFIXIT ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.IRONPATRIOT, CHAMPION.LOKI ], EFFECT.PERFECT_BLOCK),
     ]),

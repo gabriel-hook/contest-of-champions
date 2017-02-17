@@ -85,10 +85,10 @@ export const SPIDERMAN = 'spiderman';
 export const SPIDERMANMORALES = 'spidermanmorales';
 export const YELLOWJACKET = 'yellowjacket';
 // Mystic
-export const BROTHERVOODOO = 'brothervoodoo';
 export const DORMAMMU = 'dormammu';
 export const DRSTRANGE = 'drstrange';
 export const DRSTRANGEMARVELNOW = 'drstrangemarvelnow';
+export const DRVOODOO = 'brothervoodoo';
 export const GHOSTRIDER = 'ghostrider';
 export const GUILLOTINE = 'guillotine';
 export const IRONFIST = 'ironfist';

@@ -1,0 +1,77 @@
+{
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "722905-Champion-Spotlight-Dormammu"
+    },
+    "description": "Dormammu was born to a race of powerful beings made of pure magical energy known as the Faltine, and has only one true desire: power. This desire drove him from his home world and brought him to the Dark Dimension, where he now rules and draws even greater power from the worship of his subjects. Now with the power of so many heroes concentrated in The Contest, Dormammu has come as one of the greatest mystical threats in the universe, undoubtedly to gain that power for himself.",
+    "youtube": "saIyJQKsWPQ",
+    "specials": {
+        "1": {
+            "ranges": [
+                "short",
+                "medium"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "description": "A wave of power from the Dark Dimension burns through his opponent’s very soul, burning out any sources of power it may find.",
+            "name": "Soul Fire",
+            "note": "100% Chance to Nullify one (or all if Imbued) enemy Buffs.",
+            "abilities": [
+                "nullify"
+            ]
+        },
+        "2": {
+            "ranges": [
+                "short",
+                "long",
+                "long",
+                "long"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy",
+                "energy",
+                "energy"
+            ],
+            "note": "100% Chance to Power Lock opponent for 5 seconds. Drain 15% of the target’s Max Power per hit if Imbued.",
+            "description": "Dormammu opens rifts to the Dark Dimension, drawing forth bolts of raw power.",
+            "name": "Dimensional Blasts",
+            "abilities": [
+                "powerlock",
+                "powerdrain"
+            ]
+        },
+        "3": {
+            "description": "Dormammu brings his opponent into the Dark Dimension for a demonstration of his true potential.\n\nIf Imbued, gain an Empowered Dimensional Link buff. While it is active Dormammu Regenerate 20% of Damage done by the Soul Bond detonation as Health.",
+            "name": "Lord of the Dark Dimension",
+            "note": "Gain a Dimensional Link buff causing Dormammu to continually gain Dark Energy for 16 seconds.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "healthsteal"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Dormammu uses his opponent’s powers as a link to reach deep within their soul. Each time a buff expires on his opponent, Dormammu has up to a 100% chance to Degenerate them for 130% of his attack, over 10 seconds. The chance of this ability triggering increases the longer it’s been since it was last triggered.",
+        "name": "Soul Leech",
+        "abilities": [
+            "degeneration"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "poisonimmunity",
+            "bleedimmunity"
+        ],
+        "description": "Dark Energy\n\nGain Dark Energy Charges each time your opponent spends power.\n\nWhen the Charge reaches 100, Dormammu will consume all Dark Energy to Imbue the next ability he uses with additional effects.\n\nGain 50 Dark Energy Charges for each Buff Nullified."
+    },
+    "attack": {
+        "heavy": "If there is no Soul Bond on the target, place one on it. While a Soul Bond is active, each Dark Energy Charge you receive also adds charges to the Soul Bond – up to 100. Detonate an active Soul Bond dealing up to 4% of Attack as Direct Damage, per Soul Bond charge.",
+        "description": "Medium Attack Combo Finisher\n\nThe target doesn’t gain Power from this Hit. Depletes up to 7.5% of the Target’s Max Power. When Imbued, Causes Direct Damage equal to 400% of Power Drained from the opponent by this attack."
+    }
+}

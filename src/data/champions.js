@@ -120,7 +120,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.YELLOWJACKET }, [ 2, 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.MYSTIC, [
-        ...championStars({ uid: CHAMPION.BROTHERVOODOO }, [ 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.DRVOODOO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DORMAMMU }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGE }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGEMARVELNOW }, [ 3, 4, 5 ]),
