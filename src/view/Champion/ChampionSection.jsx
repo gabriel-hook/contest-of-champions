@@ -12,24 +12,26 @@ import m from 'mithril';
 
 const ChampionSection = {
     view(ctrl, {
-            title, icon, name, description, note, heavy,
+            title, icon, name, help, description, note, heavy,
             ranges, damagetypes, abilities,
             rating, grade, gradeAwakened,
             youtube,
-            raw, onEdit,
+            raw, onEdit, noEdit = [],
         }) {
         const elements = [];
         if(onEdit) {
-            const editableText = (key) => ({
-                'contenteditable': true,
-                'class': 'champion-section-textarea',
-                'oninput': (event) => onEdit(key, event.target.innerText.trim()),
-                'onpaste': (event) => {
-                    event.preventDefault();
-                    const text = (event.originalEvent || event).clipboardData.getData('text/plain');
-                    document.execCommand('insertHTML', false, text);
-                },
-            });
+            const editableText = (key) => noEdit.includes(key)
+                ? ({})
+                : ({
+                    'contenteditable': true,
+                    'class': 'champion-section-textarea',
+                    'oninput': (event) => onEdit(key, event.target.innerText.trim()),
+                    'onpaste': (event) => {
+                        event.preventDefault();
+                        const text = (event.originalEvent || event).clipboardData.getData('text/plain');
+                        document.execCommand('insertHTML', false, text);
+                    },
+                });
             const editableValue = (value) => value === true? '': value;
             const editableSelect = (list, key, initialValue) => (
                 <select
@@ -125,6 +127,13 @@ const ChampionSection = {
                     <div class="champion-section-text">
                         <b {...editableText('name')}>{ editableValue(name) }</b>
                     </div>
+                );
+            }
+            if (help) {
+                elements.push(
+                    <div class="champion-section-text champion-section-text-description">{
+                        help.replace(/(\s*\n\s*)+/g, '\n\n').trim()
+                    }</div>
                 );
             }
             if (description) {
@@ -233,6 +242,13 @@ const ChampionSection = {
                     </div>
                 );
             }
+            if (help) {
+                elements.push(
+                    <div class="champion-section-text champion-section-text-description">{
+                        help.replace(/(\s*\n\s*)+/g, '\n\n').trim()
+                    }</div>
+                );
+            }
             if (description) {
                 elements.push(
                     <div class="champion-section-text champion-section-text-description">{
@@ -313,7 +329,9 @@ const ChampionSection = {
                 elements.push(
                     <div class="champion-section-text">
                         <b>{ lang.string('note') }:</b>
-                        <span>{ note.replace('\n', '').trim() }</span>
+                        <span>{
+                            note.replace(/(\s*\n\s*)+/g, '\n\n').trim()
+                        }</span>
                     </div>
                 );
             }

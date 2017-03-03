@@ -40,7 +40,6 @@ const champions = [
         ...championStars({ uid: CHAMPION.KAMALAKHAN }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MSMARVEL }, [ 3, 4 ]),
         ...championStars({ uid: CHAMPION.PHOENIX }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.PHOENIXDARK }, [ 5 ]),
         ...championStars({ uid: CHAMPION.RONAN }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.SPIDERMANBLACK }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.SUPERIORIRONMAN }, [ 2, 3, 4, 5 ]),
@@ -83,7 +82,6 @@ const champions = [
         ...championStars({ uid: CHAMPION.STORM }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.WOLVERINE }, [ 1, 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.WOLVERINEOLDMAN }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.WEAPONX }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.X23 }, [ 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.SKILL, [

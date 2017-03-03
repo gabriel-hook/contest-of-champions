@@ -160,18 +160,29 @@ const GuidePage = {
                 </a>
             );
         }
-        if(guide) {
-            if(guide.description) {
-                details.push(
-                    <ChampionSection
-                        title={ lang.string('description') }
-                        grade={ guide.grades && guide.grades.normal }
-                        gradeAwakened={ guide.grades && guide.grades.awakened }
-                        description={ guide.description }
-                        youtube={ guide.youtube }
-                    />
-                );
-            }
+
+        if(guide && guide.description) {
+            details.push(
+                <ChampionSection
+                    title={ lang.string('description') }
+                    help={ lang.string(`champion-${uid}-description`, null) }
+                    grade={ guide.grades && guide.grades.normal }
+                    gradeAwakened={ guide.grades && guide.grades.awakened }
+                    description={ guide.description }
+                    youtube={ guide.youtube }
+                />
+            );
+        }
+        else {
+            details.push(
+                <ChampionSection
+                    title={ lang.string('description') }
+                    help={ lang.string(`champion-${uid}-description`, null) }
+                />
+            );
+        }
+
+        if (guide) {
             if(guide.gameplay) {
                 details.push(
                     <ChampionSection
@@ -197,43 +208,57 @@ const GuidePage = {
                     />
                 );
             }
-            if(guide.specials) {
-                [ 1, 2, 3 ].forEach((index) => {
-                    if(guide.specials[ index ]) {
-                        details.push(
-                            <ChampionSection
-                                title={ `${ lang.string('special') } ${ index }` }
-                                icon={ `special-${ index }` }
-                                rating={ guide.specials[ index ].rating }
-                                name={ guide.specials[ index ].name }
-                                description={ guide.specials[ index ].description }
-                                ranges={ (index === 3)? null: guide.specials[ index ].ranges }
-                                damagetypes={ guide.specials[ index ].damagetypes }
-                                abilities={ guide.specials[ index ].abilities }
-                                note={ guide.specials[ index ].note }
-                            />
-                        );
-                    }
-                });
-            }
-            if(guide.signature) {
+        }
+
+        [ 1, 2, 3 ].forEach((index) => {
+            if(guide && guide.specials && guide.specials[ index ]) {
                 details.push(
                     <ChampionSection
-                        title={ lang.string('signature') }
-                        rating={ guide.signature.rating }
-                        name={ guide.signature.name }
-                        description={ guide.signature.description }
-                        abilities={ guide.signature.abilities }
-                        note={ guide.signature.note }
-                        raw={ signatureLink }
+                        title={ `${ lang.string('special') } ${ index }` }
+                        icon={ `special-${ index }` }
+                        rating={ guide.specials[ index ].rating }
+                        name={ lang.string(`champion-special-${uid}-${index}-name`, null) }
+                        help={ lang.string(`champion-special-${uid}-${index}-description`, null) }
+                        description={ guide.specials[ index ].description }
+                        ranges={ (index === 3)? null: guide.specials[ index ].ranges }
+                        damagetypes={ guide.specials[ index ].damagetypes }
+                        abilities={ guide.specials[ index ].abilities }
+                        note={ guide.specials[ index ].note }
                     />
                 );
             }
-        }
-        else if(signatureLink) {
+            else {
+                details.push(
+                    <ChampionSection
+                        title={ `${ lang.string('special') } ${ index }` }
+                        icon={ `special-${ index }` }
+                        name={ lang.string(`champion-special-${uid}-${index}-name`, null) }
+                        help={ lang.string(`champion-special-${uid}-${index}-description`, null) }
+                    />
+                );
+            }
+        });
+
+        if (guide && guide.signature) {
             details.push(
                 <ChampionSection
                     title={ lang.string('signature') }
+                    name={ lang.string(`champion-signature-${uid}-name`, null) }
+                    help={ lang.string(`champion-signature-${uid}-description`, null) }
+                    rating={ guide.signature.rating }
+                    description={ guide.signature.description }
+                    abilities={ guide.signature.abilities }
+                    note={ guide.signature.note }
+                    raw={ signatureLink }
+                />
+            );
+        }
+        else {
+            details.push(
+                <ChampionSection
+                    title={ lang.string('signature') }
+                    name={ lang.string(`champion-signature-${uid}-name`, null) }
+                    help={ lang.string(`champion-signature-${uid}-description`, null) }
                     raw={ signatureLink }
                 />
             );
@@ -246,7 +271,6 @@ const GuidePage = {
                 raw={ getSynergies(uid, true).map(({ attr }, index) => {
                     const isNewGroup = (index > 0) && (!attr.group || attr.group !== lastGroup);
                     lastGroup = attr.group;
-
                     return (
                         <GuideSynergy
                             championId={ attr.toId }

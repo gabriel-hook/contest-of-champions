@@ -1,5 +1,4 @@
 {
-    "description": " Spider-Gwen - Champion Spotlight Spider-Gwen Leaping from an alternate reality in which Peter Parker died and she was bitten by a radioactive spider, Gwen Stacy learned the painful lesson that with great power there must come great responsibility. Attempting to gain redemption for her fallen friend, she now fights crime as the amazing Spider-Woman. It shouldn't be a problem practicing with her band, getting to class on time, and still trying to protect her identity from Police Lieutenant George Stacy – her father! She’s totally got this...right?",
     "gameplay": {
         "description": "Spider-Gwen enters the fight in either Hunter Spider or Trap Spider mode.\n\nWhile in Hunter Spider Mode, Gwen focuses her senses to strike at enemy weak points, allowing her attacks a 16% chance to Armor Break foes, lowering their Armor by 4% for 7 seconds. Gwen’s Hunter Spider Mode Armor Break stacks infinitely.\n\nWhile in Trap Spider Mode, Gwen readies herself to ensnare enemies. While charging her Heavy attack, she ignores the first attack against her and gains one charge of Precision, increasing her Critical Hit Rate by 21% for her next attack.",
         "note": "Gwen’s Trap Spider Mode rewards players who can get the timing correct, allowing players to interrupt combos and strike for a large Critical Boosted attack.",
@@ -9,14 +8,12 @@
         ]
     },
     "signature": {
-        "description": "While in Hunter Spider Mode, Gwen’s critical hits have a (25% - 42.5%) chance to deal double damage.\n\nWhile in Trap Spider Mode, Gwen’s critical hits have a (25% - 42.5%) chance to Weaken foes, lowering their attack by 20% for 7 seconds.",
         "note": "The Weakness effect does not stack.",
         "name": "Enhanced Weave"
     },
     "specials": {
         "1": {
             "name": "Spider Senses, Tingling ",
-            "description": "Spider-Gwen switches her combat mode and gains a short burst of enhanced Spider Sense, granting 20% Evasion for 7 seconds. This effect ties into Gwen’s Sensory Weave Ability seen below under Passives. ",
             "note": "This Special deals no damage, but instead grants a large buff effect and allows Gwen to switch her combat mode.",
             "abilities": [
                 "evade"
@@ -24,7 +21,6 @@
         },
         "2": {
             "name": "Whiplash Web Kick ",
-            "description": "If Spider-Gwen is in Hunter Spider mode, she has a 75% chance to Stun the opponent for 2.4 seconds. If Spider-Gwen is in Trap Spider mode, she has a 75% chance to Fatigue the opponent, lowering their critical hit rate by 33% for 15 seconds.",
             "abilities": [
                 "stun",
                 "fatigue"
@@ -32,7 +28,6 @@
         },
         "3": {
             "name": "Web-Slinging Fun",
-            "description": "If Spider-Gwen is in Hunter Spider mode, she has a 75% chance to Stun the opponent for 2.4 seconds. If Spider-Gwen is in Trap Spider mode, she has a 75% chance to Fatigue the opponent, lowering their critical hit rate by 33% for 15 seconds.",
             "abilities": [
                 "stun",
                 "fatigue"

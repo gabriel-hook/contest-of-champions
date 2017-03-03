@@ -1,9 +1,7 @@
 {
-    "description": "A former air force pararescue who went on to work with recovering veterans, Sam Wilson aided the legendary Captain America in adjusting to modern life, quickly becoming Cap’s close friend in the process. Using an experimental winged harness, Wilson takes to the skies as the high-flying Falcon.",
     "specials": {
         "1": {
             "name": "Fading Barrage",
-            "description": "With a quick jet blast, Falcon kicks his foe, then lets loose a barrage from his twin SMGs.",
             "note": "85% chance to inflict Bleed, dealing 103% of your Attack as direct damage over 3.5 seconds. The chance to trigger Bleed is increased by 15% if Redwing is Locked On. This Bleed has 1 potential trigger and stacks infinitely.",
             "damagetypes": [
                 "physical"
@@ -22,7 +20,6 @@
                 "medium",
                 "medium"
             ],
-            "description": "Guided by Redwing's recon, Falcon dives in on his target for a massive strike.",
             "note": "Damage increases by up to 90% based on lost Health.",
             "damagetypes": [
                 "physical"
@@ -30,7 +27,6 @@
         },
         "3": {
             "name": "Tango Down",
-            "description": "Calling in a strafing run. Firing guided missiles. Target down.",
             "damagetypes": [
                 "physical"
             ],

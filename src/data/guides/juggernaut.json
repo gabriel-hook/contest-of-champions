@@ -1,9 +1,7 @@
 {
-    "description": "Cain Marko was a bitter man with a big chip on his shoulder. His story could have ended harmlessly, but then disaster struck: a mystic artifact transformed him into the unstoppable Juggernaut! Since then, he's made it his mission to torment the Marvel Universe with his strength, resilience, and nasty attitude.",
     "specials": {
         "1": {
             "name": "Tremor",
-            "description": "Juggernaut smashes the ground, sending the opponent flying.",
             "ranges": [
                 "short"
             ],
@@ -14,7 +12,6 @@
         },
         "2": {
             "name": "Aftershock",
-            "description": "Juggernaut's devastating headbutt ripples through his opponent, shattering the ground below them.",
             "ranges": [
                 "melee"
             ],
@@ -25,7 +22,6 @@
         },
         "3": {
             "name": "Avatar of Cyttorak",
-            "description": "Juggernaut uses the environment in more ways than one, with devastating results for opponents",
             "damagetypes": [
                 "physical"
             ],

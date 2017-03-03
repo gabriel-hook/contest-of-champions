@@ -2,7 +2,6 @@
     "specials": {
         "1": {
             "name": "Good Fortune Thunder Kick",
-            "description": "A powerful kick mastered from the teaching of Lei-Kung the Thunderer",
             "ranges": [
                 "melee"
             ],
@@ -18,7 +17,6 @@
         },
         "2": {
             "name": "Shattering Golden Star Blow",
-            "description": "Danny Rand learned this powerful technique while training with the Immortal Weapons of the Seven Cities.",
             "ranges": [
                 "melee"
             ],
@@ -34,7 +32,6 @@
         },
         "3": {
             "name": "Shou-Lao the Undying",
-            "description": "By focusing his Chi, Danny Rand unleashes the full power of the Iron Fist in a flurry of punches.",
             "damagetypes": [
                 "physical"
             ],
@@ -62,9 +59,7 @@
         ],
         "note": "All Attacks\n8% chance to boost Critical Hit Rate by 28% for 5 seconds. \n\nCritical Hits \nThe sheer force of a Critical Hit has a 54% chance to break the target's Armor and apply 14% Armor reduction for 5 seconds."
     },
-    "description": "Danny Rand is a brilliant billionaire who traveled to the heavenly city of K'un Lun to master the martial arts. Becoming the latest in a long line of warriors to pick up the mantle of Iron Fist, Rand gained the mystical power to focus his chi - augmenting his fighting skills to superhuman levels.",
     "signature": {
-        "description": "The Iron Fist's repeated strikes to pressure points wreak cumulative havoc on the target's Armor, with a 21% chance to reduce it by [4% to 15.9%] with each activation.",
         "name": "Focus",
         "abilities": [
             "armorbreak"

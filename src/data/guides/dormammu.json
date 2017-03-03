@@ -4,7 +4,6 @@
         "name": "Kabam",
         "profile": "722905-Champion-Spotlight-Dormammu"
     },
-    "description": "Dormammu was born to a race of powerful beings made of pure magical energy known as the Faltine, and has only one true desire: power. This desire drove him from his home world and brought him to the Dark Dimension, where he now rules and draws even greater power from the worship of his subjects. Now with the power of so many heroes concentrated in The Contest, Dormammu has come as one of the greatest mystical threats in the universe, undoubtedly to gain that power for himself.",
     "youtube": "saIyJQKsWPQ",
     "specials": {
         "1": {
@@ -16,7 +15,6 @@
                 "physical",
                 "energy"
             ],
-            "description": "A wave of power from the Dark Dimension burns through his opponent’s very soul, burning out any sources of power it may find.",
             "name": "Soul Fire",
             "note": "100% Chance to Nullify one (or all if Imbued) enemy Buffs.",
             "abilities": [
@@ -37,7 +35,6 @@
                 "energy"
             ],
             "note": "100% Chance to Power Lock opponent for 5 seconds. Drain 15% of the target’s Max Power per hit if Imbued.",
-            "description": "Dormammu opens rifts to the Dark Dimension, drawing forth bolts of raw power.",
             "name": "Dimensional Blasts",
             "abilities": [
                 "powerlock",
@@ -45,7 +42,6 @@
             ]
         },
         "3": {
-            "description": "Dormammu brings his opponent into the Dark Dimension for a demonstration of his true potential.\n\nIf Imbued, gain an Empowered Dimensional Link buff. While it is active Dormammu Regenerate 20% of Damage done by the Soul Bond detonation as Health.",
             "name": "Lord of the Dark Dimension",
             "note": "Gain a Dimensional Link buff causing Dormammu to continually gain Dark Energy for 16 seconds.",
             "damagetypes": [
@@ -57,7 +53,6 @@
         }
     },
     "signature": {
-        "description": "Dormammu uses his opponent’s powers as a link to reach deep within their soul. Each time a buff expires on his opponent, Dormammu has up to a 100% chance to Degenerate them for 130% of his attack, over 10 seconds. The chance of this ability triggering increases the longer it’s been since it was last triggered.",
         "name": "Soul Leech",
         "abilities": [
             "degeneration"

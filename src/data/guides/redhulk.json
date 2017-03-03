@@ -1,5 +1,4 @@
 {
-    "description": "General Thaddeus “Thunderbolt” Ross has done the unthinkable in his unending mission to hunt down and destroy the Incredible Hulk. Using a combination of radiations, Ross has turned himself into what he hated for so long: a walking weapon of mass destruction. Now, equipped with super strength, durability and the ability to absorb radiation and energy, Thunderbolt Ross struggles with his desire to end the Hulk without succumbing to his own monstrous impulses.",
     "youtube": "6OpUikWTj-A",
     "gameplay": {
         "description": "At the start of the fight and each time Red Hulk loses 10% of his Max Health, he gains 1 Heat Charge. For each Heat Charge he has, his attacks deal an additional 9% of the damage dealt as a burst of Energy Damage.\n If Red Hulk ever has 7 or more Heat Charges, he loses all Heat Charges and becomes Overheated. While he is Overheated, he is unable to gain new Heat Charges for 5 seconds.\n\nWhenever Red Hulk would become Poisoned, his altered state removes the Poison and has a 78% chance to convert it to a Heat Charge.\n Whether Red Hulk gains the Heat Charge or not, he still removes the Poison effect.\n\nBlocking has a 52% chance to convert an Energy Attacks into Heat Charges.\n\nThis is only triggered by attacks that are Energy Damage at the base. This will not trigger in a Red Hulk mirror match as Red Hulk’s base attacks are Physical. This will, however, work against Special Attacks that deal base Energy Damage, such as Iron Man’s beams.",
@@ -54,7 +53,6 @@
     },
     "signature": {
         "name": "Second Strike",
-        "description": "General Ross prepares to cross the line in the sand, beginning the fight with 2 Heat Charge(s) ready. Additionally, for every 2 Heat Charges he has, he gains an additional (6 - 23%) Physical Resistance.",
         "abilities": [
             "physicalresist"
         ]

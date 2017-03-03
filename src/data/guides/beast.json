@@ -1,8 +1,6 @@
 {
-    "description": "One of the world's experts on mutations and evolutionary human biology, Hank was born a mutant with unusually large hands and feet. Later in life, Hank took a hormonal extract that caused him to grow fangs, pointed ears and fur all over his body. He was now a Beast in body, as well as in name.",
     "specials": {
         "1": {
-            "description": "Beast uses a freestyle form of combat, striking the opponent with multiple kicks.\n Beast analyses the situation and employs a Freestyle form of combat.",
             "note": "55% chance to Stun for 1.5 seconds.",
             "name": "Freestyle Combat",
             "damagetypes": [
@@ -16,7 +14,6 @@
             ]
         },
         "2": {
-            "description": "Making full use of his great strength and agility, Beast performs a series of acrobatic kicks to knockdown the opponent.\n Using his impressive power of deductive reasoning, Beast decides that employing an Acrobatic combat style is essential to his survival.",
             "note": "80% chance to Stun for 2.25 seconds.",
             "name": "Acrobatic Kicks",
             "damagetypes": [
@@ -30,7 +27,6 @@
             ]
         },
         "3": {
-            "description": "Beast taps into his animalistic instincts and temporarily unleashes a savage attack on unsuspecting opponents",
             "name": "Animalistic Instincts",
             "note": "Increases Attack by 3% per hit in the combo meter, up to a maximum of 150% Attack.",
             "damagetypes": [

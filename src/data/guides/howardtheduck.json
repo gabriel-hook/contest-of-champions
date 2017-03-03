@@ -5,7 +5,6 @@
         "profile": "700066-Champion-Spotlight-Howard-the-Duck",
         "name": "KABAM"
     },
-    "description": "When Howard was whisked away from his detective agency in New York City to the Battlerealm, he didn’t\nknow what to expect. He certainly didn’t expect to be shoved into some back warehouse, organizing the\nCollector’s Crystals all day. Well, an insult like this won’t just run off this duck’s back. He’s “borrowed” a spare ISO-Loader, made some upgrades, and attached an old friend; his famous Big Freaking Gun. It’s time for Howard to introduce these so-called Champions to the ultimate fighting style of his home universe, Quack-Fu!",
     "gameplay": {
         "description": "Quack Fu: As Howard takes and deals damage, his temper builds, increasing his Attack and Critical Damage by 10% per stack. These stacks are lost over time as Howard eventually cools off.\n\nArmor: The ISO-Loader begins the fight with 8 stacks of Armor Up active, each increasing Armor by 7%. Each time the Loader is struck, there’s a 13% chance for a piece of Armor to fall off."
     },

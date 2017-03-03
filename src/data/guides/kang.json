@@ -1,9 +1,7 @@
 {
-    "description": "THE FINAL VICTORY BELONGS TO YOU, BRAVE SUMMONER. I, KANG THE CONQUORER, PHARAOH OF THE AGES, LORD OF THE TIMESTREAM ITSELF, GENIUS COMMANDER OF ALL TECHNOLOGY IN THE UNIVERSE, ACKNOWLEDGE YOUR POWER... for now. LONG LIVE KANG!",
     "specials": {
         "1": {
             "name": "Concussive Bolt",
-            "description": "A concussive blast from the fingertips of Kang's gauntlets leave opponents in a daze.",
             "note": "100% chance to stun for 3 seconds.",
             "ranges": [
                 "long"
@@ -17,7 +15,6 @@
         },
         "2": {
             "name": "E.M.P. Cannon",
-            "description": "Kang's TimeShip blasts his opponent back to the future from a remote location using an electromagnetic pulse cannon.",
             "ranges": [
                 "long"
             ],
@@ -32,7 +29,6 @@
         },
         "3": {
             "name": "Drone Assault",
-            "description": "Kang deploys a swarm of robotic drones from the future to seek and destroy his target.",
             "damagetypes": [
                 "physical"
             ],

@@ -1,9 +1,7 @@
 {
-    "description": "Steve Roger's body may have been too weak to become a soldier, but his heart was too strong to quit. By a miracle of science, Steve was transformed into Captain America, Sentinel of Liberty. Possessing super strength, speed, reflexes, and his unbreakable shield, Cap is a born leader of humans, heroes, and gods.",
     "specials": {
         "1": {
             "name": "Shield Bash",
-            "description": "Cap puts his weight behind a hefty shield bash.",
             "ranges": [
                 "melee"
             ],
@@ -18,7 +16,6 @@
         },
         "2": {
             "name": "Shield Toss",
-            "description": "A staple of the Cap repertoire, his shield strikes true and through.",
             "ranges": [
                 "medium"
             ],
@@ -33,7 +30,6 @@
         },
         "3": {
             "name": "American Justice",
-            "description": "An up-close and personal view of Cap's Shield. Don't blink or you'll miss it.",
             "damagetypes": [
                 "physical"
             ],
@@ -46,7 +42,6 @@
     },
     "signature": {
         "name": "Last Stand",
-        "description": "The chance to Perfectly Block all damage increases by up to 51.4% based for every 1% Health lost, providing hope when Cap needs it most.",
         "rating": "4"
     },
     "author": {

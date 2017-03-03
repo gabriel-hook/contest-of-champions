@@ -1,5 +1,4 @@
 {
-    "description": "Air Force pilot Carol Danvers' life changed course when she was caught in an explosion with an alien Kree craft.  She gained superhuman powers of strength, flight, and the ability to fire bolts of energy.  A member of both the Avengers and the Guardians of the Galaxy. Carol inspires many by living the motto: \"We will be the stars we were always meant to be.\"",
     "grades": {
         "awakened": "A",
         "normal": "A-"
@@ -7,7 +6,6 @@
     "specials": {
         "1": {
             "name": "Cosmic Blast",
-            "description": "A powerful beam of cosmic energy blasts all in its path.",
             "ranges": [
                 "medium"
             ],
@@ -23,7 +21,6 @@
         },
         "2": {
             "name": "Cosmic Kick",
-            "description": "Captain Marvel delivers a massive kick with galactic grace.",
             "ranges": [
                 "medium"
             ],
@@ -37,7 +34,6 @@
         },
         "3": {
             "name": "Rocket Punch",
-            "description": "Charging to maximum power levels, Captain Marvel releases concussive energy bursts from her hands.",
             "rating": "3",
             "abilities": [
                 "fury"
@@ -46,7 +42,6 @@
     },
     "signature": {
         "name": "Energy Absorbtion",
-        "description": "Attack is increased up to 80.7% based on stored Power. In addition, blocking partially absorbs energy-based attacks, fueling Captain Marvel's Power Meter.",
         "rating": "4"
     },
     "author": {

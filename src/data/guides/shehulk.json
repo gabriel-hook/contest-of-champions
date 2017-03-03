@@ -1,5 +1,4 @@
 {
-    "description": "When a bullet meant for her father struck Jennifer Walters, it seemed that all was lost. Bleeding out and in desperate need of a donor for her rare blood type, it was her cousin Bruce Banner that stepped forward to save her. When the Hulk’s gamma-infused blood was introduced into Jennifer, she found herself able to transform into the powerful She-Hulk! Standing as her own hero, She-Hulk has fought alongside the world’s greatest warriors, using her immense strength and intellect to defeat the villains of earth, both in the courtroom and on the battlefield.",
     "specials": {
         "1": {
             "name": "Objection!",
@@ -59,7 +58,7 @@
         "description": "She-Hulk has some of the longest Stun durations in the game, and amplifying her Stun effects can allow her to destroy her opponent’s when used correctly."
     },
     "signature": {
-        "description": "Jennifer Walters relentless studying and research on her opponent allows her to place a Passive effect on them, reducing a specific stat by (5% - 20%) based on which Class they are.\n The effects are as follows for the various classes:\n Science = Physical Resistance \nMystic = Power Gain Rate \nCosmic = Buff Duration \nTech = Ability Accuracy \nMutant = Special Damage \nSkill = Critical Hit Damage",
+        "description": "The effects are as follows for the various classes:\nScience = Physical Resistance \nMystic = Power Gain Rate \nCosmic = Buff Duration \nTech = Ability Accuracy \nMutant = Special Damage \nSkill = Critical Hit Damage",
         "name": "Citing Precedent",
         "note": "This effect is a Passive effect and does not interact with effects such as Nullify, Purge or Willpower."
     }

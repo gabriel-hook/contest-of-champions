@@ -12,7 +12,6 @@
     },
     "signature": {
         "name": "Irradiate",
-        "description": "When Attacked\nContact with the Abomination's gamma-irradiated body has a 3% to 15% chance to Poison the target, reducing their Health recovery by 30% and dealing 62% of your Attack as direct damage over 12 seconds.",
         "abilities": [
             "poison"
         ]
@@ -25,7 +24,6 @@
     "specials": {
         "1": {
             "name": "Skull Bash",
-            "description": "The Abomination uses his head...literally",
             "ranges": [
                 "melee"
             ],
@@ -35,7 +33,6 @@
         },
         "2": {
             "name": "Sonic Boom",
-            "description": "A clap from the Abomination travels faster than sound.",
             "ranges": [
                 "short"
             ],
@@ -48,7 +45,6 @@
         },
         "3": {
             "name": "Gamma Bomb",
-            "description": "What the Abomination hits into the air, the Abomination hits back down.",
             "damagetypes": [
                 "physical"
             ]
@@ -59,6 +55,5 @@
         "abilities": [
             "fury"
         ]
-    },
-    "description": "When Russian spy Emil Blonsky exposed himself to gamma radiation, he was transformed forever into the monstrous Abomination! Bigger than the Hulk, the Abomination retains his cutting and intellect - but cannot return to his human form.  Enormous, powerful, and angry, the Abomination is a fearsome foe - even to one as strong as the Hulk!"
+    }
 }

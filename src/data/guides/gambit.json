@@ -14,14 +14,14 @@
             "damagetypes": [
                 "energy"
             ],
-            "description": "With a little sleight of hand, the Ragin’ Cajun sends a hidden ace flying.  This attack has a 85% chance to Stun the opponent for 2.5 seconds. The chance to Stun increases based on how low the opponent’s Armor is.",
+            "description": "This attack has a 85% chance to Stun the opponent for 2.5 seconds. The chance to Stun increases based on how low the opponent’s Armor is.",
             "name": "Cardshark",
             "abilities": [
                 "stun"
             ]
         },
         "2": {
-            "description": "Super-charged staff strikes from the back alleys of N’awlins.  This attack has a 78% chance to give the opponent a Concussion, reducing their Ability Accuracy by 72%. The Potency of this effect is affected by Class relationships.",
+            "description": "This attack has a 78% chance to give the opponent a Concussion, reducing their Ability Accuracy by 72%. The Potency of this effect is affected by Class relationships.",
             "name": "Bayou Beatdown",
             "note": "This ability is stronger against Champions that Gambit has a class advantage against, skill Champions. Meanwhile, it is weaker against Tech Champions.",
             "ranges": [
@@ -32,7 +32,7 @@
             ]
         },
         "3": {
-            "description": "With quick movements, Gambit lets fly a perfect hand. Au Revoir.  This attack has a 86% chance to Paralyze the opponent for 2.8 seconds, Stunning them and reducing their Power and Health gains by 66%.",
+            "description": "This attack has a 86% chance to Paralyze the opponent for 2.8 seconds, Stunning them and reducing their Power and Health gains by 66%.",
             "name": "Royal Flush",
             "damagetypes": [
                 "energy"
@@ -50,7 +50,6 @@
         ],
         "note": "The amount of time needed to build up Kinetic charges increases based on how many charges Gambit already has."
     },
-    "description": "Remy LeBeau, raised by thieves on the dark streets of New Orleans was eventually forced to leave that life behind after winning a duel he wasn’t meant to. Gifted with the power to supercharge objects he touches with powerful kinetic force, Gambit now fights alongside his fellow mutants to protect mankind, while also occasionally dipping into his more scoundrel-like nature to pull off a heist here and there.",
     "youtube": "Hhhoso66Gio",
     "attack": {
         "heavy": "Gambit cashes out, converting his Kinetic Charges to Prowess Buffs, each increasing Special Damage by 17% for 10 seconds.",

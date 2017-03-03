@@ -1,9 +1,7 @@
 {
-    "description": "The King of the reclusive but technologically-advanced African nation Wakanda, King T’Challa’s birthright is not only to rule but to don the mantle of the Black Panther, a powerful warrior and symbol to his people. T’Challa will aggressively defend his country and citizens against any threat, no matter how menacing.",
     "youtube": "DeDq0ITD4iU",
     "signature": {
         "name": "Panther Habit",
-        "description": "Black Panther begins the fight with his Reflective state active. Additionally, Black Panther's Armor passively has a 15-39.1% chance to absorb heavy attack impacts by consuming 1 Armor Up effect.",
         "abilities": [
             "armorup"
         ]
@@ -11,7 +9,6 @@
     "specials": {
         "1": {
             "name": "King's Strength",
-            "description": "The King of Wakanda proves his might to all that might disbelieve his strength.",
             "note": "100% chance to inflict Bleed, dealing 80% of your Attack as direct damage over 4 seconds.",
             "ranges": [
                 "medium"
@@ -24,7 +21,6 @@
             ]
         },
         "2": {
-            "description": "Calling upon the spirits of his ancestors grants strength for swift and powerful blows.",
             "name": "Power of Ancestors",
             "note": "Damage increases by up to 90% based on lost Health.",
             "damagetypes": [
@@ -39,7 +35,6 @@
                 "physical"
             ],
             "note": "75% chance to Stun for 3.25 seconds.",
-            "description": "Pinpoint strikes weaken his foes, then T'Challa strikes hard to bring down the enemy of Wakanda.",
             "abilities": [
                 "stun"
             ],

@@ -1,6 +1,5 @@
 {
     "signature": {
-        "description": "For each Armor Up effect active, Ultron releases more Nano-Inhibitors, reducing his opponent's Offensive Ability Accuracy by 28% per stack.",
         "name": "Nano-Inhibitors"
     },
     "attack": {

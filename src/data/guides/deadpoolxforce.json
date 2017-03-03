@@ -1,7 +1,5 @@
 {
-    "description": "Wade Winston Wilson (a.k.a Deadpool) joined X-Force, a black ops team running covert missions to eliminate threats to the muta-- Hold up -- didn’t we do this whole bio thing already? You know, with the other, less-cool version of me? I’m the hot one! That red-suited scab factory just copies Spider-Man! I’ve got skills, suckahs!",
     "signature": {
-        "description": "Permanently bleeding the opponent was granted after poking enemies right in the duodenum, guaranteed to cause Bleed for 50% Attack over 4 seconds.",
         "note": "The Bleed is quite weak, but since it is guaranteed, it essentially remains on the opponent throughout the entire fight. ",
         "name": "Duodenum Poke",
         "abilities": [
