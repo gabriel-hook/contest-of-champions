@@ -65,7 +65,6 @@ export const HAWKEYE = 'hawkeye';
 export const KARNAK = 'karnak';
 export const MOONKNIGHT = 'moonknight';
 export const PUNISHER = 'punisher';
-export const REDSKULL = 'redskull';
 export const WINTERSOLDIER = 'wintersoldier';
 // Science
 export const ABOMINATION = 'abomination';
