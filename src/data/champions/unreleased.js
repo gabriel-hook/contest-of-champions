@@ -2,15 +2,12 @@ import { CHAMPION } from '../model/Champion';
 
 export const UNRELEASED_CHAMPIONS = [
     // Cosmic
-    CHAMPION.PHOENIXDARK,
     // Mutant
-    CHAMPION.WEAPONX,
+    CHAMPION.ICEMAN,
+    CHAMPION.PSYLOCKEXFORCE,
     // Skill
-    CHAMPION.REDSKULL,
     // Mystic
-    CHAMPION.DORMAMMU,
     CHAMPION.DRSTRANGEMARVELNOW,
-    CHAMPION.HOOD,
     CHAMPION.SCARLETWITCHULTIMATE,
     // Universal
     CHAMPION.MAESTRO,

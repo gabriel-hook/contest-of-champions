@@ -1,5 +1,4 @@
 {
-    "description": "In an alternate timeline, the villains of Earth and beyond worked together to bring about the downfall of Super Heroes everywhere. Manipulated into hurting his fellow mutants, Wolverine took on a vow of pacifism, swearing to never again pop his claws. 50 years later, when an old friend knocked on his door asking for help on a mission to overthrow the ruling villains, Logan chose to once again do what he did best.",
     "youtube": "ZBwLqkMc6q0",
     "specials": {
         "1": {
@@ -45,7 +44,6 @@
     },
     "signature": {
         "name": "Pop the Claws",
-        "description": "When Logan pops his claws for a Special Attack, each attack has a (10 - 25%) chance to cause an additional Bleed for each charge of Pacifism he has at the time, inflicting 50% of your attack as direct damage over 3 seconds.",
         "note": "The Bleed effects from Pop the Claws stacks infinitely and has a chance to trigger per Pacifism charge active.",
         "abilities": [
             "bleed"

@@ -118,6 +118,7 @@ const GuideEditPage = {
         details.push(
             <ChampionSection
                 title={ lang.string('description') }
+                help={ lang.string(`champion-${uid}-description`, null) }
                 grade={ grades && guide.grades.normal || true }
                 gradeAwakened={ grades && guide.grades.awakened || true }
                 description={ guide && guide.description || true }
@@ -156,13 +157,15 @@ const GuideEditPage = {
                 <ChampionSection
                     title={ `${ lang.string('special') } ${ index }` }
                     rating={ special && special.rating || true }
-                    name={ special && special.name || true }
+                    name={ lang.string(`champion-special-${uid}-${index}-name`, null) }
+                    help={ lang.string(`champion-special-${uid}-${index}-description`, null) }
                     description={ special && special.description || true }
                     ranges={ special && special.ranges || (index !== 3) }
                     damagetypes={ special && special.damagetypes || true }
                     abilities={ special && special.abilities || true }
                     note={ special && special.note || true }
                     onEdit={ (key, value) => editGuide(uid, [ 'specials', index ], key, value) }
+                    noEdit={ [ 'name' ] }
                 />
             );
         });
@@ -171,11 +174,13 @@ const GuideEditPage = {
             <ChampionSection
                 title={ lang.string('signature') }
                 rating={ signature && guide.signature.rating || true }
-                name={ signature && guide.signature.name || true }
+                name={ lang.string(`champion-signature-${uid}-name`, null) }
+                help={ lang.string(`champion-signature-${uid}-description`, null) }
                 description={ signature && guide.signature.description || true }
                 abilities={ signature && guide.signature.abilities || true }
                 note={ signature && guide.signature.note || true }
                 onEdit={ (key, value) => editGuide(uid, [ 'signature' ], key, value) }
+                noEdit={ [ 'name' ] }
             />
         );
         const author = guide && guide.author;

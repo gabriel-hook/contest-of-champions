@@ -1,5 +1,4 @@
 {
-    "description": "Though Jean Grey and the Phoenix Force have long been separated, their bond is unique. More than a mere host, Jean is a part of the Phoenix, as the Phoenix is a part of her. When Jean was brought to the Battlerealm and exposed to ISO-8, the highly mutagenic properties of ISO-8 reopened Jean’s latent connection the universal force of life, and the Phoenix was reborn again, this time into The Contest of Champions!",
     "gameplay": {
         "abilities": [
             "incinerate",
@@ -19,7 +18,7 @@
     },
     "specials": {
         "1": {
-            "description": "The Phoenix Force is released in a wave of telekinesis, amidst a rush of power!\n\nGain 10% Power for each Phoenix Force charge, consuming all but 1 of them.",
+            "description": "Gain 10% Power for each Phoenix Force charge, consuming all but 1 of them.",
             "damagetypes": [
                 "energy"
             ],
@@ -39,7 +38,7 @@
                 "medium",
                 "short"
             ],
-            "description": "Cosmic fire, funnelled by raw Telekinetic power, into a deadly firestorm.\n\nGain 3 additional stacks of Phoenix Force.",
+            "description": "Gain 3 additional stacks of Phoenix Force.",
             "name": "Cosmic Firestorm"
         },
         "3": {
@@ -47,7 +46,6 @@
             "damagetypes": [
                 "energy"
             ],
-            "description": "The power of the Phoenix Force unleashed!",
             "name": "True Avatar Phoenix"
         }
     },

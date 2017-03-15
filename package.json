@@ -13,6 +13,10 @@
     "karma-view-menus": "karma start --file=./test/view/menus.jsx",
     "karma-view-pages": "karma start --file=./test/view/pages.jsx --watch",
     "karma-view-champion": "karma start --file=./test/view/champion.jsx",
+    "data": "npm run data-character-bios && npm run data-character-specials && npm run data-character-signatures",
+    "data-character-specials": "babel-node ./dev/script/data-character-specials.js ./dev/data/en/special_attacks_en.json",
+    "data-character-bios": "babel-node ./dev/script/data-character-bios.js ./dev/data/en/character_bios_en.json",
+    "data-character-signatures": "babel-node ./dev/script/data-character-signatures.js ./dev/data/en/bcg_stat_en.json",
     "test": "npm run lint && npm run karma",
     "deploy": "gulp build && ./dev/script/deploy.sh"
   },
@@ -36,6 +40,7 @@
   "homepage": "https://github.com/hook/champions#readme",
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
+    "babel-cli": "^6.23.0",
     "babel-core": "^6.5.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.2",

@@ -7,7 +7,6 @@
     "specials": {
         "1": {
             "name": "Rout",
-            "description": "Strike with overwhelming power.",
             "note": "100% chance for Fury, increasing your Attack by 45% for 8.5 seconds.",
             "damagetypes": [
                 "physical"
@@ -22,7 +21,6 @@
         },
         "2": {
             "note": "This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active.",
-            "description": "With a special mix of White Phosphorus rounds, let them burn.  This attack Incinerates the enemy, dealing 107% of your Attack as Energy Damage over 10 seconds.",
             "name": "Incendiary Assault",
             "damagetypes": [
                 "physical"
@@ -38,7 +36,6 @@
             ]
         },
         "3": {
-            "description": "It’s time to make them pay for what they’ve done.",
             "name": "Eye for an Eye",
             "damagetypes": [
                 "physical"
@@ -46,7 +43,6 @@
             "note": "This attack instantly refreshes the cooldown timer on Overrun."
         }
     },
-    "description": "Once a high-level agent at S.H.I.E.L.D., Brock Rumlow revealed his true colors as an enforcer for HYDRA when the evil agency threatened to destroy S.H.I.E.L.D. from within. Since the climactic battle, the dangerous mercenary now calling himself Crossbones has hidden underground, striking from the shadows and selling his skills to the highest bidder.",
     "attack": {
         "description": "Crossbones’ hydraulic gauntlets allow him to overpower his enemies. Whenever he would strike with a Critical Hit, he instead gains Fury, increasing his Attack by 45% for 8.5 seconds.\n The Potency of Crossbones’ Fury effects are increased by up to 20% based on his Critical Damage. As his Critical Damage climbs, his Fury effects becomes more powerful.\n For each Fury effect active, Crossbones overpowers his opponent, decreasing their Defensive Ability Accuracy by 23% per Fury.",
         "note": "Crossbones’ Fury effects stack infinitely.",

@@ -1,5 +1,4 @@
 {
-    "description": "Framed and sent to prison for a crime he didn’t commit, Carl Lucas became the “volunteer” for a series of scientific experiments to create another Super-Soldier. When a sadistic prison guard intervened with the experiment, Lucas was granted superhuman strength and near-impenetrable skin. Using his newfound abilities to escape prison, Carl changed his name to Luke Cage and set up shop as a Hero for Hire, vowing to assist any who needed his help…for the right price.",
     "specials": {
         "1": {
             "name": "Beatdown",
@@ -42,7 +41,6 @@
     },
     "signature": {
         "name": "Tough it Out",
-        "description": "The first time Luke Cage is struck during a fight, his bullet-proof skin allows him to become Indestructible and ignore all incoming damage for (1.5 - 3.5) seconds. This effect makes him completely immune to damage for the duration, even from damage over time effects like Poison and Shock. ",
         "note": "This effect will also protect Luke Cage from a Special 3 attack if it’s the first attack he receives during the fight. "
     },
     "author": {

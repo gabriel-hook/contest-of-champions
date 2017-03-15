@@ -2,7 +2,6 @@
     "specials": {
         "1": {
             "name": "Skin-to-Skin",
-            "description": "Rogue removes her gloves to absorb life energy, even against Blocking opponents.",
             "ranges": [
                 "melee"
             ],
@@ -16,7 +15,6 @@
             ]
         },
         "2": {
-            "description": "With the incredible physical strength absorbed from Ms. Marvel, Rogue aims three powerful punches at the enemies' face.",
             "name": "Face Punch",
             "note": "100% chance per hit to Power Steal, taking 8% of their Power as your own. (3 Hits total)",
             "ranges": [
@@ -32,7 +30,6 @@
         },
         "3": {
             "name": "Lethal Kiss",
-            "description": "Rogue initiates the attack by throwing the opponent into the air followed by aerial punches and a grand finale with her blowing a kiss towards the opponent.",
             "damagetypes": [
                 "physical"
             ],
@@ -44,7 +41,6 @@
     },
     "signature": {
         "name": "Psyche Absorption",
-        "description": "Absorbing the very fabric of her enemy's psyche, every Life or Power Steal has a 35% chance to be Critical, increasing the amount absorbed.",
         "abilities": []
     },
     "author": {
@@ -60,6 +56,5 @@
             "powersteal"
         ]
     },
-    "description": "Rogue’s ability to absorb the life energy and psyche of others through touch emerged in a traumatizing accident when she was a young girl, where she left the victim in a coma. Though she originally viewed her mutant powers as a curse, she mastered control of them under the tutelage of the X-Men and would become one of the most powerful mutants to date.",
     "youtube": "etu9bV7ekLw"
 }

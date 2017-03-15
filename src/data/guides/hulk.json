@@ -10,7 +10,6 @@
         ],
         "description": "When Attacked\n10% chance for Fury, increasing Attack by 70% for 5 seconds.\n\nPassive\nAn enhanced immune system provides full immunity to the Poisons of the Battlerealm"
     },
-    "description": "PUNY HUMAN! Stop pestering Hulk with dumb questions! Stupid Banner walk into Gamma Bomb blast.  Now not just Banner - but HULK! Hulk will slam, crush, and destroy all puny humans! Hulk is the strongest there is! None shall defeat Hulk!",
     "specials": {
         "1": {
             "name": "Head Smash",
@@ -28,20 +27,17 @@
             ],
             "damagetypes": [
                 "physical"
-            ],
-            "description": "Hulk...SMASH!"
+            ]
         },
         "3": {
             "name": "Worldbreaker",
-            "description": "HULK! SMASH!",
             "damagetypes": [
                 "physical"
             ]
         }
     },
     "signature": {
-        "name": "Hulk Rage",
-        "description": "Hulk is angered by receiving damage, strengthening his attacks by up to 165.4% based on lost Health.  You wouldn't like him when he's angry!"
+        "name": "Hulk Rage"
     },
     "author": {
         "name": "JJW",

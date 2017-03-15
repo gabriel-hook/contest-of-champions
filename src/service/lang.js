@@ -113,7 +113,19 @@ function getLanguage(id) {
         const defaultFields = {};
         flatten([
             'lang',
-            ...CHAMPION_VALUES.map((uid) => [ `champion-${ uid }-name`, `champion-${ uid }-shortname` ]),
+            ...CHAMPION_VALUES.map((uid) => [
+                `champion-${ uid }-name`,
+                `champion-${ uid }-shortname`,
+                `champion-${ uid }-description`,
+                `champion-signature-${ uid }-name`,
+                `champion-signature-${ uid }-description`,
+                `champion-special-${ uid }-1-name`,
+                `champion-special-${ uid }-2-name`,
+                `champion-special-${ uid }-3-name`,
+                `champion-special-${ uid }-1-description`,
+                `champion-special-${ uid }-2-description`,
+                `champion-special-${ uid }-3-description`,
+            ]),
             ...TYPE_VALUES.concat('unknown').map((uid) => `type-${ uid }-name`),
             ...EFFECT_VALUES.map((uid) => [ `effect-${ uid }-name`, `effect-${ uid }-shortname`, `effect-${ uid }-description` ]),
             ...ABILITY_VALUES.map((uid) => `ability-${ uid }`),

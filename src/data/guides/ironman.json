@@ -6,7 +6,6 @@
     "specials": {
         "1": {
             "name": "Repulsor Ray",
-            "description": "Iron Man sends his opponents flying with the reliable Repulsor Ray.",
             "ranges": [
                 "medium"
             ],
@@ -22,7 +21,6 @@
         "2": {
             "rating": "5",
             "name": "Uni-Beam",
-            "description": "Iron Man takes flight and activates his chest-mounted Uni-Beam Projectile Gun.",
             "ranges": [
                 "long"
             ],
@@ -36,7 +34,6 @@
         },
         "3": {
             "name": "Billion-Dollar Punch",
-            "description": "A rocket boosted uppercut sends his opponent airborne, where they're subjected to an array of Iron Man's weaponry.",
             "damagetypes": [
                 "physical"
             ],
@@ -64,7 +61,6 @@
         "note": "When Attacked, 10% chance to Armor Up reducing damage from attacks by 58% for 6 seconds.",
         "description": "Iron Man is excellent for clearing AQ lanes.   Unlimited regen! During Story, Event or Alliance Quests, fight until you trigger his regenerative abilities at 15% hp.  You will regen up to 70% health.  After 1 regen cycle, pause and timeout the game before you drop below 35%.  A pause-and-timeout will cost you 50% of your remaining health, dropping you to 17.5% health.  On your next match your regen will trigger again!"
     },
-    "description": "Genius. Billionaire. Playboy. Philanthropist. Tony Stark may be a visionary, but he didn't realize his life-saving invention would transform him into Iron Man! In his sleek suit, Stark can fly, shoot repulsor rays, and access an array of cutting edge technology to combat the enemies of the Avengers.",
     "attack": {
         "ranges": [
             "melee"

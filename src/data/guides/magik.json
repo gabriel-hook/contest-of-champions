@@ -2,7 +2,6 @@
     "specials": {
         "1": {
             "name": "Soul Strike",
-            "description": "Magik's Soulsword is forged from her own life force. One strike disrupts even the most powerful magic.",
             "ranges": [
                 "melee"
             ],
@@ -18,7 +17,6 @@
         },
         "2": {
             "name": "Severance",
-            "description": "Appearing and disappearing by her will, the ethereal Soulsword severs the flow of Power within its target.",
             "ranges": [
                 "melee"
             ],
@@ -35,7 +33,6 @@
         },
         "3": {
             "name": "Singularity",
-            "description": "The Darkchilde's power mixes black and white magic, granting Illyana the power to transcend reality.",
             "damagetypes": [
                 "physical",
                 "energy"
@@ -58,7 +55,6 @@
         "rating": "3",
         "description": "Unduped, Magik can devastate heavy buff opponents like Groot, Logan, and Venom with her L3.  She is, for all intents and purposes, immune to Yellowjacket's Power Sting, unless it kills her during the attack. The Power Sting effect always takes place during the Limbo window, so that damage is rewound when Limbo closes.  Anything to increase raw Attack increases damage.  Once awakened, Magik's chances of entering Limbo increase with her level of power, so look to put awakened Magik on Power Gain and Attack boosting tiles."
     },
-    "description": "Mutants are known to be mysterious and strange, yet Illyana Rasputina may be the most uncanny of them all. As Magik, she can teleport anywhere in the world (and occasionally, anywhere in time). As the Darkchilde, she is the sorceress supreme of the demon world Limbo, and wielder of the terrifying Soulsword. Illyana is sister to Colossus, best friend to Kitty Pryde, and a strict instructor at Cyclops' mutant school.",
     "signature": {
         "name": "Darkchilde",
         "description": "After filling a bar of Power, Magik has a 20% chance to enter a state of Limbo for 3 seconds. The chance increases by 12.5% after filling 2 bars, and by 25% after filling 3 bars.",

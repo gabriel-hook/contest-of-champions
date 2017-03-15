@@ -1,5 +1,4 @@
 {
-    "description": "Born of a mixed French-Algerian heritage, the mysterious Guillotine is the latest in her bloodline to inherit \"La Fleur du Mal\", a mystical sword with dark supernatural powers. Across the centuries, many have wielded the enchanted blade - some for good, some for evil. For the will of the sword is strong, and its thirst for blood is limitless, and many have succumbed to its whispers in their minds. The current Guillotine uses the blade to punish the guilty and keeps the sinister instincts of the sword in check …for now!",
     "specials": {
         "1": {
             "name": "La Force d'Ancêtres",
@@ -31,7 +30,6 @@
         }
     },
     "signature": {
-        "description": "The Souls of her ancestor’s empower Guillotine further, granting a 10% chance to steal (16.8% - 50%) Health for every 4 Souls she possesses.\nThis effect has a chance to activate with each strike.",
         "name": "Ancestor's Strength",
         "note": " The amount of health stolen is tied to how much damage is dealt by the strike.",
         "abilities": [

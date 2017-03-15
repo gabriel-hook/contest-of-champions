@@ -1,5 +1,4 @@
 {
-    "description": "An infant cast into space, Hyperion was the only survivor of a dying race, on a dying world. He crashed to Earth, and was found by a man who called himself Father. Father would teach him right from wrong, good from evil, instilling in him a set of morals which would guide him into using his incredible powers as a sworn protector of our world.",
     "author": {
         "type": "spotlight",
         "name": "KABAM",
@@ -27,7 +26,6 @@
     },
     "specials": {
         "1": {
-            "description": "Hyperion fires beams of intense heat from his eyes to devastating effect.",
             "name": "Atomic Vision",
             "damagetypes": [
                 "physical",
@@ -43,7 +41,6 @@
             "note": "This attack Incinerates the enemy, dealing 92% of your attack as Energy Damage over 10 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active."
         },
         "2": {
-            "description": "Using his massive strength Hyperion can exhale with the force of a hurricane.",
             "ranges": [
                 "melee",
                 "medium",
@@ -63,7 +60,6 @@
         },
         "3": {
             "name": "Orbital Kinetic Strike –",
-            "description": "Hyperion hammers his opponent into the ground, before launching himself into orbit, and using gravity to help him smash back down on them, at terrifying speed!",
             "note": "100% chance to gain up to 3 Cosmic Charges If Hyperion has 3 Cosmic Charges when used, he instead gains a Cosmic Overcharge Buff. While in Cosmic Overcharge mode, Hyperion gains Power and does not convert Cosmic Charges into Power Gains while below Full Power.",
             "damagetypes": [
                 "physical"

@@ -1,5 +1,4 @@
 {
-    "description": "After Peter Parker rejected a sinister alien symbiote, the extra-terrestrial threat sought revenge by bonding with Eddie Brock, ex-photographer for the Daily Bugle and Peter’s longtime rival. Fueled by their shared hatred of Spider-Man, Brock and the symbiote now use their immense strength and deadly abilities to gain revenge as the fearful Venom.",
     "gameplay": {
         "description": "Once every 10 seconds, the symbiote known as Venom calls upon its collective hive mind and grants its host a permanent beneficial effect from its genetic memory pool. Venom can only host 5 effects at a time. \n\nSymbiote Rage: 9% increased Attack. \nSymbiote Durability: 9% increased Physical Resistance. \nSymbiote Shield: 6% increased Armor. \nSymbiote Cruelty: 47% increased Critical Damage. \nSymbiote Frenzy: 17% increased Critical Hit Rate.\n",
         "abilities": [

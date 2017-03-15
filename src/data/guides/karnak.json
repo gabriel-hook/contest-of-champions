@@ -1,5 +1,4 @@
 {
-    "description": "Karnak Mander-Azur, Inhuman philosopher and Magister of the Second Tower of Wisdom, refused the transformative Terrigen Mists and chose instead to train his body and mind like no other. Through his training, Karnak has gained immense insight into both himself and others, allowing him to see the flaw in all things and strike down his opponents with ruthless physical and mental precision.",
     "youtube": "PDE4tZH_oRA",
     "specials": {
         "1": {
@@ -37,7 +36,6 @@
         }
     },
     "signature": {
-        "description": "Karnak’s Inhuman metabolism and Autonomic Function Control allows him to shrug off non-damaging Debuff effects (20 - 50%) faster than normal and reduces damage from Poison by 65%",
         "name": "Second Tower Training"
     },
     "author": {

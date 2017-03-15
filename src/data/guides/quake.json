@@ -1,7 +1,6 @@
 {
     "signature": {
         "name": "Ricochet Pulse",
-        "description": "Blocking\n\nQuake Blocks an additional 18.8% Damage and Redirects it back to the opponent as a pulse of Physical Damage.",
         "abilities": []
     },
     "attack": {
@@ -17,20 +16,17 @@
     "specials": {
         "1": {
             "note": "Adds 2 points to the Aftershock Scale.",
-            "name": "Compression Wave",
-            "description": "Quake quickly compresses the ground, launching a wave of earth towards the opponent."
+            "name": "Compression Wave"
         },
         "2": {
             "note": "Adds 3 points to the Aftershock Scale.\n\n100% chance to inflict Consussion, reducing the opponent's Ability Accuracy by 32.5% for 5 seconds.",
             "abilities": [
                 "precision"
             ],
-            "description": "Quake targets the ground with her vibrations to launch herself into the air and land a powerful punch.",
             "name": "Propulsion Pulse"
         },
         "3": {
             "note": "Adds 6 points to the Aftershock Scale.",
-            "description": "Quake generates a powerful earthquake, opening the ground and trapping the opponent before she deals her final vibration pulse attack.",
             "name": "Epicenter"
         }
     },
@@ -39,6 +35,5 @@
         "type": "reddit",
         "profile": "-JJW-"
     },
-    "description": "When she was a teenager, Daisy Johnson, alias Quake, had her earth-shaking powers accidentally awakened as a result of her mother’s Inhuman lineage. Her devastating powers caught the attention of S.H.I.E.L.D., and Nick Fury took her under his wing to train and mentor her. Her ability to target seismic waves with pinpoint accuracy makes her one of S.H.I.E.L.D.’s most skilled and powerful agents.",
     "youtube": "MNF_0MrcZFU"
 }

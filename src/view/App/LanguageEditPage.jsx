@@ -133,11 +133,24 @@ const LanguageEditPage = {
             <div class="field-group">
                 <div class="field-group-title">{ lang.string('champions') }</div>
                 { CHAMPION_VALUES
-                        .map((uid) => [ `champion-${ uid }-name`, `champion-${ uid }-shortname` ])
-                        .map(([ name, shortname ]) => (
+                        .map((uid) => [
+                            `champion-${ uid }-name`,
+                            `champion-${ uid }-shortname`,
+                            `champion-${ uid }-description`,
+                            `champion-special-${ uid }-1-name`,
+                            `champion-special-${ uid }-1-description`,
+                            `champion-special-${ uid }-2-name`,
+                            `champion-special-${ uid }-2-description`,
+                            `champion-special-${ uid }-3-name`,
+                            `champion-special-${ uid }-3-description`,
+                            `champion-signature-${ uid }-name`,
+                            `champion-signature-${ uid }-description`,
+                        ])
+                        .map(([ name, shortname, ...keys ]) => (
                             <div class="field-group-set">
                                 { fieldElement(name) }
                                 { fieldElement(shortname, true) }
+                                { keys.map((key) => fieldElement(key)) }
                             </div>
                         )) }
             </div>

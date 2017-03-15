@@ -1,5 +1,4 @@
 {
-    "description": "I know what they say. The son of a Frost Giant. They also called me the god of mischief, but that lacks a certain...imagination. Don't you think? Look at my adoptive family, my father Odin and my brother Thor are so dull, monotonous. Am I good? Evil? Noble? Nonsense. Call me not mischievous – I merely see the world not as it is, but how it could be. Call me a visionary. Call me Loki.",
     "gameplay": {
         "note": "While the opponent is Cursed, Loki has a 17.5% chance to Stun the opponent for 1 second.",
         "abilities": [
@@ -15,7 +14,7 @@
     "specials": {
         "1": {
             "name": "Curse of Agony",
-            "description": "Loki slashes the opponent with his scepter, and then finishes them with a dark energy blast.\n\nSteals all of the opponent's Buffs.",
+            "description": "Steals all of the opponent's Buffs.",
             "note": "Stolen Buffs last for 6.3 seconds. 65% chance to reset the duration of Curse.",
             "ranges": [
                 "medium",
@@ -28,7 +27,7 @@
         },
         "2": {
             "name": "Cryokinesis",
-            "description": "Loki taps into his Frost Giant lineage to overpower opponents with a surge of ice.\n\nIf Loki has more Health points than his opponent, he has a 100% chance of subtracting 5.4% of their max Health instantly.",
+            "description": "If Loki has more Health points than his opponent, he has a 100% chance of subtracting 5.4% of their max Health instantly.",
             "note": "This attack is Unblockable.",
             "damagetypes": [
                 "energy"
@@ -39,7 +38,7 @@
         },
         "3": {
             "name": "Mayhem",
-            "description": "Loki manipulates the opponent into attacking his illusions until he is ready to deal the final blow.\n\nLoki Curses the opponent, dealing 113% of your Attack as Energy Damage and allowing him to steal any of the opponent's Buffs for 7.5 seconds.",
+            "description": "Loki Curses the opponent, dealing 113% of your Attack as Energy Damage and allowing him to steal any of the opponent's Buffs for 7.5 seconds.",
             "note": "Stolen Buffs last for 7 seconds.",
             "damagetypes": [
                 "energy"
@@ -47,8 +46,7 @@
         }
     },
     "signature": {
-        "name": "Ascendant",
-        "description": "Perhaps the most powerful sorcerer in all Asgard, Loki passively generates additional Power over time while he has less than one Power Bar. Rising in power through sorcery and subterfuge, Loki generates an additional 5.5% Power per second as long as he is below 1 bar."
+        "name": "Ascendant"
     },
     "youtube": "lsFJk7hcp1g",
     "author": {

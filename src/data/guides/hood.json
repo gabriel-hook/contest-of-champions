@@ -1,0 +1,72 @@
+{
+    "author": {
+        "type": "spotlight",
+        "profile": "716268-Champion-Spotlight-The-Hood",
+        "name": "KABAM"
+    },
+    "youtube": "l03YNVTZpOc",
+    "gameplay": {
+        "abilities": [
+            "stagger",
+            "shock",
+            "bleed"
+        ],
+        "description": "Dash Back and Hold Block for 1.5 Seconds\nThe Hood gains Invisibility for 8 seconds. While Invisible, incoming attacks have a 45% chance to miss. Non-contact attacks have double this chance.\n\nWhile Invisible, The Hood deals 105% increased Critical Damage and his attacks ignore 75% Armor and Block Proficiency."
+    },
+    "attack": {
+        "heavy": "Refreshes any Shock, Hex, Stagger or Bleed The Hood has placed on the opponent.",
+        "description": "Critical Hits\n\n60% chance to Stagger the opponent, preventing them from gaining their next Buff for 10 seconds. When the Stagger expires, the opponent’s Health is siphoned to The Hood for 15% of his Attack.",
+        "damagetypes": [
+            "physical"
+        ],
+        "abilities": [
+            "stagger"
+        ]
+    },
+    "specials": {
+        "1": {
+            "name": "Eldritch Arc",
+            "ranges": [
+                "medium",
+                "long"
+            ],
+            "description": "Shocks the opponent, dealing 130% of the Hood’s Attack as Energy Damage over 7.5 seconds. When the Shock expires, the opponent is Stunned for 0.75 seconds. This effect cannot interrupt Special Attacks.",
+            "damagetypes": [
+                "energy"
+            ],
+            "abilities": [
+                "stun",
+                "shock"
+            ]
+        },
+        "2": {
+            "name": "Occult Onslaught",
+            "description": "Hexes the opponent, reducing Ability Accuracy by 56% and Fate Sealing for 6.5 seconds. When the Hex expires, it deals a burst of Energy Damage equal to 85% of the Hood’s attack.",
+            "note": "This attack triggers Invisibility.",
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "ranges": [
+                "long"
+            ]
+        },
+        "3": {
+            "name": "Dark Pact",
+            "description": "This attack deals 65% increased damage for each full bar of power the opponent has at time of impact.",
+            "note": "100% chance to inflict Bleed, dealing 130% of your Attack as direct damage over 6 seconds.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "bleed"
+            ]
+        }
+    },
+    "signature": {
+        "abilities": [
+            "powersteal"
+        ],
+        "name": "Dark Dealings"
+    }
+}

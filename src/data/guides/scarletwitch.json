@@ -3,7 +3,6 @@
         "normal": "A-",
         "awakened": "A+"
     },
-    "description": "Cast no evil eyes in the direction of Wanda Maximioff, aka the Scarlet Witch - the master of chaos magic.  Her powerful hexes influence probability - making the impossible erupt across reality. A former member of the Brotherhood of Evil Mutants, she is a long-time member of the Avengers. Wanda remains close with her twin brother, Quicksilver.",
     "gameplay": {
         "abilities": [
             "nullify",
@@ -21,7 +20,6 @@
     "specials": {
         "1": {
             "name": "Hex Sphere",
-            "description": "A concentrated sphere of Chaos Magic blasts Scarlet Witch's opponents",
             "ranges": [
                 "long"
             ],
@@ -37,7 +35,6 @@
         "2": {
             "rating": "5",
             "name": "Hex Bolt",
-            "description": "Scarlet Witch sends her opponents flying with a bolt of Chaos Magic.",
             "ranges": [
                 "long"
             ],
@@ -51,7 +48,6 @@
         },
         "3": {
             "name": "Chaotic Bombardment",
-            "description": "Scarlet Witch cuffs her foe into helplessness before crushing them with a bombardment of Hex Bolts",
             "damagetypes": [
                 "energy"
             ],

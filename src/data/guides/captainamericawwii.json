@@ -49,8 +49,7 @@
     },
     "signature": {
         "rating": "5",
-        "name": "Safeguard",
-        "description": "The chance to Perfectly Block all damage increases by up to 51.4% while opponents are under Buff effects."
+        "name": "Safeguard"
     },
     "gameplay": {
         "note": "Blocking  \nBlocking reduces 24% additional damage from attacks.\n13% chance that a Block reduces all damage.",

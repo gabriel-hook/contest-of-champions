@@ -1,0 +1,72 @@
+{
+    "author": {
+        "type": "spotlight",
+        "name": "Kabam",
+        "profile": "722905-Champion-Spotlight-Dormammu"
+    },
+    "youtube": "saIyJQKsWPQ",
+    "specials": {
+        "1": {
+            "ranges": [
+                "short",
+                "medium"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy"
+            ],
+            "name": "Soul Fire",
+            "note": "100% Chance to Nullify one (or all if Imbued) enemy Buffs.",
+            "abilities": [
+                "nullify"
+            ]
+        },
+        "2": {
+            "ranges": [
+                "short",
+                "long",
+                "long",
+                "long"
+            ],
+            "damagetypes": [
+                "physical",
+                "energy",
+                "energy",
+                "energy"
+            ],
+            "note": "100% Chance to Power Lock opponent for 5 seconds. Drain 15% of the target’s Max Power per hit if Imbued.",
+            "name": "Dimensional Blasts",
+            "abilities": [
+                "powerlock",
+                "powerdrain"
+            ]
+        },
+        "3": {
+            "name": "Lord of the Dark Dimension",
+            "note": "Gain a Dimensional Link buff causing Dormammu to continually gain Dark Energy for 16 seconds.",
+            "damagetypes": [
+                "physical"
+            ],
+            "abilities": [
+                "healthsteal"
+            ]
+        }
+    },
+    "signature": {
+        "name": "Soul Leech",
+        "abilities": [
+            "degeneration"
+        ]
+    },
+    "gameplay": {
+        "abilities": [
+            "poisonimmunity",
+            "bleedimmunity"
+        ],
+        "description": "Dark Energy\n\nGain Dark Energy Charges each time your opponent spends power.\n\nWhen the Charge reaches 100, Dormammu will consume all Dark Energy to Imbue the next ability he uses with additional effects.\n\nGain 50 Dark Energy Charges for each Buff Nullified."
+    },
+    "attack": {
+        "heavy": "If there is no Soul Bond on the target, place one on it. While a Soul Bond is active, each Dark Energy Charge you receive also adds charges to the Soul Bond – up to 100. Detonate an active Soul Bond dealing up to 4% of Attack as Direct Damage, per Soul Bond charge.",
+        "description": "Medium Attack Combo Finisher\n\nThe target doesn’t gain Power from this Hit. Depletes up to 7.5% of the Target’s Max Power. When Imbued, Causes Direct Damage equal to 400% of Power Drained from the opponent by this attack."
+    }
+}

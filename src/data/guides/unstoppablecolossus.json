@@ -1,5 +1,4 @@
 {
-    "description": "During an event known as Fear itself, the X-Man known as Colossus touched the Crimson Gem of the demon Cyttorak, gaining the demon's favor in place of his sister Magik. Attaining the same Mystical power that enhanced Juggernaut, Russia's favorite mutant hero became an Unstoppable artist of destruction.",
     "gameplay": {
         "abilities": [
             "armorup",
@@ -26,7 +25,6 @@
     "specials": {
         "1": {
             "name": "Dropkick",
-            "description": "A classic wrestling move used to knock down any opponent.",
             "ranges": [
                 "melee"
             ],
@@ -41,7 +39,6 @@
         },
         "2": {
             "name": "Unstoppable",
-            "description": "Colossus demonstrates hand to hand combat with enough superhuman strength to careen 100 tons.",
             "ranges": [
                 "melee"
             ],
@@ -56,7 +53,6 @@
         },
         "3": {
             "name": "Unbreakable",
-            "description": "In flesh form he is a man, in steel form he is a hero, increasing his damage based on his current Armor level.",
             "damagetypes": [
                 "physical"
             ],

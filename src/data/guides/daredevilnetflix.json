@@ -1,5 +1,4 @@
 {
-    "description": "Matt Murdock grew up around crime, corruption and violence. After a freak accident involving radioactive waste took his sight, Matt was trained by the mysterious martial artist Stick to condition his body to near perfection and hone his remaining senses to superhuman levels. Play as the Man Without Fear equipped with the red suit inspired by Marvel’s Daredevil, a Netflix Original Series. ",
     "specials": {
         "1": {
             "name": "Condemn",
@@ -55,7 +54,6 @@
     },
     "signature": {
         "name": "World on Fire",
-        "description": "The son of Battlin’ Jack Murdock only becomes more determined as he takes punishment, granting him (15% - 40%) increased Critical Hit Rate for 6 seconds each time the opponent places a detrimental effect on him.",
         "note": "The Critical Hit Rate buff does not stack with itself.",
         "abilities": [
             "precision"
