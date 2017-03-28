@@ -1,6 +1,7 @@
 {
     "ABOMINATION": "abomination",
     "AGENTVENOM": "agentvenom",
+    "ANGELA": "angela",
     "ANTMAN": "antman",
     "ARCHANGEL": "archangel",
     "BEAST": "beast",
@@ -40,6 +41,9 @@
     "GAMORA": "gamora",
     "GHOSTRIDER": "ghostrider",
     "GROOT": "groot",
+    "KINGGROOT": "grootking",
+    "GROOTKING": "grootking",
+    "GROOT_KING": "grootking",
     "GUILLOTINE": "guillotine",
     "GWENPOOL": "gwenpool",
     "HAWKEYE": "hawkeye",

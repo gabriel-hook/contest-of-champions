@@ -1,9 +1,11 @@
 // Cosmic
+export const ANGELA = 'angela';
 export const BLACKBOLT = 'blackbolt';
 export const CAPTAINMARVEL = 'captainmarvel';
 export const DRAX = 'drax';
 export const GAMORA = 'gamora';
 export const GROOT = 'groot';
+export const GROOTKING = 'grootking';
 export const HYPERION = 'hyperion';
 export const KAMALAKHAN = 'kamalakhan';
 export const LOKI = 'loki';

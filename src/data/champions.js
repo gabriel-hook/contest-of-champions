@@ -31,11 +31,13 @@ function championStars(champion, stars) {
 
 const champions = [
     ...typeId(TYPE.COSMIC, [
+        ...championStars({ uid: CHAMPION.ANGELA }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.BLACKBOLT }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.CAPTAINMARVEL }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DRAX }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GAMORA }, [ 1, 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.GROOT }, [ 2, 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.GROOTKING }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.HYPERION }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.KAMALAKHAN }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MSMARVEL }, [ 3, 4 ]),
