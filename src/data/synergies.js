@@ -642,7 +642,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.THORJANEFOSTER, [
-        ...fromStars(3, 5, [ CHAMPION.THOR ], EFFECT.POWER_GAIN),
+        ...fromStars(2, 3, 5, [ CHAMPION.THOR ], EFFECT.POWER_GAIN),
         ...fromStars(3, 5, [ CHAMPION.VISION ], EFFECT.PERFECT_BLOCK),
         ...fromStars(4, 5, [ CHAMPION.BLACKWIDOW ], EFFECT.ARMOR),
         ...fromStars(4, 5, [ CHAMPION.JOEFIXIT ], EFFECT.PERFECT_BLOCK),

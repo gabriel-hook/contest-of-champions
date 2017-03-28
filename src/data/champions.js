@@ -137,7 +137,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.MAGIK }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.SCARLETWITCH }, [ 1, 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.SCARLETWITCHULTIMATE }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.THORJANEFOSTER }, [ 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.THORJANEFOSTER }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.UNSTOPPABLECOLOSSUS }, [ 2, 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.UNIVERSAL, [
