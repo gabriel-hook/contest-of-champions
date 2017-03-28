@@ -313,6 +313,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.X23 ], EFFECT.CRITICAL_DAMAGE),
     ]),
 
+    ...fromId(CHAMPION.PSYLOCKEXFORCE, [
+        ...fromStars(3, 5, [ CHAMPION.ARCHANGEL ], EFFECT.POWER_GAIN),
+        ...fromStars(3, 5, [ CHAMPION.STORM ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.ROGUE ], EFFECT.PERFECT_BLOCK),
+    ]),
+
     ...fromId(CHAMPION.ROGUE, [
         ...fromStars(3, 5, [ CHAMPION.NIGHTCRAWLER ], EFFECT.HEALTH),
         ...fromStars(3, 5, [ CHAMPION.GAMBIT ], EFFECT.POWER_GAIN),
