@@ -5,7 +5,6 @@ export const UNRELEASED_CHAMPIONS = [
     CHAMPION.ANGELA,
     CHAMPION.GROOTKING,
     // Mutant
-    CHAMPION.ICEMAN,
     // Skill
     // Mystic
     CHAMPION.DRSTRANGEMARVELNOW,
