@@ -6,9 +6,11 @@ import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig, { extractStylesPlugin, championIcons } from '../config/webpack-config.js';
 
 gulp.task('develop', (callback) => {
+    /* eslint-disable no-undef */
     const domain = process.env.WEBPACK_HOSTNAME || 'localhost';
     const port = parseInt(process.env.WEBPACK_PORT, 10) || 8080;
     const doOpen = process.env.WEBPACK_OPEN === undefined || process.env.WEBPACK_OPEN === 'true';
+    /* eslint-enable no-undef */
     const config = {
         ...webpackConfig,
         entry: ((entry) => {
