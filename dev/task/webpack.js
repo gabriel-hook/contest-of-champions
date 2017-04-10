@@ -8,7 +8,7 @@ import webpackConfig, { extractStylesPlugin, championIcons } from '../config/web
 gulp.task('develop', (callback) => {
     const domain = process.env.WEBPACK_HOSTNAME || 'localhost';
     const port = parseInt(process.env.WEBPACK_PORT, 10) || 8080;
-    const open = process.env.WEBPACK_OPEN === undefined || process.env.WEBPACK_OPEN === 'true';
+    const doOpen = process.env.WEBPACK_OPEN === undefined || process.env.WEBPACK_OPEN === 'true';
     const config = {
         ...webpackConfig,
         entry: ((entry) => {
@@ -59,7 +59,7 @@ gulp.task('develop', (callback) => {
             throw new gutil.PluginError('webpack-dev-server', err);
         }
         gutil.log('[webpack-dev-server] 🌎', `http://${ domain }:${ port }/index.html`);
-        if (process.env.WEBPACK_OPEN) {
+        if (doOpen) {
             opn(`http://${domain}:${port}`);
         }
     });
