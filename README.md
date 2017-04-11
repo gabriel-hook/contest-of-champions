@@ -20,7 +20,6 @@
 If you are developing in a Windows environment, make sure to set your line endings preferences
 to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
 
-
 ### Local Development
 
   Run a webpack-dev-server and navigate to [localhost:8080](http://localhost:8080) test changes.
@@ -28,6 +27,14 @@ to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
 ```
   npm start
 ```
+
+Environment variables
+
+| Name | Default value | Description |
+| -- | -- | -- |
+| WEBPACK_HOSTNAME | `localhost` | Hostname (or IP address) for the dev server |
+| WEBPACK_PORT | *8080* | Port for the dev server |
+| WEBPACK_OPEN | **true** | Open the default browser at the current dev server |
 
 ### Linting and Testing
 
@@ -41,6 +48,6 @@ to [autocrlf](https://help.github.com/articles/dealing-with-line-endings/).
   npm test
 ```
 
-### Deploying
+### Deployment
 
   Lint, Test, Build and publish to gh-pages branch is done automatically by Travis-CI on `git push`.
