@@ -47,6 +47,13 @@ function fromStars(minStars, maxStars, toIdList, effectId) {
 
 const synergies = [
 
+    ...fromId(CHAMPION.ANGELA, [
+        ...fromStars(3, 5, [ CHAMPION.ROCKET, CHAMPION.STARLORD ], EFFECT.ARMOR),
+        ...fromStars(3, 5, [ CHAMPION.GAMORA, CHAMPION.GROOT ], EFFECT.ARMOR),
+        ...fromStars(4, 5, [ CHAMPION.THOR ], EFFECT.HEALTH),
+        ...fromStars(4, 5, [ CHAMPION.LOKI ], EFFECT.HEALTH),
+    ]),
+
     ...fromId(CHAMPION.BLACKBOLT, [
         ...fromStars(2, 4, [ CHAMPION.KAMALAKHAN, CHAMPION.RONAN ], EFFECT.COSMIC_SUPREMACY),
         ...fromStars(2, 4, [ CHAMPION.SPIDERMAN, CHAMPION.CYCLOPS ], EFFECT.ARMOR),
