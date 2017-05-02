@@ -41,6 +41,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.HYPERION }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.KAMALAKHAN }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MSMARVEL }, [ 3, 4 ]),
+        ...championStars({ uid: CHAMPION.NEBULA }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.PHOENIX }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.RONAN }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.SPIDERMANBLACK }, [ 2, 3, 4 ]),
@@ -49,6 +50,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.THOR }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.VENOM }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.VENOMPOOL }, [ 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.YONDU }, [ 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.TECH, [
         ...championStars({ uid: CHAMPION.CIVILWARRIOR }, [ 3, 4, 5 ]),

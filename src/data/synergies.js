@@ -88,6 +88,13 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.DRAX ], EFFECT.PERFECT_BLOCK),
     ]),
 
+    ...fromId(CHAMPION.GROOTKING, [
+        ...fromStars(3, 5, [ CHAMPION.ABOMINATION ], EFFECT.ARMOR),
+        ...fromStars(3, 5, [ CHAMPION.GROOT ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.HULK ], EFFECT.CRITICAL_RATE),
+        ...fromStars(4, 5, [ CHAMPION.VENOM ], EFFECT.ARMOR),
+    ]),
+
     ...fromId(CHAMPION.HYPERION, [
         ...fromStars(3, 5, [ CHAMPION.THOR ], EFFECT.ARMOR),
         ...fromStars(3, 5, [ CHAMPION.IRONMAN ], EFFECT.CRITICAL_RATE),

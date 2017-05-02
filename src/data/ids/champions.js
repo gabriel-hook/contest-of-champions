@@ -10,6 +10,7 @@ export const HYPERION = 'hyperion';
 export const KAMALAKHAN = 'kamalakhan';
 export const LOKI = 'loki';
 export const MSMARVEL = 'msmarvel';
+export const NEBULA = 'nebula';
 export const PHOENIX = 'phoenix';
 export const RONAN = 'ronan';
 export const SPIDERMANBLACK = 'spidermanblack';
@@ -18,6 +19,7 @@ export const THANOS = 'thanos';
 export const THOR = 'thor';
 export const VENOM = 'venom';
 export const VENOMPOOL = 'venompool';
+export const YONDU = 'yondu';
 // Tech
 export const CIVILWARRIOR = 'civilwarrior';
 export const HOWARDTHEDUCK = 'howardtheduck';

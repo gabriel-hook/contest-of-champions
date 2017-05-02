@@ -79,6 +79,7 @@
     "MSMARVEL_KAMALA": "kamalakhan",
     "KAMALA": "kamalakhan",
     "NIGHTCRAWLER": "nightcrawler",
+    "NEBULA": "nebula",
     "PHOENIX": "phoenix",
     "FORMAT_PHOENIX_SIG": "phoenix",
     "PSYLOCKE": "psylockexforce",
@@ -116,5 +117,6 @@
     "WOLVERINE_OLDMAN": "wolverineoldman",
     "OLDMANLOGAN": "wolverineoldman",
     "X23": "x23",
-    "YELLOWJACKET": "yellowjacket"
+    "YELLOWJACKET": "yellowjacket",
+    "YONDU": "yondu"
 }
