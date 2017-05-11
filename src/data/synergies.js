@@ -198,6 +198,13 @@ const synergies = [
         ...fromStars(4, 4, [ CHAMPION.THOR ], EFFECT.CRITICAL_RATE),
     ]),
 
+    ...fromId(CHAMPION.NEBULA, [
+        ...fromStars(3, 5, [ CHAMPION.STARLORD, CHAMPION.ROCKET ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.DRAX ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.THANOS, CHAMPION.GAMORA ], EFFECT.HEALTH),
+        ...fromStars(3, 5, [ CHAMPION.GAMORA ], EFFECT.CRITICAL_DAMAGE),
+    ]),
+
     ...fromId(CHAMPION.HULKBUSTER, [
         ...fromStars(2, 5, [ CHAMPION.HULK, CHAMPION.YELLOWJACKET ], EFFECT.CRITICAL_DAMAGE),
         ...fromStars(3, 5, [ CHAMPION.IRONMAN ], EFFECT.HEALTH),
