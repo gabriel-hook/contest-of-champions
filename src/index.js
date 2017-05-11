@@ -7,5 +7,6 @@ import PACKAGE from '../package.json';
 global.console && console.info && console.info(`${ PACKAGE.description } v${ PACKAGE.version }`);
 /* eslint-enable no-console */
 
-document.addEventListener('hotreload', () => requestRedraw(), true);
-window.addEventListener('resize', () => requestRedraw(10), true);
+const handleReload = () => requestRedraw(10);
+document.addEventListener('hotreload', handleReload, true);
+window.addEventListener('resize', handleReload, true);

@@ -423,10 +423,10 @@ m.mount(document.body, (
     <App />
 ));
 
-app.route = '/roster';
-router.init('/roster');
+app.route = (roster.all().length === 0) ? '/guide' : '/roster';
+router.init(app.route);
 
-const keyHandler = (event) => {
+const handleKeyPress = (event) => {
     if(app.hotkeys) {
         const which = String.fromCharCode(event.which);
         const modifiers = {
@@ -442,8 +442,8 @@ const keyHandler = (event) => {
             .forEach((hotkey) => hotkey.callback());
     }
 };
-window.addEventListener('keydown', keyHandler);
+window.addEventListener('keydown', handleKeyPress);
 if(window[ '__champions_key_handler__' ]) {
     window.removeEventListener('keydown', window[ '__champions_key_handler__' ]);
 }
-window[ '__champions_key_handler__' ] = keyHandler;
+window[ '__champions_key_handler__' ] = handleKeyPress;
