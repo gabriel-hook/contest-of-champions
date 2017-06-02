@@ -2,6 +2,7 @@
 export const ANGELA = 'angela';
 export const BLACKBOLT = 'blackbolt';
 export const CAPTAINMARVEL = 'captainmarvel';
+export const CARNAGE = 'carnage';
 export const DRAX = 'drax';
 export const GAMORA = 'gamora';
 export const GROOT = 'groot';
@@ -26,6 +27,7 @@ export const IRONMAN = 'ironman';
 export const IRONPATRIOT = 'ironpatriot';
 export const KANG = 'kang';
 export const NEBULA = 'nebula';
+export const PUNISHER2099 = 'punisher2099';
 export const ROCKET = 'rocket';
 export const STARLORD = 'starlord';
 export const VISION = 'vision';

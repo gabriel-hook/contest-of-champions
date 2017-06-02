@@ -2,7 +2,9 @@ import { CHAMPION } from '../model/Champion';
 
 export const UNRELEASED_CHAMPIONS = [
     // Cosmic
-    CHAMPION.YONDU,
+    CHAMPION.CARNAGE,
+    // Tech
+    CHAMPION.PUNISHER2099,
     // Mutant
     // Skill
     // Mystic

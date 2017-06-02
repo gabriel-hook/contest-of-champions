@@ -256,6 +256,11 @@ const synergies = [
         ...fromStars(4, 4, [ CHAMPION.BLACKPANTHER ], EFFECT.CRITICAL_RATE),
     ]),
 
+    ...fromId(CHAMPION.YONDU, [
+        ...fromStars(4, 5, [ CHAMPION.ROCKET ], EFFECT.ARMOR),
+        ...fromStars(4, 5, [ CHAMPION.RONAN ], EFFECT.CRITICAL_RATE),
+    ]),
+
     ...fromId(CHAMPION.ARCHANGEL, [
         ...fromStars(3, 5, [ CHAMPION.PSYLOCKEXFORCE ], EFFECT.POWER_GAIN),
         ...fromStars(3, 5, [ CHAMPION.PHOENIX, CHAMPION.BEAST ], EFFECT.MUTANT_AGENDA),
