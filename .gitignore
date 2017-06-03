@@ -1,6 +1,7 @@
 .sublime-*
 .DS_Store
 Thumbs.db
+package-lock.json
 npm-debug.log
 /.idea
 /node_modules
