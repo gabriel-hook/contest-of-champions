@@ -1,6 +1,6 @@
 import { championTypeMap } from '../../data/champions';
 import lang from '../../service/lang';
-import guides from '../../data/guides';
+import { UNRELEASED_CHAMPIONS } from '../../data/champions/unreleased';
 import MenuHeader from '../Menu/MenuHeader.jsx';
 import MenuSection from '../Menu/MenuSection.jsx';
 import MenuOption from '../Menu/MenuOption.jsx';
@@ -35,7 +35,7 @@ const GuideMenu = {
                         icon={(
                             <ImageIcon src={ `images/champions/portrait_${ uid }.png` } icon="user" before />
                         )}
-                        invalid={ !guides[ uid ] || guides[ uid ].invalid }
+                        invalid={ UNRELEASED_CHAMPIONS[ uid ] }
                         title={ `champion-${ uid }-name` }
                         selected={ currentUid === uid }
                         href={ `/guide/${ uid }` }

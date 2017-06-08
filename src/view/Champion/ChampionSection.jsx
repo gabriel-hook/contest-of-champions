@@ -100,7 +100,7 @@ const ChampionSection = {
                     { title }
                     { rating !== undefined? (
                         <div style="float:right;">
-                            { editableSelect(RATINGS, 'rating', parseInt(rating, 10)) }
+                            { editableSelect(RATINGS, 'rating', Number(rating)) }
                             / 5
                         </div>
                     ): null}

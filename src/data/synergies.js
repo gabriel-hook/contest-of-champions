@@ -68,6 +68,13 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.WOLVERINE ], EFFECT.POWER_GAIN),
     ]),
 
+    ...fromId(CHAMPION.CARNAGE, [
+        ...fromStars(3, 5, [ CHAMPION.VENOM ], EFFECT.POWER_GAIN),
+        ...fromStars(3, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], EFFECT.CRITICAL_RATE),
+        ...fromStars(4, 5, [ CHAMPION.SPIDERMAN ], EFFECT.ATTACK),
+        ...fromStars(4, 5, [ CHAMPION.SPIDERMANBLACK, CHAMPION.AGENTVENOM, CHAMPION.VENOMPOOL ], EFFECT.HEALTH),
+    ]),
+
     ...fromId(CHAMPION.DRAX, [
         ...fromStars(2, 5, [ CHAMPION.RONAN ], EFFECT.CRITICAL_RATE),
         ...fromStars(2, 5, [ CHAMPION.STARLORD ], EFFECT.PERFECT_BLOCK),
