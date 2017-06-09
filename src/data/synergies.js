@@ -220,10 +220,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.ROCKET, [
-        ...fromStars(2, 4, [ CHAMPION.STARLORD, CHAMPION.GROOT ], EFFECT.ARMOR),
-        ...fromStars(2, 4, [ CHAMPION.GAMORA ], EFFECT.PERFECT_BLOCK),
-        ...fromStars(3, 4, [ CHAMPION.RONAN ], EFFECT.CRITICAL_RATE),
-        ...fromStars(3, 4, [ CHAMPION.DRAX ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(2, 5, [ CHAMPION.STARLORD, CHAMPION.GROOT ], EFFECT.ARMOR),
+        ...fromStars(2, 5, [ CHAMPION.GAMORA ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(3, 5, [ CHAMPION.RONAN ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.DRAX ], EFFECT.PERFECT_BLOCK),
     ]),
 
     ...fromId(CHAMPION.STARLORD, [
@@ -502,10 +502,10 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.CAPTAINAMERICA, [
-        ...fromStars(2, 4, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERMANBLACK ], EFFECT.ARMOR),
-        ...fromStars(2, 4, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.CRITICAL_RATE),
-        ...fromStars(2, 4, [ CHAMPION.IRONMAN ], EFFECT.CRITICAL_RATE),
-        ...fromStars(3, 4, [ CHAMPION.WINTERSOLDIER ], EFFECT.ARMOR),
+        ...fromStars(2, 5, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERMANBLACK ], EFFECT.ARMOR),
+        ...fromStars(2, 5, [ CHAMPION.SUPERIORIRONMAN ], EFFECT.CRITICAL_RATE),
+        ...fromStars(2, 5, [ CHAMPION.IRONMAN ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.WINTERSOLDIER ], EFFECT.ARMOR),
     ]),
 
     ...fromId(CHAMPION.CAPTAINAMERICAWWII, [

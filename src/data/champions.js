@@ -60,7 +60,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.KANG }, [ 4 ]),
         ...championStars({ uid: CHAMPION.NEBULA }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.PUNISHER2099 }, [ 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.ROCKET }, [ 2, 3, 4 ]),
+        ...championStars({ uid: CHAMPION.ROCKET }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.STARLORD }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.VISION }, [ 1, 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.THEVISION }, [ 1, 2, 3, 4 ]),
@@ -110,7 +110,7 @@ const champions = [
     ...typeId(TYPE.SCIENCE, [
         ...championStars({ uid: CHAMPION.ABOMINATION }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.ANTMAN }, [ 2, 3, 4, 5 ]),
-        ...championStars({ uid: CHAMPION.CAPTAINAMERICA }, [ 2, 3, 4 ]),
+        ...championStars({ uid: CHAMPION.CAPTAINAMERICA }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.CAPTAINAMERICAWWII }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.ELECTRO }, [ 3, 4 ]),
         ...championStars({ uid: CHAMPION.HULK }, [ 1, 2, 3, 4 ]),
