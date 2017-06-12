@@ -43,7 +43,7 @@ const lang = {
     },
     number(value) {
         const delimiter = this.messages[ this.current ][ 'number-delimiter' ];
-        const string = String(Number(value) | 0);
+        const string = `${ Number.parseInt(value, 10) | 0 }`;
         if(delimiter) {
             if(string.length > 3) {
                 const offset = string.length % 3;

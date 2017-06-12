@@ -21,7 +21,7 @@ const tab = {
     title: 'roster',
 };
 
-const Select = {
+const SelectInput = {
     view(ctrl, { value, min, max, values, onchange }) {
         const options = [];
         if(min !== undefined && max !== undefined) {
@@ -46,7 +46,7 @@ const Select = {
     },
 };
 
-const Number = {
+const NumberInput = {
     view(ctrl, { value, placeholder, min, max, onchange }) {
         return (
             <div class="champion-field-input">
@@ -89,13 +89,13 @@ const RosterPage = {
             elements.push(
                 <label class="champion-field champion-field--neighbor">
                     <span class="champion-field-label">{ lang.string('rank') }</span>
-                    <Select
+                    <SelectInput
                         value={ rank }
                         min={ 1 }
                         max={ rangeMax }
                         onchange={(event) => {
                             const { value } = event.target;
-                            const rank = Math.min(rangeMax, Math.max(1, Number(value) || 1));
+                            const rank = Math.min(rangeMax, Math.max(1, Number.parseInt(value, 10) || 1));
                             roster.set(uid, stars, {
                                 rank,
                                 level: 1,
@@ -108,13 +108,13 @@ const RosterPage = {
             elements.push(
                 <label class="champion-field champion-field--neighbor">
                     <span class="champion-field-label">{ lang.string('level') }</span>
-                    <Select
+                    <SelectInput
                         value={ level }
                         min={ 1 }
                         max={ levelMax }
                         onchange={(event) => {
                             const { value } = event.target;
-                            const level = Math.min(levelMax, Math.max(1, Number(value) || 1));
+                            const level = Math.min(levelMax, Math.max(1, Number.parseInt(value, 10) || 1));
                             roster.set(uid, stars, {
                                 level,
                             });
@@ -126,13 +126,13 @@ const RosterPage = {
             elements.push(
                 <label class="champion-field">
                     <span class="champion-field-label">{ lang.string('awakened') }</span>
-                    <Select
+                    <SelectInput
                         value={ awakened }
                         min={ 0 }
                         max={ awankenedMax }
                         onchange={(event) => {
                             const { value } = event.target;
-                            const awakened = Math.min(awankenedMax, Math.max(0, Number(value) || 0));
+                            const awakened = Math.min(awankenedMax, Math.max(0, Number.parseInt(value, 10) || 0));
                             roster.set(uid, stars, {
                                 awakened,
                             });
@@ -144,14 +144,14 @@ const RosterPage = {
             elements.push(
                 <label class="champion-field">
                     <span class="champion-field-label">{ lang.string('pi') }</span>
-                    <Number
+                    <NumberInput
                         value={ pi || '' }
                         placeholder={ champion.pi * scalePi | 0 }
                         min={ 0 }
                         max={ 10000 }
                         onchange={(event) => {
                             const { value, min, max, valueAsNumber } = event.target;
-                            const pi = Math.min(max, Math.max(min, Number(value) || min));
+                            const pi = Math.min(max, Math.max(min, Number.parseInt(value, 10) || min));
                             roster.set(uid, stars, {
                                 pi,
                             });
@@ -168,7 +168,7 @@ const RosterPage = {
                     <div class="champion-field-role">
                         { roleIconImage }
                     </div>
-                    <Select
+                    <SelectInput
                         value={ role }
                         values={[
                             {

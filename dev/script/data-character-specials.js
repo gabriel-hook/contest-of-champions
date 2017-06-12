@@ -11,7 +11,7 @@ try {
             let key;
             if (k.startsWith('ID_SPECIAL_ATTACK_DESCRIPTION_')) {
                 const id = ID_MAP[ k.slice('ID_SPECIAL_ATTACK_DESCRIPTION_'.length, -2) ];
-                const number = Number(k.slice(-1)) + 1;
+                const number = Number.parseInt(k.slice(-1), 10) + 1;
                 if (id && number) {
                     key = `champion-special-${ id }-${ number }-description`;
                     data[ key ] = v;
@@ -19,7 +19,7 @@ try {
             }
             else if (k.startsWith('ID_SPECIAL_ATTACK_')) {
                 const id = ID_MAP[ k.slice('ID_SPECIAL_ATTACK_'.length, -2) ];
-                const number = Number(k.slice(-1)) + 1;
+                const number = Number.parseInt(k.slice(-1), 10) + 1;
                 if (id && number) {
                     key = `champion-special-${ id }-${ number }-name`;
                     data[ key ] = v;

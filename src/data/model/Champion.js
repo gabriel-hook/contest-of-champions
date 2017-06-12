@@ -47,7 +47,7 @@ class Champion {
         const [ uid, stars ] = id.split('-');
         return {
             uid,
-            stars: Number(stars),
+            stars: Number.parseInt(stars, 10),
         };
     }
 

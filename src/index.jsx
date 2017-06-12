@@ -181,7 +181,7 @@ router.on('/roster/?', () => {
 router.on('/roster/add/:stars/?', (stars) => {
     app.tab = 'roster';
     app.slides[ 'roster-add' ] = (
-        <RosterAddPage stars={ Number(stars) } />
+        <RosterAddPage stars={ Number.parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Slides
@@ -210,7 +210,7 @@ router.on('/roster/add/:stars/?', (stars) => {
 router.on('/roster/:uid/:stars/?', (uid, stars) => {
     app.tab = 'roster';
     app.slides[ 'roster-edit' ] = (
-        <RosterEditPage uid={ uid } stars={ Number(stars) } />
+        <RosterEditPage uid={ uid } stars={ Number.parseInt(stars, 10) } />
     );
     app.pages[ 'roster' ] = (
         <Slides
@@ -223,7 +223,7 @@ router.on('/roster/:uid/:stars/?', (uid, stars) => {
         />
     );
     app.menu = (
-        <RosterEditMenu uid={ uid } stars={ Number(stars) } />
+        <RosterEditMenu uid={ uid } stars={ Number.parseInt(stars, 10) } />
     );
     app.button = {
         icon: 'reply',
@@ -339,7 +339,7 @@ router.on('/teams/?', () => {
 
 router.on('/synergy/?', () => router.setRoute(app.history.synergy || `/synergy/stars/${ 2 }`));
 
-router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ Number(stars) }`));
+router.on('/synergy/([1-5])/?', (stars) => router.setRoute(`/synergy/stars/${ Number.parseInt(stars, 10) }`));
 
 router.on('/synergy/effect/:effect/?', (effect) => {
     if(EFFECT_VALUES.indexOf(effect) === -1) {
@@ -364,7 +364,7 @@ router.on('/synergy/effect/:effect/?', (effect) => {
 router.on('/synergy/stars/:stars/?', (stars) => {
     app.tab = 'synergy';
     app.pages[ 'synergy' ] = (
-        <SynergyPage stars={ Number(stars) } />
+        <SynergyPage stars={ Number.parseInt(stars, 10) } />
     );
     app.menu = (
         <SynergyMenu stars={ stars } />
