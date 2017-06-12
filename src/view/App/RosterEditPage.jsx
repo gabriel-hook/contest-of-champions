@@ -63,7 +63,7 @@ const NumberInput = {
     },
 };
 
-const RosterPage = {
+const RosterEditPage = {
     view(ctrl, { uid, stars }) {
         const champion = roster.get(uid, stars);
         const scalePi = roster.getScale();
@@ -232,4 +232,4 @@ const RosterPage = {
 };
 
 export { tab };
-export default RosterPage;
+export default RosterEditPage;
