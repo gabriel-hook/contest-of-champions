@@ -385,7 +385,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.X23, [
-        ...fromStars(3, 5, [ CHAMPION.WOLVERINE, CHAMPION.WOLVERINEOLDMAN ], EFFECT.HEALTH),
+        ...fromStars(2, 5, [ CHAMPION.WOLVERINE, CHAMPION.WOLVERINEOLDMAN ], EFFECT.HEALTH),
         ...fromStars(3, 5, [ CHAMPION.AGENTVENOM ], EFFECT.PERFECT_BLOCK),
     ]),
 
