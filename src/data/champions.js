@@ -105,6 +105,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.KARNAK }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MOONKNIGHT }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.PUNISHER }, [ 2, 3, 4 ]),
+        ...championStars({ uid: CHAMPION.PUNISHER2099 }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.WINTERSOLDIER }, [ 2, 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.SCIENCE, [
