@@ -694,6 +694,13 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.CYCLOPS ], EFFECT.PERFECT_BLOCK),
     ]),
 
+    ...fromId(CHAMPION.VULTURE, [
+        ...fromStars(3, 5, [ CHAMPION.ELECTRO ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.SPIDERMAN ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.SPIDERMANSTARK ], EFFECT.ATTACK),
+        ...fromStars(4, 5, [ CHAMPION.VENOM ], EFFECT.PERFECT_BLOCK),
+    ]),
+
 ].map((synergy) => new Synergy({
     ...synergy,
     effectAmount: effectAmount(synergy.effectId, synergy.fromStars),
