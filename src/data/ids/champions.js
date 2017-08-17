@@ -21,6 +21,8 @@ export const VENOM = 'venom';
 export const VENOMPOOL = 'venompool';
 // Tech
 export const CIVILWARRIOR = 'civilwarrior';
+export const DROCTOPUS = 'docock';
+export const GREENGOBLIN = 'greengoblin';
 export const HOWARDTHEDUCK = 'howardtheduck';
 export const HULKBUSTER = 'hulkbuster';
 export const IRONMAN = 'ironman';
@@ -29,11 +31,13 @@ export const KANG = 'kang';
 export const NEBULA = 'nebula';
 export const PUNISHER2099 = 'punisher2099';
 export const ROCKET = 'rocket';
+export const SPIDERMANSTARK = 'spidermanmovie';
 export const STARLORD = 'starlord';
 export const VISION = 'vision';
 export const THEVISION = 'thevision';
 export const ULTRON = 'ultron';
 export const ULTRONCLASSIC = 'ultronclassic';
+export const VULTURE = 'vulture';
 export const WARMACHINE = 'warmachine';
 export const YONDU = 'yondu';
 // Mutant
