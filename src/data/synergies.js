@@ -469,6 +469,11 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.CAPTAINMARVEL, CHAMPION.MSMARVEL ], EFFECT.PERFECT_BLOCK),
     ]),
 
+    ...fromId(CHAMPION.MEDUSA, [
+        ...fromStars(3, 5, [ CHAMPION.WOLVERINE ], EFFECT.CRITICAL_RATE),
+        ...fromStars(3, 5, [ CHAMPION.QUAKE ], EFFECT.CRITICAL_DAMAGE),
+    ]),
+
     ...fromId(CHAMPION.MOONKNIGHT, [
         ...fromStars(2, 5, [ CHAMPION.SPIDERMAN ], EFFECT.ARMOR),
         ...fromStars(2, 5, [ CHAMPION.DEADPOOLXFORCE, CHAMPION.DEADPOOL ], EFFECT.CRITICAL_DAMAGE),
