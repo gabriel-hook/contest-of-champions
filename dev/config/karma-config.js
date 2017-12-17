@@ -39,9 +39,6 @@ export default function(config) {
         webpackServer: {
             noInfo: true,
         },
-        phantomjsLauncher: {
-            exitOnResourceError: true,
-        },
         plugins: [
             'karma-phantomjs-launcher',
             'karma-mocha-reporter',
@@ -50,6 +47,8 @@ export default function(config) {
             'karma-sourcemap-loader',
             'karma-webpack',
         ],
+        colors: true,
         logLevel: config.LOG_WARN,
+        concurrency: Infinity,
     });
 }

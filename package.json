@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp develop",
     "lint": "gulp lint",
-    "karma": "karma start --colors",
+    "karma": "karma start",
     "data": "npm run data-character-bios && npm run data-character-specials && npm run data-character-signatures",
     "data-character-specials": "babel-node ./dev/script/data-character-specials.js ./dev/data/en/special_attacks_en.json",
     "data-character-bios": "babel-node ./dev/script/data-character-bios.js ./dev/data/en/character_bios_en.json",
