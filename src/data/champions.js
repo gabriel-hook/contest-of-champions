@@ -1,4 +1,4 @@
-import { TYPE, TYPE_VALUES } from './model/Type'; 
+import { TYPE, TYPE_VALUES } from './model/Type';
 import Champion, { CHAMPION } from './model/Champion';
 
 export const WILLPOWER_SAFE_CHAMPIONS = [
