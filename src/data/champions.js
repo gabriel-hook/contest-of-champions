@@ -39,6 +39,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.GAMORA }, [ 1, 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.GROOT }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GROOTKING }, [ 3, 4, 5 ]),
+        ...championStars({ uid: CHAMPION.HELA }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.HYPERION }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.KAMALAKHAN }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MSMARVEL }, [ 3, 4 ]),
@@ -112,6 +113,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.MEDUSA }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MOONKNIGHT }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.PUNISHER }, [ 2, 3, 4 ]),
+        ...championStars({ uid: CHAMPION.THORRAGNAROK }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.WINTERSOLDIER }, [ 2, 3, 4, 5 ]),
     ]),
     ...typeId(TYPE.SCIENCE, [
