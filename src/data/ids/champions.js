@@ -1,4 +1,4 @@
-// Cosmic 
+// Cosmic
 export const ANGELA = 'angela';
 export const BLACKBOLT = 'blackbolt';
 export const CAPTAINMARVEL = 'captainmarvel';
