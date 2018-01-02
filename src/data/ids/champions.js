@@ -7,6 +7,7 @@ export const DRAX = 'drax';
 export const GAMORA = 'gamora';
 export const GROOT = 'groot';
 export const GROOTKING = 'grootking';
+export const HELA = 'hela';
 export const HYPERION = 'hyperion';
 export const KAMALAKHAN = 'kamalakhan';
 export const LOKI = 'loki';
@@ -78,6 +79,7 @@ export const KINGPIN = 'kingpin';
 export const MEDUSA = 'medusa';
 export const MOONKNIGHT = 'moonknight';
 export const PUNISHER = 'punisher';
+export const THORRAGNAROK = 'thorragnarok';
 export const WINTERSOLDIER = 'wintersoldier';
 // Science
 export const ABOMINATION = 'abomination';
