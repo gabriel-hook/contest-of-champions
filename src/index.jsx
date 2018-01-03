@@ -376,7 +376,7 @@ router.on('/synergy/stars/:stars/?', (stars) => {
     requestRedraw();
 });
 
-router.on('/synergy/', () => {
+router.on('/synergy/all/?', () => {
     app.tab = 'synergy';
     app.pages[ 'synergy' ] = (
         <SynergyPage />
@@ -385,7 +385,7 @@ router.on('/synergy/', () => {
         <SynergyMenu />
     );
     app.button = null;
-    app.route = app.history.synergy = '/synergy/';
+    app.route = app.history.synergy = '/synergy/all';
     app.hotkeys = null;
     analytics.pageView();
     requestRedraw();
