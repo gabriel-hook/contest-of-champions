@@ -79,6 +79,7 @@ export const KINGPIN = 'kingpin';
 export const MEDUSA = 'medusa';
 export const MOONKNIGHT = 'moonknight';
 export const PUNISHER = 'punisher';
+export const TASKMASTER = 'taskmaster';
 export const THORRAGNAROK = 'thorragnarok';
 export const WINTERSOLDIER = 'wintersoldier';
 // Science
@@ -90,6 +91,7 @@ export const ELECTRO = 'electro';
 export const HULK = 'hulk';
 export const JOEFIXIT = 'joefixit';
 export const LUKECAGE = 'lukecage';
+export const MODOK = 'modok';
 export const QUAKE = 'quake';
 export const REDHULK = 'redhulk';
 export const RHINO = 'rhino';
