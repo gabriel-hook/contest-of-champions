@@ -117,7 +117,7 @@ export const CATALYSTS = {
             { type: CATALYST.ALPHA, tier: 2, amount: 6 },
             { type: CATALYST.GOLD, amount: 524738 },
         ],
-    }
+    },
 };
 
 export { CATALYST };
