@@ -83,7 +83,7 @@ const MenuOptions = {
                         <Icon icon="bomb" before />
                     }
                     title="link-kabam"
-                    href="http://community.kabam.com/forums/forumdisplay.php?1239-Marvel-Contest-of-Champions"
+                    href="https://forums.playcontestofchampions.com/en"
                 />
             );
             options.push(
@@ -98,10 +98,19 @@ const MenuOptions = {
             options.push(
                 <MenuOption
                     icon={
+                        <Icon icon="wikipedia-w" before />
+                    }
+                    title="link-wikia"
+                    href="http://marvel-contestofchampions.wikia.com/wiki/"
+                />
+            );
+            options.push(
+                <MenuOption
+                    icon={
                         <Icon icon="trophy" before />
                     }
                     title="link-trucos"
-                    href="http://marveltrucos.x10.mx/"
+                    href="https://www.facebook.com/MCOCTrucos/"
                 />
             );
             options.push(
