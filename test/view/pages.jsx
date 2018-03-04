@@ -28,6 +28,7 @@ describe('view/pages/', () => {
         it('should render without error for 3 star', () => expect(render(<RosterAddPage stars={ 3 } />)).to.exist);
         it('should render without error for 4 star', () => expect(render(<RosterAddPage stars={ 4 } />)).to.exist);
         it('should render without error for 5 star', () => expect(render(<RosterAddPage stars={ 5 } />)).to.exist);
+        it('should render without error for 6 star', () => expect(render(<RosterAddPage stars={ 6 } />)).to.exist);
     });
     describe('<RosterEditPage/>', () => it('should render without error', () => expect(render(<RosterEditPage />)).to.exist));
     describe('<RosterPage/>', () => it('should render without error', () => expect(render(<RosterPage />)).to.exist));
