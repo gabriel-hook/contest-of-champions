@@ -88,6 +88,36 @@ export const CATALYSTS = {
             { type: CATALYST.GOLD, amount: 524738 },
         ],
     },
+    6: {
+        1: [
+            { type: CATALYST.BASIC, tier: 5, amount: 3 },
+            { type: CATALYST.BASIC, tier: 4, amount: 7 },
+            { type: CATALYST.CLASS, tier: 4, amount: 7 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 7 },
+            { type: CATALYST.GOLD, amount: 529173 },
+        ],
+        2: [
+            { type: CATALYST.BASIC, tier: 5, amount: 8 },
+            { type: CATALYST.CLASS, tier: 4, amount: 8 },
+            { type: CATALYST.CLASS, tier: 5, amount: 8 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 8 },
+            { type: CATALYST.GOLD, amount: 529173 },
+        ],
+        3: [
+            { type: CATALYST.BASIC, tier: 4, amount: 6 },
+            { type: CATALYST.CLASS, tier: 4, amount: 4 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 6 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 4 },
+            { type: CATALYST.GOLD, amount: 407056 },
+        ],
+        4: [
+            { type: CATALYST.BASIC, tier: 5, amount: 4 },
+            { type: CATALYST.CLASS, tier: 4, amount: 6 },
+            { type: CATALYST.ALPHA, tier: 1, amount: 5 },
+            { type: CATALYST.ALPHA, tier: 2, amount: 6 },
+            { type: CATALYST.GOLD, amount: 524738 },
+        ],
+    },
 };
 
 export { CATALYST };
