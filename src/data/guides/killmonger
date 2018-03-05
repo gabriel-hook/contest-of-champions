@@ -1,0 +1,43 @@
+{
+    "description": "Erik Stevens’ ruthlessness and combat skill earned him the nickname “Killmonger” during his time as a black-ops soldier. While he has not set foot in Wakanda for a long time, he has returned with a plan that threatens to put Black Panther and all of Wakanda at risk. Using his charisma, combat prowess and his knowledge of Wakandan customs, Erik Killmonger is an imminent threat to all that T'Challa holds dear.",
+    "gameplay": {
+        "description": "Hitting opponents that are recovering from a Special Attack grants Killmonger True Strike for 16 seconds. This allows him to ignore Armor, Resistances, and Evasion.\n
+        This Champion has additional Critical Resistance in its Base Attributes.At the start of the fight, Vibranium Armor provides 667 Armor Rating and Killmonger gains 15% of his missing Power each time a Debuff is inflicted against him. Vibranium Armor is disabled if he is suffering from an Armor Break effect.",
+
+        "note": "Critical Hits have 80% chance to inflict Bleed, dealing 459 Direct Damage over 1.5 seconds."
+    },
+
+    "specials": {
+        "1": {
+            
+            "description": "Killmonger stays true to his name, offering a 2-for-1 special on knives to the chest and a bonus leaping kick to the face.\n
+            Killmonger gains 2 Counterpunch Charges that last for 15 seconds. A charge is spent to shrug off the impact of enemy attacks for 0.75 seconds when Killmonger is blocking, allowing him to immediately counter-attack.",
+           
+            "name": "Merchant of Death"
+        },
+        "2": {
+            
+            "description": "Leaping into the air for a height advantage, Killmonger lands with his ceremonial blades, striking deep wounds in his target.\n
+            Vibranium Armor activates 3 Indestructible Charges. A charge is spent to ignore all the incoming damage from an attack.",
+            
+            "name": "Leopard Strike"
+        },
+        "3": {
+            
+            "description": " Killmonger’s black-ops training becomes painfully realized as he uses his Vibranium claws to lacerate his Opponent.\n
+            If Killmonger inflicted 15 or more Bleed Debuffs in his fight, he inflicts a Bleed stack for every Bleed he inflicted. Each Bleed deals 746 Direct Damage over 6 seconds. This effect can activate once a fight.",
+            
+            "name": "Claws Out"
+        }
+    },
+    "signature": {
+        
+        "name": "Reverberation",
+        "description": "Vibranium Armor reverberates incoming damage back to the opponent.\n
+        Vibranium Armor activates Reverberation for 8 seconds, dealing damage back to the opponent when Killmonger is Struck or Blocks an attack. Damage is based on Killmonger’s stored Power at the time of activation, inflicting up to 60-140% of the incoming damage as Physical Damage. Reverberation has a 8 second cooldown timer after expiring.\n
+        When both Reverberation and True Strike are active, Killmonger gains 172-1262 Attack Rating when hitting opponents.",
+        
+    },
+    
+    "youtube": "W_2moOHahKo"
+}
