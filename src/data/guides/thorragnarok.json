@@ -1,0 +1,41 @@
+{
+    "description": "When an ancient evil, lurking for eons, is released from its shackles, the Asgardian God of Thunder is thrown into a whirlwind of chaos. Ripped from his familiar surroundings and stripped of his powers, Thor’s only hope is to summon the warrior within, and fight his way back against impossible odds. With his kingdom shattered and his people in dire need, Thor must discover what it means to be a true leader.",
+    "youtube": "oD1cfq4ex8Q",
+    "gameplay": {
+        "abilities": [
+            "stun",
+            "armorbreak",
+            "powersteal"
+        ],
+        "description": "Boon of the Gods\n\nActivates for every 40 hits on the Combo Meter or whenever struck 20 times.\nFills to max Power over 5.5 seconds. This Power Gain is interrupted if Thor (Ragnarok) gets knocked down by a Special Attack. Boon of the Gods is not affected by Ability Accuracy and prevents Thor (Ragnarok) from gaining Power when struck by Special Attacks.\n\nWhen Opponents Intercept Thor’s Dash\n\nThor (Ragnarok) has a 30% chance to use his shield to Auto-Block any attacks made while he is Dashing towards the opponent. This can trigger the Parry Mastery.\n\nWhen an Attack Inflicts a Stun\n\nThor (Ragnarok) deals an additional 250% of that attack’s damage as Physical Damage if the opponent is suffering from Armor Break."
+    },
+    "specials": {
+        "1": {
+            "description": "Fearsome Fighter – Without Mjolnir, Thor (Ragnarok) must improvise and use his shield as a deadly weapon.",
+            "note": "45% chance to Stun for 1.8 seconds, plus 55% chance if a Combo of 40 or more hits is maintained",
+            "abilities": [
+                "stun"
+            ]
+        },
+        "2": {
+            "description": "The Warrior Within – Skilled with multiple weapons, Thor (Ragnarok) engages his opponent with a ferocious sword fighting style.",
+            "note": "Breaks the opponent’s Armor, applying 1333 Armor Rating reduction for 10 seconds."
+        },
+        "3": {
+            "description": "God of Thunder – Thor (Ragnarok) discovers that his true power lies within, channeling lightning through his fists and electrifying opponents with each punch.",
+            "note": "Shocks the opponent, dealing 540 Energy Damage over 5 seconds. This Special Attack can only inflict up to maximum of 20% of the opponent’s max Health as damage.",
+            "abilities": [
+                "shock"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Thunder God’s Wrath – After a Special 3, Thor (Ragnarok) is temporarily able to control lightning within his body.",
+        "note": "After a Special 3 Attack, Thor (Ragnarok) is able to control lightning within his body for 7-25 seconds. Thor (Ragnarok) has a 40% chance to inflict Shock whenever making physical contact with opponents, dealing 378 Energy Damage over 5 seconds. Inflicting Shock has a 16% chance to cause Stun and 40% chance to Armor Break. Additionally, each Shock stack reduces the opponent’s Ability Accuracy by 15%. Stun lasts for 2 seconds and Armor Break applies a 666 Armor Rating reduction for 6 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-thor-ragnarok/"
+    }
+}
