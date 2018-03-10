@@ -1,0 +1,44 @@
+{
+    "description": "Robert Reynolds left his previous ordinary life behind the day he imbibed a mysterious laboratory liquid. Little did Robert know, the concoction was an enhanced version of the Super-Soldier Serum and it transformed him into the Golden Guardian, Sentry. With the power of a million exploding suns, Sentry combats the forces of evil and destruction, whether they come from abroad, or from Sentry himself…",
+    "youtube": "hX24Md4RP5o",
+    "gameplay": {
+        "abilities": [
+            "fury",
+            "armorbreak",
+            "regeneration"
+        ],
+        "description": "At the start of a fight and after every 40 Hits in a Combo, Sentry gains a Reality Warp. Reality Warps stack up to 5 max. Reality Warps are used as a multiplier for his abilities. Sentry starts the fight in Unyielding Fortitude and changes to the next State for every 10 Hits in a Combo. When Sentry loses his Combo, he reverts to Unyielding Fortitude.\nUnyielding Fortitude: 100% chance on entering this State, Sentry cannot lose his Combo. Remains until Sentry changes States.\nOverpowering Light: 30% chance on entering this State, Sentry’s Special 1 Attack Damage is increased by 842.8 per Reality Warp and is Unblockable. Remains until Sentry changes States.\nSteadfast Approach: 30% chance on entering this State, Sentry’s Heavy Attack Damage is increased by 842.8 per Reality Warp. In addition, he gains 100% chance to Perfect Block. Remains until Sentry changes States.\nAbsolute Strength: 30% chance on entering this State, Sentry’s Special 2 Attack Damage is increased by 842.8 per Reality Warp and is Unblockable. Remains until Sentry changes States.\nAfter Absolute Strength, Sentry restarts State of Mind, entering Unyielding Fortitude."
+    },
+    "specials": {
+        "1": {
+            "description": "Sentry punches his opponent before unleashing a Light-based Energy blast.",
+            "note": "70% chance for Fury, increasing your Attack by 301 for 20 seconds.",
+            "abilities": [
+                "fury"
+            ]
+        },
+        "2": {
+            "description": "Sentry leads with an uppercut then loops around for a flying double punch.",
+            "note": "70% chance to Armor Break, removing an enemy Armor Up and applying 666.67 Armor Rating reduction for 20 seconds.",
+            "abilities": [
+                "armorbreak"
+            ]
+        },
+        "3": {
+            "description": "Sentry transforms into the Void, creating a black hole that consumes the opponent.",
+            "note": "When Health is below 50%, Sentry consumes one Reality Warp to Heal 1566 over 3 seconds.",
+            "abilities": [
+                "regeneration"
+            ]
+        }
+    },
+    "signature": {
+        "description": "Reality Warps persist from fight to fight and Sentry has a chance to gain Indestructible when he loses a Combo.",
+        "note": "When Sentry loses his Combo, he has a 100% chance to become Indestructible for 0.3 seconds per Reality Warp. Indestructible doesn’t trigger if Sentry is afflicted with a Debuff. At the start of a fight, if Health is above 0%, Reality Warps persist with Sentry from the previous fight."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-sentry/"
+    }
+}

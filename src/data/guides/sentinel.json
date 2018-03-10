@@ -1,0 +1,56 @@
+{
+    "gameplay": {
+        "abilities": [
+            "healblock",
+            "armorbreak",
+            "incinerate",
+            "armorup",
+            "bleedimmunity",
+            "poisonimmunity"
+        ],
+        "description": "Sentinel monitors the target, when they repeat the same action consecutively, Sentinel gains 4 Analysis Charges. Actions include Light Attacks, Medium Attacks, Heavy Attacks, Dashing, Dodging, and Blocking an attack. Analysis Charges stack up to 100 max.",
+        "note": "Sentinel gains double Analysis Charges when facing a target of the Mutant Class. Sentinel gains half the amount of Analysis Charges when facing a target of the Cosmic Class."
+    },
+    "attack": {
+        "heavy": "Shock the target, dealing 1216 Energy damage over 3 seconds.",
+        "abilities": [
+            "shock"
+        ]
+    },
+    "specials": {
+        "1": {
+            "description": "When superheated ISO exceeds safety regulations, disperse towards aggressors.",
+            "abilities": [
+                "healblock",
+                "armorbreak"
+            ],
+            "note": "Initial hit inflicts Heal Block, preventing the target from recovering Health for 6 seconds. Successive hits have a 50% chance to Armor Break, removing an Armor Up from the target and reducing their Armor Rating by 500 for 6 seconds. There’s a chance to activate Armor Break on each hit after the first."
+        },
+        "2": {
+            "description": "Sacrifice extremities. Saturate tactical short-range missiles with excess ISO and bombard target. Fabricate new extremities.",
+            "note": "Each hit inflicts Incinerate, dealing 608 Energy Damage over 3 seconds. This also removes the target’s Perfect Block Chance and reduces their Block Proficiency by 50%.",
+            "abilities": [
+                "incinerate"
+            ]
+        },
+        "3": {
+            "description": "ISO temperature exceeded. Central AI assuming direct control. Replacing faulty unit with more adaptable model.",
+            "abilities": [
+                "armorup",
+                "regeneration"
+            ],
+            "note": "Gain a permanent Armor Up passive, increasing Armor Rating by 1333.33. The Armor Up passive can be removed by Armor Break. If Sentinel already has an Armor Up passive, consume the Armor Up passive and instantly regenerate up to 4743.6 based on lost Health."
+        }
+    },
+    "signature": {
+        "description": "Directives: Upgrade Power depletion firewall and sensor module. Outcomes: resistance to Power depletion and improved analysis of Special Attacks.\n- When the target activates a Special Attack, and it matches the previously activated Special Attack, Sentinel gains 20 Analysis Charges.",
+        "note": "Abilities that cause Sentinel to lose Power are 0.3% - 0.7% less effective per Analysis Charge. 30% - 70% at max Analysis Charges"
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://forums.playcontestofchampions.com/en/discussion/53994/champion-spotlight-sentinel"
+    },
+    "youtube": "UW2kQeyS0_k",
+    "description": "Although the Sentinels were created by a Mutant elite, who had the goal of controlling the Champions of The Contest, 100 years in the future, they rebelled; killed their creator and subsequently engineered a way into the present day. The Mark-ISO evolved from these rogue Sentinels, adapting to the ISO-8 rich environment of the current Contest. Powered by an ISO fusion engine, the Mark-ISO Sentinel can quell any uprising within The Contest with extreme prejudice."
+}
