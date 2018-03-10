@@ -1,0 +1,43 @@
+{
+    "description": "Tony Masters was a S.H.I.E.L.D. agent exposed to an experimental variant of the Super-Soldier Serum, called the Mnemonic Primer. It grants him the ability to duplicate any movement he sees, but at a cost. The huge amount of information his brain records, causes it to overwrite his own memories, replacing what little remains of his original self. Now known as Taskmaster he offers his skills to the highest bidder as a mercenary and combat trainer.",
+    "youtube": "9CbTiXvyYBw",
+    "gameplay": {
+        "abilities": [
+            "bleed",
+            "armorbreak"
+        ],
+        "description": "Photographic Reflexes\n\nEach Unique Attack your opponent attempts decreases their Offensive Ability Accuracy by 10%, while increasing your Perfect Block Chance by the same amount.\nEach Unique Attack you make decreases your Opponent’s Defensive Ability Accuracy by 10%.\nBeing Struck by a Special Attack resets both of these abilities’ effects.\n\nExploit Weakness\n\nTaskmaster spots a weakness in the last attack his opponent attempts, which can be exploited by striking his opponent with that same attack within 10 seconds.\nSuccessfully exploiting a weakness instantly deals 923 Direct Damage.\nAn attack that will trigger Exploit Weakness will not trigger Passive Evades or Auto-Blocks.\nAfter Exploit Weakness is triggered or expires it goes on cool down for 5 seconds\n\nLearn the Foe\n\nEach time a Debuff is placed on Taskmaster, all future Debuffs placed on him have their Potency reduced by 10%.\nIf the Debuff Potency reduction reaches 100%, Taskmaster becomes Immune to Debuffs."
+    },
+    "attack": {
+        "heavy": "If Exploit Weakness is on Cooldown, the Cooldown immediately ends, and the target is set. If Taskmaster has triggered Exploit Weakness in the last second, or his current Exploit Weakness target is a Heavy Attack, he avoids any incoming attacks for the first second of charging this attack."
+    },
+    "specials": {
+        "1": {
+            "description": "Use their Weaknesses – Taskmaster is a master of landing the perfect strike to disrupt his opponent’s rhythm.",
+            "note": "Causes Bleed lasting 5 seconds and dealing 173.1 damage, per Debuff triggered on the opponent this fight. Max Damage after 10 Debuffs. This attack gains +403.9 Attack for each Debuff active on either Taskmaster or his opponent.",
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "2": {
+            "description": "Steal their Strengths – After even a single use, Taskmaster will turn even the most advanced of his opponent’s techniques back on them.",
+            "note": "Causes Armor Break lasting 10 seconds reducing Armor by 352.94 per Buff triggered on the Opponent this fight. Max Damage after 10 Buffs. This attack gains +403.9 Attack for each Debuff active on either Taskmaster or his Opponent.",
+            "abilities": [
+                "armorbreak"
+            ]
+        },
+        "3": {
+            "description": "Ideal Counter – Taskmaster uses his mastery of his opponent’s own tactics to develop the ideal counter strategy.",
+            "note": "If there is an active Exploit Weakness target it is automatically triggered, and it deals +932.2 additional Direct Damage. Causes Bleed lasting 5 seconds and dealing 173.1 Damage, per Debuff triggered on the Opponent this fight. Max Damage after 10 Debuffs. Causes Armor Break lasting 10 seconds reducing Armor by 352.94 per Buff triggered on the Opponent this fight. Max Damage after 10 Buffs. This attack gains +403.9 Attack for each Debuff active on either Taskmaster or his Opponent."
+        }
+    },
+    "signature": {
+        "description": "Intuitive Pattern Recognition – As Taskmaster fights each opponent he gains greater and greater understanding of their combat style as well as their most likely reactions, making it progressively more difficult for them to use even their most potent powers against him.",
+        "note": "Increases Concussion Debuffs Durations by 4 second(s). Each time Taskmaster Successfully triggers Exploit Weakness it places a Concussion Debuff on his Opponent reducing their Ability Accuracy by 10% for 6 seconds, and resetting the Duration of any currently active Concussions caused by this ability. If Taskmaster places 5 Concussions on his Opponent simultaneously, they convert into a Passive effect which reduces Ability Accuracy by 50% for 15 seconds, counts as 5 Debuffs for Taskmaster’s other Abilities, and removes the Exploit Weakness cooldown timer. While this effect is active, Taskmaster will not trigger additional Concussion Debuffs."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-taskmaster/"
+    }
+}
