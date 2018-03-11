@@ -1,6 +1,7 @@
 import { CHAMPION } from '../model/Champion';
 
-export default {    [ CHAMPION.ABOMINATION ]: 'Abomination',
+export default {
+    [ CHAMPION.ABOMINATION ]: 'Abomination',
     [ CHAMPION.AGENTVENOM ]: 'Agent Venom',
     [ CHAMPION.ANGELA ]: 'Angela',
     [ CHAMPION.ANTMAN ]: 'Ant-Man',
