@@ -1,0 +1,31 @@
+{
+    "description": "When Robert Reynolds drank an enhanced version of the Super-Soldier serum, The Sentry was born; yet it also gave birth to his evil counterpart, the Void. As malignant as the Sentry is noble, the Void’s purpose is to kill and destroy anything The Sentry tries to protect. Robert constantly fights an inner battle to prevent The Void from coming out, but when that fails… The darkness of The Void’s god-like powers threaten to consume the world and anyone who stands in his way…",
+    "youtube": "o7Qfy1vWWcU",
+    "gameplay": {
+        "description": "A suffocating, choking, and all-consuming Void provides full immunity to Incinerate effects.\nEvery 10 seconds, Void’s Intimidating Presence inflicts 1 random Debuff. +4 seconds on the timer if at least one Intimidating Presence Debuff is already active. When Attacked: Opponents can Purify one Intimidating Presence Debuff for every 10 hits on their Combo Meter.",
+        "note": "For each Champion alive on the opponent’s team, Intimidating Presence Debuffs have a 0.6 second delay before fully activating. Agility Debuff – Reduces Ability Accuracy of Evade and the Dexterity Mastery by 30%. Max Stacks: 2 Fatigue Debuff – Reduces Critical Rating by 1076. Max Stacks: 2 Petrify Debuff – Reduces the effectiveness of Power Gain and Regeneration by 50%. Max Stacks: 2 When all Intimidating Presence Debuffs are at max stacks, those Debuffs will be removed after 5 seconds. When Opponents Suffer from a Debuff: For each unique Debuff type, the opponent takes 109.2% of Void’s current Attack Rating as Direct Damage per second."
+    },
+    "specials": {
+        "1": {
+            "description": "The Void terrifies the opponent by charging and releasing a massive blast of concentrated dark energy.",
+            "note": "Inflicts 1 Intimidating Presence Debuff."
+        },
+        "2": {
+            "description": "The Void teleports close to his opponent to strike with a point-blank blast from deep inside the abyss.",
+            "note": "Inflicts 2 Dark Stings, each lasting for 12 seconds. An opponent with a Dark Sting gains a Weakness or a Degeneration Debuff per Sting when activating a Special Attack. Weakness – Reduces the opponent’s Attack Rating by 25% for 20 seconds. Degeneration – Inflicts 1747.2 Direct Damage over 20 seconds."
+        },
+        "3": {
+            "description": "The Sentry temporarily wrests control from the Void and ignites a newborn sun around the opponent.",
+            "note": "1 ~ 2 unique Debuffs provides a +20% Fury Passive. 3 ~ 4 unique Debuffs provides a +50% Fury Passive. 5+ unique Debuffs provides a +250% Fury Passive."
+        }
+    },
+    "signature": {
+        "description": "When all Intimidating Presence Debuffs are at max stacks, those Debuffs are converted into a Passive Fear of the Void that combines their effects and increased Void’s strength.",
+        "note": "When all Intimidating Presence Debuffs are at max stacks, instead of being removed, those Debuffs are converted into a Passive Fear of the Void that combines their effects and grants Void 218~1310 Attack Rating for 40 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-void/"
+    }
+}

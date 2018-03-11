@@ -1,0 +1,42 @@
+{
+    "youtube": "sOfQhNxMHfY",
+    "description": "The terrifying result of an unspeakable experiment, M.O.D.O.K. is a grotesque mastermind bent on the destruction of the world. As the sometimes-leader of A.I.M., the Mechanized Organism Designed Only for Killing has tangled many times with his foes, Captain America and the Avengers.",
+    "gameplay": {
+        "abilities": [
+            "incinerate",
+            "bleed"
+        ],
+        "description": "M.O.D.O.K.’s attributes fluctuate throughout the fight. It would take a super-genius to calculate the pattern! Periodically fluctuate up and down between +0 and +120% Attack Rating, plus all the following other attributes:   \n*Up to +777 Block Proficiency so Block and Auto-Block reduces more damage. \n*Up to +1226 Critical Damage so Critical Hits deal more damage. \n*Up to +80% Power Rate to generate more Power from Attacks. \n*Up to +25% Ability Accuracy, increasing the chance for any ability to trigger.",
+        "note": "Force Field: Start the fight with 1 Force Field charge, each Auto-Blocking an attack with +174 Block Proficiency. Force Fields cannot trigger Parry. Once depleted, Force Field charges replenish after 7 second(s). This cooldown is reduced by 0.8s for each “alive” Champion on the enemy team. The A.I.M. Synergy with Taskmaster reduces this even further. As long as a Force Field charge is active, opponents’ Power Gain Rate is reduced by up to 100% based on Flux. Power Gain Rate governs abilities that generate Power outside of Attacking, such as those of Doctor Strange, Vision, Hyperion, or the Mystic Dispersion Mastery."
+    },
+    "attack": {
+        "description": "Every 7th attack is guaranteed to be Critical, but Critical Rating is ignored. If a Special or Heavy Attack is the 7th hit, then all hit events for that attack are Critical. The Singularity Synergy with Ultron reduces this to every 5th hit.",
+        "heavy": "40% chance to Incinerate for 703 damage over 4 seconds. The chance to trigger and the overall damage is influenced by the state of Flux at the time this ability is activated. Land a Heavy Attack while Flux is high for maximum impact."
+    },
+    "specials": {
+        "1": {
+            "description": "SILENCE! – M.O.D.O.K. fires a Mental Bolt from the jewel on his forehead.",
+            "note": "Enemy abilities that grant Power or Health are reversed for the duration of this attack. Up to 150% of what they would have gained is lost instead. This amount stacks with the Power Gain Rate reduced by Flux, so performing a Special 1 at max Flux can easily drain Champions like Vision or Doctor Strange to zero. This effect lasts only about 3 seconds but does not require this attack to hit. This attack does not generate any Power for opponents, so even if they don’t have any Power Gain or Regeneration effects active, you can still sneak it in without worrying about filling their Power Meter."
+        },
+        "2": {
+            "description": "Doomsday Blades – A pinnacle of both Science and Technology, the Doomsday Chair uses a mechanized arm to fling two sawblades at opponents.",
+            "note": "Each blade has a 60% chance to inflict Bleed for 703 damage over 6 seconds. Bleed duration is increased by up to 100% based on Flux. This increases to +125% duration (and damage) with the Chair Larceny Synergy Bonus, making the total damage output at maximum Flux more than four times greater than when at minimum Flux…just watch out for enemies that can easily deal with Bleed damage.",
+            "abilities": [
+                "bleed"
+            ]
+        },
+        "3": {
+            "description": "Thermodynamics – Opponents submit to M.O.D.O.K.’s superior mind as he experiments with rockets designed only for killing.",
+            "note": "Each of the five rockets has an 72% chance to inflict a random non-unique Debuff. Debuffs like Bleed or Exhaustion are more common, while Heal Block and Stun are much more rare. A total of ten different Debuffs are possible: Bleed, Incinerate, Fatigue, Exhaustion, Weakness, Poison, Armor Break, Heal Block, Concussion, and Stun."
+        }
+    },
+    "signature": {
+        "description": "Master Plan – Blocking and Auto-Blocking are enhanced, especially if M.O.D.O.K. has already defeated an enemy of the same Class",
+        "note": "Force Fields have +128 Block Proficiency for each Class defeated within the same Quest, plus a unique Block bonus for subsequent fights against that Class: Mutant Champions: Take 16% less Special Attack damage. Tech Champions: Gain 5% max Power when struck. Cosmic Champions: Take 5% less damage per unique enemy Buff. Mystic Champions: Steal 5% max Power when struck. Science Champions: Take 5% less damage per unique Debuff. Skill Champions: Why bother? They’re not even superhuman!"
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-m-o-d-o-k/"
+    }
+}
