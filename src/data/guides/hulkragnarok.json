@@ -1,0 +1,46 @@
+{
+    "description": "Only Hulk truly knows how he ended up on Sakaar, fighting in the arena. But once he entered the arena, he was immediately a crowd favorite! By using his unique blend of savage rage, showmanship, and unstoppable strength to smash through some of the strongest beings in the galaxy, he became their Champion. After all, the only thing better than smashing, is smashing them while the crowd goes wild!",
+    "youtube": "Kf0fPOuFRSQ",
+    "gameplay": {
+        "abilities": [
+            "poisonimmunity",
+            "healblock",
+            "stun"
+        ],
+        "description": "The crowd is out for blood, and cares little about who spills it. Crowd Excitement increases by 5 each time either Hulk (Ragnarok) or his opponent lands a hit.\nThe crowd also loves a Champion with a certain special flourish. Each time either Hulk (Ragnarok) or his opponent uses a Special Attack, Crowd Excitement increases by 10.\nHowever the crowd bores easily, and Crowd Excitement falls constantly, falling faster the the higher its excitement is.\nHulk is a Champion of the people, and he gets worked up as the crowd does Passively increasing his Attack by up to +613.5 based on Crowd Excitement.\nWhile Crowd Excitement is 100, all of Hulk’s attacks SMASH.\nIf Crowd Excitement reaches 100 the Crowd works itself into a frenzy, locking Crowd Excitement at 100 for 7 seconds, then resetting it to 70.",
+        "note": "SMASH:Every time Hulk (Ragnarok) attacks he has a 5% chance to SMASH! Additionally every 15 seconds Hulk (Ragnarok) gets angry and triggers SMASH on his next attack. When SMASHing, Hulk (Ragnarok) goes Unstoppable and gains +613.5 Attack.    \n Face Me!: Hulk (Ragnarok) becomes Enraged while under the Effects of a cowardly Passive Damage Over Time Effect. While Enraged Hulk (Ragnarok) gains: +1227 Attack. Chance the Opponent will trigger a Special Attack +70%. Instantly Regenerate 70% of Damage taken."
+    },
+    "attack": {
+        "heavy": "If this attack SMASHes, it gains an additional +981.6 Attack, and increases the Crowd Excitement by 15."
+    },
+    "specials": {
+        "1": {
+            "description": "Hulk smashes his hammer down sending out shockwaves to knock his opponent flying",
+            "note": "100% Chance to trigger Heal Block for 10 seconds 80% Chance to Stun for 1.75 seconds, if Crowd Excitement is less than 100",
+            "abilities": [
+                "healblock",
+                "stun"
+            ]
+        },
+        "2": {
+            "description": "Hulk unleashes a powerful series of attacks with both weapons.",
+            "note": "100% Chance to Enervate the opponent preventing Power Gained from being struck for 5 seconds. 100% Chance to Stun for 2.25 seconds, if Crowd Excitement is greater than 99",
+            "abilities": [
+                "stun"
+            ]
+        },
+        "3": {
+            "description": "A favorite of the crowd, Hulk uses his axe to throw his opponent to the ground before launching himself into a massive leaping SMASH!",
+            "note": "If this Attack SMASHes, it gains +1042.95 Attack. Crowd Excitement goes to 100."
+        }
+    },
+    "signature": {
+        "description": "Once per fight when either Hulk (Ragnarok) or his opponent hit 20% Health remaining, the crowd judges that fighter’s performance. If they feel they fought well, they give a Thumbs Up. If they feel they fought poorly, a Thumbs Down. Each judgement grants Hulk a Passive effect.\n\nThumbs Up: Regenerate 5060.91 Health on Hulk over 10 Seconds.\n\nThumbs Down: +1224.51 Attack for the rest of the fight.",
+        "abilities": []
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-hulk-ragnarok/"
+    }
+}

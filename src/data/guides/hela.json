@@ -1,0 +1,44 @@
+{
+    "description": "A creature from a primordial and sinister era of the universe, Hela’s power is unlike anything else in the Nine Realms. Armed with the ability to unleash unlimited weapons in astounding and deadly ways, Hela seeks vengeance against those who imprisoned her eons ago, ushering in a new era of cold brutality for Asgard and the universe at large.",
+    "youtube": "ljnvqK-kpAM",
+    "gameplay": {
+        "abilities": [
+            "fury",
+            "armorbreak",
+            "physicalresist"
+        ],
+        "description": "Spirits of the Dead\n\nHela controls the Spirits of the Dead, using them to power her Fury Buffs, giving them infinite duration as long as she has Spirits.\nEach Fury Buff active on her drains her Spirits over time, but each strike of her summoned swords empowers them.\nIf her Spirits are exhausted, her Fury Buffs begin to expire 1 at a time.\n\nTough as Hel\n\nAfter taking more than 8% of her Base Health in damage from a single strike, Hela gains a Buff granting +666.67 Physical Resistance, that lasts until she is struck by a Heavy Attack.\nThis attack does not stack, instead if triggered multiple times, its effect increases by +666.67."
+    },
+    "attack": {
+        "heavy": "While charging her Heavy Attack, Hela continually gains Fury Buffs granting 596.5 Attack."
+    },
+    "specials": {
+        "1": {
+            "description": "Fury of the Dead – Hela stabs for the heart of her opponent.",
+            "note": "100% chance to trigger a Fury Buff granting +596.5 Attack.",
+            "abilities": [
+                "fury"
+            ]
+        },
+        "2": {
+            "description": "Soul Breaker – Twin blades, followed by an axe hurled with immense force.",
+            "note": "This attack places an Armor Break on the Opponent reducing their Armor by 857.14 for each Fury currently active, lasting for 10 seconds.",
+            "abilities": [
+                "armorbreak"
+            ]
+        },
+        "3": {
+            "description": "Hand of Glory – Summoning a whirlwind of weapons, Hela unleashes a torrent of blades",
+            "note": "This attack deals bonus Physical Damage up to 7% of the Target’s missing health, based on the number of Fury Buffs active on Hela. Max Damage at: 5"
+        }
+    },
+    "signature": {
+        "description": "Goddess of Death – As the Asgardian Goddess of Death, Hela in all but invincible, and is able to draw strength from her fallen comrades.",
+        "note": "At the start of the fight each Champion on Hela’s team that is knocked out grants her +25 Spirits. This first time Hela would be knocked out in each fight, she gains an Indestructible Buff, that lasts for 5 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-hela/"
+    }
+}

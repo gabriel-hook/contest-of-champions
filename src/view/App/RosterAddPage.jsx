@@ -16,7 +16,7 @@ const RosterAddPage = {
         return (
             <div m="RosterAddPage" class="roster-add">
                 <div class="add-stars">
-                {[ 1, 2, 3, 4, 5 ].map((star) => (
+                {[ 1, 2, 3, 4, 5, 6 ].map((star) => (
                     <button
                         class={ classNames('add-stars-button', { 'add-stars-button--selected': stars === star }) }
                         onclick={ () => {
