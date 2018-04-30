@@ -1,0 +1,32 @@
+{
+    "description": "Corvus Glaive is Thanos’ right-hand man and the sly, cunning lieutenant of his army. The only thing deadlier than this master strategist’s tactical mind is the halberd he yields to swiftly slice through his enemies.",
+    "youtube": "tW7oOgPWb6w",
+    "gameplay": {
+        "description": "Missions from Thanos\n\nCorvus Glaive has 4 missions to accomplish. Whenever he completes a mission, he gains 1 Persistent Charge and a Cruelty Buff, increasing his Critical Damage Rating by 3000. Missions can be completed in any order.\nCorvus Glaive starts the fight with a number of Cruelty Buffs equal to his Persistent Charge.\nMission 1: Eliminate Avengers: Knockout a member of the Avengers. Once this mission is complete, Corvus gains 10 additional Glaive charges when fighting against a member of the Avengers.\nMission 2: Sabotage Technology: Knockout a Tech Champion. Once this mission is complete, Tech Champions have 25% reduced Ability Accuracy.\nMission 3: Hunt the Uncanny: Knockout a Mutant Champion. Grants Safeguard against the opponent’s Special 2 Attacks if the synergy with Wolverine, Wolverine (X-23) or Storm is active.\nMission 4: Challenge Defenses: Use a Heavy or Special Attack to knock down an opponent that used Evade or Auto-Block in a fight. Once this mission is complete, his True Damage Buff becomes a True Strike Buff if the synergy with Proxima Midnight is active.\n\nGlaive’s Immunity\n\nCorvus Glaive does not take damage from Cold Snap, Bleed and Shock Debuffs while his Immunity is active. When Glaive’s immunity reactivates or is disabled, all Debuffs listed above are Purified and Corvus Glaive takes 60.2 damage.\nAt the start of the fight, Corvus Glaive gains 20 permanent Glaive charges, granting him True Damage and guaranteed Critical Hits with his glaive as long as his Immunity is active. A charge is spent every time Corvus Glaive hits with Basic Attack using his glaive.\nCorvus Glaive’s blade is damaged after he uses all of his Glaive charges, disabling his Immunity for 50 seconds. Corvus Glaive cannot inflict Critical Hits while his Immunity is disabled.\nWhen Glaive’s Immunity reactivates and if he has 0 Glaive Charges, he regains all of them back.\n\nWhen Knocked Down\n\nCorvus Glaive’s blade is briefly damaged if he’s knocked down by a Heavy or Special Attack, disabling his Immunity for 3 seconds.\n\nWell Timed Blocks\n\nInflicts an Armor Break, reducing the opponents Armor Rating by 352 for 4 seconds. Additional Armor Breaks are inflicted for each active Armor Up effect on the opponent.",
+        "note": "You can complete more than one mission at the same time! If you find a Nightcrawler and he Evades, you can complete Mission 3 and Mission 4 in one fight. All bonuses coming from his Missions are Persistent."
+    },
+    "attack": {},
+    "specials": {
+        "1": {
+            "description": "Atomic Fissure – Corvus’s glaive splits atoms in the air, launching a cosmic blast towards the opponent.",
+            "note": "+842 Attack Rating if the opponent is suffering from an Armor Break Debuff."
+        },
+        "2": {
+            "description": "Piercing Slash – Corvus uses his glaive to cut through the opponent’s defenses with exceptional speed.",
+            "note": "When Glaive’s Immunity is active, this Special Attack is Unblockable and instantly drains 20% of the opponent’s Power if they are at max Power."
+        },
+        "3": {
+            "description": "Glaive Toss – Corvus Glaive tosses his weapon, intercepting it right before it strikes the opponent and using the momentum to power a devastating close-range attack.",
+            "note": "+1926 Attack Rating if Corvus Glaive has at least one Glaive charge. This amount is doubled if he is below 10% Health."
+        }
+    },
+    "signature": {
+        "description": "Glaive of Immortality\n\nAs long as Glaive’s Immunity is active, he cannot die. Instead of dying, 4 Glaive charges are removed. If Corvus Glaive performed a Well Timed Block against that attack, 2 Glaive charges are removed instead.\nIf Corvus Glaive is able to spend all of his Glaive charges in less than 30 seconds since they were first activated, the cooldown to get them back is reduced by 35%.",
+        "note": "An aggressive playstyle will enable users to reduce the cooldown time on Glaive’s Immunity by a substantial amount."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-corvus-glaive/"
+    }
+}

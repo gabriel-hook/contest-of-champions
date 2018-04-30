@@ -1,0 +1,32 @@
+{
+    "description": "Centaurian scoundrel Yondu Udonta may not seem like much of a threat at first glance, but when you hear a whistle and his deadly Yaka Arrow comes out to play it’s not advisable to make any rash decisions. Leader of the Ravagers and mentor to Star-Lord, Yondu is a stickler for honor, but not above breaking a rule or ten to get what he wants.",
+    "youtube": "MJKugQt3sXo",
+    "gameplay": {
+        "description": "Yaka Arrow Hits:\n\n25% chance to poke holes in fleshy targets, making them Bleed for 1159 Damage over 7 seconds.\nIf the target is immune to Bleed, they suffer a -222 Armor Break for 7 seconds instead.\n+424 Armor and Block Penetration\nThe strength and precision of Yondu’s Yaka Arrow allow it to trigger Critical Hits and Abilities through an enemy Block."
+    },
+    "attack": {
+        "description": "Yondu has a 25% chance to steal the target’s Armor, which he might be able to trade for Units later.\nGenerate 10% less Power in the target for each Debuff they suffer from. Max: -50%.",
+        "heavy": "+50% Offensive Ability Accuracy for this attack."
+    },
+    "specials": {
+        "1": {
+            "description": "Quick Draw – One whistle, and Yondu’s Yaka arrow pokes a hole right through you. Don’t wait for the second whistle.",
+            "note": "+100% Offensive Ability Accuracy for this attack. 100% chance to Heal Block for 10 seconds. If the target is Regenerating, inflict Heal Block for 20 seconds."
+        },
+        "2": {
+            "description": "A Little Help From My Friends – A strafing run from a Ravager M-Ship peppers the arena with Yondu’s secret spice mix.",
+            "note": "+424 Block Penetration +174 Attack for each Special Attack activated by the enemy this fight. Max: x15"
+        },
+        "3": {
+            "description": "Yaka Attacka – Yondu’s Yaka Arrow is like a deadly snake as it mesmerizes, then strikes.",
+            "note": "100% chance to boost Critical Rating by 666 for 10 seconds. Severely damaged by the Yaka Arrow, enemies are unable to trigger abilities during their next Special Attack."
+        }
+    },
+    "signature": {
+        "description": "Centaurian Archery: Yondu’s high-octave vocal range gives him precise control over his yaka arrows. Enemies activating a Special Attack suffer Weakness for each Debuff effect they’re suffering from at the time of the activation, reducing Attack by 30% for 5 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight"
+    }
+}

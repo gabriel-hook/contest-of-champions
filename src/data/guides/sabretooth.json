@@ -1,0 +1,29 @@
+{
+    "youtube": "48p0KBfQ3Y4",
+    "description": "Victor Creed, Wolverine’s half-brother, is better known by the codename “Sabretooth”. Like Wolverine, Sabretooth possesses rapid regeneration and enhanced senses, but contrary to Wolverine, Sabretooth embraces the more savage qualities of his mutation. He is a vicious assassin, responsible for numerous deaths as a mercenary, and sometimes, for his own pleasure.",
+    "gameplay": {
+        "description": "Passive:\n\nSabretooth can withstand incredibly cold temperatures, providing him Immunity to Cold Damage like Coldsnap and Frostbite.\n\nPersistent Charge:\n\nAt the start of the fight, if Sabretooth has a Persistent Charge, he consumes one, re-activating all of his Fury effects that were active at the end of his last fight as permanent Passive Fury effects.\nAt the start of the fight, if Sabretooth has 0 Persistent Charges, he will randomly receive between 3 and 6 Persistent Charges.\n\nAll Attacks:\n\nEvery 10 hits on Sabretooth’s or 5 hits on the opponent’s Combo Meters, Sabretooth gains a Fury. Against Skill Champions, Sabretooth also inflicts an Armor Break if he is attacking, reducing the opponents Armor Rating by 500 for 10 seconds.\nFury increases Attack Rating by 261 for 5 seconds.\n\nPassive:\n\nDodging back and allowing Sabretooth to idle for 1 second allows him to convert a temporary Fury Buff into a permanent passive effect.\nSabretooth can convert a maximum of 5 permanent Passive Fury effects in a fight. Fury effects from previous fights do not count towards this limitation.\nSabretooth cannot convert his passive Fury effects while fighting if he has 15 or more permanent passive Fury effects active.\n\nSpecial Attacks:\n\n60% chance to inflict Bleed, dealing 837 Direct Damage over 8 seconds.",
+        "note": "Sabretooth is all about building up damage over multiple fights and will be really good against bosses. Any active Fury effects will be reactivated as passive effects in the next fight if you have a Persistent Charge. This means, if you have 10 passive Permanent Fury effects and 1 temporary Fury Buff active at the end of the fight, Sabretooth will have 11 Fury effects in the next fight as passive Permanent effects."
+    },
+    "specials": {
+        "1": {
+            "description": "Bloodthirsty – Sabretooth ferociously jumps towards the opponent to unleash a series of vicious claw attacks.",
+            "note": "Converts his temporary Fury Buffs into a permanent Fury Passives."
+        },
+        "2": {
+            "description": "Ferocious Throw – Sabretooth throws boulders at the opponent before pouncing forward for the knockdown.",
+            "note": "Activates a Fury effect and immediately converts it to a Passive effect, increasing Attack Rating by 157 permanently."
+        },
+        "3": {
+            "description": "Hunter’s Onslaught – Sabretooth’s viciousness does not stop when the opponent is down, it stops when they are defeated.",
+            "note": "Gains a Fury Buff, increasing Attack Rating by 471 for 2 seconds. Sabretooth’s Special 3 Fury has a very short duration but is extremely powerful! Finish fights with his Special 3 Attack to guarantee having this Fury effect in the next fight."
+        }
+    },
+    "signature": {
+        "description": "Untamed Heart – Sabretooth gains Passive Regeneration stacks when struck by the opponent.",
+        "note": "When Attacked Sabretooth gains a Passive Regeneration stack that recovers 20-60% of the damage taken from the hit over 30 seconds and is interrupted if Sabretooth is Heal Blocked. Fury and Regeneration effects receive a permanent +60-100% flat Ability Accuracy. If Sabretooth does not hit or get struck by the opponent for more than 5 seconds, he starts losing Regeneration stacks over time."
+    },
+    "author": {
+        "name": "Kabam"
+    }
+}
