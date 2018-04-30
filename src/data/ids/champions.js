@@ -3,6 +3,7 @@ export const ANGELA = 'angela';
 export const BLACKBOLT = 'blackbolt';
 export const CAPTAINMARVEL = 'captainmarvel';
 export const CARNAGE = 'carnage';
+export const CORVUSGLAIVE = 'corvusglaive';
 export const DRAX = 'drax';
 export const GAMORA = 'gamora';
 export const GROOT = 'groot';
