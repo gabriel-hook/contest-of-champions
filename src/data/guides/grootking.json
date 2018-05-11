@@ -1,0 +1,28 @@
+{
+    "description": "Rising from under the canopy of a mysterious alien forest, Groot, the invincible master of plants and King of Planet X conquers all! This savage and ferocious monster from a parallel universe never met Rocket or joined the Guardians, instead he became a galactic warlord and experimented on captured humans. But now, the ruthless King’s mission has been interrupted by the Collector, and he has set his sights on a new goal: hoarding all of the abundant treasure and power The Contest has to offer!",
+    "youtube": "I_iVAuC7kzg",
+    "gameplay": {
+        "description": "Passive – Fury\n\nKing Groot begins each fight with 2 Fury Buffs, each increasing his Attack by 241 for 12 seconds.\nEach time King Groot receives a Debuff, he shrugs it off after 0.5 seconds at the cost of 1 Fury Buff.\nWhen King Groot loses his last Fury Buff, he enters a Cool Down state for 16 seconds. While in Cool Down, each attack thrown or suffered has a 9% chance to cause King Groot to store 1 Fury charge.\nWhen King Groot’s Cool Down ends, he immediately gains 2 Fury Buffs, plus any additional charges he gained from throwing or receiving attacks during his Cool Down state.\n\nPassive – Bleed Immunity\n\nA lack of blood provides full immunity to Bleeding."
+    },
+    "specials": {
+        "1": {
+            "description": "Floral Ferocity – The monarch of Planet X smashes his opponent into the unforgiving Earth with two mighty slams.",
+            "note": "90% chance to Armor Break the target, reducing Armor by 272 for 8 seconds. If King Groot has a Fury Buff, he consumes it to make the Armor Break permanent. [Max: 9 Stacks]"
+        },
+        "2": {
+            "description": "Internal Toxicity – King Groot pours forth a toxic wave of plant-based venoms.",
+            "note": "100% chance to Poison the opponent, dealing 1666 direct damage over 8 seconds. If King Groot has a Fury Buff, he consumes it to apply an additional Poison effect."
+        },
+        "3": {
+            "description": "Savagery Unleashed – King Groot sends out his plant material to envelope his opponent and crush them.",
+            "note": "King Groot overloads his floral cells to gain a Regeneration Buff, recovering 1991 Health over 3 seconds. If King Groot has a Fury Buff, he consumes it to increase the duration of the Regeneration by 50%."
+        }
+    },
+    "signature": {
+        "description": "Unyielding Might\n\nWhenever King Groot falls into Cool Down, he immediately begins to focus on rapidly repairing his cellular damage, granting him a Regeneration Buff and recovering 2439 Health over the duration of the Cool Down."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight"
+    }
+}

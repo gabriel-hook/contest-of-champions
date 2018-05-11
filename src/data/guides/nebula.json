@@ -1,0 +1,31 @@
+{
+    "description": "Cybernetically enhanced at birth and trained to win at all costs, Nebula is one of the Mad Titan Thanos’ two adopted daughters and harbors a hatred of her sister, Gamora after a personal bout left her broken and reeling. Now she has been brought back from the brink of death and seeks vengeance against Gamora, but her journey to exact justice on her sister may reveal more about herself than she expected…",
+    "youtube": "y3avzAY31MY",
+    "gameplay": {
+        "description": "Passive\n\nNebula starts the fight with 2 Self-Repair charges that activate when the opponent deals more than 110% of their Attack in a single hit, repairing the damage over 5 seconds. If Stunned during her Self-Repair, the Repair stops.\nAbility Accuracy of Robots is reduced by 20% per active Electroshock Charge.\nAdvanced Robotics provides full immunity to Poison and Bleed effects.\n\nHold Block\n\nCharges her weapon, generating a passive Electroshock charge every 0.9 seconds.\n\nWell-Timed Block\n\nNebula spends all Electroshock charges to Shock her opponent, dealing 486.4 Energy Damage over 6 seconds."
+    },
+    "attack": {
+        "heavy": "Shocks her opponent, dealing 486.4 Energy Damage over 6 seconds."
+    },
+    "specials": {
+        "1": {
+            "description": "Electric Encore – Striking first with her electroshock batons, Nebula then forms them into a staff for a devastating second strike.",
+            "note": "Inflicts Power Lock, severing the targets flow of Power for 1 second per active Shock Debuff on the opponent. Inflicts Power Drain, depleting up to 3.5% of the target’s max Power per Shock Debuff on the opponent."
+        },
+        "2": {
+            "description": "Shock and Awe – Nebula puts some space between her and her opponent before unleashing a concentrated burst of electricity.",
+            "note": "Doubles the amount of Shock Debuffs on the opponent, dealing 972.8 Energy Damage per Shock Debuff over 6 seconds."
+        },
+        "3": {
+            "description": "Galaxy-Class Killer – Death by a thousand cuts, faster than you can bat an eye.",
+            "note": "Nebula overcharges her power generator for 10 seconds, inflicting Shock when in contact with the opponent, dealing 486.4 Energy Damage over 3 seconds."
+        }
+    },
+    "signature": {
+        "description": "Cybernetic Enhancements\nWhen Nebula is out of Self-Repair charges, she tries to recalibrate her implants, granting her a 80.18% chance to regain a charge every 10 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight"
+    }
+}

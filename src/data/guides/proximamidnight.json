@@ -1,0 +1,31 @@
+{
+    "description": "Thanos’ greatest warrior, Proxima Midnight is a formidable foe to anyone that crosses her. She’s a master combatant that is willing to deal death by her spear without a second thought.",
+    "youtube": "FmEJSITCKX8",
+    "gameplay": {
+        "description": "Missions from Thanos\n\nProxima Midnight has 3 missions to accomplish and those are granted in random order.\nMission 1: Parry Offense: Perform 6 well timed blocks.\nMission 2: Intercept Attack: Perform 4 intercepts against a dashing opponent.\nMission 3: Incapacitate: Knockdown the opponent 5 times using a Heavy or Special Attack.\nWhen Proxima completes an objective on one of her missions, she gains True Accuracy for 5 seconds, allowing her to ignore Auto Block and all Evade effects.\nWhenever completing a mission, she gains a Prowess Buff, increasing Special Damage by 250% for 10 seconds. When the temporary Prowess Buff expires, Proxima receives her next mission and gains permanent Prowess, enhancing Special Damage by 200% for the rest of the fight.\n\nWhen Attacked\n\nIf Proxima has more than 30 hits in her Combo Meter, she can activate a Safeguard Buff when attacked by a projectile, preventing her from losing more than 3% of her max Health from a single source for 4 seconds.\n\nBlocking\n\nOpponent’s have 200% Offensive Ability Accuracy reduction when Proxima Midnight blocks an attack. Additionally, she can use the Parry Mastery against any basic attack, stunning opponents even if their attack is projectile based.",
+        "note": "Proxima Midnight is designed to be great in long fights, while having spikes of damage temporarily. When players get 4 Prowess and 4 Fury Buffs, her damage output will be one of the highest in the game, making her a really good option for Labyrinth of Legends."
+    },
+    "attack": {},
+    "specials": {
+        "1": {
+            "description": "Trapped Sun – Proxima Midnight strikes the opponent with the force of a trapped sun.",
+            "note": "+2128 Attack Rating if the opponent has an active Regeneration Buff or Passive. Inflicts Heal Block, preventing the target from recovering Health for 7 seconds. If Proxima has more than 50 hits in her Combo Meter, the duration of this Heal Block is doubled."
+        },
+        "2": {
+            "description": "Multi-Arcing Strike – Proxima Midnight launches a lethal multi-arcing energy strike with her spear.",
+            "note": "100% chance to Stun opponents for 2 seconds."
+        },
+        "3": {
+            "description": "Black Light Brutality – Transforming her spear into a lance of multi-arcing energy, Proxima immobilizes the opponent with a blast of black light to the back, then exterminates them with a close-range strike.",
+            "note": "100% chance to Stun opponents for 6 seconds. 100% chance to Armor Break, removing an enemy Armor Up and applying 2000 Armor Rating reduction for 6 seconds."
+        }
+    },
+    "signature": {
+        "description": "Ultimate Mission\n\nExtinguish All Hope\n\nReach 100 hits on the Combo Meter. When this mission is complete, she gains a Fury Buff for every mission completed at that time, each increasing her Attack Rating by 182-607 for the rest of the fight.\nWhen completing this mission, Proxima Midnight activates a permanent True Accuracy passive effect."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-proxima-midnight/"
+    }
+}

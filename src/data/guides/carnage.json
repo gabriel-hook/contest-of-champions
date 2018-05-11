@@ -1,0 +1,30 @@
+{
+    "description": "Cletus Kasady was a serial killer from Brooklyn, psychotic and depraved from an early age. As a cellmate of Eddie Brock’s, he bonded with a spawn of the Venom Symbiote during a prison break, and merged into a single twisted being. Kasady and the Symbiote would go on a killing spree, earning them their name: Carnage. With the Symbiote amplifying Kasady’s psychotic tendencies, there’s no telling how deep their acts of depravity will plunge.",
+    "youtube": "S8I9fp2txpo",
+    "gameplay": {
+        "description": "Passive\n\nThe Carnage Symbiote changes form creating weapons and armor providing Passive bonuses based on Carnage’s current needs.\nStruck: +998.5 Physical Resistance\nBlock: +998.5 Block Proficiency\nLight Attack: +998.5 Critical Rate\nMedium Attack: +391.6 Attack\nHeavy Attack: +1508.77 Critical Damage Rate\n\nSpecial Attacks\n\nEach time Carnage activates a Special Attack he begins to Mutate for 10 seconds.\nOnce his mutation ends, he copies his current Symbiotic Creation as a Permanent Buff.\nHe can have a Maximum of 5 Permanent Buffs.\n\nCritical Hits\n\nIf the target is already Bleeding, gain a 80% Chance to Bleed dealing 44.06 damage over 0.5 seconds."
+    },
+    "attack": {
+        "heavy": "100% Chance to Bleed dealing 538.45 damage over 10 seconds."
+    },
+    "specials": {
+        "1": {
+            "description": "Frenzied Assault – Carnage hurls himself at his opponent, rending with limbs and tentacles alike.",
+            "note": "This attack receives +998.5 additional Critical Rate."
+        },
+        "2": {
+            "description": "Rabid Onslaught – Carnage uses his tentacles to suddenly propel himself towards his target while he strikes with his claws.",
+            "note": "This attack receives +1529.33 Critical Damage Rating."
+        },
+        "3": {
+            "description": "Aberrant Soul – Carnage uses his tentacles to pin his opponent in place, allowing him take the time to revel in the carnage he creates."
+        }
+    },
+    "signature": {
+        "description": "Bloodlust\n\nThe sight and smell of blood triggers Carnage’s bloodlust, granting him up to +19.99% increased Power Gain, while his Opponent is Bleeding.\nThe longer the Opponent has been continuously Bleeding the greater the bonus, reaching the maximum after 20 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight"
+    }
+}
