@@ -1,0 +1,32 @@
+{
+    "youtube": "ypLP_fxLLwc",
+    "description": "Since opposing the Sokovia Accords, the super-soldier has lost his shield and been forced\nunderground. But with the help of friends new and old, he’s managed to re-equip and remain\nunder the radar; all the while continuing to do what he believes is right — saving the world one\nclandestine mission at a time.",
+    "gameplay": {
+        "description": "Kinetic Potential – Passive\n\nCaptain America’s vibranium vambraces can store up to 5 Kinetic Potential charges. He will not generate any new Kinetic Potential charges while at this limit.\n15% Chance when Struck to gain 1 Kinetic Potential.\n50% Chance when Blocking to gain +1 Kinetic Potential. This chance increases to 100% on a Well Timed Block.\n100% Chance to gain +1 Kinetic Potential when Stunned.\nKinetic Potential falls off over time, falling off faster the longer its been since it last increased.\nDeveloper Note: Captain America gains the Kinetic Potential when Stunned after the Stun applies, so he doesn’t auto shrug off all Stuns when combined with his Signature Ability.\n\nKinetically Charged – Passive\n\nAs long as Captain America has at least 1 Kinetic Potential, he’s is considered to be Kinetically Charged, and gains the following bonuses as Passive effects:\n+574 Attack\n+666 Physical Resist\n+666 Energy Resist\n+30% chance to cause opponent’s attacks to Glance. Glancing Hits cannot be Critical, deal 50% reduced damage, and suffer -100% Offensive Ability Accuracy. This chance increases by 100% against Mystic Champions.\n100% chance to Nullify Unstoppable Buffs on hit.\nDeveloper Note: These abilities don’t stack, they just turn on as long as Captain America has at least 1 Kinetic Potential charge.\n\nSpecial Attacks\n\nAfter any Special Attack, Captain America consumes all Kinetic Potential."
+    },
+    "attack": {
+        "heavy": "Beginning to charge a Heavy Attack grants a Passive Fury granting +574 Attack per Kinetic Potential, lasting for 5 seconds."
+    },
+    "specials": {
+        "1": {
+            "description": "My Ally’s Claws – Cap shows his new vibranium hardware is good for offence as well as defence.",
+            "note": "100% chance to inflict Bleed, dealing 287 Direct Damage over 3.5 seconds. Reduces Opponent’s Defensive Ability Accuracy by 100% if Kinetically Charged."
+        },
+        "2": {
+            "description": "Kinetic Discharge – Smashing together his vambraces Cap unleashes a wave of kinetic energy.",
+            "note": "100% chance to Stun for 1 second. Each Kinetic Potential charge grants +574 Attack and +0.50 second(s) Stun Duration."
+        },
+        "3": {
+            "description": "Lead from the Front – Cap leads by example, sending his enemy crashing to the mat!",
+            "note": "If Kinetically Charged gain +1148 Attack for each different Class on Cap’s team, not including himself, up to 2 Classes. Gain 1 Non-Consumable Kinetic Potential charge which lasts 30 seconds."
+        }
+    },
+    "signature": {
+        "description": "Leadership – An excellent leader, Captain America learns from his teammates gaining a unique effect, while Kinetically Charged, for each class represented on his team, excluding himself.",
+        "note": "Mutant: 100% chance on triggering a Special Attack to gain +1 Kinetic Potential. Skill: 100% chance whenever a Debuff is gained, consume 1 Kinetic Potential to Purify it. Science: 100% chance on a Well-Timed Block to place a 10% Weakness Debuff of the Opponent for 10 seconds. Mystic: 100% chance to gain 1 Kinetic Potential each time a Buff Expires or is Nullified on the Opponent. Cosmic: 100% chance on a Well Timed Block to place an Armor Break Debuff on the Opponent, reducing their Armor by 222 for 10 seconds. Tech: 100% chance on a Well Timed Block to place a 25% Petrify Debuff on the Opponent for 10 seconds."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight"
+    }
+}

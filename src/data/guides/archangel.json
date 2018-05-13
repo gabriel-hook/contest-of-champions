@@ -1,0 +1,32 @@
+{
+    "youtube": "_y1AgVlyRMQ",
+    "description": "A founding member of the X-Men, Warren Kenneth Worthington III, was better known as Angel until he was nearly killed, and his wings were brutally amputated. Angel was saved by the ancient and powerful mutant Apocalypse, who transformed him into the horseman Death. Now with blue skin, retractable claws, and razor sharp metallic wings coated with a powerful neurotoxin, he has overcome the programming of Apocalypse, but still continues an inner struggle against his deadly bloodlust as Archangel.",
+    "gameplay": {
+        "description": "Neurotoxin – Passive\n\nEach time Archangel triggers a Bleed effect on an opponent with an active Poison effect that he caused, they are combined, converting into a Neurotoxin charge lasting 15 seconds.\nNeurotoxins are a Passive effect, and therefore do not count as either a Debuff, or a Poison.\nNeurotoxins do 3444 damage over their duration.\nOn expiry, Neurotoxins have a 100% Chance to Stun their target for 0.5 seconds. This effect will not interrupt a Special Attack.\n\nPassive – Raptor’s Senses\n\nArchangel’s Ability Accuracy cannot be decreased by his opponent’s abilities\n\nPassive – Blood Transmission Vector\n\nEach Bleed Debuff on your opponent increases the chance of any Poison triggering by a flat 25%, and reduces the chance that opponent’s Tenacity abilities will trigger by the same.\n\nBlock – Poison Wings\n\n0% chance to Poison the target, reducing their Health recovery by 30% and dealing 1435 Direct Damage over 15 seconds.\n\nCritical Strikes – Razor Claws\n\n40% chance to cause your opponent to Bleed for 1435 Direct Damage over 15 seconds."
+    },
+    "attack": {
+        "heavy": "50% chance to cause your opponent to Bleed for 1435 Direct Damage over 15 seconds. Only the first Bleed effect triggered by this attack will consume a Poison effect, though all Bleeds triggered by it will convert to Neurotoxins as long as a Poison was consumed during the attack."
+    },
+    "specials": {
+        "1": {
+            "description": "Bladed Pinions – Archangel fires several of his razor edged metallic feathers, coated with his potent neurotoxin.",
+            "note": "20% Chance to cause your opponent to Bleed for 1435 Direct Damage over 15 seconds. 0% Chance to Poison your opponent for 1435 Direct Damage over 15 seconds."
+        },
+        "2": {
+            "description": "Razor Winged Strike – Archangel uses all six of his limbs in a flurry of razor sharp blows.",
+            "note": "50% Chance to cause your opponent to Bleed for 1435 Direct Damage over 15 seconds. -40% Chance to Poison your opponent for 1435 Direct Damage over 15 seconds."
+        },
+        "3": {
+            "description": "Hypersonic Scream – Archangel emits an intense high pitched shriek, stunning his opponent, creating an opening for a series of high speed strikes!",
+            "note": "100% Chance to poison your opponent for 1435 Direct Damage over 15 seconds. 100% Chance to cause your opponent to Bleed for 1435 Direct Damage over 15 seconds. 100% Chance to Stun your opponent for 4 seconds."
+        }
+    },
+    "signature": {
+        "description": "Increased Toxicity: The Neurotoxin coating Archangel’s wings and claws increases in toxicity, causing numbness and loss of motor control."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-archangel/"
+    }
+}
