@@ -80,7 +80,7 @@ const effectIcons = {
     [ EFFECT.MASTERMINDS ]: 'effect-masterminds',
     [ EFFECT.SHIELD_AGENTS ]: 'effect-shield',
     [ EFFECT.SHIELD_CLEARANCE ]: 'effect-shield',
-    [ EFFECT.SHARED_GENETIC_MEMORY ]: "effect-shared-genetic-memory",
+    [ EFFECT.SHARED_GENETIC_MEMORY ]: 'effect-shared-genetic-memory',
 };
 
 function effectIcon(uid) {
