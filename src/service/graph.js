@@ -45,6 +45,9 @@ const EFFECT_COLORS = {
     [ EFFECT.SHIELD_AGENTS ]: '#aa0',
     [ EFFECT.SHIELD_CLEARANCE ]: '#660',
     [ EFFECT.SHARED_GENETIC_MEMORY ]: '#000',
+    [ EFFECT.DEMON_HUNTER ]: '#b00',
+    [ EFFECT.SPIRIT_OF_JUSTICE ]: '#d50',
+    [ EFFECT.HEIGHTENED_SENSES ]: '#005',
 };
 
 function getTypeColor(typeId) {
