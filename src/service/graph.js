@@ -44,6 +44,7 @@ const EFFECT_COLORS = {
     [ EFFECT.MASTERMINDS ]: '#aaf',
     [ EFFECT.SHIELD_AGENTS ]: '#aa0',
     [ EFFECT.SHIELD_CLEARANCE ]: '#660',
+    [ EFFECT.SHARED_GENETIC_MEMORY ]: '#000',
 };
 
 function getTypeColor(typeId) {
