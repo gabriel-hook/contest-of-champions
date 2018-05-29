@@ -23,6 +23,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.SHIELD_AGENTS ]: [ 10, 12, 15 ],
     [ EFFECT.SHIELD_CLEARANCE ]: [ 10, 12, 15 ],
     [ EFFECT.SHARED_GENETIC_MEMORY ]: [ 10, 12, 15 ],
+    [ EFFECT.DEMON_HUNTER ]: [ 10, 12, 15 ],
+    [ EFFECT.SPIRIT_OF_JUSTICE ]: [ 10, 12, 15 ],
+    [ EFFECT.HEIGHTENED_SENSES ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -50,6 +53,9 @@ const effects = [
     { uid: EFFECT.SHIELD_AGENTS },
     { uid: EFFECT.SHIELD_CLEARANCE },
     { uid: EFFECT.SHARED_GENETIC_MEMORY },
+    { uid: EFFECT.DEMON_HUNTER },
+    { uid: EFFECT.SPIRIT_OF_JUSTICE },
+    { uid: EFFECT.HEIGHTENED_SENSES },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -81,6 +87,9 @@ const effectIcons = {
     [ EFFECT.SHIELD_AGENTS ]: 'effect-shield',
     [ EFFECT.SHIELD_CLEARANCE ]: 'effect-shield',
     [ EFFECT.SHARED_GENETIC_MEMORY ]: 'effect-shared-genetic-memory',
+    [ EFFECT.DEMON_HUNTER ]: 'effect-demon-hunter',
+    [ EFFECT.SPIRIT_OF_JUSTICE ]: 'effect-spirit-of-justice',
+    [ EFFECT.HEIGHTENED_SENSES ]: 'effect-heightened-senses',
 };
 
 function effectIcon(uid) {
