@@ -1,0 +1,32 @@
+{
+    "youtube": "jAyO8smiPvY",
+    "description": "Elizabeth “Betsy” Braddock’s telepathic and telekinetic mutant powers were unlocked when she was mind-controlled by Dr. Synne, and Mastermind. When she was captured by the evil Hand, her soul was forcibly transferred into the body and mind of a deadly ninja warrior. Now a powerful mutant hero, and a skilled assassin, Psylocke is willing to utilize her deadly abilities on her own terms and without hesitation when she believes it’s necessary.",
+    "gameplay": {
+        "description": "Passive\n\nGain 25% less Power from striking your opponent.\nPassive\n\nGain up to 1333 bonus Critical Damage Rating the lower your opponent’s current Power.\nPsi-Charges\n\nYour opponent doesn’t gain Power when struck if they have 0 Power, and Psylocke has at least 1 Psi-Charge.\nEvery 5 hits Psylocke lands on an Opponent with 0 Power, she gains a Psi-Charge.\nEach time her opponent fills a bar of Power, Psylocke gains a Psi-Charge.\nEach time Psylocke is struck by an opponent they consume a Psi-Charge instantly gaining up to 50% additional Power."
+    },
+    "attack": {
+        "heavy": "This attack consumes all Psi-Charges, dealing 869 Energy Damage per charge consumed"
+    },
+    "specials": {
+        "1": {
+            "description": "Telekinetic Blade – Psylocke manifests a telekinetic blade, using it in tandem with her Katana.",
+            "note": "Depletes up to 25% of the Target’s Max Power. If this attack causes your opponent’s Power to be reduced over a Special Attack bar threshold, Psylocke will Gain Power until she reaches 1 Bar of Power over 0.25 seconds."
+        },
+        "2": {
+            "description": "Psionic Blast – Psylocke unleashes her Telepathic abilities in a blast of raw psionic energy.",
+            "note": "100% Chance to Power Lock your opponent for 6 seconds. If this attack hits, Psylocke has a 100% chance to consume 1 Psi-Charge, and gain 34% Power over 0.25 seconds."
+        },
+        "3": {
+            "description": "Psionic Knife Strike – Psylocke focuses all of her power into a single psychic blade, plunging it into her opponent’s brain.",
+            "note": "Consumes all Psi-Charges 100% chance to Power Lock your opponent for 10 seconds. Burns 20% of your Target’s Power for each Psi-Charge consumed, causing direct damage based on the amount burned. If this attack reduces your opponent to 0 Power, it Stuns them for 4.5 seconds."
+        }
+    },
+    "signature": {
+        "description": "Psi-Feedback:\n\nPsylocke’s psionically empowered strikes can disrupt her opponent’s nervous system reducing their Defensive Ability Accuracy by 65% when they have 0 Power.\nGain up to 857 bonus Critical Damage Rating the lower your opponent’s current Power."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-psylocke/"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "youtube": "C1YeJC3dEbw",
+    "description": "Iceman aka Robert “Bobby” Drake, was the second, and youngest, member of the original X-men team. His mutant powers give him the ability to radically lower his internal and external temperatures, convert his body into organic ice, and also freeze any moisture in the air around him. When he was temporarily possessed by the powerful telepath Emma Frost she unleashed powers within Bobby far greater than he had accessed himself. Performing new feats such as freezing fluids inside another person’s body, and quickly traveling great distances as a liquid, solid, or gas, Iceman works towards a greater mastery of his powers and there’s no telling where his true limits lie.",
+    "gameplay": {
+        "description": "Passive – Organic Ice\n\nIceman’s Organic Ice form grants him full immunity to all Incinerate, Bleed, and Poison effects.\nPassive – Ice Armor\n\nIceman begins the fight with a layer of Ice Armor active, increasing his Armor Rating by 666.67\nIf Iceman would lose more than 5% of his Max Health from a single source, his Ice Armor protects him from the blow, reducing the health loss to 5%, then it shatters.\nIf Iceman would become Stunned while his Ice Armor is active, the Ice Armor negates the effect, then shatters.\nOnce shattered, Ice Armor takes 15 seconds to reform.\nCritical Hits:\n\n45% chance to place a Frostbite charge on the opponent. Frostbite charges are Passive and deal 961.35 Energy Damage when they expire."
+    },
+    "attack": {
+        "heavy": "This attack causes all Frostbite charges to expire instantly and deal an additional 282.72 Energy Damage each."
+    },
+    "specials": {
+        "1": {
+            "description": "Chill Out – A quick blast of icy air to help the opponent cool off.",
+            "note": "Places a Coldsnap on the opponent, dealing 1639.95 Energy Damage over 9 seconds. Opponents under a Coldsnap cannot Evade attacks. This attack stores up to 2 Frostbite charges on the opponent."
+        },
+        "2": {
+            "description": "Blizzard – An icy blast to hold them in place just long enough to rain down icicles from above.",
+            "note": "Iceman converts his Ice Armor into additional mass for his projectiles, gaining 1696.5 additional Attack rating for the duration of the attack, at the cost of shattering his Ice Armor."
+        },
+        "3": {
+            "description": "Ice to Meet You – Iceman freezes his opponent in place before giving them the cold shoulder.",
+            "note": "Places a Coldsnap on the opponent, dealing 2092.35 Energy Damage over 9 seconds. Opponents under a Coldsnap cannot Evade attacks. This attack instantly reforms Ice Armor"
+        }
+    },
+    "signature": {
+        "description": "Absolute Zero: Iceman harnesses his Cyrokinesis to chill the air around him to freezing temperatures. This causes his opponent to start the fight with a Coldsnap active, dealing 2431.83 Energy Damage over 12 seconds and preventing them from Evading attacks. Additionally, Iceman can reform his Ice Armor 3 seconds faster."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-iceman/"
+    }
+}

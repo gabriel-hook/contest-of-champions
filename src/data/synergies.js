@@ -59,7 +59,7 @@ const synergies = [
         ...fromStars(2, 4, [ CHAMPION.SPIDERMAN, CHAMPION.CYCLOPS ], EFFECT.ARMOR),
         ...fromStars(3, 4, [ CHAMPION.KANG ], EFFECT.ATTACK),
         ...fromStars(3, 4, [ CHAMPION.HULK ], EFFECT.CRITICAL_DAMAGE),
-        ...fromStars(3, 5, [ CHAMPION.KARNAK ], EFFECT.HEALTH),
+        ...fromStars(3, 5, [ CHAMPION.KARNAK, CHAMPION.MEDUSA ], EFFECT.HEALTH),
     ]),
 
     ...fromId(CHAMPION.CAPTAINMARVEL, [
@@ -70,7 +70,7 @@ const synergies = [
     ]),
 
     ...fromId(CHAMPION.CARNAGE, [
-        ...fromStars(3, 5, [ CHAMPION.VENOM ], EFFECT.POWER_GAIN),
+        ...fromStars(3, 5, [ CHAMPION.VENOM ], EFFECT.SHARED_GENETIC_MEMORY),
         ...fromStars(3, 5, [ CHAMPION.DEADPOOL, CHAMPION.DEADPOOLXFORCE ], EFFECT.CRITICAL_RATE),
         ...fromStars(4, 5, [ CHAMPION.SPIDERMAN ], EFFECT.ATTACK),
         ...fromStars(4, 5, [ CHAMPION.SPIDERMANBLACK, CHAMPION.AGENTVENOM, CHAMPION.VENOMPOOL ], EFFECT.HEALTH),
@@ -94,6 +94,7 @@ const synergies = [
         ...fromStars(2, 5, [ CHAMPION.STARLORD ], EFFECT.ARMOR),
         ...fromStars(2, 5, [ CHAMPION.ROCKET ], EFFECT.INSEPARABLE),
         ...fromStars(3, 5, [ CHAMPION.DRAX ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(3, 5, [ CHAMPION.GAMORA ], EFFECT.PERFECT_BLOCK),
     ]),
 
     ...fromId(CHAMPION.GROOTKING, [
@@ -165,6 +166,7 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.SPIDERMAN ], EFFECT.ATTACK),
         ...fromStars(3, 5, [ CHAMPION.SPIDERMANBLACK ], EFFECT.HEALTH),
         ...fromStars(3, 5, [ CHAMPION.ELECTRO ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(3, 5, [ CHAMPION.JOEFIXIT ], EFFECT.PERFECT_BLOCK),
     ]),
 
     ...fromId(CHAMPION.VENOMPOOL, [
@@ -392,9 +394,9 @@ const synergies = [
 
     ...fromId(CHAMPION.AGENTVENOM, [
         ...fromStars(3, 5, [ CHAMPION.SPIDERMAN ], EFFECT.IDOL),
-        ...fromStars(3, 5, [ CHAMPION.VENOM ], EFFECT.HEALTH),
+        ...fromStars(3, 5, [ CHAMPION.VENOM, CHAMPION.VENOMPOOL ], EFFECT.HEALTH),
         ...fromStars(3, 5, [ CHAMPION.SPIDERMANBLACK ], EFFECT.HEALTH),
-        ...fromStars(4, 5, [ CHAMPION.GROOT ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.GROOT, CHAMPION.REDHULK ], EFFECT.PERFECT_BLOCK),
     ]),
 
     ...fromId(CHAMPION.BLACKPANTHER, [
@@ -405,7 +407,7 @@ const synergies = [
 
     ...fromId(CHAMPION.BLACKPANTHERCIVILWAR, [
         ...fromStars(3, 5, [ CHAMPION.THEVISION, CHAMPION.BLACKWIDOW ], EFFECT.ARMOR),
-        ...fromStars(3, 5, [ CHAMPION.WINTERSOLDIER ], EFFECT.ATTACK),
+        ...fromStars(3, 5, [ CHAMPION.WINTERSOLDIER, CHAMPION.KILLMONGER ], EFFECT.ATTACK),
         ...fromStars(3, 5, [ CHAMPION.ANTMAN ], EFFECT.CRITICAL_DAMAGE),
         ...fromStars(3, 5, [ CHAMPION.HAWKEYE, CHAMPION.BLACKPANTHER ], EFFECT.BLEED),
     ]),
@@ -558,7 +560,7 @@ const synergies = [
         ...fromStars(2, 5, [ CHAMPION.ABOMINATION ], EFFECT.ARMOR),
         ...fromStars(2, 5, [ CHAMPION.SPIDERMAN, CHAMPION.SPIDERGWEN ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.ELECTRO ], EFFECT.PERFECT_BLOCK),
-        ...fromStars(4, 5, [ CHAMPION.PUNISHER ], EFFECT.PERFECT_BLOCK),
+        ...fromStars(4, 5, [ CHAMPION.PUNISHER ], EFFECT.ARMOR),
     ]),
 
     ...fromId(CHAMPION.REDHULK, [

@@ -1,0 +1,29 @@
+{
+    "description": "Jericho Drumm was born to a poor area of Haiti. He found his escape, travelling to America to attend school, but returned when his brother Daniel became seriously ill, and died. Respecting his brother’s dying wish, Jericho sought out a Houngan priest to begin his own training. Jericho soon became a Supreme Houngan in his own right, with his pure heart and mystical strength leading him to eventually take the mantle of Doctor Voodoo, new Sorcerer Supreme.",
+    "youtube": "4MmaeUtE6AM",
+    "gameplay": {
+        "description": "Blocking: Increase Energy Resist by 50% while Blocking.\n\nFight Start: 100% chance to regenerate 12% health over 10 seconds."
+    },
+    "attack": {
+        "description": "All attacks have a 10% chance to place a Loa on their opponent that lasts until removed by another effect. A Loa is a buff with no effects."
+    },
+    "specials": {
+        "1": {
+            "description": "50% chance to Envenom each of the opponent’s Buffs, Nullifying it, and applying a Poison dealing 255% of your Attack as Direct Damage over 20 seconds."
+        },
+        "2": {
+            "description": "50% chance to convert up to 3 Loa into either a Buff on himself or a Debuff on the opponent, based on current Combo Meter.\nEven Combo: All of Voodoo’s attacks gain a 50% chance to burn 2.5% of his opponent’s Power, converting 450% of Power burnt into Energy Damage, lasting 15 seconds.\nOdd Combo: Target leaks 30% of their Power, over 10 seconds."
+        },
+        "3": {
+            "description": "100% chance of applying Power Leech to the target, stealing 40% Power over 20 seconds.\nWhen the Power Leech ends for any reason, Doctor Voodoo gains an equivalent Power Gain Buff."
+        }
+    },
+    "signature": {
+        "description": "Brother Daniel: Brother Daniel will posses either Doctor Voodoo or his opponent moving between them based on Doctor Voodoo’s combo meter when he uses a Special Attack.\nCombo Even: Doctor Voodoo is possessed gaining 100% increased Ability Accuracy and (50-100)% increased Buff Duration.\nOdd Combo: Opponent is possessed gaining 50% decreased Ability Accuracy and (50-100)% increased Debuff Duration."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-doctor-voodoo/"
+    }
+}

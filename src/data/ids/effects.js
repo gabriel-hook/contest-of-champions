@@ -21,3 +21,4 @@ export const THUNDERBOLTS = 'thunderbolts';
 export const MASTERMINDS = 'masterminds';
 export const SHIELD_AGENTS = 'shieldagents';
 export const SHIELD_CLEARANCE = 'shieldclearance';
+export const SHARED_GENETIC_MEMORY = 'sharedgeneticmemory';

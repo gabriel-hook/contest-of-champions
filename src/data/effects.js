@@ -22,6 +22,7 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.MASTERMINDS ]: [ 5, 10, 15 ],
     [ EFFECT.SHIELD_AGENTS ]: [ 10, 12, 15 ],
     [ EFFECT.SHIELD_CLEARANCE ]: [ 10, 12, 15 ],
+    [ EFFECT.SHARED_GENETIC_MEMORY ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -48,6 +49,7 @@ const effects = [
     { uid: EFFECT.MASTERMINDS },
     { uid: EFFECT.SHIELD_AGENTS },
     { uid: EFFECT.SHIELD_CLEARANCE },
+    { uid: EFFECT.SHARED_GENETIC_MEMORY },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -78,6 +80,7 @@ const effectIcons = {
     [ EFFECT.MASTERMINDS ]: 'effect-masterminds',
     [ EFFECT.SHIELD_AGENTS ]: 'effect-shield',
     [ EFFECT.SHIELD_CLEARANCE ]: 'effect-shield',
+    [ EFFECT.SHARED_GENETIC_MEMORY ]: 'effect-shared-genetic-memory',
 };
 
 function effectIcon(uid) {
