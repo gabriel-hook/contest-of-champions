@@ -418,7 +418,7 @@ const synergies = [
         ...fromStars(3, 4, [ CHAMPION.HULK, CHAMPION.HULKBUSTER ], EFFECT.STUN_SPECIAL),
         ...fromStars(3, 4, [ CHAMPION.HAWKEYE ], EFFECT.POWER_GAIN),
     ]),
-    
+
     ...fromId(CHAMPION.BLADE, [
         ...fromStars(3, 5, [ CHAMPION.MEPHISTO, CHAMPION.DORMAMMU ], EFFECT.DEMON_HUNTER),
         ...fromStars(3, 5, [ CHAMPION.GHOSTRIDER ], EFFECT.SPIRIT_OF_JUSTICE),
