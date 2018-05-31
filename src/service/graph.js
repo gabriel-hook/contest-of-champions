@@ -54,6 +54,9 @@ const EFFECT_COLORS = {
     [ EFFECT.SPLIT_PERSONALITY ]: '#b0c',
     [ EFFECT.ELECTRIC_SUPERCHARGE ]: '#ff5',
     [ EFFECT.SEETHING_HATRED ]: '#4a2',
+    [ EFFECT.ENGINEERING ]: '#00b',
+    [ EFFECT.PARTICLE_PHYSICS ]: '#0fa',
+    [ EFFECT.BIOCHEMISTRY ]: '#0a5',
 };
 
 function getTypeColor(typeId) {
