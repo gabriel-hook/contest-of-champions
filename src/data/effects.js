@@ -26,6 +26,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.DEMON_HUNTER ]: [ 10, 12, 15 ],
     [ EFFECT.SPIRIT_OF_JUSTICE ]: [ 10, 12, 15 ],
     [ EFFECT.HEIGHTENED_SENSES ]: [ 10, 12, 15 ],
+    [ EFFECT.COMPETITION ]: [ 10, 12, 15 ],
+    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: [ 10, 12, 15 ],
+    [ EFFECT.DEFENDERS_DESTROYER ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -56,6 +59,9 @@ const effects = [
     { uid: EFFECT.DEMON_HUNTER },
     { uid: EFFECT.SPIRIT_OF_JUSTICE },
     { uid: EFFECT.HEIGHTENED_SENSES },
+    { uid: EFFECT.COMPETITION },
+    { uid: EFFECT.BANE_OF_HELLS_KITCHEN },
+    { uid: EFFECT.DEFENDERS_DESTROYER },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -90,6 +96,9 @@ const effectIcons = {
     [ EFFECT.DEMON_HUNTER ]: 'effect-demon-hunter',
     [ EFFECT.SPIRIT_OF_JUSTICE ]: 'effect-spirit-of-justice',
     [ EFFECT.HEIGHTENED_SENSES ]: 'effect-heightened-senses',
+    [ EFFECT.COMPETITION ]: 'effect-competition',
+    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: 'effect-bane_of_hells_kitchen',
+    [ EFFECT.DEFENDERS_DESTROYER ]: 'effect-defenders-destroyer',
 };
 
 function effectIcon(uid) {
