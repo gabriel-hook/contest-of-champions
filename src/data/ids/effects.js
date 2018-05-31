@@ -25,3 +25,6 @@ export const SHARED_GENETIC_MEMORY = 'sharedgeneticmemory';
 export const DEMON_HUNTER = 'demonhunter';
 export const SPIRIT_OF_JUSTICE = 'spiritofjustice';
 export const HEIGHTENED_SENSES = 'heightenedsenses';
+export const COMPETITION = 'competition';
+export const BANE_OF_HELLS_KITCHEN = 'baneofhellskitchen';
+export const DEFENDERS_DESTROYER = 'defendersdestroyer';
