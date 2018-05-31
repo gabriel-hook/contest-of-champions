@@ -32,6 +32,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.SPLIT_PERSONALITY ]: [ 10, 12, 15 ],
     [ EFFECT.ELECTRIC_SUPERCHARGE ]: [ 10, 12, 15 ],
     [ EFFECT.SEETHING_HATRED ]: [ 10, 12, 15 ],
+    [ EFFECT.PARTICLE_PHYSICS ]: [ 10, 12, 15 ],
+    [ EFFECT.ENGINEERING ]: [ 10, 12, 15 ],
+    [ EFFECT.BIOCHEMISTRY ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -68,6 +71,9 @@ const effects = [
     { uid: EFFECT.SPLIT_PERSONALITY },
     { uid: EFFECT.ELECTRIC_SUPERCHARGE },
     { uid: EFFECT.SEETHING_HATRED },
+    { uid: EFFECT.PARTICLE_PHYSICS },
+    { uid: EFFECT.ENGINEERING },
+    { uid: EFFECT.BIOCHEMISTRY },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -108,6 +114,9 @@ const effectIcons = {
     [ EFFECT.SPLIT_PERSONALITY ]: 'effect-inseparable',
     [ EFFECT.ELECTRIC_SUPERCHARGE ]: 'effect-electric-supercharge',
     [ EFFECT.SEETHING_HATRED ]: 'effect-seething-hatred',
+    [ EFFECT.PARTICLE_PHYSICS ]: 'effect-particle-physics',
+    [ EFFECT.ENGINEERING ]: 'effect-engineering',
+    [ EFFECT.BIOCHEMISTRY ]: 'effect-biochemistry',
 };
 
 function effectIcon(uid) {
