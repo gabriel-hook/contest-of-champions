@@ -31,3 +31,6 @@ export const DEFENDERS_DESTROYER = 'defendersdestroyer';
 export const SPLIT_PERSONALITY = 'splitpersonality';
 export const SEETHING_HATRED = 'seethinghatred';
 export const ELECTRIC_SUPERCHARGE = 'electricsupercharge';
+export const BIOCHEMISTRY = 'biochemistry';
+export const ENGINEERING = 'engineering';
+export const PARTICLE_PHYSICS = 'particlephysics';
