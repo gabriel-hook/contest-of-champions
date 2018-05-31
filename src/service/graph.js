@@ -51,6 +51,9 @@ const EFFECT_COLORS = {
     [ EFFECT.COMPETITION ]: '#ea0',
     [ EFFECT.BANE_OF_HELLS_KITCHEN ]: '#f01',
     [ EFFECT.DEFENDERS_DESTROYER ]: '#c20',
+    [ EFFECT.SPLIT_PERSONALITY ]: '#b0c',
+    [ EFFECT.ELECTRIC_SUPERCHARGE ]: '#ff5',
+    [ EFFECT.SEETHING_HATRED ]: '#4a2',
 };
 
 function getTypeColor(typeId) {
