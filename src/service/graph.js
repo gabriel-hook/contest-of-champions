@@ -48,6 +48,9 @@ const EFFECT_COLORS = {
     [ EFFECT.DEMON_HUNTER ]: '#b00',
     [ EFFECT.SPIRIT_OF_JUSTICE ]: '#d50',
     [ EFFECT.HEIGHTENED_SENSES ]: '#005',
+    [ EFFECT.COMPETITION ]: '#ea0',
+    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: '#f01',
+    [ EFFECT.DEFENDERS_DESTROYER ]: '#c20',
 };
 
 function getTypeColor(typeId) {
