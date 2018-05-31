@@ -29,6 +29,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.COMPETITION ]: [ 10, 12, 15 ],
     [ EFFECT.BANE_OF_HELLS_KITCHEN ]: [ 10, 12, 15 ],
     [ EFFECT.DEFENDERS_DESTROYER ]: [ 10, 12, 15 ],
+    [ EFFECT.SPLIT_PERSONALITY ]: [ 10, 12, 15 ],
+    [ EFFECT.ELECTRIC_SUPERCHARGE ]: [ 10, 12, 15 ],
+    [ EFFECT.SEETHING_HATRED ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -62,6 +65,9 @@ const effects = [
     { uid: EFFECT.COMPETITION },
     { uid: EFFECT.BANE_OF_HELLS_KITCHEN },
     { uid: EFFECT.DEFENDERS_DESTROYER },
+    { uid: EFFECT.SPLIT_PERSONALITY },
+    { uid: EFFECT.ELECTRIC_SUPERCHARGE },
+    { uid: EFFECT.SEETHING_HATRED },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -97,8 +103,11 @@ const effectIcons = {
     [ EFFECT.SPIRIT_OF_JUSTICE ]: 'effect-spirit-of-justice',
     [ EFFECT.HEIGHTENED_SENSES ]: 'effect-heightened-senses',
     [ EFFECT.COMPETITION ]: 'effect-competition',
-    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: 'effect-bane_of_hells_kitchen',
-    [ EFFECT.DEFENDERS_DESTROYER ]: 'effect-defenders-destroyer',
+    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: 'effect-bane-of-hells-kitchen',
+    [ EFFECT.DEFENDERS_DESTROYER ]: 'effect-armor-break',
+    [ EFFECT.SPLIT_PERSONALITY ]: 'effect-inseparable',
+    [ EFFECT.ELECTRIC_SUPERCHARGE ]: 'effect-electric-supercharge',
+    [ EFFECT.SEETHING_HATRED ]: 'effect-seething-hatred',
 };
 
 function effectIcon(uid) {
