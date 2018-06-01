@@ -60,6 +60,9 @@ const EFFECT_COLORS = {
     [ EFFECT.AVENGERS_TRYOUT ]: '#f51',
     [ EFFECT.KNOWLEDGE_SHARE ]: '#009',
     [ EFFECT.CONTEST_NOOBS ]: '#c09',
+    [ EFFECT.MASTERS_OF_THE_SWORD ]: '#f11',
+    [ EFFECT.SOUL_SEEKER ]: '#b7d',
+    [ EFFECT.WARRIOR_QUEENS ]: '#fe1',
 };
 
 function getTypeColor(typeId) {
