@@ -38,6 +38,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.AVENGERS_TRYOUT ]: [ 10, 12, 15 ],
     [ EFFECT.CONTEST_NOOBS ]: [ 10, 12, 15 ],
     [ EFFECT.KNOWLEDGE_SHARE ]: [ 10, 12, 15 ],
+    [ EFFECT.MASTERS_OF_THE_SWORD ]: [ 10, 12, 15 ],
+    [ EFFECT.SOUL_SEEKER ]: [ 10, 12, 15 ],
+    [ EFFECT.WARRIOR_QUEENS ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -80,6 +83,9 @@ const effects = [
     { uid: EFFECT.AVENGERS_TRYOUT },
     { uid: EFFECT.KNOWLEDGE_SHARE },
     { uid: EFFECT.CONTEST_NOOBS },
+    { uid: EFFECT.MASTERS_OF_THE_SWORD },
+    { uid: EFFECT.SOUL_SEEKER },
+    { uid: EFFECT.WARRIOR_QUEENS },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -126,6 +132,9 @@ const effectIcons = {
     [ EFFECT.AVENGERS_TRYOUT ]: 'effect-avengers-tryout',
     [ EFFECT.KNOWLEDGE_SHARE ]: 'effect-masterminds',
     [ EFFECT.CONTEST_NOOBS ]: 'effect-inseparable',
+    [ EFFECT.MASTERS_OF_THE_SWORD ]: 'effect-master-of-the-sword',
+    [ EFFECT.SOUL_SEEKER ]: 'effect-soul-seeker',
+    [ EFFECT.WARRIOR_QUEENS ]: 'effect-warrior-queens',
 };
 
 function effectIcon(uid) {
