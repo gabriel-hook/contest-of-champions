@@ -712,6 +712,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.JUGGERNAUT ], EFFECT.CRITICAL_RATE),
     ]),
 
+    ...fromId(CHAMPION.MORNINGSTAR, [
+        ...fromStars(3, 5, [ CHAMPION.GUILLOTINE ], EFFECT.MASTERS_OF_THE_SWORD),
+        ...fromStars(3, 5, [ CHAMPION.MEPHISTO ], EFFECT.SOUL_SEEKER),
+        ...fromStars(4, 5, [ CHAMPION.MAGIK, CHAMPION.ANGELA ], EFFECT.WARRIOR_QUEENS),
+    ]),
+
     ...fromId(CHAMPION.SCARLETWITCH, [
         ...fromStars(2, 4, [ CHAMPION.CAPTAINMARVEL, CHAMPION.MSMARVEL ], EFFECT.ARMOR),
         ...fromStars(3, 4, [ CHAMPION.VISION ], EFFECT.POWER_GAIN),
