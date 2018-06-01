@@ -235,6 +235,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.ULTRON ], EFFECT.CRITICAL_RATE),
     ]),
 
+    ...fromId(CHAMPION.PUNISHER2099, [
+        ...fromStars(3, 5, [ CHAMPION.CAPTAINAMERICA ], EFFECT.LOYAL_MINISTER),
+        ...fromStars(3, 5, [ CHAMPION.PUNISHER ], EFFECT.CROSS_TRAINING),
+        ...fromStars(4, 5, [ CHAMPION.THOR ], EFFECT.BELIEVER),
+    ]),
+
     ...fromId(CHAMPION.ROCKET, [
         ...fromStars(2, 5, [ CHAMPION.STARLORD, CHAMPION.GROOT ], EFFECT.ARMOR),
         ...fromStars(2, 5, [ CHAMPION.GAMORA ], EFFECT.PERFECT_BLOCK),
