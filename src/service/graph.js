@@ -57,6 +57,9 @@ const EFFECT_COLORS = {
     [ EFFECT.ENGINEERING ]: '#00b',
     [ EFFECT.PARTICLE_PHYSICS ]: '#0fa',
     [ EFFECT.BIOCHEMISTRY ]: '#0a5',
+    [ EFFECT.AVENGERS_TRYOUT ]: '#f51',
+    [ EFFECT.KNOWLEDGE_SHARE ]: '#009',
+    [ EFFECT.CONTEST_NOOBS ]: '#c09',
 };
 
 function getTypeColor(typeId) {
