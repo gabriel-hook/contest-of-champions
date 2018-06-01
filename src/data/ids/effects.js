@@ -40,3 +40,6 @@ export const CONTEST_NOOBS = 'contestnoobs';
 export const MASTERS_OF_THE_SWORD = 'masterofthesword';
 export const SOUL_SEEKER = 'soulseeker';
 export const WARRIOR_QUEENS = 'warriorqueens';
+export const LOYAL_MINISTER = 'loyalminister';
+export const BELIEVER = 'believer';
+export const CROSS_TRAINING = 'crosstraining';
