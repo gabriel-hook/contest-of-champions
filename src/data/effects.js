@@ -142,8 +142,8 @@ const effectIcons = {
     [ EFFECT.SOUL_SEEKER ]: 'effect-soul-seeker',
     [ EFFECT.WARRIOR_QUEENS ]: 'effect-warrior-queens',
     [ EFFECT.BELIEVER ]: 'effect-believer',
-    [ EFFECT.CROSS_TRAINING ]: 'effect-cross-training',
-    [ EFFECT.LOYAL_MINISTER ]: 'effect-loyal-minister',
+    [ EFFECT.CROSS_TRAINING ]: 'effect-degeneration',
+    [ EFFECT.LOYAL_MINISTER ]: 'effect-combo',
 };
 
 function effectIcon(uid) {
