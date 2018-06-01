@@ -35,6 +35,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.PARTICLE_PHYSICS ]: [ 10, 12, 15 ],
     [ EFFECT.ENGINEERING ]: [ 10, 12, 15 ],
     [ EFFECT.BIOCHEMISTRY ]: [ 10, 12, 15 ],
+    [ EFFECT.AVENGERS_TRYOUT ]: [ 10, 12, 15 ],
+    [ EFFECT.CONTEST_NOOBS ]: [ 10, 12, 15 ],
+    [ EFFECT.KNOWLEDGE_SHARE ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -74,6 +77,9 @@ const effects = [
     { uid: EFFECT.PARTICLE_PHYSICS },
     { uid: EFFECT.ENGINEERING },
     { uid: EFFECT.BIOCHEMISTRY },
+    { uid: EFFECT.AVENGERS_TRYOUT },
+    { uid: EFFECT.KNOWLEDGE_SHARE },
+    { uid: EFFECT.CONTEST_NOOBS },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -117,6 +123,9 @@ const effectIcons = {
     [ EFFECT.PARTICLE_PHYSICS ]: 'effect-particle-physics',
     [ EFFECT.ENGINEERING ]: 'effect-engineering',
     [ EFFECT.BIOCHEMISTRY ]: 'effect-biochemistry',
+    [ EFFECT.AVENGERS_TRYOUT ]: 'effect-avengers-tryout',
+    [ EFFECT.KNOWLEDGE_SHARE ]: 'effect-masterminds',
+    [ EFFECT.CONTEST_NOOBS ]: 'effect-inseparable',
 };
 
 function effectIcon(uid) {
