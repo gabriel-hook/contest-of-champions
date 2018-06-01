@@ -34,3 +34,6 @@ export const ELECTRIC_SUPERCHARGE = 'electricsupercharge';
 export const BIOCHEMISTRY = 'biochemistry';
 export const ENGINEERING = 'engineering';
 export const PARTICLE_PHYSICS = 'particlephysics';
+export const AVENGERS_TRYOUT = 'avengerstryout';
+export const KNOWLEDGE_SHARE = 'knowledgeshare';
+export const CONTEST_NOOBS = 'contestnoobs';
