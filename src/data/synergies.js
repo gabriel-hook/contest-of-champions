@@ -248,6 +248,12 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.GAMORA ], EFFECT.PERFECT_BLOCK),
     ]),
 
+    ...fromId(CHAMPION.SPIDERMANSTARK, [
+        ...fromStars(3, 5, [ CHAMPION.VULTURE ], EFFECT.AVENGERS_TRYOUT),
+        ...fromStars(4, 5, [ CHAMPION.SPIDERMANMORALES, CHAMPION.KAMALAKHAN ], EFFECT.CONTEST_NOOBS),
+        ...fromStars(3, 5, [ CHAMPION.IRONMAN, CHAMPION.HULKBUSTER ], EFFECT.KNOWLEDGE_SHARE),
+    ]),
+
     ...fromId(CHAMPION.VISION, [
         ...fromStars(2, 4, [ CHAMPION.SCARLETWITCH ], EFFECT.POWER_GAIN),
         ...fromStars(2, 4, [ CHAMPION.IRONMAN ], EFFECT.PERFECT_BLOCK),
