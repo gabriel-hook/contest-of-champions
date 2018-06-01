@@ -41,6 +41,9 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.MASTERS_OF_THE_SWORD ]: [ 10, 12, 15 ],
     [ EFFECT.SOUL_SEEKER ]: [ 10, 12, 15 ],
     [ EFFECT.WARRIOR_QUEENS ]: [ 10, 12, 15 ],
+    [ EFFECT.LOYAL_MINISTER ]: [ 10, 12, 15 ],
+    [ EFFECT.CROSS_TRAINING ]: [ 10, 12, 15 ],
+    [ EFFECT.BELIEVER ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -86,6 +89,9 @@ const effects = [
     { uid: EFFECT.MASTERS_OF_THE_SWORD },
     { uid: EFFECT.SOUL_SEEKER },
     { uid: EFFECT.WARRIOR_QUEENS },
+    { uid: EFFECT.BELIEVER },
+    { uid: EFFECT.CROSS_TRAINING },
+    { uid: EFFECT.LOYAL_MINISTER },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -135,6 +141,9 @@ const effectIcons = {
     [ EFFECT.MASTERS_OF_THE_SWORD ]: 'effect-master-of-the-sword',
     [ EFFECT.SOUL_SEEKER ]: 'effect-soul-seeker',
     [ EFFECT.WARRIOR_QUEENS ]: 'effect-warrior-queens',
+    [ EFFECT.BELIEVER ]: 'effect-believer',
+    [ EFFECT.CROSS_TRAINING ]: 'effect-cross-training',
+    [ EFFECT.LOYAL_MINISTER ]: 'effect-loyal-minister',
 };
 
 function effectIcon(uid) {
