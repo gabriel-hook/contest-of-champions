@@ -48,6 +48,15 @@ const EFFECT_COLORS = {
     [ EFFECT.DEMON_HUNTER ]: '#b00',
     [ EFFECT.SPIRIT_OF_JUSTICE ]: '#d50',
     [ EFFECT.HEIGHTENED_SENSES ]: '#005',
+    [ EFFECT.COMPETITION ]: '#ea0',
+    [ EFFECT.BANE_OF_HELLS_KITCHEN ]: '#f01',
+    [ EFFECT.DEFENDERS_DESTROYER ]: '#c20',
+    [ EFFECT.SPLIT_PERSONALITY ]: '#b0c',
+    [ EFFECT.ELECTRIC_SUPERCHARGE ]: '#ff5',
+    [ EFFECT.SEETHING_HATRED ]: '#4a2',
+    [ EFFECT.ENGINEERING ]: '#00b',
+    [ EFFECT.PARTICLE_PHYSICS ]: '#0fa',
+    [ EFFECT.BIOCHEMISTRY ]: '#0a5',
 };
 
 function getTypeColor(typeId) {
