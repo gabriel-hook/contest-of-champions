@@ -63,6 +63,9 @@ const EFFECT_COLORS = {
     [ EFFECT.MASTERS_OF_THE_SWORD ]: '#f11',
     [ EFFECT.SOUL_SEEKER ]: '#b7d',
     [ EFFECT.WARRIOR_QUEENS ]: '#fe1',
+    [ EFFECT.BELIEVER ]: '#f91',
+    [ EFFECT.CROSS_TRAINING ]: '#e11',
+    [ EFFECT.LOYAL_MINISTER ]: '#ad1',
 };
 
 function getTypeColor(typeId) {
