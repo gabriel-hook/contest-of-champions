@@ -37,3 +37,6 @@ export const PARTICLE_PHYSICS = 'particlephysics';
 export const AVENGERS_TRYOUT = 'avengerstryout';
 export const KNOWLEDGE_SHARE = 'knowledgeshare';
 export const CONTEST_NOOBS = 'contestnoobs';
+export const MASTERS_OF_THE_SWORD = 'masterofthesword';
+export const SOUL_SEEKER = 'soulseeker';
+export const WARRIOR_QUEENS = 'warriorqueens';
