@@ -43,3 +43,7 @@ export const WARRIOR_QUEENS = 'warriorqueens';
 export const LOYAL_MINISTER = 'loyalminister';
 export const BELIEVER = 'believer';
 export const CROSS_TRAINING = 'crosstraining';
+export const TEAM_BUILDING_EXERCISE = 'teambuildingexercise';
+export const LULLABY = 'lullaby';
+export const OFF_LIMITS = 'offlimits';
+export const PUNY_GOD = 'punygod';
