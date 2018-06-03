@@ -572,6 +572,13 @@ const synergies = [
         ...fromStars(3, 4, [ CHAMPION.HAWKEYE ], EFFECT.ARMOR),
     ]),
 
+    ...fromId(CHAMPION.HULKRAGNAROK, [
+        ...fromStars(3, 5, [ CHAMPION.THORRAGNAROK ], EFFECT.TEAM_BUILDING_EXERCISE),
+        ...fromStars(3, 5, [ CHAMPION.BLACKWIDOW ], EFFECT.LULLABY),
+        ...fromStars(4, 5, [ CHAMPION.HELA ], EFFECT.OFF_LIMITS),
+        ...fromStars(4, 5, [ CHAMPION.LOKI ], EFFECT.PUNY_GOD),
+    ]),
+
     ...fromId(CHAMPION.JOEFIXIT, [
         ...fromStars(3, 4, [ CHAMPION.WOLVERINE ], EFFECT.ARMOR),
         ...fromStars(3, 4, [ CHAMPION.MOONKNIGHT ], EFFECT.CRITICAL_RATE),
