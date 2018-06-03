@@ -44,6 +44,10 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.LOYAL_MINISTER ]: [ 10, 12, 15 ],
     [ EFFECT.CROSS_TRAINING ]: [ 10, 12, 15 ],
     [ EFFECT.BELIEVER ]: [ 10, 12, 15 ],
+    [ EFFECT.TEAM_BUILDING_EXERCISE ]: [ 10, 12, 15 ],
+    [ EFFECT.LULLABY ]: [ 10, 12, 15 ],
+    [ EFFECT.OFF_LIMITS ]: [ 10, 12, 15 ],
+    [ EFFECT.PUNY_GOD ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -92,6 +96,10 @@ const effects = [
     { uid: EFFECT.BELIEVER },
     { uid: EFFECT.CROSS_TRAINING },
     { uid: EFFECT.LOYAL_MINISTER },
+    { uid: EFFECT.TEAM_BUILDING_EXERCISE },
+    { uid: EFFECT.LULLABY },
+    { uid: EFFECT.OFF_LIMITS },
+    { uid: EFFECT.PUNY_GOD },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -144,6 +152,10 @@ const effectIcons = {
     [ EFFECT.BELIEVER ]: 'effect-believer',
     [ EFFECT.CROSS_TRAINING ]: 'effect-degeneration',
     [ EFFECT.LOYAL_MINISTER ]: 'effect-combo',
+    [ EFFECT.TEAM_BUILDING_EXERCISE ]: 'effect-unstoppable',
+    [ EFFECT.LULLABY ]: 'effect-lullaby',
+    [ EFFECT.OFF_LIMITS ]: 'effect-lullaby',
+    [ EFFECT.PUNY_GOD ]: 'effect-combo',
 };
 
 function effectIcon(uid) {
