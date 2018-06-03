@@ -66,6 +66,10 @@ const EFFECT_COLORS = {
     [ EFFECT.BELIEVER ]: '#f91',
     [ EFFECT.CROSS_TRAINING ]: '#e11',
     [ EFFECT.LOYAL_MINISTER ]: '#ad1',
+    [ EFFECT.TEAM_BUILDING_EXERCISE ]: '#fb2',
+    [ EFFECT.LULLABY ]: '#a0a',
+    [ EFFECT.OFF_LIMITS ]: '#0d0',
+    [ EFFECT.PUNY_GOD ]: '#0df',
 };
 
 function getTypeColor(typeId) {
