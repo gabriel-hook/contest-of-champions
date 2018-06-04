@@ -48,6 +48,15 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.LULLABY ]: [ 10, 12, 15 ],
     [ EFFECT.OFF_LIMITS ]: [ 10, 12, 15 ],
     [ EFFECT.PUNY_GOD ]: [ 10, 12, 15 ],
+    [ EFFECT.OVERCOMING_FEAR ]: [ 10, 12, 15 ],
+    [ EFFECT.LIKE_OLD_DAYS ]: [ 10, 12, 15 ],
+    [ EFFECT.NOT_AFRAID_OF_DEATH ]: [ 10, 12, 15 ],
+    [ EFFECT.FRIEND_FROM_WORK ]: [ 10, 12, 15 ],
+    [ EFFECT.ADVANCED_IDEA_MECHANICS ]: [ 10, 12, 15 ],
+    [ EFFECT.CHAIR_LARCENY ]: [ 10, 12, 15 ],
+    [ EFFECT.IMMORTAL_SOULS ]: [ 10, 12, 15 ],
+    [ EFFECT.QUEEN_OF_HEL ]: [ 10, 12, 15 ],
+    [ EFFECT.HELL_LORDS ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -100,6 +109,15 @@ const effects = [
     { uid: EFFECT.LULLABY },
     { uid: EFFECT.OFF_LIMITS },
     { uid: EFFECT.PUNY_GOD },
+    { uid: EFFECT.OVERCOMING_FEAR },
+    { uid: EFFECT.LIKE_OLD_DAYS },
+    { uid: EFFECT.NOT_AFRAID_OF_DEATH },
+    { uid: EFFECT.FRIEND_FROM_WORK },
+    { uid: EFFECT.ADVANCED_IDEA_MECHANICS },
+    { uid: EFFECT.CHAIR_LARCENY },
+    { uid: EFFECT.IMMORTAL_SOULS },
+    { uid: EFFECT.QUEEN_OF_HEL },
+    { uid: EFFECT.HELL_LORDS },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -156,6 +174,15 @@ const effectIcons = {
     [ EFFECT.LULLABY ]: 'effect-lullaby',
     [ EFFECT.OFF_LIMITS ]: 'effect-lullaby',
     [ EFFECT.PUNY_GOD ]: 'effect-combo',
+    [ EFFECT.OVERCOMING_FEAR ]: 'effect-overcoming-fear',
+    [ EFFECT.LIKE_OLD_DAYS ]: 'effect-like-old-days',
+    [ EFFECT.NOT_AFRAID_OF_DEATH ]: 'effect-regeneration',
+    [ EFFECT.FRIEND_FROM_WORK ]: 'effect-friend-from-work',
+    [ EFFECT.ADVANCED_IDEA_MECHANICS ]: 'effect-advanced-idea-mechanics',
+    [ EFFECT.CHAIR_LARCENY ]: 'effect-bane-of-hells-kitchen',
+    [ EFFECT.IMMORTAL_SOULS ]: 'effect-nullify',
+    [ EFFECT.QUEEN_OF_HEL ]: 'effect-regeneration',
+    [ EFFECT.HELL_LORDS ]: 'effect-hell-lords',
 };
 
 function effectIcon(uid) {
