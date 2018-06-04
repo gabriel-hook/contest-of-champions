@@ -104,6 +104,12 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.VENOM ], EFFECT.ARMOR),
     ]),
 
+    ...fromId(CHAMPION.HELA, [
+        ...fromStars(4, 5, [ CHAMPION.THORRAGNAROK, CHAMPION.LOKI ], EFFECT.IMMORTAL_SOULS),
+        ...fromStars(4, 5, [ CHAMPION.ANGELA ], EFFECT.QUEEN_OF_HEL),
+        ...fromStars(4, 5, [ CHAMPION.DORMAMMU, CHAMPION.MEPHISTO ], EFFECT.HELL_LORDS),
+    ]),
+
     ...fromId(CHAMPION.HYPERION, [
         ...fromStars(3, 5, [ CHAMPION.THOR ], EFFECT.ARMOR),
         ...fromStars(3, 5, [ CHAMPION.IRONMAN ], EFFECT.CRITICAL_RATE),
@@ -526,6 +532,12 @@ const synergies = [
         ...fromStars(3, 4, [ CHAMPION.DAREDEVIL, CHAMPION.DAREDEVILNETFLIX ], EFFECT.CRITICAL_DAMAGE),
     ]),
 
+    ...fromId(CHAMPION.THORRAGNAROK, [
+        ...fromStars(3, 5, [ CHAMPION.LOKI ], EFFECT.LIKE_OLD_DAYS),
+        ...fromStars(4, 5, [ CHAMPION.HELA ], EFFECT.NOT_AFRAID_OF_DEATH),
+        ...fromStars(4, 5, [ CHAMPION.HULK, CHAMPION.HULKRAGNAROK ], EFFECT.FRIEND_FROM_WORK),
+    ]),
+
     ...fromId(CHAMPION.WINTERSOLDIER, [
         ...fromStars(2, 5, [ CHAMPION.WOLVERINE ], EFFECT.ARMOR),
         ...fromStars(2, 5, [ CHAMPION.CAPTAINAMERICA ], EFFECT.PERFECT_BLOCK),
@@ -593,6 +605,14 @@ const synergies = [
         ...fromStars(4, 5, [ CHAMPION.DAREDEVIL ], EFFECT.PERFECT_BLOCK),
     ]),
 
+    ...fromId(CHAMPION.MODOK, [
+        ...fromStars(3, 5, [ CHAMPION.DROCTOPUS ], EFFECT.MASTERMINDS),
+        ...fromStars(3, 5, [ CHAMPION.CAPTAINAMERICA, CHAMPION.FALCON ], EFFECT.ATTACK),
+        ...fromStars(3, 5, [ CHAMPION.ANGELA ], EFFECT.POWER_GAIN),
+        ...fromStars(3, 5, [ CHAMPION.TASKMASTER ], EFFECT.ADVANCED_IDEA_MECHANICS),
+        ...fromStars(3, 5, [ CHAMPION.GWENPOOL, CHAMPION.DEADPOOL ], EFFECT.CHAIR_LARCENY),
+    ]),
+
     ...fromId(CHAMPION.QUAKE, [
         ...fromStars(2, 5, [ CHAMPION.CROSSBONES, CHAMPION.IRONPATRIOT ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.KARNAK, CHAMPION.BLACKBOLT ], EFFECT.CRITICAL_DAMAGE),
@@ -640,6 +660,11 @@ const synergies = [
         ...fromStars(3, 4, [ CHAMPION.SPIDERGWEN ], EFFECT.PERFECT_BLOCK),
         ...fromStars(4, 4, [ CHAMPION.ELECTRO ], EFFECT.CRITICAL_RATE),
         ...fromStars(4, 4, [ CHAMPION.IRONPATRIOT ], EFFECT.CRITICAL_RATE),
+    ]),
+
+    ...fromId(CHAMPION.VOID, [
+        ...fromStars(3, 5, [ CHAMPION.BLACKWIDOW, CHAMPION.HAWKEYE, CHAMPION.CAPTAINAMERICA, CHAMPION.VISION ], EFFECT.OVERCOMING_FEAR),
+        ...fromStars(3, 5, [ CHAMPION.THOR, CHAMPION.DRSTRANGE ], EFFECT.CRITICAL_RATE),
     ]),
 
     ...fromId(CHAMPION.YELLOWJACKET, [
