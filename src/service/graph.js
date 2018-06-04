@@ -70,6 +70,15 @@ const EFFECT_COLORS = {
     [ EFFECT.LULLABY ]: '#a0a',
     [ EFFECT.OFF_LIMITS ]: '#0d0',
     [ EFFECT.PUNY_GOD ]: '#0df',
+    [ EFFECT.OVERCOMING_FEAR ]: '#70f',
+    [ EFFECT.LIKE_OLD_DAYS ]: '#fb0',
+    [ EFFECT.NOT_AFRAID_OF_DEATH ]: '#a11',
+    [ EFFECT.FRIEND_FROM_WORK ]: '#2a1',
+    [ EFFECT.ADVANCED_IDEA_MECHANICS ]: '#df0',
+    [ EFFECT.CHAIR_LARCENY ]: '#f30',
+    [ EFFECT.IMMORTAL_SOULS ]: '#00d',
+    [ EFFECT.QUEEN_OF_HEL ]: '#1d1',
+    [ EFFECT.HELL_LORDS ]: '#f80',
 };
 
 function getTypeColor(typeId) {
