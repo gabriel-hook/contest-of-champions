@@ -79,6 +79,12 @@ const EFFECT_COLORS = {
     [ EFFECT.IMMORTAL_SOULS ]: '#00d',
     [ EFFECT.QUEEN_OF_HEL ]: '#1d1',
     [ EFFECT.HELL_LORDS ]: '#f80',
+    [ EFFECT.CUBICLE_MATES ]: '#b0a',
+    [ EFFECT.OTHER_HALF ]: '#a1a',
+    [ EFFECT.THUNDER ]: '#a0b',
+    [ EFFECT.PROFESSORS_IN_CRIME ]: '#c0a',
+    [ EFFECT.MOSTLY_AVERAGE_JOES ]: '#a2a',
+    [ EFFECT.TERMINATION_CONTRACT ]: '#a0c',
 };
 
 function getTypeColor(typeId) {
