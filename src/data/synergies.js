@@ -532,6 +532,13 @@ const synergies = [
         ...fromStars(3, 4, [ CHAMPION.DAREDEVIL, CHAMPION.DAREDEVILNETFLIX ], EFFECT.CRITICAL_DAMAGE),
     ]),
 
+    ...fromId(CHAMPION.TASKMASTER, [
+        ...fromStars(3, 5, [ CHAMPION.MOONKNIGHT ], EFFECT.TERMINATION_CONTRACT),
+        ...fromStars(3, 5, [ CHAMPION.CROSSBONES ], EFFECT.PROFESSORS_IN_CRIME),
+        ...fromStars(4, 5, [ CHAMPION.HAWKEYE ], EFFECT.MOSTLY_AVERAGE_JOES),
+        ...fromStars(4, 5, [ CHAMPION.WINTERSOLDIER ], EFFECT.THUNDER),
+    ]),
+
     ...fromId(CHAMPION.THORRAGNAROK, [
         ...fromStars(3, 5, [ CHAMPION.LOKI ], EFFECT.LIKE_OLD_DAYS),
         ...fromStars(4, 5, [ CHAMPION.HELA ], EFFECT.NOT_AFRAID_OF_DEATH),
@@ -611,6 +618,7 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.ANGELA ], EFFECT.POWER_GAIN),
         ...fromStars(3, 5, [ CHAMPION.TASKMASTER ], EFFECT.ADVANCED_IDEA_MECHANICS),
         ...fromStars(3, 5, [ CHAMPION.GWENPOOL, CHAMPION.DEADPOOL ], EFFECT.CHAIR_LARCENY),
+        ...fromStars(3, 5, [ CHAMPION.ABOMINATION ], EFFECT.CUBICLE_MATES)
     ]),
 
     ...fromId(CHAMPION.QUAKE, [
@@ -632,6 +640,12 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.HULK ], EFFECT.ATTACK),
         ...fromStars(3, 5, [ CHAMPION.ELEKTRA, CHAMPION.AGENTVENOM ], EFFECT.THUNDERBOLTS),
         ...fromStars(4, 5, [ CHAMPION.X23 ], EFFECT.PERFECT_BLOCK),
+    ]),
+
+    ...fromId(CHAMPION.SENTRY, [
+        ...fromStars(4, 5, [ CHAMPION.VOID ], EFFECT.OTHER_HALF),
+        ...fromStars(4, 5, [ CHAMPION.BLACKWIDOW, CHAMPION.VISION, CHAMPION.HAWKEYE, CHAMPION.CAPTAINAMERICA ], EFFECT.ARMOR),
+        ...fromStars(4, 5, [ CHAMPION.HULK ], EFFECT.CRITICAL_DAMAGE),
     ]),
 
     ...fromId(CHAMPION.SHEHULK, [
