@@ -57,6 +57,12 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.IMMORTAL_SOULS ]: [ 10, 12, 15 ],
     [ EFFECT.QUEEN_OF_HEL ]: [ 10, 12, 15 ],
     [ EFFECT.HELL_LORDS ]: [ 10, 12, 15 ],
+    [ EFFECT.CUBICLE_MATES ]: [ 10, 12, 15 ],
+    [ EFFECT.OTHER_HALF ]: [ 10, 12, 15 ],
+    [ EFFECT.TERMINATION_CONTRACT ]: [ 10, 12, 15 ],
+    [ EFFECT.PROFESSORS_IN_CRIME ]: [ 10, 12, 15 ],
+    [ EFFECT.MOSTLY_AVERAGE_JOES ]: [ 10, 12, 15 ],
+    [ EFFECT.THUNDER ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -118,6 +124,12 @@ const effects = [
     { uid: EFFECT.IMMORTAL_SOULS },
     { uid: EFFECT.QUEEN_OF_HEL },
     { uid: EFFECT.HELL_LORDS },
+    { uid: EFFECT.OTHER_HALF },
+    { uid: EFFECT.CUBICLE_MATES },
+    { uid: EFFECT.TERMINATION_CONTRACT },
+    { uid: EFFECT.PROFESSORS_IN_CRIME },
+    { uid: EFFECT.MOSTLY_AVERAGE_JOES },
+    { uid: EFFECT.THUNDER },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -183,6 +195,12 @@ const effectIcons = {
     [ EFFECT.IMMORTAL_SOULS ]: 'effect-nullify',
     [ EFFECT.QUEEN_OF_HEL ]: 'effect-regeneration',
     [ EFFECT.HELL_LORDS ]: 'effect-hell-lords',
+    [ EFFECT.CUBICLE_MATES ]: 'effect-biochemistry',
+    [ EFFECT.OTHER_HALF ]: 'effect-degeneration',
+    [ EFFECT.TERMINATION_CONTRACT ]: 'effect-overcoming-fear',
+    [ EFFECT.PROFESSORS_IN_CRIME ]: 'effect-hell-lords',
+    [ EFFECT.MOSTLY_AVEREGE_JOES ]: 'effect-mostly-average-joes',
+    [ EFFECT.THUNDER ]: 'effect-shock',
 };
 
 function effectIcon(uid) {
