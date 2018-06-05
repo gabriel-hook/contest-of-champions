@@ -618,7 +618,7 @@ const synergies = [
         ...fromStars(3, 5, [ CHAMPION.ANGELA ], EFFECT.POWER_GAIN),
         ...fromStars(3, 5, [ CHAMPION.TASKMASTER ], EFFECT.ADVANCED_IDEA_MECHANICS),
         ...fromStars(3, 5, [ CHAMPION.GWENPOOL, CHAMPION.DEADPOOL ], EFFECT.CHAIR_LARCENY),
-        ...fromStars(3, 5, [ CHAMPION.ABOMINATION ], EFFECT.CUBICLE_MATES)
+        ...fromStars(3, 5, [ CHAMPION.ABOMINATION ], EFFECT.CUBICLE_MATES),
     ]),
 
     ...fromId(CHAMPION.QUAKE, [
