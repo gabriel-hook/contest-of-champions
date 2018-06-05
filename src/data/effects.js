@@ -199,7 +199,7 @@ const effectIcons = {
     [ EFFECT.OTHER_HALF ]: 'effect-degeneration',
     [ EFFECT.TERMINATION_CONTRACT ]: 'effect-overcoming-fear',
     [ EFFECT.PROFESSORS_IN_CRIME ]: 'effect-hell-lords',
-    [ EFFECT.MOSTLY_AVEREGE_JOES ]: 'effect-mostly-average-joes',
+    [ EFFECT.MOSTLY_AVERAGE_JOES ]: 'effect-mostly-average-joes',
     [ EFFECT.THUNDER ]: 'effect-shock',
 };
 
