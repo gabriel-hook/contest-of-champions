@@ -89,6 +89,20 @@ const EFFECT_COLORS = {
     [ EFFECT.ANNOYANCES_ASSEMBLE ]: '#0f0',
     [ EFFECT.BROKEN_MINDS ]: '#0fa',
     [ EFFECT.THE_GOLD_STANDARD ]: '#ed0',
+    [ EFFECT.SIX_PACK ]: '#f02',
+    [ EFFECT.XFORCE ]: '#999',
+    [ EFFECT.WEAPON_X_STRIKE_TEAM ]: '#99f',
+    [ EFFECT.CODE_RED_REVELATIONS ]: '#f03',
+    [ EFFECT.MERCS_FOR_MONEY ]: '#f04',
+    [ EFFECT.BETTER_LUCK_NEXT_TIME ]: '#c86',
+    [ EFFECT.COMPLICATED ]: '#a0b',
+    [ EFFECT.ESOTERIC_INSIGHT ]: '#d4e',
+    [ EFFECT.FAMILIAR_INSIGHT ]: '#175',
+    [ EFFECT.WAKANDAN_INSIGHT ]: '#a6b',
+    [ EFFECT.AI_UPGRADE ]: '#f0b',
+    [ EFFECT.ENHANCED_SOLDIERS ]: '#b0a',
+    [ EFFECT.WAKANDA_LEADERSHIP ]: '#bbb',
+    [ EFFECT.FEARLESS ]: '#64c',
 };
 
 function getTypeColor(typeId) {
