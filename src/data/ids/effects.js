@@ -62,3 +62,7 @@ export const TERMINATION_CONTRACT = 'terminationcontract';
 export const PROFESSORS_IN_CRIME = 'professorsincrime';
 export const MOSTLY_AVERAGE_JOES = 'mostlyaveragejoes';
 export const THUNDER = 'thunder';
+export const TEAM_DEADPOOL_AWESOME_FORCE = 'teamdeadpoolawesomeforce';
+export const ANNOYANCES_ASSEMBLE = 'annoyancesassemble';
+export const BROKEN_MINDS = 'brokenminds';
+export const THE_GOLD_STANDARD = 'thegoldstandard';
