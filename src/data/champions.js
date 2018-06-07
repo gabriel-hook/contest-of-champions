@@ -89,6 +89,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.CYCLOPS90S }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DEADPOOL }, [ 2, 3, 4 ]),
         ...championStars({ uid: CHAMPION.DEADPOOLXFORCE }, [ 2, 3, 4, 6 ]),
+        ...championStars({ uid: CHAMPION.DOMINO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GAMBIT }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GOLDPOOL }, [ 5 ]),
         ...championStars({ uid: CHAMPION.ICEMAN }, [ 2, 3, 4, 5 ]),
