@@ -1,0 +1,35 @@
+{
+    "youtube": "gWGiru3NqAA",
+    "description": "After being an integral part of the Avengers team from the start, Tony Stark finds himself divided from Earth’s Mightiest Heroes. But now, faced with an imminent, deadly threat unlike any he has ever encountered, Stark will be forced to call upon some familiar faces as well as do battle alongside some new allies.",
+    "gameplay": {
+        "description": "Molecular Arsenal\n\nTony Stark’s Model 50 suit uses state-of-the-art nanotechnology to change form and mass at will, providing extreme adaptability and a wide array of weaponry including Blade Arm, Hammer Arm, and point-blank Repulsor attacks.\n\nMolecular Armor Passive\n\nUp to 24% chance to activate an Armor Passive when attacking or struck by an attack, increasing Armor by 2255 for 8 seconds. The chance to trigger is reduced for each active Armor Passive.\nStart the fight with 1 stack(s) of Molecular Armor.\nCritical Resistance increases by 273 for each active Armor effect.\nEach Armor effect active on Iron Man reduces the effectiveness of Power Drain, Power Steal, and Power Burn effects by 18%.\nAfter achieving 4 stacks of any Armor effect, Iron Man has a 100% chance to Auto-Block the next attack and then consume 1 Armor effect(s). This Auto-Block triggers Parry.\nA stack of Armor is lost each time Iron Man is inflicted by an Armor Break effect.\nMolecular Armor provides full immunity to Bleed and Coldsnap effects while active.",
+        "note": "This unique Armor cannot be Nullified but is still removed by Armor Break. The reduction to Power manipulation affects the amount of Power subtracted from Iron Man."
+    },
+    "attack": {
+        "description": "Repulsor Attacks\n\nThe first Medium hit, the first Heavy hit, and the second and fourth Light attacks employ point-blank Repulsor blasts.\nRepulsor hits don’t make contact, cannot be evaded, and deal Energy Damage instead of Physical.\nRepulsor hits that strike an opponent suffering from both Shock and Incinerate fuse those two Debuffs into a new Plasma Passive that has the properties of both.\nRepulsor hits refresh Incinerate Debuffs and Plasma Passives on opponents.\nRepulsor hits that strike an opponent suffering from a Shock or Plasma effect generate zero Power in opponents and drain up to 2.5% of their current stored Power. \nDeveloper Note: Since Repulsor attacks don’t make contact (they are short-range projectiles) they won’t trigger the Stun from the Parry Mastery, which means Iron Man (Infinity War) cannot ever be Stunned by Parry when he Dashes in (unless your name is Proxima Midnight). If you get up close and personal, his Light 1 Attack will trigger the Stun from Parry. This is the inverse of how Yondu interacts with Parry, and it helps make Iron Man (Infinity War) a formidable defender.",
+        "heavy": "The first Repulsor hit has all the properties of a Repulsor Attack and has +1165 Attack Rating. The second hit employs a Hammer Arm and has a 100% chance to inflict Armor Break on the opponent, removing one Armor Up and then reducing Armor by 439 for 12 seconds. The third and final hit employs an Unblockable Blade Arm and inflicts Heal Block for 16 second(s) against targets under the effects of Regeneration."
+    },
+    "specials": {
+        "1": {
+            "description": "Zero-point Blasts – Tapping into an esoteric energy source, the suit morphs to fire debilitating blasts.",
+            "note": "The first hit employes an Unblockable Blade Arm and inflicts Heal Block for 16 second(s) against targets under the effects of Regeneration. Each energy projectile has all the properties of a Repulsor attack and generates zero Power in opponents. 100% chance to leave opponents Shocked for 1165 Energy Damage over 12 seconds. Shock duration increases by up to 50% based on the opponents’ current Power"
+        },
+        "2": {
+            "description": "Micro-missile Array – Nanoparticles reform into wings that rain down repeated missile strikes.",
+            "note": "The first two hits are Hammer Arm Attacks. Each has a 40% chance to inflict Armor Break on the opponent, removing one Armor Up and then reducing Armor by 631.58 for 12 seconds. The missile barrage has a 100% chance to ignite the target, inflicting Incinerate for 1875.65 damage over 5 seconds. If the target does not ignite, they are instead inflicted by Armor Break, removing one Armor Up and then reducing Armor by 352.94 for 20 seconds. 34% chance for each active Armor Break on the opponent to inflict Stun for 2.2 seconds. \nDeveloper Note: As long as at least one Shock and one Incinerate are on the target, they combine into a Plasma Passive. It doesn’t matter which order Shock or Incinerate are applied, nor does it matter how they were activated. It’s possible to keep refreshing Plasma on the target long enough to activate another Special 1 and Special 2. This causes Plasma to stack. All stacks of Plasma are refreshed by Repulsor attacks, so B-E aggressive and “juggle” as much Plasma as you can for maximum DPS. Plasma cannot exceed 15 stacks."
+        },
+        "3": {
+            "description": "Infinity Break – Adapting to both worldly and otherworldly threats, the Model 50 unleashes its entire arsenal.",
+            "note": "100% chance to inflict Armor Break on the opponent, removing one Armor Up and then reducing Armor by 222 for 3 seconds. 100% chance to instantly ignite and electrify the target, inflicting a Plasma Passive that deals 2447 damage over 6 seconds. The chance to inflict Plasma decreases by 20% for each Plasma effect already active on the target. Developer Note: Since Plasma is a Passive and Special 3 inflicts Plasma without require Incinerate or Shock Debuffs, it’s possible to start “juggling” Plasma on a Debuff-immune target by opening with a Special 3. The easier access to Plasma is offset by the much higher damage output of the Shock and Incinerate method. Consider Special 3 a backup strategy if you find it difficult to get Shock or Incinerate to stick."
+        }
+    },
+    "signature": {
+        "description": "Deflector Protocol\n\nOnce per fight, Iron Man’s Model 50 suit executes an emergency protocol if attacked while 15% Health or less remains, creating a hardened exterior by instantly granting 8 stack(s) of Molecular Armor.\nWhile 15% Health or less remains and Iron Man is under the effects of an Armor effect, the suit generates 6.6% Power per second and has a 100% chance to Auto-Block attacks without consuming Armor. This Auto-Block triggers Parry.",
+        "note": "Iron Man (Infinity War) does not need to start a fight with more than 15% Health for this ability to activate. Even entering with only 2% remaining Health will still trigger the burst of Armor, Power generation, and Auto-Block; however, the trigger is still limited to once per fight."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-iron-man-infinity-war/"
+    }
+}
