@@ -85,6 +85,10 @@ const EFFECT_COLORS = {
     [ EFFECT.PROFESSORS_IN_CRIME ]: '#c0a',
     [ EFFECT.MOSTLY_AVERAGE_JOES ]: '#a2a',
     [ EFFECT.TERMINATION_CONTRACT ]: '#a0c',
+    [ EFFECT.TEAM_DEADPOOL_AWESOME_FORCE ]: '#f01',
+    [ EFFECT.ANNOYANCES_ASSEMBLE ]: '#0f0',
+    [ EFFECT.BROKEN_MINDS ]: '#0fa',
+    [ EFFECT.THE_GOLD_STANDARD ]: '#ed0',
 };
 
 function getTypeColor(typeId) {
