@@ -72,6 +72,7 @@ export const WEAPON_X_STRIKE_TEAM = 'weaponxstriketeam';
 export const MERCS_FOR_MONEY = 'mercsformoney';
 export const CODE_RED_REVELATIONS = 'coderedrevelations';
 export const BETTER_LUCK_NEXT_TIME = 'betterlucknexttime';
+export const COMPLICATED = 'complicated';
 export const ESOTERIC_INSIGHT = 'esotericinsight';
 export const FAMILIAR_INSIGHT = 'familiarinsight';
 export const AI_UPGRADE = 'aiupgrade';
