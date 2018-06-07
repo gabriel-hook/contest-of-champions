@@ -63,6 +63,10 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.PROFESSORS_IN_CRIME ]: [ 10, 12, 15 ],
     [ EFFECT.MOSTLY_AVERAGE_JOES ]: [ 10, 12, 15 ],
     [ EFFECT.THUNDER ]: [ 10, 12, 15 ],
+    [ EFFECT.TEAM_DEADPOOL_AWESOME_FORCE ]: [ 10, 12, 15 ],
+    [ EFFECT.BROKEN_MINDS ]: [ 10, 12, 15 ],
+    [ EFFECT.ANNOYANCES_ASSEMBLE ]: [ 10, 12, 15 ],
+    [ EFFECT.THE_GOLD_STANDARD ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -130,6 +134,10 @@ const effects = [
     { uid: EFFECT.PROFESSORS_IN_CRIME },
     { uid: EFFECT.MOSTLY_AVERAGE_JOES },
     { uid: EFFECT.THUNDER },
+    { uid: EFFECT.TEAM_DEADPOOL_AWESOME_FORCE },
+    { uid: EFFECT.BROKEN_MINDS },
+    { uid: EFFECT.ANNOYANCES_ASSEMBLE },
+    { uid: EFFECT.THE_GOLD_STANDARD },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -201,6 +209,10 @@ const effectIcons = {
     [ EFFECT.PROFESSORS_IN_CRIME ]: 'effect-hell-lords',
     [ EFFECT.MOSTLY_AVERAGE_JOES ]: 'effect-mostly-average-joes',
     [ EFFECT.THUNDER ]: 'effect-shock',
+    [ EFFECT.TEAM_DEADPOOL_AWESOME_FORCE ]: 'effect-immunity-bleed',
+    [ EFFECT.ANNOYANCES_ASSEMBLE ]: 'effect-annoyances-assemble',
+    [ EFFECT.BROKEN_MINDS ]: 'effect-broken-minds',
+    [ EFFECT.THE_GOLD_STANDARD ]: 'effect-mostly-average-joes',
 };
 
 function effectIcon(uid) {
