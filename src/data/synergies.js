@@ -722,6 +722,7 @@ const synergies = [
     ...fromId(CHAMPION.DRVOODOO, [
         ...fromStars(3, 5, [ CHAMPION.ROGUE ], EFFECT.PERFECT_BLOCK),
         ...fromStars(3, 5, [ CHAMPION.DRSTRANGE ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(4, 5, [ CHAMPION.GUILLOTINE ], EFFECT.CRITICAL_RATE),
     ]),
 
     ...fromId(CHAMPION.DORMAMMU, [
