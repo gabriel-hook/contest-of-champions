@@ -212,7 +212,7 @@ const effectIcons = {
     [ EFFECT.AVENGERS_TRYOUT ]: 'effect-avengers-tryout',
     [ EFFECT.KNOWLEDGE_SHARE ]: 'effect-masterminds',
     [ EFFECT.CONTEST_NOOBS ]: 'effect-inseparable',
-    [ EFFECT.MASTERS_OF_THE_SWORD ]: 'effect-master-of-the-sword',
+    [ EFFECT.MASTERS_OF_THE_SWORD ]: 'effect-masters-of-the-sword',
     [ EFFECT.SOUL_SEEKER ]: 'effect-soul-seeker',
     [ EFFECT.WARRIOR_QUEENS ]: 'effect-warrior-queens',
     [ EFFECT.BELIEVER ]: 'effect-believer',
