@@ -288,6 +288,7 @@
     "add-champion": "Adicionar um Campeão",
     "import-csv": "Importar .csv",
     "export-csv": "Exportar .csv",
+    "export-alliance": "Exportar para Ferramenta de Aliança",
     "delete-all": "Apagar todos",
 
     "sort": "Ordenar",
