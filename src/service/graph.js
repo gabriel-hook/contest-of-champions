@@ -102,6 +102,13 @@ const EFFECT_COLORS = {
     [ EFFECT.ENHANCED_SOLDIERS ]: '#b0a',
     [ EFFECT.WAKANDA_LEADERSHIP ]: '#bbb',
     [ EFFECT.FEARLESS ]: '#64c',
+    [ EFFECT.MUTANT_PURSUIT ]: '#ef0',
+    [ EFFECT.SKILL_TRAINING ]: '#d00',
+    [ EFFECT.SCIENCE_RESEARCH ]: '#1f1',
+    [ EFFECT.MYSTIC_OBSERVATION ]: '#90f',
+    [ EFFECT.TECH_ADVANCEMENT ]: '#00a',
+    [ EFFECT.CHRONAL_ANCHOR ]: '#51f',
+    [ EFFECT.ENERGY_CONDUIT ]: '#dc0',
 };
 
 function getTypeColor(typeId) {
