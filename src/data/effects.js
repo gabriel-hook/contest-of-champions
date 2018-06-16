@@ -80,6 +80,13 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.ENHANCED_SOLDIERS ]: [ 10, 12, 15 ],
     [ EFFECT.WAKANDA_LEADERSHIP ]: [ 10, 12, 15 ],
     [ EFFECT.FEARLESS ]: [ 10, 12, 15 ],
+    [ EFFECT.MUTANT_PURSUIT ]: [ 10, 12, 15 ],
+    [ EFFECT.SKILL_TRAINING ]: [ 10, 12, 15 ],
+    [ EFFECT.SCIENCE_RESEARCH ]: [ 10, 12, 15 ],
+    [ EFFECT.MYSTIC_OBSERVATION ]: [ 10, 12, 15 ],
+    [ EFFECT.TECH_ADVANCEMENT ]: [ 10, 12, 15 ],
+    [ EFFECT.CHRONAL_ANCHOR ]: [ 10, 12, 15 ],
+    [ EFFECT.ENERGY_CONDUIT ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -164,6 +171,13 @@ const effects = [
     { uid: EFFECT.ENHANCED_SOLDIERS },
     { uid: EFFECT.WAKANDA_LEADERSHIP },
     { uid: EFFECT.FEARLESS },
+    { uid: EFFECT.MUTANT_PURSUIT },
+    { uid: EFFECT.SKILL_TRAINING },
+    { uid: EFFECT.SCIENCE_RESEARCH },
+    { uid: EFFECT.MYSTIC_OBSERVATION },
+    { uid: EFFECT.TECH_ADVANCEMENT },
+    { uid: EFFECT.CHRONAL_ANCHOR },
+    { uid: EFFECT.ENERGY_CONDUIT },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -252,6 +266,13 @@ const effectIcons = {
     [ EFFECT.ENHANCED_SOLDIERS ]: 'effect-friend-from-work',
     [ EFFECT.WAKANDA_LEADERSHIP ]: 'effect-perfect-block',
     [ EFFECT.FEARLESS ]: 'effect-regeneration',
+    [ EFFECT.MUTANT_PURSUIT ]: 'effect-mutant-pursuit',
+    [ EFFECT.SKILL_TRAINING ]: 'effect-skill-training',
+    [ EFFECT.SCIENCE_RESEARCH ]: 'effect-science-research',
+    [ EFFECT.MYSTIC_OBSERVATION ]: 'effect-mystic-observation',
+    [ EFFECT.TECH_ADVANCEMENT ]: 'effect-tech-advancement',
+    [ EFFECT.CHRONAL_ANCHOR ]: 'effect-chronal-anchor',
+    [ EFFECT.ENERGY_CONDUIT ]: 'effect-resist-energy',
 };
 
 function effectIcon(uid) {
