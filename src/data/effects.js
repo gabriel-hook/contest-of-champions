@@ -87,6 +87,8 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.TECH_ADVANCEMENT ]: [ 10, 12, 15 ],
     [ EFFECT.CHRONAL_ANCHOR ]: [ 10, 12, 15 ],
     [ EFFECT.ENERGY_CONDUIT ]: [ 10, 12, 15 ],
+    [ EFFECT.DEMONS ]: [ 10, 12, 15 ],
+    [ EFFECT.PACT_WITH_A_DEMON ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -178,6 +180,8 @@ const effects = [
     { uid: EFFECT.TECH_ADVANCEMENT },
     { uid: EFFECT.CHRONAL_ANCHOR },
     { uid: EFFECT.ENERGY_CONDUIT },
+    { uid: EFFECT.DEMONS },
+    { uid: EFFECT.PACT_WITH_A_DEMON },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -273,6 +277,8 @@ const effectIcons = {
     [ EFFECT.TECH_ADVANCEMENT ]: 'effect-tech-advancement',
     [ EFFECT.CHRONAL_ANCHOR ]: 'effect-chronal-anchor',
     [ EFFECT.ENERGY_CONDUIT ]: 'effect-resist-energy',
+    [ EFFECT.DEMONS ]: 'effect-demons',
+    [ EFFECT.PACT_WITH_A_DEMON ]: 'effect-mercs-for-money',
 };
 
 function effectIcon(uid) {

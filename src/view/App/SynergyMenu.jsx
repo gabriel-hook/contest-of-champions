@@ -40,7 +40,7 @@ const SynergyMenu = {
                 />
                 <MenuSection title="show-by" />
                 <MenuOptionGroup options={
-                    [ '1', '2', '3', '4', '5' ].map((star) => (
+                    [ '1', '2', '3', '4', '5', '6' ].map((star) => (
                         <MenuOption
                             raw={ `${ star }★` }
                             selected={ stars === star }

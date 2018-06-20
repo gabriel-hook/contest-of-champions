@@ -5,6 +5,7 @@ export const UNRELEASED_CHAMPIONS = [
     // Tech
     // Mutant
     // Skill
+    CHAMPION.MASACRE,
     // Mystic
     CHAMPION.DRSTRANGEMARVELNOW,
     CHAMPION.SCARLETWITCHULTIMATE,

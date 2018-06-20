@@ -109,6 +109,8 @@ const EFFECT_COLORS = {
     [ EFFECT.TECH_ADVANCEMENT ]: '#00a',
     [ EFFECT.CHRONAL_ANCHOR ]: '#51f',
     [ EFFECT.ENERGY_CONDUIT ]: '#dc0',
+    [ EFFECT.DEMONS ]: '#666',
+    [ EFFECT.PACT_WITH_A_DEMON ]: '#e21',
 };
 
 function getTypeColor(typeId) {
