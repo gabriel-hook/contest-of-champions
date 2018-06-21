@@ -90,6 +90,10 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.DEMONS ]: [ 10, 12, 15 ],
     [ EFFECT.PACT_WITH_A_DEMON ]: [ 10, 12, 15 ],
     [ EFFECT.INHUMAN_ROYAL_FAMILY ]: [ 10, 12, 15 ],
+    [ EFFECT.INSPIRATION ]: [ 10, 12, 15 ],
+    [ EFFECT.GET_IN_THE_POOL ]: [ 10, 12, 15 ],
+    [ EFFECT.SPIRITUAL_STRENGTH ]: [ 10, 12, 15 ],
+    [ EFFECT.PLAYING_WITH_FIRE ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -184,6 +188,10 @@ const effects = [
     { uid: EFFECT.DEMONS },
     { uid: EFFECT.PACT_WITH_A_DEMON },
     { uid: EFFECT.INHUMAN_ROYAL_FAMILY },
+    { uid: EFFECT.INSPIRATION },
+    { uid: EFFECT.GET_IN_THE_POOL },
+    { uid: EFFECT.SPIRITUAL_STRENGTH },
+    { uid: EFFECT.PLAYING_WITH_FIRE },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -282,6 +290,10 @@ const effectIcons = {
     [ EFFECT.DEMONS ]: 'effect-demons',
     [ EFFECT.PACT_WITH_A_DEMON ]: 'effect-mercs-for-money',
     [ EFFECT.INHUMAN_ROYAL_FAMILY ]: 'effect-armor-break',
+    [ EFFECT.INSPIRATION ]: 'effect-critical-rate',
+    [ EFFECT.GET_IN_THE_POOL ]: 'effect-mercs-for-money',
+    [ EFFECT.SPIRITUAL_STRENGTH ]: 'effect-evade',
+    [ EFFECT.PLAYING_WITH_FIRE ]: 'effect-mercs-for-money',
 };
 
 function effectIcon(uid) {

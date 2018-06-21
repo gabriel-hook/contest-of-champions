@@ -89,3 +89,7 @@ export const CHRONAL_ANCHOR = 'chronalanchor';
 export const DEMONS = 'demons';
 export const PACT_WITH_A_DEMON = 'pactwithademon';
 export const INHUMAN_ROYAL_FAMILY = 'inhumanroyalfamily';
+export const INSPIRATION = 'inspiration';
+export const GET_IN_THE_POOL = 'getinthepool';
+export const SPIRITUAL_STRENGTH = 'spiritualstrength';
+export const PLAYING_WITH_FIRE = 'playingwithfire';

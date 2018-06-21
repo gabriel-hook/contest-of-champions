@@ -17,7 +17,7 @@ const TYPE_COLORS = {
     [ TYPE.SKILL ]: '#f30',
     [ TYPE.SCIENCE ]: '#0a0',
     [ TYPE.MYSTIC ]: '#90f',
-    [ TYPE.UNIVERSAL ]: '#3ff',
+    // [ TYPE.UNIVERSAL ]: '#3ff',
 };
 
 const EFFECT_COLORS = {
@@ -112,6 +112,10 @@ const EFFECT_COLORS = {
     [ EFFECT.DEMONS ]: '#666',
     [ EFFECT.PACT_WITH_A_DEMON ]: '#e21',
     [ EFFECT.INHUMAN_ROYAL_FAMILY ]: '#150',
+    [ EFFECT.INSPIRATION ]: '#c01',
+    [ EFFECT.GET_IN_THE_POOL ]: '#666',
+    [ EFFECT.SPIRITUAL_STRENGTH ]: '#f50',
+    [ EFFECT.PLAYING_WITH_FIRE ]: '#f60',
 };
 
 function getTypeColor(typeId) {
