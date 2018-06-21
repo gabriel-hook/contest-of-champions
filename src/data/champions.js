@@ -169,9 +169,9 @@ const champions = [
         ...championStars({ uid: CHAMPION.THORJANEFOSTER }, [ 2, 3, 4, 5, 6 ]),
         ...championStars({ uid: CHAMPION.UNSTOPPABLECOLOSSUS }, [ 2, 3, 4, 5 ]),
     ]),
-    // ...typeId(TYPE.UNIVERSAL, [
-    //     ...championStars({ uid: CHAMPION.MAESTRO }, [ 5 ]),
-    // ]),
+    ...typeId(TYPE.UNIVERSAL, [
+        ...championStars({ uid: CHAMPION.MAESTRO }, [ 5 ]),
+    ]),
 ].map((champion) => new Champion(champion));
 
 const championTypeMap = TYPE_VALUES.map((type) => ({

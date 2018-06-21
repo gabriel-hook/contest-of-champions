@@ -5,9 +5,9 @@ export const UNRELEASED_CHAMPIONS = [
     // Tech
     // Mutant
     // Skill
-    // CHAMPION.MASACRE,
     // Mystic
     // Universal
+    CHAMPION.MAESTRO,
 ].reduce((map, champion) => {
     map[ champion ] = true;
     return map;

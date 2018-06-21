@@ -4,4 +4,4 @@ export const MUTANT = 'mutant';
 export const SKILL = 'skill';
 export const SCIENCE = 'science';
 export const MYSTIC = 'mystic';
-// export const UNIVERSAL = 'universal';
+export const UNIVERSAL = 'universal';

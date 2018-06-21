@@ -17,7 +17,7 @@ const TYPE_COLORS = {
     [ TYPE.SKILL ]: '#f30',
     [ TYPE.SCIENCE ]: '#0a0',
     [ TYPE.MYSTIC ]: '#90f',
-    // [ TYPE.UNIVERSAL ]: '#3ff',
+    [ TYPE.UNIVERSAL ]: '#3ff',
 };
 
 const EFFECT_COLORS = {
