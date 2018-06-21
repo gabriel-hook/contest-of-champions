@@ -89,6 +89,7 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.ENERGY_CONDUIT ]: [ 10, 12, 15 ],
     [ EFFECT.DEMONS ]: [ 10, 12, 15 ],
     [ EFFECT.PACT_WITH_A_DEMON ]: [ 10, 12, 15 ],
+    [ EFFECT.INHUMAN_ROYAL_FAMILY ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -182,6 +183,7 @@ const effects = [
     { uid: EFFECT.ENERGY_CONDUIT },
     { uid: EFFECT.DEMONS },
     { uid: EFFECT.PACT_WITH_A_DEMON },
+    { uid: EFFECT.INHUMAN_ROYAL_FAMILY },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -279,6 +281,7 @@ const effectIcons = {
     [ EFFECT.ENERGY_CONDUIT ]: 'effect-resist-energy',
     [ EFFECT.DEMONS ]: 'effect-demons',
     [ EFFECT.PACT_WITH_A_DEMON ]: 'effect-mercs-for-money',
+    [ EFFECT.INHUMAN_ROYAL_FAMILY ]: 'effect-armor-break',
 };
 
 function effectIcon(uid) {

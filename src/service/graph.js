@@ -111,6 +111,7 @@ const EFFECT_COLORS = {
     [ EFFECT.ENERGY_CONDUIT ]: '#dc0',
     [ EFFECT.DEMONS ]: '#666',
     [ EFFECT.PACT_WITH_A_DEMON ]: '#e21',
+    [ EFFECT.INHUMAN_ROYAL_FAMILY ]: '#150',
 };
 
 function getTypeColor(typeId) {

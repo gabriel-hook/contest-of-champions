@@ -126,6 +126,7 @@ const synergies = [
     ...fromId(CHAMPION.MEDUSA, [
         ...fromStars(3, 5, [ CHAMPION.WOLVERINE, CHAMPION.IRONMAN ], EFFECT.CRITICAL_RATE),
         ...fromStars(3, 5, [ CHAMPION.QUAKE ], EFFECT.CRITICAL_DAMAGE),
+        ...fromStars(3, 5, [ CHAMPION.KARNAK ], EFFECT.INHUMAN_ROYAL_FAMILY),
     ]),
 
     ...fromId(CHAMPION.MSMARVEL, [

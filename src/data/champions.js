@@ -154,7 +154,6 @@ const champions = [
         ...championStars({ uid: CHAMPION.DRVOODOO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DORMAMMU }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DRSTRANGE }, [ 2, 3, 4 ]),
-        ...championStars({ uid: CHAMPION.DRSTRANGEMARVELNOW }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GHOSTRIDER }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.GUILLOTINE }, [ 2, 3, 4, 5, 6 ]),
         ...championStars({ uid: CHAMPION.HOOD }, [ 2, 3, 4, 5, 6 ]),
@@ -167,13 +166,12 @@ const champions = [
         ...championStars({ uid: CHAMPION.MEPHISTO }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.MORNINGSTAR }, [ 2, 3, 4, 5, 6 ]),
         ...championStars({ uid: CHAMPION.SCARLETWITCH }, [ 1, 2, 3, 4 ]),
-        ...championStars({ uid: CHAMPION.SCARLETWITCHULTIMATE }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.THORJANEFOSTER }, [ 2, 3, 4, 5, 6 ]),
         ...championStars({ uid: CHAMPION.UNSTOPPABLECOLOSSUS }, [ 2, 3, 4, 5 ]),
     ]),
-    ...typeId(TYPE.UNIVERSAL, [
-        ...championStars({ uid: CHAMPION.MAESTRO }, [ 5 ]),
-    ]),
+    // ...typeId(TYPE.UNIVERSAL, [
+    //     ...championStars({ uid: CHAMPION.MAESTRO }, [ 5 ]),
+    // ]),
 ].map((champion) => new Champion(champion));
 
 const championTypeMap = TYPE_VALUES.map((type) => ({

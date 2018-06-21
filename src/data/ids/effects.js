@@ -88,3 +88,4 @@ export const TECH_ADVANCEMENT = 'techadvancement';
 export const CHRONAL_ANCHOR = 'chronalanchor';
 export const DEMONS = 'demons';
 export const PACT_WITH_A_DEMON = 'pactwithademon';
+export const INHUMAN_ROYAL_FAMILY = 'inhumanroyalfamily';
