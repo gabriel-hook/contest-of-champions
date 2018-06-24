@@ -94,6 +94,12 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.GET_IN_THE_POOL ]: [ 10, 12, 15 ],
     [ EFFECT.SPIRITUAL_STRENGTH ]: [ 10, 12, 15 ],
     [ EFFECT.PLAYING_WITH_FIRE ]: [ 10, 12, 15 ],
+    [ EFFECT.TECH_BREAKTHROUGH ]: [ 10, 12, 15 ],
+    [ EFFECT.MUTANT_EVOLUTION ]: [ 10, 12, 15 ],
+    [ EFFECT.SKILL_TRAINING_CAIW ]: [ 10, 12, 15 ],
+    [ EFFECT.SCIENCE_EXPERIMENT ]: [ 10, 12, 15 ],
+    [ EFFECT.MYSTIC_CRAFT ]: [ 10, 12, 15 ],
+    [ EFFECT.COSMIC_POWER ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -192,6 +198,12 @@ const effects = [
     { uid: EFFECT.GET_IN_THE_POOL },
     { uid: EFFECT.SPIRITUAL_STRENGTH },
     { uid: EFFECT.PLAYING_WITH_FIRE },
+    { uid: EFFECT.TECH_BREAKTHROUGH },
+    { uid: EFFECT.MUTANT_EVOLUTION },
+    { uid: EFFECT.SKILL_TRAINING_CAIW },
+    { uid: EFFECT.SCIENCE_EXPERIMENT },
+    { uid: EFFECT.MYSTIC_CRAFT },
+    { uid: EFFECT.COSMIC_POWER },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -223,7 +235,7 @@ const effectIcons = {
     [ EFFECT.SHIELD_AGENTS ]: 'effect-shield',
     [ EFFECT.SHIELD_CLEARANCE ]: 'effect-shield',
     [ EFFECT.SHARED_GENETIC_MEMORY ]: 'effect-shared-genetic-memory',
-    [ EFFECT.DEMON_HUNTER ]: 'effect-demon-hunter',
+    [ EFFECT.DEMON_HUNTER ]: 'type-mystic',
     [ EFFECT.SPIRIT_OF_JUSTICE ]: 'effect-spirit-of-justice',
     [ EFFECT.HEIGHTENED_SENSES ]: 'effect-heightened-senses',
     [ EFFECT.COMPETITION ]: 'effect-competition',
@@ -233,7 +245,7 @@ const effectIcons = {
     [ EFFECT.ELECTRIC_SUPERCHARGE ]: 'effect-electric-supercharge',
     [ EFFECT.SEETHING_HATRED ]: 'effect-seething-hatred',
     [ EFFECT.PARTICLE_PHYSICS ]: 'effect-particle-physics',
-    [ EFFECT.ENGINEERING ]: 'effect-engineering',
+    [ EFFECT.ENGINEERING ]: 'type-tech',
     [ EFFECT.BIOCHEMISTRY ]: 'effect-biochemistry',
     [ EFFECT.AVENGERS_TRYOUT ]: 'effect-avengers-tryout',
     [ EFFECT.KNOWLEDGE_SHARE ]: 'effect-masterminds',
@@ -276,7 +288,7 @@ const effectIcons = {
     [ EFFECT.ESOTERIC_INSIGHT ]: 'effect-power-lock',
     [ EFFECT.FAMILIAR_INSIGHT ]: 'effect-perfect-block',
     [ EFFECT.WAKANDAN_INSIGHT ]: 'effect-wakandan-insight',
-    [ EFFECT.AI_UPGRADE ]: 'effect-engineering',
+    [ EFFECT.AI_UPGRADE ]: 'type-tech',
     [ EFFECT.ENHANCED_SOLDIERS ]: 'effect-friend-from-work',
     [ EFFECT.WAKANDA_LEADERSHIP ]: 'effect-perfect-block',
     [ EFFECT.FEARLESS ]: 'effect-regeneration',
@@ -294,6 +306,12 @@ const effectIcons = {
     [ EFFECT.GET_IN_THE_POOL ]: 'effect-mercs-for-money',
     [ EFFECT.SPIRITUAL_STRENGTH ]: 'effect-evade',
     [ EFFECT.PLAYING_WITH_FIRE ]: 'effect-mercs-for-money',
+    [ EFFECT.TECH_BREAKTHROUGH ]: 'type-tech',
+    [ EFFECT.MUTANT_EVOLUTION ]: 'type-mutant',
+    [ EFFECT.SKILL_TRAINING_CAIW ]: 'type-skill',
+    [ EFFECT.SCIENCE_EXPERIMENT ]: 'type-science',
+    [ EFFECT.MYSTIC_CRAFT ]: 'type-mystic',
+    [ EFFECT.COSMIC_POWER ]: 'type-cosmic',
 };
 
 function effectIcon(uid) {

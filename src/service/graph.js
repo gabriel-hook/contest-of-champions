@@ -116,6 +116,12 @@ const EFFECT_COLORS = {
     [ EFFECT.GET_IN_THE_POOL ]: '#666',
     [ EFFECT.SPIRITUAL_STRENGTH ]: '#f50',
     [ EFFECT.PLAYING_WITH_FIRE ]: '#f60',
+    [ EFFECT.TECH_BREAKTHROUGH ]: '#23f',
+    [ EFFECT.MUTANT_EVOLUTION ]: '#fa0',
+    [ EFFECT.SKILL_TRAINING_CAIW ]: '#f30',
+    [ EFFECT.SCIENCE_EXPERIMENT ]: '#0a0',
+    [ EFFECT.MYSTIC_CRAFT ]: '#90f',
+    [ EFFECT.COSMIC_POWER ]: '#3af',
 };
 
 function getTypeColor(typeId) {
