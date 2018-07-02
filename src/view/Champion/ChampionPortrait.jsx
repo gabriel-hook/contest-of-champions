@@ -65,7 +65,7 @@ const ChampionPortrait = {
                 title.push(
                     <div class={ classNames('title-field', 'title-field-pi', {
                         'title-field-pi-custom': pi && pi > 0 }, 'title-field-sig') }
-                    >{ lang.number(pi || champion.pi * scalePi) + lang.string(` sig: ${awakened}`)}</div>
+                    >{ `${lang.number(pi || champion.pi * scalePi)} ${lang.string('portrait-signature')}: ${awakened}` }</div>
                 );
             }
             const name = lang.string(`champion-${ uid }-shortname`, null) || lang.string(`champion-${ uid }-name`);

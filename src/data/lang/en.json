@@ -667,6 +667,7 @@
     "ability-nullify-description": "Remove a beneficial effect from the target.",
     "ability-limbo-description": "Deals 25% attack as energy damage, and all damage taken is rewound once the effect expires.",
     "ability-evade-description": "Dodge an attack.",
+    "portrait-signature": "Sig",
     "profile-by": "by",
     "profile-spotlight-by": "Spotlight by",
     "profile-email": "E-Mail",
