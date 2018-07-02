@@ -1,0 +1,34 @@
+{
+    "description": "Deadpool once visited a church in Mexico, stopping to give confession. The priest who took his confession was convinced by it that the world needed to be punished, becoming the mercenary Masacre. Extracting information from the reluctant Inspector Jaime Gordón, Masacre tracks down and takes out the crime lord Calavera de Jade. The very next day Masacre rides off to New York, joining Deadpool’s Mercs for Money.",
+    "gameplay": {
+        "description": "Flammable – Passive\n\nEach time Masacre’s bat either lands a Critical Hit, Hits a Block, or Hits an Incinerated opponent it begins to ignite, gaining an Ignition Charge which lasts 10 seconds.\nUpon reaching 10 Ignition Charges all the charges are consumed and Ignites Masacre’s bat, for 16 seconds.\nWhile Ignited Masacre cannot gain additional Ignition Charges.\nBat attacks that are also Critical Hits deal an additional 10% of damage deals as a burst of Energy Damage for each Ignition Charge.\n\nIgnited – Passive\n\nEach strike of the Bat places an Incinerate Debuff on the opponent causing 793.8 energy damage over 5 seconds, removing Perfect Block Chance, and reducing Block Proficiency by 50%.\nThese Incinerate Debuffs have their Duration increased by 1 second for each Incinerate Debuff on the opponent, up to a maximum of +5 seconds.\nEach time an Incinerate effect fails to apply due to an Immunity, the target instead takes 793.8 Energy Damage.\nGain Power when striking a Block as if landing a Hit.\n\nWhen Blocked\n\nOpponent’s passively suffer 50% reduced Defensive Ability Accuracy for as long as they are under a Debuff effect.\nBat attacks have 666.67 Block Penetration. This doubles when the bat is Ignited.",
+        "note": "It takes a little getting used to, but Masacre can run a 4 hit combo (M-L-L-L) which are all bat strikes. This is one of the most effective ways to quickly Ignite the bat. Using the Power Gain when striking a Block is one of the easiest ways to guarantee that your opponent will be blocking when you use a Special 2.\nCombining the Defensive Ability Accuracy reduction with the Disorient Debuff from Special 1, allows Masacre to have -100% Ability Accuracy reduction when striking his Opponent’s Block."
+    },
+    "attack": {
+        "heavy": "Each bat hit against an Incinerated Opponent, grants an additional Ignition Charge.",
+        "note": "The Heavy Attack animation is 4 strikes with the bat. Against an Incinerated Opponent, building to 10 charges with one Heavy Attack is possible."
+    },
+    "specials": {
+        "1": {
+            "description": "Fuel for the Fire – Masacre gives his opponent a face full of ground chillies before aggressively applying his machetes while they’re distracted",
+            "note": "The first hit place a Disoriented Debuff on the Opponent reducing their Defensive Ability Accuracy and Block Proficiency by 50% for 12 seconds, Refreshing the Duration of any Incinerate Debuffs active on the Opponent. Machete Hits have a 100% chance to cause the target to Bleed for 882 Direct Damage over 12 seconds. Developer Note: Using the Special 1 just before reaching Special 2 to refresh active Incinerate effects and gain the longer Disorient Duration, give the best opportunity to throw a Special 2 into a Block with both Debuffs active."
+        },
+        "2": {
+            "description": "Sawed off Thunder – Masacre opens fire with his powerful if sometimes unreliable shotguns, and if all else fails, they’re heavy…",
+            "note": "10201.8 Attack if Blocked. If this attack strikes a Block, Masacre will avoid all attacks for 0.75 seconds. Developer Note: Doesn’t do particularly good damage when just fired into a Block, but if you can reduce your Opponents Block Proficiency with Disorient and Incinerate the damage increases a lot!"
+        },
+        "3": {
+            "description": "Special Sauce – Hurling his opponent away, Masacre self serves a bottle of his own special recipe, line driving it into his opponent to explosive effect.",
+            "note": "This attack Incinerates the enemy, dealing 3528 Energy Damage over 20 seconds. This effect also removes Perfect Block Chance and reduces Block Proficiency by 50% while it’s active. Developer Note: Combining this long incinerate with the Special 1’s ability to refresh active Incinerates makes it possible to keep it active for an entire fight."
+        }
+    },
+    "signature": {
+        "description": "Enthusiastic Punishment\n\nAll Attacks\n\nMasacre loves his job, gaining bonuses when striking an Opponent who has no Debuffs on them.\n24.98% additional Power from landing hits.\n+665.96 Critical Rating."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-masacre/"
+    },
+    "youtube": "33Pnfq0VDIQ"
+}
