@@ -27,6 +27,7 @@ export const VENOMPOOL = 'venompool';
 export const CIVILWARRIOR = 'civilwarrior';
 export const DROCTOPUS = 'docock';
 export const GREENGOBLIN = 'greengoblin';
+export const GHOST = 'ghost';
 export const HOWARDTHEDUCK = 'howardtheduck';
 export const HULKBUSTER = 'hulkbuster';
 export const IRONMAN = 'ironman';
@@ -113,6 +114,7 @@ export const SPIDERGWEN = 'spidergwen';
 export const SPIDERMAN = 'spiderman';
 export const SPIDERMANMORALES = 'spidermanmorales';
 export const VOID = 'void';
+export const WASP = 'wasp';
 export const YELLOWJACKET = 'yellowjacket';
 // Mystic
 export const DORMAMMU = 'dormammu';

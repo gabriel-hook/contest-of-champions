@@ -1,0 +1,35 @@
+{
+    "description": "Empowered with a new cutting-edge Wasp suit, Hope van Dyne is ready to make up for lost time as a Super Hero. Like Ant-Man, she can reduce herself to the size of an insect while disproportionately increasing her strength and durability. Couple this with the ability to fly at impressive speeds and evade enemy attacks and you have one deadly Wasp.",
+    "youtube": "RWm-HoO61p8",
+    "attack": {
+        "heavy": "When Wasp charges a Heavy Attack while hitting with a Basic Attack Combo, the opponent loses sight of her and passively gets Stunned for 0.6 seconds. Inflicts Weakness for 10 seconds if this attack was chained from a Basic Attack Combo, reducing the opponent’s Attack Rating by 30%.",
+        "note": "Developer Note: Use Wasp’s Heavy Attack as a combo ender!"
+    },
+    "gameplay": {
+        "description": "When Attacked\n\nWasp has a 8% chance to shrug off all Damaging Debuffs other than Bleed, then shrink to Counter Attack, Evading the opponent’s attack and inflicting Shock, dealing 1384 Energy Damage over 8 seconds. This ability does not activate if Wasp is about to Parry an attack.\n\nPassive\n\nWhenever Wasp shrinks down, her next 2 hits will be critical, with +622 Attack Rating for each Debuff active on the opponent. Additionally, Counter Attack is disabled for 10 seconds.\nWhen Wasp has Class Advantage, all of her abilities that are based on the Combo Meter receive an additional bonus equivalent to as if she had 40 more hits on her Combo Meter.",
+        "note": "Developer Note: The bonus against Mystic Champions when you do a Special 1(Concussion, 1% per hit on the Combo Meter) will be +40% and Special 2 (Petrify, 1.75% per hit on the Combo Meter) is 70%."
+    },
+    "specials": {
+        "1": {
+            "description": "Insect Size – Wasp shrinks down to the size of an insect, knocking down the opponent with a flurry of attacks.",
+            "note": "40% chance to Stun for 2 seconds. Concussion, reducing the opponent’s Ability Accuracy by 1% for each hit on her Combo Meter for 8 seconds."
+        },
+        "2": {
+            "description": "Quick Sting – Losing sight of Wasp even for a moment will result in a series of painful stings.",
+            "note": "Stings the opponent for 6 seconds. An opponent with sting takes 1107 damage when activating a special attack. Sting will Petrify opponents after lasting their full duration, reducing the effectiveness of Power Gain and Regeneration by 1.75% for each hit on Wasp’s Combo Meter for 12 seconds."
+        },
+        "3": {
+            "description": "Titanic Treat – Wasp uses her Pym Particle Disks to blow up a bubble gum package to the size of a car, crushing opponents upon impact.",
+            "note": "+69 Attack Rating for each hit on her Combo Meter."
+        }
+    },
+    "signature": {
+        "description": "Quantum Evade\n\n20% increased flat chance to shrink and Counter Attack when attacked by the opponent. Additionally, the duration that Counter Attack is disabled after shrinking is reduced by 60%.",
+        "note": "Developer Note: The 20% increased chance is a flat increase, meaning the final chance will be 28% to activate Counter Attack if it is not on cooldown."
+    },
+    "author": {
+        "name": "Kabam",
+        "type": "spotlight",
+        "profile": "https://playcontestofchampions.com/champion-spotlight-wasp/"
+    }
+}

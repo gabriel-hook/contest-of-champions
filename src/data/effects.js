@@ -100,6 +100,15 @@ export const EFFECT_STARS_AMOUNT = {
     [ EFFECT.SCIENCE_EXPERIMENT ]: [ 10, 12, 15 ],
     [ EFFECT.MYSTIC_CRAFT ]: [ 10, 12, 15 ],
     [ EFFECT.COSMIC_POWER ]: [ 10, 12, 15 ],
+    [ EFFECT.ADVANCED_TECH ]: [ 10, 12, 15 ],
+    [ EFFECT.HARD_TO_HIT ]: [ 10, 12, 15 ],
+    [ EFFECT.DEADLY_STING ]: [ 10, 12, 15 ],
+    [ EFFECT.UNTAMED_FORCE ]: [ 10, 12, 15 ],
+    [ EFFECT.DECIMATION ]: [ 10, 12, 15 ],
+    [ EFFECT.NO_MERCY ]: [ 10, 12, 15 ],
+    [ EFFECT.FORMIDABLE_FOE ]: [ 10, 12, 15 ],
+    [ EFFECT.MICROSCOPIC_OBSERVATION ]: [ 10, 12, 15 ],
+    [ EFFECT.THE_UNTOUCHABLES ]: [ 10, 12, 15 ],
 };
 export const EFFECT_STARS_INDEX = { 1: 0, 2: 0, 3: 1, 4: 2, 5: 2 };
 
@@ -204,6 +213,15 @@ const effects = [
     { uid: EFFECT.SCIENCE_EXPERIMENT },
     { uid: EFFECT.MYSTIC_CRAFT },
     { uid: EFFECT.COSMIC_POWER },
+    { uid: EFFECT.ADVANCED_TECH },
+    { uid: EFFECT.DEADLY_STING },
+    { uid: EFFECT.HARD_TO_HIT },
+    { uid: EFFECT.UNTAMED_FORCE },
+    { uid: EFFECT.DECIMATION },
+    { uid: EFFECT.NO_MERCY },
+    { uid: EFFECT.FORMIDABLE_FOE },
+    { uid: EFFECT.THE_UNTOUCHABLES },
+    { uid: EFFECT.MICROSCOPIC_OBSERVATION },
 
 ].map(({ uid }) => new Effect({
     uid,
@@ -312,6 +330,15 @@ const effectIcons = {
     [ EFFECT.SCIENCE_EXPERIMENT ]: 'type-science',
     [ EFFECT.MYSTIC_CRAFT ]: 'type-mystic',
     [ EFFECT.COSMIC_POWER ]: 'type-cosmic',
+    [ EFFECT.ADVANCED_TECH ]: 'effect-masterminds',
+    [ EFFECT.DEADLY_STING ]: 'effect-deadly-string',
+    [ EFFECT.HARD_TO_HIT ]: 'effect-evade',
+    [ EFFECT.UNTAMED_FORCE ]: 'effect-regeneration',
+    [ EFFECT.DECIMATION ]: 'effect-friend-from-work',
+    [ EFFECT.NO_MERCY ]: 'effect-hell-lords',
+    [ EFFECT.FORMIDABLE_FOE ]: '',
+    [ EFFECT.MICROSCOPIC_OBSERVATION ]: '',
+    [ EFFECT.THE_UNTOUCHABLES ]: '',
 };
 
 function effectIcon(uid) {
