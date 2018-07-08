@@ -44,7 +44,8 @@ class Champion {
             this.pi = pi ||0;
         }
         else{
-            this.pi = getPi(this.attr) || 0;}
+            this.pi = getPi(this.attr) || 0;
+        } 
     }
 
 
