@@ -148,7 +148,7 @@ const RosterEditPage = {
                         value={ pi || '' }
                         placeholder={ champion.pi * scalePi | 0 }
                         min={ 0 }
-                        max={ 10000 }
+                        max={ 20000 }
                         onchange={(event) => {
                             const { value, min, max, valueAsNumber } = event.target;
                             const pi = Math.min(max, Math.max(min, Number.parseInt(value, 10) || min));
