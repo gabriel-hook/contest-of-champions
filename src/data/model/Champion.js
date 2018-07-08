@@ -40,8 +40,11 @@ class Champion {
 
         this.id = `${ this.attr.uid }-${ this.attr.stars }`;
         this.typeIndex = TYPE_VALUES.indexOf(this.attr.typeId);
-        this.pi = getPi(this.attr) || 0;
-    }
+        if(pi!=0){
+          this.pi = pi ||0;
+        }else{
+        this.pi = getPi(this.attr) || 0;}}
+
 
     static idToObject(id) {
         const [ uid, stars ] = id.split('-');
