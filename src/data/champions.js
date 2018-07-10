@@ -59,6 +59,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.CIVILWARRIOR }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.DROCTOPUS }, [ 2, 3, 4, 5, 6 ]),
         ...championStars({ uid: CHAMPION.GREENGOBLIN }, [ 2, 3, 4, 5, 6 ]),
+        ...championStars({ uid: CHAMPION.GHOST }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.HOWARDTHEDUCK }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.HULKBUSTER }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.IRONMAN }, [ 1, 2, 3, 4, 5 ]),
@@ -148,6 +149,7 @@ const champions = [
         ...championStars({ uid: CHAMPION.SPIDERMAN }, [ 1, 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.SPIDERMANMORALES }, [ 2, 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.VOID }, [ 3, 4, 5, 6 ]),
+        ...championStars({ uid: CHAMPION.WASP }, [ 3, 4, 5 ]),
         ...championStars({ uid: CHAMPION.YELLOWJACKET }, [ 2, 3, 4, 5, 6 ]),
     ]),
     ...typeId(TYPE.MYSTIC, [
