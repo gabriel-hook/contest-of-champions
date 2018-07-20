@@ -336,9 +336,9 @@ const effectIcons = {
     [ EFFECT.UNTAMED_FORCE ]: 'effect-regeneration',
     [ EFFECT.DECIMATION ]: 'effect-friend-from-work',
     [ EFFECT.NO_MERCY ]: 'effect-hell-lords',
-    [ EFFECT.FORMIDABLE_FOE ]: '',
-    [ EFFECT.MICROSCOPIC_OBSERVATION ]: '',
-    [ EFFECT.THE_UNTOUCHABLES ]: '',
+    [ EFFECT.FORMIDABLE_FOE ]: 'effect-attack',
+    [ EFFECT.MICROSCOPIC_OBSERVATION ]: 'effect-mostly-average-joes',
+    [ EFFECT.THE_UNTOUCHABLES ]: 'effect-untouchables',
 };
 
 function effectIcon(uid) {

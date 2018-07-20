@@ -106,7 +106,7 @@ const GuideAuthor = {
                     byline = 'profile-spotlight-by';
                     icon = 'bomb';
                     if(profile)
-                        href = `http://community.kabam.com/forums/showthread.php?${ profile }`;
+                        href = `${ profile }`;
                     break;
                 }
                 case 'email': {

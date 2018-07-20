@@ -184,10 +184,10 @@ const TeamsSettingsPage = {
                         { lang.string('pi-range') }
                     </div>
                     { [
-                        { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 10000 },
-                        { which: 'maximum-champion', iconType: 'user', icon: 'step-forward', maximum: 10000 },
-                        { which: 'minimum-team', iconType: 'users', icon: 'step-backward', maximum: 50000 },
-                        { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 50000 },
+                        { which: 'minimum-champion', iconType: 'user', icon: 'step-backward', maximum: 20000 },
+                        { which: 'maximum-champion', iconType: 'user', icon: 'step-forward', maximum: 20000 },
+                        { which: 'minimum-team', iconType: 'users', icon: 'step-backward', maximum: 100000 },
+                        { which: 'maximum-team', iconType: 'users', icon: 'step-forward', maximum: 100000 },
                     ].map(({ which, iconType, icon, maximum }) => (
                         <Field
                             title={ lang.string(`pi-range-${ which }`) }
